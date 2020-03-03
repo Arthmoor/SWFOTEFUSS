@@ -1,0 +1,82 @@
+A general guide on how to get SWFotE up and running. Not meant for 
+completely new coders, so run at your own risk. Known bugs at the bottom 
+of file.
+
+-Be sure to redefine the location and create directories for the player 
+ profiles, or, if you'd rather player profiles didn't exist, remove 
+ save_profile from do_save.
+//Fixed in version 1.1, no longer need to change unless you want to. 
+//Defaults to html directory
+
+-Also make sure you redefine webwho, webwizlist and the like in mud.h
+ (Included in the html directory is the PHP files used to display the 
+ webwho, webwizlist, profiles, and new code. Make sure your server has php 
+ available, or recode these things :P )
+//Fixed in version 1.1, no longer need to change unless you want to. 
+//Defaults to html directory and html/profiles directory respectively
+
+-A note to all you spammer-haters. If you've got a spammer who 
+ consistently connects and disconnects - even after ban, HardBan them! This 
+ little bit of code will disconnect them before name lookup, minimizing 
+ lag, and does not log. To find it, just search for HardBan in comm.c
+
+-Purging of idle pfiles is currently set to 30 days player, 5 days newbie. 
+ If you wish to change this, go into sysdata.dat and simply change 
+ Newbie_purge and Regular_purge.
+
+-Inside the player directory you will find two programs, sitecount and 
+ checksite (source included). Sitecount searches through every player file 
+ and logs their IP, and displays if they have over 2 characters. checksite 
+ is used by typing "checksite <ip>", and scans the player files for that 
+ IP. sitecount is C++, checksite is a shell script. Feel free to modify 
+ these or remove them to your liking. Checksite will need modification to 
+ your player file directory path. Should be fairly straightforward.
+
+-Seriously, if you plan on using this base, send us an email at 
+ fotemud@yahoo.com. No, SERIOUSLY! Here, if you're really that lazy, copy 
+ and paste this:
+
+ Hello,
+ I am running your codebase at <site>.
+ -<name>
+
+ We'd like to hear from you, and we might even stop 
+ by to see how things are coming along. You may think "This base is pretty 
+ old, doubt they even check it anymore." Send it anyways. Seriously.
+
+ SUGGESTIONS
+------------------------------------------
+- Quality Areas, with lots of progs. They really flesh out an area.
+- Perhaps a cargo system, a rather advanced one would be best.
+- Expanding upon pilot maneuvers, such as split-s, in addition to current.
+- The customized force system removing 'feel' (Richard Berrill) is
+  highly undeveloped. Refer to force.README for more information.
+- Asteroids are half implemented. They are just planets and ships with
+  different type assignments, but are formatted nicely. Expansion suggested.
+- Going back to areas, there is newcoru.are which is 450+ rooms built, but
+  was never completed and linked. If you want a good layout, this is it.
+- Make more ship prototypes! They are currently listed in /ships, but
+  making new ones is a pain, and more of a pain to explain how to do so.
+  You're inherently intelligent enough to figure it out, as is everyone.
+
+ KNOWN BUGS AND FIXES REQUIRED (We're lazy)
+------------------------------------------
+//Fixed in version 1.1
+- Planets that have no owners crash when 'planets' is typed. Usually not a 
+  problem unless not set upon planet creation. Easy fix, too.
+
+- Fhelps need some definite work, content wise.
+
+//Pretty certain PERS is fine in v1.1, nobody's mentioned any changes needed
+- Some commands may need PERS(<ch>, <looker>) in replacement of ch->name 
+    on account of the introduction system.
+
+//Pretty certain PERS is fine in v1.1, nobody's mentioned any changes needed
+- Some commands may require get_char_world_ooc instead of get_char_world 
+    on account of the introduction system.
+
+//Added in version 1.1, so should be working great for real now.
+- Ship modules should be working great, there MAY be some slight
+    incompatibilities with the new space system. Also, if you're feeling
+    ambitious, adding the new kind of lasers into makemodule would be good.
+

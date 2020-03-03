@@ -1,0 +1,32 @@
+#FORCE
+Alter          1
+ChEffect0     $RN$You stop to concentrate for a moment before you bring your saber into the air, humming loudly.$RN$You swing the saber around attempting to cut $v in two.$RN$~
+ChEffect1     Your lightsaber hums through the air and slices $v in two, $vp corpse falling to the ground.$RN$$RN$~
+ChEffect2     $v parries your blow.$RN$$RN$~
+ChEffect3     $v dodges your blow.$RN$$RN$~
+ChEffect4     You miss $v.$RN$$RN$~
+Code           fskill_finish~
+Cost           100
+Control        1
+Disabled       0
+Mastertrain    1
+Index          17
+Name           finish~
+Notskill       0
+RoomEffect0     $RN$$n stops to concentrate for a moment before $nn brings $np saber into the air, humming loudly.$RN$$n swings the saber around attempting to cut $v in two.$RN$~
+RoomEffect1     $n's lightsaber hums through the air and slices $v in two, $vp corpse falling to the ground.$RN$$RN$~
+RoomEffect2     $v parries $n's blow.$RN$$RN$~
+RoomEffect3     $v dodges $n's blow.$RN$$RN$~
+RoomEffect4     $v is missed by $n's blow.$RN$$RN$~
+Sense          1
+Status         2
+Type           0
+VictimEffect0     $RN$$n stops to concentrate for a moment before $nn brings $np saber into the air, humming loudly.$RN$$n swings the saber around attempting to cut you in two.$RN$~
+VictimEffect1     $n's lightsaber hums through the air and slices you in two.$RN$$RN$~
+VictimEffect2     You parry $n's blow.$RN$$RN$~
+VictimEffect3     You dodge $n's blow.$RN$$RN$~
+VictimEffect4     You are missed by $n's blow.$RN$$RN$~
+WaitState      0
+End
+
+#END

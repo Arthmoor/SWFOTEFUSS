@@ -1,0 +1,50 @@
+[  179] Tarsis: in
+[  116] Tarsis: on
+[  129] Xai: Good RP Points: (Not yet Implimented)  <Implemented is the correct term>
+[  148] Hunter: bank ballance needs fixing in the banking commands
+[ 1054] Leon: Sim room "hydrolics" should be spelled "hydraulics" 2nd sentence.
+[ 1072] Leon: is the 'rick' in huznik's caff shop supposed to be spelled 'rich' ?
+[ 1071] Leon: 3rd sentence, 'wizz' supposed to be spelled 'whiz' i believe? :P getting tired of these? lets see if someone fixs em..
+[ 1244] Leon: hallway before smirkal's assignments and jobs, jobs, JOBS! 'dispite' second to last sentence prolly should be spelled 'despite'
+[ 1051] Leon: 'begger' supposed to be spelled 'beggar'
+[ 1915] Leon: at mass statue, last sentence, 'undergrwoth' supposed to be spelled 'undergrowth'
+[   -1] Hunter: when "end sim" command is used it says the hatch is open so you try to "leave x" and it says the hatch is closed and you have to open it.
+[   -1] Acebo: 'New course set, aproaching <coordinates>'
+[ 1149] Hunter: error of item and mob in bacca tank
+[  140] Rolen: this guy says he can teach you "hot" to make stuff
+[ 1983] Rolen: there is no list to look at in this turbolift
+[  152] Alric: focus strength's help file says you can "increase your strength fo a time" and probably should be "foR a time"
+[  145] Shaldemi: "a handful of indiCiduals quietly working"
+[   -1] Telesis: greeting, beggining = begining
+[  301] Telesis: tatooine whipid female descrption, describes itself as a tusken shaman male
+[   -1] Telesis: help chaff - stopan
+[  299] Telesis: help noghri - posoining = poisoning
+[ 1097] Pahalial: "hold up your new datpad." datApad
+[  140] Nardo: In the Engineer training center where newbies start, the engineer says "I can also teach you hot" instead of "teach you how"
+[  146] Jilnang: Bulletin is misspelled in the factory descriptions.
+[  129] Tingar: Intelligence is misspelled on the score sheet
+[  133] Tyler: the room desc sounds very confusing and garbled
+[ 1057] Karnak: in acute_accuracy i belive that sences should be senses
+[ 1245] Scryn: "You enter a peaceful 'trancetuning' yourself to the Force"
+[  302] Moxin: lady
+[  302] Moxin: lady valarian is described as being a guy
+[ 1050] Kiir: Interagation droid?  It's spelt interrogation droid.
+[ 4559] Rendon: list on endor
+[  174] Malloc: language lessons, says "you must be adept ata language" Needs a space "at a language"
+[10319] Klez: Empty
+[10352] Klez: necessities 
+[10353] Klez: necessities
+[10355] Klez: necessities
+[10354] Klez: necessities
+[10356] Klez: necessities
+[10357] Klez: necessities
+[10257] Klez: 'fith'
+[10256] Klez: 'filty'
+[10255] Klez: 'filty'
+[10227] Klez: 'filty'
+[10233] Klez: 'filty'
+[10402] Klez: 'their'
+[10222] Klez: 'belive'
+[ 1080] Obeiz: acute_accuracy  'sences' 'becomming'
+[ 1051] Krytin: Mr.Lark grabs a message tisk to record a note.
+[12020] Lance: Yavin IV is in the Yavin system...not the Yavin IV system...

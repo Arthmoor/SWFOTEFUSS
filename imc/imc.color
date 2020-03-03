@@ -1,0 +1,379 @@
+#COLOR
+Name   Random
+Mudtag &Z
+IMCtag ~Z
+End
+
+#COLOR
+Name   Black
+Mudtag &x
+IMCtag ~x
+End
+
+#COLOR
+Name   DRed
+Mudtag &r
+IMCtag ~r
+End
+
+#COLOR
+Name   DGreen
+Mudtag &g
+IMCtag ~g
+End
+
+#COLOR
+Name   Orange
+Mudtag &O
+IMCtag ~y
+End
+
+#COLOR
+Name   DBlue
+Mudtag &b
+IMCtag ~b
+End
+
+#COLOR
+Name   Purple
+Mudtag &p
+IMCtag ~p
+End
+
+#COLOR
+Name   Purple2
+Mudtag &p
+IMCtag ~m
+End
+
+#COLOR
+Name   Cyan
+Mudtag &c
+IMCtag ~c
+End
+
+#COLOR
+Name   Grey
+Mudtag &w
+IMCtag ~w
+End
+
+#COLOR
+Name   Grey2
+Mudtag &w
+IMCtag ~d
+End
+
+#COLOR
+Name   *
+Mudtag &z
+IMCtag ~z
+End
+
+#COLOR
+Name   DGrey
+Mudtag &z
+IMCtag ~D
+End
+
+#COLOR
+Name   Red
+Mudtag &R
+IMCtag ~R
+End
+
+#COLOR
+Name   Green
+Mudtag &G
+IMCtag ~G
+End
+
+#COLOR
+Name   Yellow
+Mudtag &Y
+IMCtag ~Y
+End
+
+#COLOR
+Name   Blue
+Mudtag &B
+IMCtag ~B
+End
+
+#COLOR
+Name   Pink
+Mudtag &P
+IMCtag ~P
+End
+
+#COLOR
+Name   Pink2
+Mudtag &P
+IMCtag ~M
+End
+
+#COLOR
+Name   LBlue
+Mudtag &C
+IMCtag ~C
+End
+
+#COLOR
+Name   White
+Mudtag &W
+IMCtag ~W
+End
+
+#COLOR
+Name   BGRandom
+Mudtag {Z
+IMCtag ^Z
+End
+
+#COLOR
+Name   BGBlack
+Mudtag {x
+IMCtag ^x
+End
+
+#COLOR
+Name   BGDRed
+Mudtag {r
+IMCtag ^r
+End
+
+#COLOR
+Name   BGDGreen
+Mudtag {g
+IMCtag ^g
+End
+
+#COLOR
+Name   BGOrange
+Mudtag {O
+IMCtag ^O
+End
+
+#COLOR
+Name   BGDBlue
+Mudtag {b
+IMCtag ^B
+End
+
+#COLOR
+Name   BGPurple
+Mudtag {p
+IMCtag ^p
+End
+
+#COLOR
+Name   BGCyan
+Mudtag {c
+IMCtag ^c
+End
+
+#COLOR
+Name   BGGrey
+Mudtag {w
+IMCtag ^w
+End
+
+#COLOR
+Name   BGDGrey
+Mudtag {z
+IMCtag ^z
+End
+
+#COLOR
+Name   BGRed
+Mudtag {R
+IMCtag ^R
+End
+
+#COLOR
+Name   BGGreen
+Mudtag {G
+IMCtag ^G
+End
+
+#COLOR
+Name   BGYellow
+Mudtag {Y
+IMCtag ^Y
+End
+
+#COLOR
+Name   BGBlue
+Mudtag {B
+IMCtag ^b
+End
+
+#COLOR
+Name   BGPink
+Mudtag {P
+IMCtag ^P
+End
+
+#COLOR
+Name   BGLBlue
+Mudtag {C
+IMCtag ^C
+End
+
+#COLOR
+Name   BGWhite
+Mudtag {W
+IMCtag ^W
+End
+
+#COLOR
+Name   BLRandom
+Mudtag }Z
+IMCtag `Z
+End
+
+#COLOR
+Name   BLBlack
+Mudtag }x
+IMCtag `x
+End
+
+#COLOR
+Name   BLDRed
+Mudtag }r
+IMCtag `r
+End
+
+#COLOR
+Name   BLDGreen
+Mudtag }g
+IMCtag `g
+End
+
+#COLOR
+Name   BLOrange
+Mudtag }O
+IMCtag `O
+End
+
+#COLOR
+Name   BLDBlue
+Mudtag }b
+IMCtag `b
+End
+
+#COLOR
+Name   BLPurple
+Mudtag }p
+IMCtag `p
+End
+
+#COLOR
+Name   BLCyan
+Mudtag }c
+IMCtag `c
+End
+
+#COLOR
+Name   BLGrey
+Mudtag }w
+IMCtag `w
+End
+
+#COLOR
+Name   BLDGrey
+Mudtag }z
+IMCtag `z
+End
+
+#COLOR
+Name   BLRed
+Mudtag }R
+IMCtag `R
+End
+
+#COLOR
+Name   BLGreen
+Mudtag }G
+IMCtag `G
+End
+
+#COLOR
+Name   BLYellow
+Mudtag }Y
+IMCtag `Y
+End
+
+#COLOR
+Name   BLBlue
+Mudtag }B
+IMCtag `B
+End
+
+#COLOR
+Name   BLPink
+Mudtag }P
+IMCtag `P
+End
+
+#COLOR
+Name   BLLBlue
+Mudtag }C
+IMCtag `C
+End
+
+#COLOR
+Name   BLWhite
+Mudtag }W
+IMCtag `W
+End
+
+#COLOR
+Name   Reset
+Mudtag &d
+IMCtag ~!
+End
+
+#COLOR
+Name   Reset2
+Mudtag &D
+IMCtag ~!
+End
+
+#COLOR
+Name   Bold
+Mudtag &L
+IMCtag ~L
+End
+
+#COLOR
+Name   Underline
+Mudtag &u
+IMCtag ~u
+End
+
+#COLOR
+Name   Blink
+Mudtag &$
+IMCtag ~$
+End
+
+#COLOR
+Name   Italic
+Mudtag &i
+IMCtag ~i
+End
+
+#COLOR
+Name   Reverse
+Mudtag &v
+IMCtag ~v
+End
+
+#COLOR
+Name   Strikeover
+Mudtag &s
+IMCtag ~s
+End
+
+#END

@@ -1,0 +1,27 @@
+Changes from SWFotE 1.0
+-----==============-----
+-Fixed a bug involving setclan shortname
+-Fixed a memory leak in the acctname function in slicers.c
+-Fixed a bug in do_installmodule where i was never intialized to 0
+-Fixed a bug in ships.c that had a pointer comparison instead of a strcmp
+-Fixed a bug in slicers.c where learn_from_failure raised gsn_commsystem instead of gsn_makecommsystem
+-Fixed a bug involving ship targeting by putting in an untarget function, also removing missiles without targets
+-Fixed a bug in do_ordership involving black market purchases
+-Fixed a bug when an imm who is switched into a mob types `who'.
+-Fixed two bugs in do_make_master function
+-Fixed a bug in space.c that could crash when a ship was destroyed
+-Fixed a bug in make_prototype_ship that never initialized ship->owner, causing bugs when ships were purchased
+-Fixed a bug causing the mud to crash when a non-clanned player tried to purchase a clan ship
+-Fixed a bug in do_buymobship that could reset a player's clan name and cause a crash
+-Fixed a bug in ship_to_starsystem
+-Fixed a bug in do_shiprepair that could cause crashes if a hyperdrive was repaired during hyperspace
+-Added a check in do_codecrack to see if a ship has launched since cracking began
+-Fixed a bug where maxmods weren't saving or loading in ship files
+-Fixed bug with invalid racial languages
+-Modified wizhelp code to sort commands by level
+-Modified hlist to accept a keyword limiting results
+-Fixed primary and secondary weapon modules
+-Installed missile, rocket, and torpedo modules
+-Installed alarm modules, making it harder for codecrack and pickshiplock
+-Fixed a bug in protect force skill where it gave perm sanc to users under
+       specific conditions. All sanctuary is now removed upon extract_char

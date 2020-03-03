@@ -1,0 +1,1316 @@
+#AREA   Immortal - Coruscant 3~
+
+
+
+#AUTHOR Squall~
+
+#RANGES
+0 36 0 36
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 1586081
+
+#MOBILES
+#7500
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#7502
+JooJoo~
+JooJoo the Ewok~
+A small Ewok is behind a desk, directing patients.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 1 128 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> bribe_prog 100~
+say Yub! Right this way!
+mea $n Joojoo ushers you through a door.
+mer $n Joojoo ushers $n through a door.
+mptrans $n 7503
+mpat 101 drop all
+mpat 101 mppurge
+~
+> greet_prog 100~
+if ispc($n)
+say Welcome to JooJoo's Medical Center!
+say Gemme 100 credits and you'll be feeling better no time!
+wink $n
+endif
+~
+|
+#7503
+fikhs bouncer~
+Mr. Fikhs~
+A large bouncer is here, keeping an eye on the crowd.
+~
+This huge, ex-mercenary has found comfort in his new job, a personal bodyguard and bouncer at this popular cantina. He glances at each patron, watching for fights and possible trouble.
+~
+3 0 0 Z
+30 0 25 20d20+300 3d4+40
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> speech_prog p Ow! My ear!~
+say I am at the disposal of Sakura Iktari.
+rescue iktari
+~
+|
+#7504
+wooden dummy~
+a wooden dummy~
+A wooden dummy stands here, ready to be beaten.
+~
+~
+134217731 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpmload 7504
+~
+|
+#7505
+bonnie bartender~
+Bonnie the bartender~
+A flirty bartender is in the middle of the bar, smiling at you.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+18 10 10 18 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if Ispc($n) == yes
+mpsleep 5
+if name($n) == Iktari
+say Hey there! Need anything, Iktari?
+else
+say Well hello there, cutie. Care for a drink?
+endif
+endif
+~
+|
+#7506
+An errand boy~
+An errand boy~
+A skinny errand boy is here, sneaking a drink or two.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> bribe_prog 250~
+say Okie dokey, I'll be back in a flash!
+mpsleep 3
+emote leaves east.
+mptransfer errand 11
+drop all
+mpsleep 60
+mpoload 7512
+mpoload 7506
+mpoload 7506
+mpoload 7506
+mpoload 7506
+mpoload 7507
+mpoload 7507
+mpoload 7507
+mpoload 7507
+mpoload 7508
+mpoload 7508
+mpoload 7508
+mpoload 7508
+mpoload 7509
+mpoload 7509
+mpoload 7509
+mpoload 7509
+mpoload 7510
+mpoload 7510
+mpoload 7510
+mpoload 7510
+put all crate
+mptransfer errand 7528
+emote rushes in, huffing and puffing.
+mpsleep 6
+say Here's the goods!
+drop crate
+mpsleep 12
+emote walks to the cabinet, admiring the rows of bottles.
+~
+|
+#7507
+smuggler old man~
+An old smuggler~
+An old man is here, laughing and talking.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+10 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> rand_prog 8~
+emote takes another drink of his ale.
+~
+> greet_prog 100~
+mpsleep 15
+emote looks at you.
+mpsleep 4
+say Do you mind? We're having a conversation here.
+~
+> rand_prog 40~
+laugh
+mpsleep 10
+chuckle
+~
+> bribe_prog ~
+emote looks at you quizzically.
+mpsleep 8
+say The hell is this for?
+mpsleep 6
+shrug
+say Thanks chum.
+~
+> speech_prog 'I think it was just a waste.'~
+mpsleep 12
+say A waste? A...hahaha...
+mpsleep 4
+laugh
+mpsleep 18
+say If anything, it was a misunderstanding.
+~
+> greet_prog 100~
+mpsleep 100
+cough
+~
+|
+#7508
+corellian woman~
+A corellian woman~
+A corellian woman sits across from the man, listening.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpsleep 35
+grin man
+mpsleep 60
+laugh
+~
+> greet_prog 100~
+mpsleep 150
+say I think it was just a waste.
+~
+> speech_prog 'If anything, it was a misunderstanding.'~
+mpsleep 18
+say ...
+mpsleep 15
+whisper man Are you sure?
+mpsleep 20
+chuckle
+~
+|
+#7509
+A cloaked, shady man~
+A cloaked, shady man~
+A somewhat shady individual is leaning against the wall.
+~
+An old, grizzled assassin, this man hangs around the slum area of coruscant watching for something. As he moves, you notice a large lump beneath his robe, indicating some sort of concealed weapon. 
+~
+5195 4194304 0 Z
+35 0 12 7d10+350 3d4+2
+0 0
+8 8 1
+25 10 10 25 25 10 20
+0 0 0 0 0
+6 0 0 0 65 64 3
+0 0 2047 0 0 0 48 3
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpsleep 10
+emote slowly moves along the eastern wall, watching.
+~
+|
+#7578
+droid ticket guy fucka~
+a ticket-taker~
+A droid is here issuing tickets and allowing admittance.
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+if sex($n) == 1
+say Why hello sir!  Would you like to buy a ticket?
+else
+say Why hello ma'am!  Would you be interested in a ticket?
+endif
+else
+say Go away you!
+endif
+~
+> speech_prog yes~
+say Well then give me ten credits, please.
+~
+> bribe_prog 10~
+if ispc($n)
+say Allow me!
+unlock w
+open w
+mpforce $n w
+close w
+lock w
+else
+say I said go away!
+endif
+~
+> speech_prog no~
+say Well then get outa here you damn hooligan!  OUT OUT OUT!
+smack $n
+~
+|
+#7579
+commander orinn~
+Commander Orinn~
+An Imperial officer sits behind a desk, sorting through papers.
+~
+~
+3 0 0 Z
+1 0 0 1d1500+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+15 10 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpsleep 6
+emote looks you over.
+say Think you've got what it takes to &wenlist&W, citizen?
+~
+|
+#7650
+hi_obj~
+a newly created hi_obj~
+Some god abandoned a newly created hi_obj here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#7500
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#7501
+throne room keycard~
+A Golden Colored Keycard~
+A keycard was dropped here~
+~
+18 0 1
+0 0 0 0
+1 0 0
+#7502
+waterfall fountain wall~
+a flowing waterfall~
+A beautiful waterfall built into the wall here.~
+~
+25 0 0
+0 0 0 0
+1 0 0
+#7503
+bar~
+a bar~
+A round, polished marble bar sits in the center of the room.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#7504
+barstool stool~
+a barstool~
+Quite a few barstools encircle the bar here.~
+~
+12 0 0
+0 0 0 0
+1 0 0
+#7505
+statue dragon~
+an intricately carved dragon statue~
+An intricately carved dragon statue rests heavily here.~
+~
+39 0 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpechoat $n You press the eye of the dragon in, and the wall opens.
+mpechoaround $n $n presses the eye of the dragon in, and the wall opens.
+mpopenpassage 7521 7525 3
+~
+> pull_prog 100~
+mpechoat $n You pull the eye back out, and the wall slides shut.
+mpechoaround $n $n pulls the eye back out, and the wall slides shut.
+mpclosepassage 7521 3
+~
+|
+#7506
+shot sake~
+a shot of Sake~
+A shot sake is here.~
+~
+17 0 1
+1 1 2 0
+1 12 1
+#7507
+shot snakebite~
+a little shot of Snakebite~
+A shotglass is here.~
+~
+17 0 1
+1 1 7 0
+1 25 2
+#7508
+corellian ale~
+a bottle of Corellian ale~
+A bottle is here.~
+~
+17 0 1
+0 5 5 3
+1 32 3
+#7509
+jawa brew~
+a pint of special Jawa brew~
+A small bottle is here.~
+~
+17 0 1
+4 4 5 0
+1 17 1
+#7510
+glass water~
+a tall glass of water~
+A glass of water is here.~
+~
+17 0 1
+3 3 0 0
+1 1 0
+#7511
+liquor cabinet~
+A large liquor cabinet~
+A liquor cabinet stretches across the back wall.~
+~
+15 0 0
+10 0 0 0
+1 0 0
+#7512
+wooden crate~
+a large wooden crate~
+A big crate made of wood is in front of you.~
+~
+15 0 1
+150 0 0 0
+1 0 0
+#7513
+blue keycard~
+&R&Wa &Bblue&W keycard~
+A blue keycard is here.~
+~
+18 0 1
+0 0 0 0
+1 0 0
+#7514
+red keycard~
+&R&Wa &Rred&W keycard~
+A red keycard is here.~
+~
+18 0 1
+0 0 0 0
+1 0 0
+#7515
+urinal~
+a urinal~
+A urinal is mounted on the wall here.~
+~
+15 0 0
+10 0 0 0
+1 0 0
+#7516
+urinal cake~
+&Ga green urinal cake~
+A urinal cake is here.~
+~
+19 0 0
+0 0 0 0
+1 0 0
+#7517
+toilet~
+a toilet~
+A small toilet sits behind a stall.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#7568
+corellian ale~
+a bottle of Corellian ale~
+A bottle is here.~
+~
+17 0 1
+0 5 5 3
+1 32 3
+#7578
+musuem key~
+a key~
+A key is here.~
+~
+18 1073741824 0
+0 0 0 0
+1 0 0
+#7580
+Durakey~
+Key~
+A small key to a durasteel door is on the floor.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#7581
+Imperial Force Pike~
+&G&WAn Imperial Royal Guard Force Pike~
+A Silver Metallic Force Pike Is Lying Against The Wall.~
+~
+5 0 8193
+12 10 45 11 5000 5000
+1 0 0
+#7650
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#7500
+Palpatine Street~
+This is the busy Palpatine Street, respectfully named after the
+late Emperor Palpatine. The intersection of Palpatine and Imperial
+street is just to the east here, and JooJoo's Medical Center
+can be found just to the north. A few buisnesspeople hurry down
+the street here, looking about themselves and making their way
+as fast as possible.
+~
+0 4 1 0 0 0 7984
+D0
+~
+~
+0 -1 7502
+D1
+~
+~
+0 -1 1062
+D3
+~
+~
+0 -1 7501
+S
+#7501
+Palpatine Street~
+This is the famous Palpatine Street, used by buisnessmen and
+diplomatic leaders alike. You can see many amzingly-clad people
+wandering through here, each hurrying about their buisness,
+trying to find the quickest way through this insanely large
+number of people. The street is thankfully very wide, and nearly
+accomidates all the people here.
+~
+0 1073741828 1 0 0 0 7984
+D1
+~
+~
+0 -1 7500
+D2
+~
+~
+1 -1 7512
+D3
+~
+~
+0 -1 7505
+S
+#7502
+JooJoo's Medical Center~
+~
+0 1073741832 1 0 0 0 7984
+D2
+~
+~
+0 -1 7500
+S
+#7503
+Bacta Tank~
+You float in a blue gooey gelatin-like liquid, breathing in an oxygen mask.
+The bacta tank was bought from the taxes that the citizens of Coruscant
+have to pay so that travellers would have a place to heal their wounds and
+rest. The bacta tank is one of the most advanced medical healing facility
+in the universe and gets regular upgrades. Rest for a while and heal all
+wounds. There are people in line waiting to use the it so when you're
+done, LEAVE.
+
+To leave say &gleave
+~
+0 1073741828 1 0 0 0 7984
+> rand_prog 100~
+if ispc($n)
+  mpecho The bacta starts healing your wounds.
+  mprestore $n 500
+endif
+~
+> speech_prog leave~
+mea $n You are escorted out of the bacta tank.
+mptransfer $n 7502
+~
+|
+S
+#7504
+Sparring Room~
+This is the Sparring Room inside the Garaak's Training Facility
+on Coruscant. There are a few students here, each fighting dummies
+or beating the mess out of wooden stumps. A few students have
+blaster rifles and are practicing their sniping abilities on
+targets at the shooting range. There is quite a lot of activity
+here, perhaps you could learn something yourself.
+~
+0 1073741824 1 0 0 0 7984
+D9
+~
+~
+0 -1 1239
+S
+#7505
+Palpatine Street~
+This is the famous Palpatine Street, used by buisnessmen and
+diplomatic leaders alike. You can see many amzingly-clad people
+wandering through here, each hurrying about their buisness,
+trying to find the quickest way through this insanely large
+number of people. The street is thankfully very wide, and nearly
+accomidates all the people here.
+~
+0 1073741824 1 0 0 0 7984
+D0
+~
+~
+0 -1 7506
+D1
+~
+~
+0 -1 7501
+S
+#7506
+A Darkened Alleyway~
+You have wandered into a darkened alleyway amongst the many well-lighted
+areas of coruscant. Strangely upon the higher levels, you wonder
+what sort of things lives here without being cleaned out by
+the coruscant government.
+~
+0 1073741824 1 0 0 0 7984
+D0
+~
+~
+0 -1 7507
+D2
+~
+~
+0 -1 7505
+S
+#7507
+A Darkened Alleyway~
+You have wandered into a darkened alleyway amongst the many well-lighted
+areas of coruscant. Strangely upon the higher levels, you wonder what sort
+of things lives here without being cleaned out by the coruscant
+government.
+~
+0 1073741824 1 0 0 0 7984
+D0
+~
+~
+0 -1 7508
+D2
+~
+~
+0 -1 7506
+D3
+~
+~
+0 -1 7509
+S
+#7508
+A Darkened Alleyway~
+You have wandered into a darkened alleyway amongst the many well-lighted
+areas of coruscant. Strangely upon the higher levels, you wonder what sort
+of things lives here without being cleaned out by the coruscant
+government.
+~
+0 1073741824 1 0 0 0 7984
+D1
+~
+~
+0 -1 1233
+D2
+~
+~
+0 -1 7507
+S
+#7509
+A Dirty Hovel~
+This is as much a home as a cardboard box. Old broken up 2x4's surround
+this small inlet from the alleyway. Garbage fills the floor and the stench
+is almost unbearable. You wonder why you even came in here in the first
+place. 
+~
+0 1073741832 1 0 0 0 7984
+D1
+~
+~
+0 -1 7507
+S
+#7510
+A Round White Room~
+~
+0 66828 1 0 0 0 7984
+D4
+~
+~
+0 -1 1204
+S
+#7511
+Galactic Mail Center~
+This is where all the mail is sent and distributed to everyone in the
+galaxy! This is the main station for the Universal Postal Service to
+deliver mail and other things that come with the job. Busy postal workers
+buzz around, doing work. A few stamp machines and tellers are here to
+assist you.
+~
+0 8 1 0 0 0 7984
+D3
+~
+~
+0 -1 1056
+S
+#7512
+Entrance to The Cherry Blossom~
+The elegant wall coverings and distinctive artificial waterfall would mean this place is none other than the Cherry Blossom cantina. Many come here to find a drink, a good time, and relaxation: a break from their day-to-day lives.
+~
+0 12 1 0 0 0 7984
+D0
+~
+~
+1 7513 7501
+D2
+~
+~
+0 -1 7513
+S
+#7513
+The Cherry Blossom Cantina~
+Inside the cantina it is even more beautiful. Elegant, and expensive, decor
+lines the walls and doors, and to compliment it all, a huge black marble bar is
+in the middle. Tall stools are set around it, and two hallways branch off the
+main part of the cantina.
+~
+0 8 1 0 0 0 7984
+D0
+~
+~
+0 -1 7512
+D3
+~
+~
+0 -1 7514
+D8
+~
+~
+0 -1 7516
+S
+#7514
+A dimly lit hallway~
+Further into the cantina a few booths are installed to allow parties to talk without being overly disturbed. Like most other places in the cantina, the lighting is somewhat dull and drab, with few lamps mounted on the wall.
+~
+0 8 1 0 0 0 7984
+D0
+~
+~
+0 -1 7519
+D1
+~
+~
+0 -1 7513
+D2
+~
+~
+0 -1 7520
+D3
+~
+~
+0 -1 7515
+S
+#7515
+A dimly lit hallway~
+More of the cantina opens up into booth areas here. Although a little brighter, the light is still dim through here. Further westward you can spot a branch in the hallway.
+~
+0 8 1 0 0 0 7984
+D0
+~
+~
+0 -1 7529
+D1
+~
+~
+0 -1 7514
+D2
+~
+~
+0 -1 7530
+D3
+~
+~
+0 -1 7521
+S
+#7516
+A dimly lit hallway~
+~
+0 8 1 0 0 0 7984
+D1
+~
+curtain~
+1 -1 7517
+D2
+~
+curtain~
+1 -1 7518
+D7
+~
+~
+0 -1 7513
+S
+#7517
+An enclosed booth~
+~
+0 12 1 0 0 0 7984
+D3
+~
+curtain~
+1 -1 7516
+S
+#7518
+An enclosed booth~
+~
+0 12 1 0 0 0 7984
+D0
+~
+curtain~
+1 -1 7516
+S
+#7519
+A large booth~
+Here is a large public booth, capable of seating several. The table in the center is completed with a white cloth and a lamp, providing a mellow light throughout the booth.
+~
+0 12 1 0 0 0 7984
+D2
+~
+~
+0 -1 7514
+S
+#7520
+A large booth~
+Here is a large public booth, capable of seating several. The table in the center is completed with a white cloth and a lamp, providing a mellow light throughout the booth.
+~
+0 12 1 0 0 0 7984
+D0
+~
+~
+0 -1 7514
+S
+#7521
+A dimly lit hallway~
+Here, the poorly lit hallway branches off in two directions. A sign between the exits simply states: [F]    [M]. The lights here occasionally flicker, giving eerie shadows to the area.
+~
+0 8 1 0 0 0 7984
+D1
+~
+~
+0 -1 7515
+D7
+~
+~
+0 -1 7522
+D9
+~
+~
+0 -1 7523
+S
+#7522
+The men's room~
+A fairly sanitary restroom, complete with sink, mirror, and urinal. Nothing fancy. Through the window on the rear wall, you can see citizens scurrying about the streets of Coruscant.
+~
+0 8 1 0 0 0 7984
+D8
+~
+~
+0 -1 7521
+S
+#7523
+The ladies room~
+Another nondescript restroom, equipped with a stall, sink, and mirror. Strangely enough, nothing out of the ordinary. Aside from some jibberish carved into the mirror.
+~
+0 8 1 0 0 0 7984
+D6
+~
+~
+0 -1 7521
+E
+mirror~
+&RWHO WATCHES THE WATCHMEN?
+~
+S
+#7524
+Floating in a void~
+~
+0 12 1 0 0 0 7984
+S
+#7525
+A secret wall passage~
+Behind the wall, the passage is much cleaner. And brighter. The sounds of the cantina are drowned out through the wall, and you can hear the low buzz of the lighting now.
+~
+0 8 1 0 0 0 7984
+D1
+~
+~
+0 -1 7521
+D2
+~
+~
+0 -1 7526
+S
+#7526
+A bright corridor~
+Further down the corridor, the passage narrows as it comes to a sliding keycard-entry door. A small terminal to the left of the door has both a keypad and a card strip, and a camera watches you silently.
+~
+0 8 1 0 0 0 7984
+D0
+~
+~
+0 -1 7525
+D2
+~
+~
+1 7514 7527
+S
+#7527
+The Back Office~
+~
+0 8 1 0 0 0 7984
+D0
+~
+~
+1 7514 7526
+D3
+~
+~
+0 -1 7528
+S
+#7528
+The Storeroom~
+~
+0 12 1 0 0 0 7984
+D1
+~
+~
+0 -1 7527
+S
+#7529
+A large booth~
+Here is a large public booth, capable of seating several. The table in the center is completed with a white cloth and a lamp, providing a mellow light throughout the booth.
+~
+0 12 1 0 0 0 7984
+D2
+~
+~
+0 -1 7515
+S
+#7530
+A large booth~
+Here is a large public booth, capable of seating several. The table in the center is completed with a white cloth and a lamp, providing a mellow light throughout the booth.
+~
+0 12 1 0 0 0 7984
+D0
+~
+~
+0 -1 7515
+S
+#7560
+Floating in a void~
+~
+0 1073741828 1 0 0 0 7984
+S
+#7561
+Floating in a void~
+~
+0 1073741828 1 0 0 0 7984
+S
+#7570
+The New Republic Gallery~
+~
+0 1073741824 1 0 0 0 7984
+D8
+~
+~
+0 -1 7571
+S
+#7571
+Museum Lobby~
+You stand in a large circular room.  The dome-shaped roof is
+brilliantly painted with mural after mural portraying the rise
+of Coruscant throughout the Old Republic.There is an exit in
+just about every direction containing exhibits from Ewoks to
+Jedi.  Many people crowd this area, looking for information
+on their interests.
+~
+0 1073741824 1 0 0 0 7984
+D0
+~
+~
+0 -1 7572
+D1
+~
+~
+0 -1 7578
+D2
+~
+~
+0 -1 7575
+D3
+~
+~
+0 -1 7581
+D6
+~
+~
+0 -1 7577
+D7
+~
+~
+0 -1 7570
+D9
+~
+~
+0 -1 7579
+S
+#7572
+Old Republic Gallery~
+This wing of the museum has been dedicated to one of the greatest
+galactic empires that ever exisited, The Old Republic.  While
+its long and prosperous reign was seeming cut short, many artifacts
+and memories have been donated to help people to remember one
+of the greatest moments in galactic history.
+~
+0 1073741824 1 0 0 0 7984
+D0
+~
+~
+0 -1 7573
+D2
+~
+~
+0 -1 7571
+S
+#7573
+Old Republic Gallery~
+Murals picturing some of the best and worst periods of the Old
+Republic are nicely painted on the wall, along with some tamper
+proof mechanisms.  A small cleaning droid scuttles about, picking
+up the trash of the many reminecent tourists who are fond of
+those old days.
+~
+0 1073741824 1 0 0 0 7984
+D1
+~
+~
+0 -1 7574
+D2
+~
+~
+0 -1 7572
+S
+#7574
+Halls of the Jedi~
+This exhibit is the most viewed by far.  There is something about
+the Jedi that just attracts people.  To whet people's interests
+even more, there are many recovered artifacts from the jedi,
+yet most are in a state of disrepair, and while the oustide
+is fine, most do not work.  This helps protect against thievery.Feel
+free to view the exhibits, just dont touch.
+~
+0 1073741824 1 0 0 0 7984
+D3
+~
+~
+0 -1 7573
+S
+#7575
+The Rebellion Gallery~
+~
+0 1073741824 1 0 0 0 7984
+D0
+~
+~
+0 -1 7571
+D2
+~
+~
+0 -1 7576
+S
+#7576
+The Rebellion Gallery~
+~
+0 1073741824 1 0 0 0 7984
+D0
+~
+~
+0 -1 7575
+S
+#7577
+Hall of Weapons~
+~
+0 1073741828 1 0 0 0 7984
+D9
+~
+~
+0 -1 7571
+S
+#7578
+Entrance to the Galactic Museum~
+Atop a large coruscant tower lays the old and beautifully designed
+Galactic Museum.  Inside these weatherbeaten walls contain artifacts
+from anywhere and everywhere.Most of it has an imperial twist,
+but some of the exhibits have remained untouched for centuries.
+There is a ticketseller by the door.  Maybe you should go in.
+~
+0 1073741824 1 0 0 0 7984
+D3
+~
+~
+3 7578 7571
+S
+#7579
+Spaceship Gallery~
+~
+0 1073741828 1 0 0 0 7984
+D6
+~
+~
+0 -1 7571
+S
+#7580
+Exiting the Museum~
+~
+0 1073741828 1 0 0 0 7984
+S
+#7581
+Museum Rest Area~
+~
+0 1073741824 1 0 0 0 7984
+D0
+~
+~
+0 -1 7582
+D1
+~
+~
+0 -1 7571
+D3
+~
+~
+0 -1 7583
+S
+#7582
+Vending Area~
+~
+0 1073741824 1 0 0 0 7984
+D2
+~
+~
+0 -1 7581
+S
+#7583
+Exiting the museum~
+~
+0 1073741824 1 0 0 0 7984
+D1
+~
+~
+0 -1 7581
+S
+#7584
+Imperial Recruitment Center~
+~
+0 1342177292 1 0 0 0 7984
+D8
+~
+~
+0 -1 1129
+S
+#7585
+Floating in a void~
+~
+0 1073741828 1 0 0 0 7984
+S
+#7650
+Floating in a void~
+~
+0 4 1 0 0 0 7984
+S
+#0
+
+
+#RESETS
+M 1 1103 1 1055
+M 1 1073 1 1073
+M 1 1060 23 1073
+M 1 1060 23 1073
+M 1 7502 1 7502
+G 1 3 1
+M 1 1075 1 7509
+M 1 7500 1 7650
+M 1 7650 1 7650
+O 1 7650 1 7650
+O 1 7500 1 7650
+O 1 38 1 7511
+O 1 116 1 7527
+O 1 7505 1 7521
+M 1 7503 1 7512
+E 1 1068 1 16
+O 1 7502 1 7512
+M 1 7506 1 7528
+O 1 7511 1 7528
+O 1 7512 1 7528
+M 1 7507 1 7530
+G 1 3 1
+M 1 7508 1 7530
+O 1 1856 1 7530
+O 1 1856 1 7529
+O 1 1856 1 7519
+O 1 1856 1 7520
+O 1 7515 1 7522
+O 1 7517 1 7523
+M 1 7505 1 7513
+G 1 1146 1
+G 1 7508 1
+G 1 7509 1
+G 1 7510 1
+G 1 7507 1
+G 1 7506 1
+M 1 1058 21 7513
+O 1 7503 1 7513
+O 1 7504 1 7513
+M 1 7578 1 7578
+G 1 3 1
+G 1 7578 1
+D 0 7578 3 1
+M 1 7579 1 7584
+O 1 18016 1 7584
+M 1 7509 1 7507
+S
+
+
+#SHOPS
+ 7505    0  0  0  0  0   120   0         0 23    ; Bonnie the bartender
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

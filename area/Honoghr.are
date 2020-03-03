@@ -1,0 +1,450 @@
+#AREA   Honoghr~
+
+
+
+#AUTHOR Zoiloin~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6251110
+
+#MOBILES
+#8000
+Noghri Spaceport Guard~
+a newly created low_mob~
+A Noghri Spaceport Guard stands here, inspecting people for weapons.
+~
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+6 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#8004
+Courthouse Receptionist~
+Courthouse Receptionist~
+A Courthouse receptionist sits behind a desk
+~
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say Hello Sir. Are you here to be tried? The Court Room is right to the East. You may see the Judge when Ready.
+~
+|
+#8005
+The Judge~
+The Judge~
+The Judge is sitting here Judging people.
+~
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+If Isevil($n)
+say You shall be locked in prison for your evil ways!!!
+mpechoat $n The Judge calls guards to escort you to a jail cell!
+mpat 8006 mpecho $n Gets dragged in here by guards to serve hard time.
+mptransfer $n 8006
+mpecho $n Gets dragged away by the Guards to a jail cell!
+endif
+~
+> greet_prog 100~
+if IsNeutral($n)
+say You are not a criminal... BUT
+say You have no record of good deeds. Come back when you are more dedicated to helping people.
+mpat 8004 mpecho $n Arrives back from the courthouse, looking rather disappointed.
+mpechoat $n You walk back to the Lobby, quite disappointed.
+mptransfer $n 8004
+mpecho $n Walks back to the Lobby, quite disappointed.
+endif
+~
+> greet_prog 100~
+If IsGood($n)
+say You are a good person. Your record is outstanding! You may sit here and watch other people be tried if you like.
+endif
+~
+|
+#8199
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#8000
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#8001
+BOMB~
+BOMB~
+BOMB~
+~
+97 0 1
+0 0 0 0
+1 0 0
+#8199
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#8000
+Honoghr Landing Pad~
+You get out of your ship and see something unlike most other planets. There are people walking around... But all of them are one third of your size! People are trading, arguing, and even a few guards beating on the local drunks.
+
+You feel your ship is safe here.
+~
+0 0 1 0 0 0 6624
+D0
+~
+~
+0 -1 8001
+S
+#8001
+Spaceport Entrance~
+There are many busy civilians going about their day. Traders are bustling around with baskets of produce and goods. Smugglers lurk in the alleyways trying to sell illegal merchandise taken past the spaceport guards. Many are coming to and from the market
+~
+0 0 1 0 0 0 6624
+D0
+~
+~
+0 -1 8002
+D2
+~
+~
+0 -1 8000
+S
+#8002
+Honoghr Market Center~
+There are stands and booths lining the street, with people selling fresh fruit and vegetables. There are people Gutting Fish and Animals. This appears to be the center of trade on Honoghr.
+~
+0 0 1 0 0 0 6624
+D0
+~
+~
+0 -1 8003
+D2
+~
+~
+0 -1 8001
+S
+#8003
+Main Street~
+The Booths end here, as you walk further into the City of Honoghr. There is a Court House where most of the Smugglers caught in the spaceport are brought. It even has a jail, for those who need to be detained before their trial.
+I suggest avoiding there if you can avoid it. To the west is a rural road with houses on it.
+~
+0 0 1 0 0 0 6624
+D1
+~
+~
+0 -1 8004
+D2
+~
+~
+0 -1 8002
+D3
+~
+~
+0 -1 8007
+S
+#8004
+Courthouse Lobby~
+There is a creamy brown complexion in the color of this building. It is made of a native Honoghr wood, but looks quite sturdy. The Receptionist is here to help you decide where to go. Choose carefully.
+~
+0 1032 1 0 0 0 6624
+D1
+~
+~
+0 -1 8005
+D3
+~
+~
+0 -1 8003
+S
+#8005
+Courthouse~
+The room has many seats, looking quite like a church. The Judge sits high above the others in his stand. He prepares to judge you, as you walk in the door. Beware, he takes great prejudice against evil people, as you may very well see soon enough.
+~
+0 1032 1 0 0 0 6624
+D3
+~
+~
+0 -1 8004
+S
+#8006
+Jail Cell~
+You have been sent here for your evil ways. You were warned that the judge was prejudice against evil, and now you have seen for yourself the true wrath of his judgement. All that is left to do is sit and wait for the guards to release you.
+
+There is a sign on the wall. It states: NO TALKING! NO MURDER! NO TAUNTING THE GUARDS, OR YOU MAY BE ELIGIBLE FOR EXECUTION!
+~
+0 66572 1 0 0 0 6624
+> rand_prog 100~
+mpechoat $n Your time is up!! You are free. I suggest not returning to the Judge until you improve your status a bit.
+mpat 8004 mpecho $n Is freed from jail and arrives here escorted by the guards.
+mptransfer $n 8004
+mpecho $n Is freed and is escorted out.
+~
+|
+S
+#8007
+Noghri Lane~
+Noghri Lane is a popular lane for realtors to stake claims. Houses surround the road, making this an ideal place for generations of families to settle down. The houses are quite nice, unlike the Hovels on Coruscant.
+They have nice, shimmering blue, red, green, or aqua paint jobs, and are quite sturdy. Everything you need to get started in life.
+~
+0 0 1 0 0 0 6624
+D0
+~
+~
+0 -1 8009
+D1
+~
+~
+0 -1 8003
+D2
+~
+~
+0 -1 8008
+D3
+~
+~
+0 -1 8011
+S
+#8008
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 10486792 1 0 0 0 6624
+D0
+~
+~
+0 -1 8007
+S
+#8009
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 10486792 1 0 0 0 6624
+D2
+~
+~
+0 -1 8007
+S
+#8010
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 10486792 1 0 0 0 6624
+D2
+~
+~
+0 -1 8011
+S
+#8011
+Noghri Lane~
+Noghri Lane is a popular lane for realtors to stake claims. Houses surround the road, making this an ideal place for generations of families to settle down. The houses are quite nice, unlike the Hovels on Coruscant.
+They have nice, shimmering blue, red, green, or aqua paint jobs, and are quite sturdy. Everything you need to get started in life.
+~
+0 0 1 0 0 0 6624
+D0
+~
+~
+0 -1 8010
+D1
+~
+~
+0 -1 8007
+D2
+~
+~
+0 -1 8012
+D3
+~
+~
+0 -1 8013
+S
+#8012
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 10486792 1 0 0 0 6624
+D0
+~
+~
+0 -1 8011
+S
+#8013
+Noghri Lane~
+Noghri Lane is a popular lane for realtors to stake claims. Houses surround the road, making this an ideal place for generations of families to settle down. The houses are quite nice, unlike the Hovels on Coruscant.
+They have nice, shimmering blue, red, green, or aqua paint jobs, and are quite sturdy. Everything you need to get started in life.
+~
+0 0 1 0 0 0 6624
+D0
+~
+~
+0 -1 8014
+D1
+~
+~
+0 -1 8011
+D2
+~
+~
+0 -1 8015
+D3
+~
+~
+0 -1 8017
+S
+#8014
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 1084228616 1 0 0 0 6624
+D2
+~
+~
+0 -1 8013
+S
+#8015
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 10486792 1 0 0 0 6624
+D0
+~
+~
+0 -1 8013
+S
+#8016
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 10486792 1 0 0 0 6624
+D2
+~
+~
+0 -1 8017
+S
+#8017
+Noghri Lane~
+Noghri Lane is a popular lane for realtors to stake claims. Houses surround the road, making this an ideal place for generations of families to settle down. The houses are quite nice, unlike the Hovels on Coruscant.
+They have nice, shimmering blue, red, green, or aqua paint jobs, and are quite sturdy. Everything you need to get started in life.
+
+This is a dead end.
+~
+0 0 1 0 0 0 6624
+D0
+~
+~
+0 -1 8016
+D1
+~
+~
+0 -1 8013
+D2
+~
+~
+0 -1 8018
+D3
+~
+~
+0 -1 8019
+S
+#8018
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 10486792 1 0 0 0 6624
+D0
+~
+~
+0 -1 8017
+S
+#8019
+Noghri House~
+This Noghri home is everything you hoped for. And a bargain at just 25,000 Credits!
+~
+0 10486792 1 0 0 0 6624
+D1
+~
+~
+0 -1 8017
+S
+#8199
+Floating in a void~
+~
+0 4 1 0 0 0 6624
+S
+#0
+
+
+#RESETS
+M 1 8000 1 8000
+M 1 8004 1 8004
+M 1 8005 1 8005
+M 1 8199 1 8199
+O 1 8199 1 8199
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  8000 spec_customs_weapons
+S
+
+
+#$

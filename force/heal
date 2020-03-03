@@ -1,0 +1,32 @@
+#FORCE
+Alter          0
+ChEffect0     You sit on the floor close your eyes and meditate.$RN$~
+ChEffect1     You stand up open your eyes and feel restored.$RN$~
+ChEffect2     You begin to shake, you stand up open your eyes and sigh.$RN$~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_heal~
+Cost           0
+Control        1
+Disabled       0
+Mastertrain    0
+Index          7
+Name           heal~
+Notskill       0
+RoomEffect0     $n sits on the floor closes $np eyes and meditates.$RN$~
+RoomEffect1     $n stands up opens $np eyes and looks restored.$RN$~
+RoomEffect2     $n begins to shake, stands up opens $np eyes and sighs.$RN$~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          0
+Status         1
+Type           1
+VictimEffect0     ~
+VictimEffect1     ~
+VictimEffect2     ~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      0
+End
+
+#END

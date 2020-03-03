@@ -1,0 +1,1747 @@
+#AREA   New Corellia~
+
+
+
+#AUTHOR Salvius~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6255928
+
+#MOBILES
+#4901
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#4902
+CorSec Customs Officer~
+A CorSec Officer~
+A CorSec Officer Stands Here, Checking Baggage.
+~
+~
+1073741827 4194304 0 Z
+30 0 -5 6d10+300 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#4903
+Corellian Shopkeeper~
+A Shopkeeper~
+A Shopkeeper is here, checking inventory.
+~
+~
+3 4194304 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 3 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+if ispc($n)
+say Hi there, what can I get for you today?
+mpsleep 3
+smile $n
+endif
+~
+|
+#4904
+selonian shopkeeper~
+A Selonian Shopkeeper~
+A Selonian Shopkeeper is attemping to sell you dessert.
+~
+~
+3 4194304 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+28 0 0 0 3 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Do you wanting to buy dessert today?
+~
+|
+#4905
+Jerek Miv~
+Jerek Miv~
+Jerek Miv, the shop owner is glancing around.
+~
+~
+3 4194304 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 3 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Hey there! Welcome to Miv's Gadget Shop!
+mpsleep 2
+say And what can I get fer ya today? Top of the line merchandise, satisfaction guaranteed!
+~
+|
+#4906
+human butcher shopkeeper~
+The Shopkeeper~
+A human butcher is here, trying to sell meat products.
+~
+~
+3 4194304 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 3 1 0
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Hey mac, anything ya need today? I can sell ya some of the finest meat on Corellia.
+~
+|
+#4907
+ryn shopkeeper~
+A Ryn Shopkeeper~
+A Female Ryn is here, hand-making jewelry.
+~
+~
+3 4194304 0 Z
+7 0 82 1d10+70 0d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 3 1 0
+1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Welcome, my crafts are guaranteed to bring out the best in you.
+~
+|
+#4908
+Drek Bartender~
+Drek~
+Drek the bartender is standing here, cleaning glasses.
+~
+~
+3 0 0 Z
+13 0 67 2d10+130 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 3 1 0
+2 2 0 0 0 0 16 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Hey there buddy, pull up a stool.
+mpsleep 3
+say What can I get for ya today?
+~
+|
+#4909
+doctor surgeon Dr. Stimlin~
+Dr. Stimlin~
+A Doctor is here, ready to help heal your wounds.
+~
+~
+3 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 3 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> custom_prog drprogstart~
+mpechoat $n Dr. Stimlin glances at you.
+mpechoaround $n Dr. Stimlin glances at $q.
+mpsleep 3
+say Yes, I can help you. But it will cost 500 credits.
+~
+> bribe_prog 500~
+mpecho The Doctor carefully checks over the credits
+mpsleep 3
+mpechoat $n The Doctor instructs you to lie down on the table and begins to get to work.
+mpechoaround $n The Doctor begins operating on $q
+mpsleep 3
+mprestore $n 900
+say You should be fine now. Next patient!
+mpat 7 drop credits
+mpat 7 mppurge
+~
+> rand_prog 25~
+mpecho The Doctor looks frustrated and yells to a nurse outside..
+say Get to level four, we need more supplies!
+~
+|
+#4910
+Receptionist~
+The Receptionist~
+The Receptionist is sitting at her desk, looking through files.
+~
+~
+3 0 0 Z
+5 0 87 1d10+50 0d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+emote looks up
+mpsleep 3
+say Hello, do you need some help today?
+mpsleep 3
+say If you do, go north to the turbolift and choose a level from the list that offers the service you need.
+~
+|
+#5200
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#4901
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#4902
+majestic fountain~
+a fountain~
+&BA Large Majestic Fountain Has Been Placed Here~
+~
+25 0 0
+1000 1000 0 0
+1 0 0
+#4903
+Rhyscate~
+Rhyscate~
+A dark, brown sweetbread was left here.~
+~
+19 8192 1
+5 20 0 0
+1 5 0
+#4904
+Honey Wafer~
+Honey Wafer~
+A honey covered dessert is here.~
+~
+19 8192 1
+10 20 0 0
+1 10 1
+#4905
+Air Cake~
+Air Cake~
+A Soft Sponge Cake-looking dessert is here.~
+~
+19 8192 1
+10 20 0 0
+1 10 1
+#4906
+Meatlump~
+Meatlump~
+A lump of meat is here.~
+~
+19 8192 1
+20 20 0 0
+1 20 2
+#4907
+nerf sausage~
+Nerf Sausage~
+Some Sausage was left here.~
+~
+19 8192 1
+20 20 0 0
+1 20 2
+#4908
+Miv-tech Aquata Breather device~
+Miv-tech Aquata Breather~
+An Underwater Breathing Device was left here.~
+~
+80 8192 17
+0 0 0 236
+3 2000 200
+A
+26 -2147483648
+#4909
+Miv-tech Infini-Light~
+Miv-tech Infini-Light~
+A Small Light Device was left here.~
+~
+1 8192 16385
+0 0 200 0
+1 200 20
+#4910
+Ring of Good Fortune~
+Ring of Good Fortune~
+A Golden Ring was left here.~
+~
+9 8192 3
+5 5 0 0
+1 5000 500
+A
+31 1
+#4911
+Earring of Knowledge~
+Earrings of Knowledge~
+A pair of earrings were left here, to collect dust.~
+~
+9 8192 65537
+3 3 0 0
+1 2000 200
+A
+3 2
+#4912
+Glass of Corellian Rum~
+a Glass of Corellian Rum~
+A Glass of Corellian Rum is here.~
+~
+17 0 1
+3 3 4 0
+1 5 0
+#4913
+Glass of Corellian Ale~
+a Glass of Corellian Ale~
+A Glass of Corellian Ale is here.~
+~
+17 0 1
+3 3 3 0
+1 5 0
+#4914
+Glass of Corellian Wine~
+a Glass of Corellian Wine~
+A Glass of Corellian Wine is here.~
+~
+17 0 1
+3 3 2 0
+1 5 0
+#4915
+Glass of Corellian Brandy~
+a Glass of Corellian Brandy~
+A Glass of Corellian Brandy is here.~
+~
+17 0 1
+3 3 7 0
+1 7 0
+#4916
+Glass of Corellian Whiskey~
+a Glass of Corellian Whiskey~
+A Glass of Corellian Whiskey is here.~
+~
+17 0 1
+3 3 5 0
+1 4 0
+#4917
+Juke Box~
+a Juke Box~
+A Juke Box Machine is here, playing music.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#4918
+Bar~
+the bar~
+There is a bar here with many stools attached to it.~
+~
+12 0 0
+0 0 0 0
+1 0 0
+#4919
+Small Trash Can corelliantrashbox~
+a trash can~
+A Small Trash Can is here beside the bar.~
+~
+15 0 0
+5000 0 0 0
+1 0 0
+> use_prog 100~
+mpoload 4919
+mppurge 2.corelliantrashbox
+mea $n You throw your garbage into the can.
+mpechoaround $n $n tosses some garbage into the garbage can.
+~
+|
+#4920
+medical storage room keycard~
+A small keycard~
+A small keycard with a medical symbol has been left here.~
+~
+18 0 1
+0 0 0 0
+1 0 0
+#4921
+Large Storage Crate~
+a Large Storage Crate~
+A Large Storage Crate is here.~
+~
+15 0 0
+700 13 4920 5
+1 0 0
+#4922
+Medpac~
+a MedPac~
+A White Medpac was left here.~
+~
+73 0 16385
+4 0 0 0
+1 0 0
+#4923
+Turbolift List~
+the list of levels~
+A small list hangs on the wall which displays different levels.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+E
+Turbolift List~
+&YCoronet Medical Facility Levels
+
+&ROne
+&CLobby
+
+&RTwo
+&CBacta Ward
+
+&RThree
+&CEmergency Room
+~
+#4924
+Large Desk~
+a Large Desk~
+The Reception Desk is here~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#5200
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#4901
+Floating in a void~
+~
+0 4 1 0 0 0 8232
+S
+#4902
+Coronet Spaceport~
+This is the the Spaceport of Coronet. Coronet is the Capital
+city of Corellia. The spaceport here is crowded with many travellers.
+Some of these travellers are tourists, while others are native
+to this planet. It's very loud here, due to the sound of the
+arrival and departure of many spacecraft. Near the exit of the
+spaceport, you can see a customs officer in a CorSec uniform.
+He is checking baggage of those who pass him.
+~
+0 1073741824 1 0 0 0 8232
+D3
+~
+~
+0 -1 4903
+S
+#4903
+Pathway To The Spaceport~
+This pathway splits off three ways. To the east is the Spaceport
+of Coronet, north is the town square, and south continues off
+in a paved road. Crowds of people are arriving from the east,
+and many are leaving to the east. This road is large due to
+the many people who often use it. Surprisingly, this street
+is kept clean due to janitorial droids who roam the streets.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4904
+D1
+~
+~
+0 -1 4902
+D2
+~
+~
+0 -1 4923
+S
+#4904
+Coronet City Square~
+You are standing in the large City Square of Coronet. This area
+branches off to many others. Many sounds can be heard, such
+as the sound of music to the southwest, and sound of ships to
+the south. North of here lies Meteor way. Starline Avenue to
+the northeast, and Coronet Street to the west.For travellers
+who need a place to rest for the night, a small motel lies to
+the east of here.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4925
+D1
+~
+~
+16777216 -1 4905
+D2
+~
+~
+0 -1 4903
+D3
+~
+~
+0 -1 4906
+D6
+~
+~
+0 -1 4928
+D9
+~
+~
+0 -1 4949
+S
+#4905
+A Small Motel~
+You are standing inside of a small motel, standing by the counter
+is the owner of this motel. She seems friendly and willing to
+assist you in finding a room. The motel itself is small and
+does not offer many services. However, it should be large enough
+to fulfill your needs for a night's rest.
+~
+0 1082130440 1 0 0 0 8232
+D3
+~
+~
+0 -1 4904
+S
+#4906
+Coronet Street~
+~
+0 1073741824 1 0 0 0 8232
+D1
+~
+~
+0 -1 4904
+D3
+~
+~
+0 -1 4907
+S
+#4907
+Coronet Street~
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4908
+D1
+~
+~
+0 -1 4906
+D3
+~
+~
+0 -1 4916
+S
+#4908
+A Small Road~
+You are standing on a small road that branches off of Coronet
+street. To return to Coronet street, you only need to travel
+south. North of here is the start of the Corellian business
+district. As you travel down this road, you can see a few people
+walking around as well.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4909
+D2
+~
+~
+0 -1 4907
+S
+#4909
+Before The Commercial District~
+To the west of here is the start of the Coronet Business district.Unlike
+Treasure Ship Row, the shops here contain items made industrially,
+and not handmade items made by citizens who craft items to make
+a living. The streets in the business district are worn due
+to the constant use, they are not taken very good care of.
+~
+0 1073741824 1 0 0 0 8232
+D2
+~
+~
+0 -1 4908
+D3
+~
+~
+0 -1 4910
+S
+#4910
+A Busy Street~
+As you continue through the commercial district, you come across
+a small hardware shop. Looking from the outside, the shop does
+not look to be crowded. Now may be a good time to enter if you
+need anything. The district continues to the west, and the exit
+continues east of here.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+16777216 -1 4913
+D1
+~
+~
+0 -1 4909
+D3
+~
+~
+0 -1 4911
+S
+#4911
+A Busy Street~
+To the south of here, is a small fabric shop. Many tailors go
+there in order to purchase supplies, perhaps it would be good
+to see what they have for sale. The street continues east and
+west of here, but not for much longer. As you travel farther
+down the streets, the roads seem to be more worn and broken.
+~
+0 1073741824 1 0 0 0 8232
+D1
+~
+~
+0 -1 4910
+D2
+~
+~
+16777216 -1 4914
+D3
+~
+~
+0 -1 4912
+S
+#4912
+A Busy Street~
+This seems to be the end of the commercial district. To the west
+of here is a dead end. This part of the district is not as loud
+as the others, but is the most broken up. If you wish to leave,
+you can continue to the east which leads out of the commercial
+district. North of here is a small jewel shop, they sell crystals,
+gems and various precious metals.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+16777216 -1 4915
+D1
+~
+~
+0 -1 4911
+S
+#4913
+A Small Hardware Shop~
+~
+0 1073741832 1 0 0 0 8232
+D2
+~
+~
+0 -1 4910
+S
+#4914
+A Small Fabric Shop~
+You are now inside of a small fabric shop. There are long sheets
+of different fabrics hanging on the walls which you may purchase.The
+shopkeeper is waiting behind the counter with a device used
+to cut the fabric into usable pieces. To the south is a locked
+door, it is most likely a storage room.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4911
+S
+#4915
+A Small Jewel Shop~
+You are now inside of a jewel shop. The counter where the shopkeeper
+stands is glass, displaying various types of differet jewls
+and precious metal that you may purchase. The shopkeeper is
+smiling at you as you look around here, he would be happy to
+assist you with making a purchase. As you look around, you notice
+a locked room to the north, probably a storage room.
+~
+0 1073741832 1 0 0 0 8232
+D2
+~
+~
+0 -1 4912
+S
+#4916
+Coronet Street~
+~
+0 1073741824 1 0 0 0 8232
+D1
+~
+~
+0 -1 4907
+D2
+~
+~
+16777216 -1 4917
+S
+#4917
+Entrance To The Coronet VR Arcade~
+You are now inside of Coronet's Virtual Reality Arcade. They
+specialize in the simulation of space battles.Many people come
+here in order to compete in simulation battles against people
+from all over the galaxy. This is made possible due to the linkup
+device provided by the simulators themselves.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4916
+D2
+~
+~
+0 -1 4918
+S
+#4918
+An Intersection~
+From here, you can hear the sounds of space battle. It all sounds
+so real due to the technology used in creating the simulators,
+the designers wanted users to experience the full feeling of
+a space fight. East and west of here, hallways continue which
+lead to simulator rooms. Up and down from here are two simulator
+rooms, you can enter in order to start flying.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4917
+D1
+~
+~
+0 -1 4919
+D3
+~
+~
+0 -1 4921
+D4
+~
+~
+0 -1 4947
+D5
+~
+~
+0 -1 4948
+S
+#4919
+A Durasteel Hallway~
+You are in the eastern hallway of the Virtual Reality Arcade
+of Coronet. This hallways leads north and south to the simulation
+rooms for the R-41 starfighter. East of here, the arcade continues
+to the rest of the arcade, and also to the west. The sounds
+of battles grow louder as you walk through here.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4941
+D1
+~
+~
+0 -1 4920
+D2
+~
+~
+0 -1 4942
+D3
+~
+~
+0 -1 4918
+S
+#4920
+A Durasteel Hallway~
+You have reached the end of the hallway. To the north and south
+of here are the simulation rooms for the T-Wing starfighter.To
+get back to the entrance of this Arcade, you need only to travel
+to the east. This room isn't as well lit as the others, but
+to the east is a plaque that reads, "Virtual Reality Arcade:
+Coronet District." 
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4939
+D2
+~
+~
+0 -1 4940
+D3
+~
+~
+0 -1 4919
+S
+#4921
+A Durasteel Hallway~
+This hallway branches off to the east and the west. Many consider
+it as the "Z-95 Preparation Room" As to the north and south
+of here are the simulation rooms for said ship. If you want
+to have a shot at flying the Z-95, you can enter one of the
+simulation rooms. If you want to try another ship, you can continue
+explorting.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4943
+D1
+~
+~
+0 -1 4918
+D2
+~
+~
+0 -1 4944
+D3
+~
+~
+0 -1 4922
+S
+#4922
+A Durasteel Hallway~
+The X-Wing is the ship the blew up the first death star with
+a single torpedo. The rooms that contain to the simulators of
+these powerful starfighters lie to the north and south. There
+are no other simulation rooms past this hallway, you can either
+turn back to the east, or enter one of the simulation rooms
+to the north and south.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4945
+D1
+~
+~
+0 -1 4921
+D2
+~
+~
+0 -1 4946
+S
+#4923
+A Paved Road~
+You are now walking down a neatly paved road. Not many people
+walk down this road, and if they do they are calm in order to
+reach their homes because to the east of here is the residential
+area of Coronet. The road continues south which will lead to
+another area of Coronet.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4903
+D2
+~
+~
+0 -1 4924
+S
+#4924
+A Paved Road~
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4923
+S
+#4925
+Meteor Way~
+~
+0 1073741828 1 0 0 0 8232
+D0
+~
+~
+0 -1 4926
+D2
+~
+~
+0 -1 4904
+S
+#4926
+Meteor Way~
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4927
+D2
+~
+~
+0 -1 4925
+S
+#4927
+Meteor Way~
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4932
+D2
+~
+~
+0 -1 4926
+S
+#4928
+Starline Avenue~
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4929
+D9
+~
+~
+0 -1 4904
+S
+#4929
+Starline Avenue~
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4930
+D2
+~
+~
+0 -1 4928
+S
+#4930
+Starline Avenue~
+~
+0 1073741824 1 0 0 0 8232
+D2
+~
+~
+0 -1 4929
+D7
+~
+~
+0 -1 4931
+S
+#4931
+The Beginnings of Treasure Ship Row~
+You are now wandering down Treasure Ship Row. Many species set
+up shop on treasure ship row, in order to display their talents
+and to make money by selling their services.North of here is
+a dessert stand owned by a Selonian, and south of here is a
+crafts stand owned by a Ryn. The row continues west of here,
+and you may exit by travelling down Starline Avenue to the southeast.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4933
+D2
+~
+~
+0 -1 4938
+D3
+~
+~
+0 -1 4932
+D8
+~
+~
+0 -1 4930
+S
+#4932
+Intersection Between Meteor Way and Treasure Ship Row~
+You are now standing at an intersection. To the north and south
+lies Meteor Way, to the east and south lie Treasure Ship Row.Funny,
+there are no shops set up near this intersection, you will need
+to continue east or west in order to find them.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4959
+D1
+~
+~
+0 -1 4931
+D2
+~
+~
+0 -1 4927
+D3
+~
+~
+0 -1 4934
+S
+#4933
+A Small Dessert Stand~
+You are now standing before a small shop, occupied by a female
+Selonian. This stand displays many Corellian desserts. The shopkeeper
+is watching you closely, in order to make sure that you do not
+steal anything. Afterall, this may be the Selonian's only way
+to turn a profit.
+~
+0 1073741832 1 0 0 0 8232
+D2
+~
+~
+0 -1 4931
+S
+#4934
+Treasure Ship Row~
+You continue your travel down Treasure Ship Row. You notice many
+tourists pass you by as you continue down this path. South of
+here is a Corellian Meat Shop, it might be good for you to go
+inside. West and east of here, Treasure Ship Row continues.
+There are many more shops to explore by this part of Coronet.
+~
+0 1073741824 1 0 0 0 8232
+D1
+~
+~
+0 -1 4932
+D2
+~
+~
+0 -1 4935
+D3
+~
+~
+0 -1 4936
+S
+#4935
+Corellian Meats~
+You are now inside of a cold booth, behind a case is fresh Corellian
+meat. The butcher here is wearing an apron. He is tall and round
+shaped, he must really like meat. He is standing there, looking
+at you. He is probably waiting for you to ask for assistance.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4934
+S
+#4936
+Treasure Ship Row~
+Unfortunately, not as many people set up shop on Treasure Ship
+Row now due to the Galactic War. However, the inventor Jerek
+Miv is still running his shop to the north of here. He sells
+many technologically advanced equipment for you to purchase.
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4937
+D1
+~
+~
+0 -1 4934
+S
+#4937
+Miv's Gadget Shop~
+You are inside of the brightly lit shop of Jerek Miv, technology
+extraordinaire. He specializes in the distribution of technological
+equipment. Among his inventions are the Miv-tech Aquata breather
+and the Miv-tech Inini-light. Such objects are displayed around
+the shop in display cases.
+~
+0 1073741832 1 0 0 0 8232
+D2
+~
+~
+0 -1 4936
+S
+#4938
+A Crafts Stand~
+This stand is basically a tent with a table and chair inside.The
+Ryn shopkeeper is here, to sell you her hand made jewelry.It
+is said that Ryn are able to predict the future with Sabacc
+cards, this Ryn is speaking that her crafts can better the individal
+who wears them.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4931
+S
+#4939
+T-Wing Simulation Room One~
+~
+0 1073741832 1 0 0 0 8232
+D2
+~
+~
+0 -1 4920
+S
+#4940
+T-Wing Simulation Room Two~
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4920
+S
+#4941
+R-41 Simulation Room One~
+~
+0 1073741832 1 0 0 0 8232
+D2
+~
+~
+0 -1 4919
+S
+#4942
+R-41 Simulation Room Two~
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4919
+S
+#4943
+Z-95 Simulation Room One~
+~
+0 1073741832 1 0 0 0 8232
+D2
+~
+~
+0 -1 4921
+S
+#4944
+Z-95 Simulation Room Two~
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4921
+S
+#4945
+X-Wing Simulation Room One~
+~
+0 1073741832 1 0 0 0 8232
+D2
+~
+~
+0 -1 4922
+S
+#4946
+X-Wing Simulation Room Two~
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4922
+S
+#4947
+HLAF-500 Simulation Room One~
+~
+0 1073741832 1 0 0 0 8232
+D5
+~
+~
+0 -1 4918
+S
+#4948
+HLAF-500 Simulation Room Two~
+~
+0 1073741832 1 0 0 0 8232
+D4
+~
+~
+0 -1 4918
+S
+#4949
+Entrance to Drek's Cantina~
+As you enter this Cantina, you can immediately hear the sound
+of music playing from within. Unfortunately, due to the quality
+of the music you can tell that it is not from a live band but
+that it is a recording from a machine. The Cantina continues
+to the west of here, and the exit is to the northeast.
+~
+0 1073741836 1 0 0 0 8232
+D3
+~
+~
+0 -1 4950
+D6
+~
+~
+0 -1 4904
+S
+#4950
+A Dimly Lit Hallway~
+The sound of the music grows louder upon travelling from the
+east. The bar is to the immediate west of here, Drek will be
+waiting there to serve drinks of many different variety. East
+of here is the entrance to the Cantina, it is also the exit
+in case you've decided that you've had enough to drink and would
+like to leave.
+~
+0 1073741832 1 0 0 0 8232
+D1
+~
+~
+0 -1 4949
+D3
+~
+~
+0 -1 4951
+S
+#4951
+Standing at the Bar~
+Standing here behind the bar, is Drek. Drek is the bartender
+and owner of this Cantina. He seems willing to help you. You
+can hear music playing south of here, but strangely, the entertainment
+floor is to the west. Right next to the bar is a small trash
+can, Drek likes it when his Cantina is kept clean. East of here
+is the exit of the cantina, and to the south are booths.
+~
+0 1073741832 1 0 0 0 8232
+D1
+~
+~
+0 -1 4950
+D2
+~
+~
+0 -1 4956
+D3
+~
+~
+0 -1 4958
+S
+#4952
+A Small Booth~
+~
+0 1073741832 1 0 0 0 8232
+D3
+~
+~
+33 -1 4956
+S
+#4953
+A Small Booth~
+~
+0 1073741836 1 0 0 0 8232
+D1
+~
+~
+0 -1 4956
+S
+#4954
+A Small Booth~
+~
+0 1073741836 1 0 0 0 8232
+D3
+~
+~
+0 -1 4957
+S
+#4955
+A Small Booth~
+~
+0 1073741836 1 0 0 0 8232
+D1
+~
+~
+0 -1 4957
+S
+#4956
+A Dimly Lit Hallway~
+You are walking through a dimly lit, and narrow hallway. Two
+booths, covered by curtains are attached to the east and west.From
+the south, you can hear music constantly playing. North of here
+is the bar, where Drek stands serving drinks. Also to the south,
+are more booths.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4951
+D1
+~
+curtain~
+3 -1 4952
+D2
+~
+~
+0 -1 4957
+D3
+~
+curtain~
+3 -1 4953
+S
+#4957
+A Dimly Lit Hallway~
+Sitting at the south edge of the well here is a Juke Box Machine.It
+is currently playing the music of Figrin D'an and his band.
+East and west of here are two booths, covered by curtains for
+privacy. As you look more carefully at the juke box, you can
+notice that there is no way to change the music. It is currently
+broken and repeatedly plays the music of Figrin D'an.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4956
+D1
+~
+curtain~
+3 -1 4954
+D3
+~
+curtain~
+3 -1 4955
+S
+#4958
+Entertainment Floor~
+You are standing by the entertainment floor. This is the section
+of the Cantina where live entertainment sets up to play music.At
+this moment there is no band set up here. Instead, equipment
+is leftover such as microphones and speakers. This room is fairly
+spacious, large enough to hold a band of six large people, maybe
+more.
+~
+0 1073741832 1 0 0 0 8232
+D1
+~
+~
+0 -1 4951
+S
+#4959
+Meteor Way~
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4961
+D1
+~
+~
+0 -1 4960
+D2
+~
+~
+0 -1 4932
+S
+#4960
+A CorSec Office~
+~
+0 1073741832 1 0 0 0 8232
+D3
+~
+~
+0 -1 4959
+S
+#4961
+Meteor Way~
+~
+0 1073741824 1 0 0 0 8232
+D0
+~
+~
+0 -1 4962
+D2
+~
+~
+0 -1 4959
+S
+#4962
+Entrance to the Coronet Medical Facility~
+You are standing at the entrance to the Coronet Medical Facility.This
+facility offers many medical services. Along the wall are the
+names of the doctors who have worked in this facility and how
+long they have worked here. To continue further into the facility,
+you can travel north to the reception area.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4963
+D2
+~
+~
+0 -1 4961
+S
+#4963
+A Reception Area~
+You are standing in a very clean, and plain white reception area.Sitting
+here at her desk, is a human receptionist. She seems to be busy
+at the moment, looking through files and various papers. She
+directs you to the north, as it is the turbolift which takes
+you to the different levels of this facility.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4964
+D2
+~
+~
+0 -1 4962
+S
+#4964
+A Small Turbolift~
+You are standing inside of a circular turbolift, it is fairly
+cold in here. The walls of this lift are painted a white color.On
+the left wall, there is a list which displays the levels of
+the medical facility. From the speakers, soothing music is played
+while you wait.
+~
+0 1073741836 1 0 0 0 8232
+> speech_prog 1 one~
+mpecho The Turbolift begins to move...
+mpsleep 10
+mpecho The Turbolift stops at level one.
+mpechoaround $n $q gets off the turbolift.
+mptransfer $n 4963
+mpat $n mpforce $n look
+~
+> speech_prog 2 two~
+mpecho The Turbolift begins to move...
+mpsleep 10
+mpecho The Turbolift stops at level two.
+mpechoaround $n $q gets off the turbolift.
+mptransfer $n 4965
+mpat $n mpforce $n look
+~
+> speech_prog 3 three~
+mpecho The Turbolift begins to move...
+mpsleep 10
+mpecho The Turbolift stops at level three.
+mpechoaround $n $q gets off the turbolift.
+mptransfer $n 4973
+mpat $n mpforce $n look
+~
+> speech_prog 4 four~
+mpecho The Turbolift begins to move...
+mpsleep 10
+mpecho The Turbolift stops at level four.
+mpechoaround $n $q gets off the turbolift.
+mptransfer $n 4974
+mpat $n mpforce $n look
+~
+> entry_prog 100~
+mpechoat $n The turbolift door closes as you enter.
+mpechoaround $n The turbolift doors close as $q enters.
+~
+|
+S
+#4965
+Entrance to the Bacta Ward~
+You are standing at the entrance to the Bacta ward. North of
+here is the exit, the turbolift which can take you to different
+levels of this medical facility. South of here, the hallway
+continues and branches off to the Bacta treatment rooms. The
+rooms here are kept very clean and sterile as to not lead to
+an injured patient's wounds becoming infected.
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4964
+D2
+~
+~
+0 -1 4966
+S
+#4966
+A Narrow Hallway~
+~
+0 1073741832 1 0 0 0 8232
+D0
+~
+~
+0 -1 4965
+D1
+~
+~
+16777216 -1 4968
+D2
+~
+~
+0 -1 4969
+D3
+~
+~
+16777216 -1 4967
+S
+#4967
+A Bacta Tank~
+~
+0 1073741832 1 0 0 0 1
+D1
+~
+~
+0 -1 4966
+> rand_prog 100~
+mpecho You feel a little better as the bacta starts healing your wounds
+mprestore $n 50
+~
+|
+S
+#4968
+A Bacta Tank~
+~
+0 1073741832 1 0 0 0 1
+D3
+~
+~
+0 -1 4966
+> rand_prog 100~
+mpecho You feel a little better as the bacta starts healing your wounds
+mprestore $n 50
+~
+|
+S
+#4969
+A Narrow Hallway~
+~
+0 1073741824 1 0 0 0 1
+D0
+~
+~
+0 -1 4966
+D1
+~
+~
+16777216 -1 4971
+D3
+~
+~
+16777216 -1 4970
+S
+#4970
+A Bacta Tank~
+~
+0 1073741832 1 0 0 0 1
+D1
+~
+~
+0 -1 4969
+> rand_prog 100~
+mpecho You feel a little better as the bacta starts healing your wounds
+mprestore $n 50
+~
+|
+S
+#4971
+A Bacta Tank~
+~
+0 1073741832 1 0 0 0 1
+D3
+~
+~
+0 -1 4969
+> rand_prog 100~
+mpecho You feel a little better as the bacta starts healing your wounds
+mprestore $n 50
+~
+|
+S
+#4972
+A Small Waiting Area~
+~
+0 1073741832 1 0 0 0 1
+D0
+~
+~
+0 -1 4964
+D2
+~
+~
+39 -1 4973
+> custom_prog drlinewait~
+mpechoat $n There seems to be a wait to see the Doctor, you will have to be patient.
+mpechoaround $n $q arrives off the turbolift and joins the line to see the doctor.
+mpsleep 25
+mptransfer $n 4973
+mpat 4973 mpforce $n look
+mpat 4973 mpforce $n drprogstart
+~
+|
+S
+#4973
+An Operation Room~
+~
+0 1073741832 1 0 0 0 1
+D0
+~
+~
+0 -1 4972
+S
+#4974
+The Supply Room~
+~
+0 1073741832 1 0 0 0 1
+D0
+~
+~
+0 -1 4964
+S
+#5200
+Floating in a void~
+~
+0 4 1 0 0 0 8232
+S
+#0
+
+
+#RESETS
+M 1 4901 1 4901
+O 1 4901 1 4901
+M 1 5200 1 5200
+O 1 5200 1 5200
+O 1 4902 1 4904
+M 1 4902 1 4902
+M 1 4903 1 4913
+M 1 4903 2 4914
+M 1 4903 3 4915
+M 1 4904 1 4933
+G 1 4905 1
+G 1 4903 1
+G 1 4904 1
+M 1 4906 1 4935
+G 1 4906 1
+G 1 4907 1
+M 1 4905 1 4937
+G 1 4909 1
+G 1 4908 1
+M 1 4907 1 4938
+G 1 4911 1
+G 1 4910 1
+D 0 4956 1 1
+O 1 4917 1 4957
+D 0 4957 1 1
+D 0 4957 3 1
+M 1 4908 1 4951
+G 1 4916 1
+G 1 4915 1
+G 1 4914 1
+G 1 4913 1
+G 1 4912 1
+O 1 4918 1 4951
+O 1 4919 1 4951
+D 0 4972 2 2
+M 1 4909 1 4973
+G 1 4920 1
+O 1 4923 1 4964
+P 0 4922 1 0
+O 1 4921 1 4974
+P 0 4922 1 0
+S
+
+
+#SHOPS
+ 4904    0  0  0  0  0   120  90         0 23    ; A Selonian Shopkeeper
+ 4905    0  0  0  0  0   120  90         0 23    ; Jerek Miv
+ 4906    0  0  0  0  0   120  90         0 23    ; The Shopkeeper
+ 4907    0  0  0  0  0   120  90         0 23    ; A Ryn Shopkeeper
+ 4908    0  0  0  0  0   120  90         0 23    ; Drek
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  4902 spec_police_fine
+S
+
+
+#$

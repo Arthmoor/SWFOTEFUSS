@@ -1,0 +1,9 @@
+#FORCE
+Name      fshield~
+Status    2
+Type      1
+Desc      Command:    fshield$RN$Usage:      fshield$RN$Level:      Jedi Knight$RN$Mana:       40$RN$Time Req:   10 seconds$RN$Duration:   0 - 2 minutes$RN$Components: None$RN$$RN$With this skill you are able to surround yourself with$RN$a protective shield comprised of the force.  This shield$RN$is able to absorb some of the damage which you would$RN$normally take from an attack.$RN$~
+Skill     9
+End
+
+#END

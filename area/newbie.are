@@ -1,0 +1,2540 @@
+#AREA   Newbie1~
+
+
+
+#AUTHOR Ackbar~
+
+#RANGES
+0 36 0 36
+$
+
+#RESETMSG The ship lurches slightly as it makes course corrections~
+
+#FLAGS
+0 1
+
+#ECONOMY -1 996837450
+
+#MOBILES
+#115
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#116
+General Rock~
+General Rock~
+General Rock is seated behind his desk here.
+~
+General Rock stands about 6'3" and is grinning from cheak to cheak. He is
+wearing a standard imperial officers uniform. A vivid scar stands out on
+his left cheak extending from just below to the eye to the chin. He is of
+a very muscular build.
+~
+1049603 0 0 Z
+25 0 37 20d45+250 15d50+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+5 5 0 0 72 0 0 0
+0 0 0 0 0 0 0 0
+#117
+Lowbacca~
+Lowbacca~
+Lowbacca stands here working on the weight machines.
+~
+Lowbacca stands roughly 7' tall. He has sandy brown fur. He is wearing a
+ammow belt around him and carries a bowcaster as a weapon. He seems quite
+strong. He growls loudly bearing his fangs and looks at you.
+~
+515 0 0 Z
+1 0 0 60d150+0 15d40+0
+0 0
+8 8 0
+24 18 18 24 23 10 10
+0 0 0 0 0
+1 0 0 0 3 2 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#118
+An Ewok~
+An Ewok~
+An Ewok is here trying to build up his muscles.
+~
+He is short with brown fur. He is clothed in loin cloths and looks rather
+weak. As you look him over he notices you and scrunches his nose up at you
+looking curious.
+~
+3 0 0 Z
+15 0 62 25d25+0 2d3+6
+10 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 129 128 0
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog ~
+sa I will kill you!
+~
+|
+#119
+Dorsk~
+Dorsk~
+Dorsk sits behind his desk here.
+~
+Dorsk is a tall dark green Trandoshin. Like all trandoshin's he looks
+basicly like a humanoid lizzard. His hand hovers near his holster where
+you spot a blaster. He looks quite dangerous.
+~
+1049603 4194304 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 1
+10 10 10 25 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say I thought you might of been that fool Drall.
+say I'll pay you 150 credits for his head!
+~
+> give_prog Head of Drall~
+say Hah, you snuffed that fool?
+say Good work.
+mpwithdraw 150
+give 150 credits $n
+mpat 101 drop head
+mpat 101 mppurge
+mpadvance $n 3 250
+~
+|
+#120
+Drall~
+Drall~
+Drall stands here trying not to look suspicious.
+~
+Drall is a relativly tall human. He is extremly skinny and looks to be
+relativly week. But looks can be decieving. You notice he's wearing a
+white shirt with a black vest, and dark grey pants. He carries a
+vibroblade as a weapon.
+~
+1 0 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+1 0 0 0 3 2 0
+5 5 0 32 0 0 0 0
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 118
+~
+|
+#121
+Commander Targ~
+Commander Targ~
+Commander Targ sits quietly on a vigil here.
+~
+Commander Targ is of the race known as Noghri. Like all noghri he has pale
+grey skin and looks somewhat gnome like. He has tight very compact muscles
+and looks to be very fast and very strong. He is not somebody you would
+want to mess with.
+~
+515 0 0 Z
+33 0 17 6d10+330 3d4+2
+0 0
+8 8 1
+10 20 20 20 10 10 10
+0 0 0 0 0
+6 0 0 0 65 64 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#122
+Contraband Weapons Dealer~
+a Contraband Weapons Dealer~
+A contraband weapons dealer stands here.
+~
+This is a human male of approximatly 6' in height. He has sandy brown hair,
+grey eyes and a large nose. He grins rather dangerously and opens his vest
+to reveal an asortment of very dangerous looking weapons.
+~
+134217731 0 0 Z
+1 0 0 4d10+220 2d4+4
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+5 4 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Hello $n.
+say I buy and sell weapons. Can I offer you any assistance? 
+~
+> give_prog dl-2 blaster pistol~
+smile $n
+sa Good job getting that blaster past Targ.  Here's a little reward.
+mpwithdraw 50
+give 50 credits $n
+mpadvance $n 4 50
+mpat 101 drop blaster
+mpat 101 mppurge
+~
+|
+#123
+Barlan~
+Barlan~
+Barlan looks around anxiously here.
+~
+Barlan is a short fairly plump human. He has lightly tanned skin with light
+blonde hair. His eyes are a deep shade of blue. He's wearing a green shirt
+and a pair of black pants.
+~
+3 0 0 Z
+1 0 0 25d10+0 10d15+0
+0 0
+8 8 1
+20 10 10 20 20 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say I have to deliver this blaster to the weapons dealer. 
+say But I'm worried I won't get by Commander Targ.
+say Get away from me. Your never taking this blaster from me! 
+~
+|
+#124
+Molbakka~
+Molbakka~
+Molbakka works quietly at the computer terminal here.
+~
+Molbakka is a tall lanky wookiee. He has dark brown fur and black eyes. He
+grins evily as he looks you over the continues to work at his terminal.
+~
+1050115 4194304 0 Z
+30 0 25 50d40+300 25d40+2
+0 0
+8 8 1
+10 10 10 10 20 10 10
+0 0 0 0 0
+1 0 0 0 3 2 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+sa I am a green level slicer... 
+sa I can show you some of the lower level slicing skills. 
+sa I can also lend you some parts to build slicer equipment. 
+sa These parts include: Toolkit, Duraplast, Battery, Crystal, Circuit,
+sa Lens, Durasteel, and Superconductor. 
+~
+> speech_prog commsystem~
+sa You will need a toolkit, some duraplast, a battery, a crystal, and 
+sa a circuit to build a commsystem.
+~
+> speech_prog datapad~
+sa You will need a toolkit, some durasteel, a battery, a super conductor,
+sa a circuit and a lens to build a datapad.
+~
+> speech_prog toolkit~
+mpoload 141
+give toolkit $n
+~
+> speech_prog duraplast~
+mpoload 148
+give duraplast $n
+~
+> speech_prog battery~
+mpoload 139
+give battery $n
+~
+> speech_prog crystal~
+mpoload 138
+give crystal $n
+~
+> speech_prog circuit~
+mpoload 140
+give circuit $n
+~
+> speech_prog lens~
+mpoload 143
+give lens $n
+~
+> speech_prog durasteel~
+mpoload 146
+give durasteel $n
+~
+> speech_prog superconductor~
+mpoload 147
+give superconductor $n
+~
+|
+#125
+Admiral Coran~
+Admiral Coran~
+Admiral Coran sits behind his desk here.
+~
+~
+1050115 4194304 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 25 25 20 10 20 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+sa Hello there $n. How can I help you? 
+~
+|
+#126
+Protocol Droid~
+A Protocol Droid~
+A Protocol Droid stands here with drinks and food
+~
+C-7DC is a Gold colored protocol droid. It looks fairly human in the most
+common characteristics. It seems to have very poor motor abilities and
+concquently a low range of movement.
+~
+67109379 4194304 0 Z
+1 0 0 15d10+0 3d10+0
+0 0
+8 8 0
+10 10 10 10 10 25 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+mpecho A protocol droid says, "Good afternoon, $n.  My name is C-7DC.  I
+mpecho am the turbolift operator.  If you need any beverages or a bite to eat
+mpecho on this trip, just ask."
+~
+> speech_prog food ration eat~
+sa I will happily give you a ration.
+mpoload 133
+give ration $n
+sa Please enjoy.
+~
+> speech_prog water drink canteen liquid~
+sa I will happily give you a canteen.
+mpoload 134
+give canteen $n
+sa Please enjoy.
+~
+|
+#127
+Engineer~
+An Engineer~
+An Engineer stands here examining his inventory.
+~
+~
+1049603 4194304 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say If you need to borrow an item simply say it's name. 
+say The items are: Needle, Fabric, Crystal, Circuit, Battery, and Toolkit.
+say I can also teach you how to make a container or a comlink.
+say You may also wish to visit my friend far west of here.
+~
+> speech_prog needle~
+mpoload 136
+give needle $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog fabric~
+mpoload 137
+give fabric $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog crystal~
+mpoload 138
+give crystal $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog battery~
+mpoload 139
+give battery $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog circuit~
+mpoload 140
+give circuit $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog toolkit~
+mpoload 141
+give toolkit $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog container~
+say You will need some fabric, and a needle.
+~
+> speech_prog comlink~
+say You will need a crystal, a circuit, a battery, and a toolkit.
+~
+|
+#128
+Engineer~
+An Engineer~
+An Engineer stands here examining his inventory.
+~
+~
+1049603 4194304 0 Z
+1 0 0 100d10+0 10d5+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> speech_prog vibroblade~
+say To make a vibroblade you will need an Oven, a toolkit, and
+say durasteel.
+~
+> speech_prog flashlight~
+say To make a flashlight you will need a battery, circuit, toolkit,
+say chemical, and lens. 
+~
+> speech_prog oven~
+mpoload 142
+give oven $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog lens~
+mpoload 143
+give lens $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog circuit~
+mpoload 140
+give circuit $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog battery~
+mpoload 139
+give battery $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog toolkit~
+mpoload 141
+give toolkit $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog chemical~
+mpoload 145
+give chemicals $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> speech_prog durasteel~
+mpoload 146
+give durasteel $n
+mpat 102 drop all
+mpat 102 mppurge
+~
+> greet_prog 100~
+say If you need to borrow an item simply say it's name. 
+say The items are: Circuit, Battery, Toolkit, Oven, Lens, Chemical,
+say or Durasteel
+say You may also wish to visit my friend far east of here. 
+~
+|
+#129
+Dorak~
+Dorak~
+Dorak sits here studying a book.
+~
+~
+1049603 0 0 Z
+15 0 62 15d25+150 15d25+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 -8193 -8193 0
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#130
+a student~
+A Student~
+A Student wonders around the academy looking lost
+~
+~
+1 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+25 10 10 20 20 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#131
+Grotans~
+Grotans~
+Grotans stands here accepting new players.
+~
+~
+3 4194304 0 Z
+36 0 10 300d15+360 45d100+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 -532481 -532481 0
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Good day to you $n, and welcome to Star Wars: Fall of the Empire. 
+say My name is Grotans. Let me begin by saying how pleased we are you
+say have chosen to join us. We feel you can achieve great things.
+say Now to begin I recomend you find the turbolift and visit each level
+say in this academy. With each level you will be able to gain some 
+say experience in the Star Wars universe. With time you will be ready
+say to venture into the real world. Now go, and good luck $n.
+~
+|
+#132
+store manager~
+The Store Manager~
+The Store Manager is here helping customers
+~
+~
+3 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+smile
+say Hi, welcome to the Newbie 1 shop.
+say We carry the essentials needed to survive in the galaxy.
+say Please feel free to look around.
+smile
+~
+|
+#133
+Senator Korvin~
+Senator Korvin~
+A man dressed in a suit is standing in the corner of the room
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#150
+Colonel Jentric~
+Colonel Jentric~
+Colonel Jentric stands before you.
+~
+~
+1050115 0 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 1
+15 20 20 10 20 15 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#190
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#115
+Turbolist~
+a Turbolist~
+A Turbolist is Mounted to the Wall~
+~
+13 3 0
+0 0 0 0
+1 0 0
+E
+Turbolist~
+&G&G[&W 1&G] &WBunk Level&w
+&G&G[&W 2&G] &WCombat Training&w
+&G&G[&W 3&G] &WEngineering&w 
+&G&G[&W 4&G] &WBountyHunting&w 
+&G&G[&W 5&G] &WSmuggling&w 
+&G&G[&W 6&G] &WSlicer Training&w
+&G&G[&W 7&G] &WPilot Training&w
+&G&G[&W 8&G] &WLanguage Training&w
+&G&G[&W 9&G] &WHanger Level&w 
+~
+#116
+A Beautifully Carved Desk~
+a Beautifully Carved Desk~
+A beautifully carved desk is here.~
+~
+12 0 0
+0 0 0 0
+500 1000 100
+#117
+Weight Machine~
+a Weight Machine~
+A weight machine sits in the corner here.~
+~
+12 2 0
+0 0 0 0
+1 0 0
+#118
+head of drall~
+the Head of Drall~
+The Head of Drall was dropped here~
+~
+13 0 1
+0 0 0 0
+3 0 0
+#119
+Small Blaster Pistol~
+blaster pistol~
+A small blaster pistol was left here~
+~
+5 16 8193
+0 5 15 6
+2 50 5
+#120
+Mainframe Computer~
+Mainfraim Computer~
+A mainframe computer is here.~
+~
+12 0 0
+0 0 0 0
+200 5000 500
+#121
+Durasteel Gloves~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CG&cl&Co&cv&Ce&cs&w~
+A Pair of &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CG&cl&Co&cv&Ce&cs&w was left here~
+~
+9 0 129
+0 -10 0 0
+2 3 0
+A
+18 1
+A
+18 1
+A
+19 1
+#122
+Durasteel Body Vest~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CB&co&Cd&cy&C &cV&Ce&cs&Ct&w~
+A &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CB&co&Cd&cy&C &cV&Ce&cs&Ct&w was left here~
+~
+9 0 9
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+A
+18 1
+A
+19 1
+A
+18 1
+A
+19 1
+#123
+Durasteel Helmet~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CH&ce&Cl&cm&Ce&ct&w~
+A &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CH&ce&Cl&cm&Ce&ct&w was left here~
+~
+9 0 17
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+#124
+Durasteel Boots~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CB&co&Co&ct&Cs&w~
+A pair of &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CB&co&Co&ct&Cs&w were left here~
+~
+9 0 65
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+#125
+Durasteel Belt~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CB&ce&Cl&ct&w~
+A &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CB&ce&Cl&ct&w were left here~
+~
+9 0 2049
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+#126
+Durasteel Sleeves~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CS&cl&Ce&ce&Cv&ce&Cs&w~
+Some &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CS&cl&Ce&ce&Cv&ce&Cs&w were left here~
+~
+9 0 257
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+#127
+Durasteel Pants~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CP&ca&Cn&ct&Cs&w~
+Some &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CP&ca&Cn&ct&Cs&w were left here~
+~
+9 0 33
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+A
+18 1
+A
+19 1
+A
+18 1
+A
+19 1
+#128
+Durasteel Shield~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CS&ch&Ci&ce&Cl&cd&w~
+A &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CS&ch&Ci&ce&Cl&cd&w was left here~
+~
+9 0 513
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+#129
+Durasteel Cape~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CC&ca&Cp&ce&w~
+A &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CC&ca&Cp&ce&w was left here~
+~
+9 0 1025
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+#130
+Durasteel Vibroblade~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CV&ci&Cb&cr&Co&cb&Cl&ca&Cd&ce&w~
+A &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CV&ci&Cb&cr&Co&cb&Cl&ca&Cd&ce&w was left here~
+~
+5 0 8193
+12 3 6 2 500 500
+2 3 0
+A
+18 1
+A
+19 1
+#131
+Durasteel Comlink~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CC&co&Cm&cl&Ci&cn&Ck&w~
+A &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CC&co&Cm&cl&Ci&cn&Ck&w was left here~
+~
+72 0 65537
+12 -10 0 0
+2 3 0
+A
+18 1
+A
+19 1
+#132
+Durasteel Backpack~
+&G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CB&ca&Cc&ck&Cp&ca&Cc&ck&w~
+A &G&CD&cu&Cr&ca&Cs&ct&Ce&ce&Cl&c &CB&ca&Cc&ck&Cp&ca&Cc&ck&w was left here~
+~
+15 0 524289
+20 0 0 0
+2 3 0
+A
+18 1
+A
+19 1
+#133
+A small packaged ration~
+a small packaged ration~
+A packaged ration is here, waiting to be eaten.~
+~
+19 8192 1
+20 20 0 0
+2 5 0
+#134
+A small canteen~
+a small canteen~
+A belt sized canteen was dropped here.~
+~
+17 8192 1
+10 10 0 0
+1 10 1
+#135
+loin cloth~
+loin cloth~
+A loin cloth was dropped here~
+~
+9 0 1025
+25 -15 0 0
+1 0 0
+A
+18 3
+A
+19 3
+#136
+a needle and some thread~
+a needle and some thread~
+A needle and some thread was dropped here~
+~
+77 0 1
+0 0 0 0
+1 5 0
+#137
+some cheap fabric~
+some cheap fabric~
+Some cheap fabric was left here~
+~
+74 0 1
+0 0 0 0
+1 5 0
+#138
+a cheap looking crystal~
+a cheap looking crystal~
+A a cheap looking crystal is here.~
+~
+63 0 1
+1 0 0 0
+1 5 0
+#139
+a small battery~
+an advanced power cell~
+An advanced power cell is here~
+~
+65 8192 16385
+5000 0 0 0
+1 20 2
+#140
+a small circuit~
+a small circuit~
+A small circuit was left here~
+~
+70 0 1
+0 0 0 0
+1 5 0
+#141
+a toolkit~
+a toolkit~
+A toolkit was dropped here~
+~
+66 0 1
+0 0 0 0
+3 10 1
+#142
+an oven~
+an oven~
+An oven was dropped here~
+~
+68 0 1
+0 0 0 0
+5 25 2
+#143
+a lens~
+a lens~
+A lens was dropped here~
+~
+62 0 1
+0 0 0 0
+1 5 0
+#144
+a piece of metal~
+a piece of metal~
+A piece of metal was dropped here~
+~
+75 0 1
+0 0 0 0
+1 15 1
+#145
+some chemicals~
+some chemicals~
+Some chemicals were dropped here~
+~
+87 0 1
+100 0 0 0
+1 5 0
+#146
+a piece of durasteel~
+a piece of durasteel~
+A piece of durasteel was dropped here~
+~
+67 0 1
+0 0 0 0
+1 5 0
+#147
+a superconductor~
+a superconductor~
+A superconductor was dropped here~
+~
+71 0 1
+0 0 0 0
+1 5 0
+#148
+a piece of duraplast~
+a piece of duraplast~
+A piece of duraplast was dropped here~
+~
+64 0 1
+0 0 0 0
+1 5 0
+#149
+XT-3000 Wrist-Comlink~
+a XT-3000 Wrist-Comlink~
+A XT-3000 Wrist-Comlink is discarded here~
+~
+72 8192 4097
+0 0 0 0
+1 25 2
+#150
+Medkit~
+a Medkit~
+A Medkit is here.~
+~
+73 8192 16385
+10 10 10 0
+1 10 1
+#151
+ammo cell~
+a ammo cell~
+A ammo cell is here.~
+~
+57 8192 16385
+1000 0 0 0
+1 30 3
+#152
+dl-2 blaster pistol~
+a dl-2 blaster pistol~
+A dl-2 blaster pistol is here.~
+~
+5 0 8193
+12 5 5 6 2000 2000
+1 500 50
+#153
+A Builders Board~
+Builders Board~
+A Builders Board sits here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#190
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#115
+On a bunk~
+Where am I? runs through your mind. Well, you are lying down on a bunk on
+the Newbie Ship that slowly makes its way around the galaxy. Through the
+window you can see the stars shining on the bed. The quiet of the room and
+the tranquil site can make one very sleepy, but you have lots ahead of
+you. On the ship there is a large training facility designed especially
+for you. So wander around and ask questions if you need to.
+ 
+(You can safely exit the game from here.)
+ 
+(Please look at the help files to learn new things. If there isn't one, let
+somebody know.)
+ 
+(after you reach level 10, you will be transed to the newbie hangar,
+therefore it is suggested that instead of leveling all 1 thing, you level
+a little bit of
+everything)
+ 
+&w&RNOTE: Prospective builders, say build.&W
+
+Note to new players. If you want to be authed, stay with grotans for a few seconds and he automatically auths you.
+~
+0 8388620 1 0 0 0 3720
+D5
+~
+~
+0 -1 116
+> speech_prog build~
+mea $n &W&c-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+mea $n &g&WBuilding is an important part of this mud and, if you
+mea $n &g&Whave not noticed, we are quite low on areas. If you wish
+mea $n &g&Wto build, post your name and experience(if any) on the 
+mea $n &g&Wboard in this room. If you do not know how to work a board,
+mea $n &g&Wchances are good you are not meant to work here.
+mea $n &W&c-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+mea $n &RNote: &WIf you have any, listing areas you have built
+mea $n &w&Won other muds and that muds address is a plus.
+~
+|
+S
+#116
+Small Cabin~
+The room is of average size for a large starship and is sparsly decorated.
+The walls and ceiling are white and the floor is a dark grey tile. In the
+corner there is a small bunk, and beside it there is a small table.
+Sitting on the table is a soft glowing lamp. In the opposite corner there
+is a padded chair. It looks like a nice place to relax. But you have too
+much to do for that. To the north there is a corridor that leads to the
+rest of the ship.
+~
+0 1036 1 0 0 0 3720
+D0
+~
+~
+0 -1 117
+D4
+~
+~
+0 -1 115
+S
+#117
+A Brightly Lit Corridor~
+The corridor is quite wide and brightly lit up. Along the walls there are
+various peices of art work all designed to stimulate some part of the
+brain. The floor and walls are the same as in the bunks but the air seems
+a little bit cooler but still very nice. The corridor continues east and
+west.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 121
+D1
+~
+~
+0 -1 120
+D2
+~
+~
+0 -1 116
+D3
+~
+~
+0 -1 118
+S
+#118
+A Brightly Lit Corridor~
+This corridor is quite wide and brightly lit up. Along the walls there are
+various peices of art works, all designed to stimulate some part of the
+brain. The floor and walls are the same as in the bunks but the air seems
+a little bit cooler. Even with the temperature difference, it is still
+comfortable. To the east the corridor continues and to the west it stops
+at a dead end.
+~
+0 8 1 0 0 0 3720
+D1
+~
+~
+0 -1 117
+D3
+~
+~
+0 -1 119
+S
+#119
+Dead End~
+The corridor ends abruptly here, with no sign of any doors or extra
+passages. There are no paintings or other peices of art work which seems
+quite odd compared to the rest of the corridor. The wall is curved in a
+semicircular shape which almost urges you to turn back around.
+~
+0 8 1 0 0 0 3720
+D1
+~
+~
+0 -1 118
+S
+#120
+A Brightly Lit Corridor~
+The corridor is quite wide and brightly lit up. Along the walls there are
+various peices of art work all designed to stimulate some part of the
+brain. The floor and walls are the same as in the cabins but the air seems
+a little cooler. Even with the temperature difference, it is still
+comfortable. To the north is a turbolift and the hallway continues to the
+west. 
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 123
+D3
+~
+~
+0 -1 117
+S
+#121
+Small Cabin~
+The room is of average size for a large starship and is sparsely decorated.
+The walls and ceiling are white and the floor is a dark grey tile. In the
+corner there is a small bunk, an beside it there is a small table. Sitting
+on the table is a soft glowing lamp. In the opposite corener there is a
+padded chair. It looks like a nice place to relax. But you too much to do
+for that. To the south there is a corridor that leads to the rest of the
+ship.
+~
+0 8 1 0 0 0 3720
+D2
+~
+~
+0 -1 117
+D4
+~
+~
+0 -1 122
+S
+#122
+In a Bunk~
+Where am I? runs through your mind. Well, you are lying down on a bunk on
+the Newbie Ship that slowly makes its way around the galaxy. Through the
+window you can see the stars shining on the bed. The quiet of the room and
+the tranquil site can make on very sleepy, but you have lots ahead of you.
+On the ship there is a large training facility designed especially for
+you. So wander around and ask questions if you need to.
+ 
+(You can safely exit the game from here.)
+ 
+ 
+(Please look at the help files to learn new things. If there isn't one, let
+somebody know.)
+~
+0 8388616 1 0 0 0 3720
+D5
+~
+~
+0 -1 121
+S
+#123
+Turbolift~
+This turbolift is located near the front of the ship enabling it to reach
+all levels. The walls ceiling and floor are all made out of durasteel and
+mounted on the ceiling is a small lamp producing just the right amount of
+light. This lift is voice activated, meaning you just SAY the number of
+the level you want and it takes you there. Next to the hatch there is a
+small "list" of available levels and built into it is a small microphone.
+~
+0 12 1 0 0 0 3720
+E
+list lists level levels~
+&G&G[&W 1&G] &WBunk Level&w
+&G&G[&W 2&G] &WCombat Training&w
+&G&G[&W 3&G] &WEngineering&w
+&G&G[&W 4&G] &WBountyHunting&w
+&G&G[&W 5&G] &WSmuggling&w
+&G&G[&W 6&G] &WSlicer Training&w
+&G&G[&W 7&G] &WPilot Training&w
+&G&G[&W 8&G] &WLanguage Training
+&G&G[&W 9&G] &WHanger Level&w
+~
+> speech_prog say 1~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 1. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 120
+mpat 120 mer $n $n gets off the turbolift.
+~
+> speech_prog say 2~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 2. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 125
+mpat 125 mer $n $n gets off the turbolift.
+~
+> speech_prog say 3~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 3. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 133
+mpat 133 mer $n $n steps out of the turbolift.
+~
+> speech_prog say 4~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 4. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 148
+mpat 148 mer $n $n steps off of the turbolift.
+~
+> speech_prog say 5~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 5. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 159
+mpat 159 mer $n $n gets off of the turbolift.
+~
+> speech_prog say 6~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 6. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 163
+mpat 163 mer $n $n steps off the turbolift.
+~
+> speech_prog say 7~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 7. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 180
+mpat 180 mer $n $n gets out of the turbolift.
+~
+> speech_prog say 8~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 8. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 172
+mpat 172 mer $n $n steps off the turbolift.
+~
+> speech_prog say 9~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho &cAn electronic voice says: 'Level 9. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 171
+mpat 171 mer $n $n get off of the turbolift.
+~
+|
+S
+#125
+Combat Training~
+This room explains about WIMPY, FLEE, and RECALL as a way to leave from
+combat. Wimpy is an automatic withdrawal from a fight when your hitpoints
+reach a set minimum. To set your wimpy, type WIMPY or WIMPY <number>. The
+number being the amount of hitpoints you want remaining when you leave the
+battle. You will lose experience for wimpying out of a fight, but the
+amount of experience lost will generally be less then the amount lost from
+death. You may also manually withdraw from a fight with flee. To use flee,
+just type FLEE. You may flee out of the fight at any amount of hitpoints.
+Fleeing will cost you loss of experience.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 123
+D3
+~
+~
+0 -1 126
+S
+#126
+A Brightly Lit Corridor~
+This corridor leads to west and east. To the east, a large room set up for
+combat training can be seen. To the west, there are various rooms to train
+strength, dexterity, and other skills that will be needed throughout the
+galaxy. Unlike the Bunk level, there are no paintings along the walls, but
+rather  pictures of great fighters, athletes, and generals.  Hopefully
+seeing all these great people will inspire new generations.
+~
+0 8 1 0 0 0 3720
+D1
+~
+~
+0 -1 125
+D3
+~
+~
+0 -1 127
+S
+#127
+A Brightly Lit Corridor~
+This corridor leads in all directions. To the north is General Rocks
+office, to the south is the weight training room where people can build
+strength, and to the east and west the hallway continues. Unlike the Bunk
+level, there are no paintings along the walls, but rather pictures of
+great fighters, athletes, and generals. Hopefully seeing these individuals
+will inspire new generations.
+~
+0 12 1 0 0 0 3720
+D0
+~
+~
+0 -1 128
+D1
+~
+~
+0 -1 126
+D2
+~
+~
+0 -1 129
+D3
+~
+~
+0 -1 130
+S
+#128
+General Rock's Office~
+General Rocks office is smaller than one might picture but it only serves
+as an office which the General is not in very much. The walls are white
+but are almost hidden from view by banners, weapons, and maps. In the
+middle of the room there is a beautifully carved desk and behind it sits
+the massive figure on General Rock. He looks hardcore right down to the
+bone but thats just his appearance.
+~
+0 8 1 0 0 0 3720
+D2
+~
+~
+0 -1 127
+S
+#129
+Weight Training Room~
+The weight room is an enormous room filled with every weight training
+device in the galaxy. The reason behind this is that the owners want to be
+able to accomodate every type of sentient lifeforms in the galaxy. The
+room itself is huge and well lit. The machines are arranged in rows with
+walkways in between. There are a good many creatures here working up a
+sweat, but not as many as there are during peek hours.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 127
+> speech_prog healme~
+mprestore $n 1000
+~
+|
+S
+#130
+A Brightly Lit Corridor~
+The corridor runs to the east here and to the north and south there is a
+Gymnasium and Gun Turret 1. The Gymnasium can be used to train dexterity,
+endurance, combat skills, and various other things that will be needed
+throughout the galaxy.  The turret can be used to practice space combat or
+to simply look at the passing stars.
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 131
+D1
+~
+~
+0 -1 127
+S
+#131
+Gymnasium~
+A long track encircles the Gymnasium and various creatures can bee seen
+walking, jogging, or running. In the center there is a small group of
+people doing fitness routines and on the other side of them a few people
+are practicing close quarters combat. Feel free to do whatever you like,
+there is plenty of space for everyone to share.
+~
+0 1073741832 1 0 0 0 3720
+D2
+~
+~
+0 -1 130
+S
+#132
+Turret1~
+This turret is designed to be used by students to practice their space
+combat skills. It can also be used when the ship is being attacked as a
+light laser turret. The seat is gyroscopically suspended and attached to
+the cannon so that they all swivel as a single unit enabling excellent
+target tracking.  From here, one can see a pretty good part of this
+sector. 
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 130
+S
+#133
+Engineering Level~
+The corridor leads east and west. In both directions there are factory
+rooms where one can build whatever they wish in a peaceful environment and
+mock setups of the ships actualy engineering level where newbie engineers
+can hone their skills. The corridor itself had not been painted white but
+left the original black of the durasteel. This is because dirt, grease,and
+other things won't show up as easily. All about you there are machines
+making either a humm, a whirr, or some other sound. It's all alot of
+controlled chaos, but it works.
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 123
+D1
+~
+~
+0 -1 134
+D3
+~
+~
+0 -1 141
+S
+#134
+A Brightly Lit Corridor~
+The corridor leads to the east and west. To the north and south there are
+factory rooms where one can peacefully work on anything they wish. Down
+below, you can see the veteran engineers as they maintain the ship and
+make sure everything runs accordingly. 
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 135
+D1
+~
+~
+0 -1 137
+D2
+~
+~
+0 -1 136
+D3
+~
+~
+0 -1 133
+S
+#135
+Factory~
+This small workshop is nothing more than a quiet room with a few benches
+people are required to bring their own tools and equipment. Around th room
+there is a handful of individuals quietly working on some sort of device
+or another. Some people are arc welding while others are soldering or
+testing components. On the far wall there is a bulletin board where people
+share their ideas and creations with others.
+~
+0 1140851720 1 0 0 0 5
+D2
+~
+~
+0 -1 134
+S
+#136
+Factory~
+This small workshop is nothing more than quiet room with a few benches.
+People are required to bring their own tools and equipment. Around the
+room people are busy engaging in soldering, welding, glueing, or any one
+of many more actions that all lead to the creation and completion of
+something. This factory room is quite crowded but there are still a few
+tables left.
+~
+0 1140851720 1 0 0 0 5
+D0
+~
+~
+0 -1 134
+S
+#137
+A Brightly Lit Corridor~
+The corridor leads in all directions. To the north and south there are
+factory rooms where one can peacefully work on whatever they wish. To the
+east is a mock setup of the main power core where newbie engineers can
+hone their skills and to the west the corridor continues. Unlike the rest
+of the ship, here there durasteel walls, floor, and ceiling are not
+painted white but left black. This is to prevent having to clean all the
+time.
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 138
+D1
+~
+~
+0 -1 140
+D2
+~
+~
+0 -1 139
+D3
+~
+~
+0 -1 134
+S
+#138
+Factory~
+This small workshop is nothing more than a quiet room with a few benches
+people are required to bring their own tools and equipment.
+~
+0 1140851720 1 0 0 0 5
+D2
+~
+~
+0 -1 137
+S
+#139
+Factory~
+This small workshop is nothing more than a quiet room with a few benches
+people are required to bring their own tools and equipment.
+~
+0 1140850696 1 0 0 0 5
+D0
+~
+~
+0 -1 137
+S
+#140
+Engineering Training~
+This is a mock setup of the main engineroom of the Newbie I. Directly ahead
+there is a semi-circular catwalk surrounding a large power-core. There is
+a ring of blue light panels surrounding the main power core and the core
+itself is pulsating a deep red. There is also a loud hum echoing in your
+ears that seems to come from every direction.
+~
+0 1073742856 1 0 0 0 5
+D3
+~
+~
+0 -1 137
+S
+#141
+A Brightly Lit Corridor~
+The corridor travels east and west to different sections of the engineering
+level and to the north and south are factory rooms. All about you the
+whirr of machinery echos in your ears. Through the metal grated floor you
+can see the actualy engineering level where veteran engineers make sure
+everything is running smoothly and occasionally repair something. 
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 142
+D1
+~
+~
+0 -1 133
+D2
+~
+~
+0 -1 143
+D3
+~
+~
+0 -1 144
+S
+#142
+Factory~
+Upon entry a sign reads "Please respect others by remaining quiet." This is
+one of the large factory rooms located on the ship. Here, people can come
+and work on anything they wish as long as they're quiet and don't
+vandalize. The room itself is very simple. It is a large square with many
+tables in columns and rows. At each table there are outlets for whatever
+tool one might want to use but other than that, nothing. You have to bring
+your own tools to work here. On the far wall there is a large bulletin
+board with many diagrams of different things people have built and
+instructions on how to build one yourself.
+~
+0 1140851720 1 0 0 0 5
+D2
+~
+~
+0 -1 141
+S
+#143
+Factory~
+Upon entrey a sign reads "Please respect others by remaining quiet." This
+is one of the large factory room located on the ship. Here, people can
+come and work on anything they wish as long as they're quiet and don't
+cause any trouble. The room itself is very simple. It is a large square
+with many tables in columns and rows. At each table there are outlets for
+whatever tool one might want to use, but other than that, nothing. You
+have to bring your own tools to work here. On the far wall there is a
+large bulletin board with many diagrams of different things people have
+built and instructions on how to build one yourself.
+~
+0 1140851720 1 0 0 0 5
+D0
+~
+~
+0 -1 141
+S
+#144
+A Brightly Lit Corridor~
+The corridor travels east and to the west is the mock setup of the ships
+main reactor. From the west you can hear the clank of machines and
+sometimes see newbie engineers scurrying around. Almost no noise comes
+from the north and south where a few factory rooms are located.
+~
+0 1073742856 1 0 0 0 5
+D0
+~
+~
+0 -1 146
+D1
+~
+~
+0 -1 141
+D2
+~
+~
+0 -1 145
+D3
+~
+~
+0 -1 147
+S
+#145
+Factory~
+This small workshop is nothing more than a quiet room with a few benches
+people are required to bring their own tools and equipment. Around the
+room there is a handful of indiciduals quietly working on some sort of
+device or another. Some people are soldering while others are working on
+schematics and blue prints. On the far wall there is a bulletin board
+where people share their creations with others.
+~
+0 1140851720 1 0 0 0 5
+D0
+~
+~
+0 -1 144
+S
+#146
+Factory~
+Upon entry a sign reads "Please respect others by remaining quiet." This is
+one of the large factory rooms located on the ship. Here, people can come
+and work on anything they wish as long as they're quiet and they don't
+vandalize. The room itself is very simple. It is a large square with many
+table in columns and rows. At each table there outlets for whatever tool
+one might want to use but other than that, nothing. You have to bring your
+own tools to work here. On the far wall there is a large buletin board
+with many diagrams of different things people have built and instructions
+on how to build one yourself.
+~
+0 1140851720 1 0 0 0 5
+D2
+~
+~
+0 -1 144
+S
+#147
+Engineering Training~
+This is a mock engineering deck of this ship. It is used to train young
+engineers such as yourself. As you can see the deck is loacted around the
+ships main reactor. Catwalks are made of solid grating connected to
+various computer consoles and other pieces of machinery that keep real
+ships flying. 
+~
+0 1073742856 1 0 0 0 5
+D1
+~
+~
+0 -1 144
+S
+#148
+Engine Room~
+This is part of the actualy Engineroom and not one of the mock setups on
+the engineering level. The lighting is somewhat dim and the hole area
+seems somewhat hot and stuffy. Here and there you can see engineers in
+grey uniforms doing checks on various systems and the whirr of machines is
+very loud here.
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 123
+D1
+~
+~
+0 -1 149
+S
+#149
+Dimly Lit Corridor~
+This corridor leads to other parts of the engineroom. It is a somewhat wide
+corridor with plenty of space for moving any of a myriad of machines. It
+is used by people and droids and is made of black durasteel. On both walls
+there are many panels full of circuits and other items that keep the ship
+running. 
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 150
+D1
+~
+~
+0 -1 152
+D2
+~
+~
+0 -1 151
+D3
+~
+~
+0 -1 148
+S
+#150
+Behind Some Pipes~
+This is a somewhat good hiding place. It is darker here and the pipes hide
+everything from view. It seems as though no one has looked back here for
+awhile because there is a decent amount of space dust on the pipes and on
+the floor there looks to be a small puddle of something dripping down from
+the pipes.
+~
+0 1073741836 1 0 0 0 3720
+D2
+~
+~
+0 -1 149
+S
+#151
+Behind Some Pipes~
+This is a somewhat good hiding place. It is darker here and the pipes hide
+everything from view. It seems as though no one has looked back here for
+awhile because there is a decent amount of space dust on the pipes and on
+the floor there looks to be a small puddle of something dripping from the
+pipes.
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 149
+S
+#152
+Dimly Lit Corridor~
+The corridor continues to the east and west. In both directions you can see
+people moving around doing an assortment of jobs and every now and then
+you see a droid. The sound of machinery fills your ears and seems as if it
+is pulsing in some sort of rhythm. To the south there is a small
+technicians office. 
+~
+0 1073741832 1 0 0 0 3720
+D1
+~
+~
+0 -1 154
+D2
+~
+~
+0 -1 153
+D3
+~
+~
+0 -1 149
+S
+#153
+Small Technicians Office~
+The office is much quieter than the corridor and the lighting in here is
+much better as well. The walls are covered by bulletin boards which are in
+turn covered by the schematics and blue prints of every inch of this ship.
+In the center of the room there is a small desk and behind it sits the
+Chief Engineer.
+~
+0 1073741836 1 0 0 0 3720
+D0
+~
+~
+0 -1 152
+> entry_prog 100~
+if level($n) >= 10
+mea $n You are whisked away to the newbie hanger.
+mpechoaround $n $n is whisked away to the newbie hanger.
+mptransfer $n 178
+mpat 178 mpforce $n look
+else
+endif
+~
+|
+S
+#154
+Dimly Lit Corridor~
+The corridor leads back to the west. The only place else to go from here is
+behind some pipes to the north. This section of engineering contains most
+of the control panels for different systems. Directly ahead is the panel
+that controls the climate systems. And below that is a panel to make
+modifications to the turret guns.
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 155
+D3
+~
+~
+0 -1 152
+S
+#155
+Behind Some Pipes~
+It is much darker here and the pipes block the view of anyone looking in
+this direction. The pipes themselves are leaking some sort of clear liquid
+and look to have been doing so for quite some time. The wall is covered in
+some sort of sticky black tar substance so don't get too close. To the
+northeast there is one of the many generators located on this level.
+~
+0 1073741832 1 0 0 0 3720
+D2
+~
+~
+0 -1 154
+D6
+~
+~
+0 -1 156
+S
+#156
+Behind a Generator~
+This is a GE-2700 Class A generator. It is well know for its ability to
+produce large amounts of power and still be compact. It is covered in a
+dark grey durasteel and it is emitting a very low humming sound. Standing
+beside it you can see that not many people come back here, due to the
+large amount of dust found everywhere.
+~
+0 1073741832 1 0 0 0 3720
+D6
+~
+~
+0 -1 157
+D9
+~
+~
+0 -1 155
+S
+#157
+Behind an Engine~
+This is a typical engine that can be found in almost any junkyard around
+the galaxy. There is a control panel on the near side and by the looks of
+it. This engine controls the blast doors located around the ship. The dust
+that has settled all around has been stirred up by the engine recently
+starting up and it is becoming thick in the air.
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 158
+D9
+~
+~
+0 -1 156
+> rand_prog 100~
+mpdamage $n 20
+mpechoat $n You are choking on the dust in the air
+mpechoat $n and feel a little dizzy.
+~
+|
+S
+#158
+Behind Some Pipes~
+This is the farthest back one can go. The pipes here are just far enough
+apart for an average sized human wookiee to fit behind. The smell of
+whatever is in the pipes in nauseating and the ground is covered in a pool
+of something slick. Above your head there is a web of some sort, no doubt
+belonging to some dangerous creature.
+~
+0 1073741832 1 0 0 0 3720
+D2
+~
+~
+0 -1 157
+S
+#159
+A Brightly Lit Corridor~
+This corridor is somewhat sort and leads east to a small storage room and
+west to Commander Targs office. The commander is not very patient with
+people loitering around on his level of the ship. He also despises
+contraband goods and weapons and will confiscate them immediately if he
+finds them. 
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 123
+D1
+~
+~
+0 -1 162
+D3
+~
+~
+0 -1 160
+S
+#160
+Commander Targ's Office~
+This office is decorated in the same fashion as the lobby; all but one wall
+lined with books. The eastern wall, the only one left bare, contains a
+singular viewport filled with a holo-display to show any vista imaginable.
+ From this room, the Targ controls his team; overseeing the plans and
+strategies of 'Targs Reckoners'.
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 161
+D1
+~
+~
+0 -1 159
+> entry_prog 100~
+if level($n) >= 10
+mea $n You are whisked away to the newbie hanger.
+mpechoaround $n $n is whisked away to the newbie hanger.
+mptransfer $n 178
+mpat 178 mpforce $n look
+else
+endif
+~
+|
+S
+#161
+Small Room~
+This room is very long. It consists of several rows of shelves stacked to
+the ceiling. Each shelf is filled with labelled boxes, crates or loose
+parts. Maybe searching through this room could produce something usefull.
+On the other hand, in may prove to be a waste of time and not worth the
+effort. There's only one way to find out.
+~
+0 1073742092 1 0 0 0 3720
+D2
+~
+~
+0 -1 160
+> entry_prog 100~
+if level($n) >= 10
+mea $n You are whisked away to the newbie hanger.
+mpechoaround $n $n is whisked away to the newbie hanger.
+mptransfer $n 178
+mpat 178 mpforce $n look
+else
+endif
+~
+|
+S
+#162
+Small Room~
+This storage room is of decent size and is filled with several rows of tall
+shelves. Each shelf is crammed full of labelled boxes, crates or loose
+parts. Perhaps searching through this room could produce something useful.
+On the other hand, it could prove to be a waste of time and not worth the
+effort. 
+~
+0 1073741832 1 0 0 0 3720
+D3
+~
+~
+0 -1 159
+S
+#163
+Computer Hub~
+This is the main hub for all the computer operation on board. Technicians,
+a.k.a. Slicers, run all over the place working on one thing or another.
+Lots of diagnostic and status lights flash all around. The main lights
+have been dimmed in order for the Slicers to focus on their jobs and see
+the different control panels easier. 
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 123
+D2
+~
+~
+0 -1 165
+D3
+~
+~
+0 -1 164
+S
+#164
+Computer Room~
+This is a large room full of computers and Slicing equipment. There is also
+a large locker near the door filled with just about every component a
+slicer would need to build whatever they wish. The main lights are dimmed
+here in order to keep the slicers focused on thier work and to allow them
+to see control panels easier. A large desk and chair occupy the center of
+the room where the Chief tech works on the mainframe.
+~
+0 1073742856 1 0 0 0 3720
+D1
+~
+~
+0 -1 163
+S
+#165
+A Brightly Lit Corridor~
+This corridor leads to the factory section of this level. It is a peaceful
+place away from all the hustle and bustle of ship maintenance, where one
+can construct whatever they wish. To the east an west are factory rooms or
+workshops and to the south there are a few more.
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 163
+D1
+~
+~
+0 -1 167
+D2
+~
+~
+0 -1 166
+D3
+~
+~
+0 -1 168
+S
+#166
+A Brightly Lit Corridor~
+The hallway ends here. The exits are north to the rest of the level or east
+and west to one of the workshops here. On the wall at the end of the
+corridor is a large painting. It fills up almost the entire wall and is
+quite captivating. Underneath the painting there is a small 'plaque' with
+some writing on it.
+~
+0 1073741832 1 0 0 0 3720
+D0
+~
+~
+0 -1 165
+D1
+~
+~
+0 -1 169
+D3
+~
+~
+0 -1 170
+E
+plaque~
+This painting "Storm" was created by Winslau Da'k. Its use of color is
+magnificent and only matched by the greatest painters in history.
+~
+S
+#167
+Factory~
+This workshop is quite small compared to others on the ship and only allows
+for a handful of people to work at one time. At each of the benches there
+is a complete set of tools and power outlets so that you won't have to use
+your own. 
+~
+0 1140850696 1 0 0 0 5
+D3
+~
+~
+0 -1 165
+S
+#168
+Factory~
+This workshop is quite small compared to others on the ship and only allows
+for a handful of people to work at one time. At each of the benches there
+is a complete set of tools and power outlets so that you wont't have to
+use your own. 
+~
+0 1140850696 1 0 0 0 5
+D1
+~
+~
+0 -1 165
+S
+#169
+Factory~
+This workshop is quite small and only allowes for a handful of people to
+work at one time. There are a few benches in rows and some lining the
+walls. At each bench there is a complete set of tools and power outlets.
+All one has to do is get the parts and schematics and they could build
+almost anything.
+~
+0 1140850696 1 0 0 0 5
+D3
+~
+~
+0 -1 166
+S
+#170
+Factory~
+This workshop is quite small and only allows for a hanful of people to work
+at one time. There are a few benches in rows and some lining the walls. At
+each bench there is a complete set of tools and power outlets. All one has
+to do is get the parts and schematics and they could build almost
+anything. To add to the tranquility of the area, there is a large window
+on the farside of the room and you can see the entire system.
+~
+0 1140850696 1 0 0 0 5
+D1
+~
+~
+0 -1 166
+S
+#171
+A Brightly Lit Corridor~
+This hub is leads to the Newbie shop in the east, The ATM station in the
+west, and the Newbie-1 hangar to the south. You can go wherever you like
+but once you go to the hanger you will not be permitted to come back to
+the rest of the ship.  The hub itself is bustling with people going this
+way and that. Most of which are buying things at the shop and then heading
+for the hanger to explore the galaxy.
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 123
+D1
+~
+~
+0 -1 176
+D2
+~
+~
+0 -1 178
+D3
+~
+~
+0 -1 177
+S
+#172
+Study Level~
+This room is nothing more than a small area surrounded by three walls and a
+turbolift door, the walls are all two-tone white and grey, the floor is
+merely plain grey tiling. Along the walls there are paintings which are
+designed to stimulate different parts of the brain in order to boost ones
+studying abilities.
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 123
+D2
+~
+~
+0 -1 173
+S
+#173
+A Brightly Lit Corridor~
+The walls in the corridor are decorated with rare and original artwork
+which helps to boost ones mental capabilities. The floors are a grey tile
+and the walls are a two tone white and grey. To the north the corridor
+leads to the turbolift and to the west there is a large classroom where
+students can study other languages.
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 172
+D3
+~
+~
+0 -1 174
+S
+#174
+Language Lessons~
+This is where you LEARN your LANGUAGES.  Languages are learned differently
+than spells, skills and weapons, as you must be adept ata language before
+you may use it.  To see a list of the languages available to you, simply
+type PRACTICE.  You do not need to learn the TONGUE of your race nor the
+common language, as they both come naturally to you.  To learn a language,
+type LANGUAGE LEARN <language type>.   For more information on how to
+learn a language, type HELP LANGUAGES.  To learn how to use languages,
+type HELP SPEAK and HELP TONGUE.  It will cost a few practice sessions
+each time you wish to increase your fluency in a language.  Those who are
+intelligent, wise and lucky will find it takes fewer practice sessions to
+become adept at a language.
+~
+0 1073742856 1 4 0 0 5
+D1
+~
+~
+0 -1 173
+S
+#175
+The Classroom~
+This is where you will practice your arsenal of weapons, spells and powers.
+Type PRACTICE to get a list of these currently available to you.  Everyone
+will have sections listing skills, weapons and languages.  You will also
+have an additional section for force powers, although not everyone will be
+able to use these.  Although it is possible to learn the theories behind
+how the force works, not everyon has the ability to use it. To practice a
+force ability, skill or weapons style, type PRACTICE <full name of power,
+skill or weapon style>. For instance, to practice dual wield, you would
+type PRAC DUAL WIELD. When practicing, you start at 0% and one practice
+will earn you between 15% and 20% proficieny.  Additional knowledge is
+gained through usage of the skill or spell until adept, which is a maximum
+of 30% - 95%. To get see information using powers, skills or weapons, type
+HELP CAST or HELP <spell, skill or weapon style>.  For general questions
+on practicing, type HELP PRACTICE.  The number of practice sessions you
+may gain at each level is determined by the amount of wisdom you have when
+you level.
+~
+0 1073741832 1 0 0 0 5
+D3
+~
+~
+0 -1 173
+S
+#176
+Newbie 1 Shop~
+The Newbie 1 shop is owned and operated by the Newbie-Help corporation. The
+shop itself is somewhat small yet it keeps in stock all the essentials of
+life and even a few other items. The store manager has had extensive
+training and can speak all of the languages in the galaxy and knows a bit
+of their customs as well.
+~
+0 1073742856 1 0 0 0 5
+D3
+~
+~
+0 -1 171
+S
+#177
+ATM Station~
+The Newbie 1 ATM station as connected directly into the holonet which can
+link up to any bank in the galaxy. The station itself is a small panel
+with a liquid crystal display. The panel is surrounded by thick walls and
+a ceiling and when someone enters the area a shield generator turns on to
+block others from entering. The shield also acts as a screen so that no
+one can see inside.
+~
+0 1073742088 1 0 0 0 5
+D1
+~
+~
+0 -1 171
+S
+#178
+Newbie-1 Hanger~
+This is the hangar of the Newbie-1. There are many ships here as each
+newbie who comes here is given a basic starship. The place is very busy
+and many people are scurrying about doing one thing or another. The hangar
+looks to be about 200 yards by 100 yards and almost every landing pad is
+taken up. If you're through using the Newbie area you can board your ship
+and see what lies ahead of you in the galaxy.
+
+&w        &G&RWhen you are ready to leave, say '&wI am ready to go.&R'&w
+~
+0 1073742860 1 4 0 0 5
+D0
+~
+~
+0 -1 171
+> speech_prog p I am ready~
+mpechoat $n Colonel Jentric salutes you, and escorts you onto a shuttle.
+mpechoat $n You sit down, and the shuttle lifts off.
+mpsleep 18
+mpechoat $n After a short trip, you arrive at Bulova Spaceport.
+mptransfer $n 1050
+mpat $n mpforce $n look
+mpecho $n leaves on a shuttle headed for Coruscant.
+mpat $n mpechoaround $n $n steps off a shuttle.
+~
+|
+S
+#179
+Simulator Room~
+This is the simulator room. There are a myriad of XG X-Wing simulators here
+for the use of anyone who comes here. Each simulator is hooked into a main
+computer which has various scenarios and systems within the galaxy. It is
+better to hone ones skills here, rather than risking ones life in a real
+starship. There aren't many people around either so perhaps you could get
+a spot in a simulator.
+~
+0 1073741832 1 0 0 0 5
+D3
+~
+~
+0 -1 180
+S
+#180
+Simulators~
+You stand in a large lounge, obviously to facilitate all the new recruits
+that come through this academy. There are tables and chairs scattered all
+around, and a bar in one corner operated by an old service droid of some
+description. There are some people around and your ears are filled with
+the hum of many voices melded into one by volume.
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 123
+D1
+~
+~
+0 -1 179
+D3
+~
+~
+0 -1 181
+S
+#181
+Pilot Training~
+This large classroom is designed to hold many students in starship
+piloting. The chairs and desks are all lined up in a semicircle which
+rises as it goes towards the back. Down in front there is a large desk and
+behind it sits Admiral Coran. At the moment he does not have a class so
+perhaps he can help you.
+~
+0 1073741832 1 0 0 0 5
+D1
+~
+~
+0 -1 180
+> greet_prog 100~
+if level($n) >= 10
+mea $n You are whisked away to the newbie hanger.
+mpechoaround $n $n is whisked away to the newbie hanger.
+mptransfer $n 178
+mpat 178 mpforce $n look
+else
+endif
+~
+|
+S
+#182
+SimV01~
+You enter a small simulator. The interior is designed to simulate that of
+one of the most common ships used, the X-Wing. Dials cover the top panel,
+and a blank screen fills in as a canopy. When run the screen will simulate
+space.
+~
+0 1073741836 1 0 0 0 5
+S
+#183
+SimV02~
+You enter a small simulator. The interior is designed to simulate that of
+one of the most common ships used, the X-Wing. Dials cover the top panel,
+and a blank screen fills in as a canopy. When run the screen will simulate
+space.
+~
+0 1073741836 1 0 0 0 5
+S
+#184
+SimV03~
+You enter a small simulator. The interior is designed to simulate that of
+one of the most common ships used, the X-Wing. Dials cover the top panel,
+and a blank screen fills in as a canopy. When run the screen will simulate
+space.
+~
+0 1073741836 1 0 0 0 5
+S
+#185
+SimV04~
+You enter a small simulator. The interior is designed to simulate that of
+one of the most common ships used, the X-Wing. Dials cover the top panel,
+and a blank screen fills in as a canopy. When run the screen will simulate
+space.
+~
+0 1073741836 1 0 0 0 5
+S
+#186
+SimV05~
+You enter a small simulator. The interior is designed to simulate that of
+one of the most common ships used, the X-Wing. Dials cover the top panel,
+and a blank screen fills in as a canopy. When run the screen will simulate
+space.
+~
+0 1073741836 1 0 0 0 5
+S
+#187
+SimV06~
+You enter a small simulator. The interior is designed to simulate that of
+one of the most common ships used, the X-Wing. Dials cover the top panel,
+and a blank screen fills in as a canopy. When run the screen will simulate
+space.
+~
+0 1073741836 1 0 0 0 5
+S
+#188
+A Dimly Lit Corridor~
+~
+0 1073741832 1 0 0 0 5
+D3
+~
+~
+0 -1 189
+D6
+~
+~
+0 -1 190
+S
+#189
+A Dimly Lit Corridor~
+~
+0 1073741832 1 0 0 0 5
+D0
+~
+~
+0 -1 123
+D1
+~
+~
+0 -1 188
+S
+#190
+A Small Room~
+~
+0 12 1 0 0 0 3720
+D9
+~
+~
+0 -1 188
+S
+#0
+
+
+#RESETS
+M 1 1 1 2
+M 1 3 1 3
+M 1 2 1 6
+M 1 1247 1 1248
+M 1 119 1 1248
+M 1 131 1 116
+M 1 116 1 128
+O 1 116 1 128
+M 1 117 1 129
+O 1 117 1 129
+M 1 118 1 131
+E 1 135 1 12
+M 1 127 1 140
+M 1 128 1 147
+M 1 120 1 152
+M 1 121 1 160
+M 1 122 1 161
+M 1 123 1 162
+G 1 152 1
+M 1 124 1 164
+O 1 120 1 164
+M 1 129 1 174
+M 1 132 1 176
+G 1 133 1
+G 1 134 1
+G 1 149 1
+G 1 150 1
+G 1 151 1
+M 1 126 2 123
+O 1 115 1 123
+O 1 153 1 115
+M 1 150 1 178
+M 1 125 1 181
+O 1 116 1 181
+O 1 1080 1 117
+M 1 119 2 153
+O 1 116 1 153
+S
+
+
+#SHOPS
+ 122    9  5  0  0  0   120  15         0 23    ; a Contraband Weapons Dealer
+ 132    0  0  0  0  0   120  90         0 23    ; The Store Manager
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  121 spec_customs_weapons
+M  131 spec_auth
+S
+
+
+#$

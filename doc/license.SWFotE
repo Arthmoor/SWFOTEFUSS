@@ -1,0 +1,64 @@
+SWFotE is an extension of SWR 1.0 which is an extention of Smaug which
+was expanded from Merc which was derived from the original Dikumud code.
+
+This game is condition to all the licenses of SWR, Merc, Smaug, Diku and the GNU
+licenses described in the apropriate texts. These licenses must be kept in
+tact as is and adhered to.
+ 
+SWFotE copyright (c) 2002 was created by
+Chris 'Tawnos' Dary (cadary@uwm.edu),
+Korey 'Eleven' King (no email),
+Matt 'Trillen' White (mwhite17@ureach.com),
+Daniel 'Danimal' Berrill (danimal924@yahoo.com),
+Richard 'Bambua' Berrill (email unknown),
+Stuart 'Ackbar' Unknown (email unknown)
+
+With various additions and/or ideas from:
+Koensayr, Salvius, OwEn, Blake, Trelar, and Carissa
+
+Special thanks to Dune Internet, for its affordable prices and 
+excellent service. If you don't have a server yet, check them out at
+http://www.dune.net/
+
+SWR 1.0 copyright (c) 1997, 1998 was created by Sean Cooper
+based on a concept and ideas from the original SWR immortals: 
+Himself (Durga), Mark Matt (Merth), Jp Coldarone (Exar), Greg Baily (Thrawn), 
+Ackbar, Satin, Streen and Bib as well as much input from our other builders 
+and players.
+ 
+DikuMud (c) program and concept by Sebastian Hammer
+(quinn@freja.diku.dk), Michael Seifert (seifert@freja.diku.dk),
+Hans Henrik (bombman@freja.diku.dk), Tom Madsen (noop@freja.diku.dk),
+and Katja Nyboe(katz@freja.diku.dk).
+ 
+Merc 2.1 (c) was created by Furey (mec@shell.portal.com), Hatchet
+(hatchet@uclink.berkeley.edu), and Kahn
+(michael@uclink.berkeley.edu).
+ 
+Smaug (c) was created by Derek Snider with the help of  Altrag,
+Blodkai, Narn, Haus, Scryn, Rennard, Swordbearer, Gorog, Grishnakh
+and Tricops.
+ 
+Star Wars and Star Wars names are the copyright (c) of Lucasfilm Ltd
+and the authors of the many Star Wars related books. They have been used
+here without permission which I assume is ok since this game is not for 
+sale or in any way profitable to its creators or those who use it. All of
+whom are big Star Wars fans. My apologies if this is a problem.
+
+
+You must adhere to these conditions if you are to be using SWFotE in any form:
+
+ 1. A copy of this license must remain in its complete and unmodified form
+    in the /doc/ directory of the software. 
+
+ 2. The credits shown by typing credits in the mud must remain intact. They
+    may be added to but not modified in any other way. 
+
+ 3. 'A derivative of SWFotE' or something mentioning the SWFotE base as a
+    derivative must be in the greeting. You may -IF YOU WISH- put our names
+    on the greeting of your MUD. This is not a requirement!
+
+ 4. Any and all code written for this base is for the good of your mud as 
+    a whole and therefore no coder may demand that his code be removed from 
+    the mud after he has written it. He may be given a copy, but it is up to 
+    the admin as to if they will remove it or not.

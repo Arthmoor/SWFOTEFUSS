@@ -1,0 +1,9 @@
+#FORCE
+Name      fdisguise~
+Status    1
+Type      2
+Desc      Command:    fdisguise$RN$Usage:      fdisguise <disguise to be displayed>$RN$            fdisguise remove$RN$Level:      Sith Apprentice$RN$Mana:       40$RN$Time Req:   10 seconds$RN$Duration:   1 - 5 minutes$RN$Components: None$RN$$RN$This skill can be used to change our appearance in any$RN$room.  The disguise can be just about anything, though$RN$if players are found with vulgar disguises they will $RN$be jailed.$RN$$RN$There are 2 ways to remove your disguise, by using the$RN$'fdisguise remove' command, or by starting combat.$RN$~
+Skill     14
+End
+
+#END

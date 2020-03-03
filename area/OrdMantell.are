@@ -1,0 +1,2556 @@
+#AREA   Ord Mantell~
+
+
+
+#AUTHOR Keberus Trelar~
+
+#RANGES
+0 0 0 36
+$
+
+#RESETMSG &g The smell of the garbage from the junkyard overwhelms your nostrils. &w~
+
+#FLAGS
+0
+
+#ECONOMY 0 4185797
+
+#MOBILES
+#9000
+high_mob~
+a newly created high_mob~
+Some god abandoned a newly created high_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9001
+An older model droid~
+An older model droid~
+An older model droid is here selling items.
+~
+~
+67108931 0 0 Z
+10 0 -300 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+2 2 0 0 0 0 48 2
+0 0 0 0 0 0 0 0
+#9002
+A Small Bartender Droid~
+A Bartender Droid~
+A Small Bartender Droid is here helping customers.
+~
+~
+67108931 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+Say Welcome to my wonderful bar.
+say What would you like to drink today?
+smile
+~
+> give_prog A Bartender's Package~
+A Bartender's Package
+if ovnumcarry(9020) == 1
+say Wow! Your found my package!
+yell The new booze is in boys!
+cheer
+say Well I don't have any money to give you but take this.
+say If you give this to Kashieem he should give you 
+mpecho &w&Wsomething.
+mpoload 9021
+give paper $n 
+mpat 101 drop package
+mpat 101 mppurge
+endif
+~
+|
+#9003
+A Small food Droid~
+A Small Food Droid~
+A small food droid is awaiting your order.
+~
+~
+67108931 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 1 0 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9004
+A Cleanup Droid~
+A Cleanup Droid~
+A Cleanup Droid is here sweeping up the streets.
+~
+~
+67108869 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 20~
+mpat 101 drop all
+mpat 101 mppurge
+~
+|
+#9005
+A Customs Agent~
+A customs agent~
+A Customs agent is here checking bags.
+~
+~
+75 0 0 Z
+30 0 100 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+0 0 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+#9006
+Svenn the Rodian~
+Svenn~
+A rodian is here lurking in the shadows.
+~
+~
+1 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+3 0 0 0 9 8 10
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 9013
+~
+|
+#9007
+Coren the Human~
+Coren~
+A tall human is here trying not to be noticed.
+~
+~
+9 0 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 5
+5 5 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 9011
+~
+|
+#9008
+Shotaun the Wookiee~
+Shotaun~
+A tall wookiee is standing here.
+~
+~
+4105 0 0 Z
+36 0 10 7d10+360 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+1 0 0 0 3 2 15
+7 7 0 0 0 0 65 3
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 9012
+~
+|
+#9009
+A Bounty Claims Clerk~
+A Bounty Claims Clerk~
+A Bounty Claims Clerk is here going over files.
+~
+~
+67 4194304 0 Z
+36 0 10 7d10+360 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 20
+7 7 0 0 0 0 57 3
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Welcome!
+say Go ahead and take a look at the list of the latest bountied.
+say If you want to know anything else about 'em let me know.
+~
+> speech_prog p shotaun~
+Say Oh...he is the toughest of 'em all here. 
+mpecho &w&WHe used to be a Bounty Hunter himself ya' know!
+mpecho &w&WWell anyways he went rogue and killed a few
+mpecho &w&Wof his fellow hunters, so now they are
+mpecho &w&Wafter him now. 
+laugh
+say The irony of it all?
+say The last I heard he was spotted on Kashyyyk!
+say I hope you kill him good!
+grin
+~
+> speech_prog p Coren~
+say Coren...
+laugh
+say He's jus' 'bout a pushover. He ain't real strong.
+grin
+say I heard that the only reason he was bountied is he 
+mpecho  &w&Wplaced a big two-millon dollar bounty on someone's head,
+mpecho  &w&Wbut when a hunter came to collect the fee he wouldn't
+mpecho  &w&Wpay up and fled somewheres to hide I guess.
+say Last I knew he was somewheres 'round Cloud City 
+mpecho  &w&Whiding out.
+say If ya' find 'em most likely you can take him!
+grin
+~
+> speech_prog p Svenn~
+say Svenn...Now he is a pretty tough Rodain.
+frown
+say Svenn got bountied for a somewhat strange reason.
+mpecho  &w&WHe wanted to become a member of the Hunter's Guild,
+mpecho  &w&Wbut the head honcho at the time said that he would have 
+mpecho  &w&Wo wait and gain more knowledge and experience before 
+mpecho  &w&Wbecoming a full-fledged member. Svenn got upset at this
+mpecho  &w&Wremark and decided that he was going to show all of them 
+mpecho  &w&Wthat he was just as tough as the next Hunter. So he killed 
+mpecho  &w&Wone of the lower-level hunters while he was sleeping and tried
+mpecho  &w&Wto pass it off as he was attacked and had to kill him. He was 
+mpecho  &w&Wthen brought to trial and found guilty of murder, and the day 
+mpecho  &w&Wbefore his death sentence was to be carried out he escaped 
+mpecho  &w&Wfrom the prison and hasn't been caught yet.
+sigh
+Say The last I heard he was hanging around Endor if that helps.
+Say Try not to kill him...but do as you must.
+wink $n
+~
+> give_prog The Head of Svenn~
+if ovnumcarry(9013) == 1
+sigh
+say I guess you had to do what you had to do.
+say Well...here's the money for the head.
+mpwithdraw 100
+give 100 credit $n
+mpadvance $n 8 5000
+say Have a nice day!
+say And by the way...Nice doin' business with ya'!
+mpat 101 drop head
+mpat 101 mppurge
+endif
+~
+> give_prog The Head of Shotaun~
+if ovnumcarry(9012) == 1
+say I can't believe you actually got him!
+evilgrin
+say Very impressive ....ever think of becoming a Bounty Hunter?
+say Anyways... here's the money I owe you. 
+mpwithdraw 300
+give 300 credit $n
+mpat 101 drop all
+mpat 101 mppurge
+mpadvance $n 3 5500
+endif
+~
+> give_prog The Head of Coren~
+if ovnumcarry(9011) == 1
+say Wow! Your back already. That must have been easier than I thought.
+mpwithdraw 50
+say We'll here is the reward for the bounty.
+give 50 credit $n
+mpat 101 drop all
+mpat 101 mppurge
+mpadvance $n 3 3500
+endif
+~
+> give_prog A big folded Envelope~
+if ovnumcarry(9023) == 1
+say Oh the new list of bounties is in.
+grin
+, types a few things on her computer.
+say These are great ...thanks!
+say Here are some credits for your service.
+mpwithdraw 50
+give 50 credits $n
+, teaches $n some things about politics.
+mpadvance $n 4 3500
+say Thank you for all your trouble. 
+mpat 101 drop envelope
+mpat 101 mppurge
+endif
+~
+|
+#9010
+A Medical Droid~
+A Medical Droid~
+A Medical Droid is here helping patients
+~
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 1 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say Hello, Welcome to the Public Medical Facility of Ord 
+mpecho &w&WMantell. There is no disease that we can't cure....for a price.
+mpecho The medical droid hesitates for moment.
+say Currently only our standard bacta tanks are available. 
+mpecho &w&WThe cost for this treatment is 100 credits.
+~
+> bribe_prog 100~
+say A nurse will show you the way to the bacta tank.
+mpecho A nurse in a white uniforms leads you to the bacta tank. She quickly ushers you into the tank.
+mptransfer $n 9406
+mpat 101 drop all
+mpat 101 mppurge
+~
+> give_prog A sample of new bacta~
+if ovnumcarry(9022) == 1
+say Wow a new type of bacta.
+cheer
+say This could lead to great advancements in the future.
+shake $n
+say Well I don't have any money to give you but take this.
+say If you give this to the bounty claims clerk she should  
+mpecho &w&Wpay you well for your services.
+mpoload 9023
+give envelope $n 
+mpat 101 drop bacta
+mpat 101 mppurge
+endif
+~
+|
+#9011
+Kashieem~
+Kashieem~
+Kashieem is sitting behind his desk waving his blaster.
+~
+~
+33554443 4194304 0 Z
+36 0 10 7d10+360 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+1 0 0 0 3 2 20
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+if goldamt($i) >= 20000
+mpat 101 drop 20000 credit
+mpat 101 mppurge
+if goldamt($i) >= 10000
+mpat 101 drop 10000 credit
+mpat 101 mppurge
+if goldamt($i) >= 5000
+mpat 101 drop 5000 credit
+mpat 101 mppurge
+if goldamt($i) >= 2500
+mpat 101 drop 2500
+mpat 101 mppurge
+endif
+endif
+endif
+endif
+~
+> all_greet_prog 100~
+, waves his blaster about.
+say Yep, I have seen alot of action in my day.
+grin
+say These days I just relax and run this pawn shop.
+say I buy 'em and sell 'em ...I got the best prices in the Galaxy.
+smile
+say So what would you like to buy today?
+~
+> give_prog A paper from the Bartender~
+if ovnumcarry(9021) == 1
+say Hrm... This is interesting.
+cheer
+say I am gonna be rich in no time!
+shake $n
+say Well I don't have any money to give you but take this.
+say If you give this to a medical droid he should give you 
+mpecho &w&Wsomething.
+mpoload 9022
+give sample $n 
+mpat 101 drop paper
+mpat 101 mppurge
+endif
+~
+|
+#9012
+A Hotel Clerk~
+A Hotel Clerk~
+A hotel clerk is here behind her desk fumbling through papers.
+~
+~
+67 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+smile
+Say Hello!
+say Welcome to the Junkyard Hotel.
+say While we may not have the most beautiful place in the galaxy it is the most beautiful place on this planet.
+grin
+say You are welcome to stay here for free, as long as you like.
+~
+|
+#9013
+Zutton~
+Zutton~
+Zutton is standing here.
+~
+~
+8398915 2 0 Z
+36 0 10 7d10+360 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> speech_prog p no~
+frown
+say That's okay then... I'll just find someone else.
+wave
+~
+> speech_prog p yes~
+grin
+say Okay awesome.
+say Here it is.
+say All you have to do is give it to the bartender.
+give package $n
+wave
+~
+> all_greet_prog 25~
+whisper $n Hey you wanna do me a favor?
+whisper $n I am not sure what you will get in the end...but it should be good.
+whisper $n So yes or no?
+~
+|
+#9014
+A local citizen ~
+A local citizen~
+A local citizen wanders the streets.
+~
+~
+1 0 0 Z
+15 0 62 3d10+150 1d4+2
+2 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+0 0 0 0 0 0 0 0
+131136 0 0 0 0 0 0 0
+#9499
+testmob~
+a newly created testmob~
+Testmob
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+20000 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> act_prog p sells~
+if goldamt($n) >= 20000 
+say i can not do business with you
+mpforce $n n
+else say what do ya need?
+endif
+~
+|
+#9500
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#9000
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#9001
+A Statue of Princess Leia~
+A Statue of Princess Leia~
+A Statue of Princess Leia Organa Solo stands here.~
+~
+8 0 0
+0 0 0 0
+200 10000 1000
+#9002
+A Statue of Luke Skywalker~
+A Statue of Luke Skywalker~
+A Statue of Luke Skywalker, Jedi Master stands here.~
+~
+8 0 0
+0 0 0 0
+200 10000 1000
+#9003
+Bantha Steak~
+&O A Bantha Steak &W&w~
+&O A Bantha Steak lies here getting dirty.~
+~
+19 0 1
+100 100 0 0
+4 10 1
+#9004
+Sand Panther Steak~
+&R A Sand Panther Steak &W&w~
+&R A Sand Panther Steak is on the ground here. &W&w~
+~
+19 0 1
+100 100 0 0
+4 10 1
+#9005
+BBQ Ronto Steak~
+&r A BBQ Ronto Steak &W&w~
+&r A BBQ Ronto Steak lies here. &W&w~
+~
+19 0 1
+100 100 0 0
+4 10 1
+#9006
+A Jug of Rhyll Spiced Whiskey~
+A Jug of Rhyll Spiced Whiskey~
+A Jug of Rhyll Spiced Whiskey sits on the ground here.~
+~
+17 0 0
+15 20 5 0
+3 100 10
+#9007
+&r A Mug of Corellian Ale&w~
+&r A Mug of Corellian Ale&w~
+&r A mug of Corellian Ale lies here on the ground. &W&w~
+~
+17 0 16385
+15 15 3 0
+3 50 5
+#9008
+&B A Glass of Hunters Medicine &W&w~
+&B A Glass of Hunters Medicine &W&w~
+&B A Glass of Hunters Medicine lies discarded here. &W&w~
+~
+17 0 16385
+10 10 8 0
+4 25 2
+#9009
+&b A Glass of Mantell's Best &W&w~
+&b A Glass of Mantell's Best &W&w~
+&b A Glass of Mantell's Best is lying here.&W&w~
+~
+17 0 16385
+10 10 1 0
+4 26 2
+#9010
+&O A Bottle of Bespin Wine&w~
+&O A Bottle of Bespin Wine&w~
+A Bottle of Bespin Wine has been discarded here.~
+~
+17 1073750016 16385
+17 17 2 0
+6 175 17
+#9011
+The Head of Coren~
+The Head of Coren~
+The head of Coren lies here on its side.~
+~
+13 0 1
+0 0 0 0
+9 0 0
+E
+The Head of Coren~
+From the looks of it this head has been recently cut off of its owner. There are blood and brains leaking out the hole where the person's neck use to be. It would be wise to take this head to where its suppose to be before the smell gets unbearable.
+~
+#9012
+The Head of Shotaun~
+The Head of Shotaun~
+The Head of Shotaun lies here on it side.~
+~
+13 0 1
+0 0 0 0
+9 0 0
+E
+The Head of Shotaun~
+~
+E
+The Head of Shotaun~
+From the looks of it this head has been recently cut off of its
+owner. There are  blood and brains leaking out the hole where
+the person's neck use to be. It wou ld be wise to take this
+head to where its suppose to be before the smell gets un bearable.
+~
+#9013
+The Head of Svenn~
+The Head of Svenn~
+The head of Svenn lies here on its side.~
+~
+13 0 1
+0 0 0 0
+8 0 0
+E
+The Head of Svenn~
+From the looks of it this head has been recently cut off of its
+owner. There are  blood and brains leaking out the hole where
+the person's neck use to be. It wou ld be wise to take this
+head to where its suppose to be before the smell gets un bearable.
+~
+#9014
+A list of Bountied People~
+A list of Bountied People~
+&G A list of Bountied People is here mounted to the wall.~
+~
+8 0 0
+0 0 0 0
+1 0 0
+#9015
+A rugged old desk~
+desk~
+A rugged, old desk is here in the center of the room.~
+~
+12 0 0
+0 0 0 0
+1 0 0
+#9016
+A Statue of Chewbacca~
+A Statue of Chewbacca~
+A Statue of Chewbacca the Wookiee, General stands here.~
+~
+8 0 0
+0 0 0 0
+200 10000 1000
+#9017
+A Statue of Qui-Gon Jinn~
+A Statue of Qui-Gon Jinn~
+A Statue of Qui-Gon Jinn, Jedi Knight stands here.~
+~
+8 0 0
+0 0 0 0
+200 10000 1000
+#9018
+A Statue of Obi-Wan Kenobi~
+A Statue of Obi-Wan Kenobi~
+A Statue of Obi-Wan Kenobi, Jedi Knight stands here.~
+~
+8 0 0
+0 0 0 0
+200 10000 1000
+#9019
+A Statue Han Solo~
+A Statue Han Solo~
+A Statue Han Solo, General stands here.~
+~
+8 0 0
+0 0 0 0
+200 10000 1000
+#9020
+A Bartender's Package~
+A Bartender's Package~
+A Bartender's Package is lying here on the ground.~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9021
+A paper from the Bartender~
+A paper from the Bartender~
+A paper from the Bartender lies discarded here.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+E
+Letter from Kwen Twi~
+I refuse to shut down my store and will do everything in my power to
+prevent this law from comming about. I have served as a member of the
+store owners guild for over 15 years. You have no right to come in here
+and destroy my life's work on a whim.
+~
+#9022
+A sample of new bacta~
+A sample of new bacta~
+A A sample of new bacta is here.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+#9023
+A big folded Envelope~
+A big folded Envelope~
+A big folded Envelope lies here on the ground.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+#9500
+high_obj~
+a high_obj~
+A high_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#9000
+Main Landing Pad~
+You stand upon the main landing pad of Ord Mantell. The pad is
+bustling with activity. There are technicians preparing ships,
+guards patrolling and citizens checking over their ships. To
+the north the Customs Authority is checking people so have your
+equ ipment ready.
+~
+0 262196 1 4 0 0 30520
+D1
+~
+~
+0 -1 9405
+D6
+~
+~
+0 -1 9001
+S
+#9001
+&BOrd Mantell Port Authority&w&W~
+You are standing in the Customs Authority Office placed here
+by the Empire. Customs agents are here regulating the flow of
+illegal contraband into and out of this planet.
+~
+0 4 1 0 0 0 30520
+D0
+~
+~
+0 -1 9002
+D8
+~
+~
+0 -1 9405
+D9
+~
+~
+0 -1 9000
+S
+#9002
+Spaceport Road~
+You are walking along Spaceport Road. The area here is bare as
+this way is only used as a connection between the spaceport
+and the city of Ord Mantell. South of here is the Customs Authority
+controlling the flow of illegal contraband on Ord Mantell.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9061
+D2
+~
+~
+0 -1 9001
+S
+#9003
+Spaceport Road~
+You are walking along Spaceport Road. The area here is bare as
+this is only used to connect the spaceport to the rest of Ord
+Mantell. To the north is Stellar Ave, one of the main streets
+in Ord Mantell. To the south is Plateau Blvd the other main
+street in Ord Mantell.
+~
+0 4 1 0 0 0 30520
+D0
+~
+~
+0 -1 9004
+D2
+~
+~
+0 -1 9062
+S
+#9004
+Intersection of Spaceport Road and Stellar Ave~
+You stand at the intersection of Spaceport Road and Stellar Ave.Stellar
+Ave. is one of the main passageways around Ord Mantell.This
+can be seen from the enormous amount of traffic here. To the
+north is a run-down shop that is owned by one of the local citizens.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9005
+D1
+~
+~
+0 -1 9008
+D2
+~
+~
+0 -1 9003
+D3
+~
+~
+0 -1 9006
+S
+#9005
+&z A Run-Down Shop &W~
+Standing in a run-down shop you see cracks all over the walls.
+You see pant peeling and the walls crumbling. This shop will
+not hold up much longer.
+~
+0 12 1 0 0 0 30520
+D2
+~
+~
+0 -1 9004
+S
+#9006
+Stellar Ave.~
+You are standing in the middle of the busiest street on the planet.
+People here are bustling around you at very rapid speeds. It
+would be wise to hurry and find your way before you get lost.
+
+~
+0 0 1 0 0 0 30520
+D1
+~
+~
+0 -1 9004
+D3
+~
+~
+0 -1 9007
+S
+#9007
+Stellar Ave.~
+You are standing in the middle of the busiest street on the planet.People
+here are bustling around you at very rapid speeds. You see buildings
+in most of the areas, but you notice a hotel to the south of
+here. It would be wise to hurry and find your way before you
+get lost.
+~
+0 0 1 0 0 0 30520
+D1
+~
+~
+0 -1 9006
+D2
+~
+~
+0 -1 9075
+D3
+~
+~
+0 -1 9010
+S
+#9008
+Stellar Ave.~
+You are standing in the middle of the busiest street on the planet.
+People here are bustling around you at very rapid speeds. It
+would be wise to hurry and find your way before you get lost.
+
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9074
+D1
+~
+~
+0 -1 9009
+D3
+~
+~
+0 -1 9004
+S
+#9009
+Stellar Ave.~
+You are standing in the middle of the busiest street on the planet.
+People here are bustling around you at very rapid speeds. It
+would be wise to hurry and find your way before you get lost.
+
+~
+0 0 1 0 0 0 30520
+D1
+~
+~
+0 -1 9011
+D3
+~
+~
+0 -1 9008
+S
+#9010
+Stellar Ave.~
+You are standing in the middle of the busiest street on the planet.
+People here are bustling around you at very rapid speeds. It
+would be wise to hurry and find your way before you get lost.
+
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9023
+D1
+~
+~
+0 -1 9007
+D3
+~
+~
+0 -1 9060
+S
+#9011
+Stellar Ave.~
+You are standing on one of the busiest streets on the planet. People here are bustling around you at a quick pace. There is a jukyard to the north of here. To the east lies the only apartment complex on Ord Mantell.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9012
+D1
+~
+~
+0 -1 9035
+D3
+~
+~
+0 -1 9009
+S
+#9012
+The Beginnings of A Junkyard~
+You see small piles of junk that seem to get larger as you go
+further North. You smell a somewhat faint oder from all of the
+garbage. There are 30 foot high walls that run to the East and
+West of you apparently to block the oder from the main road.
+~
+0 4 1 0 0 0 30520
+D0
+~
+~
+0 -1 9013
+D2
+~
+~
+0 -1 9011
+S
+#9013
+The Middle of A Junkyard~
+Standing in the middle of a junkyard you see ships piled up to
+the clouds. The stench of the garbage overwhelms you. The garbage
+is all over the ground. You don't see anything of any use here.Getting
+lost in the junkyard is not hard so be careful!
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9014
+D1
+~
+~
+0 -1 9017
+D2
+~
+~
+0 -1 9012
+D3
+~
+~
+0 -1 9018
+D6
+~
+~
+0 -1 9022
+D7
+~
+~
+0 -1 9015
+D8
+~
+~
+0 -1 9022
+D9
+~
+~
+0 -1 9015
+S
+#9014
+The Middle of A Junkyard~
+Standing in the middle of a junkyard you see ships piled up to
+the clouds. The stench of the garbage overwhelms you. The garbage
+is all over the ground. You don't see anything of any use here.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9013
+D1
+~
+~
+0 -1 9017
+D2
+~
+~
+0 -1 9013
+D3
+~
+~
+0 -1 9018
+D6
+~
+~
+0 -1 9016
+S
+#9015
+The Middle of A Junkyard~
+You have come to a stop and there is only one way to go. The
+horrendous odor from the garbage is not helping things any.Piles
+of junk are here and you see maggots everywhere. You see a fresh
+corpse on the ground under some metal shards.
+~
+0 0 1 0 0 0 30520
+D8
+~
+~
+0 -1 9013
+S
+#9016
+The Middle of A Junkyard~
+You are standing in the middle of what seems to be a wrecked
+transport ship. The metal seems so dirty and rusty that the
+ship must have been here for at least 50 years!
+~
+0 0 1 0 0 0 30520
+D6
+~
+~
+0 -1 9021
+D9
+~
+~
+0 -1 9014
+S
+#9017
+The Middle of A Junkyard~
+You have done it now! You are lost in the junkyard and you can't
+seem to find your way out. While comlink broadcasting is possible
+from here the message may become distored because of all the
+metal surrounding you.
+~
+0 0 1 0 0 0 30520
+D3
+~
+~
+0 -1 9013
+S
+#9018
+The Middle of A Junkyard~
+You are lost inside of a huge junkyard. The junk seems to be
+neverending! The odor from the garbage here is so great that
+bugs are not even attracted to it. Finding a way out would be
+good but not easy.
+~
+0 0 1 0 0 0 30520
+D1
+~
+~
+0 -1 9013
+S
+#9019
+&OA Small Path&w&W~
+You are walking along a very small path. This path is appoximately
+4 feet wide! If you have a very large build you will have to
+turn sideways to walk between some of these trees.
+~
+0 0 1 0 0 0 30520
+D7
+~
+~
+0 -1 9020
+D9
+~
+~
+0 -1 9033
+S
+#9020
+&OA Small Path&w&W~
+You are walking along a very small path. This path is appoximately
+4 feet wide! If you have a very large build you will have to
+turn sideways to walk between some of these trees.You see some
+markings on the tree to the left.
+~
+0 0 1 0 0 0 30520
+D6
+~
+~
+0 -1 9028
+D8
+~
+~
+0 -1 9019
+E
+tree~
+This planet was created by Keberus and Trelar. You should be
+wary of this place beacuse Bounty hunters don't like anyone
+on their planet.
+~
+S
+#9021
+A Clearing~
+You are standing in a clearing. There is virtually no junk here
+at all. You wonder why the trash is not covering this area.The
+stench of the junk yard still overwhelmes you.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9033
+D8
+~
+~
+0 -1 9026
+D9
+~
+~
+0 -1 9016
+S
+#9022
+The Middle of A Junkyard~
+You have come to a stop and there is only one way to go. The
+horrendous odor from the garbage is not helping things any.Piles
+of junk are here and you see maggots everywhere. This place
+is disguisting!
+~
+0 0 1 0 0 0 30520
+D9
+~
+~
+0 -1 9013
+S
+#9023
+The Beginnings of A Junkyard~
+You see small piles of junk that seem to get larger as you go
+further North. You smell a somewhat faint oder from all of the
+garbage. There are 30 foot high walls that run to the East and
+West of you apparently to block the oder from the main road.
+~
+0 4 1 0 0 0 30520
+D0
+~
+~
+0 -1 9024
+D2
+~
+~
+0 -1 9010
+S
+#9024
+The Middle of A Junkyard~
+Standing in the middle of a junkyard you see ships piled up to
+the clouds. The stench of the garbage overwhelms you. The garbage
+is all over the ground. You don't see anything of any use here.
+Getting lost in the junkyard is not hard so be careful!
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9025
+D1
+~
+~
+0 -1 9032
+D2
+~
+~
+0 -1 9023
+D3
+~
+~
+0 -1 9031
+D6
+~
+~
+0 -1 9029
+D7
+~
+~
+0 -1 9027
+D8
+~
+~
+0 -1 9029
+D9
+~
+~
+0 -1 9027
+S
+#9025
+The Middle of A Junkyard~
+Standing in the middle of a junkyard you see ships piled up to
+the clouds. The stench of the garbage overwhelms you. The garbage
+is all over the ground. You don't see anything of any use here.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9024
+D1
+~
+~
+0 -1 9032
+D2
+~
+~
+0 -1 9024
+D3
+~
+~
+0 -1 9031
+D7
+~
+~
+0 -1 9026
+S
+#9026
+The Middle of A Junkyard~
+You are standing in the middle of what seems to be a wrecked
+transport ship. The metal seems so dirty and rusty that the
+ship must have been here for at least 50 years!
+~
+0 0 1 0 0 0 30520
+D7
+~
+~
+0 -1 9021
+D8
+~
+~
+0 -1 9025
+S
+#9027
+The Middle of A Junkyard~
+You have come to a stop and there is only one way to go. The
+horrendous odor from the garbage is not helping things any.
+Piles of junk are here and you see maggots everywhere. You see
+a fresh corpse on the ground under some metal shards.
+~
+0 0 1 0 0 0 30520
+D8
+~
+~
+0 -1 9024
+S
+#9028
+&OA Small Path&w&W~
+The path has gotten larger and is about 10 feet wide now. You
+see a blur eastwards of what is shaped as a building. You canhead
+back the way you came or head over to the Hunter's Guild which
+is to the East of here.
+~
+0 0 1 0 0 0 30520
+D1
+~
+~
+0 -1 9030
+D9
+~
+~
+0 -1 9020
+S
+#9029
+The Middle of A Junkyard~
+You have come to a stop and there is only one way to go. The
+horrendous odor from the garbage is not helping things any.
+Piles of junk are here and you see maggots everywhere. This
+place is disguisting!
+~
+0 0 1 0 0 0 30520
+D9
+~
+~
+0 -1 9024
+S
+#9030
+&OPath to the Hunter's Guild&w&W~
+You see a large dark building to the North of here. To the South
+is the small path that you have come upon, and to the North
+is the Hunter's Guild base. You see a barb-wired fence and a
+sign posted on it but you can't read what the sign says, maybeyou
+should have a closer look!
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9034
+D3
+~
+~
+0 -1 9028
+E
+sign~
+You look closely at the sign and it says, "All trespassers will
+be killed with no questions asked!" 
+~
+S
+#9031
+The Middle of A Junkyard~
+You are lost inside of a huge junkyard. The junk seems to be
+neverending! The odor from the garbage here is so great that
+bugs are not even attracted to it. Finding a way out would be
+good but not easy.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9031
+D1
+~
+~
+0 -1 9024
+D3
+~
+~
+0 -1 9031
+D8
+~
+~
+0 -1 9025
+S
+#9032
+The Middle of A Junkyard~
+You have done it now! You are lost in the junkyard and you can't
+seem to find your way out. While comlink broadcasting is possible
+from here the message may become distored because of all the
+metal surrounding you.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9032
+D1
+~
+~
+0 -1 9032
+D3
+~
+~
+0 -1 9024
+D9
+~
+~
+0 -1 9025
+> act_prog zutton~
+mppurge
+mpecho Zutton runs off into the junkyard.
+~
+|
+S
+#9033
+A Clearing~
+You are standing in a clearing. There is virtually no junk here
+at all. You wonder why the trash is not covering this area.The
+stench of the junk yard still overwhelmes you.
+~
+0 0 1 0 0 0 30520
+D2
+~
+~
+0 -1 9021
+D6
+~
+~
+0 -1 9019
+S
+#9034
+&OPath to the Hunter's Guild&w&W~
+You see to the north a closed metal 10 foot door. There is a
+code panel to the left of the door, and right above the code
+panel is a microphone to speak into. If you are not a Bounty
+Hunting Guild member then you have reach a dead end! If youare
+a guild member maybe you should say the magic word or words.
+You see a sign above the door.
+~
+0 0 1 0 0 0 30520
+D2
+~
+~
+0 -1 9030
+D7
+~
+~
+0 -1 227
+E
+sign~
+You look at the sign and it reads, "All Visitors Not Welcome,"
+you look even closer at the fine print and it says, "If we catch
+ya' 'ur DEAD!" 
+~
+S
+#9035
+&w An Apartment Building &W~
+You stand in the entrance to the only apartment complex on Ord
+Mantell. The building seems to be well kept. There are a few
+broken spots in the walls of the foundation. Since this is the
+only space available for rent of Ord Mantell, the apartments
+here get rented out rather quickly.
+~
+0 12 1 0 0 0 30520
+D1
+~
+~
+0 -1 9036
+D3
+~
+~
+0 -1 9011
+S
+#9036
+A Hallway~
+You stand in the hallway of the only apartment building on Ord
+Mantell. There are a good number of apartment on each floor.
+The walls here are a dark brown color. There are a sufficent
+amount of lights mounted on the ceiling. 
+~
+0 8 1 0 0 0 30520
+D0
+~
+~
+0 -1 9045
+D1
+~
+~
+0 -1 9037
+D2
+~
+~
+0 -1 9046
+D3
+~
+~
+0 -1 9035
+S
+#9037
+A Hallway~
+You stand in the hallway of the only apartment building on Ord
+Mantell. The walls here are a dark brown color. There are lights
+mounted on the ceiling. There are a good number of apartments
+on each floor, so there will be a good chance for one to be
+avai lable.
+
+~
+0 8 1 0 0 0 30520
+D0
+~
+~
+0 -1 9047
+D1
+~
+~
+0 -1 9049
+D2
+~
+~
+0 -1 9048
+D3
+~
+~
+0 -1 9036
+D6
+~
+~
+0 -1 9038
+S
+#9038
+First Floor Landing~
+You look around and you don't see anything special, there are
+some carpeted steps to walk up and down on and a railing to
+the right so you can hold on and a banister on the left so you
+won't fall onto the first level floor.You are standing on the
+first floor landing. You can go up the stairs to the second
+floor or just back to the first floor.
+~
+0 8 1 0 0 0 30520
+D4
+~
+Stairs~
+0 -1 9040
+D9
+~
+~
+0 -1 9037
+S
+#9039
+Third Floor Landing~
+You look around and you don't see anything special, there are
+some carpeted steps to walk up and down on and a railing to
+the right so you can hold on and a banister on the left so you
+won't fall onto the first level floor.You are on the Third floor
+landing. Going down you will hit the Second floor and then the
+First floor. Your only other alternative is to go to the apartments
+of the Third floor.
+~
+0 8 1 0 0 0 30520
+D5
+~
+~
+0 -1 9040
+D9
+~
+~
+0 -1 9042
+S
+#9040
+Second Floor Landing~
+You look around and you don't see anything special, there are
+some carpeted steps to walk up and down on and a railing to
+the right so you can hold on and a banister on the left so you
+won't fall onto the first level floor.You are standing on the
+landing of the Second floor. You can choose to go back down
+to the First floor, up to the Third floor, or go into the apartment
+area of the Second floor.
+~
+0 8 1 0 0 0 30520
+D4
+~
+~
+0 -1 9039
+D5
+~
+~
+0 -1 9038
+D9
+~
+~
+0 -1 9041
+S
+#9041
+A Hallway~
+You stand in the hallway of the only apartment building on Ord
+Mantell. The walls here are a dark brown color. There are lights
+mounted on the ceiling. There are a good number of apartments
+on each floor, so there will be a good chance for one to be
+avai lable.
+~
+0 8 1 0 0 0 30520
+D0
+~
+~
+0 -1 9052
+D1
+~
+~
+0 -1 9054
+D2
+~
+~
+0 -1 9053
+D3
+~
+~
+0 -1 9043
+D6
+~
+~
+0 -1 9040
+S
+#9042
+A Hallway~
+You stand in the hallway of the only apartment building on Ord
+Mantell. The walls here are a dark brown color. There are lights
+mounted on the ceiling. There are a good number of apartments
+on each floor, so there will be a good chance for one to be
+avai lable.
+~
+0 8 1 0 0 0 30520
+D0
+~
+~
+0 -1 9057
+D1
+~
+~
+0 -1 9059
+D2
+~
+~
+0 -1 9058
+D3
+~
+~
+0 -1 9044
+D6
+~
+~
+0 -1 9039
+S
+#9043
+A Hallway~
+You stand in the hallway of the only apartment building on Ord
+Mantell. The walls here are a dark brown color. There are lights
+mounted on the ceiling. There are a good number of apartments
+on each floor, so there will be a good chance for one to be
+avai lable.
+~
+0 8 1 0 0 0 30520
+D0
+~
+~
+0 -1 9050
+D1
+~
+~
+0 -1 9041
+D2
+~
+~
+0 -1 9051
+S
+#9044
+A Hallway~
+You stand in the hallway of the only apartment building on Ord
+Mantell. The walls here are a dark brown color. There are lights
+mounted on the ceiling. There are a good number of apartments
+on each floor, so there will be a good chance for one to be
+avai lable.
+~
+0 8 1 0 0 0 30520
+D0
+~
+~
+0 -1 9055
+D1
+~
+~
+0 -1 9042
+D2
+~
+~
+0 -1 9056
+S
+#9045
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D2
+~
+~
+0 -1 9036
+S
+#9046
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D0
+~
+~
+0 -1 9036
+S
+#9047
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D2
+~
+~
+0 -1 9037
+S
+#9048
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D0
+~
+~
+0 -1 9037
+S
+#9049
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D3
+~
+~
+0 -1 9037
+S
+#9050
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D2
+~
+~
+0 -1 9043
+S
+#9051
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D0
+~
+~
+0 -1 9043
+S
+#9052
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D2
+~
+~
+0 -1 9041
+S
+#9053
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D0
+~
+~
+0 -1 9041
+S
+#9054
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D3
+~
+~
+0 -1 9041
+S
+#9055
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D2
+~
+~
+0 -1 9044
+S
+#9056
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D0
+~
+~
+0 -1 9044
+S
+#9057
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D2
+~
+~
+0 -1 9042
+S
+#9058
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D0
+~
+~
+0 -1 9042
+S
+#9059
+An Empty Apartment~
+You stand in an empty apartment. There isn't much furniture here.
+There is a bed along one wall and a small couch along the wall
+opposite the bed. The apartment does seem to be well kept though.
+This would make a nice place for someone who just needs a place
+to sleep.
+~
+0 77594636 1 0 0 0 30520
+D3
+~
+~
+0 -1 9042
+S
+#9060
+Abandoned Stellar Energy Plant~
+You stand in a museum dedicated to commemorate the capturing
+of Luke Skywalker and Princess Leia Organa Solo by Bounty Hunter
+Skoor. There are statues here portraying their capture. As this
+is a museuem please keep the noise to a minimum.
+~
+0 12 1 0 0 0 30520
+D0
+~
+~
+0 -1 9076
+D1
+~
+~
+0 -1 9010
+E
+Statue Leia Organa Solo~
+You gaze upon the statue of Princess Leia Organa Solo. She was
+once the most avid fighter for the Rebel Alliance before it
+became the New Republic. She was a member of the ground force
+who took out the shield generator building on Endor. Now married
+to G eneral Han Solo she works for the New Republic as a diplomat
+traveling around seeking planets who wish to join the New Republic.
+~
+S
+#9061
+Spaceport Road~
+You are walking along Spaceport Road. The area here is bare as
+this way is only used as a connection between the spaceport
+and the city of Ord Mantell. South of  here is the Customs Authority
+controlling the flow of illegal contraband on Ord  Mantell.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9062
+D2
+~
+~
+0 -1 9002
+S
+#9062
+Intersection of Spaceport Road and Plateau Blvd.~
+You stand at the intersection of Spaceport Road and Plateau Blvd.
+Plateau Blvd. is one of the least know passageways around Ord
+Mantell.This can be seen from the few people who walk its streets.
+The lack of Plateau Blvd.being used is shown by how run-down
+and crummy it is compared to Stellar Avenue.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9003
+D1
+~
+~
+0 -1 9066
+D2
+~
+~
+0 -1 9061
+D3
+~
+~
+0 -1 9063
+S
+#9063
+Plateau Blvd.~
+You stand on a crummy run-down street that has trash all over
+it. The trash is so high that you can only see the street itself
+in a few areas. A pack of rats scurries across your path and
+go into a hole in one of the buildings. You see that this place
+is the worst street on the planet.
+~
+0 0 1 0 0 0 30520
+D1
+~
+~
+0 -1 9062
+D3
+~
+~
+0 -1 9064
+S
+#9064
+Plateau Blvd.~
+You stand on a crummy run-down street that has trash all over
+it. The trash is so high that you can only see the street itself
+in a few areas. A pack of rats scurries across your path and
+go into a hole in one of the buildings. You see that this place
+is the worst street on the planet.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9407
+D1
+~
+~
+0 -1 9063
+D3
+~
+~
+0 -1 9065
+S
+#9065
+Plateau Blvd.~
+You stand on a crummy run-down street that has trash all over
+it. The trash is so high that you can only see the street itself
+in a few areas. A pack of rats scurries across your path and
+go into a hole in one of the buildings. You see that this place
+is the worst street on the planet.
+~
+0 0 1 0 0 0 30520
+D1
+~
+~
+0 -1 9064
+D2
+~
+~
+0 -1 9072
+S
+#9066
+Plateau Blvd.~
+You stand on a crummy run-down street that has trash all over
+it. The trash is so high that you can only see the street itself
+in a few areas. A pack of rats scurries across your path and
+go into a hole in one of the buildings. You see that this place
+is the worst street on the planet.
+~
+0 0 1 0 0 0 30520
+D1
+~
+~
+0 -1 9067
+D3
+~
+~
+0 -1 9062
+S
+#9067
+Plateau Blvd.~
+You stand on a crummy run-down street that has trash all over
+it. The trash is so high that you can only see the street itself
+in a few areas. A pack of rats scurries across your path and
+go into a hole in one of the buildings. You see that this place
+is the worst street on the planet.
+~
+0 0 1 0 0 0 30520
+D0
+~
+~
+0 -1 9069
+D1
+~
+~
+0 -1 9068
+D3
+~
+~
+0 -1 9066
+S
+#9068
+Plateau Blvd.~
+You stand on a crummy run-down street that has trash all over
+it. The trash is so high that you can only see the street itself
+in a few areas. A pack of rats scurries across your path and
+go into a hole in one of the buildings. You see that this place
+is the worst street on the planet.
+~
+0 0 1 0 0 0 30520
+D3
+~
+~
+0 -1 9067
+S
+#9069
+&G Food Court &w&W~
+You walk into a very nice looking place to find food, but you
+have stumbled upon a dual-concept design to where you can get
+food or drink alcholic beverages. The place is nice and tidy
+and seems almost new. You hear the sounds of cheering drunks
+coming from the Northwest.
+~
+0 12 1 0 0 0 30520
+D2
+~
+~
+0 -1 9067
+D6
+~
+~
+0 -1 9070
+D7
+~
+~
+0 -1 9071
+S
+#9070
+&cThe Hunter's Cafe&w&W~
+You are standing in the middle of a large cafe. The place is
+very disorganized but it looks new. On every table there is
+a menu written in 10 different languages of what they all serve
+here.
+~
+0 1036 1 0 0 0 30520
+D9
+~
+~
+0 -1 9069
+S
+#9071
+&gThe Wet Hunter&w&W~
+You stand inside a bar. You hear soft music in the background
+and about every table in this place is full with people. You
+notice a few blaster marks on the walls probably from drunken
+bar fights. You see a sign that says best place in the galaxayto
+buy beer.
+~
+0 1036 1 0 0 0 30520
+D8
+~
+~
+0 -1 9069
+S
+#9072
+&R Bounty Claims Office &w&W~
+Standing in a Bounty Claims Office, you see a list of bounties
+mounted to the wall on the right. In the middle of the room
+you see a large desk with a clerk sitting behind it. This is
+a place that has a few cheap bounties but not much beyond that.
+If you need to find one of the bounties maybe you should ask
+the clerk about that person.
+~
+0 12 1 0 0 0 30520
+D0
+~
+~
+0 -1 9065
+E
+list~
+Name - Wanted Where? - Bounty
+-------------------------------------
+Svenn - Yavin - 100
+Coren - Coruscant - 50
+Shotaun - Cloud City - 300
+-------------------------------------
+~
+S
+#9073
+&O Ord Mantell Medical Facility &w&W~
+You stand in the public medical facility of Ord Mantell. The facility is kept spotless to prevent from any communicable diseases being spread. This facility is entirely staffed by droids.
+~
+0 8 1 0 0 0 30520
+D2
+~
+~
+0 -1 9064
+S
+#9074
+&B Kashieem's Pawn Shop &W~
+You stand in a small place with blaster marks on the walls. You
+see a large wookiee setting behind a desk which is placed in
+the middle of the room. Aparently this shop has been here for
+quite some time, but it still is in a "better than most" condition.
+~
+0 1036 1 0 0 0 30520
+D2
+~
+~
+0 -1 9008
+S
+#9075
+&OThe Junkyard Hotel&w&W~
+You stand in the public hotel of Ord Mantell. The hotel is named
+after the junkyard seeing as it takes up over half the planet.
+The hotel here isnt fancy but well kept. Since visitors are
+scarce here on Ord, the hotel is free.
+
+You can safely save and quit the game here.
+
+~
+0 8388620 1 0 0 0 30520
+D0
+~
+~
+0 -1 9007
+D3
+~
+~
+0 -1 9082
+S
+#9076
+Princess Leia Organa Solo~
+It was common knowledge throughout the court that Leia was adopted
+into the Royal Family. What wasn't common knowledge was that
+Leia was born to Anakin Skywalker, a Jedi pupil who succumbed
+to the dark side and became Darth Vader. She was one of a set
+of twins, born in secrecy and protected from Vader and the Emperor.The
+Jedi hero and general, Obi-Wan Kenobi, secretly transported
+Leia and her mother to the planet Alderaan, where she was to
+be raised by Kenobi's friend Bail Organa. The boy, Luke, was
+taken to the distant world of Tatooine. Leia has few memories
+of her true mother, Padm Amidala. All that Leia can recall is
+that she was beautiful, but sad.Leia followed in her adoptive
+father's footsteps, and entered politics. She became the youngest
+senator ever in the Imperial Senate, representing Alderaan.As
+a senator, Princess Leia ran a number of "diplomatic aid  missions"
+that were fronts for Rebel resupply missions. She used her diplomatic
+immunity and her consular ship to gain access to restricted
+areas.
+~
+0 12 1 0 0 0 30520
+D0
+~
+~
+0 -1 9077
+D2
+~
+~
+0 -1 9060
+E
+leia~
+~
+S
+#9077
+Luke Skywalker, Jedi Master~
+The path of a Jedi is often difficult, filled with conflict and
+pain. Luke Skywalker's life which began as a simple farmboy
+and saw him become the greatest hero the galaxy has ever known
+is an amazing example of this. Skywalker spent his restless
+childhood on the backwater desert planet of Tatooine, toiling
+away on his uncle's moisture farm. His guardians, Beru and Owen
+Lars, never told Luke of his true heritage. While Luke believed
+his father to have been a navigator on a spice freighter, he
+never suspected that Anakin Skywalker was once a famed Jedi
+Knight and incredible starpilot.Luke was born during the chaos
+as the galaxy transitioned from Republic to the tyrannical Empire.He
+and his twin sister, Leia, were secretly spirited away from
+his father and the Emperor. Luke was taken to live with Owen
+and Beru while his sister was taken to Alderaan to be raised
+by Viceroy Bail Organa.On his uncle's moisture farm, Luke learned
+the essentials of desert survival and droid repair. Boredom
+was not as scarce as water on Tatooine, and Luke often dreamed
+of adventure and excitement. He had a circle of friends who
+would loiter around Tosche station in Anchorhead when not occupied
+by their chores. Luke never quite fit in with his friends  they
+often teased him and called him "Wormie." Biggs Darklighter,
+though, was different and Luke considered him a true friend.
+
+~
+0 8 1 0 0 0 30520
+D0
+~
+~
+0 -1 9080
+D1
+~
+~
+0 -1 9078
+D2
+~
+~
+0 -1 9076
+S
+#9078
+Obi-Wan Kenobi, Jedi Knight~
+A dedicated and legendary Jedi Knight, Obi-Wan Kenobi has had
+a long and tumultuous career that has helped shape the fate
+of an entire galaxy. When he was 25 standard years old, he was
+caught up in the important events of the Battle of Naboo. At
+the time he was a Padawan learner, apprenticed to Jedi Master
+Qui-Gon Jinn.At the behest of Supreme Chancellor Valorum, Obi-Wan
+and his master secretly voyaged to Naboo to negotiate a peaceful
+settlement to the tense Trade Federation blockade of the planet.Aboard
+a Trade Federation vessel, the scheming Neimoidians sprung a
+trap on the Jedi, and attempted to kill them. Kenobi and his
+master escaped and stowed away on Trade Federation invasion
+craft landing on Naboo's surface. Following his master, Obi-Wan
+voyaged from Naboo to Coruscant and back during the intrigue
+that surrounded the Battle of Naboo. When Qui-Gon Jinn brought
+a freed young slave boy, Anakin Skywalker, before the Jedi Council,
+Obi-Wan was taken aback. Qui-Gon claimed that Anakin was the
+Chosen One of an ancient Jedi prophecy, and that he was to be
+Jinn's new Padawan learner, replacing Obi-Wan. The council refused
+Jinn's proposal to train the boy.This was just one of many disagreements
+that Obi-Wan Kenobi and Qui-Gon Jinn had during their time together.Jinn,
+a proponent of the living Force over the more serene unifying
+Force, had long been a maverick in the eyes of the Jedi Council.
+Obi-Wan implored his master not to go against the Council, but
+Qui-Gon always responded by saying that he must do as the will
+of the Force advises.
+~
+0 8 1 0 0 0 30520
+D1
+~
+~
+0 -1 9079
+D3
+~
+~
+0 -1 9077
+S
+#9079
+Han Solo, General~
+If, at the height of his smuggling days, you told Han Solo that
+he would be a hero of the Rebellion, fall in love with an Alderaanian
+princess, and become a general in the Alliance, he would have
+had no shortage of smart remarks for you. But if anything  is
+consistent in Solo's life, it is unpredictability.Han and his
+Wookiee first mate and co-pilot Chewbacca had a variety of adventures
+throughout their long careers as smugglers. By hanging out on
+the fringe of galactic society, Solo not only made useful allies,
+but powerful enemies. Han eventually met up with a young gambler
+named Lando Calrissian. After a period of adventuring, Han won
+Lando's freighter, the Millennium Falcon in a heated sabacc
+game. 
+~
+0 8 1 0 0 0 30520
+D3
+~
+~
+0 -1 9078
+S
+#9080
+Chewbacca the Wookiee, General~
+An immense, fur covered warrior of great strength and loyalty,
+Chewbacca the Wookiee was a well known figure in both the underworld
+and in the Rebel Alliance. Born on Kashyyyk over two centuries
+before the Battle of Yavin, Chewbacca was a wise, sophisticated
+being with exceptional skills in starship piloting and repair.For
+their brutish strength and technological savvy, Wookiees were
+enslaved by the Empire for use as labor. For a time, Chewbacca
+was a slave, toiling away for the betterment of the Empire until
+an impudent Imperial cadet named Han Solo freed him. Drummed
+out of the military, Solo had few options but to return to the
+fringe lifestyle he knew so well. Chewbacca swore loyalty to
+Han, and became his partner in crime. The two of them became
+a well known smuggling duo. When they came into ownership of
+the freighter Millennium Falcon, their exploits became legendary.
+
+~
+0 8 1 0 0 0 30520
+D0
+~
+~
+0 -1 9081
+D2
+~
+~
+0 -1 9077
+S
+#9081
+Qui-Gon Jinn, Jedi Knight~
+A venerable if maverick Jedi Master, Qui-Gon Jinn is a student
+of the living Force. Unlike other Jedi Masters, who often lose
+themself in the meditation of the unifying Force, Qui-Gon Jinn
+lived for the moment, espousing a philosophy of "feel, don't
+think -- use your instincts." Were it not for Qui-Gon's unruly
+views, he would have undoubtedly been on the Jedi Council. During
+the trip to the capital, damaged sustained to the Royal Starship
+forced an unscheduled stop on the Outer Rim world of Tatooine.There,
+Qui-Gon discovered a young slave boy named Anakin Skywalker,
+who was strong in the Force. Sensing the boy's potential, Qui-Gon
+traveled to Coruscant to present Anakin to the Jedi Council.The
+Council, however, felt Anakin's future seemed clouded and uncertain,
+and deemed the boy too old to begin training and  dangerously
+full of fear and anger. They refused to allow Qui-Gon to train
+Anakin, but the Jedi Master nevertheless kept the boy as his
+ward as he returned to Naboo.On Naboo, Qui-Gon and Obi-Wan confronted
+the Sith Lord Darth Maul, Qui-Gon's attacker from the desert.Maul
+proved a deadly and fearsome opponent. Together, Obi-Wan and
+Qui-Gon fended off the Sith Lord's attacks, but as the battle
+progressed, Master and apprentice became separated. Maul pressed
+his advantage, wearing down Qui-Gon's defenses and ultimately
+killing the Jedi Master. Obi-Wan then defeated Maul, but nothing
+could save Qui-Gon. With his last breath, the Jedi Master asked
+Obi-Wan to train Anakin, a request Kenobi accepted.
+~
+0 8 1 0 0 0 30520
+D2
+~
+~
+0 -1 9080
+S
+#9082
+The Galactic Mail Center~
+~
+0 1073741824 1 0 0 0 30520
+D1
+~
+~
+0 -1 9075
+S
+#9404
+Floating in a void~
+~
+0 4 1 0 0 0 30520
+S
+#9405
+Secondary Landing Pad~
+The secondary landing is much smaller than the main but it seems
+to be in better condition. Perhaps this is due to the fact that
+the Secondary Landing was just created only a few years ago
+and the Main has been here for a long, long time.
+~
+0 262192 1 0 0 0 30520
+D3
+~
+~
+0 -1 9000
+D7
+~
+~
+0 -1 9001
+S
+#9406
+&G A Bacta Tank &W&w~
+You are inside of a bacta tank. The tank has a breathing mask
+for those who need to breath while fully submerged. The tank
+is filled with a green gelatinous liquid. The bacta is know
+for is curing of major as well as minor wounds to the body.
+~
+0 8 1 0 0 0 30520
+D2
+~
+~
+0 -1 9073
+> rand_prog 50~
+if ispc($n)
+mprestore $n 100
+mpecho The soothing bacta covers your body and starts to heal you.
+endif
+~
+|
+S
+#9407
+Bank of Ord Mantell~
+A bank like any other. The tellers wait off to the north, while
+the center of the area is dominated by a computer display and
+couches, displaying the latest stock trends.
+~
+0 262408 1 0 0 0 30520
+D2
+~
+~
+0 -1 9064
+S
+#9500
+Floating in a void~
+~
+0 4 1 0 0 0 30520
+S
+#0
+
+
+#RESETS
+M 1 9500 1 9500
+M 1 9002 1 9071
+G 1 9007 100
+G 1 9009 100
+G 1 9010 100
+G 1 9008 100
+G 1 9006 100
+M 1 9003 1 9070
+G 1 9004 1
+G 1 9003 1
+G 1 9005 1
+G 1 133 1
+G 1 134 1
+M 1 9010 1 9073
+G 1 3 1
+M 1 9001 1 9005
+G 1 133 1
+G 1 134 1
+G 1 56 1
+M 1 9009 1 9072
+O 1 9014 1 9072
+O 1 9017 1 9081
+O 1 9016 1 9080
+O 1 9002 1 9077
+O 1 9001 1 9076
+O 1 9018 1 9078
+O 1 9019 1 9079
+M 1 9013 1 9032
+G 1 9020 1
+M 1 9005 4 9001
+E 1 50 1 16
+M 1 9005 4 9001
+E 1 50 1 16
+M 1 9005 4 9001
+E 1 50 1 16
+M 1 9005 4 9001
+E 1 50 1 16
+M 1 9014 1 9007
+M 1 9012 1 9075
+O 1 116 1 9075
+M 1 9014 2 9008
+M 1 9014 3 9011
+M 1 9004 1 9062
+M 1 9014 4 9062
+M 1 9011 1 9074
+E 1 50 1 16
+O 1 9015 1 9074
+M 0 9014 3 9062
+M 0 9014 3 9007
+M 0 9014 3 9007
+M 0 9014 3 9008
+M 0 9014 1 9064
+M 0 9014 1 9068
+M 0 9014 1 9000
+O 1 38 1 9082
+S
+
+
+#SHOPS
+ 9001    0  0  0  0  0   100  90         3 22    ; An older model droid
+ 9002    0  0  0  0  0   140   0         1 23    ; A Bartender Droid
+ 9003    0  0  0  0  0   120  90         0 23    ; A Small Food Droid
+ 9011   18  8  9  5  0   120  15         1 23    ; Kashieem
+ 9499    9  5  0  0  0   120  90         0 23    ; a newly created testmob
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  9004 spec_janitor
+M  9005 spec_customs_weapons
+S
+
+
+#$

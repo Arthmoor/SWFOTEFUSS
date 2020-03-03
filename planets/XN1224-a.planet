@@ -1,0 +1,14 @@
+#PLANET
+Name         XN1224-a~
+Filename     XN1224-a.planet~
+X            -4910
+Y            1051
+Z            9
+Sector       0
+Type    	   1
+PopSupport   0
+Starsystem   AB90152 - Asteroid belt~
+Area         asteroid1.are~
+End
+
+#END

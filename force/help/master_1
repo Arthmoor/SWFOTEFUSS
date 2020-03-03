@@ -1,0 +1,9 @@
+#FORCE
+Name      master~
+Status    3
+Type      1
+Desc      As a Jedi Master, you have many responsibilties.  Most$RN$important of these is the instruction of new students.$RN$Also at some point in your career you may be asked to$RN$serve on the Jedi Council.$RN$$RN$Master Skills:$RN$$RN$Protect        Identify       Student        Promote$RN$Instruct$RN$~
+Skill     -1
+End
+
+#END

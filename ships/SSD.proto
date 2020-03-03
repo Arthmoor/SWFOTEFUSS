@@ -1,0 +1,6646 @@
+#HEADER
+
+Name           Super class Star Destroyer~
+Sname          SSD~
+NumRooms       109
+Cost           7906250
+Class          10
+Tractor        1
+primaryType    6
+primaryCount   16
+secondaryType  9
+secondaryCount 12
+RangeWeapons0  40
+RangeWeapons1  40
+RangeWeapons2  25
+Hull           6250
+Shields        1100
+Energy         26000
+Chaff          40
+Maxbombs       200
+Speed          15
+Hyperspeed     1
+Manuever       17
+Turrets        8
+Mods	    8
+Clan           The Empire~
+End
+
+#ROOMS
+
+#ROOM
+
+RoomNum           1
+Name              Vehicle Garage~
+Desc              You stand in the Vehicle Garage of the Super Star Destroyer. Garages were implemented after the Empire found use for land vehicles. Not wanting to spend a fortune on building transports they decided to install garages in each of the capital ships.~
+Flags             indoors spacecraft nomob can_land can_fly ~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       4
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           2
+Name              Starship Hanger~
+Desc              The main hanger of the SSD is extremely large. The hanger is full of ships of all sizes. There are technicians running around everywhere preparing ships for departure. This hanger also houses all of the starfighters used to defend the capital ship.~
+Flags             indoors spacecraft garage nomob can_land can_fly ~
+Tunnel            10
+Exits0       5
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          3
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           3
+Name              Repair Hanger~
+Desc              The Repair Hanger serves as the location for all of the starship repairs. VIPs and other dignitaries also use this hanger to separate themselves from the throngs of people in the main hanger.~
+Flags             indoors spacecraft garage nomob can_land can_fly ~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       6
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          4
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           4
+Name              Walkway to Vehicle Garage~
+Desc              This walkway connects the Vehicle Garage to the rest of the capital ship. Security doors have been installed here in the event that the vehicle garage needs to be closed off from the rest of the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       7
+Exits7       0
+Exits8       0
+Exits9       1
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           5
+Name              Walkway to Starship Hangar~
+Desc              This walkway connects the Starship Hanger to the rest of the capital ship. Security doors have been installed here in the event that the vehicle garage needs to be closed off from the rest of the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       7
+Exits1       0
+Exits2       2
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           6
+Name              Walkway to Repair Hangar~
+Desc              This walkway connects the Repair Hanger to the rest of the capital ship. Security doors have been installed here in the event that the vehicle garage needs to be closed off from the rest of the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       7
+Exits8       3
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           7
+Name              Junction of the Three Walkways~
+Desc              This corridor connects the three walkways with the main corridor of the hanger level of the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       8
+Exits1       0
+Exits2       5
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       6
+Exits9       4
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           8
+Name              Hangar Level Corridor~
+Desc              You are walking down a corridor in the Hanger Level of the ship. The level is just composed of the three hangers and the corridors leading to and from the turbolift. The walls here are dark grey. There is a single light mounted every 30 feet along the ceiling.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       9
+Exits1       0
+Exits2       7
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           9
+Name              Hanger Level Corridor~
+Desc              You are walking down a corridor in the Hanger Level of the ship. The level is just composed of the three hangers and the corridors leading to and from the turbolift. The walls here are dark grey. There is a single light mounted every 30 feet along the ceiling.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       8
+Exits3       0
+Exits4       10
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     3
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           10
+Name              Hanger Level Foyer~
+Desc              You stand in the foyer of the hanger level of the ship. This level is composed of the ships three main hangers. The walls here are grey, there is a single light mounted in the ceiling above.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       11
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       9
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     3
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           11
+Name              Guard Station~
+Desc              This guard station was installed to prevent unwanted civilians from entering the rest of the ship. The room is completely bare as guards were expected to stand during their watch. The only thing on the walls is the window the looks onto the other side of the doorway leading to the rest of the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       9
+Exits3       10
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     33554452
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           12
+Name              Turbolift~
+Desc              This turbolift connects all levels of the ship together. The walls here are grey and bare. The tubolift looks big enough to hold a whole stormtrooper legion. The turbolift is voice activated. To see a list of levels please say list.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        speech 4 mpecho The turbolift doors slide closed.
+mpecho The turbolift goes to the Barracks Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:39$
+mpat $RNUM:39$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog1        speech 3 mpecho The turbolift doors slide closed.
+mpecho The turbolift goes to the Officers Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:56$
+mpat $RNUM:56$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog2        speech 2 mpecho The turbolift doors slide closed.
+mpecho The turbolift goes to the Executive Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:69$
+mpat $RNUM:69$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog3        speech 1 mpecho The turbolift doors slide closed.
+mpecho The turbolift goes to the Bridge Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:79$
+mpat $RNUM:79$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog4        speech 5 mpecho The turbolift doors slide close.
+mpecho The turbolift goes to the Detention Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:91$
+mpat $RNUM:91$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog5        speech 6 mpecho The turbolift doors slide close.
+mpecho The turbolift goes to the Medical Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:29$
+mpat $RNUM:29$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog6        speech 7 mpecho The turbolift doors slide close.
+mpecho The turbolift goes to the Engineering Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:19$
+mpat $RNUM:19$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog7        speech 8 mpecho The turbolift doors slide close.
+mpecho The turbolift goes to the Engine Access Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:13$
+mpat $RNUM:13$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog8        speech 9 mpecho The turbolift doors slide close.
+mpecho The turbolift goes to the Hangar Level.
+mpecho The turbolift doors slide open.
+mpechoat $n You step out quickly before the doors reclose.
+mptransfer $n $RNUM:10$
+mpat $RNUM:10$ mpechoaround $n $n steps from the turbolift.
+~
+Rprog9        speech list mpecho &G&R[&z     Turbolift Listing     &R]
+mpecho &R-----------------------------
+mpecho     &R1&z:&R Bridge Level
+mpecho     &R2&z:&R Executive Level
+mpecho     &R3&z:&R Officer Level
+mpecho     &R4&z:&R Barracks Level
+mpecho     &R5&z:&R Detention Level
+mpecho     &R6&z:&R Medical Level
+mpecho     &R7&z:&R Engineering Level
+mpecho     &R8&z:&R Engine Access Level
+mpecho     &R9&z:&R Hangar Level
+mpecho &R-----------------------------
+~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           13
+Name              Engine Access Foyer~
+Desc              This level only contains the engine of the ship. The hallways branch off around the main ion core and the join back together at the Engine Access Panel.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       0
+Exits2       14
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           14
+Name              Engine Level Corridor~
+Desc              You are walking in the Corridor of the Engine Access level. This corridor connects the access corridors with the turbolift.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       13
+Exits1       0
+Exits2       15
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           15
+Name              A Fork in the Corridors~
+Desc              The corridors fork off here to branch around the main ion core. The walls are grey. There is a single light mounted every 30 feet along the ceiling. The floor is made up of durasteel and echoes your every footstep.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       14
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       17
+Exits9       16
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           16
+Name              Walkway to the Engine Access~
+Desc              This is one of the two walkways around the Engine Core to the access panel. Even though the walkway is suspended from the ceiling it is remarkable stable and doesn’t sway. The durasteel floor echoes your every footstep.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       15
+Exits7       0
+Exits8       18
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           17
+Name              Walkway to the Engine Access~
+Desc              This is one of the two walkways around the Engine Core to the access panel. Even though the walkway is suspended from the ceiling it is remarkable stable and doesn’t sway. The durasteel floor echoes your every footstep.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       15
+Exits8       0
+Exits9       18
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           18
+Name              Main Engine Access~
+Desc              This room houses the only hatch that is accessible to the engine of the ship. Often times the head engineer can be found here monitoring the engine at all time to ensure everything is running smoothly.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       17
+Exits7       16
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          7
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           19
+Name              Engineering Level Foyer~
+Desc              The engineering level of the ship contains things for both the engineer and a cilivian. The walls here are dark grey like the rest of the ship. There are two lights mounted every 30 feet along the ceiling so that engineers can see their work better.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       0
+Exits2       20
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           20
+Name              Engineering Level Corridor~
+Desc              This corridor connects the turbolift with the engineering level itself. The walls here are dark grey. There are two lights mounted every 30 feet along the ceiling.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       19
+Exits1       21
+Exits2       23
+Exits3       22
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           21
+Name              A Workshop~
+Desc              The sole engineering workshop on the entire ship. This room is often crowded with engineers repairing items and developing new ones. The walls here are light grey and there are numerous lights mounted to the ceiling.~
+Flags             indoors spacecraft nomob factory~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       20
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           22
+Name              Armor Repair Station~
+Desc              The armor repair station was added onto the ship after its initial construction. Realizing that troops probably wouldn't make it back to the ship to need repair completion was halted.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       20
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           23
+Name              Engineering Level Corridor~
+Desc              This corridor connects the turbolift with the engineering level itself. The walls here are dark grey. There are two lights mounted every 30 feet along the ceiling.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       20
+Exits1       0
+Exits2       24
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           24
+Name              Engineering Level Corridor~
+Desc              This corridor connects the turbolift with the engineering level itself. The walls here are dark grey. There are two lights mounted every 30 feet along the ceiling.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       23
+Exits1       89
+Exits2       25
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           25
+Name              Path to the Turrets~
+Desc              This pathway leads to the turrets. The turrets are the ship's main offensive against smaller ships like starfighters and midships.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       24
+Exits1       0
+Exits2       26
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           26
+Name              Path to the Turrets~
+Desc              This pathway leads to the turrets. The turrets are the ship's main offensive against smaller ships like starfighters and midships.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       25
+Exits1       0
+Exits2       109
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           27
+Name              Turret E1~
+Desc              The turret room houses the controls to the ship's turbolaser batteries. Each room controls its own individual pair of turbolasers. The turbolasers are the ship's main offense against smaller ships.~
+Flags             indoors private spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       107
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          12
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           28
+Name              Turret W1~
+Desc              The turret room houses the controls to the ship's turbolaser batteries. Each room controls its own individual pair of turbolasers. The turbolasers are the ship's main offense against smaller ships.~
+Flags             indoors private spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       108
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          16
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           29
+Name              Medical Level Foyer~
+Desc              You stand in the foyer of the medical level of the ships. The medical ward is normally staffed with at least two or three medical droids and an attending physician.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       0
+Exits2       30
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           30
+Name              Medical Level Corridor~
+Desc              This is a corridor within the Medical level of the ship. the walls here are standard grey with a single light mounted every 30 feet along the ceiling. The halls are crowded with people awaiting treatment.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       29
+Exits1       31
+Exits2       33
+Exits3       32
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           31
+Name              Examination Room~
+Desc              The examination room is crowded full of occcupied hover gurneys. The doctor spends much of his time in this room diagnosing patients and deciding upon their treatment.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       34
+Exits3       30
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           32
+Name              An Empty Office~
+Desc              This office space is for the would-be doctor of the ship. There is little office furniture here, a desk with a chair and a file cabinet.~
+Flags             indoors spacecraft nomob empty_home refinery~
+Tunnel            10
+Exits0       0
+Exits1       30
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           33
+Name              Medical Level Corridor~
+Desc              This is a corridor within the Medical level of the ship. the walls here are standard grey with a single light mounted every 30 feet along the ceiling. The halls are crowded with people awaiting treatment.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       30
+Exits1       34
+Exits2       36
+Exits3       35
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           34
+Name              Treatment Room #1~
+Desc              The first treatment room is used for minor injuries and illnesses. Medical droids do all the work here because it would cost more to employ a nurse.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       31
+Exits1       0
+Exits2       0
+Exits3       33
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           35
+Name              Treatment Room #2~
+Desc              Treatment Room 2 is used for life threatening injuries and disease. Surgical operations are also performed in this room. In the center a table is mounted. All around the rooms there are small hover tables holding instruments. Medical droids are also in attendance here.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       33
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           36
+Name              Intensive Care Unit~
+Desc              Emergency cases are brought straight into the Intensive Care Unit for immediate immersion in bacta. Patients then rest in the ICU room after a bacta treatment.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       33
+Exits1       0
+Exits2       37
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       38
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           37
+Name              Bacta Tank~
+Desc              Bacta is one of the quickest healing agents in the galaxy. The ship is equipped with two bacta tanks. This one is the less advanced of the two but it can hold more than one person at a time. The bacta here is a red gelantinous substance, which is easier to clean up than the normal liquid type.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       36
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        rand 100 mpecho The healing bacta soothes your wounds.
+mprestore $n 200
+~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           38
+Name              Advanced Bacta Tank~
+Desc              This tank is the advanced version of the other bacta tank located on this ship. The bacta here is a yellowish color and unlike the other bacta tank is a liquid so that it can be absorbed through the skin quicker.  ~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       36
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        rand 100 mpecho The healing bacta soothes your wounds.
+mprestore $n 500
+~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           39
+Name              Barracks Level Foyer~
+Desc              The barracks level of the ship contains housing for all crew of the ship. The mess hall and kitchen areas are also located here. The walls here are a dark grey color with a symbol of a home painted on it.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       0
+Exits2       40
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           40
+Name              Barracks Level Corridor~
+Desc              The barracks level of the ship contains housing for all crew of the ship. The mess hall and kitchen areas are also located here. The walls here are a dark grey color with a symbol of a home painted on it.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       39
+Exits1       0
+Exits2       41
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           41
+Name              A Fork in the Corridors~
+Desc              The corridors fork off here. One way leads to the mess hall/kitchen area, the others to the apartments and bunks. The corridors are constantly noisy from crew members coming to and from the areas.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       40
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       42
+Exits9       43
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           42
+Name              Barracks Level Corridor~
+Desc              The barracks level of the ship contains housing for all crew of the ship. The mess hall and kitchen areas are also located here. The walls here are a dark grey color with a symbol of a home painted on it.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       44
+Exits2       46
+Exits3       45
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       41
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           43
+Name              Barracks Level Corridor~
+Desc              The barracks level of the ship contains housing for all crew of the ship. The mess hall and kitchen areas are also located here. The walls here are a dark grey color with a symbol of a home painted on it.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       47
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       41
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           44
+Name              Barracks Mess Hall~
+Desc              The mess hall of the ship is constantly noisy. There are always crew members here either eating meals or grabbing a quick snack in between them. There are stains on the walls from the food fights that seem to constantly break out here.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       42
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           45
+Name              Barracks Kitchen~
+Desc              The kitchen area of the ship is busy with cooks. There is always food to be making for the next meal so the cooks don't often get a lot of time to rest.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       42
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        O 1 134 1 $RNUM:45$
+Reset1        O 1 133 1 $RNUM:45$
+Reset2        ~
+Reset1        (null)~
+Reset2        (null)~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           46
+Name              The Head~
+Desc              The head is probably the only spot in the entire ship were a crew member can relax for a moment. The sewage from the sinks and toilets is keep in storage tanks until it is dumped into space right before a hyperspace jump.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       42
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           47
+Name              Barracks Level Corridor~
+Desc              The barracks level of the ship contains housing for all crew of the ship. The mess hall and kitchen areas are also located here. The walls here are a dark grey color with a symbol of a home painted on it.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       43
+Exits1       48
+Exits2       50
+Exits3       49
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           48
+Name              An Empty Apartment~
+Desc              The apartments of this level are for the commanders of the different departments of the ship. There are barely furnished with just a cot and a small footlocker. Often times the crew doesnt get much time to rest as their have to be on constant duty.~
+Flags             indoors spacecraft nomob empty_home hotel~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       47
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           49
+Name              An Empty Apartment~
+Desc              The apartments of this level are for the commanders of the different departments of the ship. There are barely furnished with just a cot and a small footlocker. Often times the crew doesnt get much time to rest as their have to be on constant duty.~
+Flags             indoors spacecraft nomob empty_home hotel~
+Tunnel            10
+Exits0       0
+Exits1       47
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           50
+Name              Barracks Level Corridor~
+Desc              The barracks level of the ship contains housing for all crew of the ship. The mess hall and kitchen areas are also located here. The walls here are a dark grey color with a symbol of a home painted on it.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       47
+Exits1       51
+Exits2       53
+Exits3       52
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           51
+Name              An Empty Apartment~
+Desc              The apartments of this level are for the commanders of the different departments of the ship. There are barely furnished with just a cot and a small footlocker. Often times the crew doesnt get much time to rest as their have to be on constant duty.~
+Flags             indoors spacecraft nomob hotel empty_home~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       50
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           52
+Name              An Empty Apartment~
+Desc              The apartments of this level are for the commanders of the different departments of the ship. There are barely furnished with just a cot and a small footlocker. Often times the crew doesnt get much time to rest as their have to be on constant duty.~
+Flags             indoors spacecraft nomob hotel empty_home~
+Tunnel            10
+Exits0       0
+Exits1       50
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           53
+Name              Barracks Level Corridor~
+Desc              The barracks level of the ship contains housing for all crew of the ship. The mess hall and kitchen areas are also located here. The walls here are a dark grey color with a symbol of a home painted on it.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       50
+Exits1       54
+Exits2       0
+Exits3       55
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           54
+Name              A Bunk Room~
+Desc              The bunk rooms here are set up for the rest of the crew that weren't assigned an apartment. There are cots all across the room with small footlockers at the end of them for personal belongings.~
+Flags             indoors spacecraft nomob hotel~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       53
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           55
+Name              A Bunk Room~
+Desc              The bunk rooms here are set up for the rest of the crew that weren't assigned an apartment. There are cots all across the room with small footlockers at the end of them for personal belongings.~
+Flags             indoors hotel spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       53
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           56
+Name              Officer Level Foyer~
+Desc              The office level of the ship houses the offices of the top officers of the ship. The level is completely crowded with aides and assistants going to and fro.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       0
+Exits2       57
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           57
+Name              Officer Level Corridor~
+Desc              The office level of the ship houses the offices of the top officers of the ship. The level is completely crowded with aides and assistants going to and fro.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       56
+Exits1       60
+Exits2       58
+Exits3       63
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           58
+Name              Officer Level Corridor~
+Desc              The office level of the ship houses the offices of the top officers of the ship. The level is completely crowded with aides and assistants going to and fro.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       57
+Exits1       61
+Exits2       59
+Exits3       64
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           59
+Name              Officer Level Corridor~
+Desc              The office level of the ship houses the offices of the top officers of the ship. The level is completely crowded with aides and assistants going to and fro.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       58
+Exits1       62
+Exits2       66
+Exits3       65
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           60
+Name              An Empty Office~
+Desc              This office space is up for rent. Officers of the ship are allowed to obtain office spaces to use for their work. The furniture here is scarce with just a desk and a chair.~
+Flags             indoors spacecraft nomob hotel empty_home~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       57
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           61
+Name              An Empty Office~
+Desc              This office space is up for rent. Officers of the ship are allowed to obtain office spaces to use for their work. The furniture here is scarce with just a desk and a chair.~
+Flags             indoors spacecraft nomob hotel empty_home~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       58
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           62
+Name              An Empty Apartment~
+Desc              This lone apartment was built for the second in command of the ship. The rest of the officers are expected to bunk with the crew. There is a small cot here and dresser for belongings.~
+Flags             indoors spacecraft nomob hotel empty_home~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       59
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           63
+Name              An Empty Office~
+Desc              This office space is up for rent. Officers of the ship are allowed to obtain office spaces to use for their work. The furniture here is scarce with just a desk and a chair.~
+Flags             indoors hotel empty_home spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       57
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           64
+Name              An Empty Office~
+Desc              This office space is up for rent. Officers of the ship are allowed to obtain office spaces to use for their work. The furniture here is scarce with just a desk and a chair.~
+Flags             indoors spacecraft hotel empty_home nomob~
+Tunnel            10
+Exits0       0
+Exits1       58
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           65
+Name              An Empty Office~
+Desc              This office space is up for rent. Officers of the ship are allowed to obtain office spaces to use for their work. The furniture here is scarce with just a desk and a chair.~
+Flags             indoors hotel empty_home spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       59
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           66
+Name              Conference Room Outer Security~
+Desc              The outer security office of the conference room is used when an important meeting is taking place inside to ward off wayward crew. There are normally guards posted here checking ids as people filter into the conference room.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       59
+Exits1       0
+Exits2       67
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     3
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           67
+Name              Conference Room~
+Desc              The conference room is used by the officers of the ship to hold meetings. Many squadrons also use the conference room to hold misson briefings. There is a long table set up here with a podium at the head of it. ~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       66
+Exits1       0
+Exits2       0
+Exits3       68
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     3
+Exflags1     0
+Exflags2     0
+Exflags3     2048
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           68
+Name              Inner Conference Room~
+Desc              The inner conference room is used by the top officers of the ship. Many important decisions are made here. The walls are built with transmitters in them to create a field of static. ~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       67
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           69
+Name              Executive Level Foyer~
+Desc              The executive level of the ship is primarily for the commanding officer. It would be best for you to leave if you don't haev business here.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       0
+Exits2       70
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           70
+Name              Executive Level Corridor~
+Desc              The executive level of the ship houses the quarters and the offices of the commanding officer of the ship. This level is normally full of people waiting to see the CO. However the commanding officer can rarely be found here and is normally located on the bridge of the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       69
+Exits1       73
+Exits2       71
+Exits3       72
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     3
+Exflags2     0
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           71
+Name              Commanding Officer's Public Office~
+Desc              The public office of the commanding officer is busy. There are always aides, assistants, messengers and other various people coming into and going out of his office. The commanding officer rarely gets any work done in the office as they are often disrupted by something or someone.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       70
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       72
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     2048
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           72
+Name              Commanding Officer's Office~
+Desc              This office is a private office for the commanding officer. They use this office when they need a place to think and not be bothered but outside disturbance. ~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       70
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       71
+Exits9       0
+Exflags0     0
+Exflags1     3
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           73
+Name              Entrance to CO's Quarters~
+Desc              The commanding officer's quarters are off limits except to those with special clearance. This would include dignitaries, vips and the co's guards. The CO rarely is in his quarters and can often be found on the bridge of the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       78
+Exits1       74
+Exits2       0
+Exits3       70
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           74
+Name              CO's Living Room~
+Desc              The living room is furnished with a small couch and lounge chair. There is a holovision set for watching the latest news. The commanding officer rarely spends any time in here. ~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       76
+Exits1       77
+Exits2       75
+Exits3       73
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     3
+Exflags1     3
+Exflags2     3
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           75
+Name              CO's Dining Room~
+Desc              The commanding officer's dining area is rarely used as they often eat with the rest of the crew in the mess hall. The room is only used when dignitaries or superior officers are aboard the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       74
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     3
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           76
+Name              CO's Bathroom~
+Desc              The commanding officer's bathroom isn't as well furnished as the rest of the quarters. There is just a simple sink, tub and toilet here for the CO.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       74
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     3
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           77
+Name              CO's Bedroom~
+Desc              The commanding officer's bedroom is lavishly furnished. The place is set up just like a vip suite in the Imperial palace. Besides from having a bed, the room also includes a walk-in closet with a full length mirror. The only person besides the commanding officer that is allowed in the bedroom is the butler droid who cleans.~
+Flags             indoors spacecraft hotel nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       74
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           78
+Name              Guard Station~
+Desc              This guard station watches over the entrance to the Commanding Officer's private corridors. It is not uncommon for more than one guard to be posted here. Only those with the highest clearances are allowed to enter the CO's quarters.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       73
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       70
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     33554452
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           79
+Name              Bridge Foyer~
+Desc              The bridge level is where the entire ship is controlled from. Every aspect of the ship is monitored and manipulated on this level. The door is locked to prevent those without the proper clearance from accessing the bridge.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       0
+Exits2       80
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     3
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           80
+Name              Bridge Corridor~
+Desc              The bridge of the ship is where the real action takes place. The entire ship can be controlled from this single group of stations. The walls here are grey. Every 30 feet the SSD logo has been painted on the walls.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       79
+Exits1       0
+Exits2       81
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     3
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           81
+Name              Bridge Corridor~
+Desc              The bridge of the ship is where the real action takes place. The entire ship can be controlled from this single group of stations. The walls here are grey. Every 30 feet the SSD logo has been painted on the walls.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       80
+Exits1       0
+Exits2       82
+Exits3       0
+Exits4       0
+Exits5       83
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           82
+Name              Captain's Chair~
+Desc              This seat is reserved for one sole person on the ship. The commanding officer of the ship. On occasion when a dignitary or another vip visits the captain will forfeit his chair to them. All bridge stations can been seen from the captain's chair.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       81
+Exits1       84
+Exits2       86
+Exits3       87
+Exits4       0
+Exits5       0
+Exits6       88
+Exits7       85
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     33554452
+Exflags2     33554452
+Exflags3     33554452
+Exflags4     0
+Exflags5     0
+Exflags6     33554452
+Exflags7     33554452
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          1
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           83
+Name              Bridge Floor~
+Desc              The bridge floor is very crowded. Constantly there are technicians, assistants, officers and many other people in present on the bridge floor. All stations of the ship are accessible from here.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       84
+Exits1       86
+Exits2       87
+Exits3       88
+Exits4       81
+Exits5       0
+Exits6       85
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           84
+Name              Pilot's Seat~
+Desc              The pilot's seat is often crowded with the commanding officers of the ship and the pilot themself. The seat is cushioned and well furnished as the pilot spends a lot of time in this chair. Joysticks are mounted to the chair arms for ease of control of the ship. There are also thruster controls and various monitors displaying technical information about the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       85
+Exits2       83
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          8
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           85
+Name              Co-pilot's Seat~
+Desc              The seat is the primary location for the co-pilot of the ship. The controls for the ships shields are located here. There are also a secondary set of flight joysticks if the pilot were to become unable to pilot the ship.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       84
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       83
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          9
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           86
+Name              Gunner's Seat~
+Desc              This station is set up for the gunner of the ship. It is composed of a large radar screen that displays all of the ships on the ship's scope. With a simple touch of an icon, information is displayed about the ship. The controls for the ship's main weapons are also loacted here.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       83
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          11
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           87
+Name              Communication Station~
+Desc              The communication officer’s seat is surrounded by a group of consoles. Some are constantly scanning channels while others monitors public channels while others do other things. The communication officer is ready at a moment’s notice to contact any ship or place within the fleet.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       83
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           88
+Name              Navigation Station~
+Desc              This seat is for the navigational officer of the ship. The console here displays maps of all regions of the galaxy. There is also a computer for calculating hyperspace jumps.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       83
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          10
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           89
+Name              Path to the Escape Pods~
+Desc              This pathway leads to the escape pods of the ships. It was built off of the engineering corridors to ensure easy access if the pods need to be used.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       90
+Exits2       0
+Exits3       24
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           90
+Name              Escape Pods~
+Desc              The escape pods were installed here for quick access in the event that they be needed. These pods are normally reserved for the commanding officers of the ship and any dignitaries that may be aboard. These pods are only used in the event that a ship is not capable to launch from the main hanger to get the vips away safely.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       89
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           91
+Name              Detention Level Foyer~
+Desc              You have entered the detention level of the ship. The walls here are dark grey. There is a single light mounted every 30 feet along the ceiling. Prisoners are kept here until the ship can dock with a garrison ship to transport prisoners planet side.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       12
+Exits1       0
+Exits2       92
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           92
+Name              Detention Level Entrance~
+Desc              You have entered the detention level of the ship. The walls here are dark grey. There is a single light mounted every 30 feet along the ceiling. Prisoners are kept here until the ship can dock with a garrison ship to transport prisoners planet side.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       91
+Exits1       0
+Exits2       93
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     3
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           93
+Name              Detention Level Corridor~
+Desc              You stand in a corridor on the Detention Level. The walls here are dark grey. There is a single light mounted every 30 feet along the ceiling here. There are cells to both the north and south.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       92
+Exits1       96
+Exits2       94
+Exits3       97
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     3
+Exflags1     3
+Exflags2     0
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           94
+Name              Detention Level Corridor~
+Desc              You stand in a corridor on the Detention Level. The walls here are dark grey. There is a single light mounted every 30 feet along the ceiling here. There are cells to both the north and south.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       93
+Exits1       98
+Exits2       95
+Exits3       99
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     3
+Exflags2     0
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           95
+Name              Detention Level Corridor~
+Desc              You stand in a corridor on the Detention Level. The walls here are dark grey. There is a single light mounted every 30 feet along the ceiling here. There are cells to both the north and south.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       94
+Exits1       100
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     3
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           96
+Name              A Jail Cell~
+Desc              The jail cell here is bare. There is a small cot against the one wall and a small sink against the opposite wall. The walls here are grey and the floor is made of durasteel which makes it extremely cold. There is a small window in the cell door but it is controlled from the outside of the cell.~
+Flags             indoors spacecraft nomob hotel~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       93
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           97
+Name              A Jail Cell~
+Desc              The jail cell here is bare. There is a small cot against the one wall and a small sink against the opposite wall. The walls here are grey and the floor is made of durasteel which makes it extremely cold. There is a small window in the cell door but it is controlled from the outside of the cell.~
+Flags             indoors hotel spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       93
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     3
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           98
+Name              A Jail Cell~
+Desc              The jail cell here is bare. There is a small cot against the one wall and a small sink against the opposite wall. The walls here are grey and the floor is made of durasteel which makes it extremely cold. There is a small window in the cell door but it is controlled from the outside of the cell.~
+Flags             indoors hotel spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       94
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           99
+Name              A Jail Cell~
+Desc              The jail cell here is bare. There is a small cot against the one wall and a small sink against the opposite wall. The walls here are grey and the floor is made of durasteel which makes it extremely cold. There is a small window in the cell door but it is controlled from the outside of the cell.~
+Flags             indoors hotel spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       94
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     3
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           100
+Name              A Jail Cell~
+Desc              The jail cell here is bare. There is a small cot against the one wall and a small sink against the opposite wall. The walls here are grey and the floor is made of durasteel which makes it extremely cold. There is a small window in the cell door but it is controlled from the outside of the cell.~
+Flags             indoors hotel spacecraft nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       95
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     3
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           101
+Name              Turret E2~
+Desc              The turret room houses the controls to the ship's turbolaser batteries. Each room controls its own individual pair of turbolasers. The turbolasers are the ship's main offense against smaller ships.~
+Flags             indoors spacecraft private nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       107
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          13
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           102
+Name              Turret E3~
+Desc              The turret room houses the controls to the ship's turbolaser batteries. Each room controls its own individual pair of turbolasers. The turbolasers are the ship's main offense against smaller ships.~
+Flags             indoors spacecraft private nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       107
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          14
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           103
+Name              Turret E4~
+Desc              The turret room houses the controls to the ship's turbolaser batteries. Each room controls its own individual pair of turbolasers. The turbolasers are the ship's main offense against smaller ships.~
+Flags             indoors spacecraft nomob private~
+Tunnel            10
+Exits0       107
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          15
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           104
+Name              Turret W2~
+Desc              The turret room houses the controls to the ship's turbolaser batteries. Each room controls its own individual pair of turbolasers. The turbolasers are the ship's main offense against smaller ships.~
+Flags             indoors spacecraft private nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       108
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          17
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           105
+Name              Turret W3~
+Desc              The turret room houses the controls to the ship's turbolaser batteries. Each room controls its own individual pair of turbolasers. The turbolasers are the ship's main offense against smaller ships.~
+Flags             indoors spacecraft private nomob~
+Tunnel            10
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       108
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          18
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           106
+Name              Turret W4~
+Desc              The turret room houses the controls to the ship's turbolaser batteries. Each room controls its own individual pair of turbolasers. The turbolasers are the ship's main offense against smaller ships.~
+Flags             indoors private spacecraft nomob~
+Tunnel            10
+Exits0       108
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          19
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           107
+Name              East Turret Junction~
+Desc              This is the junction of the starboard turrets. The turrets house the controls for the ship's turbolaser batteries. Each station is big enough for only one person.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       27
+Exits1       0
+Exits2       103
+Exits3       109
+Exits4       0
+Exits5       0
+Exits6       101
+Exits7       0
+Exits8       102
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           108
+Name              West Turret Junction~
+Desc              This is the junction of all of the port turrets. The turrets house the controls for the ship's turbolaser batteries. Each station is only big enough for one person.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       28
+Exits1       109
+Exits2       106
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       104
+Exits8       0
+Exits9       105
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           109
+Name              Turret Junction~
+Desc              This area is the junction of the starboard and portside turret rooms. Each side has 4 different stations to control the turbolasers. While turbolasers power may be small compared to larger weapons a small ship is only able to withstand so many hits.~
+Flags             indoors spacecraft nomob~
+Tunnel            10
+Exits0       26
+Exits1       107
+Exits2       0
+Exits3       108
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+
+#ENDROOMS
+
+#END

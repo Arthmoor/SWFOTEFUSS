@@ -1,0 +1,793 @@
+#AREA   Apprentice Area~
+
+
+
+#AUTHOR Apprentices~
+
+#RANGES
+0 36 0 36
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 848643435
+
+#MOBILES
+#7653
+The Trainer~
+The Trainer~
+The Trainer is here helping someone do curlups.
+~
+General Rock stands about 6'3" and is grinning from cheak to cheak. He is
+wearing a standard imperial officers uniform. A vivid scar stands out on
+his left cheak extending from just below to the eye to the chin. He is of
+a very muscular build.
+~
+515 0 0 Z
+25 0 37 20d45+250 15d50+2
+0 0
+8 8 1
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 72 0 0 0
+0 0 0 0 0 0 0 0
+#7664
+creature~
+Multi-Eyed Creature~
+A Multi-eyed Creature is in a Hovel here.
+~
+This creature is unlike any seen in any holomuseums before. It's
+a work of evolution before your eyes.Many years of subteranian
+living have forced this creature to develope many eye's to take
+in as much light as it can as well as it's claws and Tail to
+fight off bigger beasts.
+~
+1073745953 0 0 Z
+1 0 -100 0d0+0 0d0+0
+100 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+6 6 2 0 0 0 32 0
+0 0 0 0 0 0 0 0
+#7665
+wookiee observer~
+a wookiee observer~
+An observative wookiee stands here, scanning the area for undesirables.
+~
+A rather large Wookiee stands his ground on the landing pad,
+looking over the crowds.Occasionally he flexes his claws, usually
+startling non-Wookiees near him away.
+~
+1207992399 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+1 0 0 0 3 2 3
+6 6 0 0 0 0 2 2
+0 0 0 0 0 0 0 0
+#7666
+wookiee technician~
+a wookiee technician~
+A wookie technician bustles about the area
+~
+Brimming with hydrospanners and other various tools, this energetic
+Wookiee scrambles from ship to ship, fixing malfunctions and
+refueling those that are low.
+~
+1073741891 0 0 Z
+10 0 75 2d10+100 1d4+2
+15 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+1 0 0 0 3 2 1
+2 2 0 0 0 0 2 0
+0 0 0 0 0 0 0 0
+#7667
+netcaster~
+a vicious netcaster~
+A vicious netcaster prowls the nets here, searching for prey
+~
+Arachnid and quite large, this beastly netcaster is common to
+Kashyyyk, and very feared.It is considered very dangerous and
+highly aggressive, so most visitors spotting it flee in terror.
+~
+1207963755 0 0 Z
+23 0 42 4d10+230 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+4 4 0 0 0 0 8 2
+0 0 0 0 0 0 0 0
+#7668
+trandoshan saboteur~
+a trandoshan saboteur~
+Caught in an act of sabotage, a trandoshan is being interrogated here
+~
+Twisting and turning uncomfortably, this battered trandoshan
+seems ready to collapse.Constant barrages of questions from
+a nearby speaker system have set him in a panic.His bulging
+eyes roll around, seeking any solace from the onslaught.
+~
+1090519147 0 0 Z
+17 0 57 3d10+170 1d4+2
+50 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+13 0 0 0 4194305 4194304 2
+3 3 0 0 0 0 17 0
+0 0 0 0 0 0 0 0
+#7669
+kroyie~
+a swooping kroyie~
+A kroyie swoops down from the skies to catch bugs here
+~
+Shrieking wildly as it dives towards large fluttering insects,
+this kroyie brushes alarmingly close to passerby.Its brightly-colored
+plumage streaks into a blur as it races around the area.
+~
+1207959627 0 0 Z
+5 0 87 1d10+50 0d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 1
+1 1 0 0 0 0 1 0
+0 0 0 0 0 0 0 0
+#7700
+A Terrified Woman~
+A Terrified Woman~
+A Terrified Woman is standing here with her children.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+emote wraps her arms around her children pulling them close.
+say We're all going to die! Someone help us! Save us all! Heeeeelp!
+~
+|
+#7701
+A terrified child~
+A terrified child~
+A terrified child stands her clinging to his mother.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+emote clutches to his mother, terrified, with tears streaming out of his eyes.
+say Mommy! Mommy! Help me! Make it stop mommy!
+~
+|
+#7702
+A muscular man~
+A muscular man~
+A muscular man stands here manning the door controls.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+emote looks scaredly at the ground outside the bunker as a turbolaser blasts the soil.
+say Is that everyone?
+~
+|
+#7703
+A crying child~
+A crying child~
+A crying child is here looking for his mother.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+emote walks up to you crying.
+say Have you seen my mommy? Have you seen my mommy?
+emote starts wailing and crying.
+say WAHHHHHHHHHHH!
+~
+|
+#7704
+A computer technician~
+A computer technician~
+A computer technician sits here, gazing in awe at the screen.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> rand_prog 90~
+emote looks at you, sad. "This was our home. And now it's gone"
+emote turns his head back to the screen before screaming out.
+say NOOOOOOOOOOOOOOOOOOOO!
+~
+|
+#7800
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#7655
+money man~
+a money man~
+A money man is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#7661
+Torch~
+A Torch~
+A Torch~
+~
+1 1073741824 0
+0 0 0 0
+1 0 0
+#7662
+Burn Barrel~
+a Burn Barrel~
+A Burn Barrel sits here smoldering in low light~
+~
+15 1073741824 0
+10 0 0 0
+1 0 0
+E
+Burn Barrel~
+A Burn barrel sits here smoldering. Inside the embers are glowing
+a dull red. perhaps you should get some light before you go
+on. This appears to be the last source of light for awhile on.
+~
+#7663
+Pile of Bones~
+a Pile of Bones~
+A Pile of bones lay here in a heap~
+~
+15 1073741824 0
+10 0 0 0
+1 0 0
+#7664
+Tatterd shirt~
+a Tatterd shirt~
+A Tatterd shirt is here.~
+~
+9 1073741824 9 2
+0 20 20 0
+1 0 0
+#7665
+crystal gem~
+a glimmering crystal~
+Twinkling brightly, a mephite gem lies here~
+~
+63 1610612737 0
+4 0 0 0
+1 0 0
+E
+crystal gem~
+Found amidst a trash-laden safety net, this crystal might have
+some use to it other than looking stunning.
+~
+#7700
+A charred doll~
+A charred doll.~
+A charred doll lies here.~
+~
+13 0 16384
+0 0 0 0
+1 0 0
+E
+A charred doll~
+A stuffed ewok doll that was charred during the bombardment. A child once loved this.
+~
+#7701
+A small plastic ring.~
+A small plastic ring.~
+A small plastic ring lies here.~
+~
+9 0 2
+0 -1 0 0
+1 0 0
+#7702
+A family hologram~
+A family hologram.~
+A family hologram stands here on its stand.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+E
+A family hologram~
+A picture of a man, his wife, and their two children. All of whom are now dead, or dying, in their house outside of the bunker.
+~
+#7703
+A fallen piece of Duracrete~
+A piece of duracrete.~
+A piece of duracrete from the ceiling is here.~
+~
+13 0 0
+0 0 0 0
+150 0 0
+E
+A fallen piece of Duracrete~
+A heavy piece of Duracrete that fell from the ceiling during the bombardment is here.
+~
+#7704
+A computer screen~
+A computer screen~
+A computer screen is mounted here displayed the planet's onslaught.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+E
+A computer screen~
+~
+E
+A computer screen~
+This screen shows 3 capital ships in orbit of the planet steadily hammering away with its turbolaser batteries. Emerald beams of destruction lance through the atmosphere and destroy all the touch.
+~
+#7800
+Fountain~
+a Fountain~
+A Fountain is here.~
+~
+25 1073741824 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#7651
+Outside of the crashed Starcruiser~
+You are just outside of the large crashed Starcruiser.You can
+see where the impact of the ship has cratered a trail far to
+the south of here.To the north you see the hatch that has evidently
+been blown off for some reason or the other.
+~
+0 1073741828 1 0 0 0 22984
+S
+#7660
+Coruscant Underground~
+The Streets are dark And dirty Here. The smell of sulfur wafts
+through the air. not much is to be seen through the dimlit area's
+that are clear enough to walk through.Speeders with no longer
+working repulsar devices are husked out shells with little more
+to offer then an Obstical in the way.A trash Barrel Burns to
+the north. The only sorce of light to Be seen in at least 20
+meters.
+~
+0 1073741824 1 0 0 0 22984
+D0
+~
+~
+0 -1 7661
+S
+#7661
+Along the Underground~
+It Gets no cleaner walking through here. The ground seems to
+have been disturbed here recently. A few canisters sit off to
+the side of a curb.The smell of sulfur turns to one of smoke.
+A Hazey mist is starting to fill the area from the fire pit
+just up ahead. More light is given into an otherwise desolet
+area.Scraps of metal litter the area now. A rawk-bat flys over
+head almost dangerously close. Who new they flew this low? 
+~
+0 1073741824 1 0 0 0 22984
+D0
+~
+~
+0 -1 7662
+D2
+~
+~
+0 -1 7660
+S
+#7662
+Source of Light~
+Upon Entering the area of the burn barrel it seems even more
+desolet.The smoke has cleared away. Little bits of paper lay
+next to the burn Barrel as do empty ration wrappers.No visable
+Clue's can be seen as to who or what has been here except maybe
+that Manhole cover. It does seem to be ajar abit.
+~
+0 1073742848 1 0 0 0 22984
+D2
+~
+~
+0 -1 7661
+D10
+~
+manhole~
+657408 -1 7663
+S
+#7663
+Sewers~
+The sewers Being long dry from years of not being used still
+have an odd smell about them.There is a Moisture in the air
+that could have only been inplace recently.Odd Scraping a wheezing
+sounds are heard from the southwest. Odd footprints can be seen
+in the dust as well as the draging lines of two feet. Two Human
+feet.Perhaps it may not be such a good idea to go down that
+way.
+~
+0 1073741828 1 0 0 0 22984
+D4
+~
+~
+0 -1 7662
+D9
+~
+~
+0 -1 7664
+S
+#7664
+Dank Pit~
+Here in the dank pit the wheezing sounds grow audibly louder.
+The moisture turns into a smell of almost wet dog.
+~
+0 1073741825 1 0 0 0 22984
+D6
+~
+~
+0 -1 7663
+S
+#7665
+A Roughly-Hewn Wroshyr Platform~
+One of the massive wroshyr trees populating the jungle ecosystem
+of the planet Kashyyyk has been split horizontally and used
+as a makeshift landing platform.  The thick, palpable scent of
+tree sap pushes at the senses, causing a temporary override
+to motor skills, but thankfully there are vine nets surrounding
+the edge, preventing a disasterous fall.  Wookiee technicians
+meander about, tinkering with ships and ordering those entering
+the vicinity to preset areas.
+~
+0 1073741848 3 0 0 0 22984
+D1
+~
+~
+3 -1 7667
+D5
+~
+~
+128 -1 7666
+D8
+~
+~
+0 -1 7668
+S
+#7666
+Underneath the Platform~
+Hideously tangled among the vine nets gathered underneath the
+landing zone lies an motley assortment of items.  Amidst the various
+junk there may exist something worthwhile, but it would take an
+extensive search that would be both time-consuming and precarious.
+Fluttering bits of web intertwine the nets, capturing more useless
+objects than creatures of real nutritional value.
+~
+0 1073741825 3 0 0 0 22984
+D4
+~
+~
+128 -1 7665
+S
+#7667
+Confinement Center~
+Here is where questionable individuals are escorted from the
+landing pad.  If a stranger acts in a suspicious manner, they
+are surrounded quickly by Wookiee guards and placed here for
+observation and questioning.  The Wookiee people, having learned
+from the past mistake of trusting too easily, work now to prevent
+sabotage and malignancy from invading their home.
+~
+0 1073741824 1 0 0 0 22984
+D3
+~
+~
+3 -1 7665
+S
+#7668
+Traversing the Wroshyr Branch~
+Slender, as far wroshyr branches are considered, this avenue
+stretches only fifty meters across.  The traffic is sparse, and
+the few Wookiees that do take it upon themselves to travel here
+vary in greatly size, shape and color.  Tufts of fog curl around
+the edges of the branch, making for difficult peripheral vision.
+~
+0 1073741888 3 0 0 0 22984
+D1
+~
+~
+0 -1 7669
+D7
+~
+~
+0 -1 7665
+S
+#7669
+Outskirts of Lyynark~
+As the Wookiee city looms closer, the flow of traffic increases.
+From this distance, the three levels of populated wroshyr can be
+seen clearly through occasional wisps of fog.  For a minor city
+on Kashyyyk, Lyynark seems to be thriving.  Wookiee citizens crawl
+up and down the branches between levels, using vine elevators
+for non-arboreal beings and supplies.
+~
+0 1073741892 3 0 0 0 22984
+D3
+~
+~
+0 -1 7668
+S
+#7670
+Entranceway of the Incom X-29 Space Barge $SN$~
+This ship was obviously made for the height of efficiency. Cold
+steel everywhere and quite empty. A rather heavy looking door
+leads north while to the south is the cargo bay.
+~
+0 536870920 1 0 0 0 22984
+D0
+~
+~
+1 -1 7671
+D2
+~
+~
+0 -1 7672
+S
+#7671
+Cockpit of the $SN$~
+Entering the ships cockpit you realize it wasn't really meant
+for combat. A large viewscreen surrounds the cockpit, showing
+the areas outside of the ship. The displays show nothing but
+a meager laser, some small shielding to ward off debris, and
+a tractor beam.
+~
+0 536870920 1 0 0 0 22984
+D2
+~
+~
+67108865 -1 7670
+S
+#7672
+A Large Cargo Bay~
+This is the paramount of the ships resposibilities. This cargo
+bay seems to be larger than the rest of the entire ship combined,
+probably enough room for 3-4 starfighters easily. To the north
+is the entrance. 
+~
+0 536870920 1 0 0 0 22984
+D0
+~
+~
+0 -1 7670
+S
+#7700
+Center of a Bunker~
+This is the central room of a wartime bunker. This bunker was
+obviously civilian made as it lacks the armor and shielding
+military bunkers usually posses. It still serves it prupose,
+to protect those inside.
+~
+0 1073741832 0 0 0 0 22984
+D0
+~
+~
+0 -1 7701
+D2
+~
+~
+0 -1 7702
+> rand_prog 25~
+The room quakes form the bombardment.
+&RDuracrete rains down on your from overhead&W
+~
+|
+S
+#7701
+Exit of a Bunker~
+This is the heavily reinforced entrance to the bunker. Once shut
+it will only be opened from the inside. It was built for times
+of great need and though it was built to take a lot of punishment
+it seems old and disrepaired.
+~
+0 1073741832 0 0 0 0 22984
+D2
+~
+~
+0 -1 7700
+S
+#7702
+Rear of a Bunker~
+This is the back of the bunker. In the corner of the room is
+a turbolift that goes down to the observation center where people
+may watch what is happening in orbit via a camera on the near
+moon.
+~
+0 1073741832 0 0 0 0 22984
+D0
+~
+~
+0 -1 7700
+D2
+~
+~
+0 -1 7703
+> rand_prog 25~
+recho &RBOOOM! &WA you are showered with concrete from the ceiling.
+~
+|
+S
+#7703
+Turbolift~
+A list on the wall reads:
+&RFloor 1: upper Bunker&W
+&RFloor 2: Observation Room&W
+&P(&YOOC&P)&RSay 1 or 2 to move between floors.
+&W
+~
+0 1073741828 1 0 0 0 22984
+> speech_prog 1~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Level 1. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 7702
+mpat 7702 mer $n $n gets off the turbolift.
+~
+> speech_prog 2~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Level 2. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 7704
+mpat 7704 mer $n $n gets off the turbolift.
+~
+|
+S
+#7704
+Observation Room~
+Around the room are monitors showing the onslaught that is happening
+from the moon. Three capital vessels lie in orbit brutally pounding
+the planet with their turolaser batteries.
+~
+0 1073741832 0 0 0 0 22984
+D2
+~
+Turbolift to Upper Level~
+0 -1 7703
+> rand_prog 25~
+recho The room suddenly quakes from the bombardment.
+recho &CA group of people screams out load.&W
+~
+|
+S
+#7705
+Floating in a void~
+~
+0 1073741828 1 0 0 0 22984
+S
+#7768
+Traversing the Wroshyr Branch~
+~
+0 1073741828 1 0 0 0 22984
+S
+#7800
+Hostel~
+~
+0 1082164232 1 0 0 0 22984
+D1
+~
+~
+0 -1 7870
+S
+#0
+
+
+#RESETS
+O 1 7655 1 7651
+O 1 7662 1 7662
+P 0 7661 1 0
+M 1 7664 1 7664
+O 1 7663 1 7664
+P 0 7664 1 0
+M 1 7665 4 7665
+M 1 7665 4 7665
+M 1 7665 4 7665
+M 1 7665 4 7665
+M 1 7666 1 7665
+D 0 7665 1 1
+M 1 7667 1 7666
+O 1 7665 1 7666
+M 1 7668 1 7667
+D 0 7667 3 1
+M 1 7669 1 7668
+D 0 7670 0 0
+D 0 7671 2 0
+M 1 7700 1 7700
+M 1 7701 1 7700
+O 1 7701 1 7700
+O 1 7702 1 7700
+M 0 7702 1 7701
+M 0 7704 1 7704
+O 0 7704 1 7704
+O 0 7700 1 7701
+M 0 7703 1 7702
+O 0 7703 7702 7702
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

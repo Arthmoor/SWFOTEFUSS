@@ -1,0 +1,9 @@
+#FORCE
+Name      jedi~
+Status    1
+Type      1
+Desc      The Jedi Knights are the guardians of peace in the $RN$Galaxy.  Their reputation is known from one end of it$RN$to the other.  Truth, Justice, and Loyalty are among$RN$the important parts of it.  These 3 virtues are held $RN$above all affiliations (clan or other) and the any$RN$Jedi would give his or her own life to save another.$RN$$RN$Though of late sad times have befallen the Jedi, they$RN$have been forced into hiding by the dilligant hunting$RN$of the Sith and The Empire.  What the future lies in$RN$store for them is a tale which you will help to tell.$RN$$RN$Jedi specific help files:$RN$$RN$Council              Apprentice           Knight         $RN$~
+Skill     -1
+End
+
+#END

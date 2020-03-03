@@ -1,0 +1,166 @@
+#AREA   Bilbringi~
+
+
+
+#AUTHOR Xenox~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6250000
+
+#MOBILES
+#10901
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#11000
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#10901
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#11000
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#10901
+Bilbringi Shipyard Main Landing Pad~
+The main landing pad of the great Bilbringi Shipyards. Out of
+the magcon field you can see one of the heavily fortified shipyards
+constructing an Imperial Star Destroyer.All around you technicians
+and Bilbringi authorities wander around doing one duty or another.
+~
+0 8 1 0 0 0 10064
+D1
+~
+~
+0 -1 10902
+D2
+~
+~
+0 -1 10903
+S
+#10902
+Bilbringi Bus Stop~
+This is Bilbringi's inter-planetary bus stop. This is the spot
+that the interplanetary transportation shuttles come to bring
+passengers to other planets.Through the MagCon field you can
+see one of the heavily fortified shipyards constructing an Imperial
+Star Destroyer.
+~
+0 8 1 0 0 0 10064
+D3
+~
+~
+0 -1 10901
+S
+#10903
+Main Street~
+This is the mainstreet of the Bilbringi Shipyards Asteroid. It
+is a heavily crowded street inside the confines of the Asteroid
+that runs the length from the Headquarters to the Spaceport.
+~
+0 1073741824 13 0 0 0 10064
+D0
+~
+~
+0 -1 10901
+D2
+~
+~
+0 -1 10904
+S
+#10904
+Main Street~
+~
+0 1073741824 1 0
+D0
+~
+~
+0 -1 10903
+D2
+~
+~
+0 -1 10905
+S
+#10905
+Floating in a void~
+~
+0 1073741824 1 0
+D0
+~
+~
+0 -1 10904
+S
+#11000
+Floating in a void~
+~
+0 4 1 0 0 0 10064
+S
+#0
+
+
+#RESETS
+O 1 10901 1 11000
+O 1 11000 1 11000
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

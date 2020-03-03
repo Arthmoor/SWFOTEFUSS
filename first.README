@@ -1,0 +1,25 @@
+For an easier start to get your mud going, there is a premade
+level 36 administrator named 'User'. The password is 'password'.
+
+You should immediately change your name and password. This obviously goes 
+without saying, but. Who knows.
+
+Also, best way to boot the mud is "nohup startup <port> &" in src directory.
+'nohup' is an abbreviation of 'no halt user process', which prevents 
+killing the mud's process when you logoff your user in the shell.
+
+This is stated in other files, but you should read through fote.README, 
+force.README, space.README, and all licenses in the /doc directory.
+
+Do not drink and code.
+
+For some amusing excerpts from the old FotE, see help quotes in-mud.
+
+If any of the original staff comes around to your mud one day, be sure to 
+say hey and what not. We'll likely say hey back. We will not, however, 
+demand access to your mud or anything along those lines. (Preemptive 
+strike here)
+
+For more information, type 'changes' in-mud. You can post your own changes 
+to the codebase by the 'addchange' command.
+

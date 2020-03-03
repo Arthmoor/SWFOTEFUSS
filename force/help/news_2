@@ -1,0 +1,12 @@
+#FORCE
+Name      news~
+Status    1
+Type      2
+Desc      The new code to convert a jedi to the other side of the force
+is in place.  If you are a master do a 'fhelp convert' for more
+information.
+~
+Skill     -1
+End
+
+#END

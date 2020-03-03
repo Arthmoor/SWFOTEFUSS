@@ -1,0 +1,5805 @@
+#AREA   Corellia~
+
+
+
+#AUTHOR Keberus, Trelar, and Maveric~
+
+#RANGES
+0 36 0 36
+$
+
+#RESETMSG You hear the sound of repulsorlifts powering up in the distance.~
+
+#FLAGS
+0
+
+#ECONOMY 0 6141547
+
+#MOBILES
+#10151
+Corellian Citizen~
+Corellian Citizen~
+A Corellian Citizen wonders around the dark streets.
+~
+~
+1 0 0 Z
+1 0 0 0d0+50 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+#10152
+Bounty Clerk~
+Bounty Clerk~
+A Bounty Clerk Sits here doing paperwork.
+~
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpechoat $n A Bounty Clerk looks up from her paperwork.
+say Oh, Hello $n.
+say Anything i can do for you?
+~
+> give_prog The Dark Assassin's Head~
+say You killed the Dark Assassin, Congratulations.
+say He was scarying the citizens the most.
+mpwithdraw 2500
+give 150 credits $n
+mpadvance $n 3 2000
+mpat 1 drop head
+mpat 1 purge head
+~
+> give_prog Gurder's Head~
+say Ah, you killed that sneaky thief, good riddence...
+mpwithdraw 550
+give 40 credit $n
+mpadvance $n 3 500
+mpat 1 drop head
+mpat 1 purge head
+~
+> give_prog Dreff's Head~
+say Good, that no good scumbag is finally dead.
+say Corellia has you to thank.
+mpwithdraw 950
+give 75 credit $n
+mpadvance $n 3 900
+mpat 1 drop head
+mpat 1 purge head
+~
+|
+#10153
+Figure Dark Robes Assassin~
+The Dark Assassin~
+A Figure clad in long black robes stands here eyeing you.
+~
+~
+3 4292608 0 Z
+31 0 -300 20d20+3500 20d20+2
+0 0
+8 8 0
+25 25 25 25 25 25 10
+0 0 0 0 0
+36 0 0 0 1 1 5
+6 6 0 32 0 0 32 3
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 10155
+~
+> fight_prog 30~
+circle $n
+~
+|
+#10154
+Shadowy Dreff~
+Dreff~
+A Shadowy Figure wonders around here.
+~
+~
+1 4227072 0 Z
+1 0 0 10d30+1000 10d15+0
+0 0
+8 8 0
+20 20 10 20 20 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+30 0 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 10153
+~
+|
+#10155
+Gurder~
+Gurder~
+A short man in robes hides in the crowd.
+~
+~
+129 0 0 Z
+1 0 -300 10d25+1000 10d10+0
+0 0
+8 8 0
+25 25 25 25 25 25 25
+0 0 0 0 0
+2 0 0 0 1 1 2
+0 0 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+#10156
+Store Clerk~
+A Store Clerk~
+A Store Clerk stands here behind the counter.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10157
+Bartender~
+Bartender~
+A Corellian Bartender stands at the bar serving drinks.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+20 10 10 20 20 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10158
+Diner Waitress~
+Diner Waitress~
+A young woman stands here taking your order.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10159
+BlasTech Dealer~
+BlasTech Dealer~
+A scrawny salesmen stands behind the counter.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10160
+Punk Rocker Kid~
+A Punk Rocker~
+A kid with a long spiked mohawk stands here wearing leathers.
+~
+~
+5 0 0 Z
+1 0 -300 9d10+500 9d11+2
+0 0
+8 8 1
+25 25 25 25 25 1 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> rand_prog 40~
+look $n
+say The fuck are you looking at?
+growl $n
+~
+|
+#10161
+R-3PO~
+R-3PO~
+A R-3PO Protocal droid stands here following his master.
+~
+~
+257 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+35 0 0 0 1 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> speech_prog ration~
+mpoload 133
+give ration $n
+~
+> speech_prog drink~
+mpoload 134
+give canteen $n
+~
+> speech_prog food~
+mpoload 133
+give ration $n
+~
+> speech_prog canteen~
+mpoload 134
+give canteen $n
+~
+|
+#10162
+Fritz Chadra-Fan~
+Fritz~
+A short chandra-fan is here working on a R-3PO Protocol droid.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+14 0 0 0 8388608 8388608 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10163
+Tall Biker~
+A Tall Biker~
+A large man stands here in black leathers eyeing everyone.
+~
+~
+3 0 0 Z
+1 0 0 10d25+1000 10d20+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 5
+0 0 0 0 0 0 48 3
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpechoat $n A Tall Biker glares at you.
+say The Shining Fists are watching you.
+growl $n
+~
+|
+#10164
+Grunge Punk~
+A Grunge Punk~
+A smelly kid wearing chains and torn clothes stands here.
+~
+~
+1 0 0 Z
+1 0 0 9d11+200 9d10+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 16 2
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpechoat $n A Grunge Punk starts to eye you dangerouslly.
+laugh $n
+say The hell are you doing here?
+~
+|
+#10165
+Punk Rock Chick Girl~
+A Punk Rock Chick~
+A girl in black leathers and high cut combat boots stands here.
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpechoat $n The Punk Rock Chick turns around to see you.
+laugh $n
+spit $n
+say Get the heck out of here.
+~
+|
+#10166
+Satz Biker Man~
+Satz~
+An old biker looking man stands here playing "Im Not Pretty"
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10167
+Corsec Agent~
+A Corsec Agent~
+A Corsec Agent is here patrolling the streets.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10168
+Battle Droid Antique~
+Battle Droid~
+An Antique battle droid stands here guarding its master.
+~
+~
+257 0 0 Z
+30 0 -150 10d15+550 10d15+20
+0 0
+8 8 0
+25 25 25 25 25 25 20
+0 0 0 0 0
+37 0 0 0 1 0 3
+6 6 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+#10169
+Hars Quarren~
+Hars~
+A Tall Quarren stands here fixing up an antique battle droid
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+15 0 0 0 33 32 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10170
+Modified R3-D2~
+A Modified R3-D2~
+A Modified R3-D2 droid follows his new owner.
+~
+~
+1073742081 0 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+38 0 0 0 2048 2048 2
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10171
+Kentarr~
+Kentarr~
+Kentarr is stand here waiting for you to buy something.
+~
+~
+1 0 0 Z
+31 0 22 6d10+310 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10172
+A technician~
+a technician~
+A technician is readying ships for launch.
+~
+He is a young human technician, aged around 25 or 28. He is wearing a grey
+worksuit that is smudged with grease. Several tools hang from a belt
+around his waist. His face is blacked with tar and other dirty things
+involving the machinery of the ships he maintains.
+~
+16778241 0 0 Z
+9 0 80 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10173
+The Diktat's Receptionist~
+The Diktat's Receptionist~
+The Diktat's Receptionist is sitting behind her desk here.
+~
+~
+75 4194304 0 Z
+9 0 77 1d10+90 0d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+1 1 2047 0 0 0 48 2
+0 0 0 0 0 0 0 0
+> speech_prog p Diktat~
+say The Diktat is probably busy. I'll check to see if he has time to see you.
+mepcho The Receptionist activates her desk comlink. She speaks quietly for a moment.
+mpecho The Receptionist turns to look at you.
+say You can go ahead and go in, he is available.
+mpecho The Receptionist buzzes the door and ushers you through it.
+mptransfer $n 10384
+~
+> all_greet_prog 100~
+say Welcome to the Diktat's Palace. What can I do for you?
+~
+|
+#10174
+The Diktat~
+The Diktat~
+The Diktat sits here behind his desk looking over some papers.
+~
+~
+1073741891 0 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+3 3 0 0 0 0 112 2
+128 0 0 0 0 0 0 0
+#10175
+A female beach~
+A beautiful female~
+A female is here bathing in the sun.
+~
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 70 ~
+say Hey! You wanna come and join me.
+, pats the sand right next to her.
+~
+|
+#10176
+A sunbathing man~
+A handsome man~
+A man is here bathing in the sun.
+~
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10177
+A Palace Guard~
+A Palace Guard~
+A Palace Guard stands watch here.
+~
+~
+75 0 0 Z
+20 0 -200 4d10+200 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 4
+4 4 0 0 0 0 48 2
+0 0 0 0 0 0 0 0
+#10178
+Corsec Receptionist~
+Corsec Receptionist~
+A receptionist sits here waiting to help people.
+~
+~
+67 0 0 Z
+15 0 -100 3d10+150 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+3 3 0 0 0 0 112 2
+0 0 0 0 0 0 0 0
+> all_greet_prog 100 ~
+say Hello, Welcome to Corellian Security Headquarters. How can I help you today?
+~
+|
+#10179
+Corsec Commander~
+A Corsec Commander~
+A Corsec Commander is sitting here looking over papers.
+~
+~
+75 4194304 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 6
+6 6 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+> speech_prog p key~
+if clan($n) == The Empire
+say Oh...You need the key to the jail cells?
+mpoload 10158
+mpecho The commander rummages in his desk for the key.
+give key $n
+smile
+else say What are you doing in here.
+mpecho The Commander lunges at you!
+mpkill $n
+endif
+~
+> all_greet_prog 100~
+if clan($n) == The Empire
+mpecho The Corsec Commander looks up from his paperwork.
+salute $n
+say Hello $n, What can I do for you?
+mpecho You hesitate and the commander starts going over his paperwork again.
+else
+say Get out of here right this instant!
+mpecho The Commander lunges at you!
+mpkill $n
+endif
+~
+|
+#10180
+Second Floor Receptionist~
+A receptionist~
+A receptionist is here helping people.
+~
+~
+67 4194304 0 Z
+15 0 -100 3d10+150 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+3 3 0 0 0 0 112 2
+0 0 0 0 0 0 0 0
+> speech_prog p Commander~
+say Ah you want to see the big dawg eh? 
+mpecho The receptionist ushers you into the Commander's Office. 
+mptransfer $n 10399
+~
+> speech_prog p Armor~
+say Ah you need a repair eh?
+mpecho The receptionist ushers you into the Armor Repair Shop.
+mptransfer $n 10404
+~
+> act_prog p arrives~
+say Welcome to the Second Floor of the Corellian Secuirty Headquarters.
+say There are three main branches of this floor. The Commander's Office, the Armor Repair Shop and the Agent Sleeping Quarters.
+say Please state the appropriate area for you.
+~
+> speech_prog p Sleeping~
+say Need a rest huh? Don't we all!
+mpecho A receptionist escorts you to the Sleeping Quarters.
+mptransfer $n 10405
+~
+|
+#10181
+An old droid~
+An old broken down droid~
+An old broken down droid is here repairing armor.
+~
+~
+1 0 0 Z
+9 0 -100 1d10+90 0d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 1
+1 1 0 0 0 0 48 2
+0 0 0 0 0 0 0 0
+#10182
+A shop droid~
+A shop droid~
+A shop droid stands here awaiting someone's order.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10500
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#10151
+A list of posted bounties~
+a Posted Bountys~
+A list of Posted Bountys is mounted here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+E
+Posted Bountys~
+~
+E
+Posted Bountys~
+Dark Assassin - 2500
+Stelik -------- 950
+Dreff --------- 350
+~
+#10152
+Diktat's Throne~
+Diktat's Throne~
+Diktat's Throne is here in the middle of the room.~
+~
+8 0 0
+0 0 0 0
+1 0 0
+#10153
+Dreff's Head~
+Dreff's Head~
+Dreff's Head lays in the street.~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#10154
+Gurder's Head~
+Gurder's Head~
+Gurder's Head lays in the street.~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#10155
+The Dark Assassin's Head~
+The Dark Assassin's Head~
+The Dark Assassin's Head lays in the street.~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#10157
+Stage~
+A Stage~
+A torn carpet covered wooden stage sits here.~
+~
+12 0 0
+0 0 0 0
+1 0 0
+#10158
+&W A Skeleton Key~
+&W A Skeleton Key~
+A Skeleton Key has been carelessly misplaced here.~
+~
+18 0 16385
+0 0 0 0
+2 75 7
+#10159
+A glass of corellian ale~
+a glass of corellian ale~
+A glass of corellian ale is here.~
+~
+17 0 16385
+2 2 3 0
+1 5 0
+#10160
+A drinking fountain~
+&B A drinking fountain is mounted to the wall here.&w~
+&B A drinking fountain is mounted to the wall here.&w~
+~
+25 0 0
+0 0 0 0
+1 0 0
+#10161
+A Dead Man~
+A Dead Man~
+&rThe corpse of a thief lies here.&w~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#10187
+corellian ore buster~
+a corellian ore buster~
+A large crate of Corellian ore busters is lying here.~
+~
+19 1073741824 1
+0 0 0 0
+1 0 0
+#10318
+bounty list~
+a bounty list~
+The Bounty List has been posted here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+E
+bounty list~
+Dark Assassin: 2500 Credits
+Gurder: 550 Credits
+Dreff: 950 Credits
+~
+#10500
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#10151
+Floating in a void~
+~
+0 4 1 4 0 0 26904
+S
+#10152
+Cora Spaceport~
+Standing in the spaceport of Corellia you see chairs lined against
+the walls. There are beings from every race here waiting for
+a ride or for thier ships to be fixed. You notice a that a drinking
+fountain has been placed here. You can hear the sounds of the
+ships coming and going from the landing areas.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10154
+D3
+~
+~
+0 -1 10153
+S
+#10153
+Cora Spaceport~
+Standing in the spaceport of Corellia you see chairs lined against
+the walls. There are beings from every race here waiting for
+a ride or for thier ships to be fixed. You notice a that a drinking
+fountain has been placed to the east of here here. You can hear
+the sounds of the ships coming and going from the landing areas.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10316
+D1
+~
+~
+0 -1 10152
+D2
+~
+~
+0 -1 10315
+D3
+~
+~
+0 -1 10155
+S
+#10154
+Corsec Landing Pad~
+You are standing on the Primary Landing pad for the planet of
+Corellia. The area here is very clean because the entire landing
+pad is made out of a metal alloy which makes it strong enough
+to hold up against all the constant landings and takeoffs of
+ships throughout the day. You see many ships coming and going
+just as you stand here for a momment.
+~
+0 52 1 0 0 0 26904
+D2
+~
+~
+0 -1 10152
+S
+#10155
+Corner of Diktat Blvd. and Helm Street~
+You stand at the corner of Diktat Boulevard and Helm Street.
+You realize just how crowded this planet is as you see all of
+the beings who surround you. You can still hear the ships from
+the spaceport coming in and going. 
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10153
+D2
+~
+~
+0 -1 10156
+D3
+~
+~
+0 -1 10284
+S
+#10156
+Diktat Blvd.~
+You are walking down Diktat Boulevard. You see that it is in
+good shape like most of the planet. You also notice the many
+apartments along this street. You look down the street and all
+you can see is apartments and shops for rent or sold. 
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10155
+D1
+~
+~
+0 -1 10331
+D2
+~
+~
+0 -1 10157
+D3
+~
+~
+0 -1 10332
+S
+#10157
+Diktat Blvd.~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. You see that the streets are filled
+with people going in and out of shops so you know you have wandered
+into the main part of the city.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10156
+D1
+~
+~
+0 -1 10335
+D2
+~
+~
+0 -1 10158
+D3
+~
+~
+0 -1 10334
+S
+#10158
+Diktat Blvd.~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. You see that the streets are filled
+with people going in and out of shops so you know you have wandered
+into the main part of the city.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10157
+D1
+~
+~
+0 -1 10337
+D2
+~
+~
+0 -1 10159
+D3
+~
+~
+0 -1 10336
+S
+#10159
+Intersection of Diktat Blvd. and Cora Street~
+As you are standing at this intersection you see many different
+peoples and different places. You see one way many apartments,
+and another many shops. You see the lack of color on Cora Street.
+Cora Street seems to be the more dangerous way to go, but some
+people like danger and trouble.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10158
+D1
+~
+~
+0 -1 10160
+D2
+~
+~
+0 -1 10171
+D3
+~
+~
+0 -1 10272
+S
+#10160
+Cora Street~
+You are walking on Cora Street and realize that you are not alone.There
+are eyes staring at you from the shadows. You start hearing
+mumblings of people. It would be wise to get off of this street
+quickly.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10161
+D3
+~
+~
+0 -1 10159
+S
+#10161
+Cora Street~
+You are walking down Cora Street and see no familiar faces. You
+see many citizens crowding the area and getting in your way.This
+area is dimly lit and may be a bad area to be at night which
+makes you feel a bit uneasy.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10162
+D3
+~
+~
+0 -1 10160
+S
+#10162
+Cora Street~
+You are walking down Cora Street and see no familiar faces. You
+see many citizens crowding the area and getting in your way.This
+area is dimly lit and may be a bad area to be at night which
+makes you feel a bit uneasy.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10163
+D3
+~
+~
+0 -1 10161
+S
+#10163
+Corner of Hilt Avenue and Cora Street~
+You stand at the corner of Hilt Avenue and Cora Street. This
+area is well lit with huge street lamps that are on at all times.The
+street here is made of a concrete like substance which keeps
+it very clean. To the north you see the turbolift which leads
+to the lower levels of Corellia.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10186
+D1
+~
+~
+0 -1 10297
+D2
+~
+~
+0 -1 10164
+D3
+~
+~
+0 -1 10162
+S
+#10164
+Hilt Avenue~
+You walk down Hilt Avenue and see all of the small farms in this
+area. You see many subsistence farmers and thier very small
+farms. You see large hills in the far-off distance. The farms
+are all well contained to avoid outside access to thier crops
+and animals which live there.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10163
+D2
+~
+~
+0 -1 10165
+S
+#10165
+Hilt Avenue~
+You walk down Hilt Avenue and see all of the small farms in this
+area. You see many subsistence farmers and thier very small
+farms. You see large hills in the far-off distance. The farms
+are all well contained to avoid outside access to thier crops
+and animals which live there.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10164
+D2
+~
+~
+0 -1 10166
+S
+#10166
+Hilt Avenue~
+You walk down Hilt Avenue and see all of the small farms in this
+area. You see many subsistence farmers and thier very small
+farms. You see large hills in the far-off distance. The farms
+are all well contained to avoid outside access to thier crops
+and animals which live there.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10165
+D2
+~
+~
+0 -1 10167
+S
+#10167
+Intersection of Hilt Avenue and Vine Street~
+Standing at the intersection of Hilt and Vine you see green everywhere.
+The plants from these areas are those which use the process
+of photosynthesis to release oxygen as a biproduct. The oxygen
+is then used by those species who need it to survive.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10166
+D1
+~
+~
+0 -1 10307
+D2
+~
+~
+0 -1 10185
+D3
+~
+~
+0 -1 10168
+S
+#10168
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10167
+D3
+~
+~
+0 -1 10169
+S
+#10169
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10168
+D3
+~
+~
+0 -1 10170
+S
+#10170
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10169
+D3
+~
+~
+0 -1 10174
+S
+#10171
+Diktat Blvd.~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. You see that the streets are filled
+with people going in and out of shops so you know you have wandered
+into the main part of the city.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10159
+D1
+~
+~
+0 -1 10372
+D2
+~
+~
+0 -1 10172
+D3
+~
+~
+0 -1 10371
+S
+#10172
+Diktat Blvd.~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. You see that the streets are filled
+with people going in and out of shops so you know you have wandered
+into the main part of the city.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10171
+D1
+~
+~
+0 -1 10373
+D2
+~
+~
+0 -1 10173
+D3
+~
+~
+0 -1 10374
+S
+#10173
+Diktat Blvd.~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. You see that the streets are filled
+with people going in and out of shops so you know you have wandered
+into the main part of the city.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10172
+D1
+~
+~
+0 -1 10376
+D2
+~
+~
+0 -1 10174
+D3
+~
+~
+0 -1 10375
+S
+#10174
+Intersection of Diktat Blvd. and Vine Street~
+You are standing at the intersection of Diktat Blvd. and Vine
+Street, here you can see the many plants that Vine Street has
+to offer the planet. You also can see the many apartments which
+are located on Diktat Blvd. For those species who need oxygen
+to live, an apartment around this area would be prime.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10173
+D1
+~
+~
+0 -1 10170
+D2
+~
+~
+0 -1 10175
+D3
+~
+~
+0 -1 10280
+S
+#10175
+Diktat Blvd.~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. The streets aren't as filled as
+they were before so you know that you are leaving the main part
+of the city and coming in to the less populated areas of the
+city.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10174
+D2
+~
+~
+0 -1 10176
+S
+#10176
+Diktat Blvd.~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. The streets aren't as filled as
+they were before so you know that you are leaving the main part
+of the city and coming in to the less populated areas of the
+city.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10175
+D2
+~
+~
+0 -1 10177
+S
+#10177
+Diktat Blvd.~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. The streets aren't as filled as
+they were before so you know that you are leaving the main part
+of the city and coming in to the less populated areas of the
+city.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10176
+D2
+~
+~
+0 -1 10178
+S
+#10178
+Intersection of Diktat Blvd. and Smugglers Bend~
+You are walking down Diktat Boulevard and all you see is citizens,
+apartments, and shops. Its not a bad thing but it just seems
+like there is no end to them. The streets aren't as filled as
+they were before so you know that you are leaving the main part
+of the city and coming in to the less populated areas of the
+city. You see palace steps to the South of you.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10177
+D2
+~
+~
+0 -1 10385
+D3
+~
+~
+0 -1 10296
+S
+#10179
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10180
+S
+#10180
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10181
+D3
+~
+~
+0 -1 10179
+S
+#10181
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10182
+D3
+~
+~
+0 -1 10180
+S
+#10182
+Intersection of Hilt Avenue and Smugglers Bend~
+You stand at the intersection of Hilt Avenue and Smugglers Bend.
+Here you can choose to go toward the green, small farmlands
+which lie on Hilt, or you can choose to take the backways of
+Smugglers Bend which can reach many places.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10183
+D1
+~
+~
+0 -1 10314
+D3
+~
+~
+0 -1 10181
+S
+#10183
+Hilt Avenue~
+You walk down Hilt Avenue and see all of the small farms in this
+area. You see many subsistence farmers and thier very small
+farms. You see large hills in the far-off distance. The farms
+are all well contained to avoid outside access to thier crops
+and animals which live there.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10184
+D2
+~
+~
+0 -1 10182
+S
+#10184
+Hilt Avenue~
+You walk down Hilt Avenue and see all of the small farms in this
+area. You see many subsistence farmers and thier very small
+farms. You see large hills in the far-off distance. The farms
+are all well contained to avoid outside access to thier crops
+and animals which live there.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10185
+D2
+~
+~
+0 -1 10183
+S
+#10185
+Hilt Avenue~
+You walk down Hilt Avenue and see all of the small farms in this
+area. You see many subsistence farmers and thier very small
+farms. You see large hills in the far-off distance. The farms
+are all well contained to avoid outside access to thier crops
+and animals which live there.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10167
+D2
+~
+~
+0 -1 10184
+S
+#10186
+A Small Turbolift~
+You stand in the sole turbolift on the planet. This turbolift
+travels between all three levels of Corellia. There isn't much
+room in here, maybe three or four people could fit at most.
+You see a small list of levels mounted on the wall.
+~
+0 12 1 0 0 0 26904
+E
+list?~
+~
+E
+list~
+---------------------
+Levels List
+-----------------------
+L1 - Ground Level
+B1 - Sublevel 1
+B2 - Sublevel 2
+~
+> speech_prog p L1~
+mpecho The turbolift doors slide close.
+mpecho The turbolift groans as it goes to the Ground Level.
+mpecho The turbolift screeches to a halt.
+mpecho The turbolift doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 10163
+~
+> speech_prog p B1~
+mpecho The turbolift doors slide close.
+mpecho The turbolift groans as it goes to Sublevel 1.
+mpecho The turbolift screeches to a halt.
+mpecho The turbolift doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 10250
+~
+> speech_prog p B2~
+mpecho The turbolift doors slide close.
+mpecho The turbolift groans as it goes to Sublevel 2.
+mpecho The turbolift screeches to a halt.
+mpecho The turbolift doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 10218
+~
+|
+S
+#10187
+&g Kentarr's Food Goods&w&W~
+You stand in a food supply store. The clerk seems friendly and
+ready to serve you. You see shelves and freezers of food all
+around you. The place seems well-maintained, but yet it has
+a strange ora about the whole place.
+~
+0 4 1 0 0 0 26904
+D3
+~
+~
+0 -1 10253
+> speech_prog 1~
+mpechoat $n The turbolift rises suddenly and the doors open.
+mptrans $n 10186
+mpat $n mpforce $n look
+~
+> speech_prog -2~
+mpechoat $n The turbolift drops and the doors open.
+mptrans $n 10226
+mpat $n mpforce $n look
+~
+|
+S
+#10188
+Corner of Scavanger Avenue and Freighter Street~
+You stand at the corner of Scavenger Avenue and Freighter Street
+here you can see many of the things going on on each of the
+two streets. You see many people walking around these areas.You
+see a few corsec agents wielding thier weapons that seem to
+be on the lookout for someone.
+~
+0 8 1 0 0 0 26904
+D2
+~
+~
+0 -1 10189
+D3
+~
+~
+0 -1 10203
+S
+#10189
+Scavanger Avenue~
+As you walk on Scavenger Row you see all of the people passing
+you up and going from shop to shop. There are a few other people
+who are just standing around and possibly looking for trouble.This
+street has a few shops and some apartments on it but not much
+else.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10188
+D2
+~
+~
+0 -1 10190
+S
+#10190
+Scavenger Avenue~
+As you walk on Scavenger Row you see all of the people passing
+you up and going from shop to shop. There are a few other people
+who are just standing around and possibly looking for trouble.This
+street has a few shops and some apartments on it but not much
+else.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10189
+D2
+~
+~
+0 -1 10191
+D8
+~
+~
+0 -1 10397
+S
+#10191
+Scavanger Avenue~
+As you walk on Scavenger Row you see all of the people passing
+you up and going from shop to shop. There are a few other people
+who are just standing around and possibly looking for trouble.This
+street has a few shops and some apartments on it but not much
+else.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10190
+D2
+~
+~
+0 -1 10192
+S
+#10192
+Corner of Scavanger Avenue and Meteor Way~
+You stand on the corner of Scavenger Avenue and Meteor Way. There
+are many people who seem to be treading the streets here. You
+see a few corsec agents going in and out of shops, they seem
+to be looking for someone.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10191
+D3
+~
+~
+0 -1 10193
+S
+#10193
+Meteor Way~
+You walk down Meteor Way and realize how it got its name. This
+area is a mess and it looks like it got hit by a meteor. You
+walk down the road and see how different it is from the rest
+of the streets.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10192
+D3
+~
+~
+0 -1 10194
+S
+#10194
+Meteor Way~
+You walk down Meteor Way and realize how it got its name. This
+area is a mess and it looks like it got hit by a meteor. You
+walk down the road and see how different it is from the rest
+of the streets.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10193
+D3
+~
+~
+0 -1 10195
+S
+#10195
+Meteor Way~
+You walk down Meteor Way and realize how it got its name. This
+area is a mess and it looks like it got hit by a meteor. You
+walk down the road and see how different it is from the rest
+of the streets.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10194
+D3
+~
+~
+0 -1 10196
+S
+#10196
+Corner of Treasure Ship Row and Meteor Way~
+You stand at the corner of one of the main streets and one of
+the messiest streets in all of the underground sectors of Corellia.
+You can see a blaster shop on Meteor way from here, and you
+can see nice friendly buildings and shops on Treasure Ship Row.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10197
+D1
+~
+~
+0 -1 10195
+D3
+~
+~
+0 -1 10204
+S
+#10197
+Treasure Ship Row~
+You walk down Treasure Ship Row, this is the main street of the
+second basement level on Corellia. As you walk down this street
+you see that the most widely used shops have been placed on
+this street. There are a few other shops on the lesser known
+streets of this sector.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10198
+D2
+~
+~
+0 -1 10196
+S
+#10198
+Treasure Ship Row~
+You walk down Treasure Ship Row, this is the main street of the
+second basement level on Corellia. As you walk down this street
+you see that the most widely used shops have been placed on
+this street. There are a few other shops on the lesser known
+streets of this sector.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10199
+D2
+~
+~
+0 -1 10197
+S
+#10199
+Treasure Ship Row~
+You walk down Treasure Ship Row, this is the main street of the
+second basement level on Corellia. As you walk down this street
+you see that the most widely used shops have been placed on
+this street. There are a few other shops on the lesser known
+streets of this sector.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10200
+D2
+~
+~
+0 -1 10198
+S
+#10200
+Intersection of Treasure Ship Row and Freighter Street~
+You walk along and have come to an intersection in the residential
+area of this sector. There are many apartments for rent on Freighter
+Street and shops located close by on Treasure Ship Row.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10215
+D1
+~
+~
+0 -1 10201
+D2
+~
+~
+0 -1 10199
+D3
+~
+~
+0 -1 10214
+S
+#10201
+Freighter Street~
+Walking down Freighter Street you see that you have now come
+into the residental area of this sector, or as others like to
+call, "The Burbs." There are homes all along this street that
+are either owned or up for rent.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10202
+D2
+~
+~
+3 -1 10344
+D3
+~
+~
+0 -1 10200
+S
+#10202
+Freighter Street~
+Walking down Freighter Street you see that you have now come
+into the residental area of this sector, or as others like to
+call, "The Burbs." There are homes all along this street that
+are either owned or up for rent.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10342
+D1
+~
+~
+0 -1 10203
+D2
+~
+~
+0 -1 10343
+D3
+~
+~
+0 -1 10201
+S
+#10203
+Freighter Street~
+Walking down Freighter Street you see that you have now come
+into the residental area of this sector, or as others like to
+call, "The Burbs." There are homes all along this street that
+are either owned or up for rent.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10340
+D1
+~
+~
+0 -1 10188
+D2
+~
+~
+0 -1 10341
+D3
+~
+~
+0 -1 10202
+S
+#10204
+Meteor Way~
+You walk down Meteor Way and realize how it got its name. This
+area is a mess and it looks like it got hit by a meteor. You
+walk down the road and see how different it is from the rest
+of the streets.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10330
+D1
+~
+~
+0 -1 10196
+D3
+~
+~
+0 -1 10205
+S
+#10205
+Meteor Way~
+You walk down Meteor Way and realize how it got its name. This
+area is a mess and it looks like it got hit by a meteor. You
+walk down the road and see how different it is from the rest
+of the streets.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10204
+D3
+~
+~
+0 -1 10206
+S
+#10206
+Meteor Way~
+You walk down Meteor Way and realize how it got its name. This
+area is a mess and it looks like it got hit by a meteor. You
+walk down the road and see how different it is from the rest
+of the streets.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10205
+D3
+~
+~
+0 -1 10207
+S
+#10207
+Corner of Gunship Avenue and Meteor Way~
+You have come to the 'bad' part of town. It is recommended that
+you leave here if you do not want any trouble. If you like trouble
+stick around because the local 'hoods' here also like trouble.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10208
+D1
+~
+~
+0 -1 10206
+S
+#10208
+Gunship Avenue~
+Walking down Gunship Avenue you realize that this is not a regularly
+used street. It is more of a street that a local "hood" would
+travel on more than any of the citizens. Those some are brave
+and attempt it, this street is well known for its crime and
+violence.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10209
+D2
+~
+~
+0 -1 10207
+S
+#10209
+Gunship Avenue~
+Walking down Gunship Avenue you realize that this is not a regularly
+used street. It is more of a street that a local "hood" would
+travel on more than any of the citizens. Those some are brave
+and attempt it, this street is well known for its crime and
+violence.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10210
+D2
+~
+~
+0 -1 10208
+S
+#10210
+Gunship Avenue~
+Walking down Gunship Avenue you realize that this is not a regularly
+used street. It is more of a street that a local "hood" would
+travel on more than any of the citizens. Those some are brave
+and attempt it, this street is well known for its crime and
+violence.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10211
+D2
+~
+~
+0 -1 10209
+S
+#10211
+Corner of Gunship Avenue and Freighter Street~
+You have come to the 'hood' part of the residential area. It
+is recommended that you leave here if you do not want any trouble.
+If you like trouble stick around because the local 'hoods' here
+also like trouble. Most people would hurry along.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10219
+D1
+~
+~
+0 -1 10212
+D2
+~
+~
+0 -1 10210
+S
+#10212
+Freighter Street~
+Walking down Freighter Street you see that you have now come
+into the residental area of this sector, or as others like to
+call, "The Burbs." There are homes all along this street that
+are either owned or up for rent.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10213
+D3
+~
+~
+0 -1 10211
+S
+#10213
+Freighter Street~
+Walking down Freighter Street you see that you have now come
+into the residental area of this sector, or as others like to
+call, "The Burbs." There are homes all along this street that
+are either owned or up for rent.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10214
+D3
+~
+~
+0 -1 10212
+S
+#10214
+Freighter Street~
+Walking down Freighter Street you see that you have now come
+into the residental area of this sector, or as others like to
+call, "The Burbs." There are homes all along this street that
+are either owned or up for rent.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10200
+D3
+~
+~
+0 -1 10213
+S
+#10215
+Treasure Ship Row~
+You walk down Treasure Ship Row, this is the main street of the
+second basement level on Corellia. As you walk down this street
+you see that the most widely used shops have been placed on
+this street. There are a few other shops on the lesser known
+streets of this sector.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10216
+D2
+~
+~
+0 -1 10200
+S
+#10216
+Treasure Ship Row~
+You walk down Treasure Ship Row, this is the main street of the
+second basement level on Corellia. As you walk down this street
+you see that the most widely used shops have been placed on
+this street. There are a few other shops on the lesser known
+streets of this sector.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10217
+D1
+~
+~
+0 -1 10338
+D2
+~
+~
+0 -1 10215
+S
+#10217
+Treasure Ship Row~
+You walk down Treasure Ship Row, this is the main street of the
+second basement level on Corellia. As you walk down this street
+you see that the most widely used shops have been placed on
+this street. There are a few other shops on the lesser known
+streets of this sector.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10218
+D2
+~
+~
+0 -1 10216
+S
+#10218
+Corner of Treasure Ship Row and Clay Street~
+As you stand on the corner of Treasure Ship Row and Clay Street,
+you know for sure that this is the busiest spot in town. There
+are literally tons of people coming and going constantly because
+there is only one turbolift that leads to this sector which
+just happens to be to the north from here.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10186
+D2
+~
+~
+0 -1 10217
+D3
+~
+~
+0 -1 10225
+S
+#10219
+Gunship Avenue~
+Walking down Gunship Avenue you realize that this is not a regularly
+used street. It is more of a street that a local "hood" would
+travel on more than any of the citizens. Those some are brave
+and attempt it, this street is well known for its crime and
+violence.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10220
+D2
+~
+~
+0 -1 10211
+S
+#10220
+Gunship Avenue~
+Walking down Gunship Avenue you realize that this is not a regularly
+used street. It is more of a street that a local "hood" would
+travel on more than any of the citizens. Those some are brave
+and attempt it, this street is well known for its crime and
+violence.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10221
+D2
+~
+~
+0 -1 10219
+D8
+~
+~
+0 -1 10380
+S
+#10221
+Gunship Avenue~
+Walking down Gunship Avenue you realize that this is not a regularly
+used street. It is more of a street that a local "hood" would
+travel on more than any of the citizens. Those some are brave
+and attempt it, this street is well known for its crime and
+violence.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10222
+D2
+~
+~
+0 -1 10220
+S
+#10222
+Corner of Gunship Avenue and Clay Street~
+There are very, very bright lights here which are used to help
+illuminate the adjacent streets. The lights are also used to
+fend off crime, the people here belive crime won't happen if
+you are always seen.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10223
+D2
+~
+~
+0 -1 10221
+S
+#10223
+Clay Street~
+As you walk down Clay Street you notice how the light seems to
+fade towards the east. There are street lamps posted here but
+about only fifty feet or so. This area is very dim but good
+enough to still see in.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10224
+D3
+~
+~
+0 -1 10222
+S
+#10224
+Clay Street~
+As you walk down Clay Street you notice how the light seems to
+fade towards the east. There are street lamps posted here but
+about only fifty feet or so. This area is very dim but good
+enough to still see in.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10225
+D3
+~
+~
+0 -1 10223
+S
+#10225
+Clay Street~
+As you walk down Clay Street you notice how the light seems to
+fade towards the east. There are street lamps posted here but
+about only fifty feet or so. This area is very dim but good
+enough to still see in.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10218
+D3
+~
+~
+0 -1 10224
+S
+#10226
+&B Corsec Jail&w&W~
+You stand at the entrance to the Corsec Jail. The building here
+is well maintained as it is run by the Corellian Security Agency
+instead of the controlling government of this planet. This jail
+was one of the most used during the Reign of Emperor Palpatin
+e.
+~
+0 12 1 0 0 0 26904
+D1
+~
+~
+0 -1 10230
+D3
+~
+~
+1057 10158 10390
+> speech_prog 1~
+mpechoat $n The turbolift rises and the door opens.
+mptrans $n 10186
+mpat $n mpforce $n look
+~
+> speech_prog -1~
+mpechoat $n The turbolift rises and the doors open.
+mptrans $n 10187
+mpat $n mpforce $n look
+~
+|
+S
+#10227
+Spice Street~
+You walk down a grungy road. This road is dirty, but not filty.
+You see garbage scattered about, there are a few people around
+here loitering in groups with each other, beyond that there
+isn't much else to see here.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10233
+D3
+~
+~
+0 -1 10228
+S
+#10228
+Corner of Crate Avenue and Spice Street~
+You stand at the corner of Crate Avenue and Spice Street. Though Spice Street is known for its uncleanliness this corner is very well cleaned. It is probably due to the fact that the Corellian Security Headquarters is located here.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10229
+D1
+~
+~
+0 -1 10227
+D3
+~
+~
+0 -1 10398
+S
+#10229
+Crate Avenue~
+You walk down Crate Avenue with splendor. This seems to be a
+newly added road that is paved with metal all the way down and
+up. You realize that it is easier to maintain metal and keep
+it clean than any other substance. There is nobody around here
+though.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10230
+D2
+~
+~
+0 -1 10228
+S
+#10230
+Crate Avenue~
+You walk down Crate Avenue with splendor. This seems to be a
+newly added road that is paved with metal all the way down and
+up. You realize that it is easier to maintain metal and keep
+it clean than any other substance. There is nobody around here
+though.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10231
+D2
+~
+~
+0 -1 10229
+D3
+~
+~
+0 -1 10226
+S
+#10231
+Crate Avenue~
+You walk down Crate Avenue with splendor. This seems to be a
+newly added road that is paved with metal all the way down and
+up. You realize that it is easier to maintain metal and keep
+it clean than any other substance. There is nobody around here
+though.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10232
+D2
+~
+~
+0 -1 10230
+S
+#10232
+Corner of Crate Avenue and Grey Street~
+You stand on what has to be the emptiess street corner you have ever seen at your life. A glance either way reveals no one with seeing distance. This loneliness has sort of a scary feeling. 
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10243
+D1
+~
+~
+0 -1 10242
+D2
+~
+~
+0 -1 10231
+S
+#10233
+Spice Street~
+You walk down a grungy road. This road is dirty, but not filty.
+You see garbage scattered about, there are a few people around
+here loitering in groups with each other, beyond that there
+isn't much else to see here.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10234
+D3
+~
+~
+0 -1 10227
+S
+#10234
+Spice Street~
+You walk down a grungy road. This road is dirty, but not filty.
+You see garbage scattered about, there are a few people around
+here loitering in groups with each other, beyond that there
+isn't much else to see here.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10235
+D3
+~
+~
+0 -1 10233
+S
+#10235
+Corner of Black Avenue and Spice Street~
+You stand at the corner of Black Avenue and Spice Street. This
+is where the civlized society meets the dumps. A glance north
+would reveal clean walkways and brightly painted buildings.
+A glance to either the east or west would reveal run down shacks
+and littered streets.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10236
+D1
+~
+~
+0 -1 10254
+D3
+~
+~
+0 -1 10234
+S
+#10236
+Black Avenue~
+As you are walking down Black Avenue you realize it is one of
+the more popular streets of the underground sectors. There are
+many people who populate this street, all talking and moving
+at the same time. You can hear a big clutter of words crashing
+together, but they seem to make no sense to you 
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10237
+D2
+~
+~
+0 -1 10235
+D3
+~
+~
+0 -1 10395
+S
+#10237
+Black Avenue~
+As you are walking down Black Avenue you realize it is one of
+the more popular streets of the underground sectors. There are
+many people who populate this street, all talking and moving
+at the same time. You can hear a big clutter of words crashing
+together, but they seem to make no sense to you 
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10238
+D2
+~
+~
+0 -1 10236
+S
+#10238
+Black Avenue~
+As you are walking down Black Avenue you realize it is one of
+the more popular streets of the underground sectors. There are
+many people who populate this street, all talking and moving
+at the same time. You can hear a big clutter of words crashing
+together, but they seem to make no sense to you 
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10239
+D2
+~
+~
+0 -1 10237
+S
+#10239
+The Intersection of Black Avenue and Grey Street~
+At this intersection you see many things going on at once. To
+one side you see people trying to sell thier bodies for money
+and people exchanging money, but to the other side you see people
+who just look down and mind thier own business and try to avoid
+conflict.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10253
+D1
+~
+~
+0 -1 10258
+D2
+~
+~
+0 -1 10238
+D3
+~
+~
+0 -1 10240
+S
+#10240
+Grey Street~
+You look up and down this street but see very little activity
+at all. There are a few small mammals running about here, but
+there are very few people in this sector. You see a sign that
+reads, "No land vehicles allowed!" 
+~
+0 1073741832 1 0 0 0 26904
+D1
+~
+~
+0 -1 10239
+D3
+~
+~
+0 -1 10241
+S
+#10241
+Grey Street~
+You look up and down this street but see very little activity
+at all. There are a few small mammals running about here, but
+there are very few people in this sector. You see a sign that
+reads, "No land vehicles allowed!" 
+~
+0 1073741832 1 0 0 0 26904
+D1
+~
+~
+0 -1 10240
+D3
+~
+~
+0 -1 10242
+S
+#10242
+Grey Street~
+You look up and down this street but see very little activity
+at all. There are a few small mammals running about here, but
+there are very few people in this sector. You see a sign that
+reads, "No land vehicles allowed!" 
+~
+0 1073741832 1 0 0 0 26904
+D1
+~
+~
+0 -1 10241
+D3
+~
+~
+0 -1 10232
+S
+#10243
+Crate Avenue~
+You walk down Crate Avenue with splendor. This seems to be a
+newly added road that is paved with metal all the way down and
+up. You realize that it is easier to maintain metal and keep
+it clean than any other substance. There is nobody around here
+though.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10244
+D2
+~
+~
+0 -1 10232
+S
+#10244
+Crate Avenue~
+You walk down Crate Avenue with splendor. This seems to be a
+newly added road that is paved with metal all the way down and
+up. You realize that it is easier to maintain metal and keep
+it clean than any other substance. There is nobody around here
+though.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10245
+D2
+~
+~
+0 -1 10243
+S
+#10245
+Crate Avenue~
+You walk down Crate Avenue with splendor. This seems to be a
+newly added road that is paved with metal all the way down and
+up. You realize that it is easier to maintain metal and keep
+it clean than any other substance. There is nobody around here
+though.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10246
+D2
+~
+~
+0 -1 10244
+S
+#10246
+Corner of Crate Avenue and Moonlight Row~
+You come to a corner in the road. This means that you are on
+the outskirts of this sector. There are many people here though,
+both streets are very nice and well paved. There is a 'clean'
+smell in the air here.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10247
+D2
+~
+~
+0 -1 10245
+S
+#10247
+Moonlight Row~
+As you walk on Moonlight Row you notice that it is one of the
+border streets for this sector but a very important one. There
+is much activity on this street because it is used by those
+who wish to cut across town very quickly.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10248
+D3
+~
+~
+0 -1 10246
+S
+#10248
+Moonlight Row~
+As you walk on Moonlight Row you notice that it is one of the
+border streets for this sector but a very important one. There
+is much activity on this street because it is used by those
+who wish to cut across town very quickly.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10249
+D3
+~
+~
+0 -1 10247
+S
+#10249
+Moonlight Row~
+As you walk on Moonlight Row you notice that it is one of the
+border streets for this sector but a very important one. There
+is much activity on this street because it is used by those
+who wish to cut across town very quickly.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10250
+D3
+~
+~
+0 -1 10248
+S
+#10250
+Corner of Black Avenue and Moonlight Row~
+As you stand on the corner of Black Avenue and Moonlight row,
+you know for sure that this is the busiest spot in town. There
+are literally tons of people coming and going constantly because
+there is only one turbolift that leads to this sector which
+just happens to be to the north from here.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10186
+D1
+~
+~
+0 -1 10265
+D2
+~
+~
+0 -1 10251
+D3
+~
+~
+0 -1 10249
+S
+#10251
+Black Avenue~
+As you are walking down Black Avenue you realize it is one of
+the more popular streets of the underground sectors. There are
+many people who populate this street, all talking and moving
+at the same time. You can hear a big clutter of words crashing
+together, but they seem to make no sense to you.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10250
+D2
+~
+~
+0 -1 10252
+S
+#10252
+Black Avenue~
+As you are walking down Black Avenue you realize it is one of
+the more popular streets of the underground sectors. There are
+many people who populate this street, all talking and moving
+at the same time. You can hear a big clutter of words crashing
+together, but they seem to make no sense to you 
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10251
+D2
+~
+~
+0 -1 10253
+S
+#10253
+Black Avenue~
+As you are walking down Black Avenue you realize it is one of
+the more popular streets of the underground sectors. There are
+many people who populate this street, all talking and moving
+at the same time. You can hear a big clutter of words crashing
+together, but they seem to make no sense to you 
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10252
+D1
+~
+~
+0 -1 10187
+D2
+~
+~
+0 -1 10239
+S
+#10254
+Spice Street~
+You walk down a grungy road. This road is dirty, but not filty.
+You see garbage scattered about, there are a few people around
+here loitering in groups with each other, beyond that there
+isn't much else to see here.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10255
+D3
+~
+~
+0 -1 10235
+S
+#10255
+Spice Street~
+You walk down a grungy road. This road is dirty, but not filty.
+You see garbage scattered about, there are a few people around
+here loitering in groups with each other, beyond that there
+isn't much else to see here.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10396
+D1
+~
+~
+0 -1 10256
+D3
+~
+~
+0 -1 10254
+S
+#10256
+Spice Street~
+You walk down a grungy road. This road is dirty, but not filty.
+You see garbage scattered about, there are a few people around
+here loitering in groups with each other, beyond that there
+isn't much else to see here.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10257
+D3
+~
+~
+0 -1 10255
+S
+#10257
+Corner of Starline Avenue and Spice Street~
+Here you have come to a decision. You can either travel the more
+friendly route with hoards of people and is clean, or you can
+take the grungy way that is full of fith and hardly any people.
+You can hear sounds of the people on Starline Avenue 
+reverberating in your ears.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10264
+D3
+~
+~
+0 -1 10256
+S
+#10258
+Grey Street~
+You look up and down this street but see very little activity
+at all. There are a few small mammals running about here, but
+there are very few people in this sector. You see a sign that
+reads, "No land vehicles allowed!" 
+~
+0 1073741832 1 0 0 0 26904
+D1
+~
+~
+0 -1 10259
+D3
+~
+~
+0 -1 10239
+S
+#10259
+Grey Street~
+You look up and down this street but see very little activity
+at all. There are a few small mammals running about here, but
+there are very few people in this sector. You see a sign that
+reads, "No land vehicles allowed!" 
+~
+0 1073741832 1 0 0 0 26904
+D1
+~
+~
+0 -1 10260
+D3
+~
+~
+0 -1 10258
+S
+#10260
+Grey Street~
+You look up and down this street but see very little activity
+at all. There are a few small mammals running about here, but
+there are very few people in this sector. You see a sign that
+reads, "No land vehicles allowed!" 
+~
+0 1073741832 1 0 0 0 26904
+D1
+~
+~
+0 -1 10261
+D3
+~
+~
+0 -1 10259
+S
+#10261
+A Dead End~
+You have reach a dead end. There is no way to go but back westwards
+on Grey Street. There are walls surrounding all the ways but
+west. You see graffiti painted on the walls. There are trash
+cans scattered about here, but you see noting of any use to
+you.
+~
+0 1073741832 1 0 0 0 26904
+D3
+~
+~
+0 -1 10260
+S
+#10262
+&B A Blue DropTube&w&W~
+You are in a small droptube that travels between the planet of
+Corellia and the shipyard that orbits it. The droptube is voice
+activated so all you have to do to travel between the areas
+is say the word "GO"!
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10275
+> speech_prog p Go~
+mpechoat $n Your body streches as your are sucked into the droptube. You are transported to the orbiting shipyard.
+mpechoaround $n You watch as $n is sucked into the drop tube.
+mptransfer $n 10460
+~
+|
+S
+#10263
+Jail Cell-Corellia~
+Looking around you notice that the cell is actually quite clean.
+You realize that this jail has not been used much. In the right
+corner you see a small water fountain. In the left corner you
+see a porcelain toilet. You look through the bars and see the
+Imperial logo on the wall here.
+~
+0 12 1 256 0 0 26904
+D2
+~
+~
+1057 10158 10390
+S
+#10264
+Starline Avenue~
+You walk down Starline Avenue and see why it is nicknamed, "The
+true main street of the underground," for there are people bustling
+about everywhere. You can see all sorts of life he coming and
+going on this street. The building here are kept very clean,
+and the air here smells refreshing.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10271
+D2
+~
+~
+0 -1 10257
+S
+#10265
+Moonlight Row~
+As you walk on Moonlight Row you notice that it is one of the
+border streets for this sector but a very important one. There
+is much activity on this street because it is used by those
+who wish to cut across town very quickly.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10266
+D3
+~
+~
+0 -1 10250
+S
+#10266
+Moonlight Row~
+As you walk on Moonlight Row you notice that it is one of the
+border streets for this sector but a very important one. There
+is much activity on this street because it is used by those
+who wish to cut across town very quickly.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10267
+D3
+~
+~
+0 -1 10265
+S
+#10267
+Moonlight Row~
+As you walk on Moonlight Row you notice that it is one of the
+border streets for this sector but a very important one. There
+is much activity on this street because it is used by those
+who wish to cut across town very quickly.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10268
+D3
+~
+~
+0 -1 10266
+S
+#10268
+Corner of Starline Avenue and Moonlight Row~
+You stand at the corner of Starline Avenue and Moonlight Row.
+Since the two streets are probably the busiest streets of the
+underground the crowd here is enormous. There is very little
+room to move let alone walk here. It would be wise to try and
+hurry a long to prevent being caught up in the hords of people.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10364
+D2
+~
+~
+0 -1 10269
+D3
+~
+~
+0 -1 10267
+S
+#10269
+Starline Avenue~
+You walk down Starline Avenue and see why it is nicknamed, "The
+true main street of the underground," for there are people bustling
+about everywhere. You can see all sorts of life he coming and
+going on this street. The building here are kept very clean,
+and the air here smells refreshing.
+~
+0 67108872 1 0 0 0 26904
+D0
+~
+~
+0 -1 10268
+D2
+~
+~
+0 -1 10270
+S
+#10270
+Starline Avenue~
+You walk down Starline Avenue and see why it is nicknamed, "The
+true main street of the underground," for there are people bustling
+about everywhere. You can see all sorts of life he coming and
+going on this street. The building here are kept very clean,
+and the air here smells refreshing.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10269
+D2
+~
+~
+0 -1 10271
+S
+#10271
+Starline Avenue~
+You walk down Starline Avenue and see why it is nicknamed, "The
+true main street of the underground," for there are people bustling
+about everywhere. You can see all sorts of life he coming and
+going on this street. The building here are kept very clean,
+and the air here smells refreshing.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10270
+D2
+~
+~
+0 -1 10264
+S
+#10272
+Cora Street~
+You are walking on Cora Street and realize that you are not alone.There
+are eyes staring at you from the shadows. You start hearing
+mumblings of people. It would be wise to get off of this street
+quickly.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10159
+D2
+~
+~
+0 -1 10361
+D3
+~
+~
+0 -1 10273
+S
+#10273
+Cora Street~
+You are walking down Cora Street and see no familiar faces. You
+see many citizens crowding the area and getting in your way.This
+area is dimly lit and may be a bad area to be at night which
+makes you feel a bit uneasy.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10359
+D1
+~
+~
+0 -1 10272
+D2
+~
+~
+0 -1 10360
+D3
+~
+~
+0 -1 10274
+S
+#10274
+Cora Street~
+You are walking on Cora Street and realize that you are not alone.There
+are eyes staring at you from the shadows. You start hearing
+mumblings of people. It would be wise to get off of this street
+quickly.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10363
+D1
+~
+~
+0 -1 10273
+D2
+~
+~
+0 -1 10362
+D3
+~
+~
+0 -1 10275
+S
+#10275
+Corner of Starlight Way and Cora Street~
+You stand at the Corner of Starlight Way and Cora Street. There
+are many people here moving back and forth. To the West you
+see the tube that leads to the shipyard which orbits the planetm,
+and you can still hear sounds from the cafe to the North.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10290
+D1
+~
+~
+0 -1 10274
+D2
+~
+~
+0 -1 10276
+D3
+~
+~
+0 -1 10262
+S
+#10276
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10275
+D1
+~
+~
+0 -1 10353
+D2
+~
+~
+0 -1 10277
+D3
+~
+~
+0 -1 10352
+S
+#10277
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10276
+D1
+~
+~
+0 -1 10355
+D2
+~
+~
+0 -1 10278
+D3
+~
+~
+0 -1 10354
+S
+#10278
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10277
+D1
+~
+~
+0 -1 10356
+D2
+~
+~
+0 -1 10283
+D3
+~
+~
+0 -1 10357
+S
+#10279
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10283
+D2
+~
+~
+0 -1 10291
+D3
+~
+~
+0 -1 10377
+S
+#10280
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10369
+D1
+~
+~
+0 -1 10174
+D2
+~
+~
+0 -1 10370
+D3
+~
+~
+0 -1 10281
+S
+#10281
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10368
+D1
+~
+~
+0 -1 10280
+D2
+~
+~
+0 -1 10367
+D3
+~
+~
+0 -1 10282
+S
+#10282
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10366
+D1
+~
+~
+0 -1 10281
+D3
+~
+~
+0 -1 10283
+S
+#10283
+Corner of Starlight Way and Vine Street~
+You are standing on the corner of Starlight Way and Vine Street
+you don't see much of anything except a few shops and a lot
+of apartments. You notice how fresh the air smells and can kindly
+hear the waves of the ocean from the distance.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10278
+D1
+~
+~
+0 -1 10282
+D2
+~
+~
+0 -1 10279
+D3
+~
+~
+0 -1 10358
+S
+#10284
+Helm Street~
+You stand on Helm street and all you see is the many people of
+different races all pacing up and down the crowded streets.To
+the South you see a bounty office. You notice how well-maintained
+the entire area of this planet seems to be.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10155
+D2
+~
+~
+0 -1 10317
+D3
+~
+~
+0 -1 10285
+S
+#10285
+Helm Street~
+You are walking down Helm Street and you notice many empty shops
+that are up for rent and a few that are already owned. You don't
+see anything wrong with this street whatsoever. The streets
+pavement has no cracks in it and is virtually perfect.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10284
+D2
+~
+~
+0 -1 10319
+D3
+~
+~
+0 -1 10286
+S
+#10286
+Helm Street~
+You are walking down Helm Street and you notice many empty shops
+that are up for rent and a few that are already owned. You don't
+see anything wrong with this street whatsoever. The streets
+pavement has no cracks in it and is virtually perfect.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10320
+D1
+~
+~
+0 -1 10285
+D2
+~
+~
+0 -1 10321
+D3
+~
+~
+0 -1 10287
+S
+#10287
+Corner of Starlight Way and Helm Street~
+You stand on the corner of Starlight Way and Helm Street. You
+notice how clean the area around you is. You hear laughter from
+a nearby bar and see two entrances to the bar, one to the North
+and one to the West. You see nothing special about the entire
+area except how nice it looks.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10324
+D1
+~
+~
+0 -1 10286
+D2
+~
+~
+0 -1 10288
+D3
+~
+~
+0 -1 10322
+S
+#10288
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10287
+D2
+~
+~
+0 -1 10289
+D3
+~
+~
+0 -1 10326
+S
+#10289
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10288
+D2
+~
+~
+0 -1 10290
+D3
+~
+~
+0 -1 10327
+S
+#10290
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10289
+D1
+~
+~
+0 -1 10328
+D2
+~
+~
+0 -1 10275
+D3
+~
+~
+0 -1 10329
+S
+#10291
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10279
+D2
+~
+~
+0 -1 10292
+D3
+~
+~
+0 -1 10378
+S
+#10292
+Starlight Way~
+You are walking down Starlight Way and you don't see much of
+anything except a few shops and a lot of apartments. You notice
+how fresh the air smells and can faintly hear the waves of the
+ocean from afar.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10291
+D2
+~
+~
+0 -1 10293
+D3
+~
+~
+0 -1 10379
+S
+#10293
+Corner of Starlight Way and Smugglers Bend~
+You are standing on the corner of Starlight Way and Smugglers
+Bend you don't see much of anything except a few shops and a
+lot of apartments. You notice how fresh the air smells and can
+hear the waves of the ocean from the distance.
+~
+0 1073741824 1 0 0 0 26904
+D0
+~
+~
+0 -1 10292
+D1
+~
+~
+0 -1 10294
+D2
+~
+~
+0 -1 10388
+S
+#10294
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10295
+D2
+~
+~
+0 -1 10381
+D3
+~
+~
+0 -1 10293
+S
+#10295
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10296
+D3
+~
+~
+0 -1 10294
+S
+#10296
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10178
+D3
+~
+~
+0 -1 10295
+S
+#10297
+Cora Street~
+You are walking down Cora Street and see no familiar faces. You
+see many citizens crowding the area and getting in your way.
+This area is dimly lit and may be a bad area to be at night
+which makes you feel a bit uneasy.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10298
+D3
+~
+~
+0 -1 10163
+S
+#10298
+Cora Street~
+You are walking down Cora Street and see no familiar faces. You
+see many citizens crowding the area and getting in your way.
+This area is dimly lit and may be a bad area to be at night
+which makes you feel a bit uneasy.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10299
+D3
+~
+~
+0 -1 10297
+S
+#10299
+Cora Street~
+You are walking down Cora Street and see no familiar faces. You
+see many citizens crowding the area and getting in your way.
+This area is dimly lit and may be a bad area to be at night.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10300
+D3
+~
+~
+0 -1 10298
+S
+#10300
+Corner of Dagger Avenue and Cora Street~
+You stand at the corner of Dagger Avenue and Cora Street. You
+see that both ways look nice, but Dagger Ave. doesn't have much
+on it as far as shops and homes go, especially when it is compared
+to the infamous Cora Street.
+~
+0 0 1 0 0 0 26904
+D2
+~
+~
+0 -1 10301
+D3
+~
+~
+0 -1 10299
+S
+#10301
+Dagger Avenue~
+You are walking down Dagger Avenue and realize just how barren
+this street is. This seems to be a long street with literally
+nothing on it. You wonder why the street was even put here at
+all.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10300
+D2
+~
+~
+0 -1 10302
+S
+#10302
+Dagger Avenue~
+You are walking down Dagger Avenue and realize just how barren
+this street is. This seems to be a long street with literally
+nothing on it. You wonder why the street was even put here at
+all.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10301
+D2
+~
+~
+0 -1 10303
+S
+#10303
+Dagger Avenue~
+You are walking down Dagger Avenue and realize just how barren
+this street is. This seems to be a long street with literally
+nothing on it. You wonder why the street was even put here at
+all.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10302
+D2
+~
+~
+0 -1 10304
+S
+#10304
+Corner of Dagger Avenue and Vine Street~
+As you stand at the Corner of Dagger and Vine you see the lushness
+of Vine Street and the emptiness of Dagger Avenue. Some people
+don't like pretty things so they would take Dagger Avenue, but
+most people love beautiful things and would rather take Vine
+Street to see all of its vegetation.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10303
+D2
+~
+~
+0 -1 10308
+D3
+~
+~
+0 -1 10305
+S
+#10305
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10304
+D3
+~
+~
+0 -1 10306
+S
+#10306
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10305
+D3
+~
+~
+0 -1 10307
+S
+#10307
+Vine Street~
+You are walking down vine street and see why it was named that.
+This street is very green and lush on both sides there are many
+plants, trees, ect. The plants were put on this street to help
+circulate the oxygen into the air for those who must breathe
+it.
+~
+0 1073741824 1 0 0 0 26904
+D1
+~
+~
+0 -1 10306
+D3
+~
+~
+0 -1 10167
+S
+#10308
+Dagger Avenue~
+You are walking down Dagger Avenue and realize just how barren
+this street is. This seems to be a long street with literally
+nothing on it. You wonder why the street was even put here at
+all.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10304
+D2
+~
+~
+0 -1 10309
+S
+#10309
+Dagger Avenue~
+You are walking down Dagger Avenue and realize just how barren
+this street is. This seems to be a long street with literally
+nothing on it. You wonder why the street was even put here at
+all.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10308
+D2
+~
+~
+0 -1 10310
+S
+#10310
+Dagger Avenue~
+You are walking down Dagger Avenue and realize just how barren
+this street is. This seems to be a long street with literally
+nothing on it. You wonder why the street was even put here at
+all.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10309
+D2
+~
+~
+0 -1 10311
+S
+#10311
+Corner of Dagger Avenue and Smugglers Bend~
+Here you can see the people moving quickly past you. Striving
+to keep up would be in vain for they are the locals and know
+the city much better than you. Here you can still faintly smell
+the ocean because the gentle wind is blowing towards you.
+~
+0 0 1 0 0 0 26904
+D0
+~
+~
+0 -1 10310
+D3
+~
+~
+0 -1 10312
+S
+#10312
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10311
+D3
+~
+~
+0 -1 10313
+S
+#10313
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10312
+D3
+~
+~
+0 -1 10314
+S
+#10314
+Smugglers Bend~
+You are walking down Smugglers Bend and see how nice it is to
+have such a dreadful name. You see many people surrounding the
+area which makes you want to rush along with them. You can hear
+the beautiful sound from the ocean here.
+~
+0 0 1 0 0 0 26904
+D1
+~
+~
+0 -1 10313
+D3
+~
+~
+0 -1 10182
+S
+#10315
+&Y Spaceport Hotel&w&W~
+You stand in the Spaceport Hotel. This hotel is primarily used
+for those whos ship will not be fixed until the next day. The
+hotel is in near mint condition and the clerk here seems nice
+and friendly.
+~
+0 8388616 1 0 0 0 26904
+D0
+~
+~
+0 -1 10153
+D4
+~
+~
+0 -1 10461
+S
+#10316
+&G Cora Quick Stop &w&W~
+You are standing in what some call the "Quickie Stop." For this
+reason service here is prompt, yet friendly. The place overall
+is in very good condition just like most of the planet. The
+Clerk has quite a variety of items compared to most.
+~
+0 8 1 0 0 0 26904
+D2
+~
+~
+0 -1 10153
+S
+#10317
+&R Bounty Office&w&W~
+You are in a bounty claims office. You see how nice this place
+looks and how well it is maintained. You see the clerk doing
+her paperwork and you see a list of bounties posted on the wall.
+
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+0 -1 10284
+E
+list~
+----------------------------
+Recently Bountied
+----------------------------
+
+----------------------------
+All on the list are wanted on this planet!
+----------------------------
+Name - Price
+----------------------------
+The Dark Assassin - 150
+Dreff - 75
+The Thief - 40
+----------------------------
+~
+S
+#10318
+Empty Shop~
+You stand inside of an empty shop. There are many wall mounted
+shelves to place your tools and other items if you choose to
+rent the shop. There is quite enough room for four people to
+work in here independently. This would be a great place to set
+up if you have apprentices.
+~
+0 67108876 1 1 0 0 26904
+D2
+~
+~
+0 -1 10285
+S
+#10319
+Empy Shop~
+You stand inside of an empty shop. There are many wall mounted
+shelves to place your tools and other items if you choose to
+rent the shop. There is quite enough room for four people to
+work in here independently. This would be a great place to set
+up if you have apprentices.
+~
+0 67108876 1 1 0 0 26904
+D0
+~
+~
+0 -1 10285
+S
+#10320
+Empty Shop~
+You stand inside of an empty shop. There are many wall mounted
+shelves to place your tools and other items if you choose to
+rent the shop. There is quite enough room for four people to
+work in here independently. This would be a great place to set
+up if you have apprentices.
+~
+0 67108876 1 1 0 0 26904
+D2
+~
+~
+0 -1 10286
+S
+#10321
+Empty Shop~
+You stand inside of an empty shop. There are many wall mounted
+shelves to place your tools and other items if you choose to
+rent the shop. There is quite enough room for four people to
+work in here independently. This would be a great place to set
+up if you have apprentices.
+~
+0 67108876 1 1 0 0 26904
+D0
+~
+~
+0 -1 10286
+S
+#10322
+Corellia Bar and Grill~
+You smell the aroma of the food that is being cooked at the grill.
+You see many tables around you, most of which are full. You
+see a sign that reads, "Sit down at a table and the waitress
+with be by shortly to take your order." 
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+1 -1 10323
+D1
+~
+~
+0 -1 10287
+S
+#10323
+Diner~
+You smell the aroma of the food that is being cooked at the grill.
+You see many tables around you, most of which are full. You
+see a sign that reads, "Sit down at a table and the waitress
+with be by shortly to take your order." 
+~
+0 12 1 0 0 0 26904
+D1
+~
+~
+0 -1 10324
+D2
+~
+~
+0 -1 10322
+D4
+~
+~
+0 -1 10325
+S
+#10324
+Corellia Bar and Grill~
+You smell the aroma of the food that is being cooked at the grill.
+You see many tables around you, most of which are full. You
+see a sign that reads, "Sit down at a table and the waitress
+with be by shortly to take your order." 
+~
+0 8 1 0 0 0 26904
+D2
+~
+~
+0 -1 10287
+D3
+~
+~
+1 -1 10323
+S
+#10325
+Cantina~
+You smell the aroma of the food that is being cooked at the grill.
+You see many tables around you, most of which are full. You
+see a sign that reads, "Sit down at a table and the waitress
+with be by shortly to take your order." 
+~
+0 12 1 0 0 0 26904
+D5
+~
+~
+0 -1 10323
+S
+#10326
+Empty Shop~
+You stand inside of an empty shop. There are many wall mounted
+shelves to place your tools and other items if you choose to
+rent the shop. There is quite enough room for four people to
+work in here independently. This would be a great place to set
+up if you have apprentices.
+~
+0 67108876 1 1 0 0 26904
+D1
+~
+~
+0 -1 10288
+S
+#10327
+Empty Shop~
+You stand inside of an empty shop. There are many wall mounted
+shelves to place your tools and other items if you choose to
+rent the shop. There is quite enough room for four people to
+work in here independently. This would be a great place to set
+up if you have apprentices.
+~
+0 67108876 1 1 0 0 26904
+D1
+~
+~
+0 -1 10289
+S
+#10328
+Empty Shop~
+You stand inside of an empty shop. There are many wall mounted
+shelves to place your tools and other items if you choose to
+rent the shop. There is quite enough room for four people to
+work in here independently. This would be a great place to set
+up if you have apprentices.
+~
+0 67108876 1 1 0 0 26904
+D3
+~
+~
+0 -1 10290
+S
+#10329
+Empty Shop~
+You stand inside of an empty shop. There are many wall mounted
+shelves to place your tools and other items if you choose to
+rent the shop. There is quite enough room for four people to
+work in here independently. This would be a great place to set
+up if you have apprentices.
+~
+0 67108876 1 1 0 0 26904
+D1
+~
+~
+0 -1 10290
+S
+#10330
+&R BlasTech Blasters&w&W~
+You are standing in Blastech Blasters. The only type of guns
+sold here are Blastech. You see a salesman behind the counter
+who is waiting for your next purchase on a nice blaster. The
+place seems to be nice but there is some wierd hole in the wall
+to the left of you.
+~
+0 12 1 0 0 0 26904
+D2
+~
+~
+0 -1 10204
+S
+#10331
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.
+There is a restroom to your left and a shower to the right.
+The place looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10156
+S
+#10332
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.There
+is a restroom to your left and a shower to the right.The place
+looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10156
+S
+#10333
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.There
+is a restroom to your left and a shower to the right.The place
+looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10157
+S
+#10334
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.There
+is a restroom to your left and a shower to the right.The place
+looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10157
+S
+#10335
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.There
+is a restroom to your left and a shower to the right.The place
+looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10157
+S
+#10336
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.There
+is a restroom to your left and a shower to the right.The place
+looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10158
+S
+#10337
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.There
+is a restroom to your left and a shower to the right.The place
+looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10158
+S
+#10338
+&c Fritz's Droids&w&W~
+You stand in the shop run by Fritz. This shop used to sell robot
+pets but had to close down for lack of business. Now you can
+still come in here but Fritz will sell you nothing but he will
+show you his collections of droids which are in a glass case
+in the center of the room.
+~
+0 12 1 0 0 0 26904
+D3
+~
+~
+0 -1 10216
+S
+#10339
+Clan Storage Room #1~
+You stand in one of the clan storage rooms for the New Republic.
+In here you can store basically whatever you want. Just remember
+to always keep a key or do what is necessary to have one. You
+can drop whatever you want here but also remember all other
+clan members have access to this storage room as well.
+~
+0 1074267140 1 0 0 0 26904
+S
+#10340
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.There
+is a restroom to your left and a shower to the right.The place
+looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D2
+~
+~
+0 -1 10203
+S
+#10341
+Empty Home~
+You stand inside of an elegant home. There are paintings on the
+walls of beautiful sunsets and of great people throughout history.There
+is a restroom to your left and a shower to the right.The place
+looks very tidy and comfy.
+~
+0 77594636 1 0 0 0 26904
+D0
+~
+~
+0 -1 10203
+S
+#10342
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries and such.You see an elegant bed with a marble
+headboard that sits in the corner of the room.
+~
+0 77594636 1 0 0 0 26904
+D2
+~
+~
+0 -1 10202
+S
+#10343
+An Empty Apartment~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries and such.You see an elegant bed with a marble
+headboard that sits in the corner of the room.
+~
+0 77594636 1 0 0 0 26904
+D0
+~
+~
+0 -1 10202
+S
+#10344
+Old Warehouse~
+You are standing in an old warehouse. Here you see a bunch of
+punkers that seem to want trouble with anyone who is not just
+like them. You can hear loud music coming from the upstairs.
+The entire area is a bit grungy and trash is littered about.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+3 -1 10201
+D4
+~
+~
+0 -1 10345
+S
+#10345
+Trashed Steps~
+You manage your way to the trashed steps. Watch where you walk
+because there is junk all over these steps and you may slip
+and fall. You find that you are inside of the Shining Fists'
+turf. You should be extra weary of what you do around here.
+~
+0 8 1 0 0 0 26904
+D2
+~
+~
+0 -1 10346
+D5
+~
+~
+0 -1 10344
+S
+#10346
+&B The Auditorium&w&W~
+You stand in the area of the Auditorium. There are many people
+sitting here on the floor listening to the music being played
+on the stage by the punk rock group. Go ahead and sit down and
+listen if you want.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10345
+D1
+~
+~
+0 -1 10347
+D2
+~
+~
+0 -1 10349
+D6
+~
+~
+1 -1 10348
+S
+#10347
+&b -At The Stage-&w&W~
+You come up on the Stage and people start "boo-ing" you off of
+the stage. Do something quick before they start throwing things.
+Join in and start singing with the old biker.
+~
+0 8 1 0 0 0 26904
+D3
+~
+~
+0 -1 10346
+S
+#10348
+Parlor~
+As you stand in the parlor you see many tables surrounding the
+area. There are punks everywhere and they are all snickering
+at you for some reason. You see a bar to the south and the auditorium
+to the southwest. 
+~
+0 8 1 0 0 0 26904
+D2
+~
+~
+0 -1 10351
+D9
+~
+~
+1 -1 10346
+S
+#10349
+Hallway~
+You stand in this hallway that leads to the Bathroom. You will
+probably find nothing special here at all. But if you insist
+you can go into the bathroom area here.
+~
+0 8 1 0 0 0 26904
+D0
+~
+~
+0 -1 10346
+D3
+~
+~
+0 -1 10350
+S
+#10350
+The bathroom~
+You stand in the bathroom of these punks. As you walk in you
+notice an especially large punk eye you wearily. Be carful no
+to to provoke a fight in here.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10349
+S
+#10351
+At The Bar~
+You stand at the bar, here a droid sells alcohol to anyone who
+has enough money to buy it. The punks do not care how old they
+are when they start drinking, in fact, most of them start at
+the very young ages of five or six.
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+0 -1 10348
+S
+#10352
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10276
+S
+#10353
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10276
+S
+#10354
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10277
+S
+#10355
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10277
+S
+#10356
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10278
+S
+#10357
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10278
+S
+#10358
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10283
+S
+#10359
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things. 
+~
+0 67108876 1 1 0 0 26904
+D2
+~
+~
+0 -1 10273
+S
+#10360
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D0
+~
+~
+0 -1 10273
+S
+#10361
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D0
+~
+~
+0 -1 10272
+S
+#10362
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D0
+~
+~
+0 -1 10274
+S
+#10363
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D2
+~
+~
+0 -1 10274
+S
+#10364
+&r -A Small Junk Area-&w&W~
+You are standing in a small area that is covered in junk on all
+sides but the south. You see one man here trying to piece togther
+a bot of some sort. You see citizens coming in and out of here,
+seeing if they can find anything of any use to themselves.
+~
+0 12 1 0 0 0 26904
+D2
+~
+~
+0 -1 10268
+S
+#10365
+Clan Storage Room #2~
+You stand in one of the clan storage rooms for the New Republic.In
+here you can store basically whatever you want. Just remember
+to always keep a key or do what is necessary to have one. You
+can drop whatever you want here but also remember all other
+clan members have access to this storage room as well.
+~
+0 525316 1 0 0 0 26904
+S
+#10366
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D2
+~
+~
+0 -1 10282
+S
+#10367
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D0
+~
+~
+0 -1 10281
+S
+#10368
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D2
+~
+~
+0 -1 10281
+S
+#10369
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D2
+~
+~
+0 -1 10280
+S
+#10370
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D0
+~
+~
+0 -1 10280
+S
+#10371
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10171
+S
+#10372
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10171
+S
+#10373
+An Empty Apartment~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10172
+S
+#10374
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10172
+S
+#10375
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D1
+~
+~
+0 -1 10173
+S
+#10376
+Empty Home~
+You look about in this empty home. The place isn't huge but good
+enough for one to live well in. You see all of the necessitites
+such as toiletries. You see an elegant bed with a marble headboard
+which sits in the middle of the room.
+~
+0 77594636 1 0 0 0 26904
+D3
+~
+~
+0 -1 10173
+S
+#10377
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D1
+~
+~
+0 -1 10279
+S
+#10378
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D1
+~
+~
+0 -1 10291
+S
+#10379
+Empty Shop~
+You stand in an empty shop. There are tools and workbenches surrounding
+the area. The room is good in size and very clean. You see tools
+for all sorts of craftsmen on the tables. You can purchase this
+room and use it to have apprentices or just a place to engineer
+things.
+~
+0 67108876 1 1 0 0 26904
+D1
+~
+~
+0 -1 10292
+S
+#10380
+&z United Parcel Service&w&W~
+You stand inside of the United Parcel Service. You see a sign
+that reads, "Delivery all over the Galaxy!" mounted on the northern
+wall. You see many packages lying around, maybe you should take
+them where they belong.
+~
+0 12 1 0 0 0 26904
+D7
+~
+~
+0 -1 10220
+S
+#10381
+First Bank of Corellia~
+You stand in The First Bank of Corellia. You see a large grey
+vault to the east. You see video cameras mounted to the ceiling,
+watching your every move. You notice how the carpet on the floors
+is very soft and confortable to your feet. There is a window
+here that allows you to look out at the beach.
+~
+0 268 1 0 0 0 26904
+D0
+~
+~
+0 -1 10294
+D1
+~
+~
+33554432 -1 10388
+S
+#10382
+Entrance to the Palace~
+You stand in the entrance to the palace. There isn't a door here,
+just an arch in the ceiling. The walls here are dark grey and
+bare. It seems awful quiet as there are no guards posted here.
+~
+0 4 1 0 0 0 26904
+D0
+~
+~
+0 -1 10385
+D2
+~
+~
+0 -1 10386
+S
+#10383
+Palace Throne Room~
+As you stand in the throne room you notice that Diktat is nowhere
+to be seen. You figure he must be in his office. You see a beautiful
+throne sitting in the middle of the room. There is a guard here
+looking around for people who should't be in the palace.
+~
+0 4 1 0 0 0 26904
+D7
+~
+~
+0 -1 10386
+S
+#10384
+Diktat's Office~
+As you stand in the office of Diktat you see how powerful he
+really is. He himself may not be too powerful but his guards
+look pretty tough. You see Diktat here sitting behind a huge
+wooden oak desk. The guards are in front of him watching your
+every move.
+~
+0 4 1 0 0 0 26904
+D6
+~
+~
+0 -1 10387
+S
+#10385
+Palace Steps~
+You stand on the steps of the Diktat's Palace. The palace isn't
+as large as some you have seen. This palace was built by the
+Empire after the Diktat pledged his loyalty to them. 
+~
+0 4 1 0 0 0 26904
+D0
+~
+~
+0 -1 10178
+D2
+~
+~
+0 -1 10382
+S
+#10386
+Palace Foyer~
+You stand in the foyer of the palace and can choose to go the
+the reception area or the throne room. Here you see a drinking
+fountain mounted, from which is flowing crystal clear water.
+You hear the scream of a man as he dies.
+~
+0 4 1 0 0 0 26904
+D0
+~
+~
+0 -1 10382
+D8
+~
+~
+0 -1 10383
+D9
+~
+~
+0 -1 10387
+S
+#10387
+Reception Area~
+You stand at Receptionist's desk. There are chairs set up against
+the walls for those who need to wait for Diktat to become available.
+The area here is spotless of course. If you want to speak with
+diktat maybe you should ASK the Receptionist.
+~
+0 4 1 0 0 0 26904
+D6
+~
+~
+0 -1 10386
+S
+#10388
+&O A Sandy Beach&w&W~
+You are on a sandy beach and all you see is the bright sun. You
+feel the soft sand underneath you and see many people playing
+about in the water and on the beach. This looks like a fun time!
+~
+0 4 1 0 0 0 26904
+D0
+~
+~
+0 -1 10293
+D3
+~
+~
+0 -1 10389
+S
+#10389
+&O A Sandy Beach&w&W~
+You are on a sandy beach and all you see is the bright sun. You
+feel the soft sand underneath you and see many people playing
+about in the water and on the beach. This looks like a fun time!
+~
+0 4 1 0 0 0 26904
+D1
+~
+~
+0 -1 10388
+S
+#10390
+Jail Corridor~
+You stand in a well lit jail corridor. You see cells all around,
+you can hear the people inside of them screaming at you to free
+them. You just cover your ears and keep walking.
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+1057 10158 10263
+D1
+~
+~
+1057 10158 10226
+D2
+~
+~
+1057 10158 10391
+D3
+~
+~
+0 -1 10392
+S
+#10391
+Jail Cell-Corellia~
+Looking around you notice that the cell is actually quite clean.
+You realize that this jail has not been used much. In the right
+corner you see a small water fountain. In the left corner you
+see a porcelain toilet. You look through the bars and see the
+Imperial logo on the wall here.
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+1057 10158 10390
+S
+#10392
+Jail Corridor~
+You stand in a well lit jail corridor. You see cells all around,
+you can hear the people inside of them screaming at you to free
+them. You just cover your ears and keep walking.
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+1059 10158 10393
+D1
+~
+~
+0 -1 10390
+D2
+~
+~
+1057 10158 10394
+S
+#10393
+Jail Cell-Corellia~
+Looking around you notice that the cell is actually quite clean.
+You realize that this jail has not been used much. In the right
+corner you see a small water fountain. In the left corner you
+see a porcelain toilet. You look through the bars and see the
+Imperial logo on the wall here.
+~
+0 12 1 0 0 0 26904
+D2
+~
+~
+1059 10158 10392
+S
+#10394
+Jail Cell-Corellia~
+Looking around you notice that the cell is actually quite clean.
+You realize that this jail has not been used much. In the right
+corner you see a small water fountain. In the left corner you
+see a porcelain toilet. You look through the bars and see the
+Imperial logo on the wall here.
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+1057 10158 10392
+S
+#10395
+&p A Small Hotel&w&W~
+You stand in a small hotel. You see that this hotel isn't as
+good as the ones from the grounds above or as big, but it should
+do you just fine if you just need a place to stay for a while.There
+are a few cracks in the walls and a few mice running around
+but the place isn't that bad.
+~
+0 8389644 1 0 0 0 26904
+D1
+~
+~
+0 -1 10236
+S
+#10396
+&C The Auction House&w&W~
+You are standing in an Auction House. You see shelves full of
+items that are waiting to be auctioned or be picked up by the
+buyers of the items. You most likely have come here to auction
+off your goods to other people, if so then you have come to
+the right place.
+~
+0 -2147483640 1 0 0 0 26904
+D2
+~
+~
+0 -1 10255
+S
+#10397
+&w A Run-Down Motel&w&W~
+You stand in a run-down motel. The motel has been placed in the
+worst part of town and even the owner has left the vicinity.The
+walls have holes in them, there is no carpeting and the ceiling
+leaks. There is now a sign that reads, "Take whichever room
+you like, just pick up the keys here." 
+~
+0 8389632 1 0 0 0 26904
+D7
+~
+~
+0 -1 10190
+S
+#10398
+&B Corsec Headquarters &w&W~
+You stand at the entrance to the Corellian Security Headquarters.
+The security for the entire planet is controlled and monitored
+from within this building. This building is well maintained
+as it is run by the local citizens instead of the overulling
+plan etary government.
+~
+0 12 1 0 0 0 26904
+D1
+~
+~
+0 -1 10228
+D3
+~
+~
+0 -1 10400
+S
+#10399
+&B Corsec Commander's Office &w&W~
+You stand in the office of the commanding officer of Corellian Security. The furniture here is scarce as he doesn't spend much time here. There is but a desk with a chair behind it with a solitary chair in front for visitors. 
+~
+0 12 1 0 0 0 26904
+D9
+~
+~
+0 -1 10403
+S
+#10400
+&B Corsec Reception Area&w&W~
+You stand in the reception area of the Corellian Security Headquarters.
+This building was built by Emperor Palpatine as a gift to the
+citizens after they choose to handle their own security instead
+of having the standard stormtrooper control.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10398
+D3
+~
+~
+0 -1 10401
+S
+#10401
+&B A Corridor&w&W~
+You are walking down a small corridor. The walls here are a dark blue color. There are Corsec logos every thirty feet along the wall. This corridor leads to the turbolift that provides access to the rest of the facility.
+~
+0 8 1 0 0 0 26904
+D1
+~
+~
+0 -1 10400
+D3
+~
+~
+0 -1 10402
+S
+#10402
+&B A Small Turbolift&w&W~
+You stand in the sole turbolift of the facility. This turbolift
+is the only connection between the first floor and the rest
+of the facility. This building only has two floors though because
+the construction was delayed so that the citizens could aid
+the ir struggle against the Rebel Alliance.
+~
+0 12 1 0 0 0 26904
+> speech_prog p 2~
+mpecho The turbolift hums as it comes to life. 
+mpecho The turbolift slowly goes to the second floor.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 10403
+mpat 10403 mpecho $n arrives from a turbolift.
+~
+> speech_prog p 1~
+mpecho The turbolift hums as it comes to life. 
+mpecho The turbolift slowly goes to the first floor.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 10401
+~
+|
+S
+#10403
+&B Second Floor Reception&w&W~
+You stand in the second floor reception area. This is the only floor of the building besides the first. The most vital parts of the building were finished before the construction was delayed and then ulitmately cancelled.
+~
+0 8 1 0 0 0 26904
+D3
+~
+~
+0 -1 10402
+S
+#10404
+&B Armor Repair&w&W~
+You stand in the armor repair shop of the Corellian Secuirty.
+Since funds were limited it was easier to install this shop
+rather than buy extra armor for the agents. The droid here was
+suppose to be replaced a long time ago but due to insufficent
+funds i t never happened.
+~
+0 8 1 0 0 0 26904
+D3
+~
+~
+0 -1 10403
+S
+#10405
+&B Agent Sleeping Quarters&w&W~
+This single room was put in for the on-duty agents of Corsec to get a short catnap in during their break. There is a single cot against the wall here. On the wall there are hooks for a jacket and a holster.
+~
+0 8388616 1 0 0 0 26904
+D7
+~
+~
+0 -1 10403
+S
+#10409
+Floating in a void~
+~
+0 4 1 0 0 0 26904
+S
+#10450
+Shipyard Main Landing~
+You are on the main landing pad of the Corellian Shipyard. There
+are lots of ships surrounding the area. Some new, some still
+being built, and some that have been repaired or just for sale.The
+landing itself is made of a pure metal alloy to make it hard
+and durable against the forces of the ships upon takeoff.
+~
+0 48 1 4 0 0 26904
+D0
+~
+~
+0 -1 10451
+D1
+~
+~
+0 -1 10452
+D2
+~
+~
+0 -1 10453
+D3
+~
+~
+0 -1 10454
+S
+#10451
+Shipyard Landing Pad A~
+You are on one of four of the secondary landing pads for this
+shipyard. There are a few ships surrounding the area. Some new,
+some still being built, and some that have been repaired or
+just for sale. The landing itself is made of a pure metal alloy
+to make it hard and durable against the forces of the ships
+upon takeoff.
+~
+0 48 1 4 0 0 26904
+D2
+~
+~
+0 -1 10450
+S
+#10452
+Shipyard Landing Pad B~
+You are on one of four of the secondary landing pads for this
+shipyard. There are a few ships surrounding the area. Some new,
+some still being built, and some that have been repaired or
+just for sale. The landing itself is made of a pure metal alloy
+to make it hard and durable against the forces of the ships
+upon takeoff.
+~
+0 48 1 4 0 0 26904
+D3
+~
+~
+0 -1 10450
+S
+#10453
+Shipyard Landing Pad C~
+You are on one of four of the secondary landing pads for this
+shipyard. There are a few ships surrounding the area. Some new,
+some still being built, and some that have been repaired or
+just for sale. The landing itself is made of a pure metal alloy
+to make it hard and durable against the forces of the ships
+upon takeoff.
+~
+0 48 1 4 0 0 26904
+D0
+~
+~
+0 -1 10450
+S
+#10454
+Shipyard Landing Pad D~
+You are on one of four of the secondary landing pads for this
+shipyard. There are a few ships surrounding the area. Some new,
+some still being built, and some that have been repaired or
+just for sale. The landing itself is made of a pure metal alloy
+to make it hard and durable against the forces of the ships
+upon takeoff.
+~
+0 48 1 4 0 0 26904
+D1
+~
+~
+0 -1 10450
+D9
+~
+~
+0 -1 10455
+S
+#10455
+A Small Hallway~
+You are standing in the hallway the connects the Shipyard to
+a small spaceport allowing for food, shelter, and other necessities.
+The hallway here is barren and has the luster of the metal that
+covers the walls. There are no paintings, pictures or anything
+creative here.
+~
+0 12 1 0 0 0 26904
+D6
+~
+~
+0 -1 10454
+D9
+~
+~
+0 -1 10456
+S
+#10456
+Shipyard Spaceport~
+You are standing in the Shipyard Spaceport which isn't very large
+but decent in size. You see chairs for those who are having
+thier ships worked on and a hotel for those whose ships won't
+be done right away. There is also a small store to the south
+of here.
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+0 -1 10457
+D1
+~
+~
+0 -1 10460
+D2
+~
+~
+0 -1 10458
+D3
+~
+~
+0 -1 10459
+D6
+~
+~
+0 -1 10455
+S
+#10457
+&YA Small Hotel&w&W~
+You stand in a small, yet cleanly hotel. The place is so little
+it seems more like a motel than a hotel. You see the clerk sitting
+at her desk and behind her you see the keys to all of the rooms
+and thier numbers. 
+~
+0 8388620 1 0 0 0 26904
+D2
+~
+~
+0 -1 10456
+S
+#10458
+&G A Small Store&w&W~
+You stand in a small store run by a shop droid. The place itself
+has walls of metal on all sides and looks very rigid and unconfortable.
+Here you can purchase a few items while you wait for you ship
+to be repaired or if you just stopped in here out of hunger.
+~
+0 12 1 0 0 0 26904
+D0
+~
+~
+0 -1 10456
+S
+#10459
+&O A Small Alcove&w&W~
+You stand in a small alcove built to house the ATM machine here.
+The alcove is only big enough for a single person to stand in
+besides the machine. If you are unsure how to use this machine
+type help bank.
+~
+0 268 1 0 0 0 26904
+D1
+~
+~
+0 -1 10456
+S
+#10460
+&B A Blue DropTube&w&W~
+You are in a small droptube that travels between the planet of
+Corellia and the shipyard that orbits it. The droptube is voice
+activated so all you have to do to travel between the areas
+is say the word "GO"!
+~
+0 8 1 0 0 0 26904
+D3
+~
+~
+0 -1 10456
+> speech_prog p Go~
+mpechoat $n The floor falls out beneath you as your sucked into the tube. You are transported to the planet. 
+mpechoaround $n You watch as $n is sucked into the droptube. 
+mptransfer $n 10262
+~
+|
+S
+#10461
+The Galactic Mail Center~
+~
+0 1073741824 1 0 0 0 26904
+D5
+~
+~
+0 -1 10315
+S
+#10488
+Floating in a void~
+~
+0 4 1 0 0 0 26904
+S
+#10500
+Floating in a void~
+~
+0 1073741828 1 0 0 0 26904
+S
+#0
+
+
+#RESETS
+M 1 10151 76 10152
+O 1 10160 1 10152
+M 1 10151 76 10153
+M 1 10151 76 10156
+M 1 10151 76 10159
+M 1 10151 76 10159
+M 1 10151 76 10159
+M 1 10151 76 10160
+M 1 10151 76 10160
+M 1 10160 31 10166
+M 1 10151 76 10167
+M 1 10160 31 10169
+M 1 10151 76 10171
+M 1 10160 31 10174
+E 1 59 1 16
+M 1 10151 76 10175
+M 1 10151 76 10175
+M 1 10151 76 10176
+M 1 10151 76 10177
+M 1 10151 76 10179
+M 1 10151 76 10181
+M 1 10160 31 10182
+M 1 10151 76 10183
+M 1 10151 76 10185
+M 1 10151 76 10189
+M 1 10160 31 10192
+M 1 10151 76 10193
+M 1 10151 76 10194
+M 1 10151 76 10195
+M 1 10151 76 10195
+M 1 10160 31 10198
+M 1 10160 31 10199
+M 1 10160 31 10200
+M 1 10151 76 10200
+M 1 10151 76 10200
+D 0 10201 2 1
+M 1 10151 76 10202
+M 1 10160 31 10202
+M 1 10151 76 10203
+M 1 10151 76 10203
+M 1 10151 76 10204
+M 1 10151 76 10204
+M 1 10151 76 10206
+M 1 10160 31 10206
+M 1 10160 31 10207
+M 1 10151 76 10207
+M 1 10151 76 10209
+M 1 10164 6 10209
+M 1 10160 31 10210
+M 1 10151 76 10210
+M 1 10160 31 10211
+M 1 10151 76 10211
+M 1 10151 76 10212
+M 1 10151 76 10216
+M 1 10167 1 10217
+M 1 10155 1 10220
+M 1 10151 76 10221
+M 1 10160 31 10222
+M 1 10151 76 10224
+M 1 10151 76 10224
+M 1 10151 76 10225
+D 0 10226 3 0
+M 1 10151 76 10227
+M 1 10151 76 10228
+M 1 10160 31 10228
+M 1 10160 31 10228
+M 1 10151 76 10228
+M 1 10160 31 10230
+M 1 10151 76 10232
+M 1 10160 31 10233
+M 1 10153 1 10234
+M 1 10151 76 10235
+M 1 10151 76 10238
+M 1 10151 76 10238
+M 1 10151 76 10242
+M 1 10160 31 10245
+M 1 10151 76 10248
+M 1 10151 76 10248
+M 1 10171 1 10249
+M 1 10151 76 10250
+M 1 10151 76 10251
+M 1 10160 31 10252
+M 1 10151 76 10253
+M 1 10151 76 10254
+M 1 10151 76 10257
+M 1 10151 76 10258
+M 1 10160 31 10259
+M 1 10151 76 10260
+M 1 10160 31 10262
+D 0 10263 2 0
+M 1 10151 76 10265
+M 1 10160 31 10266
+M 1 10151 76 10267
+M 1 10151 76 10272
+M 1 10151 76 10274
+M 1 10160 31 10275
+M 1 10151 76 10277
+M 1 10151 76 10280
+M 1 10151 76 10283
+M 1 10160 31 10287
+M 1 10151 76 10288
+M 1 10151 76 10289
+M 1 10151 76 10290
+M 1 10160 31 10291
+M 1 10151 76 10298
+M 1 10160 31 10300
+M 1 10151 76 10301
+M 1 10160 31 10303
+M 1 10151 76 10305
+M 1 10151 76 10307
+M 1 10154 1 10308
+M 1 10151 76 10310
+M 1 10151 76 10312
+M 1 10151 76 10312
+M 1 10160 31 10312
+O 1 1141 1 10315
+M 1 10156 1 10316
+G 1 133 1
+G 1 59 1
+G 1 134 1
+G 1 1057 1
+G 1 64 1
+G 1 1068 1
+M 1 10152 1 10317
+O 1 10318 1 10317
+D 0 10322 0 0
+M 1 10158 1 10323
+G 1 1072 1
+D 0 10324 3 0
+M 1 10157 1 10325
+G 1 201 1
+G 1 1056 1
+G 1 276 1
+G 1 260 1
+G 1 259 1
+G 1 10159 1
+M 1 10159 1 10330
+G 1 58 1
+G 1 54 1
+G 1 53 1
+G 1 52 1
+G 1 51 1
+G 1 50 1
+M 1 10162 1 10338
+M 1 10165 1 10344
+M 1 10164 6 10344
+M 1 10164 6 10344
+D 0 10344 0 1
+M 1 10163 1 10345
+G 1 274 1
+M 1 10151 76 10346
+D 0 10346 6 0
+M 1 10166 1 10347
+O 1 10157 1 10347
+M 1 10164 6 10348
+M 1 10164 6 10348
+D 0 10348 9 0
+M 1 10160 31 10349
+M 1 10160 31 10350
+M 1 10164 6 10350
+M 1 202 2 10351
+G 1 65 1
+G 1 258 1
+G 1 259 1
+G 1 260 1
+M 1 10169 1 10364
+O 1 1926 1 10380
+O 1 1243 1 10380
+M 1 1144 2 10381
+M 1 1144 2 10381
+M 1 10177 5 10383
+E 1 50 1 16
+O 1 10152 1 10383
+M 1 10174 1 10384
+M 1 10177 5 10384
+E 1 50 1 16
+M 1 10177 5 10384
+M 1 10177 5 10384
+M 1 10177 5 10384
+O 1 10161 1 10384
+O 1 10160 1 10386
+M 1 10173 1 10387
+M 1 10175 2 10388
+M 1 10176 2 10388
+M 1 10175 2 10389
+M 1 10176 2 10389
+D 0 10390 0 0
+D 0 10390 1 0
+D 0 10390 2 0
+D 0 10391 0 0
+D 0 10392 0 1
+D 0 10392 2 0
+D 0 10393 2 1
+D 0 10394 0 0
+M 1 10179 1 10399
+E 1 51 1 16
+O 1 116 1 10399
+M 1 10178 1 10400
+O 1 116 1 10400
+M 1 10180 1 10403
+M 1 10181 1 10403
+M 1 10172 3 10450
+M 1 10172 3 10452
+M 1 10172 3 10453
+M 1 9722 1 10457
+M 1 10182 1 10458
+G 1 151 1
+G 1 139 1
+G 1 65 1
+G 1 134 1
+G 1 133 1
+O 1 38 1 10461
+S
+
+
+#SHOPS
+ 10156    0  0  0  0  0   120  90         0 23    ; A Store Clerk
+ 10157    0  0  0  0  0   120  90         0 23    ; Bartender
+ 10158    0  0  0  0  0   120  90         0 23    ; Diner Waitress
+ 10159    0  0  0  0  0   120  90         0 23    ; BlasTech Dealer
+ 10162    0  0  0  0  0   120  90         0 23    ; Fritz
+ 10163    0  0  0  0  0   120  90         0 23    ; A Tall Biker
+ 10171    0  0  0  0  0   120  90         0 23    ; Kentarr
+ 10182    0  0  0  0  0   120  90         0 23    ; A shop droid
+0
+
+
+#REPAIRS
+ 10181    9  0  0          25   1         1 23    ; An old broken down droid
+0
+
+
+#SPECIALS
+M  10155 spec_thief
+M  10160 spec_thief
+S
+
+
+#$

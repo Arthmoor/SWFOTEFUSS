@@ -1,0 +1,9 @@
+#FORCE
+Name      finish~
+Status    2
+Type      0
+Desc      Command:    finish$RN$Usage:      finish$RN$Level:      Knight/Lord$RN$Mana:       100$RN$Time Req:   Instant$RN$Duration:   Instant$RN$Components: A wielded Lightsaber$RN$$RN$When an opponent in combat is close to death, you can$RN$use this skill to attempt to finish them.  Though if you$RN$miss, it does make you vulnerable for a time.$RN$~
+Skill     17
+End
+
+#END

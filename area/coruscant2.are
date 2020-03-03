@@ -1,0 +1,2168 @@
+#AREA   Coruscant2~
+
+
+
+#AUTHOR Owen/Squall~
+
+#RANGES
+0 36 0 36
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 4091248
+
+#MOBILES
+#1150
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1151
+Medical Droid~
+Medical Droid~
+A Medical Droid is here.
+~
+This semi-humanoid medical droid is painted red, and he is holding a
+scalpel... altogether a terrifying site... do you REALLY want him
+operation on you? 
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+3 10 18 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> speech_prog p I need to be healed~
+mprestore $n 500
+~
+|
+#1152
+Tailor Droid ~
+Tailor Droid~
+A tailor droid is here, selling fabrics.
+~
+~
+33685569 0 0 Z
+36 0 10 7d10+360 3d4+2
+0 0
+8 8 0
+25 10 10 25 25 10 10
+0 0 0 0 0
+21 0 0 0 2051 2048 0
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1153
+Trainer Pilot Instructor Imperial~
+an Imperial Flight Instructor~
+A grave looking imperial flight instructor is here.
+~
+~
+1027 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1154
+A Imperial Guard~
+A Imperial Guard~
+A Imperial Guard stands here, surrounded by the smell of death
+~
+The guard is bulky and looks smart. These guards have had a year training
+in the Imperial Extreme Boot Camp and are the most well trained bodyguards
+in the galaxy. They are proficient with hand to hand and ranged combat.
+They are even capable of using the Force to dull pain! These guys arn't a
+force to be reckoned with. He looks at you with a cold stare and suddenly
+you feel spooked.
+~
+4167 4194304 0 Z
+36 0 10 7d10+360 10d10+2
+100 0
+8 8 1
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 2
+30 0 2047 0 0 0 0 3
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+If clan($n) == the empire
+Salute $n
+Else
+Mpkill $n
+Endif
+Else
+endif
+~
+> rand_prog 100~
+if ispc($n)
+If clan($n) == the empire
+mpdonothing
+Else
+Mpkill $n
+Endif
+Else
+mpdonothing
+endif
+~
+|
+#1155
+An Imperial Guard~
+A Imperial Guard~
+A Imperial Guard stands here, surrounded by the smell of death
+~
+The guard is bulky and looks smart. These guards have had a year training
+in the Imperial Extreme Boot Camp and are the most well trained bodyguards
+in the galaxy. They are proficient with hand to hand and ranged combat.
+They are even capable of using the Force to dull pain! These guys arn't a
+force to be reckoned with. He looks at you with a cold stare and suddenly
+you feel spooked.
+~
+1073741895 4194304 0 Z
+36 0 10 7d10+360 10d10+2
+100 0
+8 8 1
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 2
+0 0 2047 0 0 0 0 3
+0 0 0 0 0 0 0 0
+#1156
+greasy porcine chef~
+a greasy, porcine chef~
+A greasy, piglike man slaves away, serving slop to recruits.
+~
+This crude, foul smelling human is knobby and protruding in all the wrong
+places. He sweats profusely over the food, with little or no concern paid
+to health policy.
+~
+3 0 0 Z
+1 0 0 1d1+380 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+> speech_prog food ration~
+mpoload 133
+give ration $n
+em slaps down a heap of foul smelling shit on your tray.
+say Here ya are, son.
+~
+> speech_prog drink canteen~
+mpoload 134
+give canteen $n
+em snorts grotesquely
+say Drink up.
+~
+|
+#1157
+wiry shrunken twitch dr. payne~
+a wiry, shrunken figure of a man~
+The wiry, shrunken form of Dr. Payne hovers over an unwilling donor, scalpal on hand.
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 70~
+em cackles maniacally as he turns an eye on $n
+say Ah, come in, come in!
+say Sit down. I will be done with my fellow here di-rectly.
+mpecho A patient in the chair quickly changes from
+mpecho patient to deceased and is hurried off by an assistant.
+~
+|
+#1240
+smirkal~
+Smirkal~
+Smirkal is standing here, speaking to some Smugglers.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say Greetings. I just got these two new orders in today.
+say A man wished this pamphlet to be delivered to Kelbacca
+say on Kashyyyk, and the documents must be delivered to
+say Nelduk on Mon Calamari.
+~
+|
+#1242
+retired hunter~
+a retired hunter~
+A retired hunter sits here, looking about in his old age.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> give_prog mangled corpse~
+if ovnuminv(9820) == 1
+nod
+say Here is your payment, young hunter. Nice work.
+mpadvance $n 3 3000
+mpwithdraw 5000
+give 5000 credits $n
+mpat 101 drop all
+mpat 101 mppurge
+else
+say We do not want this scum.
+drop all
+endif
+~
+|
+#1246
+Tiffany Tiffy Tiff~
+Tiffany~
+A Cool lookin girl stands here, ready to kick your ass.
+~
+~
+1073741825 0 0 Z
+32 0 20 6d10+320 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1247
+Sandman Archangel Angel Platinum~
+Sandman, Archangel~
+An Archangel, enthroned in platinum stands before you.
+~
+This figure stands well above you at 7 feet tall, this guy is a BEAST! He
+look like he could bench 600 pounds! He is PIMPED OUT! This guy is wearing
+the all black suit of a killer, Black Jeans, Black Timberlands, Black
+Hooded Sweatshirt. He also wears a Platinum watch, chain, and the ^^A^^
+medallion. Also, he seems to have a whole damn CROWN made of
+platinum!!!???!!! Its floating just a few centimeters above his brow. As
+he shifts his pose, you see that even his F***ING TEETH are PLATINU M!!!
+~
+9437187 100671616 0 Z
+30 0 25 100d100+0 100d100+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 1132 0 0 2
+0 0 0 0 0 0 0 0
+> speech_prog p sandman, would you be so kind as to fetch me something to drink?~
+say yes of course, sir
+Mpoload 10314
+Give canteen $n
+say here is your drink, sir
+~
+> speech_prog p sandman, would you be so kind as to fetch me something to eat?~
+say yes of course, sir
+Mpoload 10313
+Give ration $n
+say here is your food, sir
+~
+> speech_prog p sandman, would you be so kind as to fetch me something to kill this hoe?~
+say yes of course, sir
+Mpoload 10421
+Mpoload 10421
+Give saber $n
+Give saber $n
+mpforce $n wield saber
+mpforce $n wield saber
+say here is your weapon, sir
+~
+> speech_prog p sandman, defend me!~
+say about time I get to see some real action
+say this biatch is all mine!
+rescue owen
+~
+|
+#1248
+devil~
+&rT&Rh&rE D&Re&rV&Ri&rL&G&W~
+&rT&Rh&rE D&Re&rV&Ri&rL&G&W stands here with flames surrounding him.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1249
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#1150
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#1151
+Locker~
+a Locker~
+A Locker is here.~
+~
+15 0 0
+0 0 0 0
+1 0 0
+#1152
+imperial elite guard helmet~
+An Imperial elite guard helmet~
+A red helmet was left here.~
+~
+9 0 17
+10 10 0 0
+1 1000 100
+E
+imperial elite guard helmet~
+The red helmet is the armor of an Imperial Elite Guard. It is made of
+strong durasteel and is worth a lot!
+~
+#1153
+A Vending Machine~
+vending machine~
+A Vending Machine is here, waiting to take your order.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+> greet_prog 100~
+say Hello, imperial personell, how may i serve you to day?
+Say  I offer both canteens and rations!
+~
+> speech_prog canteen~
+Mpoload 32253
+mpat 1182 drop canteen
+mpforce $n take canteen
+~
+> speech_prog ration~
+Mpoload 32252
+mpat 1182 drop ration
+mpforce $n take ration
+~
+|
+#1155
+treasure~
+a treasure~
+A treasure lays here~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#1156
+Freezer~
+a blood spattered meat freezer~
+A blood spattered meat freezer is here.~
+~
+15 1073741824 0
+5000 5 0 0
+300 0 0
+#1157
+bagged liver~
+a bagged liver~
+A white duraplast bag contains what could only be a liver.~
+You chew on a foul smelling, half frozen liver until the juice runs down your chin.~
+19 0 1
+0 0 0 0
+1 0 0
+#1158
+pair kidneys decaying~
+a pair of dark grey kidneys~
+A white duraplast bag contains a rotting pair of kidneys.~
+$n tosses up a grey, rotting kidney and catches it in his mouth.~
+19 1073741824 0
+0 0 0 0
+1 0 0
+#1206
+imperial throne key~
+An Imperial throne key~
+A small, silvery key with an imperial insignia lies here.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+#1240
+small pamphlet rwookrrorro~
+A small pamphlet to Rwookrrorro~
+A small pamphlet to Rwookrrorro lies on the ground here.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+#1241
+illegal documents~
+some illegal documents~
+Some sensitive and illegal documents have been placed on the table here.~
+~
+79 16 1
+0 0 0 0
+2 0 0
+#1243
+package vending~
+a package for a vending machine~
+A package for a vending machine lies here.~
+~
+13 0 1
+0 0 0 0
+3 0 0
+#1245
+locker~
+locker~
+A Locker is Here~
+~
+15 0 0
+5000 5 0 0
+300 0 0
+#1248
+Message Board~
+a Message Board~
+A Message Board is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#1249
+Meditation Chamber Key~
+&RRed Key~
+A small keycard lays here.~
+~
+18 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#1150
+West of the Medical Area~
+The light from the medical area flows out into this this hallway,
+illuminating it even further. You can hear the sound of saws and
+mechanical jabber, from the medical droid communicating with each other.
+If you are hurt, go into it, perhaps they will operate on you.
+~
+0 12 1 0 0 0 88
+D0
+~
+~
+0 -1 1151
+D1
+~
+~
+0 -1 1187
+D2
+~
+~
+0 -1 1188
+S
+#1151
+A Brightly Lit Hallway~
+~
+0 12 1 0 0 0 88
+D0
+~
+~
+0 -1 1190
+D2
+~
+~
+0 -1 1150
+D3
+~
+~
+0 -1 1152
+S
+#1152
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1151
+D3
+~
+~
+0 -1 1154
+S
+#1153
+Droid Repair Station~
+This is where the janitor and messenger droids are tuned up and repaired
+when needed. A long table sits in the middle of the room, piled high with
+parts and tools. Off to the side lie long inoperational droids waiting to
+get fixed, however unlikely it is .
+~
+0 8 1 0 0 0 88
+D2
+~
+~
+0 -1 1154
+S
+#1154
+Outside the Droid Repair Station~
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1153
+D1
+~
+~
+0 -1 1152
+D3
+~
+~
+0 -1 1155
+S
+#1155
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1154
+D3
+~
+~
+0 -1 1156
+S
+#1156
+North of the Cafeteria~
+Cafiteria isto the south and the navel wing is to the north and you can
+hear realy loud engins roar north you know is pure power of the Empire
+fleet
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1155
+D2
+~
+~
+0 -1 1185
+D3
+~
+~
+0 -1 1157
+S
+#1157
+South of the Naval Wing~
+Cafiteria is to the east and the navel wing is to the north and you can
+hear realy loud engins roar north you know is pure power of the Empire
+fleet
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1168
+D1
+~
+~
+0 -1 1156
+D2
+~
+~
+0 -1 1158
+S
+#1158
+West of the Cafeteria~
+You smell food flowing from the east and you cant resist but to go east to
+the Cafiteria  To the north is the navel wign witch kinda pulls you way
+from the east to see its great warships
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1157
+D1
+~
+~
+0 -1 1185
+D2
+~
+~
+0 -1 1159
+S
+#1159
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1158
+D2
+~
+~
+0 -1 1160
+S
+#1160
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1159
+D2
+~
+~
+0 -1 1161
+S
+#1161
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1160
+D2
+~
+~
+0 -1 1162
+S
+#1162
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1161
+D2
+~
+~
+0 -1 1163
+S
+#1163
+Before the Rec Area~
+You stand to the west of the recreation area. Off duty? Feeling lazy? Just
+pop in there to hang out and relax. Some of what you will find in there is
+a multipurpose room, sabaac tables, and a pool hall. The hallway north
+continues far away into the naval wing of the palace. East is the main
+intersection of halls.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1162
+D1
+~
+~
+0 -1 1164
+D3
+~
+~
+0 -1 1178
+S
+#1164
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1165
+D3
+~
+~
+0 -1 1163
+S
+#1165
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1166
+D3
+~
+~
+0 -1 1164
+S
+#1166
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1167
+D3
+~
+~
+0 -1 1165
+S
+#1167
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1100
+D3
+~
+~
+0 -1 1166
+S
+#1168
+Entering the Naval Wing~
+A steel clanking comes from the north as you enter the Naval Wing of the
+Imperial Palace.  This part of the palace holds the Imperial Navy and all
+of its aphiliates as well as a large wing of tie fighters.  Navy personnel
+run off to do their duties, and  little, black droids scurry around like
+rats, directing the pilots to their fighters.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1169
+D2
+~
+~
+0 -1 1157
+S
+#1169
+A Brightly Lit Hallway~
+A flurry of Humans, sub-humans, and droids rush along this corridor lit by
+blaring lights.  A klaxon is wailing in the distance as a even larger
+group of people flash past.  You are bustled and pushed around, hearing a
+few grunts of appology here and the re 
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1170
+D2
+~
+~
+0 -1 1168
+S
+#1170
+A Brightly Lit Hallway~
+A flurry of Humans, sub-humans, and droids rush along this corridor lit by
+blaring lights.  A klaxon is wailing in the distance as a even larger
+group of people flash past.  You are bustled and pushed around, hearing a
+few grunts of appology here and the re. 
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1143
+D2
+~
+~
+0 -1 1169
+D3
+~
+~
+0 -1 1171
+S
+#1171
+North of the Simulators~
+Many bleeps and blips come from the south where the simulators are located.
+ A few sullen faced pilot-trainees walk with their metaphorical tail
+between their legs as they were wiped clean across the floor by the
+instructor yet again.  
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1170
+D2
+~
+~
+0 -1 1176
+D3
+~
+~
+0 -1 1172
+S
+#1172
+North of the Piloting Instructor~
+To the south is a doorway with a with a small sign reading "Piloting
+Instructor".  Many students walk through this area every day, since he is
+the leading teacher of the art, or is it science, of piloting.  It is
+required by the Empire that you take this class in order to become a
+sacrificial lamb they call a pilot.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1171
+D2
+~
+~
+0 -1 1177
+D3
+~
+~
+0 -1 1173
+S
+#1173
+Outside of the Living Quarters~
+To the north you hear the groans of recruits losing their last credit on a
+sabacc game gone bad.  The smell of male bonding wafts from the north.  To
+the west is the route to the Admiral on Duty's office.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1193
+D1
+~
+~
+0 -1 1172
+D3
+~
+~
+0 -1 1174
+S
+#1174
+Standing In Front of the Admiral's Office~
+A receptionist sits behind a wooden desk, taking vid-calls and typing
+reports for the famous, or infamous, Grand Admiral Park.   To the west is
+his actuall office.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1173
+D3
+~
+~
+0 -1 1175
+S
+#1175
+Grand Admiral Park's office~
+Hundreds of plaques, medals, and awards litter the wall of this small room,
+whos sole occupant is none other than the famed Grand Admiral Parks.  He
+taps on his datapad as he is reminded of his latest appointment, and
+stands to leave. 
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1174
+S
+#1176
+Imperial Naval Simulators~
+Rows upon rows of cylindrical metal chambers rotate on many axis as the
+simulators twist and turn as their occupants make complicated manuvers, or
+try to make them, to shake pursuit of their fellow trainees.
+~
+0 8 1 4 0 0 88
+D0
+~
+~
+0 -1 1171
+S
+#1177
+Imperial Flight Instructor~
+A large stuffy man sits behind a desk loaded with small figures of ships
+that could be used as models in complex mock aerial manuvers.  The man
+looks up from his work and nods at you, then goes back to grading his
+papers on his latest lecture.   
+
+&RWARNING: &WGuards will attack you if you are not imperial! Be warned!
+~
+0 48 1 64 0 0 88
+D0
+~
+~
+0 -1 1172
+S
+#1178
+Entrance to the Recreation Area~
+You are now in the recreation area. To the south, you can hear the constant
+flow of conversation as cadets talk about their recent experiences. The
+floor here is covered with a red carpet, unlike the outer hallways. There
+are lights along the top of the ceiling, showing you the way.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1163
+D2
+~
+~
+0 -1 1179
+S
+#1179
+Walking in the Rec Area~
+You walk down the corridor that follows the recreation area. The floor is
+covered in a red carpet. There are pictures of popular Imperial leaders,
+and that weeks "ensign of the week". Under some of the pictures are
+captions explaining who they are and what they did.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1178
+D3
+~
+~
+0 -1 1180
+S
+#1180
+Walking in the Rec Area~
+Directly to the south is is the Sabaac table. Many a cadet has lost his/her
+paycheck here to somone with just a little more luck or talent than they.
+Continuing to the west are the vending machines, the pool hall and the
+multipurpose room. 
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1179
+D2
+~
+~
+0 -1 1184
+D3
+~
+~
+0 -1 1181
+S
+#1181
+Walking in the Rec Area~
+You walk down the corridor that follows the recreation area. The floor is
+covered in a red carpet.  There are pictures of popular Imperial leaders,
+and that weeks "ensign of the week". Under some of the pictures are
+captions explaining who they are and what they did.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1180
+D3
+~
+~
+0 -1 1182
+S
+#1182
+Vending Machines~
+You are standing in front of several vending machines. They serve
+everything from protein bars to cans of carbonated beverages. To the north
+is the multipurpose room. And the corridor east follows along the
+recreation area.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1186
+D1
+~
+~
+0 -1 1181
+S
+#1183
+Pool Hall~
+There are several pool tables here, each with the imperial symbol on
+top.
+Lying on a rack against the eastern wall are about ten of them stick things
+that are used to hit the balls. this is a crappy desc :P
+even crappier than my usual desc :P
+cues
+~
+0 8 1 0 0 0 88
+D2
+~
+~
+0 -1 1181
+S
+#1184
+Sabaac Tables~
+This is a small room, with one table in the center, obviously for playing
+Sabaac. At the front of the room is the picture of that weeks Sabaac
+champion.  The circular table in the center is made completely of
+furnished wood with a red felt covering on top. There are 5 chairs around
+it, just waiting to be occupied
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1180
+S
+#1185
+Cafeteria~
+This cafeteria is absolutely filled with tables and chairs, which is
+understandable seeing as how the whole staff of the palace eats here. The
+food is served to the east, where you can get the daily "special", or pay
+extra to pick and choose what you will be having. Most of the staff
+prefers to go out to the city with somone special, rather than having to
+eat this mush.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1156
+D3
+~
+~
+0 -1 1158
+S
+#1186
+Multipurpose Room~
+This room can be used for anything from playing soccer to ping pong
+matches. A row of bleachers lays against the north side of the room.
+Artificial light gleams off the marble walls. There is padding on the
+lower half of the walls to prevent injury
+~
+0 8 1 0 0 0 88
+D2
+~
+~
+0 -1 1182
+S
+#1187
+Medical Area~
+There are medical droids and utensils completely covering this room. There
+are several operating stations. Some medpacs lay unattended on a shelf to
+the eastern side of the room. The bots seem to be responsive to voice
+commands, so if you need to be healed, just say so! (I need to be healed)
+~
+0 8 1 0 0 0 88
+D3
+~
+~
+0 -1 1150
+> speech_prog "I need to be healed"~
+mprestore $n 500
+mea $n &w&cThe bacta is applied by the medbots and your wounds quickly heal.
+~
+|
+S
+#1188
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1150
+D2
+~
+~
+0 -1 1189
+S
+#1189
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1188
+D2
+~
+~
+0 -1 1137
+S
+#1190
+Near the Turbolift~
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1191
+D2
+~
+~
+0 -1 1151
+S
+#1191
+Imperial Turbolift~
+The turbolift is small and has a dull grey color. It is voice activated, so
+just say what floor you want to go to. A security camera is here, looking
+down. When the turbolift moves, it plays relaxing elevator music. The
+movement of the turbolift if quite fast and can cause dizziness.
+A list of the floors is here:
+1st Floor (just say 1)
+2nd Floor (just say 2)
+~
+0 12 1 0 0 0 88
+> speech_prog 1~
+mpecho The turbolift hums to life.
+mpecho The turbolift slows as it reaches the ground floor.
+mpecho The turbolift doors slide open.
+mptrans $n 1190
+~
+> speech_prog 2~
+mpecho The turbolift hums to life.
+mpecho The turbolift slows as it reaches the second floor.
+mpecho The turbolift doors slide open.
+mptrans $n 1192
+~
+|
+S
+#1192
+Second Floor: Imperial Palace~
+As the turbolift doors close, the scene of the second floor is
+breathtaking. There is not a speck of dust or dirt around. Light
+comes pouring in from the ceiling, glorifying the paintings
+and shiny furniture along the walls. The walls are a Imperial
+gray color and the carpet is navy blue.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+39 1206 1199
+D2
+~
+~
+0 -1 1191
+D3
+~
+~
+0 -1 1232
+S
+#1193
+Imperial Troop Barracks~
+You walk down the central isle between the beds and observe the sloppiness
+with which the off duty cadets have sorted their belongings. If there were
+to be a surprise inspection, they would likely all be thrown in the brig!
+You hear snoring and the occas occasional fart.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1194
+D1
+~
+~
+0 -1 1195
+D2
+~
+~
+0 -1 1173
+D3
+~
+~
+0 -1 1196
+S
+#1194
+Imperial Troop Barracks~
+You walk down the central isle between the beds and observe the sloppiness
+with which the off duty cadets have sorted their belongings. If there were
+to be a surprise inspection, they would likely all be thrown in the brig!
+You hear snoring and the occas occasional fart.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1198
+D2
+~
+~
+0 -1 1193
+D3
+~
+~
+0 -1 1197
+S
+#1195
+Sleeping Chamber~
+This small room is filled almost completely by a bunk bed, a footlocker,
+and a short, wide plastisteel shelf. There are imperial recruitment
+posters completely covering the walls.  There are gun magazines (the kind
+you read), and dirty underwear almost completely covering the floor.
+Thereis a cadet sleeping on the bottom bunk, but the top one is all yours.
+~
+0 8388616 1 0 0 0 88
+D3
+~
+~
+0 -1 1193
+S
+#1196
+Sleeping Chamber~
+This small room is filled almost completely by a bunk bed, a footlocker,
+and a short, wide plastisteel shelf. There are imperial recruitment
+posters completely covering the walls.  There are gun magazines (the kind
+you read), and dirty underwear almost completely covering the floor.
+Thereis a cadet sleeping on the bottom bunk, but the top one is all yours.
+~
+0 8388616 1 0 0 0 88
+D1
+~
+~
+0 -1 1193
+S
+#1197
+Sleeping Chamber~
+This small room is filled almost completely by a bunk bed, a footlocker,
+and a short, wide plastisteel shelf. There are imperial recruitment
+posters completely covering the walls.  There are gun magazines (the kind
+you read), and dirty underwear almost completely covering the floor.
+Thereis a cadet sleeping on the bottom bunk, but the top one is all yours.
+~
+0 8388616 1 0 0 0 88
+D1
+~
+~
+0 -1 1194
+S
+#1198
+Sleeping Chamber~
+This small room is filled almost completely by a bunk bed, a footlocker,
+and a short, wide plastisteel shelf. There are imperial recruitment
+posters completely covering the walls.  There are gun magazines (the kind
+you read), and dirty underwear almost completely covering the floor.
+Thereis a cadet sleeping on the bottom bunk, but the top one is all yours.
+~
+0 8388616 1 0 0 0 88
+D3
+~
+~
+0 -1 1194
+S
+#1199
+Second Floor: Imperial Palace~
+To the north is the Emperor's Throne Room. The hall is wide and has
+Imperial grey walls. The carpet is a navy blue color. Beautifully made
+furniture are emplaced along the walls. Paintings of famous Imperials are
+lined up on the walls. The room is warm and comfortable. You can sense the
+power of the Dark Side slightly.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+8388609 1206 1200
+D2
+~
+~
+33 1206 1192
+S
+#1200
+Security Checkpoint~
+There is a long security counter here, full of monitors and paperwork. A
+small weapons locker is under the counter for guard to retrieve weaponry.
+A counter is especially made with blaster-resistant metal and is plated
+with extra shielding. The entrance to the room to the north is protected by
+a strong forcefield that is deactivated when a person goes in front of it;
+like an automatic sliding door. A sudden rush of the Dark Side overwhelms
+you.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1203
+D1
+~
+~
+0 -1 1201
+D2
+~
+~
+8388609 1206 1199
+D3
+~
+~
+0 -1 1202
+S
+#1201
+Guard Station~
+The guard station is full of weapons and paper work. The entrance door has
+a window that has a slot in it for guards to be able to communicate with
+other people. It is the first line of defense for the Throne Room, to
+protect the Emperor from foreign invaders.
+~
+0 8 1 0 0 0 88
+D3
+~
+~
+0 -1 1200
+S
+#1202
+Guard Station~
+The guard station is full of weapons and paperwork. The entrance door has a
+window with a slot in it for guards to be able to communicate with other
+people. It is the first line of defense for the Throne Room, to protect
+the Emperor from foreign invaders.
+~
+0 8 1 0 0 0 88
+D1
+~
+~
+0 -1 1200
+S
+#1203
+Before the Throne Room~
+The Throne Room is to the north, guarded by a large door that needs a
+special cardkey to enter. Mostly, the door is opened for visitors though.
+Two guard posts are here, for guards to sit and do work in. There are
+forcefield emitters around the door to provide further protection against
+intruders. A strong tug from the Dark Side beckons you to enter.
+~
+0 8 1 0 0 0 88
+D0
+~
+~
+0 -1 1204
+D2
+~
+~
+0 -1 1200
+S
+#1204
+Throne Room~
+A comfortable and large red throne is here, elevated by a stage.Imperial
+flags are draped on the corners, and the walls are Imperial
+gray. The walls are heavily reinforced with titanium alloy to
+make sure no intruders can get in. The door has double locks,
+one cardkey, the other a password.In front of the throne is
+a desk, full of paperwork and some other personal stuff.Along
+the walls are beautiful paintings and exotic furniture.The floor
+sounds hollow as you walk around this room. The strength of
+the Dark Side is very strong here.
+~
+0 1082130700 1 0 0 0 88
+D2
+~
+~
+0 -1 1203
+D5
+~
+~
+8391713 1249 7510
+D6
+~
+~
+0 -1 1205
+E
+scratch~
+&r The Al'Therin Symbol is scratched in the ground here.&w&W
+~
+S
+#1205
+Strategic Planning Room~
+Monitors and maps fill the room! Models of ships and troops are placed to
+ressemble the massive amount of manpower the Empire has. Monitors keep
+tabs on current events all across the galaxy. An oval table is in middle
+of the room for the Empire's top generals and the Emperor to discuss the
+next moves of the Empire.
+~
+0 8 1 0 0 0 88
+D9
+~
+~
+0 -1 1204
+S
+#1206
+The Jail ~
+~
+0 8388620 1 0 0 0 88
+D0
+~
+~
+7 1140 1126
+> time_prog 10~
+if otyperoom(food) < 1
+mpecho A small gate on the bottom of the jail door slides open.
+mpsleep 3
+mpecho A small packaged ration is slid through the opening, you hear a sickening grunt and the jail keep walks away.
+mpoload 133
+drop ration
+else
+endif
+~
+|
+S
+#1207
+Floating in a void~
+~
+0 4 1 0 0 0 88
+D6
+~
+~
+0 -1 1208
+D9
+~
+~
+0 -1 1151
+S
+#1208
+Floating in a void~
+~
+0 4 1 0 0 0 88
+D0
+~
+~
+0 -1 1209
+D9
+~
+~
+0 -1 1207
+S
+#1209
+Floating in a void~
+~
+0 65540 1 0 0 0 88
+D2
+~
+~
+0 -1 1208
+S
+#1210
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1211
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1212
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1213
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1214
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1215
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1216
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1217
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1218
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1219
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1220
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1221
+The back room~
+~
+0 12 1 0 0 0 88
+D8
+~
+~
+0 -1 1242
+S
+#1222
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1223
+Floating in a void~
+~
+0 4 1 0 0 0 88
+S
+#1224
+Head of Espionage's Office~
+~
+0 4 1 0 0 0 88
+D0
+~
+~
+0 -1 1230
+S
+#1225
+Head of Domestic Affair's Office~
+~
+0 8388872 1 0 0 0 88
+D2
+~
+~
+0 -1 1230
+S
+#1226
+Grand Admiral's Office~
+You stand in the office of the Grand Admiral of the Empire. He
+is in control of the entire Imperial Navy. The office furniture
+is almost non-existent. There is a desk, a filing cabinet, and
+a single steel chair in front of the desk for visitors.
+~
+0 4 1 0 0 0 88
+D2
+~
+~
+0 -1 1232
+S
+#1227
+Supreme General's Office~
+You stand in the office of the Field Marshall of the Empire.
+He is control of the entire of the Imperial Navy. There are
+some paintings here on the wall. In the center of the room is
+a desk stacked high with papers. There is a solitary chair here
+for vis itors.
+~
+0 8388620 1 0 0 0 88
+D0
+~
+~
+0 -1 1232
+S
+#1228
+Head of Recruitment's Office~
+~
+0 4 1 0 0 0 88
+D0
+~
+~
+0 -1 1231
+S
+#1229
+Head of Counter Espionage's Office~
+~
+0 4 1 0 0 0 88
+D2
+~
+~
+0 -1 1231
+S
+#1230
+Steel Corridor~
+~
+0 4 1 0 0 0 88
+D0
+~
+~
+0 -1 1225
+D1
+~
+~
+0 -1 1231
+D2
+~
+~
+0 -1 1224
+S
+#1231
+Steel Corridor~
+~
+0 4 1 0 0 0 88
+D0
+~
+~
+0 -1 1229
+D1
+~
+~
+0 -1 1232
+D2
+~
+~
+0 -1 1228
+D3
+~
+~
+0 -1 1230
+S
+#1232
+Steel Corridor~
+~
+0 4 1 0 0 0 88
+D0
+~
+~
+0 -1 1226
+D1
+~
+~
+0 -1 1192
+D2
+~
+~
+0 -1 1227
+D3
+~
+~
+0 -1 1231
+S
+#1233
+Dr. Payne's Chop-Shop~
+This out of the way, rathole of a clinic acts as Dr. Payne's dwelling or
+haunt as some of his less charming patients might dub it. The building
+itself is made up of corrugated durasteel siding on salvaged duraplast
+planks, bare to the world. Dim sunlight filters in through the rusty,
+green painted roof and speckles the floor, racks of "tools" and chemicals
+used in preserving. The floor is bare dirt and quite rocky. Off to the
+west the alley opens up and northward the flies thicken around a giant,
+white meat freezer.
+~
+0 1036 1 0 0 0 88
+D0
+~
+~
+0 -1 1234
+D3
+~
+~
+0 -1 7508
+S
+#1234
+Dr. Payne's Chop-Shop, Storage~
+This back room to Payne's Chop-Shop is for the more devoted customers
+mostly and houses jar after jar, beaker on top of test tube and graduating
+cylinder alike. All filled with the disgusting tiny forms of cloned
+fetuses. A burly meat freezer sits heavily in the center of the floor,
+smelling particularly foul. 
+~
+0 12 1 0 0 0 88
+D2
+~
+~
+0 -1 1233
+S
+#1235
+Recruitment Office~
+This is a large office with tons of people waiting in line for recruitment.
+The only thing you can do is to wait in line if you really want to sign up
+for the empire.
+~
+0 268697612 1 0 0 0 88
+D9
+~
+~
+0 -1 1065
+S
+#1236
+Fitness Area~
+There are some treadmills here, along with other aerobic equipment. All the
+workout machinery here helps with the cardiovascular system. Many people
+are running and dancing about, working hard to condition their bodies.
+This must be the place to train constitution and dexterity. To train, type
+train <attribute>. 
+~
+0 76 1 0 0 0 88
+D2
+~
+~
+0 -1 1237
+S
+#1237
+Fitness Area~
+Tons of weight machines are here, working most of the muscles of the body.
+Some look simple, but some look plain scary. This must be the place to
+train strength. Some people are working hard at the machines, building
+their muscles. Trainers are here to help people for free. To train a stat,
+type train <attribute>.
+~
+0 76 1 0 0 0 88
+D0
+~
+~
+0 -1 1236
+D1
+~
+~
+0 -1 1239
+S
+#1238
+Classroom~
+The room is filled with student chairs and program leaflets. People are
+allowed to sit down and observe the teacher teach. In the front of the
+room is a small desk, a white board, plus a large area of space for the
+teacher to demonstrate skills. Even though the room is small, a lot of
+people are still managing to fit in.
+~
+0 76 1 0 0 0 88
+D2
+~
+~
+0 -1 1239
+S
+#1239
+Garaak's Training Facility~
+There is a counter here, to welcome people into the facility. The services
+of the facility are free and are a public service for everyone in the
+galaxy. There is a large shelf with towels next to the counter. A small
+shower room is to the northwest. To the north is the learning center. To
+the west is the area to train. 
+~
+0 76 1 0 0 0 88
+D0
+~
+~
+0 -1 1238
+D3
+~
+~
+0 -1 1237
+D6
+~
+~
+0 -1 7504
+D8
+~
+~
+0 -1 1062
+S
+#1240
+Smirkal's Assignments~
+A large desk full of folders is here. Two chairs are for guests to sit down
+to talk about an assignment. Smirkal's gives jobs to those who need quick
+money by getting other people's problems and distributing it to people who
+can solve the problems. The payment is not as high as a stable job, but it
+gives enough. There are a few people looking around the office and
+scanning though the folders to look for a suitable assignment that they
+are interested in.
+~
+0 76 1 0 0 0 88
+D1
+~
+~
+0 -1 1244
+S
+#1241
+Jobs, Jobs, JOBS!~
+There are many desks here, full of employers and people looking for jobs.
+People are lined up to wait to be able to talk to an employer for a job.
+Job advertisement posters are everywhere, including the famed Join the
+Empire and the Fight For Freedom Rebel posters. The place is really loud
+because of the crowd gathered in the room. More stable and consistent jobs
+can be found here.
+~
+0 76 1 0 0 0 88
+D3
+~
+~
+0 -1 1244
+S
+#1242
+Bounty Hunter Central~
+There is a desk here, full of wanted signs and paperwork dealing with
+contracts. Some bounty hunters are here, standing or sitting, talking
+about the bounties. There is a sofa and table here for people to sit down
+to talk or do business. There are the heads of many ex-wanted people on
+the walls. Ancient bounty hunting weaponry hang on racks for display.
+Pretty gruesome environment.
+~
+0 76 1 0 0 0 88
+D1
+~
+~
+0 -1 1245
+D7
+~
+~
+0 -1 1221
+S
+#1243
+UPS Delivery~
+Some UPS delivery men are walking around, carrying big packages
+to their hovertrucks. There is a mass amount of packages on
+the floor, beckoning for someone to take them to their destination.
+Clerks are sitting behind the counters, waiting for people to
+come help deliver the packages.
+~
+0 76 1 0 0 0 88
+D3
+~
+~
+0 -1 1245
+S
+#1244
+Hallway~
+The short hallway comes to an end here. A long line of people are waiting
+to the east for longer lasting jobs. There is a sign stating, "Jobs, Jobs,
+JOBS!" to advertise for them. To the west is a room thats pretty full of
+people willing to do some short term jobs that can be completed more
+quickly and easily, dispite being paid less. Perhaps you would like one of
+these jobs.
+~
+0 76 1 0 0 0 88
+D1
+~
+~
+0 -1 1241
+D2
+~
+~
+0 -1 1245
+D3
+~
+~
+0 -1 1240
+S
+#1245
+Hallway~
+The hallway is white and well lighted. There are voices of some people
+talking in interviews to get jobs. Some UPS delivery men come from the
+east, where UPS is paying people to deliver packages. Some tough looking
+bounty hunters are talking about bounties to the west. Perhaps you would
+like one of these jobs.
+~
+0 76 1 0 0 0 88
+D0
+~
+~
+0 -1 1244
+D1
+~
+~
+0 -1 1243
+D2
+~
+~
+0 -1 1246
+D3
+~
+~
+0 -1 1242
+S
+#1246
+Employment Opportunities Center~
+The lobby is small and there is a hallway to the north. The carpet is a
+beautiful white and the walls have wooden panels on it. The atmosphere is
+relaxing and comfortable, the sounds of people looking for jobs coming
+from the hallway. Theres a few chairs here with a nearby table full of job
+magazines. A counter is here for the workers who work in here. Some of
+them are social security workers. Perhaps you can find a nice stable job!
+~
+0 76 1 0 0 0 88
+D0
+~
+~
+0 -1 1245
+D2
+~
+~
+0 -1 1067
+S
+#1247
+Ace's Hardware Store~
+Welcome to the main Ace's Hardware Store! This building serves as the
+headquarters for all the Ace's Hardware Stores around the galaxy. Most
+engineering materials can be found here if the other stores dont have it.
+There are lots of selections and the prices are cheap. Its an engineer
+heaven!
+~
+0 76 1 0 0 0 88
+D1
+~
+~
+0 -1 1096
+D2
+~
+~
+0 -1 1069
+S
+#1248
+Heaven, in all its glory...~
+HOLY FO SHEEZY! Where are you??? It looks like a ghetto heaven with lots of
+guns!?!? Dominating the room is a large, platinum throne. Standing
+directly to the side is the biggest man you have ever seem. He is also
+holding the biggest GUN you have ever seen! The walls of this room are
+plain wood and some are falling apart, but there are always racks of guns
+to hold them up. Blasting through the speakers comes the large beat of
+some rap music.
+~
+0 92807180 1 0 0 0 88
+S
+#1249
+DONT USE THIS ROOM~
+~
+0 4 1 0 0 0 88
+S
+#0
+
+
+#RESETS
+M 1 1152 1 1097
+G 1 766 1
+G 1 765 1
+G 1 764 1
+G 1 763 1
+G 1 762 1
+G 1 761 1
+M 1 1137 1 1101
+G 1 1138 1
+M 1 1103 1 1055
+M 1 1058 20 1055
+M 1 1067 5 1055
+E 1 60 1 16
+M 1 1058 20 1055
+M 1 1060 22 1055
+M 1 1060 23 1073
+M 1 1073 1 1073
+M 1 1060 23 1073
+D 0 1100 2 0
+M 1 1154 22 1100
+E 1 50 1 16
+M 1 1154 22 1100
+E 1 50 1 16
+M 1 1154 22 1100
+E 1 50 1 16
+M 1 1154 22 1100
+E 1 50 1 16
+M 1 1154 22 1100
+E 1 50 1 16
+D 0 1100 2 0
+M 1 1154 22 1151
+M 1 1154 22 1151
+M 1 1113 8 1152
+M 1 1154 22 1157
+M 1 1154 22 1157
+M 1 1113 8 1164
+M 1 1154 22 1174
+M 1 1154 22 1174
+M 1 1153 1 1177
+M 1 1156 1 1185
+M 1 1053 4 1201
+M 1 1053 4 1201
+M 1 1053 4 1202
+M 1 1053 4 1202
+M 1 1138 1 1205
+M 1 1157 1 1233
+O 1 1156 1 1234
+M 1 1100 1 1237
+M 1 1105 1 1238
+M 1 1095 1 1247
+G 1 136 1
+G 1 137 1
+G 1 138 1
+G 1 139 1
+G 1 140 1
+G 1 141 1
+G 1 142 1
+G 1 143 1
+G 1 144 1
+G 1 145 1
+G 1 146 1
+G 1 147 1
+G 1 148 1
+G 1 1142 1
+M 1 1150 1 1249
+M 1 1249 1 1249
+O 1 1150 1 1249
+O 1 1249 1 1249
+D 0 1206 0 2
+O 1 1926 1 1243
+O 1 1243 1 1243
+M 1 1154 26 1192
+M 1 1154 26 1192
+D 0 1192 0 2
+M 1 1154 28 1204
+M 1 1154 28 1204
+O 1 1248 1 1204
+O 1 1245 1 1225
+M 1 1154 30 1106
+M 1 1154 30 1106
+E 1 50 1 16
+E 1 50 1 16
+G 1 62 1
+E 1 50 1 16
+E 1 50 1 16
+E 1 50 1 16
+G 1 62 1
+E 1 50 1 16
+E 1 50 1 16
+G 1 134 1
+E 1 50 1 16
+M 1 1154 58 1166
+M 1 1154 58 1166
+E 1 50 1 16
+G 1 141 1
+G 1 50 1
+G 1 50 1
+G 1 50 1
+G 1 50 1
+G 1 50 1
+G 1 50 1
+M 1 1154 62 1163
+M 1 1154 62 1163
+M 1 1154 64 1160
+M 1 1154 64 1160
+M 1 1113 8 1158
+M 1 1154 65 1158
+M 1 1154 67 1156
+M 1 1154 67 1156
+M 1 1154 75 1170
+M 1 1154 75 1170
+M 1 1154 84 1187
+M 1 1154 84 1187
+M 1 1154 84 1187
+M 0 1154 2 1191
+M 1 1240 1 1240
+O 1 1240 1 1240
+O 1 1241 1 1240
+M 1 1242 1 1242
+M 1 1247 1 1248
+M 1 231 2 1221
+S
+
+
+#SHOPS
+ 1152    0  0  0  0  0   120  90         0 23    ; Tailor Droid
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

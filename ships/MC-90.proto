@@ -1,0 +1,2950 @@
+#HEADER
+
+Name           MC-90 Mon Calamari Cruiser~
+Sname          MC-90~
+NumRooms       48
+Cost           2035950
+Class          8
+Tractor        0
+primaryType    6
+primaryCount   10
+secondaryType  9
+secondaryCount 6
+RangeWeapons0  16
+RangeWeapons1  16
+RangeWeapons2  16
+Hull           1850
+Shields        600
+Energy         17000
+Chaff          18
+Maxbombs       65
+Speed          35
+Hyperspeed     2
+Manuever       30
+Turrets        6
+Mods	    8
+Clan           The New Republic~
+End
+
+#ROOMS
+
+#ROOM
+
+RoomNum           1
+Name              The Bridge of an MC-90 Cruiser~
+Desc              This huge area is the heart of the MC-90, where all of the ship's various functions are carried out. Several stations surround a captain's chair, which is suspended from the ceiling. The main navigational computer lies northwest of here and the gunnery station is northeast, the main turbolift is to the south.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       4
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       2
+Exits7       3
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          1
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           2
+Name              Gunner's Station~
+Desc              A large targetting computer and several radar and ship status readouts cover the forward wall, beneath a large durasteel window showing space. The main bridge is southeast of here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       1
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          11
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           3
+Name              Navigation Station~
+Desc              Many personnel encircle the ship's main navigational computer here, where major hyperjumps are calculated. The main bridge is southwest of here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       1
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          10
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           4
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       1
+Exits1       0
+Exits2       5
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           5
+Name              A Durasteel Corridor - Bridge level~
+Desc              This is the bridge level, where the major ship functions are carried out. A few small automated turrets hang above the turbolift doors, ensuring some measure of security. Further north is the main bridge area.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       4
+Exits1       0
+Exits2       6
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           6
+Name              Turbolift~
+Desc              This lift is quite large, capable of holding several personnel at one time. The walls are pure white, the only thing sticking out is the commbox attached to one of them. To get a turbolift destination listing, say 'list'.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        speech list mpecho &R&C+&c---- &wTurbolift Destinations &c----&C+
+mpecho &c|                                |
+mpecho &c|  &wLevel &C1&w: Bridge&c               |
+mpecho &c|  &wLevel &C2&w: Personnel&c            |
+mpecho &c|  &wLevel &C3&w: Turrets/Engineering&c  |
+mpecho &c|  &wLevel &C4&w: Docking Bay&c          |
+mpecho &c|                                |
+mpecho &C+&c--------------------------------&C+
+~
+Rprog1        speech 1 mpecho The turbolift quickly moves to the Bridge.
+mpechoat $n You leave the turbolift.
+mptransfer $n $RNUM:5$
+mpat $RNUM:5$ mpechoaround $n $n steps from the turbolift.
+mpat $RNUM:5$ mpforce $n look
+~
+Rprog2        speech 2 mpecho The turbolift quickly moves to the Crew level.
+mpechoat $n You leave the turbolift.
+mptransfer $n $RNUM:12$
+mpat $RNUM:12$ mpechoaround $n $n steps from the turbolift.
+mpat $RNUM:12$ mpforce $n look
+~
+Rprog3        speech 3 mpecho The turbolift quickly moves to the Turret level.
+mpechoat $n You leave the turbolift.
+mptransfer $n $RNUM:25$
+mpat $RNUM:25$ mpechoaround $n $n steps from the turbolift.
+mpat $RNUM:25$ mpforce $n look
+~
+Rprog4        speech 4 mpecho The turbolift quickly moves to the Hanger level.
+mpechoat $n You leave the turbolift.
+mptransfer $n $RNUM:36$
+mpat $RNUM:36$ mpechoaround $n steps from the turbolift.
+mpat $RNUM:36$ mpforce $n look
+~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           7
+Name              A Bacta Tank~
+Desc              You are floating in a blue gelatin-like liquid, breathing through a mask. The bacta rushes over and around your body, cooling and soothing away any discomfort or injury. It is very peaceful in here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       8
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           8
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       7
+Exits1       0
+Exits2       9
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       10
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           9
+Name              A Bacta Tank~
+Desc              You are floating in a blue gelatin-like liquid, breathing through a mask. The bacta rushes over and around your body, cooling and soothing away any discomfort or injury. It is very peaceful in here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       8
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           10
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel. The Bacta tanks are northeast of here, and south leads to the rest of the crew level.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       11
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       8
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           11
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel. North leads to the bacta tanks, west to quarters, and south to the turbolift and recreation area.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       10
+Exits1       0
+Exits2       12
+Exits3       13
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           12
+Name              A Durasteel Corridor - Crew level~
+Desc              The crew level consists of all personnel quarters, healing facilities, the briefing room, and a recreational area. The corridor north leads to Quarters and the bacta tanks, south to the recreational room.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       11
+Exits1       0
+Exits2       23
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       6
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           13
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       11
+Exits2       0
+Exits3       16
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       14
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           14
+Name              The Mess Hall~
+Desc              Although the name wouldn't imply it, this area is actually quite clean and pristine like the rest of the ship. Long tables stretch across, where personnel come to grab a quick bite to eat. The ship cook is standing haphazardly behind a counter, waiting for your order.
+
+Say 'ration' for food and 'canteen' for drink, if you're in need.
+~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       13
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        speech ration  mpecho The cook gives a smile and nod, dropping a ration in front of you.
+mpoload 133
+drop ration
+~
+Rprog1        speech canteen  mpecho The cook gives a smile and nod, dropping a canteen in front of you.
+mpoload 134
+drop canteen~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           15
+Name              Captain's Quarters~
+Desc              This room is decorated quite nicely, a single bed and personal restroom instead of the regular crew bunks. A holonet viewer is attached to the wall, displaying current news and events. South leads back to the main crew level.~
+Flags             indoors spacecraft nomob hotel~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       16
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           16
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       15
+Exits1       13
+Exits2       17
+Exits3       18
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           17
+Name              The Briefing Room~
+Desc              This is where all intelligence and plans for this vessel are discussed and carried out. An oval table surrounded by several chairs is in the center of the room, and a holographic display sits atop of it. North leads back to the main crew level.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       16
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           18
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       16
+Exits2       0
+Exits3       20
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       19
+Exits8       0
+Exits9       21
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           19
+Name              Crew Quarters~
+Desc              Very dull and drab bunks line the room, with a chest at the foot of each for the crew's personal items. At the far end of this room, a holonet display shows current goings-on in the universe and relevant information to the ship's status.~
+Flags             indoors spacecraft nomob hotel~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       18
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           20
+Name              Crew Quarters~
+Desc              Very dull and drab bunks line the room, with a chest at the foot of each for the crew's personal items. At the far end of this room, a holonet display shows current goings-on in the universe and relevant information to the ship's status.~
+Flags             indoors spacecraft nomob hotel~
+Tunnel            315
+Exits0       0
+Exits1       18
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           21
+Name              Crew Quarters~
+Desc              Very dull and drab bunks line the room, with a chest at the foot of each for the crew's personal items. At the far end of this room, a holonet display shows current goings-on in the universe and relevant information to the ship's status.~
+Flags             indoors spacecraft nomob hotel~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       18
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           22
+Name              Resupply~
+Desc              Contact an immortal if you wish to add some sort of shop here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       23
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           23
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       12
+Exits1       0
+Exits2       24
+Exits3       22
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           24
+Name              Personnel Lounge~
+Desc              Several hologames, sabaac tables, and various time-wasting features fill this area where personnel come to get some rest and relaxation. A holonet display is mounted on the wall here, displaying pertinent information. The main crew level is north of here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       23
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           25
+Name              A Durasteel Corridor - Engineering/Turret Level~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel. Turret bays are east and west of here, and the main engine access is southward.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       6
+Exits1       28
+Exits2       26
+Exits3       29
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           26
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       25
+Exits1       0
+Exits2       27
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           27
+Name              Engineroom of an MC-90 Cruiser~
+Desc              Many hulking engines roar with power here, the engineroom. Several technicians scurry about, making sure everything is in order. The main engine access platform is here, allowing easy maintenance.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       26
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          7
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           28
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel. The turbolift is west of here, while starboard turrets branch off in three directions.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       34
+Exits2       0
+Exits3       25
+Exits4       0
+Exits5       0
+Exits6       33
+Exits7       0
+Exits8       35
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           29
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel. The turbolift is east of here, while the portside turrets branch off in three directions.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       25
+Exits2       0
+Exits3       31
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       30
+Exits8       0
+Exits9       32
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           30
+Name              Portside Turbolaser Turret 1~
+Desc              This is a quad-laser turret attached to the portside of the MC-90. A small targetting computer sits beneath a duraplast window, showing ship information via various readouts.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       29
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          12
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           31
+Name              Portside Turbolaser Turret 2~
+Desc              This is a quad-laser turret attached to the portside of the MC-90. A small targetting computer sits beneath a duraplast window, showing ship information via various readouts.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       29
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          13
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           32
+Name              Portside Turbolaser Turret 3~
+Desc              This is a quad-laser turret attached to the portside of the MC-90. A small targetting computer sits beneath a duraplast window, showing ship information via various readouts.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       29
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          14
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           33
+Name              Starboard Turbolaser Turret 1~
+Desc              This is a quad-laser turret attached to the starboard side of the MC-90. A small targetting computer sits beneath a duraplast window, showing ship information via various readouts.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       28
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          15
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           34
+Name              Starboard Turbolaser Turret 2~
+Desc              This is a quad-laser turret attached to the starboard side of the MC-90. A small targetting computer sits beneath a duraplast window, showing ship information via various readouts.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       28
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          16
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           35
+Name              Starboard Turbolaser Turret 3~
+Desc              This is a quad-laser turret attached to the starboard side of the MC-90. A small targetting computer sits beneath a duraplast window, showing ship information via various readouts.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       28
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          17
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           36
+Name              A Durasteel Corridor - Hanger Level~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel. The Starfighter hanger is west of here, Midtarget hanger east, and the hanger guard station south.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       6
+Exits1       40
+Exits2       43
+Exits3       37
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           37
+Name              Starfighter Hanger Foyer~
+Desc              Overlooking the main starfighter hanger, this foyer can oversee the coming and going of all ships. A brief stairwell leads downward, and east of here is the turbolift.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       36
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       38
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           38
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       39
+Exits3       0
+Exits4       37
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           39
+Name              Starfighter Hanger~
+Desc              The starfighter hanger of the MC-90 is extremely large. The hanger is full of ships of all sizes. There are technicians running around everywhere preparing ships for departure.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       38
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          3
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           40
+Name              Midtarget Hanger Foyer~
+Desc              Overlooking the main midtarget hanger, this foyer can oversee the coming and going of all ships. A brief stairwell leads downward, and west of here is the turbolift.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       36
+Exits4       0
+Exits5       41
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           41
+Name              A Durasteel Corridor~
+Desc              A pristine corridor much like the others, running throughout the interior of the cruiser.  A soft hum emanates from the walls, subtly reminding you of the power of this vessel. The midtarget hanger is south of here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       42
+Exits3       0
+Exits4       40
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           42
+Name              Midtarget Hanger~
+Desc              The midtarget hanger of the MC-90 is extremely large. The hanger is full of ships of all sizes. There are technicians running around everywhere preparing ships for departure.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       41
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          4
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           43
+Name              Guard Station~
+Desc              Two swiveling turrets guard both the starfighter and midship hangers here. Wide duraplast windowing allows view into the hangers as well, so the guard on duty can defend the ship from unwanted visitors. The turbolift is north of here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       36
+Exits1       42
+Exits2       0
+Exits3       39
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     33554452
+Exflags2     0
+Exflags3     33554452
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           44
+Name              ~
+Desc              ~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          0
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           45
+Name              ~
+Desc              ~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          0
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           46
+Name              ~
+Desc              ~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          0
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           47
+Name              ~
+Desc              ~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          0
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           48
+Name              ~
+Desc              ~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          0
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+
+#ENDROOMS
+
+#END

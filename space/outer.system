@@ -1,0 +1,51 @@
+#SPACE
+Name         Outer Rim~
+Filename     outer.system~
+Planet1      Tatooine~
+Planet2      ~
+Planet3      ~
+Star1        Tatoo One~
+Star2        Tatoo Two~
+Location1a      ~
+Location1b      ~
+Location1c      ~
+Location2a       ~
+Location2b      ~
+Location2c      ~
+Location3a      ~
+Location3b      ~
+Location3c      ~
+Doc1a          0
+Doc2a          0
+Doc3a          0
+Doc1b          0
+Doc2b          0
+Doc3b          0
+Doc1c          0
+Doc2c          0
+Doc3c          0
+P1x          -1460
+P1y          -19001
+P1z          -1890
+P2x          0
+P2y          0
+P2z          0
+P3x          0
+P3y          0
+P3z          0
+S1x          2056
+S1y          101
+S1z          6
+S2x          6
+S2y          101
+S2z          2056
+Gravitys1     0
+Gravitys2     0
+Gravityp1     0
+Gravityp2     0
+Gravityp3     0
+Xpos          3000
+Ypos          -1700
+End
+
+#END

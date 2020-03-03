@@ -1,0 +1,9 @@
+#FORCE
+Name      identify~
+Status    3
+Type      0
+Desc      Command:    identify$RN$Usage:      identify <target>$RN$Level:      Master$RN$Mana:       0$RN$Time Req:   10 seconds$RN$Duration:   Instant$RN$Components: None$RN$$RN$This ability is used to determine if a player possesses$RN$any ability in the force.  It can only be used once on$RN$each player and if another Master has already identified$RN$them you will be informed.$RN$$RN$NOTE: just being identified as having the force does$RN$mean that you have grounds to PK them, it does not say$RN$whether or not they are a Jedi or a Sith.$RN$~
+Skill     4
+End
+
+#END

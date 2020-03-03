@@ -1,0 +1,89 @@
+#AREA   Untitled Area~
+
+
+
+#AUTHOR Anonymous~
+
+#RANGES
+1 100 1 100
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 10000000
+
+#MOBILES
+#0
+mob~
+an unfinished mob~
+An unfinished mob is here.~
+It looks like someone forgot to finish it.~
+0 0 0 S
+1 0 0 1d1+1 1d+1
+1 1
+0 0 0 0 0
+#99
+mob~
+an unfinished mob~
+An unfinished mob is here.~
+It looks like someone forgot to finish it.~
+0 0 0 S
+1 0 0 1d1+1 1d+1
+1 1
+0 0 0 0 0
+#0
+
+
+#OBJECTS
+#0
+object~
+an unfinished object~
+An unfinished object is here.~
+Amazing what you can do with an unfinished object~
+0 0 0
+0 0 0 0
+0 0 0
+#99
+object~
+an unfinished object~
+An unfinished object is here.~
+Amazing what you can do with an unfinished object~
+0 0 0
+0 0 0 0
+0 0 0
+#0
+
+
+#ROOMS
+#0
+An unfinished room.~
+(empty)~
+0 0 0
+S
+#99
+An unfinished room.~
+(empty)~
+0 0 0
+S
+#0
+
+
+#RESETS
+M 0 9999 1 9999
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

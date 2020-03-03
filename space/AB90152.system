@@ -1,0 +1,51 @@
+#SPACE
+Name         AB90152 - Asteroid belt~
+Filename     AB90152.system~
+Planet1      XN1224-a~
+Planet2      HP9015-l~
+Planet3      ~
+Star1        ~
+Star2        ~
+Location1a      ~
+Location1b      ~
+Location1c      ~
+Location2a       ~
+Location2b      ~
+Location2c      ~
+Location3a      ~
+Location3b      ~
+Location3c      ~
+Doc1a          18203
+Doc2a          0
+Doc3a          0
+Doc1b          0
+Doc2b          0
+Doc3b          0
+Doc1c          0
+Doc2c          0
+Doc3c          0
+P1x          -4910
+P1y          1051
+P1z          9
+P2x          506
+P2y          151
+P2z          2020
+P3x          0
+P3y          0
+P3z          0
+S1x          0
+S1y          0
+S1z          0
+S2x          0
+S2y          0
+S2z          0
+Gravitys1     0
+Gravitys2     0
+Gravityp1     0
+Gravityp2     0
+Gravityp3     0
+Xpos          909
+Ypos          1170
+End
+
+#END

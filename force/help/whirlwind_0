@@ -1,0 +1,9 @@
+#FORCE
+Name      whirlwind~
+Status    2
+Type      0
+Desc      Command:    whirlwind$RN$Usage:      whirlwind$RN$Level:      Knight$RN$Mana:       20$RN$Time Req:   Instant$RN$Duration:   Instant$RN$Components: A wielded Lightsaber$RN$$RN$Bring your lightsaber into the air, spinning around and$RN$striking your enemy with your lightsaber.$RN$~
+Skill     10
+End
+
+#END

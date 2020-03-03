@@ -1,0 +1,43 @@
+SW:FotE 1.1 FUSS
+
+This is the SW:FotE 1.1 code in it's last known release condition. All relevent
+bugs that apply to SMAUG have been fixed in this version. Package assembled and
+fixed by popular demand of members of MUD Planet. Enjoy.
+
+What's been done to this:
+
+Cleaned out the excess area files in the building directory left behind by the authors.
+Replaced the improperly removed copyright credits in the source files.
+Removed the request pipe code that never worked.
+Removed the extra ports that the code normally opens.
+Applied all relevent fixes from Kevin London's list.
+Applied all relevent fixes from Druid's list.
+Applied all relevent fixes from Zylara's list.
+Applied all relevent fixes from Darkoth's list.
+Applied all relevent fixes from Sadiq's list.
+Applied all relevent fixes from Rinthos' list.
+Applied all relevent fixes from the MUD Planet bug list posts.
+Applied the updated memory handling macros.
+Fixed some memory leaks left by the original authors.
+Moved all help files from help2.are into help.are.
+Added Samson's color snippet to correct the flaws in the ANSI system.
+Upgraded the included Pfiles snippet to the latest version.
+Added Intermud-3 support.
+Added Cygwin support.
+Tons of memory leaks in functions.c were fixed.
+Applied the "cedit save" fix to do_cedit.
+Terell: Updated to include recently posted fixes at the SWFOTE Sourceforge page.
+Trister: Fixed ship rprograms so they work the way they should.
+Trister: Fixed channels so invisible imms don't show their names.
+Trister: Setclan Fixed so Clan Types fix correctly.
+Trister: Setrank fixed.
+Trister: Fixed some memory mis allocations found in a few functions.
+
+Tested error-free on the following platforms:
+
+Redhat Linux 9.0, kernel 2.4.20-20.9, GCC 3.3.2 compiler
+Cygwin 1.5.5, WinXP Pro w/ SP1, GCC 3.3.1 compiler, Cygwin crypt library installed.
+
+NOTE: Any bugs specific to alterations made for SW:FotE have NOT been fixed yet.
+I do not know what those bugs may be, so if someone cares to enlighten me,
+I'll be happy to include those fixes here.

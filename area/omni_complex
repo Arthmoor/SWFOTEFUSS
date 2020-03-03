@@ -1,0 +1,464 @@
+#AREA   The Immortals Complex~
+
+
+
+#AUTHOR Sirrus~
+
+#RANGES
+101 103 101 103
+$
+
+#RESETMSG A cool breeze blows down the ancient halls.~
+
+#FLAGS
+0
+
+#ECONOMY 0 31488683
+
+#MOBILES
+#100
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#103
+Faerie~
+A Magical Faerie~
+A Small Faerie is flying around the room
+~
+~
+1 4194304 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#114
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#100
+terminal omnipresent monitor~
+the Monitoring Terminal~
+The Monitoring Terminal has been installed here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#101
+terminal omnipresent coding~
+the Coding Terminal~
+The Terminal of the Omnipresent Coders is here, leaking source code.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#102
+terminal quest galactic control blinking~
+the Terminal for Galactic Control~
+The Galactic Control Terminal is here, and it is blinking.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#103
+garbage~
+a piece of garbage~
+A piece of garbage is laying here~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#104
+rusted door buzzer~
+&ra door buzzer&w~
+&ra door buzzer rusts quietly on the wall&w~
+~
+39 0 0
+0 0 0 0
+10000 0 0
+> push_prog 100~
+mpecho _red A tortured and weary scream can be
+mpecho _red heard from the depths of the house.
+pull buzzer
+mpecho Someone shouts from inside, 'Go THE FUCK.. AWAY'.
+mpat 104 mpecho _red The door buzzer sounds itself
+mpat 104 mpecho _red gratingly.. BZZZZT!
+~
+|
+#105
+crude sign~
+&za crude wooden sign&w~
+&za crude wooden sign reads, "&rStay Off the Loose Soil!&z"&w~
+~
+12 0 0
+0 0 0 0
+10000 0 0
+#106
+a broken pipe~
+A leaking pipe~
+A broken pipe is sticking out of the ground, spraying water everywhere.~
+~
+25 0 0
+1000 1000 0 0
+1 0 0
+#107
+A Pure White Throne~
+&wA Pure White Throne~
+&w A Pure White Throne stands in the center of the room.~
+~
+12 0 0
+0 0 0 0
+1 0 0
+#113
+Magic faerie juice~
+Faerie Juice~
+A Steaming Glass of...stuff is here~
+~
+17 0 1
+15 15 9 0
+1 0 0
+#114
+A Fine herb~
+A Fine Herb~
+A Fine herb is gathered amongst the bushes here. It looks quite dry.~
+~
+32 1073741824 0
+6 10 5 0
+1 0 0
+#0
+
+
+#ROOMS
+#100
+The Immortal Complex Shits~
+This room is where all the immortals work and make sure things work
+smoothly in the galaxy. High tech machines are all over the place,
+monitoring the statistics of the galaxy, making sure they are all in the
+right parameters. To the north is the conference room, and to the south is
+where all the offices are located.
+
+~
+0 1149239564 1 6 0 0 2128
+D0
+~
+~
+0 -1 102
+D2
+~
+~
+0 -1 106
+D4
+~
+~
+1 -1 105
+S
+#101
+MPPURGE ROOM!~
+Aristria's place .. ..
+~
+0 4 1 0 0 0 2128
+S
+#102
+Immortals Complex Conference Room~
+This is the Immortals Conference Room. In this room, many issues and
+punishments are dealt with. The walls are covered with an ugly grey
+wallpaper. The floor is carpeted with long, shaggy, navy blue carpeting.
+In the center of this long, rectangular room is an oval oak table with
+padded chairs around it with each immortals name on them.
+~
+0 8388616 1 0 0 0 2128
+D2
+~
+~
+0 -1 100
+S
+#103
+An Empty Apartment~
+~
+0 -2036333812 1 44 0 0 2128
+D6
+~
+~
+0 -1 106
+E
+ssi-ruuk~
+battlecruiser Shree-class Battle Cruiser
+D'kee-class Landing Ship
+~
+E
+coruscant~
+Tedium Way- Crime Ridden. Cheaper shops can go here
+~
+> speech_prog food~
+mpechoat $n A magical fairy appears to give you a mushroom.
+mpechoaround $n A magical fairy appears to give $n a mushroom
+mpmload 103
+mpforce faerie mpoload 20
+mpforce faerie say Enjoy this now, for one day you will die!
+mpsleep 5
+mpforce faerie give mushroom $n
+mptransfer faerie 101
+~
+> speech_prog drink~
+mpechoat $n A magical faerie appears to give you a drink.
+mpechoaround $n A magical faerie appears to give $n a drink.
+mpmload 103
+mpforce faerie mpoload 113
+mpforce faerie say Enjoy this wonderful drink, for it may or may not be your last!
+mpsleep 5
+mpforce faerie give juice $n
+mptransfer faerie 101
+~
+> custom_prog test~
+mpecho $q
+~
+|
+S
+#104
+&wHeaven&W~
+You stand upon a cloud of pure white. The entire area is filled
+with an endless sea of clouds. In the center of a room a throne
+stands. The throne is white and looks to be made of glass. A
+stream runs from the throne. The water is clear as crystal.
+There is a godly atmosphere here.
+~
+0 1150289672 1 12 0 0 2128
+D7
+~
+~
+0 -1 106
+S
+#105
+Immortals Complex Prison Cell~
+You enter a room with bright white lights, and soft padded walls. Gigantic
+rats infest this god forsaken place. There is no exit, no doors, no escape
+from this jail cell. All the inhabitants are trapped in here for the rest
+of their lives. To the edge of the room, there is a skeleton rested
+against the cell wall. God help his pathetic soul.
+~
+0 1082564620 1 0 0 0 2128
+D5
+~
+~
+0 -1 100
+S
+#106
+The Immortals Office Complex~
+Around the edge of this room are various house plants for decoration which
+lead up to the receptionist in the front and center of the room. There is
+a large book of appointments on the receptionists desk and a small green
+reading lamp. The floor is a beautiful black and white marble tile.
+~
+0 8388616 2 0 0 0 2128
+D0
+~
+~
+0 -1 100
+D1
+~
+~
+0 -1 112
+D3
+~
+~
+0 -1 111
+D4
+~
+~
+1 -1 110
+D6
+~
+~
+0 -1 107
+D8
+~
+~
+0 -1 104
+D9
+~
+~
+0 -1 103
+> speech_prog To Aristria's Cloud~
+rpechoat $n &zYou begin to grow wings, You begin to float in mid-air!
+rpechoat $n &zYou begin to fly high in the sky!
+rpechoat $n &zYou land on a big cloud!
+rpechoat $n &zThe Cloud is fluffy and &WWhite&z!
+~
+|
+S
+#107
+Before 777 Goodfeelin' St.~
+Standing before this run down excuse for a shack one can see that the yard,
+all of three yards in width runs in a band around to the rear of the hut.
+Dark streaks of reddish brown mar the concrete walk up to the busted ass
+doorway and the soil of the yard seems to have been recently tilled or
+worked with a shovel, all of it. Odd bits of jewelry and two pair of
+dentures lie half buried in the soil while the house itself looks like a
+dead whore, still as death, pale as the moon, eyes sewn shut with large
+planks and rusty nails. Back off to the southwest a stretch of suburban
+houses intercede upon this haunt and the lackadaisical immortal's complex.
+~
+0 0 1 0 0 0 2128
+D0
+~
+~
+0 -1 666
+D9
+~
+~
+0 -1 106
+S
+#108
+Lanceton's Dorm Room~
+~
+0 378536200 1 0 0 0 2128
+D5
+~
+~
+2048 -1 108
+D8
+~
+~
+0 -1 106
+D10
+~
+~
+264192 -1 100
+S
+#109
+Goku's Office~
+Write your own damn desc Goku!!! 
+~
+0 2097160 1 0 0 0 2128
+D0
+~
+door~
+1 -1 106
+S
+#110
+The Mail Room~
+Bio Rewards given:
+Seth
+Thornes
+Kensar
+Vincent
+Sykar
+~
+0 8 1 0 0 0 2128
+D5
+~
+~
+0 -1 106
+S
+#111
+Bardock's Office~
+The room is designed luxuriously and has a lot of elegant furniture spread
+apart. To the west is a window displaying a view of a beautiful beach; a
+work desk right in front of it. There is a couch here, along with a table
+and some chairs for people to sit down and relax. There is also a
+holovision screen to the north, along with many holomovies. Ancient
+military weaponry are set up on racks as well as some Star Trek ships
+hanging from the wall, protected by a strong duraglass alloy.
+~
+0 9438216 1 0 0 0 2128
+D1
+~
+~
+0 -1 106
+S
+#112
+Seraphim's Pearly Gates~
+Date: Thu, 11 Jul 2002 20:20:42 -0600 (MDT)
+From: fote@enigma.dune.net
+To: admin@dune.net
+Subject: Payment switching
+Please email MWhite17@ureach.com about us switching payments to him. He
+has sent you an email already, wasn't sure if you got it though. Thanks.
+~
+0 1048580 1 0 0 0 2128
+S
+#113
+Cubiculum~
+&b
+                .88888888.    .88888888.
+               88        88..88        88
+              88          8888          88
+               88        88``88        88
+                `88888888`    `88888888` 
+
+19502
+~
+0 1142947852 1 0 0 0 2128
+E
+goodclasses~
+Mon cal pilot smugg
+Wookiee Smuggling Politician
+~
+> custom_prog test~
+mpecho blah
+~
+|
+S
+#114
+Immortal Court Room~
+Hoth.are
+Assguild.are
+~
+0 1028 1 4 0 0 2128
+S
+#0
+
+
+#RESETS
+D 0 106 4 0
+O 1 104 1 107
+O 1 105 1 107
+D 0 109 0 0
+O 1 38 1 110
+O 1 100 1 100
+O 1 107 1 104
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

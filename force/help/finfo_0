@@ -1,0 +1,9 @@
+#FORCE
+Name      finfo~
+Status    1
+Type      0
+Desc      Command:    finfo$RN$Usage:      finfo$RN$Level:      Apprentice$RN$Mana:       0$RN$Time Req:   Instant$RN$Duration:   Instant$RN$Components: None$RN$$RN$This will show you a detailed readout of the both your$RN$current mana, and the percentage of your force skills.$RN$~
+Skill     1
+End
+
+#END

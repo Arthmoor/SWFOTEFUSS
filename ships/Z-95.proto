@@ -1,0 +1,94 @@
+#HEADER
+
+Name           Incom Z-95 Headhunter~
+Sname          Z-95~
+NumRooms       1
+Cost           49700
+Class          1
+Tractor        0
+primaryType    3
+primaryCount   1
+secondaryType  7
+secondaryCount 0
+RangeWeapons0  6
+RangeWeapons1  0
+RangeWeapons2  0
+Hull           42
+Shields        18
+Energy         3000
+Chaff          0
+Maxbombs       0
+Speed          100
+Hyperspeed     1
+Manuever       86
+Turrets        0
+Mods	    2
+Clan           ~
+End
+
+#ROOMS
+
+#ROOM
+
+RoomNum           1
+Name              Cockpit of a Z-95 Headhunter~
+Desc              This snubfighter was the last ship built by Incom/Subpro. They are famous for how much punishment they can take in battle, as well as the adaptability of the basic fighter design to other mission profiles. A unique 'bubble' canopy allows the pilot an almost 360 degree view of space around them. It boasts three lasers and a single concussion missile launcher.~
+Flags             indoors spacecraft nomob ~
+Tunnel            1
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          1
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+
+#ENDROOMS
+
+#END

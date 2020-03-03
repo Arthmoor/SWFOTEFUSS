@@ -1,0 +1,9 @@
+#FORCE
+Name      force_lightning~
+Status    3
+Type      2
+Desc      Command:    force_lightning$RN$Usage:      force_lightning$RN$Level:      Sith Master$RN$Mana:       100$RN$Time Req:   4 seconds$RN$Duration:   Instant$RN$Components: You cannot be wielding a weapon$RN$$RN$The most evil of all Sith skills, this skill allows$RN$you to send bolts of lightning flying through the$RN$air at your opponent.  Not only does it shock them$RN$but it also has the possibility of incapacitating$RN$them.$RN$~
+Skill     13
+End
+
+#END

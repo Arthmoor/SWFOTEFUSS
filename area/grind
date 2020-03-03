@@ -1,0 +1,2 @@
+valgrind -v --tool=memcheck --leak-check=yes --show-reachable=yes --db-attach=yes --num-callers=10 ../src/swr 9500
+

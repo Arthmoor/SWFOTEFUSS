@@ -1,0 +1,3402 @@
+#AREA   Coruscant~
+
+
+
+#AUTHOR Squall/Bardock~
+
+#RANGES
+0 0 0 65
+$
+
+#FLAGS
+0 30
+
+#ECONOMY 0 14414014
+
+#MOBILES
+#1050
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1051
+Kwen Twi shopkeeper~
+Kwen Twi~
+Kwen Twi, the Twi'lek shopkeeper is here to sell you things.
+~
+Kwen Twi is a shopkeeper who owns the Coruscant General Store and is a
+Twi'lek. He is short and wears casual clothes. He is a nice guy, a bit old
+and lonely though, because his wife died and all his children are grown up
+now. Somehow, he dislikes his archnemesis, Senator Valrus, the most hated
+Senator in the Empire. 
+~
+1048579 4194304 0 Z
+10 0 75 2d10+100 1d4+2
+100 0
+8 8 1
+20 10 10 20 10 10 10
+0 0 0 0 0
+2 0 0 0 5 4 0
+2 2 1983 0 0 0 0 0
+1 0 0 0 0 0 0 0
+> greet_prog 100~
+mpsleep 2
+say Hello. What can I do for you?
+~
+> give_prog senator valrus's head~
+sa He's dead?!
+sa Thank god he's finally dead.
+mpwithdraw 5
+give 5 credits $n
+sa This is for your trouble.
+mpadvance $n 8 2000
+sa And a little something extra. Thank you so much.
+mpat 101 drop head
+mpat 101 mppurge
+~
+> give_prog Letter from Senator Valrus~
+say I hate him. He has no right being senator.
+say Here give him this letter.
+mpoload 1139
+give kwen $n
+mpat 102 drop valrus
+mpat 102 purge valrus
+~
+|
+#1052
+a technician tech~
+a technician~
+A technician is readying ships for launch.
+~
+He is a young human technician, aged around 25 or 28. He is wearing a grey
+worksuit that is smudged with grease. Several tools hang from a belt
+around his waist. His face is blacked with tar and other dirty things
+involving the machinery of the ships he maintains.
+~
+16778307 0 0 Z
+9 0 80 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1053
+imperial elite guard~
+An Imperial elite guard~
+An Imperial elite guard stands here, protecting his post.
+~
+The guard is bulky and looks smart. These guards have had a year training
+in the Imperial Extreme Boot Camp and are the most well trained bodyguards
+in the galaxy. They are proficient with hand to hand and ranged combat.
+They are even capable of using the Force to dull pain! These guys arn't a
+force to be reckoned with. He looks at you with a cold stare and suddenly
+you feel spooked.
+~
+4167 4194304 0 Z
+36 0 10 7d10+360 10d4+20
+100 0
+8 8 1
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 -73761 1 3
+10 10 2047 0 0 0 35 2
+1 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+If clan($n) == Rebel Alliance
+Mppkset 1053 yes
+Else
+ mppkset 1053 no
+endif
+If clan($n) == The Empire
+Salute $n
+Else
+Mpkill $n
+Endif
+Else
+endif
+~
+|
+#1054
+spaceport security guard~
+a spaceport security guard~
+A spaceport security guard keeps an eye open for trouble.
+~
+This guard seems buff and stands at a height of 7 feet 4 inches. He is
+wearing a light blue police-like uniform that has the spaceport patch on
+his arm. His job is to protect the spaceport from thiefs, smugglers, and
+other crooks of the galaxy. He is holding a scanner, scanning people all
+around for illegal stuff.
+~
+3 0 0 Z
+35 0 12 7d10+350 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 4
+7 7 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1055
+female customer~
+a female customer~
+A female customer is here, looking around
+~
+This is a regular human female citizen who is enjoying life. She has
+brunette hair and is wearing causal tight clothing to show off a body
+thats not very good. She is a bit cute but also chubby at the same time.
+She brings along something to read and is buying other stuff like clothing
+or food.
+~
+3 0 0 Z
+4 0 90 0d10+40 0d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1056
+beggar ~
+a shopkeeper droid~
+A droid is here scanning your purchaces.
+~
+This droid is a very rudimentry humanoid shape. Its voice synthesyser is
+worn out and makes a slight hissing sound when it speaks.
+~
+67108867 0 0 Z
+50 0 -25 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1057
+beggar~
+a begger~
+A small child begs for money.
+~
+~
+5123 0 0 Z
+2 0 95 0d10+20 0d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 25~
+if ispc($n)
+  if sex($n) == 1
+    say Hello sir, do you have any money for the poor?
+  else
+    say Hello ma'am, do you have any money for the poor?
+  endif
+endif
+~
+|
+#1058
+male citizen~
+a male citizen~
+A male citizen walks along.
+~
+He is a regular guy, and he walks about the streets of Coruscant to work.
+He is wearing a nice suit, but even so is not interesting. He appears to
+be middle age and his loss of hair could be caused by this children. In
+his hand is a cup of coffee to keep him awake.
+~
+1 0 0 Z
+7 0 82 1d10+70 0d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+1 1 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1059
+apartment clerk~
+an apartment clerk~
+A clerk for Coruscant Highlands is here directing guests.
+~
+~
+3 0 0 Z
+10 0 75 2d10+100 1d4+2
+10 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+2 2 2039 0 0 0 0 0
+1 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+mea $n The clerk says, "Greetings, want an apartment?"
+else
+say Greetings.
+endif
+~
+|
+#1060
+female citizen~
+a female citizen~
+A female citizen wanders around, wondering which shops to hit next.
+~
+She is a regular looking female, and she appears to be nicely dressed. She
+seems really busy, as she is walking fast and running from store to store
+to get food and other things for her family. She is middle age, and her
+eyes are dull with experience and the lack of sleep, probably caused by
+her children.
+~
+1 0 0 Z
+7 0 82 1d10+70 0d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+1 1 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+> greet_prog 10~
+say Oh blaster bolts! I forgot my Palpatine Express card at home!
+~
+|
+#1061
+astromech droid~
+an astromech droid~
+An astromech droid is monitoring the engines.
+~
+This common make of astromech droid is also known as an R2 unit. It is
+a small wheeled droid designed primarily for ship maintenence and
+repair. It has an interface apendage to plug into a ships computer as
+well as several other tools hidden within its domed frame that it
+uses to preform various functions.
+~
+83886083 0 0 Z
+4 0 88 0d0+0 1d2+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1062
+automated defense system~
+an automated defense system~
+An automated defense system is waiting for hostiles to slaughter.
+~
+~
+67145799 4194306 0 Z
+36 0 -100 7d10+360 3d4+2
+0 0
+8 8 0
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 10
+25 25 0 2098547 2048 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+If clan($n) == The Empire
+Mpecho Beeps
+Else
+Mpkill $n
+Endif
+Else
+endif
+~
+|
+#1063
+Commander Harrington~
+commander harrington~
+Commander Harrington relaxes here behind his desk.
+~
+Harrington, while old, still has that sparkle in his eye that shows he
+remembers what it was like to be a cadet.
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1064
+~
+An Imperial Stormtrooper~
+An Imperial Stormtrooper Stands Here Waiting to Kill Someone
+~
+~
+134217731 0 0 Z
+6 0 85 5d10+1 3d3+3
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1065
+bob stormie storm stormtrooper~
+A Rebel Aliance Trooper~
+A Rebel Aliance Trooper Stands Here Looking for Someone to Help
+~
+~
+134217731 0 0 Z
+14 0 65 2d10+140 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 4
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1066
+bob stormie storm stormtrooper~
+An Imperial Stormtrooper~
+An Imperial Stormtrooper Stands Here Waiting to Kill Someone
+~
+~
+134217731 0 0 Z
+6 0 85 5d10+1 3d3+3
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1067
+human police officer~
+a police officer~
+A police officer takes a stroll here.
+~
+~
+1 0 0 Z
+36 0 10 7d10+360 3d4+2
+10 0
+8 8 1
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 2
+30 7 2047 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1068
+Imperial armorer~
+an Imperial armorer~
+An Imperial armorer is here selling armor.
+~
+This Imperial armorer is strong and well trained by the Empire. He is
+wearing an Imperial uniform and sells used armor. Don't underestimate him,
+because he gives you a cold stone look and the last two thiefs who
+attempted to steal from him were beaten up and then eaten alive.
+~
+3 0 0 Z
+36 0 10 7d10+360 3d4+2
+100 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 10
+7 7 0 0 0 0 48 1
+0 0 0 0 0 0 0 0
+#1069
+Thallid~
+Thallid~
+Thallid stands here, selling goofy gifts.
+~
+Thallid is a Dug who has a sense of humor and used that to get a business
+running. He sells goofy items, which are liked by children, thus he gets a
+lot of business during the holidays and birthdays. Everyday, thousands go
+to his shop to buy cool goodies that are unique.
+~
+3 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+26 0 0 0 17 16 0
+2 2 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1070
+Bartender bar Qurik~
+Qurik the bartender~
+Qurik the bartender is here cleaning glasses with a cloth.
+~
+Qurik is a famous Adarian who has set up the biggest ship in Bulova
+Spaceport, located in Coruscant. He is a good person to talk to when
+people are having trouble, and that's why he is one of the best bartenders
+in the galaxy. He is middle age, but he is also very wise and friendly.
+Maybe you should talk to him and make a new friend!
+~
+3 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+20 10 10 20 10 10 10
+0 0 0 0 0
+9 0 0 0 1 1 0
+2 2 2047 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1071
+universal postal worker~
+an Universal Postal worker~
+An Universal Postal worker runs around with tons of mail and parcels.
+~
+This postal worker is a male wearing a nice Universal Postal Service
+uniform, which is light blue and made of wool. He is in great shape due to
+his job's need to run around a lot to deliver packages and mail. He seems
+pretty young and is only doing this until he gets promoted to a higher
+job, which WILL take a LONG time.
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1072
+huznik~
+Huznik~
+Huznik stands here selling rich, tasty caff.
+~
+Huznik is a famous Mon Calamarian who loves to make caffinated drinks. He
+started brewing his unique drinks at a young age, experimenting until the
+drinks tasted perfect. He is pretty small for a Mon Calamarian, but he is
+hard working and a great lady's man. That makes him a successful
+businessman. 
+~
+3 0 0 Z
+10 0 75 2d10+100 1d4+2
+100 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+5 0 0 0 1 1 0
+2 2 2047 0 0 0 0 0
+1 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+  say Hey there! Would you like to buy a steaming cup of caff?
+else
+  say I dont want any soliciters around here!
+endif
+~
+|
+#1073
+Dealer Glitterstim Glitter Stim Man Black~
+a glitterstim dealer~
+A man in a black trenchcoat stands here, motioning you to come near him.
+~
+The man's face cannot be seen and he is wearing a large hat and trenchcoat
+which really covers him up. He is dark and apparently mysterious, with
+white packets all over his trenchcoat. He doesn't move much, and it seems
+like he is a dangerous person.
+~
+4099 4194304 -500 Z
+35 0 -200 10d30+2000 10d20+25
+220 0
+8 8 0
+22 16 13 22 21 6 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+25 14 0 2097152 0 0 0 2
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 1075
+~
+> give_prog crumbling dun spice bindle~
+em grins crookedly as he accepts the packet.
+say Alright, $n. Made good time too.
+mea $n A Glitterstim dealer lays a few creds on ya.
+mer $n A Glitterstim dealer lays a few creds on $n.
+mpwithdraw 500
+give 500 credits $n
+mpadvance $n 5 1500
+mpat 101 drop spice
+mpat 101 mppurge
+~
+|
+#1074
+blaster salesman~
+a weapon salesman~
+A bulky salesman sits behind his desk examining his newest stock of blasters.
+~
+The salesman is bulky and tough, giving the impression of fear to the
+customers. One look at him, and thiefs tremble before him. He is wearing a
+nice gray suit and shows his customers the weapons he is selling. Don't
+try to mess with him, because he seems like he can beat almost anyone to a
+bloody pulp.
+~
+3 0 0 Z
+30 0 25 6d10+300 3d4+2
+100 0
+8 8 1
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 3 1 0
+6 6 2047 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1075
+Glitterstim Addict~
+A Glitterstim Addict~
+A Glitterstim Addict sits curled up in the corner here..
+~
+~
+3 4194304 0 Z
+22 0 45 4d10+220 2d4+2
+10 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+4 4 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> give_prog Head Glitterstim Dealer~
+say Er..AH! You killed him?!
+sa y..YES! f...ff..FINALLY!
+say did you rr..r.really think i have mm.money to give you? MUAHAHAHAHA
+say im broke as a bum!
+mpadvance $n 3 2000
+mpat 101 drop head
+mpat 101 mppurge
+~
+> all_greet_prog 100~
+say er...AH! Damned dealer... SKIMPED ME!
+say K...ki...KILL him and I'LL GIVE you c-c-c-CASHH!
+twitch
+~
+|
+#1080
+A wise old man~
+A wise old man~
+A Wise old man sits here contemplating the inner workings of the universe.
+~
+~
+1027 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Oh, well hello there $n, welcome to my home.
+say I have found that I have learned much from
+say the universe, perhaps I could show you a few things.
+~
+|
+#1095
+Hardware Droid~
+a hardware droid~
+A rusted protocol droid selling engineering supplies stand here, waiting for customers.
+~
+This droid is an old model called the KTC-14, but it still works. It is
+like an android, which only knows about cash transactions and is good at
+it. It is more experienced than most droids and is more wiser. The droid's
+brain has been refitted to learn from its mistakes, thus becoming more and
+more perfect everyday. 
+~
+33685569 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+20 10 10 25 20 10 10
+0 0 0 0 0
+0 0 0 0 2051 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1096
+~
+An Engineer~
+An Engineer stands here examining his inventory
+~
+~
+1049603 4194304 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1097
+engineer teacher~
+an engineer teacher~
+An engineer is here, teaching people.
+~
+This engineer is quite old, and has been successful. He is currently
+retired, but he decided to teach younger engineers tricks of the trade. He
+is very wise and can teach you almost everything about engineer. Too bad
+he charges you for his teachings, but he's gotta make a life for himself
+too!
+~
+1049603 4194304 0 Z
+36 0 10 7d10+360 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1098
+imperial customs officer~
+an Imperial customs officer~
+An Imperial customs officer is here checking for contraband.
+~
+This officer is dressed in a all-black uniform and is quite old. He appears
+to have been a member of the Empire for many years and is very loyal to
+it. In his hand is a scanning device in which he uses to scan passing
+people to make sure that contraband are taken away.
+~
+3 4194304 -500 Z
+30 0 25 0d0+0 4d4+0
+86 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 5
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1099
+male customer~
+a male customer~
+A male customer is here, looking around.
+~
+This is a regular human male citizen who is enjoying life. He has brown
+hair and is a bit hairy, wearing casual clothing that are comfortable. He
+brings along something to read and is buying other stuff like clothing or
+food.
+~
+1073741891 0 0 Z
+5 0 87 1d10+50 0d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+1 1 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1100
+strength trainer~
+a strength trainer~
+A trainer who helps train strength is here, flexing his muscles.
+~
+This guy is built! He has the uniform haircut of all imperial
+stormtroopers, but looks like he could lift 500 pounds with one hand!
+Veins stand out on his massive arms, that look like they might pop.
+~
+515 0 0 Z
+5 0 87 1d10+50 0d4+2
+0 0
+8 8 1
+25 3 3 3 3 3 10
+0 0 0 0 0
+0 0 0 0 1 1 4
+1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1102
+OwEn~
+OwEn~
+Some god abandoned a newly created OwEn here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1103
+a vending machine~
+a vending machine~
+A vending machine is lightly humming here
+~
+A large and bulky VM-189 vending machine sits here. The front of it is a
+large window that displays what it has to sell. At the moment only Choco
+sticks and some sort of Crunchy thing are for sale. One the right side of
+the machine there is a "list". And above the list is a small slot for
+credits.
+~
+1174405187 40 0 Z
+1 0 97 0d10+10 0d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> speech_prog list~
+mpechoat $n An electronic voice says:
+mpechoat $n Choco Sticks for 3 credits.
+mpechoat $n Fish Crunch for 4 credits.
+~
+> bribe_prog 3~
+mpechoat $n The machine hums and some choco sticks fall out.
+mpoload 1073
+drop choco
+~
+> bribe_prog 4~
+mpechoat $n The machine hums and a fish crunch falls out.
+mpoload 1074
+drop crunch
+~
+> give_prog package vending~
+if ovnuminv(1243) == 1
+  mpechoat $n The machine whirrs and clanks.
+  mpat 101 drop package
+  mpat 101 mppurge
+  mpadvance $n 5 500
+endif
+~
+|
+#1104
+constitution dexterity trainer~
+a dexterity and constitution trainer~
+A trainer who helps train dexterity and constitution is here, running on the treadmill.
+~
+This guy is built! He has the uniform haircut of all imperial
+stormtroopers, but looks like he could lift 500 pounds with one hand!
+Veins stand out on his massive arms, that look like they might pop.
+~
+515 0 0 Z
+5 0 87 1d10+50 0d4+2
+0 0
+8 8 1
+3 3 3 20 20 3 10
+0 0 0 0 0
+0 0 0 0 1 1 4
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1105
+self-defense trainer~
+a self-defense trainer~
+A self-defense trainer is here, showing people how to kick efficiently.
+~
+This particular training instructor is wearing a black trooper shirt, and
+pants. He has shaved head that gleams in the artificial light. His eyes
+seem to glow with delight as he watches the other troopers trying to
+perfect their combat techniques.
+~
+1050115 0 0 Z
+36 0 10 7d10+360 3d4+2
+100 0
+8 8 0
+25 25 25 25 25 25 10
+0 0 0 0 0
+6 0 0 0 1 1 20
+7 7 0 0 0 0 48 2
+0 0 0 0 0 0 0 0
+#1110
+Your Personal Trainer~
+Your Personal Trainer~
+Your Personal Trainer stands here, flexing his muscles.
+~
+This guy is built! He has the uniform haircut of all imperial
+stormtroopers, but looks like he could lift 500 pounds with one hand!
+Veins stand out on his massive arms, that look like they might pop.
+~
+515 0 0 Z
+1 0 0 20d20+100 20d20+0
+0 0
+8 8 1
+25 25 25 25 25 25 10
+0 0 0 0 0
+0 0 0 0 1 1 4
+0 20 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1111
+Imperial Combat Instructor~
+Imperial Combat Instructor~
+An Imperial combat instructor is here exercising
+~
+This particular training instructor is wearing a black trooper shirt, and
+pants. He has shaved head that gleams in the artificial light. His eyes
+seem to glow with delight as he watches the other troopers trying to
+perfect their combat techniques.
+~
+1049603 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 2
+1 0 0 0 0 0 0 0
+#1113
+Imperial Recruit~
+imperial recruit~
+An Imperial Recruit walks past.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#1120
+imperial recruitment officer~
+a newly created imperial recruitment officer~
+Some god abandoned a newly created imperial recruitment officer here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1136
+trooper human guard black~
+A Guard in Black Armor~
+A Guard in Black Armor
+~
+~
+1 0 0 Z
+1 0 -200 5d5+0 5d5+0
+0 0
+8 8 1
+20 20 20 10 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 4
+20 20 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1137
+Senator Valrus~
+Senator Valrus~
+Senator Valrus stands here enjoying the view.
+~
+Senator Valrus is a short fairly fat man. He has light sandy brown hair,
+green eyes, and a large nose. He's wearing a pair of brown pants, and a
+brown jacket over a dark blue imperial shirt. The imperial insignia is
+stamped on his left shoulder and he seems to wear it with pride.
+~
+1050115 4194304 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+10 25 25 20 10 25 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+2 2 1 0 2048 0 0 0
+1 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 1137
+~
+> give_prog Letter from Kwen Twi~
+say That fool is unwilling to accept progress.
+say Oh well. Thank you for your service.
+mpwithdraw 2
+give 2 credits $n
+mpadvance $n 5 1000
+mpat 102 drop letter
+mpat 102 mppurge letter
+~
+> greet_prog 100~
+say Would you be kind enough to deliver a letter to Kwen Twi?
+~
+> speech_prog yes~
+say Thank you good citizen.
+give letter $n
+~
+|
+#1138
+A Political Advisor~
+A Political Advisor~
+A Political Advisor is here, awaiting to inform you of the populaces feelings
+~
+Senator Valrus is a short fairly fat man. He has light sandy brown hair,
+green eyes, and a large nose. He's wearing a pair of brown pants, and a
+brown jacket over a dark blue imperial shirt. The imperial insignia is
+stamped on his left shoulder and he seems to wear it with pride.
+~
+1050115 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+10 25 25 20 10 25 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+0 0 1 0 0 0 0 0
+1 0 0 0 0 0 0 0
+> bribe_prog 1000~
+mpdeposit 1000
+say the citizens of coruscant greatly appreciate this gift
+~
+|
+#1144
+bank teller~
+A bank teller~
+A bank teller is here counting money.
+~
+She is wearing a nice business suit and she is helping newcomers with their
+bank accounts. She is really busy, and she runs around a lot, making her
+lose weight so she has a nice body. Anyway, if you want to do anything
+dealing with the bank, talk to her.
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+  say Greetings $n!
+  bow $n
+  say Would you like to deposit some money?
+else
+  say No freeloaders in here!
+endif
+~
+> speech_prog yes~
+say Good!
+say All you have to do is say 'bank deposit (amount)' and you got it!
+say To withdraw it is 'bank withdraw (amount)'.
+say Be careful, though, because malicious slicers may be able to steal your
+say deposited credits!
+~
+> speech_prog no~
+say No?!
+say Get the hell outa here you damn freeloader!
+em usher's $n away.
+~
+|
+#1149
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#1050
+vending machine~
+a vending machine~
+A vending machine is lightly humming here.~
+~
+12 1073741826 0
+0 0 0 0
+1 0 0
+> speech_prog list~
+mpechoat $n Selections:
+mpechoat $n Choco Sticks - 2 Credits
+mpechoat $n Fish Crunch - 2 Credits
+~
+> bribe_prog 2~
+mpechoat $n The machine humms and then drops a choco stick
+mpoload 1073
+~
+> give_prog package for a vending machine~
+~
+|
+#1051
+bantha burger~
+a juicy bantha burger~
+A juicy and large burger is squashed on the floor.~
+~
+19 8192 1
+20 20 0 0
+1 5 0
+#1052
+box of fries~
+a box of tasty fries~
+A box with potato pieces has fallen on the floor.~
+~
+19 0 1
+20 20 0 0
+1 5 0
+#1053
+Black Trooper T-Shirt~
+Black Trooper T-Shirt~
+A Black T-Shirt lies here.~
+~
+9 -2147483648 9
+0 1 0 0
+1 0 0
+A
+18 1
+A
+2 1
+#1054
+Black Trooper Fatigues~
+black imperial trooper leggings~
+Part of a black uniform lies crumpled on the floor.~
+~
+13 0 33
+0 0 0 0
+1 0 0
+A
+2 1
+A
+18 1
+#1055
+Black Belt~
+a black belt~
+A black belt was left here.~
+~
+9 -2146697216 2049
+0 4 0 0
+1 0 0
+#1056
+khat drink~
+a glass of khat drink~
+A glass of a brownish liquid is here.~
+~
+17 0 1
+5 5 15 0
+1 3 0
+#1057
+duralight~
+duralight~
+A survival flashlight was dropped here.~
+~
+1 0 16385
+0 0 3 0
+2 10 1
+#1058
+cup of capo~
+a cup of capo~
+A cup of capo is here.~
+~
+17 0 16385
+2 2 12 0
+1 10 1
+#1059
+cup of moka~
+a cup of moka~
+A cup of moka is here.~
+~
+17 0 16385
+2 2 12 0
+1 10 1
+#1065
+Gate~
+a gate~
+A huge gate stands  here, guarded by Stormtroopers.~
+~
+13 4096 0
+0 0 0 0
+1 0 0
+#1067
+black shades~
+a black shades~
+A black shades is here.~
+~
+13 0 131072
+0 0 0 0
+1 0 0
+#1068
+Drearian Defense Conglamorate Blaster~
+Defense Blaster~
+A Drearian Defense Conglamorate Blaster lies here~
+~
+5 0 8193
+0 10 10 6 100 100
+12 3750 375
+A
+18 2
+#1069
+cup of latte~
+a cup of latte~
+A cup of latte is here.~
+~
+17 0 16385
+2 2 12 0
+1 10 1
+#1070
+SoroSuub QuickSnap 36T~
+SoroSuub QuickSnap 36T~
+SoroSuub QuickSnap 36T~
+~
+5 0 8193
+0 15 15 6
+12 3750 375
+A
+18 2
+A
+18 -5
+#1072
+cup of caff~
+a cup of caff~
+A steaming cup of caff is here~
+~
+17 8192 1
+2 2 12 0
+1 10 1
+#1073
+choco sticks~
+some choco sticks~
+Some cookies covered by chocolate are smashed on the floor.~
+~
+19 0 1
+10 10 0 0
+1 2 0
+#1074
+crunch fish~
+a fish crunch~
+A crunchy choco fish bar was left here.~
+~
+19 0 1
+10 10 0 0
+1 2 0
+#1075
+Head Glitterstim Dealer~
+The Head of a Glitterstim Dealer~
+A head lies here... rolling around.~
+~
+13 0 1
+0 0 0 0
+4 0 0
+#1077
+package to captain harlef~
+a package to captain harlef~
+A package to captain harlef is here.~
+~
+15 0 1
+0 0 0 0
+1 0 0
+#1078
+fountain~
+a fountain~
+A fountain is here.~
+~
+25 1073741824 0
+0 0 0 0
+1 0 0
+#1080
+fountain~
+a fountain~
+A fountain is here, spouting out water.~
+~
+25 8192 0
+1000 1000 0 0
+1 0 0
+#1097
+A small Green Garbage Can Trash refuseboxomatic~
+a small green garbage can~
+A small green garbage can is here in the corner, waiting for trash.~
+~
+15 0 0
+5000 0 0 0
+1 0 0
+> use_prog 100~
+mpoload 1097
+mppurge 2.refuseboxomatic
+mea $n You toss your garbage into the can.
+mpechoaround $n &W&c$n tosses some garbage into the garbage can.
+~
+|
+#1110
+Weight Lifting Equipment~
+a Weight Lifting Equipment~
+A Weight Lifting Equipment is here.~
+~
+13 0 0
+0 0 0 0
+500 0 0
+#1111
+Weight Lifting Equipment~
+a Weight Lifting Equipment~
+A Weight Lifting Equipment is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#1112
+Black Imperial Chest Armor~
+a stormtrooper chest plate~
+A white stormtrooper chest plate was left here.~
+~
+9 -1073741824 9
+0 6 0 0
+7 0 0
+#1130
+Weight Lifting Equipment~
+a Weight Lifting Equipment~
+A Weight Lifting Equipment is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#1135
+locker footlocker~
+a locker footlocker~
+A locker footlocker is here.~
+~
+15 0 0
+5000 5 0 0
+200 0 0
+#1136
+bed~
+a bed~
+A bed is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#1137
+Senator Valrus's Head~
+senator valrus's head~
+Senator valrus's head was dropped here~
+~
+13 0 1
+0 0 0 0
+1 0 0
+#1138
+Letter from Senator Valrus~
+a Letter from Senator Valrus~
+A letter from Kwen Twi was dropped here~
+~
+13 0 1
+0 0 0 0
+1 0 0
+E
+Letter from Senator Valrus~
+I'm afraid your store will have to be shut down sometime in the relativly
+near future due to a new law which should be passed within a standard
+months time. You should begin preperation for this as soon as possible.
+~
+#1139
+Letter from Kwen Twi~
+a Letter from Kwen Twi~
+A Letter from Kwen Twi is here.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+E
+Letter from Kwen Twi~
+I refuse to shut down my store and will do everything in my power to
+prevent this law from comming about. I have served as a member of the
+store owners guild for over 15 years. You have no right to come in here
+and destroy my life's work on a whim.
+~
+#1140
+The Imperial Jail Key~
+an imperial jail key~
+A retarded lookin key is here~
+~
+18 0 1
+0 0 0 0
+1 0 0
+#1141
+general message board~
+a general message board~
+A general message board is here for your messages.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#1142
+a mirror~
+a mirror~
+A mirror is here.~
+~
+69 8192 1
+0 0 0 0
+1 5 1
+#1144
+coffee machine~
+a coffee machine~
+A coffee machine is here.~
+~
+15 0 0
+500 0 0 0
+1 0 0
+> speech_prog coffee~
+mpoload 1072 1
+mpecho The coffee machine hums and spits out a cup of caff.
+drop caff
+~
+> speech_prog caff~
+mpoload 1072 1
+mpecho The coffee machine hums and spits out a cup of caff.
+drop caff
+~
+|
+#1145
+An Imperial Weapons Permit~
+a An Imperial Weapons Permit~
+A An Imperial Weapons Permit is here.~
+~
+8 0 16389 1
+0 0 0 0
+1 0 0
+E
+An Imperial Weapons Permit~
+this is an imperial weapons permit.
+~
+E
+An Imperial Weapons Permit~
+this is an imperial weapon permit.
+~
+#1146
+&r Salty Wine&w&W~
+&r Salty Wine&w&W~
+&rSalty Wine has been spilled here.&w&W~
+~
+17 8192 1
+5 5 2 0
+1 3000 300
+#1149
+high_obj~
+a high_obj~
+A high_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#1050
+Bulova Main Landing Pad~
+Many ships are nestled in this large hangar. Crates full of equipment are
+everywhere, and mechanics are busy working on damaged ships. Technicians
+are pumping fuel and getting ships prepared for launch. Turrets defend
+this landing pad from foreign invaders. Thousands of ships of all shapes
+and sizes launch and land here every hour.
+~
+0 56 1 4 0 0 4856
+D0
+~
+~
+0 -1 1051
+S
+#1051
+Bulova Spaceport~
+The Bulova Spaceport is a bustling hive of activity. Thousands of people of
+all races occupy this place. Many are waiting for their rides, filling all
+the available benches and chairs. Some are doing business, and some are
+just hanging around, relaxing. To the south is the main landing pad. To the
+west is the bus stop, where anyone can catch a free ride. The secondary
+pad is located to the east, where there is long term parking.
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1056
+D1
+~
+~
+0 -1 1052
+D2
+~
+~
+0 -1 1050
+D3
+~
+~
+0 -1 1053
+D5
+~
+~
+0 -1 1054
+D9
+~
+~
+0 -1 1070
+S
+#1052
+Secondary Hangar~
+The pad is also filled with space vessels. Most are here for long term
+parking and the citizens of Coruscant leave their ships here for
+safekeeping. A few families are here, packing their ships for a vacation
+or something. Security droids slowly glide on the smooth floor, doing
+patrols to ensure that there are no hijackings.
+~
+0 56 1 4 0 0 4856
+D3
+~
+~
+0 -1 1051
+S
+#1053
+Bus Stop~
+This landing bay is specifically for the galactic busses that run their
+route through this system. The rides are free but the busses are always
+crowded. The busses are a haven for the poor and homeless aliens of the
+galaxy. There are some benches here, full of people waiting for the busses.
+Trees provide shade for hot weather. Lamps are installed here to give
+light so people can see where they are going during the nighttime. There
+are lots of trash litter around here, giving off a slight stinky smell.
+To enter the busses, type BOARD <shipname>
+~
+0 0 1 0 0 0 4856
+D1
+~
+~
+0 -1 1051
+S
+#1054
+Simulator Room~
+Hundreds of spectators gather around large viewscreens showcasing the
+action of the simulator duels taking place in the pods around them. The
+pods move by hydrolics, giving the person inside a taste of the ship's
+movement in space. Sometimes there are dogfight compititions hosted and the
+winners win a big sum of money. The simulators are cheap and fun... why
+don't you try one?
+~
+0 76 1 0 0 0 4856
+D4
+~
+~
+0 -1 1051
+S
+#1055
+Rest Area~
+There are sofas and comfy chairs spread about the room. There are small
+tables with magazines and books on them for enjoyment. There is a small
+restroom area at one corner and a gaming area on the other corner. A bacta
+tank is located near the restroom and the water fountain. Its a great place
+to rest after shopping or a trip through space.
+~
+0 72 1 0 0 0 4856
+D3
+~
+~
+0 -1 1054
+S
+#1056
+Entrance to Bulova Spaceport~
+A large stone archway is all that stands between Imperial Avenue and the
+infamous Bulova Spaceport. The spaceport is one of the largest in the
+galaxy, home to many shops, restauarants, and some of the... most
+interesting people in the the galaxy. The doors to the spaceport are
+gigantic, and hundreds of thousands of people pass through it everyday.
+Small kiosks are set up here, selling various items like newspapers or
+pretzels.
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1059
+D1
+~
+~
+0 -1 7511
+D2
+~
+~
+0 -1 1051
+D3
+~
+~
+0 -1 1144
+S
+#1057
+Econo Lodge~
+The Econo Lodge is a little piece of history. It has been around since the
+Old Republic, and has survived the insurrection of Palpatine's New Order.
+The lodge is a great place to stay overnight, with comfortable beds and
+great holovision channels! The fare here is cheap too. There is a small
+check in/out counter to the right, and an ATM machine to the left.
+~
+0 8388684 1 0 0 0 4856
+D1
+~
+~
+0 -1 1059
+S
+#1058
+Coruscant General Store~
+The store is small, but is tidy and full of supplies that are useful. The
+walls are made of a nicely polished wood and there is a counter with a
+cash register on it. The stuff here are cheap so theres always someone in
+here, buying rations or something. Perhaps you would like to stock up for
+an adventure or journey?
+~
+0 328 1 0 0 0 4856
+D3
+~
+~
+0 -1 1059
+S
+#1059
+Imperial Avenue~
+Imperial Avenue is one of the three main lifelines of the great city-planet
+Coruscant, combined with Palpatine Road and Senate Street. The avenue
+starts at Bulova Spaceport and ends at the Imperial Palace, where the
+Emperor resides. Hovercars and people flood the streets every second, going
+about their business. The air is sticky and hot because of the exhaust
+from nearby turbocars and hovercars.
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1060
+D1
+~
+~
+0 -1 1058
+D2
+~
+~
+0 -1 1056
+D3
+~
+~
+0 -1 1057
+S
+#1060
+Imperial Avenue~
+Imperial Avenue is one of the three main lifelines of the great city-planet
+Coruscant. The other two are Palpatine Road and Senate Street. The avenue
+reaches from the great Bulova Spaceport to the famed Imperial Palace, the
+stronghold of the Emperor. Turbocars and airspeeders zip across the city,
+but more than 90% of all Imperial Center traffic passes through the
+avenue.
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1062
+D1
+~
+~
+0 -1 1141
+D2
+~
+~
+0 -1 1059
+D3
+~
+~
+0 -1 1142
+S
+#1061
+An Empty Apartment~
+~
+0 10486344 1 0 0 0 4856
+D3
+~
+~
+0 -1 1082
+S
+#1062
+Intersection of Palpatine and Imperial~
+This is the busy intersection of Palpatine and Imperial. Thousands of
+people travel through here, maybe even millions! Its always busy in
+Coruscant, there's always work to do. To the northwest is a small training
+facility and the streets go along on all four directions.
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1063
+D1
+~
+~
+0 -1 1069
+D2
+~
+~
+0 -1 1060
+D3
+~
+~
+0 -1 7500
+D7
+~
+~
+0 -1 1239
+S
+#1063
+Imperial Avenue~
+People and vehicles everywhere! Beggers are begging, shopkeepers are
+yelling, and all the other people walking around. A few soldiers are
+marching and police officers are keeping an eye out for trouble. The
+street is like all the rest in Coruscant.
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1064
+D2
+~
+~
+0 -1 1062
+S
+#1064
+Intersection of Senate and Imperial~
+The presence of the Dark Side can be felt. To the north, the Imperial
+Palace towers above even the most tallest buildings in Coruscant. The sky
+is a light reddish brown and there are patrol ships floating around, doing
+its rounds over the place. There are only a few people here because the
+path is about to end.
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1093
+D2
+~
+~
+0 -1 1063
+D3
+~
+~
+0 -1 1066
+S
+#1065
+4-Way Intersection Outside the Palace~
+The Imperial Palace is HUGE! The building is made of a duraglass alloy
+which catches the lights of the city, making it look brilliant. It looks
+the best during the daytime. It seems like it is as tall as the sky from
+down here. There is a large Imperial sign near the top of the building.
+Plus, there are no windows in the lower half of the building, replaced
+with electronic eyes which provide more security. There are few guard
+posts around here. Perhaps there are more deadly, hidden security
+measures? The ground here is soft and muddy, kind of like a bog.
+Squelching sounds can be heard as various small creatures move through the
+swamp. Large trees and a thick mist surround, making visibility poor. One
+would be wise to watch his or her step through this area.
+
+^r&x  WARNING:  Guards will attack you if you go into the palace.  &W^x
+~
+0 4 1 0 0 0 4856
+D0
+~
+gate~
+1 -1 1100
+D1
+~
+~
+0 -1 1101
+D2
+~
+~
+0 -1 1095
+D3
+~
+~
+0 -1 1129
+> speech_prog test~
+mpwait 5
+mpecho test
+~
+|
+S
+#1066
+Senate Street~
+Senate Street is named after the famed political body of the Old Republic,
+which ruled for millenia, only to be overthrown by one of its own, Senator
+Palpatine. Senate Street is mainly for residential purposes, and is famous
+for its luxurious hotels and housing.
+~
+0 0 1 0 0 0 4856
+D1
+~
+~
+0 -1 1064
+D3
+~
+~
+0 -1 1067
+S
+#1067
+Senate Street~
+The street leads far west, so far that you can only see the horizon. Tons
+of people are getting out or going to their homes, and there are many
+parked hovercars near the sidewalks. Turbocars zoom past, throwing dust
+and trash all over the people below. Some people look scary. It would be
+nice to get away for them, for they are mostly all thugs and thiefs.
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1246
+D1
+~
+~
+0 -1 1066
+D2
+~
+~
+0 -1 1068
+S
+#1068
+Coruscant Highlands Apartments~
+The apartments here are expensive, but well worth the price. The whole
+building is small, but is quite close to some food restaurants and other
+utility stores. Each room is spacious and designed beautifully. There is a
+large counter here, filled with paperwork. Behind it are some aparment
+keys, but it is protected by a forcefield. Sofas and chairs are here for
+people to lay back and relax. The atmosphere is very comfortable.
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1067
+D2
+~
+~
+0 -1 1075
+S
+#1069
+Palpatine Road~
+Palpatine Road has many shops. This whole section is commercial area.
+Buildings towering high are for businesses and corporations. Millions of
+space vessels are flying about here, and there are crowds on the pathways.
+The pathways have railings, but people still can fall off, so watch
+out!
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1247
+D1
+~
+~
+0 -1 1071
+D2
+~
+~
+0 -1 1074
+D3
+~
+~
+0 -1 1062
+S
+#1070
+Qurik's Bar and Grill~
+The bar is clean, and it is full of space veterans like pirates, smugglers,
+etc. Good smelling food can be seen here, smoking after being roasted on
+the grills. The bartenders here are friendly and can give advice to their
+customers. Its a great hangout for bums and people who want to spend all
+their credits.
+~
+0 72 1 0 0 0 4856
+D6
+~
+~
+0 -1 1051
+S
+#1071
+Palpatine Road~
+Many other minor streets branch off from here, and there are still a lot of
+shops and bars. Alleyways are full of homeless and dirty scum hiding away
+from the police. Trash droids wizz about collecting trash that people
+leave behind. Some businessmen are resting here, sitting on the benches
+reading newspapers. The street ends here.
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1073
+D2
+~
+~
+0 -1 1072
+D3
+~
+~
+0 -1 1069
+S
+#1072
+Huznik's Caff Shoppe~
+Warm and sweet aromas drift along the air into the nostrils of guests as
+they step into the famous Huznik's Caff Shoppe. Huznik is galaxy renowned
+for his incredible caffinated drinks. The menu has many different caff
+selections, but everyone likes the original caff cup.
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1071
+S
+#1073
+A Dark Alley~
+This is a dark alley that splits off Palpatine Road. There are many garbage
+recepticals and litter is on the ground. Hobos and vagrants hang out here,
+as this is their homes. The only way to leave the alley is to the south,
+and to the north is a dead end. A shady person in a large overcoat stands
+against the wall and motions you to come near him. What does he want?
+~
+0 8388612 1 0 0 0 4856
+D2
+~
+~
+0 -1 1071
+S
+#1074
+Wellington's Blaster Store~
+The shop is full of weaponry for all races. Racks and racks of blasters of
+all shapes and sizes are here. The most advanced weapons given out to the
+public are located near the counter, where it is protected by a high power
+forcefield. The blasters here are all in good condition and are cheap.
+People who need to protect themselves should buy a weapon.
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1069
+S
+#1075
+Turbolift~
+The lift is very luxurious. It has a nice carpet with an interesting design
+on it. The walls are made of a type of polished wood and there is a
+laminated not near the manual controls. It says: "Say list to view the
+choices. Then say the level you want to get off at and you will be quickly
+transported there." 
+~
+0 76 1 0 0 0 4856
+> speech_prog 1~
+mpecho The turbolift hums to life.
+mpsleep 6
+mpecho The turbolift slows as it reaches the ground floor.
+mpsleep 3
+mpecho The turbolift doors slide open.
+mptrans $n 1068
+mpat $n mpforce $n l
+mpecho $n steps out of the turbolift.
+~
+> speech_prog 2~
+mpecho The turbolift hums to life.
+mpsleep 6
+mpecho The turbolift slows as it reaches the second floor.
+mpsleep 3
+mpecho The turbolift doors slide open.
+mptrans $n 1076
+mpat $n mpforce $n l
+mpecho $n steps out of the turbolift.
+~
+> speech_prog 3~
+mpecho The turbolift hums to life.
+mpsleep 6
+mpecho The turbolift slows as it reaches the third floor.
+mpsleep 3
+mpecho The turbolift doors slide open.
+mptrans $n 1077
+mpat $n mpforce $n l
+mpecho $n steps out of the turbolift.
+~
+> speech_prog list~
+mpecho ------------------------
+mpecho Coruscant Highlands
+mpecho ------------------------
+mpecho 1 - Lobby
+mpecho 2 - 2nd Floor Apartments
+mpecho 3 - 3rd Floor Apartments
+mpecho ------------------------
+~
+|
+S
+#1076
+Second Floor Landing~
+This is the level for the mid-level apartments. It has a spetacular view
+and also is closest to the lobby. A hallway starts here and heads north.
+Two apartment entrances are here, one on each side. The hallway is
+beautiful because of the wallpaper and the lights. The carpet is a light
+gray and mats are at every entrance to the apartments.
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1081
+D1
+~
+~
+0 -1 1083
+D2
+~
+~
+0 -1 1075
+D3
+~
+~
+0 -1 1084
+S
+#1077
+Third Floor Landing~
+The more expensive apartments are on this floor.  As you step onto the
+landing you cant really tell the difference, and you assume it is probably
+some ploy by the owners to make these rooms cost more for no reason. This
+is the highest floor in the building. The view is the best here because it
+is at a higher location and more of the city can be seen. The downside is
+that it would take longer to get out of the building in case of an
+emergency. The carpet here is a light gray and the walls are adorned with
+beautiful wallpaper. Nice place to live.
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1087
+D1
+~
+~
+0 -1 1090
+D2
+~
+~
+0 -1 1075
+D3
+~
+~
+0 -1 1079
+S
+#1078
+An Empty Apartment~
+~
+0 10485832 1 0 0 0 4856
+D3
+~
+~
+0 -1 1087
+S
+#1079
+An Empty Apartment~
+~
+0 77661256 1 0 0 0 4856
+D1
+~
+~
+0 -1 1077
+S
+#1080
+An Old Man's Apartment~
+~
+0 8389960 1 0 0 0 4856
+D1
+~
+~
+0 -1 1088
+S
+#1081
+A Long Hallway~
+On the ceiling is a small ventilation duct puffing out warm air. The window
+to the end of the hallway can be seen and it gives a beautiful view of
+Coruscant. A little glimpse of the Imperial Palace can be seen from this
+point. Its nice and quiet here.
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1082
+D1
+~
+~
+0 -1 1085
+D2
+~
+~
+0 -1 1076
+D3
+~
+~
+0 -1 1136
+S
+#1082
+End of the Hallway~
+The hallway finally comes to an end. The window is larger and has chairs
+under it so people can sit down and enjoy the view. A small tree is on
+each side of the windows. Lights are set up near the window so it would
+not be dark in the nighttime. The view is the best at night, because of
+the lights of the city reflecting off the Imperial Palace, making a
+display of brilliant light flying around.
+~
+0 72 1 0 0 0 4856
+D1
+~
+~
+0 -1 1061
+D2
+~
+~
+0 -1 1081
+D3
+~
+~
+0 -1 1086
+S
+#1083
+An Empty Apartment~
+~
+0 10485832 1 0 0 0 4856
+D3
+~
+~
+0 -1 1076
+S
+#1084
+An Empty Apartment~
+~
+0 10485832 1 0 0 0 4856
+D1
+~
+~
+0 -1 1076
+S
+#1085
+An Empty Apartment~
+~
+0 10485832 1 0 0 0 4856
+D3
+~
+~
+0 -1 1081
+S
+#1086
+An Empty Apartment~
+~
+0 11534408 1 0 0 0 4856
+D1
+~
+~
+0 -1 1082
+S
+#1087
+A Long Hallway~
+On the ceiling is a small ventilation duct puffing out warm air. The window
+to the end of the hallway can be seen and it gives a beautiful view of
+Coruscant. A little glimpse of the Imperial Palace can be seen from this
+point. Its nice and quiet here. 
+~
+0 72 1 0 0 0 4856
+D0
+~
+~
+0 -1 1088
+D1
+~
+~
+0 -1 1078
+D2
+~
+~
+0 -1 1077
+D3
+~
+~
+0 -1 1092
+S
+#1088
+End of the Hallway~
+The hallway finally comes to an end. The window is larger and has chairs
+under it so people can sit down and enjoy the view. A small tree is on
+each side of the windows. Lights are set up near the window so it would
+not be dark in the nighttime. The view is the best at night, because of
+the lights of the city reflecting off the Imperial Palace, making a
+display of brilliant light flying around.
+~
+0 72 1 0 0 0 4856
+D1
+~
+Cozy Nook~
+0 -1 1089
+D2
+~
+~
+0 -1 1087
+D3
+~
+~
+0 -1 1080
+S
+#1089
+An Empty Apartment~
+~
+0 10486344 1 0 0 0 4856
+D3
+~
+~
+0 -1 1088
+S
+#1090
+An Empty Apartment~
+~
+0 10485832 1 0 0 0 4856
+D3
+~
+~
+0 -1 1077
+S
+#1091
+An Empty Apartment~
+~
+0 2097228 1 0 0 0 4856
+S
+#1092
+An Empty Apartment~
+~
+0 10485832 1 0 0 0 4856
+D1
+~
+~
+0 -1 1087
+S
+#1093
+Imperial Avenue~
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1094
+D2
+~
+~
+0 -1 1064
+S
+#1094
+Imperial Avenue~
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1095
+D2
+~
+~
+0 -1 1093
+S
+#1095
+Imperial Avenue~
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1065
+D2
+~
+~
+0 -1 1094
+S
+#1096
+Engineering Trainer~
+This is a large classroom where engineers can learn more about their trade
+and expand their skills. There are chairs and tables where engineers can
+sit down and watch lectures. Some can practice what they learned here, but
+there might not be a lot of space, because every day, thousands of
+engineers come to learn about engineering.
+~
+0 12 1 0 0 0 4856
+D0
+~
+~
+0 -1 1097
+D3
+~
+~
+0 -1 1247
+S
+#1097
+Workshop~
+This is a huge workshop full of tools, stools, and tables for engineers to
+work on projects like making comlinks, or armor, or anything else. Tailor
+droids run around, selling fabrics to engineers so that they can make
+things ranging from containers to armor. It is quite dusty here, because
+of the dust fluttered from the tools and materials.
+~
+0 67371080 1 0 0 0 4856
+D2
+~
+~
+0 -1 1096
+> custom_prog "put all trash" "put all can" "put all garbage"~
+mea $n You can't put everything in the trash can!
+~
+|
+S
+#1098
+Imperial Recruitment Office~
+The recruitment office is a small, squarish room in the Bulova Plaza.  The
+room is painted the standard imperial white with drab recruitment posters
+on the walls. A small man sits at a desk here.  The nametag reads "Reserve
+General Felth" and he appears to have a constant sneer on his lips. As
+long as your here, why dont you sign up?
+~
+0 1342177292 1 0 0 0 4856
+D3
+~
+~
+0 -1 1056
+S
+#1099
+Floating in a void~
+~
+0 1073741828 1 0 0 0 4856
+S
+#1100
+4-Way Junction in the Corridors~
+Welcome to the Imperial Palace! The stormtrooper wing is to the east, the
+recreation area to the east, and the naval wing is located somewhere to
+the northwest corner of the Directly to the north is the turbolift that
+will take the Directly to the north is the turbolife that gives access to
+the upper levels of the palace. There is a large guard post to the
+northeast and electronic cameras are pointing right at you.
+~
+0 8 1 0 0 0 4856
+D0
+~
+~
+0 -1 1137
+D1
+~
+~
+0 -1 1102
+D2
+~
+~
+33 1140 1065
+D3
+~
+~
+0 -1 1167
+> greet_prog 100~
+Mpat 1204  Say $n has entered the palace.
+~
+|
+S
+#1101
+Walking Outside the Palace~
+The walls to protect the palace is very tall and thick. It is made out of a
+durasteel alloy that is reinforced to be able to withstand orbital
+bombardments from any vessel as powerful as the Imperial Star Destroyer.
+On top of the walls are where guards are posted to keep an eye out for
+trouble. There are small laser guns designed to be able to shoot rapidly
+so that a mass of intruders would be gunned down if they attempt to enter
+the area.
+~
+0 0 1 0 0 0 4856
+D3
+~
+~
+0 -1 1065
+S
+#1102
+A Brightly Lit Hallway~
+As you follow the bland, gray hall, you hear the bustle of movement
+directly to the west. Coming from the east, there is a faint echo of
+screaming. Several automated turrets are built into the wall here.
+~
+0 8 1 0 0 0 4856
+D1
+~
+~
+0 -1 1103
+D3
+~
+~
+0 -1 1100
+S
+#1103
+A Brightly Lit Hallway~
+This hall is made entirely of gray marble. There is nothing to decorate it,
+besides the occasional Stormtrooper guard. A little ways to the east, the
+corridor comes to an end, with the option to either go north or south.
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1104
+D3
+~
+~
+0 -1 1102
+S
+#1104
+A Brightly Lit Hallway~
+You continue down the hall but notice no change in the physical appearance.
+Several Stormtroopers hurry by you, no doubt on some urgent mission. Just
+to the east the corridor branches off into two directions.
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1105
+D3
+~
+~
+0 -1 1103
+S
+#1105
+Fork in the Halls~
+Here the corridor comes to a divide, with exits west, north and south.
+Going west will take you to the entrance of the palace, while going either
+north or south will bring you to the stormtroopers training/housing
+facility.  Hanging on the wall is a portrait of some great commander of
+the past. As you walk past, his eyes seem to follow you. Upon closer
+examination, they are!
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1106
+D2
+~
+~
+0 -1 1127
+D3
+~
+~
+0 -1 1104
+S
+#1106
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1107
+D2
+~
+~
+0 -1 1105
+S
+#1107
+In Front of the Combat Instructor~
+As you walk down this hall, you hear the sounds of fighting coming to the
+south. Outside the door is a sign that reads &RCombat Instruction&w,
+perhaps you should head south if you need to get your edge back in combat.
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1108
+D2
+~
+~
+0 -1 1128
+D3
+~
+~
+0 -1 1106
+S
+#1108
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.  
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1109
+D3
+~
+~
+0 -1 1107
+S
+#1109
+North of the Imperial Gym~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched.  You smell sweaty bodies and hear grunts to the
+south, oh my! 
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1111
+D2
+~
+~
+0 -1 1110
+D3
+~
+~
+0 -1 1108
+S
+#1110
+An Imperial Gymnasium~
+This hall is filled with sweaty, muscular imperial troops. Weights and
+other machines meant to get one "into shape" are strewn about. The floor
+is covered with red padding, and you notice some troopers sparring in a
+corner.  To the west, you can see someone shouting instructions to a group
+of wimpy-looking recruits. 
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1109
+D3
+~
+~
+0 -1 1117
+S
+#1111
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1112
+D3
+~
+~
+0 -1 1109
+S
+#1112
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D2
+~
+~
+0 -1 1113
+D3
+~
+~
+0 -1 1111
+S
+#1113
+Outside of the Armory~
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1112
+D1
+~
+~
+0 -1 1114
+D2
+~
+~
+0 -1 1115
+S
+#1114
+"The Morgue"~
+The Imperial Armory aka "The Morgue" is filled with both the normal
+stormtrooper armor and powered armor for crowd control.  They are sitting
+side by side with either a SoroSuub Stormormtrooper One Blaster Rifles, or
+a Blastech T-21 Light Repeating Blaster and Grenades. The are stored
+inside  vacuum tight durasteel  footlockers.  On the side of each is a
+palm reader, and they will only open to people with high enough clearance
+in the imperial database. The stormtroopers are under orders to blow up
+the armory if an enemy assault force would be in a position to acquire 
+it.
+~
+0 8200 1 0 0 0 4856
+D3
+~
+~
+0 -1 1113
+S
+#1115
+Outside of the Living Quarters~
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1113
+D2
+~
+~
+0 -1 1116
+D3
+~
+~
+0 -1 1130
+S
+#1116
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1115
+D3
+~
+~
+0 -1 1118
+S
+#1117
+An Imperial Gymnasium~
+This hall is filled with sweaty, muscular imperial troops. Weights and
+other machines meant to get one "into shape" are strewn about. The floor
+is covered with red padding, and you notice some troopers sparring in a
+corner.  Close by to the west you see people fighting and another, larger
+man yelling at them to keep their form and such.
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1110
+D3
+~
+~
+0 -1 1128
+S
+#1118
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1116
+D3
+~
+~
+0 -1 1119
+S
+#1119
+Outside of the Stormtrooper Briefing Room~
+Directly to the north, you see a classroom like setting, with some out of
+uniform recruits sitting around. It looks like some sort of briefing room.
+ The featureless hall continues for a ways to the west, and to the east,
+it turns north. 
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1120
+D1
+~
+~
+0 -1 1118
+D3
+~
+~
+0 -1 1122
+S
+#1120
+Stormtrooper Mission Briefing Room~
+This room is completely filled with desks, resembling a classroom. This is
+where the Stormtroopers are given their orders to carry out.  Some of the
+most brutal imperial assaults were planned in this very room. Some
+troopers are here going over their recent commands. They briefly look up
+as you pass. There are no armed guard in this area, for a change. 
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1121
+D2
+~
+~
+0 -1 1119
+S
+#1121
+Front of Briefing Room~
+The northern wall at the front of this classroom is composed of several
+giant screens onto which officers can project any image they wish. It
+seems almost lonely without someone giving orders.
+~
+0 8200 1 0 0 0 4856
+D2
+~
+~
+0 -1 1120
+S
+#1122
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1119
+D3
+~
+~
+0 -1 1123
+S
+#1123
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D1
+~
+~
+0 -1 1122
+D3
+~
+~
+0 -1 1124
+S
+#1124
+South of the Garrison Commander's Office~
+You stand right outside of the Stormtroopers Commanders office. Two
+Stormtroopers stand at the door, making sure the commander is not
+disturbed unnecessarily. The plaque above the door reads "Commander
+Harrington". No doubt he is one of the most decorated persons in the whole
+empire, after all, its not as if they draw the names out of a hat to
+decide who will be commander of the Imperial Home Guard.
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1125
+D1
+~
+~
+0 -1 1123
+D2
+~
+~
+33554432 -1 1206
+D3
+~
+~
+0 -1 1126
+S
+#1125
+Stormtrooper Commander's Office~
+This small room is covered completely in plaques and awards given to the
+commanding officer of the Stormtrooper Home Guard. A brown, wood desk
+dominates the room, and there is barely enough room to walk past it.
+Unlike  the large marble bricks that make up the outside hallway, this
+office appears to be entirely metal.  Looking up into the corners of the
+room, you see cameras and small automated laser turrets pointing at you.
+~
+0 8200 1 0 0 0 4856
+D2
+~
+~
+0 -1 1124
+S
+#1126
+Corner of the East Wing~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1127
+D1
+~
+~
+0 -1 1124
+D2
+~
+~
+67108903 1140 1206
+S
+#1127
+A Brightly Lit Hallway~
+This corridor is no different than the others, just plain gray marble with
+several out of uniform stormtroopers hurrying to their destinations. There
+are no noticeable automated defenses here. But you get the feeling that
+you are being watched. 
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1105
+D2
+~
+~
+0 -1 1126
+S
+#1128
+The Imperial Combat Instructor~
+Standing right in front of you is the absolute biggest, baddest, most mean
+looking person you have ever seen! He is shouting at other recruits who
+are sparring or doing pushups, how the hell does he manage all this on his
+own??!!  He notices you glancing at him and starts shouting at you
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1107
+D1
+~
+~
+0 -1 1117
+> speech_prog trainme~
+mppurge
+mpmload 1111
+~
+|
+S
+#1129
+Walking Outside the Palace~
+The walls to protect the palace is very tall and thick. It is made out of a
+durasteel alloy that is reinforced to be able to withstand orbital
+bombardments from any vessel as powerful as the Imperial Star Destroyer.
+On top of the walls are where guards are posted to keep an eye out for
+trouble. There are small laser guns designed to be able to shoot rapidly
+so that a mass of intruders would be gunned down if they attempt to enter
+the area.
+~
+0 0 1 0 0 0 4856
+D1
+~
+~
+0 -1 1065
+D7
+~
+~
+0 -1 7584
+S
+#1130
+Imperial Troop Barracks~
+You walk down the central isle between the beds and observe the sloppiness
+with which the off duty cadets have sorted their belongings. If there were
+to be a surprise inspection, they would likely all be thrown in the brig!
+You hear snoring and the occas occasional fart.
+~
+0 8200 1 0 0 0 4856
+D0
+~
+~
+0 -1 1131
+D1
+~
+~
+0 -1 1115
+D2
+~
+~
+0 -1 1132
+D3
+~
+~
+0 -1 1133
+S
+#1131
+Sleeping Chamber~
+This small room is filled almost completely by a bunk bed, a footlocker,
+and a short, wide plastisteel shelf. There are imperial recruitment
+posters completely covering the walls.  There are gun magazines (the kind
+you read), and dirty underwear almost completely covering the floor. There
+is a cadet sleeping on the bottom bunk, but the top one is all yours. 
+~
+0 8396808 1 16 0 0 4856
+D2
+~
+~
+0 -1 1130
+S
+#1132
+Sleeping Chamber~
+This small room is filled almost completely by a bunk bed, a footlocker,
+and a short, wide plastisteel shelf. There are imperial recruitment
+posters completely covering the walls.  There are gun magazines (the kind
+you read), and dirty underwear almost completely covering the floor. There
+is a cadet sleeping on the bottom bunk, but the top one is all yours. 
+~
+0 8396808 1 16 0 0 4856
+D0
+~
+~
+0 -1 1130
+S
+#1133
+Imperial Troop Barracks~
+You walk down the central isle between the beds and observe the sloppiness
+with which the off duty cadets have sorted their belongings.  If there
+were to be a surprise inspection, they would likely all be thrown in the
+brig! You hear snoring and the occasional fart.
+~
+0 0 1 0 0 0 4856
+D0
+~
+~
+0 -1 1134
+D1
+~
+~
+0 -1 1130
+D2
+~
+~
+0 -1 1135
+S
+#1134
+Sleeping Chamber~
+This small room is filled almost completely by a bunk bed, a footlocker,
+and a short, wide plastisteel shelf. There are imperial recruitment
+posters completely covering the walls. There are gun magazines (the kind
+you read), and dirty underwear almost completely covering the floor. There
+is a cadet sleeping on the bottom bunk, but the top one is all yours.
+~
+0 8396808 1 16 0 0 4856
+D2
+~
+~
+0 -1 1133
+S
+#1135
+Sleeping Chamber~
+This small room is filled almost completely by a bunk bed, a footlocker,
+and a short, wide plastisteel shelf. There are imperial recruitment
+posters completely covering the walls.  There are gun magazines (the kind
+you read), and dirty underwear almost completely covering the floor. There
+is a cadet sleeping on the bottom bunk, but the top one is all yours. 
+~
+0 8396808 1 16 0 0 4856
+D0
+~
+~
+0 -1 1133
+S
+#1136
+An Empty Apartment~
+~
+0 10485832 1 0 0 0 4856
+D1
+~
+~
+0 -1 1081
+S
+#1137
+Before the Guard Station~
+Directly to the west is the prominent guard station in the palace. Taking a
+peek inside you see screens and all kinds of alarms just waiting to be
+set. The guard has a window with which to view incoming traffic.
+~
+0 12 1 0 0 0 4856
+D0
+~
+~
+0 -1 1189
+D1
+~
+~
+0 -1 1138
+D2
+~
+~
+0 -1 1100
+S
+#1138
+The Guard Station~
+This is probably the most high tech room you have yet to see. Computers
+completely cover the walls, all of them linked into the main palace
+security system. There is a big red button in the middle of the console
+that reads "Do not press unless in a state of emergency". There is a
+window to the southwest so that the guard can see who is entering and
+leaving the palace at any given time.
+~
+0 8388620 1 -2147483648 0 0 4856
+D0
+~
+~
+0 -1 1139
+D3
+~
+~
+0 -1 1137
+D9
+~
+Platsi-Glass Window~
+33554433 -1 1100
+S
+#1139
+Security Surveillance Room~
+This is the first of a set of rooms with security cameras, there is a
+sign that reads:
+West: The Armory
+NorthWest: Combat trainer
+NorthEast: The Gymnasium
+East: Stormtrooper Living Quarters 1
+SouthEast: Stormtrooper Living Quarters 2
+~
+0 12 1 0 0 0 4856
+D0
+~
+~
+0 -1 1140
+D1
+~
+~
+33554432 -1 1130
+D2
+~
+~
+0 -1 1138
+D3
+~
+~
+33554432 -1 1114
+D6
+~
+~
+33554432 -1 1110
+D7
+~
+~
+33554432 -1 1128
+D8
+~
+~
+33554432 -1 1133
+D9
+~
+~
+33554432 -1 1125
+S
+#1140
+Security Surveillance Room~
+This is the second of a set of rooms with security cameras, there is a sign
+that reads:
+SouthWest: Cafeteria
+West: Admirals Office
+NorthWest: Naval Trainer
+North: Naval Living Quarters 1
+NorthEast: Naval Living Quarters 2
+East: Recreation Area: Sabaac Tables
+SouthEast: Droid Repair Station
+~
+0 12 1 0 0 0 4856
+D2
+~
+~
+0 -1 1139
+S
+#1141
+Thallid's Goofy Gifts~
+There are racks and racks of wierd things and to the end, is a counter
+where people line up to pay for the items. By the doors are forcefield
+emitters that the owner can turn on to keep thiefs from escaping. This
+shop is pretty small and it has a funny feel. Everyone who comes in here
+feel happy when they get out. 
+~
+0 536870924 1 2 0 0 4856
+D3
+~
+~
+0 -1 1060
+S
+#1142
+Imperial Royal Armoury~
+All around here are used pieces of armor that were used by the Empire's
+soldiers. There are so many armors here that only now have been sold to
+the public. Next to the entrance, there is a large counter where people
+can line up to buy armors. Be warned though, the Empire will not tolerate
+thiefs, and the last two thiefs were caught and severely punished.
+~
+0 603979788 1 2 0 0 4856
+D1
+~
+~
+0 -1 1060
+S
+#1143
+Imperial Landing Pad~
+This landing pad is specifically for Imperials only. War droids constantly
+patrol the area to make sure intruders do not get it, and stormtroopers
+are posted in the control tower to ensure that any unwanted vistors will
+die. The pad is full of small Imperial diplomatic vessels and a few escort
+fighters. The control tower that controls the Imperial traffic is to the
+east of the landing bay.
+~
+0 60 1 68 0 0 4856
+D2
+~
+~
+0 -1 1170
+S
+#1144
+Corsucant Savings And Loan~
+This is a famous bank throughout the city-planet Coruscant. There are bank
+tellers to the north, helping out customers. There are guards and
+automated defense systems so it would not be wise to try to rob the bank,
+for instant death is possible. A few sofas are nicely teamed up with
+tables for people to sit down and read while waiting for something. On the
+corner, there is a coffee machine that supplies free coffee for all the
+customers.
+~
+0 268 1 0 0 0 4856
+D1
+~
+~
+0 -1 1056
+S
+#1145
+Coruscant Simulator CSim05~
+~
+0 536870924 1 0 0 0 4856
+S
+#1146
+Coruscant Simulator CSim06~
+~
+0 536870924 1 0 0 0 4856
+D2
+~
+~
+0 -1 1143
+S
+#1147
+Coruscant Simulator CSim07~
+~
+0 603979788 1 0 0 0 4856
+S
+#1148
+Coruscant Simulator CSim08~
+~
+0 536870924 1 0 0 0 4856
+S
+#1149
+Bacta Tank~
+You float in a blue gooey gelatin-like liquid, breathing in an oxygen mask.
+The bacta tank was bought from the taxes that the citizens of Coruscant
+have to pay so that travellers would have a place to heal their wounds and
+rest. The bacta tank is one of the most advanced medical healing facility
+in the universe and gets regular upgrades. Rest for a while and heal all
+wounds. There are people in line waiting to use the it so when you're done,
+LEAVE.
+~
+0 1100 1 0 0 0 4856
+D10
+~
+~
+264192 -1 1055
+> rand_prog 100~
+if ispc($n)
+mpecho The bacta starts healing your wounds.
+mprestore $n 500
+endif
+~
+|
+S
+#0
+
+
+#RESETS
+M 1 1103 1 1055
+M 1 1058 20 1055
+M 1 1067 5 1055
+E 1 60 1 16
+M 1 1058 20 1055
+M 1 1060 20 1055
+M 1 1058 20 1055
+M 1 1067 5 1055
+E 1 60 1 16
+M 1 1058 20 1055
+M 1 1060 20 1055
+M 1 1058 20 1055
+M 1 1067 5 1055
+E 1 60 1 16
+M 1 1058 20 1055
+M 1 1060 20 1055
+M 1 1058 20 1055
+M 1 1067 5 1055
+E 1 60 1 16
+M 1 1058 20 1055
+M 1 1060 20 1055
+M 1 1058 20 1055
+M 1 1067 5 1055
+E 1 60 1 16
+M 1 1058 20 1055
+M 1 1060 20 1055
+M 1 1058 20 1055
+M 1 1058 20 1055
+M 1 1058 20 1055
+M 1 1058 20 1055
+M 1 1054 5 1056
+M 1 1054 5 1056
+M 1 1054 5 1056
+M 1 1054 5 1056
+M 1 1054 5 1056
+O 1 1141 1 1057
+M 1 1051 1 1058
+G 1 134 1
+G 1 59 1
+G 1 1068 1
+G 1 1057 1
+G 1 64 1
+G 1 133 1
+G 1 1139 1
+M 1 1060 20 1060
+M 1 1060 20 1062
+M 1 1060 20 1063
+D 0 1065 0 1
+M 1 1059 1 1068
+M 1 1070 1 1070
+G 1 1074 1
+G 1 1073 1
+G 1 1072 1
+G 1 1056 1
+G 1 133 1
+M 1 1055 1 1070
+M 1 1099 1 1070
+M 1 1060 20 1071
+M 1 1060 20 1071
+M 1 1060 20 1071
+M 1 1072 1 1072
+G 1 1072 1
+G 1 1069 1
+G 1 1058 1
+G 1 1059 1
+M 1 1060 20 1072
+M 1 1060 20 1072
+M 1 1060 20 1072
+M 1 1060 20 1072
+M 1 1073 1 1073
+M 1 1074 1 1074
+G 1 51 1
+G 1 57 1
+G 1 58 1
+G 1 60 1
+G 1 50 1
+G 1 768 1
+G 1 151 1
+G 1 33 1
+M 1 1080 1 1080
+M 1 1060 20 1093
+M 1 1060 20 1094
+M 1 1060 20 1094
+M 1 1060 20 1095
+M 1 1097 1 1096
+M 1 1152 1 1097
+G 1 766 1
+G 1 765 1
+G 1 764 1
+G 1 763 1
+G 1 762 1
+G 1 761 1
+O 1 1097 1 1097
+M 1 1053 8 1100
+G 1 50 1
+G 1 134 1
+M 1 1053 8 1100
+M 1 1053 8 1100
+G 1 64 1
+G 1 25 1
+P 0 133 1 0
+G 1 137 1
+P 0 133 1 0
+P 1 134 1 0
+P 2 53 1 0
+P 3 53 1 0
+G 1 134 1
+M 1 1053 8 1100
+G 1 50 1
+G 1 25 1
+P 0 768 1 0
+M 1 1053 8 1100
+G 1 65 1
+G 1 766 1
+P 0 136 1 0
+P 1 130 1 0
+P 2 150 1 0
+P 3 74 1 0
+P 4 50 1 0
+D 0 1100 2 0
+M 1 1113 8 1103
+E 1 50 1 16
+M 1 1154 88 1105
+M 1 1154 88 1105
+M 1 1154 88 1106
+M 1 1154 88 1106
+M 1 1154 88 1107
+M 1 1154 88 1107
+M 1 1154 88 1109
+M 1 1154 88 1109
+M 1 1110 1 1110
+E 1 1053 1 5
+E 1 1054 1 7
+E 1 1055 1 13
+O 1 1111 1 1110
+M 1 1154 88 1112
+M 1 1154 88 1112
+M 1 1154 88 1113
+M 1 1154 88 1113
+M 1 1113 8 1115
+E 1 50 1 16
+M 1 1154 88 1116
+M 1 1154 88 1116
+M 1 1113 8 1120
+M 1 1154 88 1124
+M 1 1154 88 1124
+M 1 1063 1 1125
+M 1 1154 88 1126
+M 1 1154 88 1126
+M 1 1154 88 1126
+M 1 1154 88 1126
+D 0 1126 2 2
+M 1 1111 1 1128
+E 1 1055 1 13
+E 1 1054 1 7
+E 1 1053 1 5
+O 1 1136 1 1131
+M 1 1113 8 1132
+O 1 1136 1 1132
+O 1 1136 1 1134
+M 1 1113 8 1135
+O 1 1136 1 1135
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+M 1 1154 88 1138
+D 0 1138 9 0
+M 1 1154 88 1139
+M 1 1154 88 1139
+M 1 1154 88 1139
+M 1 1154 88 1139
+M 1 1154 88 1140
+M 1 1154 88 1140
+M 1 1154 88 1140
+M 1 1154 88 1140
+M 1 1069 1 1141
+M 1 1068 1 1142
+O 1 1144 1 1144
+M 1 1050 1 1149
+M 1 1149 1 1149
+O 1 1149 1 1149
+M 1 1098 1 1051
+M 1 1060 14 1051
+O 1 1080 1 1051
+M 1 1137 1 1101
+G 1 1138 1
+G 1 1138 1
+M 1 1052 2 1052
+M 0 1052 3 1050
+O 1 7581 1 1114
+M 1 1154 88 1137
+M 1 1154 88 1137
+M 1 1154 88 1137
+M 1 1154 88 1137
+S
+
+
+#SHOPS
+ 1051    0  0  0  0  0   120  90         0 23    ; Kwen Twi
+ 1070    0  0  0  0  0   120  90         0 23    ; Qurik the bartender
+ 1072    0  0  0  0  0   120  90         0 23    ; Huznik
+ 1074    9  0  0  0  0   120  33         0 23    ; a weapon salesman
+ 1095    0  0  0  0  0   120  90         0 23    ; a hardware droid
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  1067 spec_police
+M  1098 spec_customs_weapons
+S
+
+
+#$

@@ -1,0 +1,1268 @@
+#AREA   Korriban~
+
+
+
+#AUTHOR Rithis~
+
+#RANGES
+0 36 0 36
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 3198000
+
+#MOBILES
+#10701
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10702
+guardian skeleton~
+The Guardian Spirit~
+A Skeleton is standing here, preventing access to the temple.
+~
+~
+3 0 0 Z
+1 0 -300 56d50+800 25d20+0
+0 0
+8 8 0
+18 10 10 18 18 10 10
+0 0 0 0 0
+0 0 0 0 1 1 6
+0 0 0 64 16 4 0 3
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpecho Bones scorching, the skeleton of the guardian spirit collapses to the ground
+mpat 101 rem energy
+mpat 101 rem energy
+mpat 101 drop energy
+mpat 101 drop energy
+mpat 101 mppurge
+~
+> greet_prog 100~
+if ispc($n)
+if isevil($n)
+if name($n) == Thracken
+bow $n
+else
+mpkill $n
+endif
+else
+mpkill $n
+endif
+else
+mpkill $n
+endif
+~
+|
+#10703
+ancient sith spirit~
+The ancient spirit~
+An Ancient Spirit
+~
+~
+3 0 0 Z
+30 0 25 500d30+300 15d25+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if level($n) == 30
+if frc($n) == 0
+say You are not worthy of this temple.
+else if frc($n) > 0
+if isgood($n)
+say You are not worthy of this temple.
+else
+say You show potential.
+say You may enter if you wish. Do you?
+endif
+endif
+endif
+~
+> speech_prog p yes~
+if level($n) == 30
+if frc($n) == 30
+say You are not worthy of this temple.
+else if frc($n) > 0
+if isgood($n)
+say You are not worthy of this temple.
+else
+say You may pass
+mpechoat $n Mystical energy swirls over you and you vanish.
+mpechoaround $n Mystical Energy swirls over $n and $e vanishes.
+mptransfer $n 999
+endif
+endif
+endif
+~
+|
+#10704
+Spirit Naga Sadow~
+Naga Sadow~
+The Spirit of Naga Sadow is here
+~
+~
+1086467 0 0 Z
+36 0 10 100d100+360 3d4+2
+0 0
+8 8 0
+25 25 25 25 25 25 25
+0 0 0 0 0
+0 0 0 0 1 1 20
+0 0 0 0 4194303 0 48 3
+0 0 0 0 0 0 0 0
+#10705
+A Sith Spirit~
+A Sith Spirit~
+The Spirit of An Ancient Sith Master is here, awaiting apprentices.
+~
+~
+3 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say This is the final test to see if you are worthy of the title of Sith Master.
+say You risk the chance of death by entering.
+say Do you believe you are powerful enough to take this test?
+~
+> speech_prog p yes~
+say Very well, you may enter.
+mpechoat $n &BThe force swirls over you and you vanish.
+mpechoaround $n &BThe force swirls over $n and $e vanishes.
+mptransfer $n 10751
+~
+|
+#10706
+A Sith Spirit~
+A Sith Spirit~
+A Sith Spirit is here watching your every move
+~
+~
+1073741825 0 -1000 Z
+1 0 0 500d20+0 100d100+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> give_prog lightsaber saber~
+if ovnumcarry(72)
+emote says: You are a capable user of the force.
+emote says: You may now pass on.
+give lightsaber $n.
+mpechoat $n &BThe force swirls over you and you vanish.
+mpechoaround $n &BThe force swirls over $n and $e vanishes.
+mptransfer $n 10755
+else
+emote says: I'm afraid this is wrong.
+endif
+~
+> give_prog lightsaber test~
+if ovnumcarry(72)
+emote says: You are a capable user of the force.
+emote says: You may now pass on.
+give lightsaber $n
+mpechoat $n &BThe force swirls over you and you vanish. 
+mpechoaround $n &BThe force swirls over $n and $e vanishes.
+mptransfer $n 10755
+else
+emote says: I'm afraid this is wrong.
+endif
+~
+|
+#10707
+Freedon Nadd~
+Freedon Nadd~
+Freedon Nadd is here, awaiting the survivors of the trials.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10899
+Silence Industries Destroyer Droid, SI-643A~
+Droidekar SI-643A~
+Droidekar SI-643A stands here, shields raised and blasters armed.
+~
+~
+1140883459 4194304 0 Z
+1 0 0 56d50+800 0d20+0
+0 0
+8 8 0
+18 10 10 18 18 10 10
+0 0 0 0 0
+0 0 0 0 1 1 6
+0 0 0 64 16 0 0 3
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpecho The droidekars weapons snap up at you and it glares. "Present Identity for Confirmation"
+Mpecho "Retinal Scan in Progress. Do not Move."
+if isimmort($n)
+mpecho The droidekar's weapons turn away.  "Identify Confirmed.  Access Granted."
+bow $n
+mppkset 10507 no
+else
+if name($n) == Gwen
+mpecho The droidekar's weapons turn away.  "Identify Confirmed.  Access Granted."
+bow $n
+mppkset 10507 no
+else
+if name($n) == Blake
+mpecho The droidekar's weapons turn away.  "Identify Confirmed.  Access Granted."
+bow $n
+mppkset 10507 no
+else
+if clan($n) == Silence Industries
+mpecho The droidekar's weapons turn away.  "Identify Confirmed.  Access Granted."
+bow $n
+mppkset 10507 no
+else
+mpecho The droiddekar's weapons whine to full power. "Identity Not Confirmed. Open Fire."
+mppkset 10507 yes
+mpkill $n
+endif
+endif
+endif
+endif
+~
+|
+#10900
+hi_obj~
+a newly created hi_obj~
+Some god abandoned a newly created hi_obj here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#10701
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#10702
+Ancient Energy Blaster~
+An Ancient Energy Blaster~
+An odd cannon shaped device is here~
+~
+5 0 8192
+100 24 6 6
+1 0 0
+#10703
+sith alter~
+a mystical alter~
+&YAn Ancient Alter sits here before you~
+~
+13 0 0
+0 0 0 0
+1 0 0
+E
+sith alter~
+The alter before you is of an ancient sith design. On the side
+of the alter, the word "training" is inscribed. Perhaps it holds
+some meaning here.
+~
+> speech_prog training~
+if frc($n) > 0
+mpecho &YA Mystical Aura appears after all is different as it disappears.
+mptransfer $n 10745
+endif
+~
+|
+#10704
+Button~
+A Button~
+A Button is here. Push it!~
+~
+39 4096 0
+0 0 0 0
+30000 0 0
+> push_prog 100~
+mpechoa $n You push a button
+mpechoaround $n $n pushes a button
+mpoload 4501
+mpoload 4502
+mpoload 4504
+mpoload 4505
+mpoload 4506
+mpoload 4507
+mpoload 4508
+mpoload 4503
+mpoload 4509
+drop all
+pull button
+~
+|
+#10705
+Button~
+A Button~
+A Button is here. Push it!~
+~
+39 4096 0
+0 0 0 0
+30000 0 0
+> push_prog 100~
+mpechoa $n You push a button
+mpechoaround $n $n pushes a button
+mpechoat $n &BThe force swirls over you and you vanish.
+mpechoaround $n &BThe force swirls over $n and $e vanishes.
+mptransfer $n 10752
+pull button
+~
+|
+#10899
+spitir necklace~
+A Spitir Necklace~
+A necklace with a glowing pendant is here.~
+~
+9 1 5
+20 20 0 0
+1 0 0
+A
+26 1048576
+#10900
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#10701
+A Ruined Landing Pad~
+Old and mostly destroyed, this piece of land once served as a
+landing pad. Although it still can function as one, it seems
+to have not been taken care of. Around this pad is a long stretch
+of desolate land. To the west you can make out a valley of mountains.
+~
+0 4 1 0 0 0 3720
+D3
+~
+~
+0 -1 10702
+S
+#10702
+A Dirt Path~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10701
+D3
+~
+~
+0 -1 10703
+S
+#10703
+A Dirt Path~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10702
+D3
+~
+~
+0 -1 10704
+S
+#10704
+Before A Mountain~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10703
+D2
+~
+~
+0 -1 10705
+S
+#10705
+Before A Mountain~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10704
+D2
+~
+~
+0 -1 10707
+D9
+~
+~
+2056 -1 10706
+> entry_prog 25~
+mpecho A sound can be heard southwest of here
+~
+|
+S
+#10706
+Beneath The Mountain~
+You've somehow been lead beneath the mountain. This place was
+very well hidden. The path continues to the west. To the west
+the patch seems to be blocked by...skeletons? 
+~
+0 1073741824 1 0 0 0 3720
+D3
+~
+~
+0 -1 10708
+D6
+~
+~
+0 -1 10705
+S
+#10707
+Before A Mountain~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10705
+S
+#10708
+At The Entrance To A Stone Temple~
+Before you is a large temple. You can sense a dark presence here,
+a chill runs down your spine. Standing at the entrance, not
+permitting entrance are two skeletons. In order to proceed,
+you must defeat them.
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10706
+D3
+~
+Gate~
+3 -1 10709
+S
+#10709
+Inside The Temple~
+You are standing inside of the Sith Temple. Before you are many
+different paths. Some may lead to traps and some may lead you
+deeper in to the temple. On the wall to your right is a sign
+with red letters on it: &RBeware all those who dare enter this
+temple. You risk the chance of being imprisoned for all eternity.
+Only those who are one with the force stand a chance of freedom.
+~
+0 1073741836 1 0 0 0 3720
+D1
+~
+~
+33 -1 10708
+D3
+~
+~
+0 -1 10721
+D7
+~
+~
+0 -1 10710
+D9
+~
+~
+0 -1 10722
+S
+#10710
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D3
+~
+~
+0 -1 10711
+D7
+~
+~
+0 -1 10715
+D8
+~
+~
+0 -1 10709
+> entry_prog 100~
+if frc($n) > 0
+mpechoat $n A voice in your head warns you not to proceed to the northwest.
+endif
+~
+|
+S
+#10711
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10710
+D3
+~
+~
+0 -1 10712
+D9
+~
+~
+0 -1 10716
+> entry_prog 100~
+if frc($n) > 0
+mpechoat $n A voice in your head warns you not to proceed to the southeast.
+endif
+~
+|
+S
+#10712
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10711
+D3
+~
+~
+0 -1 10713
+D7
+~
+~
+0 -1 10714
+> entry_prog 100~
+if frc($n) > 0
+mpechoat $n A voice in your head warns you not to proceed to the northwest.
+endif
+~
+|
+S
+#10713
+A Small Chamber~
+~
+0 1082130432 1 0 0 0 3720
+D1
+~
+~
+0 -1 10712
+S
+#10714
+A Path Within The Temple~
+~
+0 1090519040 1 0 0 0 3720
+D5
+~
+~
+0 -1 10737
+D7
+~
+~
+0 -1 10719
+D8
+~
+~
+0 -1 10712
+S
+#10715
+A Path Within The Temple~
+~
+0 1090519040 1 0 0 0 3720
+D5
+~
+~
+0 -1 10737
+D7
+~
+~
+0 -1 10717
+D8
+~
+~
+0 -1 10710
+S
+#10716
+A Path Within The Temple~
+~
+0 1090519040 1 0 0 0 3720
+D1
+~
+~
+0 -1 10720
+D5
+~
+~
+0 -1 10737
+D6
+~
+~
+0 -1 10711
+D9
+~
+~
+0 -1 10718
+S
+#10717
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D8
+~
+~
+0 -1 10715
+S
+#10718
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D6
+~
+~
+0 -1 10716
+S
+#10719
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D8
+~
+~
+0 -1 10714
+S
+#10720
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10721
+D2
+~
+~
+0 -1 10725
+D3
+~
+~
+0 -1 10716
+S
+#10721
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10709
+D3
+~
+~
+0 -1 10720
+S
+#10722
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D2
+~
+~
+0 -1 10723
+D3
+~
+~
+0 -1 10725
+D6
+~
+~
+0 -1 10709
+> entry_prog 100~
+if frc($n) > 0
+mpechoat $n A voice in your head warns you not to travel south.
+endif
+~
+|
+S
+#10723
+A Path Within The Temple~
+~
+0 1090519040 1 0 0 0 3720
+D0
+~
+~
+0 -1 10722
+D2
+~
+~
+0 -1 10724
+D5
+~
+~
+0 -1 10737
+S
+#10724
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10723
+S
+#10725
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10720
+D1
+~
+~
+0 -1 10722
+D3
+~
+~
+2056 -1 10728
+D9
+~
+~
+0 -1 10726
+> entry_prog 100~
+if frc($n) > 0
+mpechoat $n A voice in your head tells you not to travel southwest.
+endif
+~
+> greet_prog 25~
+mpecho A wailing noise can be heard from the west
+~
+|
+S
+#10726
+A Path Within The Temple~
+~
+0 1090519040 1 0 0 0 3720
+D5
+~
+~
+0 -1 10737
+D6
+~
+~
+0 -1 10725
+D9
+~
+~
+0 -1 10727
+S
+#10727
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D6
+~
+~
+0 -1 10726
+S
+#10728
+A Hidden Chamber~
+~
+0 1073742848 1 0 0 0 3720
+D1
+~
+~
+0 -1 10725
+S
+#10729
+Hall of the Ancient's Tombs~
+~
+0 1073741824 1 0 0 0 3720
+D3
+~
+~
+0 -1 10730
+S
+#10730
+A Large Room Where Several Paths Meet~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10733
+D1
+~
+~
+0 -1 10729
+D2
+~
+~
+0 -1 10740
+D3
+~
+~
+0 -1 10744
+D6
+~
+~
+0 -1 10731
+D7
+~
+~
+0 -1 10735
+D8
+~
+~
+0 -1 10738
+D9
+~
+~
+0 -1 10742
+S
+#10731
+Hall of the Ancient's Tombs~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10732
+D9
+~
+~
+0 -1 10730
+S
+#10732
+Standing Before A Tomb~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+tomb~
+8388647 -1 10701
+D2
+~
+~
+0 -1 10731
+S
+#10733
+Hall of the Ancient's Tombs~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10734
+D2
+~
+~
+0 -1 10730
+S
+#10734
+Standing Before A Tomb~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+tomb~
+8388647 -1 10701
+D2
+~
+~
+0 -1 10733
+S
+#10735
+Hall of the Ancient's Tombs~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10736
+D8
+~
+~
+0 -1 10730
+S
+#10736
+Standing Before A Tomb~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+tomb~
+3 -1 10737
+D2
+~
+~
+0 -1 10735
+S
+#10737
+A Rusted Cell~
+You are inside of an old and rusted cell. In one corner of the
+cell is a skeletal figure. You can not make out what race the
+skeleton is from because most of the bones have deteriorated.On
+one wall, a message reads that only those who use the force
+as their tool can free the prisoners by speaking the word "Freedom"
+~
+0 1082130436 1 0 0 0 3720
+> speech_prog freedom~
+if frc($n) > 0
+mpechoaround $n As $n speaks the word freedom, a mystical force transfers all beings in this cell away.
+mpechoat $n As you speak the word freedom, a swirl of energy appears and clouds your vision. When it disappears you are no longer in the cell.
+mptransfer all 10730
+endif
+~
+|
+S
+#10738
+A Path Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D2
+~
+~
+0 -1 10739
+D7
+~
+~
+0 -1 10730
+S
+#10739
+Standing Before A Tomb~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10738
+D2
+~
+~
+8388647 -1 10701
+S
+#10740
+Hall of the Ancient's Tombs~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10730
+D2
+~
+~
+0 -1 10741
+S
+#10741
+Standing Before A Tomb~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10740
+D2
+~
+~
+8388647 -1 10701
+S
+#10742
+Hall of the Ancient's Tombs~
+~
+0 1073741824 1 0 0 0 3720
+D2
+~
+~
+0 -1 10743
+D6
+~
+~
+0 -1 10730
+S
+#10743
+Standing Before A Tomb~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10742
+D2
+~
+~
+8388647 -1 10701
+S
+#10744
+Standing In Front of An Alter~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10730
+S
+#10745
+Corridor Within The Temple~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10744
+S
+#10746
+A Corridor Intersection ~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10750
+D1
+~
+~
+0 -1 10745
+D2
+~
+~
+0 -1 10748
+D3
+~
+~
+3 -1 10747
+S
+#10747
+The Tomb of Naga Sadow~
+~
+0 1073741824 1 0 0 0 3720
+D1
+~
+~
+0 -1 10746
+S
+#10748
+Corridor Within the Temple~
+~
+0 1073741824 1 0 0 0 3720
+D0
+~
+~
+0 -1 10746
+D3
+~
+~
+0 -1 10749
+S
+#10749
+A Meditation Chamber~
+~
+0 1073808384 1 0 0 0 3720
+D1
+~
+~
+0 -1 10748
+S
+#10750
+A Torch Filled Chamber~
+~
+0 1073741824 1 0 0 0 3720
+D2
+~
+~
+0 -1 10746
+S
+#10751
+An Astral Plane~
+For many millenia, the Sith have brought fear into the hearts
+of many. Their power has been proven more of a match for even
+the most powerful Jedi.The Sith are able to perform tasks to
+use the force to their advantage. In order to be a Dark Lord
+of the Sith you must be able to perform these tasks.
+~
+0 1073741828 1 0 0 0 3720
+> custom_prog exit~
+mptransfer $n 10750
+~
+|
+S
+#10752
+An Astral Plane~
+As a warrior you must fight your own battles, grab what you want,
+and light your own way. If you are capable of being a warrior
+then you must be able to see where you wish to be and where
+you are. If lost and confused you will never find the path to
+your  destiny 
+~
+0 1073741828 1 0 0 0 3720
+> custom_prog exit~
+mptransfer $n 10750
+~
+> act_prog p Shards of iridescent light collide to form a dazzling ball...~
+mpecho You have passed this test. You may continue.
+mpechoat $n &BThe force swirls over you and you vanish.
+mpechoaround $n &BThe force swirls over $n and $e vanishes
+mptransfer $n 10753
+~
+|
+S
+#10753
+An Astral Plane~
+Sometimes you will be confronted by situations in which you can
+not win. In times like these you must use tactics which some
+may see as unfair. It is always important to be able to shield
+yourself from danger. Do whatever it takes to win battles.
+~
+0 1073741828 1 0 0 0 3720
+> custom_prog exit~
+mptransfer $n 10750
+~
+> act_prog p A translucent blue shield surrounds~
+mpecho You have proven yourself capable of defending yourself. You may proceed
+mpechoat $n &BThe force swirls over you and you vanish.
+mpechoaround $n &BThe force swirls over $n and $e vanishes.
+mptransfer $n 10754
+~
+|
+S
+#10754
+An Astral Plane~
+lightsaber As a warrior who may draw from the force, you posses
+the ability to predict your opponents movements. This makes
+you very dangerous with a lightsaber, a tool useful for deflecting
+blaster bolts, or parrying other attacks. It takes great concentration
+to craft a lightsaber 
+~
+0 1073741828 1 0 0 0 3720
+> custom_prog exit~
+mptransfer $n 10750
+~
+|
+S
+#10755
+An Astral Plane~
+A Sith must always be prepared for battle. In the face of the
+most powerful opponent they must stand their ground and show
+no mercy.With the force and the lightsaber as your weapon, you
+will always be victorious.
+~
+0 1073741828 1 0 0 0 3720
+> custom_prog exit~
+mptransfer $n 10750
+~
+|
+S
+#10756
+An Astral Plane~
+End with gem
+~
+0 1073741828 1 0 0 0 3720
+> custom_prog exit~
+mptransfer $n 10750
+~
+|
+S
+#10757
+An Astral Plane~
+~
+0 1073741828 1 0 0 0 3720
+S
+#10767
+Floating in a void~
+~
+0 1073741828 1 0 0 0 3720
+S
+#10900
+Floating in a void~
+~
+0 4 1 0 0 0 3720
+S
+#0
+
+
+#RESETS
+M 1 10701 1 10900
+M 1 10900 1 10900
+O 1 10900 1 10900
+O 1 10701 1 10900
+G 1 10702 1
+G 1 10702 1
+O 1 10703 1 10744
+D 0 10746 3 1
+M 1 10705 1 10750
+O 1 10704 1 10754
+O 1 10705 1 10751
+M 1 10704 1 10747
+M 1 10702 2 10708
+E 1 10702 1 18
+E 1 10702 1 16
+M 1 10702 2 10708
+E 1 10702 1 16
+E 1 10702 1 18
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  10704 spec_make_apprentice_sith
+S
+
+
+#$

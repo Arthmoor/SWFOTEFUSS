@@ -1,0 +1,9 @@
+#FORCE
+Name      squeeze~
+Status    3
+Type      2
+Desc      Command:    student$RN$Usage:      student <name>$RN$Level:      Master$RN$Mana:       0$RN$Time Req:   Instant$RN$Duration:   Instant$RN$Components: none$RN$$RN$This command is used to make a player your apprentice.$RN$It can be used to make a person an apprentice for the$RN$first time, or to change masters.  Though it cannot be$RN$used to convert someone from one side of the force to$RN$the other.$RN$~
+Skill     12
+End
+
+#END

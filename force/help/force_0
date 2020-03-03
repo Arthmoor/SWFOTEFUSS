@@ -1,0 +1,9 @@
+#FORCE
+Name      force~
+Status    1
+Type      0
+Desc      Please read the following help topics:$RN$$RN$General             Sith                Jedi$RN$~
+Skill     -1
+End
+
+#END

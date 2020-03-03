@@ -1,0 +1,9 @@
+#FORCE
+Name      instruct~
+Status    3
+Type      2
+Desc      Command:    instruct$RN$Usage:      instruct <student> <skill>$RN$Level:      Master$RN$Mana:       0$RN$Time Req:   Instant$RN$Duration:   Instant$RN$Components: None$RN$$RN$This skill is used to teach a student a skill that you$RN$know.  It will only let you teach them a skill that they$RN$are ready for.$RN$$RN$NOTE: Sith Masters can only instruct their own student.$RN$~
+Skill     -1
+End
+
+#END

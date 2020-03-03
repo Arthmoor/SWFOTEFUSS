@@ -1,0 +1,556 @@
+#AREA   Public Transportation~
+
+
+
+#AUTHOR Nathan~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6251473
+
+#MOBILES
+#900
+lomob~
+a newly created lomob~
+Some god abandoned a newly created lomob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#901
+A Service Droid~
+A Service Droid~
+A Service Droid stands here waiting to help customers.
+~
+~
+67 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 267902943 267902943 1
+2 2 0 0 0 0 48 2
+0 0 0 0 0 0 0 0
+#999
+himob~
+a newly created himob~
+Some god abandoned a newly created himob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#900
+loobj~
+a loobj~
+A loobj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#999
+hiobj~
+a hiobj~
+A hiobj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#900
+Floating in a void~
+~
+0 4 1 0 0 0 25816
+S
+#901
+Entrance Ramp to the Serin Sol~
+You stand on the entrance ramp of the Serin Sol. The Sol travels
+throughout the galaxy stopping at each planet. While the Sol
+doesn't cost anything it does require a bit of patience.
+~
+0 1610612744 1 0 0 0 25816
+D4
+~
+~
+0 -1 902
+S
+#902
+A Bright Corridor~
+You stand in the small corridor that connects the sleeping area
+and entrance ramp to the rest of the ship. The walls here are
+bare and are painted dark grey.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+0 -1 903
+D2
+~
+~
+0 -1 905
+D5
+~
+~
+0 -1 901
+S
+#903
+A Bright Corridor~
+This corridor leads to the pilot station, the dining area, and
+back south to the sleeping area and entrance. The walls are still
+bare and grey, very nondescript.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+0 -1 904
+D2
+~
+~
+0 -1 902
+D4
+~
+~
+0 -1 906
+S
+#904
+Before the Pilot's Station~
+You stand before the pilot's station of the Serin Sol. The door
+leading to the cockpit is always kept closed and locked for
+the pilot's security. The Sol travels throughout the galaxy
+making stops at each planet.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+8388647 -1 907
+D2
+~
+~
+0 -1 903
+S
+#905
+A Small Sleeping Area~
+You are in the small sleeping area of the Serin Sol. There are
+small cots here for travelers to nap between stops. While there
+are only a few cots here, there is no charge for sleeping on
+them.
+~
+0 1619001356 1 0 0 0 25816
+D0
+~
+~
+0 -1 902
+S
+#906
+The Viewport Dining Area~
+You stand in the Sol's sole (no pun inteneded) dining area. The
+food here is light as many customers only have time for a quick
+snack before the next stop. There are a few tables here but
+customers are mainly expected to stand.
+~
+0 1610612744 1 0 0 0 25816
+D5
+~
+~
+0 -1 903
+S
+#907
+DO NOT USE THIS VNUM - SERIN SOL PILOT~
+~
+0 1073741824 1 0 0 0 25816
+D2
+~
+~
+0 -1 904
+S
+#908
+Entrance Ramp to the Serin Monir~
+You stand on the entrance ramp of the Serin Monir. The Monir
+travels throughout the galaxy stopping at each planet. While the
+shuttle doesn't cost anything it does require some patience.
+~
+0 1610612744 1 0 0 0 25816
+D4
+~
+~
+0 -1 909
+S
+#909
+A Bright Corridor~
+You stand in the small corridor that connects the sleeping area
+and entrance ramp to the rest of the ship. The walls here are
+bare and painted dark grey.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+0 -1 910
+D2
+~
+~
+0 -1 912
+D5
+~
+~
+0 -1 908
+S
+#910
+A Bright Corridor~
+This corridor leads between the aft of the ship and pilot station.
+A small restaurant with a duraplast viewport is above you, offering
+a meal and a great view of space around you.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+0 -1 911
+D2
+~
+~
+0 -1 909
+D4
+~
+~
+0 -1 913
+S
+#911
+Before the Pilot's station~
+You stand before the pilot's station of the Serin Monir. The door
+leading to the cockpit is always kept closed and locked for the
+pilot's security. The Monir travels throughout the galaxy making
+stops at each planet.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+8388647 -1 914
+D2
+~
+~
+0 -1 910
+S
+#912
+A Small Sleeping Area~
+You are in the small sleeping area of the Serin Monir. There are
+small cots here for travelers to nap between stops. While there
+are only a few cots here, there is no charge for sleeping on
+them.
+~
+0 1619001352 1 0 0 0 25816
+D0
+~
+~
+0 -1 909
+S
+#913
+The Viewport Dining Area~
+You stand in the Monir's sole dining area. The food here
+is light as many customers only have time for a quick snack
+before the next stop. There are a few tables here but
+customers are mainly expected to stand.
+~
+0 1610612744 1 0 0 0 25816
+D5
+~
+~
+0 -1 910
+S
+#914
+DO NOT USE THIS VNUM - SERIN MONIR PILOT~
+~
+0 1073741824 1 0 0 0 25816
+D2
+~
+~
+0 -1 911
+S
+#915
+Entrance Ramp to the Serin Faun~
+You stand on the entrance ramp of the Serin Fau. The Fau travels
+throughout the galaxy stopping at each planet. While the Fau
+doesn't cost anything it does require a bit of patience.
+~
+0 1610612744 1 0 0 0 25816
+D4
+~
+~
+0 -1 916
+S
+#916
+A Bright Corridor~
+You stand in the small corridor that connects the sleeping area
+and entrance ramp to the rest of the ship. The walls here are
+bare and are painted dark grey.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+0 -1 917
+D2
+~
+~
+0 -1 918
+D5
+~
+~
+0 -1 915
+S
+#917
+A Bright Corridor~
+This corridor leads to the pilot station, the dining area, and
+back south to the sleeping area and entrance. The walls are still
+bare and grey, very nondescript.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+0 -1 920
+D2
+~
+~
+0 -1 916
+D4
+~
+~
+0 -1 919
+S
+#918
+A Small Sleeping Area~
+You are in the small sleeping area of the Serin Fau. There are
+small cots here for travelers to nap between stops. While there
+are only a few cots here, there is no charge for sleeping on
+them.
+~
+0 1619001352 1 0 0 0 25816
+D0
+~
+~
+0 -1 916
+S
+#919
+The Viewport Dining Area~
+You stand in the Fau's sole dining area. The food here
+is light as many customers only have time for a quick snack
+before the next stop. There are a few tables here but
+customers are mainly expected to stand.
+You stand in the Faun's sole dining area. The food here
+is light as many customers only have time for a quick snack
+before the next stop. There are a few tables here but
+customers are mainly expected to stand.
+~
+0 1610612744 1 0 0 0 25816
+D5
+~
+~
+0 -1 917
+S
+#920
+Before the Pilot's Station~
+You stand before the pilot's station of the Serin Faun.
+The door leading to the cockpit is always kept closed and
+locked for the pilot's security. The Faun travels
+throughout the galaxy making stops at each planet.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+8388647 -1 921
+D2
+~
+~
+0 -1 917
+S
+#921
+DO NOT USE THIS VNUM - SERIN FAU PILOT~
+~
+0 1073741824 1 0 0 0 25816
+D2
+~
+~
+0 -1 920
+S
+#922
+Entrance Ramp to the Serin Taw~
+You stand on the entrance ramp of the Serin Taw. The Taw travels
+throughout the galaxy stopping at each planet. While the Taw
+doesn't cost anything it does require a bit of patience.
+~
+0 1610612744 1 0 0 0 25816
+D4
+~
+~
+0 -1 923
+S
+#923
+A Bright Corridor~
+You stand in the small corridor that connects the sleeping area
+and entrance ramp to the rest of the ship. The walls here area
+bare and are painted dark grey.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+0 -1 924
+D2
+~
+~
+0 -1 925
+D5
+~
+~
+0 -1 922
+S
+#924
+A Bright Corridor~
+This corridor leads to the pilot station, the dining area, and
+back south to the sleeping area and entrance. The walls are still
+bare and grey, very nondescript.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+0 -1 927
+D2
+~
+~
+0 -1 923
+D4
+~
+~
+0 -1 926
+S
+#925
+A Small Sleeping Area~
+You are in the small sleeping area of the Serin Taw. There are
+small cots here for travelers to nap between stops. While there
+are only a few cots here, there is no charge for sleeping on
+them.
+~
+0 1619001352 1 0 0 0 25816
+D0
+~
+~
+0 -1 923
+S
+#926
+The Viewport Dining Area~
+You stand in the Taw's sole dining area. The food here is
+light as many customers only have time for a quick snack
+before the next stop. There are a few tables here but customers
+are mainly expected to stand.
+~
+0 1610612744 1 0 0 0 25816
+D5
+~
+~
+0 -1 924
+S
+#927
+Before the Pilot's Station~
+You stand before the pilot's station of the Serin Taw. The door
+leading to the cockpit is always kept closed and locked for
+the pilot's security. The Sol travels throughout the galaxy
+making stops at each planet.
+~
+0 1610612744 1 0 0 0 25816
+D0
+~
+~
+8388647 -1 928
+D2
+~
+~
+0 -1 924
+S
+#928
+DO NOT USE THIS VNUM - SERIN TAW PILOT~
+~
+0 1073741824 1 0 0 0 25816
+D2
+~
+~
+0 -1 927
+S
+#999
+Floating in a void~
+~
+0 4 1 0 0 0 25816
+S
+#0
+
+
+#RESETS
+M 1 900 1 900
+O 1 900 1 900
+M 1 999 1 999
+O 1 999 1 999
+M 1 901 1 906
+G 1 134 1
+G 1 133 1
+G 1 151 1
+M 1 901 2 913
+G 1 133 1
+G 1 134 1
+G 1 151 1
+M 1 901 3 919
+G 1 151 1
+G 1 134 1
+G 1 133 1
+M 1 901 4 926
+G 1 151 1
+G 1 134 1
+G 1 133 1
+S
+
+
+#SHOPS
+ 901    0  0  0  0  0   125  10         1 23    ; A Service Droid
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

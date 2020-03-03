@@ -1,0 +1,32 @@
+#FORCE
+Alter          0
+ChEffect0     You hold your hands out concentrate your power inwards.$RN$~
+ChEffect1     A soft blue glow surrounds you.$RN$You drop your arms and take a breath in.$RN$~
+ChEffect2     A harsh red glow surrounds you.$RN$You feel it bite into your skin for a few moments.$RN$.You drop your arms and sigh.$RN$~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_shield~
+Cost           40
+Control        1
+Disabled       0
+Mastertrain    0
+Index          9
+Name           shield~
+Notskill       0
+RoomEffect0     $n holds $np hands out and concentrates $np power inwards.$RN$~
+RoomEffect1     A soft blue glow surrounds $n.$RN$$n drops $np arms and takes a breath in.$RN$~
+RoomEffect2     A harsh red glow surrounds $n.$RN$$n drops $np arms and sighs.$RN$~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          0
+Status         2
+Type           1
+VictimEffect0     ~
+VictimEffect1     ~
+VictimEffect2     ~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      0
+End
+
+#END

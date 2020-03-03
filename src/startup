@@ -1,0 +1,38 @@
+#! /bin/csh -f
+
+set port = 1111
+if ( "$1" != "" ) set port="$1"
+
+cd ../area
+
+limit coredumpsize unlimited
+limit stacksize unlimited
+if ( -e shutdown.txt ) rm -f shutdown.txt
+
+while ( 1 )
+    set index = 1000
+    while ( 1 )
+	set logfile = ../log/$index.log
+	if ( ! -e $logfile ) break
+	@ index++
+    end
+
+    date > $logfile
+    date > ../area/boot.txt
+
+    # Check if already running  
+    set matches = `netstat -an | grep ":$port " | grep -c LISTEN`
+    if ( $matches >= 1 ) then 
+	# Already running 
+	echo MUD Already running. 
+	exit 0 
+    endif
+    ../src/swr $port >&! $logfile
+
+    if ( -e shutdown.txt ) then
+	rm -f shutdown.txt
+	exit 0
+    endif
+    sleep 10
+
+end

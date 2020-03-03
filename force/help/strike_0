@@ -1,0 +1,9 @@
+#FORCE
+Name      strike~
+Status    1
+Type      0
+Desc      Command:    strike$RN$Usage:      strike$RN$Level:      Apprentice$RN$Mana:       10$RN$Time Req:   Instant$RN$Duration:   Instant$RN$Components: A wielded Lightsaber$RN$$RN$Bring your lightsaber into the air and strike it down$RN$upon your opponent.$RN$~
+Skill     11
+End
+
+#END

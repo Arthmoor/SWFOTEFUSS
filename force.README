@@ -1,0 +1,68 @@
+New force system copyrightish (c?) Mid 2001 by Richard Berrill (Bambua)
+Modifications by Tawnos and ||.
+
+This is a brief overview of new force. To eliminate the godhood of 
+previous forcers, and to enforce the strictly jedi/sith following, this 
+customized system was created. It does not use feel, but rather a new 
+structure of 'skills'. Correlating files are force.c, finfo.c, fskills.c, 
+and fhelp.c. There are also files which state some 'action verbs', 
+limitations to jedi/sith, force 'level' to be used at (Apprentice, 
+Knight/Lord, Master), and fhelps in the /force directory.
+
+How to modify player files:
+
+Force		## 0 #### ####
+  First ## is the force stat, being one through twenty.
+  The zero is unused, and never removed. Our laziness is obvious.
+  First #### is the current mana of the forcer, second is maximum.
+  Mana is calculated by force sense, alter, and control.
+
+ForceControl	##
+  Used in calculating mana, and various skill successes.
+  Generally ranges 50-100.
+
+ForceSense	##
+  Used in calculating mana, and various skill...things. Unsure about what.
+
+ForceAlter	##
+  Used in calculating mana, and various skill damages.
+  Generally ranges 50-100.
+
+ForceChance	0 or 1
+  If you wish to have a reward to good roleplayers to have some force when 
+  being sensed by a master, set this to one.
+
+ForceId		0 or 1
+  Sets to 1 after being sensed by a master once, signifying the player has 
+  already been tested for force.
+
+ForceAlign	-100 to 100
+  Alignment. If -100 and jedi, will cause pain and skill percent losses.
+  If 100 and sith, will cause pain and skill percent losses.
+
+ForceConverted	0 or 1
+  Signifies if a jedi or sith has been converted to the other side of the 
+  force by a master.
+
+ForceType	0, 1, or 2
+  0 - Undefined forcer. Never used.
+  1 - Jedi.
+  2 - Sith.
+
+ForceLvlStatus	If forcer, 1, 2, or 3
+  0 - Not a forcer.
+  1 - Jedi/Sith apprentice.
+  2 - Jedi Knight/Sith Lord
+  3 - Jedi Master/Sith Master
+
+ForceSkill   ## ###
+  The ## is, at stock, 0 through 23. Listed in sequential order in
+    /force/forceskills.lst
+  The ### is learned percent of skill, 0 through 100.
+
+That's pretty much it. To add a new force skill, you need to add a new 
+file in /force, another likely in /force/help, dofun declaration in mud.h, 
+the function name somewhere like fskills.c, and a tables.c-like declaration 
+in force.c. In interp, I think, the commands now go cmd/skill/fskill/social.
+
+Have fun and such. -||

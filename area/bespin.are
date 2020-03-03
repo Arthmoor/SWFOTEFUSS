@@ -1,0 +1,1102 @@
+#AREA   Cloud City~
+
+
+
+#AUTHOR Trillen~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6285377
+
+#MOBILES
+#29000
+~
+A Imperial Guard~
+A Imperial Guard stands here, surrounded by the smell of death
+~
+The guard is bulky and looks smart. These guards have had a year training
+in the Imperial Extreme Boot Camp and are the most well trained bodyguards
+in the galaxy. They are proficient with hand to hand and ranged combat.
+They are even capable of using the Force to dull pain! These guys arn't a
+force to be reckoned with. He looks at you with a cold stare and suddenly
+you feel spooked.
+~
+4167 4194304 0 Z
+36 0 10 7d10+360 10d10+2
+100 0
+8 8 1
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 2
+0 0 2047 0 0 0 0 3
+0 0 0 0 0 0 0 0
+#29001
+droid~
+An astromech droid~
+An astromech droid is here, maintenancing ships.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#29002
+ugnaught secretary~
+An Ugnaught secretary~
+An Ugnaught secretary sits at her desk.
+~
+~
+1073741835 0 500 Z
+5 0 87 1d10+50 0d4+2
+0 0
+8 8 2
+10 13 10 12 9 14 10
+0 0 0 0 0
+50 0 0 0 1 1 1
+1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+mpe An Ugnaught secretary smiles and asks "What can I do for you, $n?
+mpe A list of the city offices is written on the wall plaque."
+~
+> speech_prog public safety~
+smile
+em uses a small comlink to speak with Lt. Boole.
+em then unlocks the east door and waves you through.
+mptransfer $n 29003
+~
+> speech_prog industrial expansion~
+smile
+em uses a small comlink to speak with Dr. Plint.
+em then unlocks the west door and waves you through.
+mptransfer $n 29004
+~
+> speech_prog administration~
+smile
+em uses a small comlink to speak with Administrator Calrissian.
+em then unlocks the north door and waves you through.
+mptransfer $n 29006
+~
+|
+#29999
+~
+A Imperial Guard~
+A Imperial Guard stands here, surrounded by the smell of death
+~
+The guard is bulky and looks smart. These guards have had a year training
+in the Imperial Extreme Boot Camp and are the most well trained bodyguards
+in the galaxy. They are proficient with hand to hand and ranged combat.
+They are even capable of using the Force to dull pain! These guys arn't a
+force to be reckoned with. He looks at you with a cold stare and suddenly
+you feel spooked.
+~
+4167 4194304 0 Z
+36 0 10 7d10+360 10d10+2
+100 0
+8 8 1
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 2
+0 0 2047 0 0 0 0 3
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#29000
+~
+a ~
+A  is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#29002
+blaster~
+a blaster~
+A blaster is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#29999
+~
+a ~
+A  is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#29000
+Cloud City Landing Pad~
+This huge platform sits above Cloud City, connected by a turbolift, and
+ships fly past overhead.  There is enough space for many ships to land,
+and several lines for replenishing energy supplies.  A very strong wind
+blows here, forcing visitors to use caution to avoid a fall.
+~
+0 48 1 4 0 0 288
+D0
+~
+~
+0 -1 29001
+S
+#29001
+Cloud City Turbolift~
+There is a very large turbolift, built to transport all the occupants of
+Cloud City.  It is voice-activated, needing only to be told what level to
+go to.  A list of departments and the levels they are on is visible on the
+wall. 
+~
+0 1073741836 1 0 0 0 288
+E
+list~
+Level 1 - Landing Pad
+Level 2 - Administrative Offices
+Level 3 - Commercial District
+Level 4 - Residential Apartments
+Level 5 - Industrial Factory
+Level 6 - Engineering
+Level 7 - Repulsors and Gas Pumps
+~
+> speech_prog 1~
+mpecho The turbolift hums as it moves to the landing pad.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 29000
+~
+> speech_prog 2~
+mpecho The turbolift hums as it moves to the administrative level.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 29002
+~
+> speech_prog 3~
+mpecho The turbolift hums as it moves to the commercial district.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 29007
+~
+> speech_prog 4~
+mpecho The turbolift hums as it moves to the residential level.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 29009
+~
+> speech_prog 5~
+mpecho The turbolift hums as it moves to the factory.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 29022
+~
+> speech_prog 6~
+mpecho The turbolift hums as it moves to engineering.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 29034
+~
+> speech_prog 7~
+mpe The turbolist hums as it moves to the repulsors and gas pumps.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 29039
+~
+|
+S
+#29002
+A Wide Corridor~
+This is the beginning of the administrative level, and many people are
+rushing by in an attempt to get their business resolved so that they can
+return to finding ways to make more credits as soon as possible.  The
+hallway stretches to the north and south, and is composed of gleaming
+white chrome and durasteel. 
+~
+0 1073741832 1 0 0 0 288
+D0
+~
+~
+0 -1 29005
+D2
+~
+~
+0 -1 29001
+S
+#29003
+The Office of Public Safety~
+This office is slightly cramped due to the huge desk in the corner, covered
+with papers of civilian complaints.  Old paintings of security personnel
+that lost their lives in the line of duty hang on each wall, and a window
+on the east reveals the beautiful clouds that gave Cloud City its name.
+~
+0 1073741832 1 0 0 0 288
+D3
+~
+door~
+1 -1 29005
+S
+#29004
+The Office of Industrial Expansion~
+Models of new gas pumps stand on several shelves lining this room, and a
+private turbolift leads straight to the Engineering level.  Many diagrams
+sit on a small desk and large glowglobes hang from the ceiling, providing
+constant light. 
+~
+0 1073741832 1 0 0 0 288
+D1
+~
+~
+0 -1 29005
+S
+#29005
+A Large Lobby~
+Chairs line the walls of this room, and doors lead in several directions. A
+receptionist sits at her desk, trying to direct traffic to the appropriate
+office while also insuring that the officeholder is ready to speak with
+people.  A small durasteel plaque hangs on the wall beside the desk.
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+6 29001 29006
+D1
+~
+~
+6 29001 29003
+D2
+~
+~
+0 -1 29002
+D3
+~
+~
+6 29001 29004
+E
+plaque~
+Administration --- Lando Calrissian
+Public Safety --- Mogtod Boole
+Industrial Expansion --- Regnor Plint
+NOTE:  To enter an office, simply say which office you need.
+~
+S
+#29006
+The Administator's Office~
+This office is fairly large and lavishly decorated, showing off the power
+and prestige of being the Baron-Administrator of the only Tibanna-gas
+supplier in the galaxy.  A large desk is in the center of the room with
+several papers on it detailing new investment ideas.  The north, west, and
+east walls each have large windows showing gorgeous clouds as far as the
+eye can see.
+~
+0 1073741832 1 0 0 0 288
+D2
+~
+~
+0 -1 29005
+S
+#29007
+The Commercial District~
+This room is very large, with durasteel floors and walls, and many
+creatures of every species walking around and looking at shops.
+Ugnaughts move through the crowd trying to accomplish their tasks, and
+a cleaning droid maintains the elegance of the room.
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29008
+D2
+~
+~
+0 -1 29001
+D3
+~
+passage~
+2059 -1 29012
+S
+#29008
+Cloud City Mall~
+You stand at the entrance to the Cloud City Mall. The mall makes
+up the greater part of the commercial districit with its many
+shops. Like most of the planet the mall is crowded with many
+different races as they go about their daily lives.
+~
+0 1073741832 1 0 0 0 288
+D0
+~
+~
+0 -1 29010
+D1
+~
+~
+0 -1 29015
+D2
+~
+~
+0 -1 29007
+D3
+~
+~
+0 -1 29014
+S
+#29009
+The Residential Section~
+This is the entrance to the Cloud City residential area. To your
+left and right are large transparisteel windows through which
+you can see a major part of Cloud City. South of here is the
+turbolift which can take you to the other levels, and north
+of here is a hallway which leads to living quarters.
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29017
+D2
+~
+~
+0 -1 29001
+S
+#29010
+The Central Marketplace~
+This courtyard is huge, with several booths for merchants to distribute
+their wares.  There are marble columns stretching from floor to ceiling,
+and plexiglass doors leading in several directions.
+~
+0 1073741832 1 0 0 0 288
+D0
+~
+~
+0 -1 29043
+D1
+~
+~
+0 -1 29042
+D2
+~
+~
+0 -1 29008
+D7
+~
+~
+0 -1 29016
+S
+#29011
+A Small Pawn Shop~
+~
+0 1073741828 1 0 0 0 288
+S
+#29012
+A Narrow Passage~
+There is almost no light in here and the passage is very narrow
+and cluttered.  The walls seem to have graffiti painted on
+them and it looks like the cleaning droids have never seen this
+area of Cloud City.
+~
+0 1073741824 1 0 0 0 288
+D1
+~
+passage~
+11 -1 29007
+D3
+~
+~
+0 -1 29013
+S
+#29013
+A Dim Shop~
+You are standing in a dark shop, it's pretty cold and dirty in
+here, doesn't look like anyone really cares. Watching you closely
+in the corner of the room is a guy with a black trenchcoat.
+He seems to be carrying something in the pockets of his coat.
+In another corner of the room is some guy who seems to be passed
+out. You might be wise to be careful in here.
+~
+0 1073741824 1 0 0 0 288
+D1
+~
+~
+0 -1 29012
+S
+#29014
+The General Store~
+This brightly lit room feels very welcoming, full of supplies
+of every type. The customers seem to enjoy being here, and are
+all as pleasant as normal, for their species.
+~
+0 1073741832 1 0 0 0 288
+D1
+~
+~
+0 -1 29008
+S
+#29015
+The Weapons Store~
+Weapons of all types fill this room, and three security guards
+watch closely to insure the protection of the owner and patrons
+as they shop.  A small force field protects the ammo from any
+stray blaster fire.
+~
+0 1073741832 1 0 0 0 288
+D3
+~
+~
+0 -1 29008
+S
+#29016
+An Exotic Petshop~
+This room is full of cages with species of creatures from all over the
+galaxy.  Each cage has a small force-field around it and its own climate
+control system to keep the occupant in as near its natural environment as
+possible.
+~
+0 1073741832 1 0 0 0 288
+D8
+~
+~
+0 -1 29010
+S
+#29017
+A Long Hallway~
+Here is an intersection in the residential area. North of here
+is a fairly spacious apartment, as all apartments on Cloud City
+are. To the east and west of here, the hallway continues to
+branch out. If you would like to leave the residential section,
+the exit is to the south.
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29021
+D1
+~
+~
+0 -1 29023
+D2
+~
+~
+0 -1 29009
+D3
+~
+~
+0 -1 29018
+S
+#29018
+A Long Hallway~
+At this point, the hallway comes to an end. To the north and
+south of here are two apartments and to the east the hallway
+continues. The hallway is well-lit and the west wall is a transparisteel
+window that allows you to see outside of the city.
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29019
+D1
+~
+~
+0 -1 29017
+D2
+~
+~
+0 -1 29020
+S
+#29019
+A Small Apartment~
+~
+0 1073741824 1 0 0 0 288
+D2
+~
+~
+0 -1 29018
+S
+#29020
+A Small Apartment~
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29018
+S
+#29021
+A Small Apartment~
+~
+0 1073741824 1 0 0 0 288
+D2
+~
+~
+0 -1 29017
+S
+#29022
+Entrance to the Factory~
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29027
+D2
+~
+~
+0 -1 29001
+S
+#29023
+A Long Hallway~
+Here is the eastern end of the hallway, there are no apartments
+connected here, only the living quarters of Baron-Administrator
+Calrissian. As you look to the north inside of his quarters,
+you can see many lavish decorations that must be very expensive.
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29024
+D3
+~
+~
+0 -1 29017
+S
+#29024
+The Baron-Administrator's House~
+~
+0 1073741824 1 0 0 0 288
+D1
+~
+~
+0 -1 29026
+D2
+~
+~
+0 -1 29023
+D7
+~
+~
+0 -1 29025
+S
+#29025
+A Large Bedroom~
+~
+0 1073741824 1 0 0 0 288
+D8
+~
+~
+0 -1 29024
+S
+#29026
+A Comfortable Study~
+~
+0 1073741824 1 0 0 0 288
+D3
+~
+~
+0 -1 29024
+S
+#29027
+The Industrial Factory~
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29028
+D2
+~
+~
+0 -1 29022
+S
+#29028
+A Long Assembly Line~
+This room is very warm, and has several tables welded together, each with
+wheels so that material can be slid down to the next stage of development.
+Loud noises echo continuously as work goes on, producing mechanical
+equipment to be exported to various worlds and organizations.
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29031
+D2
+~
+~
+0 -1 29027
+D3
+~
+~
+0 -1 29033
+D6
+~
+~
+0 -1 29029
+D7
+~
+~
+0 -1 29030
+S
+#29029
+A Gas Processing Chamber~
+~
+0 1073741824 1 0 0 0 288
+D0
+~
+~
+0 -1 29032
+D9
+~
+~
+0 -1 29028
+S
+#29030
+A Large Smelting Room~
+~
+0 1073741824 1 0 0 0 288
+D8
+~
+~
+0 -1 29028
+S
+#29031
+The Workshop~
+~
+0 1073741824 1 0 0 0 288
+D2
+~
+~
+0 -1 29028
+S
+#29032
+A Carbon Freezing Facility~
+~
+0 1073741824 1 0 0 0 288
+D2
+~
+~
+0 -1 29029
+S
+#29033
+The Supervisor's Office~
+~
+0 1073741824 1 0 0 0 288
+D1
+~
+~
+0 -1 29028
+S
+#29034
+Engineering~
+~
+0 1073741832 1 0 0 0 288
+D0
+~
+~
+0 -1 29036
+D1
+~
+~
+0 -1 29038
+D2
+~
+~
+0 -1 29001
+D3
+~
+~
+0 -1 29037
+D6
+~
+~
+0 -1 29035
+S
+#29035
+The Monitoring Station~
+This room is filled with computers, each displaying statistics for a
+different level or function of Cloud City.  Several other screens have
+real-time feeds from the offices and mining levels to insure that security
+is maintained.
+~
+0 1073741824 1 0 0 0 288
+D9
+~
+~
+0 -1 29034
+S
+#29036
+The Department of Repairs and Upgrades~
+You are standing in the office of the department of repairs and
+upgrades. Before you is a lone ugnaught technician. He seems
+to be busy sorting through repair request papers and may become
+annoyed if you disturb him.
+~
+0 1073741824 1 0 0 0 288
+D2
+~
+~
+0 -1 29034
+S
+#29037
+Research and Development~
+This room is used for testing and implementing new designs for the
+computers and other equipment that keeps Cloud City running at optimal
+efficiency.  Several disassembled devices cover the tables and many others
+are stored in stasis fields to prevent damage while waiting for
+implementation.
+~
+0 1073741824 1 0 0 0 288
+D1
+~
+~
+0 -1 29034
+S
+#29038
+The Head Engineer's Office~
+You are now inside the office of the Head Engineer, he is not
+currently in his office right now so it is occupied by his desk
+and an empty chair. The room is fairly small and contains a
+few pictures, one being of him and his family.
+~
+0 1073741824 1 0 0 0 288
+D3
+~
+~
+0 -1 29034
+S
+#29039
+A Narrow Corridor~
+Dust covers everything in this area, as droids are forbidden to enter for
+fear of sabotage.  Many footprints cross the floor from techs servicing
+the machinery. 
+~
+0 1073741824 1 0 0 0 288
+D1
+~
+~
+0 -1 29040
+D2
+~
+~
+0 -1 29001
+D3
+~
+~
+0 -1 29041
+S
+#29040
+Above the Main Repulsor~
+A loud humming sound vibrates through this area, making it difficult to
+stand here for long periods of time.  The light is extremely dim and seems
+to come from a glow-globe hanging on the wall.  The main repulsor holding
+the city aloft is directly below, and a small access door can be raised to
+allow technicians to service it.
+~
+0 1073741824 1 0 0 0 288
+D3
+~
+~
+0 -1 29039
+S
+#29041
+Tibanna Gas Mining~
+This room serves as the pumping station for the valuable Tibanna gas, and
+is filled with many pumps, each extending a long tube to the surface and
+another tube up to the industrial level for processing and
+storage.
+~
+0 1073741824 1 0 0 0 288
+D1
+~
+~
+0 -1 29039
+S
+#29042
+Cloud City Bank and Trust~
+As you stand inside of this bank you realize that there are no
+tellers. However, there is an ATM machine which can take care
+of all your needs. Here you may deposit money into your account,
+take money out, or transfer money to others. You may want to
+decide soon though because there are others waiting in line
+to use the machine.
+~
+0 1073742084 1 0 0 0 288
+D3
+~
+~
+0 -1 29010
+S
+#29043
+Cloud City Hotel~
+This hotel is not very expensive, against the north wall is the
+desk of the hotel clerk. She seems to be staring at a datapad,
+taking care of some reservations. Nearby is a bell-hop who is
+ready to escort you to your room.
+~
+0 1082130436 1 0 0 0 288
+D2
+~
+~
+0 -1 29010
+S
+#29044
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29045
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29046
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29047
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29048
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29049
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29050
+TrillTest~
+~
+0 1073741828 1 2 0 0 288
+S
+#29051
+Floating in a void~
+~
+0 1073742852 1 0 0 0 288
+S
+#29052
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29053
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29054
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29055
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29056
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29057
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29058
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29059
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29060
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29061
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29062
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29063
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29064
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29065
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29066
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29067
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29068
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29069
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29070
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29071
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29072
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29073
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29074
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29075
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29076
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29077
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29078
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29079
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29080
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29081
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29082
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29083
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29084
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29085
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29086
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29087
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29900
+Floating in a void~
+~
+0 1073741828 1 0 0 0 288
+S
+#29999
+Floating in a void~
+~
+0 4 1 0 0 0 288
+S
+#0
+
+
+#RESETS
+D 0 29003 3 0
+M 1 29002 1 29005
+D 0 29007 3 1
+D 0 29012 1 1
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

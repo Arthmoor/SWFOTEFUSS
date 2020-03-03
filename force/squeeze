@@ -1,0 +1,32 @@
+#FORCE
+Alter          1
+ChEffect0     You hold your hands out at $v and close your fists, staring at $vo.$RN$~
+ChEffect1     $v brings $vp hands up to their neck, they begin to turn blue.$RN$~
+ChEffect2     A harsh red glow surrounds you.$RN$You drop your arms and clench your face in pain.$RN$~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_squeeze~
+Cost           75
+Control        1
+Disabled       0
+Mastertrain    0
+Index          12
+Name           choke~
+Notskill       0
+RoomEffect0     $n holds $np hands out at $v and closes his fists, staring at $vo.$RN$~
+RoomEffect1     $v brings $vp hands up to their neck, they begin to turn blue.$RN$~
+RoomEffect2     A harsh red glow surrounds $n.$RN$$n drops $np arms and clenches $np face in pain.$RN$~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          1
+Status         2
+Type           2
+VictimEffect0     $n holds $np hands out at you and closes his fists, staring at you.$RN$~
+VictimEffect1     You bring your hands to your neck, it feels as though something is choking you.$RN$~
+VictimEffect2     A harsh red glow surrounds $n.$RN$$n drops $np arms and clenches $np face in pain.$RN$~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      5
+End
+
+#END

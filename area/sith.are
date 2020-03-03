@@ -1,0 +1,979 @@
+#AREA   Sith Temple~
+
+
+
+#AUTHOR Mael~
+
+#RANGES
+0 30 0 30
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6250010
+
+#MOBILES
+#650
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1090519043 98306 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#651
+black destroyer droid~
+a newly created black destroyer droid~
+Black destroyer droid sits upright here
+~
+~
+67112963 4194304 0 Z
+1 0 -300 56d50+800 25d20+0
+0 0
+8 8 0
+18 10 10 18 18 10 10
+0 0 0 0 0
+0 0 0 0 2048 2048 6
+6 0 0 64 16 4 0 3
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpecho The hulking, bronzed destroyer comes to an electronic
+mpecho death, it's cannons smoking and burnt out.
+mpat 101 rem laser
+mpat 101 rem laser
+mpat 101 drop laser
+mpat 101 drop laser
+mpat 101 mppurge
+~
+> greet_prog 100~
+if ispc($n)
+If isevil($n)
+If name($n) == Julian
+Bow $n
+Else
+Mpkill $n
+Endif
+Else
+Mpkill $n
+endif
+Else 
+Mpkill $n
+endif
+~
+|
+#652
+female receptionist blonde HRD~
+&ra female, blonde receptionist&w~
+&ra female, blonde receptionist sits almost deathly still behind her desk.&w
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+if level($n) ==30
+if frc($n) == 0
+say Why don't you.. Make an exit?
+say Before something bad happens to you.
+mpechoat $n _dch A pair of burly gamorreans show you out.
+mpechoaround $n _dch A pair of burly gamorreans show $n out.
+mptransfer $n 650
+else if frc($n) > 0
+if isgood($n)
+say Why don't you.. Make an exit?
+say Before something bad happens to you.
+mpechoat $n _dch A pair of burly gamorreans show you out.
+mpechoaround $n _dch A pair of burly gamorreans show $n out.
+mptransfer $n 650
+else
+mpechoat $n _red The receptionist gives you a slight nod
+mpechoat $n _red then waves you toward the southern door.
+mpechoaround $n _red The receptionist waves $n on.
+mptransfer $n 654
+endif
+endif
+else 
+say Why don't you.. Make an exit?
+say Before something bad happens to you.
+mpechoat $n _dch A pair of burly gamorreans show you out.
+mpechoaround $n _dch A pair of burly gamorreans show $n out.
+mptransfer $n 650
+endif
+~
+|
+#653
+darth gristle rabid sith acolyte~
+a newly created darth gristle rabid sith acolyte~
+Some god abandoned a newly created darth gristle rabid sith acolyte here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#654
+fat headed serpent black yellow~
+a fat headed serpent~
+&wa fat headed serpent is coiled in the corner, displaying its &zblack&w and &Yyellow&w belly
+~
+This large, sharp scaled survivor of eons - Reptillian in nature displays
+proudly his badge of poisonous nature through coloring and hisses perhaps
+as warning or perhaps simply eager to feed. This particular species is
+obviously suited for water and carries a small hood which it puffs to make
+itself look larger, although most can take a hint.
+~
+1073741825 0 0 Z
+1 0 0 1d1+103 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+> fight_prog 100~
+emote a fat headed serpent rears back and
+mpechoat $n _red strikes you on the leg.
+mpecho _red a fat headed serpent rears back and
+mpechoat $n _red strikes you on the leg.
+mpechoaround $n _red strikes $n on the leg.
+mpsleep 15
+mpechoat $n Your snakebite begins to fester and ooze
+mpechoat $n as the venom rushes towards your vitals
+mpechoat $n to snuff you like a candle.
+mpechoaround $n $n shudders and weeps like a child
+mpechoaround $n as the venom sweeps his system and
+mpechoaround $n snuffs him like a candle.
+mpdamage $n 250
+~
+> death_prog 100~
+emote plays dead for a moment before
+mpechoat attaching itself to your calf.
+mpechoaround attaching itself to $n's calf.
+mpechoat $n Your snakebite begins to fester and ooze
+mpechoat $n as the venom rushes towards your vitals
+mpechoat $n to snuff you like a candle.
+mpechoaround $n $n shudders and weeps like a child
+mpechoaround $n as the venom sweeps his system and
+mpechoaround $n snuffs him like a candle.
+mpdamage $n 500
+~
+|
+#655
+Darth Ferno~
+Darth Ferno~
+&W&rA solemn individual in black robes stands here, his head low.&W
+~
+~
+1027 0 0 Z
+30 0 25 6d10+300 10d10+100
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Ah.. hello young one. I will teach you the ways of the darkness.
+mpsleep 10
+say Perhaps... you will learn that the illuminated path, is in
+mpecho &w&Wfact not illuminated at all... but darkened beyond the blackness
+mpecho &w&Wof infinity.
+~
+|
+#699
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#650
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#651
+dual laser cannons~
+a dual laser cannons~
+A dual laser cannons is here.~
+~
+5 0 8192
+100 24 6 6 2000 2000
+1 0 0
+#652
+button 1 down~
+&za down button in the shape of an arrow&w~
+&za self explanatory button in the shape of a downward arrow adorns the wall.&w~
+~
+39 0 0
+0 0 0 0
+1000 0 0
+> push_prog 100~
+mpecho _dch The floor seems to give out and the repulsorlift
+mpecho _dch begins a harrowing free fall.
+mpsleep 5
+mpecho _red Thankfully, the lift begins to slow,
+mpecho _red settling the hearts of most species to their
+mpecho _red intestines.
+mpsleeep 5
+mptrans all 652
+mpat 652 mpecho _dch The lift doors slide open silently.
+pull button
+~
+|
+#653
+button 2 down~
+&za down button in the shape of an arrow&w~
+&za self explanatory button in the shape of a downward arrow adorns the wall.&w~
+~
+39 0 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpecho _dch As the button is pressed the lift seems to strain
+mpecho _dch against the ground beneath for a moment.
+mpecho _dch Guess that was a one way trip.
+pull button
+~
+|
+#654
+light~
+a light~
+A light is here.~
+~
+1 0 1
+0 0 0 0
+1 0 0
+#655
+idyllic disembodied marquee~
+a idyllic disembodied marquee~
+A idyllic disembodied marquee is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#656
+An Up button in the shape of an Arrow~
+An Up Button in the shape of an Arrow~
+A small up button is on the right side of door here.~
+~
+39 1073741824 0
+0 0 0 0
+1000 0 0
+> push_prog 100~
+mpecho _dch The door slides shut immediately.
+mpsleep 5
+mpecho _blu You suddenly lose your equilibrium as the room feels as though
+mpecho _blu it is spinning, although upon sight it seems normal.
+mpsleep 15
+mpecho _blu You close your eyes, nausea settling in...
+mpsleep 10
+mpecho _blu You regain your balance, and open your eyes...
+mpsleep 5
+mptrans all 650
+mpat 650 mpforce $n look
+pull button
+~
+|
+#699
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#650
+Before a Utilitarian Bunker~
+This tiny duracrete lot acts as home for what must be the smallest bunker
+in existance. Below two meters in diameter and a third of that is clearly
+taken up by reinforced wall. The pill that stands inside is quite simply a
+meat propulsion system. Transportation at its most economic. This lot,
+while looking to have once been in decent upkeep, is in quite a horrible
+form of disrepair. Sand has damaged the once new walls, and foot traffic
+is nonexistant.  In fact, were it possible to go to the opposite of the
+spectrum - This one would do quite nicely, pedestrians seem to avoid it
+like a rutting Gran.
+~
+0 0 1 0 0 0 17416
+D0
+~
+~
+0 -1 651
+D9
+~
+~
+0 -1 274
+S
+#651
+A Stolid, Black Repulsorlift~
+This tiny, pill shaped chamber while bearing great weight on air along
+holds little care for beauty. A discrete holo-recorder sits at the point
+of the ceiling, a crowded two and a half meters above. While humanoids
+would be hard pressed to get around themselves to push the call button. It
+might be more prudent to do with another body part. The interior is all
+finished to a high glossy black while the floor is made up of some
+utilitarian rubber slip guard.
+~
+0 1073741832 1 0 0 0 17416
+D2
+~
+~
+0 -1 650
+S
+#652
+A Stolid, Black Repulsorlift~
+This tiny, pill shaped chamber while bearing great weight on air along
+holds little care for beauty. A discrete holo-recorder sits at the point
+of the ceiling, a crowded two and a half meters above. While humanoids
+would be hard pressed to get around themselves to push the call button. It
+might be more prudent to do with another body part. The interior is all
+finished to a high glossy black while the floor is made up of some
+utilitarian rubber slip guard.
+~
+0 1073741836 1 0 0 0 17416
+D2
+~
+~
+0 -1 653
+S
+#653
+A Dismal, Stuffy Reception Hall~
+The walls in this tiny hole of an office, which, by the way seems totally
+out of place in this setting, are lined with meaningless trophies and
+certificates for some company that most intelligent sources would tell you
+does not exist. Nonetheless they boldly maintain their front in all
+aspects but one, everything in this office is devoid of life, from the
+tidy little paintings of buildings or, alas, mining machinery. A single
+thycus, supposedly found only in the depths of Yavin's murk dies slowly of
+water starvation in the corner while a human replacement sits passively at
+her desk. 
+~
+0 1073742860 1 0 0 0 17416
+D0
+~
+~
+0 -1 652
+S
+#654
+A Short, Ebony Buttressed Hall~
+This walls of this cramped hallway push inward with ebony inlays and odd
+scrimshaw, mostly depicting battle, however on occasion, drawn more
+vaguely scenes of torture and mutilation show through. All the victims
+bear the lightsaber in one picture or another and are generally depicted
+as saintly, and of course to become a saint you must die a martyr. The
+black on black detail of everything here makes it a little hard to make
+out details in this lighting, next to none. Northward a small front office
+sits acting as a guard between the pupils southward and this harsh,
+technologized existance.. Yeah, right.
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 653
+D2
+~
+~
+0 -1 665
+S
+#655
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#656
+A Dusky, Insular Chamber~
+The walls of this massive chamber are all done in the same, engraved ebony
+detail while the floor is a little more than a duracrete dip to hold
+several inches of water. While it is not deep enough to wet the socks of
+most it is considered distasteful to walk across as can be seen in the
+occasional, floating passer-by. The water casts an eerie, reflected light
+off the walls, exposing like a flashbulb at times a grim scene on the
+walls or an archaic gargoyle sitting high up by the vaulted, black mosaic
+ceiling. This room seems more of a focusing chamber or temple than what
+should rightfully be kept ten stories under the ground. Just to the south
+a small, risen platform sits in an inch and a half of somewhat murky
+water.
+~
+0 1073741836 1 0 0 0 17416
+D1
+~
+~
+0 -1 665
+D2
+~
+~
+0 -1 657
+S
+#657
+A Dusky, Insular Chamber~
+The walls of this massive chamber are all done in the same, engraved ebony
+detail while the floor is a little more than a duracrete dip to hold
+several inches of water. While it is not deep enough to wet the socks of
+most it is considered distasteful to walk across as can be seen in the
+occasional, floating passer-by. The water casts an eerie, reflected light
+off the walls, exposing like a flashbulb at times a grim scene on the
+walls or an archaic gargoyle sitting high up by the vaulted, black mosaic
+ceiling. This room seems more of a focusing chamber or temple than what
+should rightfully be kept ten stories under the ground. Just to the south
+a small, risen platform sits in an inch and a half of somewhat murky
+water.
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 656
+D1
+~
+~
+0 -1 663
+D2
+~
+~
+0 -1 658
+S
+#658
+A Dusky, Insular Chamber~
+The walls of this massive chamber are all done in the same, engraved ebony
+detail while the floor is a little more than a duracrete dip to hold
+several inches of water. While it is not deep enough to wet the socks of
+most it is considered distasteful to walk across as can be seen in the
+occasional, floating passer-by. The water casts an eerie, reflected light
+off the walls, exposing like a flashbulb at times a grim scene on the
+walls or an archaic gargoyle sitting high up by the vaulted, black mosaic
+ceiling. This room seems more of a focusing chamber or temple than what
+should rightfully be kept ten stories under the ground. Just to the south
+a small, risen platform sits in an inch and a half of somewhat murky
+water.
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 657
+D1
+~
+~
+0 -1 659
+S
+#659
+A Dusky, Insular Chamber~
+The walls of this massive chamber are all done in the same, engraved ebony
+detail while the floor is a little more than a duracrete dip to hold
+several inches of water. While it is not deep enough to wet the socks of
+most it is considered distasteful to walk across as can be seen in the
+occasional, floating passer-by. The water casts an eerie, reflected light
+off the walls, exposing like a flashbulb at times a grim scene on the
+walls or an archaic gargoyle sitting high up by the vaulted, black mosaic
+ceiling. This room seems more of a focusing chamber or temple than what
+should rightfully be kept ten stories under the ground. Just to the south
+a small, risen platform sits in an inch and a half of somewhat murky
+water.
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 663
+D1
+~
+~
+0 -1 660
+D2
+~
+~
+0 -1 676
+D3
+~
+~
+0 -1 658
+S
+#660
+A Dusky, Insular Chamber~
+The walls of this massive chamber are all done in the same, engraved ebony
+detail while the floor is a little more than a duracrete dip to hold
+several inches of water. While it is not deep enough to wet the socks of
+most it is considered distasteful to walk across as can be seen in the
+occasional, floating passer-by. The water casts an eerie, reflected light
+off the walls, exposing like a flashbulb at times a grim scene on the
+walls or an archaic gargoyle sitting high up by the vaulted, black mosaic
+ceiling. This room seems more of a focusing chamber or temple than what
+should rightfully be kept ten stories under the ground. Just to the south
+a small, risen platform sits in an inch and a half of somewhat murky
+water.
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 661
+D3
+~
+~
+0 -1 659
+S
+#661
+A Dusky, Insular Chamber~
+The walls of this massive chamber are all done in the same, engraved ebony
+detail while the floor is a little more than a duracrete dip to hold
+several inches of water. While it is not deep enough to wet the socks of
+most it is considered distasteful to walk across as can be seen in the
+occasional, floating passer-by. The water casts an eerie, reflected light
+off the walls, exposing like a flashbulb at times a grim scene on the
+walls or an archaic gargoyle sitting high up by the vaulted, black mosaic
+ceiling. This room seems more of a focusing chamber or temple than what
+should rightfully be kept ten stories under the ground. Just to the south
+a small, risen platform sits in an inch and a half of somewhat murky
+water.
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 662
+D1
+~
+~
+0 -1 673
+D2
+~
+~
+0 -1 660
+D3
+~
+~
+0 -1 663
+S
+#662
+A Dusky, Insular Chamber~
+The walls of this massive chamber are all done in the same, engraved ebony
+detail while the floor is a little more than a duracrete dip to hold
+several inches of water. While it is not deep enough to wet the socks of
+most it is considered distasteful to walk across as can be seen in the
+occasional, floating passer-by. The water casts an eerie, reflected light
+off the walls, exposing like a flashbulb at times a grim scene on the
+walls or an archaic gargoyle sitting high up by the vaulted, black mosaic
+ceiling. This room seems more of a focusing chamber or temple than what
+should rightfully be kept ten stories under the ground. Just to the south
+a small, risen platform sits in an inch and a half of somewhat murky
+water.
+~
+0 1073741836 1 0 0 0 17416
+D2
+~
+~
+0 -1 661
+D3
+~
+~
+0 -1 665
+S
+#663
+A Stone Slab in the Center of the Vaulted Chamber~
+The corners of this stone plate curl up several inches and are slotted
+almost unnoticably, although the purpose here is obvious. Drainage.
+However, what they hope to drain.. Is guessable, rust brown tracks trail
+through black tiled grooves to the slots and let a faint smell of
+deteriorating flesh taint the air. Cool, artificial moss covers the cobble
+and meditation stones for what little comfort it affords in this cold
+stone hall. Off to the east the dorms are visible while southward the
+sounds of a feed can be heard. In the very peak of the vaulted ceiling,
+directly above this slab is an indiscrete, black on black opening, about
+as big around as a man.
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 665
+D1
+~
+~
+0 -1 661
+D2
+~
+~
+0 -1 659
+D3
+~
+~
+0 -1 657
+> act_prog p begins to float in mid-air...~
+mpechoat $n _dch The chaotic energies swirl about you
+mpechoat $n _dch leaving you displaced.
+mptransfer $n 667
+~
+|
+S
+#664
+Floating in a void~
+~
+0 1073741836 1 0 0 0 17416
+S
+#665
+A Dusky, Insular Chamber~
+The walls of this massive chamber are all done in the same, engraved ebony
+detail while the floor is a little more than a duracrete dip to hold
+several inches of water. While it is not deep enough to wet the socks of
+most it is considered distasteful to walk across as can be seen in the
+occasional, floating passer-by. The water casts an eerie, reflected light
+off the walls, exposing like a flashbulb at times a grim scene on the
+walls or an archaic gargoyle sitting high up by the vaulted, black mosaic
+ceiling. This room seems more of a focusing chamber or temple than what
+should rightfully be kept ten stories under the ground. Just to the south
+a small, risen platform sits in an inch and a half of somewhat murky
+water.
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 654
+D1
+~
+~
+0 -1 662
+D2
+~
+~
+0 -1 663
+D3
+~
+~
+0 -1 656
+S
+#666
+Nny's Humble Abode~
+This hovel, which seemed so shabby and small from the outside seems doubly
+shabby and small from the inside. The floors are made up of rotting oak
+planks, poorly spaced in a way that would let a careless fellow lose a
+foot between them. The house's eyes, shuttered by rotting planks and sewn
+with rusted nails let altogether too few and thin spots of sunlight into
+the haunt. The walls are all done in a crumbling white plaster which shows
+multiple scores looking unmistakably to be where someone's set fingernails
+to it. Bits of tissue and other debris coat the floor; a whole fingernail,
+a clump of hair, two teeth sticky bits of pink gum flesh still attached.
+The door to the outside world on the south wall, as a constant is firmly
+shut.  The plaster of the eastern wall is coated, nay drenched from
+ceiling to floor in a sticky, rust brown drying liquid that could only be
+blood while odd, inversed indentations make themselves apparent on it's
+surface as if it were a silk screen. Impressions of faces in horrid
+grimaces of pain along with hands, pushing weakly against the other side
+of its surface, clawing for escape.
+~
+0 75497484 1 -2147483648 0 0 17416
+D2
+~
+~
+0 -1 107
+S
+#667
+In the Dusky Steeple~
+Above the ground which seems to spin at this height, some odd fifteen
+meters below, this steepled, subteranean room is done with almost no
+decoration in black oak. Soil pushes slowly through the time tested
+timbers in small trails and piles up on the floor to soil the shoes of
+even the most decorous passer-by. The floor, while made of the same
+slicked surface loses some of its appeal for the height wary in that there
+is a two meter hole in the floor able and willing to drop those that are
+not cautious. The dark is oppressive in here and various smells assault
+your nostrils, obvious is the soil yet something fainter, dry and dusty as
+well makes its presence known.
+~
+0 1090519053 1 0 0 0 17416
+> act_prog p feel 'injure' serpent~
+mpechoat $n _dch The chaotic energies pass over
+mpechoat $n _dch you, leaving you displaced.
+mptransfer $n 668
+~
+|
+S
+#668
+flightnin'~
+~
+0 1073741836 1 0 0 0 17416
+S
+#669
+Ya Tit!~
+88 888MM:::888:M:::::::::::::::::::::::M:8888:::::::::M:
+   8 88888M:::88::M:::::::::::::::::::::::MM:88::::::::::::M
+     88888M:::88::M::::::::::*88*::::::::::M:88::::::::::::::M
+    888888M:::88::M:::::::::88@@88:::::::::M::88::::::::::::::M
+    888888MM::88::MM::::::::88@@88:::::::::M:::8::::::::::::::*8
+    88888  M:::8::MM:::::::::*88*::::::::::M:::::::::::::::::88@@
+    8888   MM::::::MM:::::::::::::::::::::MM:::::::::::::::::88@@
+     888    M:::::::MM:::::::::::::::::::MM::M::::::::::::::::*8
+     888    MM:::::::MMM::::::::::::::::MM:::MM:::::::::::::::M
+      88     M::::::::MMMM:::::::::::MMMM:::::MM::::::::::::MM
+~
+0 1090519052 1 0 0 0 17416
+D5
+~
+~
+0 -1 1050
+S
+#670
+survivalofthefittest~
+~
+0 1073741836 1 0 0 0 17416
+S
+#671
+completion 1~
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 672
+S
+#672
+Masters' Chambers~
+~
+0 1073741836 1 0 0 0 17416
+D2
+~
+~
+0 -1 671
+S
+#673
+A Compact Bunk Hall~
+~
+0 1073741836 1 0 0 0 17416
+D0
+~
+~
+0 -1 674
+D2
+~
+~
+0 -1 675
+D3
+~
+~
+0 -1 661
+S
+#674
+A Utilitiarian Bunk House~
+~
+0 1082130444 1 0 0 0 17416
+D2
+~
+~
+0 -1 673
+S
+#675
+A Utilitiarian Bunk House~
+~
+0 1073808396 1 0 0 0 17416
+D0
+~
+~
+0 -1 673
+S
+#676
+A Sleek Silver Elevator~
+You step into the elevator, uncertain of its abilities. It is round and
+very slim, the front sliding shut as you enter. The floor is curved and
+there is only a small space in which you can stand comfortably.
+~
+0 1073741824 1 0 0 0 17416
+D0
+~
+~
+0 -1 659
+S
+#677
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+D2
+~
+~
+0 -1 676
+S
+#678
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#679
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#680
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#681
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#682
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#683
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#684
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#685
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#686
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#687
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#688
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#689
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#690
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#691
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#692
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#693
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#694
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#695
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#696
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#697
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#698
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#699
+Floating in a void~
+~
+0 1073741828 1 0 0 0 17416
+S
+#0
+
+
+#RESETS
+M 1 699 1 699
+O 1 699 1 699
+O 1 652 1 651
+O 1 653 1 652
+M 1 652 1 653
+M 1 653 1 670
+M 1 654 1 667
+M 1 651 1 650
+E 1 651 1 18
+E 1 651 1 16
+M 1 650 1 655
+O 1 650 1 655
+M 1 655 1 663
+O 1 656 1 676
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

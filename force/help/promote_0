@@ -1,0 +1,9 @@
+#FORCE
+Name      promote~
+Status    3
+Type      0
+Desc      Command:    promote$RN$Usage:      promote <student>$RN$Level:      Master$RN$Mana:       0$RN$Time Req:   Instant$RN$Duration:   Instant$RN$Components: none$RN$$RN$When a student has all of the skills at their current$RN$level at least 50%, they are eligible to be promoted$RN$to the next rank.  $RN$$RN$NOTE: You don't have to promote them, it is your option.$RN$~
+Skill     -1
+End
+
+#END

@@ -1,0 +1,9 @@
+#FORCE
+Name      dwieldsaber~
+Status    2
+Type      0
+Desc      This skill allows you to wield a second lightsaber, though$RN$the damage that is done by it is greatly reduced.~
+Skill     -1
+End
+
+#END

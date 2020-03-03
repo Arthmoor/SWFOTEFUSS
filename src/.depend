@@ -1,0 +1,1038 @@
+# DO NOT DELETE
+
+o/imc.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/imc.o: /usr/include/stdio.h /usr/include/features.h
+o/imc.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/imc.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/imc.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/imc.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/imc.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/imc.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/imc.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/imc.o: /usr/include/stdlib.h /usr/include/string.h /usr/include/ctype.h
+o/imc.o: /usr/include/endian.h /usr/include/bits/endian.h
+o/imc.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+o/imc.o: /usr/include/bits/confname.h /usr/include/sys/time.h
+o/imc.o: /usr/include/time.h /usr/include/bits/time.h
+o/imc.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/imc.o: /usr/include/bits/sigset.h /usr/include/sys/socket.h
+o/imc.o: /usr/include/sys/uio.h /usr/include/sys/types.h
+o/imc.o: /usr/include/bits/uio.h /usr/include/bits/socket.h
+o/imc.o: /usr/include/limits.h
+o/imc.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/imc.o: /usr/include/bits/sockaddr.h /usr/include/asm/socket.h
+o/imc.o: /usr/include/asm/sockios.h /usr/include/netinet/in.h
+o/imc.o: /usr/include/stdint.h /usr/include/bits/in.h
+o/imc.o: /usr/include/bits/byteswap.h /usr/include/arpa/inet.h
+o/imc.o: /usr/include/netdb.h /usr/include/bits/netdb.h /usr/include/fcntl.h
+o/imc.o: /usr/include/bits/fcntl.h /usr/include/errno.h
+o/imc.o: /usr/include/bits/errno.h /usr/include/linux/errno.h
+o/imc.o: /usr/include/asm/errno.h /usr/include/sys/file.h
+o/imc.o: /usr/include/fnmatch.h md5.h
+o/11.o: /usr/include/math.h /usr/include/features.h /usr/include/sys/cdefs.h
+o/11.o: /usr/include/gnu/stubs.h /usr/include/bits/wordsize.h
+o/11.o: /usr/include/gnu/stubs-32.h /usr/include/bits/huge_val.h
+o/11.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h
+o/11.o: /usr/include/sys/types.h /usr/include/bits/types.h
+o/11.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/11.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/11.o: /usr/include/ctype.h /usr/include/endian.h /usr/include/bits/endian.h
+o/11.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+o/11.o: /usr/include/wchar.h /usr/include/bits/wchar.h /usr/include/gconv.h
+o/11.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/11.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/11.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/11.o: /usr/include/limits.h
+o/11.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/11.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/11.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/11.o: /usr/include/bits/sigset.h pfiles.h color.h
+o/act_comm.o: /usr/include/sys/types.h /usr/include/features.h
+o/act_comm.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/act_comm.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/act_comm.o: /usr/include/bits/types.h
+o/act_comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/act_comm.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/act_comm.o: /usr/include/ctype.h /usr/include/endian.h
+o/act_comm.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/act_comm.o: /usr/include/libio.h /usr/include/_G_config.h
+o/act_comm.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/act_comm.o: /usr/include/gconv.h
+o/act_comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/act_comm.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/act_comm.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/act_comm.o: /usr/include/limits.h
+o/act_comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/act_comm.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/act_comm.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/act_comm.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/act_comm.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/act_comm.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/act_info.o: /usr/include/sys/types.h /usr/include/features.h
+o/act_info.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/act_info.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/act_info.o: /usr/include/bits/types.h
+o/act_info.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/act_info.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/act_info.o: /usr/include/ctype.h /usr/include/endian.h
+o/act_info.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/act_info.o: /usr/include/libio.h /usr/include/_G_config.h
+o/act_info.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/act_info.o: /usr/include/gconv.h
+o/act_info.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/act_info.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/act_info.o: /usr/include/string.h /usr/include/unistd.h
+o/act_info.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+o/act_info.o: mud.h /usr/include/stdlib.h /usr/include/limits.h
+o/act_info.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/act_info.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/act_info.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/act_info.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/act_info.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/act_info.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/act_move.o: /usr/include/sys/types.h /usr/include/features.h
+o/act_move.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/act_move.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/act_move.o: /usr/include/bits/types.h
+o/act_move.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/act_move.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/act_move.o: /usr/include/stdio.h /usr/include/libio.h
+o/act_move.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/act_move.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/act_move.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/act_move.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/act_move.o: /usr/include/string.h /usr/include/ctype.h
+o/act_move.o: /usr/include/endian.h /usr/include/bits/endian.h mud.h
+o/act_move.o: /usr/include/stdlib.h /usr/include/limits.h
+o/act_move.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/act_move.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/act_move.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/act_move.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/act_move.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/act_move.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/act_obj.o: /usr/include/sys/types.h /usr/include/features.h
+o/act_obj.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/act_obj.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/act_obj.o: /usr/include/bits/types.h
+o/act_obj.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/act_obj.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/act_obj.o: /usr/include/stdio.h /usr/include/libio.h
+o/act_obj.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/act_obj.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/act_obj.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/act_obj.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/act_obj.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/act_obj.o: /usr/include/limits.h
+o/act_obj.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/act_obj.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/act_obj.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/act_obj.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/act_obj.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/act_obj.o: /usr/include/bits/mathcalls.h pfiles.h color.h bet.h
+o/act_obj.o: /usr/include/ctype.h /usr/include/endian.h
+o/act_obj.o: /usr/include/bits/endian.h
+o/act_wiz.o: /usr/include/stdio.h /usr/include/features.h
+o/act_wiz.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/act_wiz.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/act_wiz.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/act_wiz.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/act_wiz.o: /usr/include/libio.h /usr/include/_G_config.h
+o/act_wiz.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/act_wiz.o: /usr/include/gconv.h
+o/act_wiz.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/act_wiz.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/act_wiz.o: /usr/include/string.h /usr/include/time.h /usr/include/unistd.h
+o/act_wiz.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+o/act_wiz.o: /usr/include/ctype.h /usr/include/endian.h
+o/act_wiz.o: /usr/include/bits/endian.h /usr/include/sys/types.h
+o/act_wiz.o: /usr/include/sys/stat.h /usr/include/bits/stat.h
+o/act_wiz.o: /usr/include/errno.h /usr/include/bits/errno.h
+o/act_wiz.o: /usr/include/linux/errno.h /usr/include/asm/errno.h
+o/act_wiz.o: /usr/include/dirent.h /usr/include/bits/dirent.h mud.h
+o/act_wiz.o: /usr/include/stdlib.h /usr/include/limits.h
+o/act_wiz.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/act_wiz.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/act_wiz.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/act_wiz.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/act_wiz.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/act_wiz.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/boards.o: /usr/include/sys/types.h /usr/include/features.h
+o/boards.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/boards.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/boards.o: /usr/include/bits/types.h
+o/boards.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/boards.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/boards.o: /usr/include/ctype.h /usr/include/endian.h
+o/boards.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/boards.o: /usr/include/libio.h /usr/include/_G_config.h
+o/boards.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/boards.o: /usr/include/gconv.h
+o/boards.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/boards.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/boards.o: /usr/include/string.h /usr/include/sys/stat.h
+o/boards.o: /usr/include/bits/stat.h mud.h /usr/include/stdlib.h
+o/boards.o: /usr/include/limits.h
+o/boards.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/boards.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/boards.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/boards.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/boards.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/boards.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/bounty.o: /usr/include/sys/types.h /usr/include/features.h
+o/bounty.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/bounty.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/bounty.o: /usr/include/bits/types.h
+o/bounty.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/bounty.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/bounty.o: /usr/include/ctype.h /usr/include/endian.h
+o/bounty.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/bounty.o: /usr/include/libio.h /usr/include/_G_config.h
+o/bounty.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/bounty.o: /usr/include/gconv.h
+o/bounty.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/bounty.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/bounty.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/bounty.o: /usr/include/limits.h
+o/bounty.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/bounty.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/bounty.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/bounty.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/bounty.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/bounty.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/build.o: /usr/include/sys/types.h /usr/include/features.h
+o/build.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/build.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/build.o: /usr/include/bits/types.h
+o/build.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/build.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/build.o: /usr/include/ctype.h /usr/include/endian.h
+o/build.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/build.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/build.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/build.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/build.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/build.o: /usr/include/string.h /usr/include/unistd.h
+o/build.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h mud.h
+o/build.o: /usr/include/stdlib.h /usr/include/limits.h
+o/build.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/build.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/build.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/build.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/build.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/build.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/clans.o: /usr/include/sys/types.h /usr/include/features.h
+o/clans.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/clans.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/clans.o: /usr/include/bits/types.h
+o/clans.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/clans.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/clans.o: /usr/include/ctype.h /usr/include/endian.h
+o/clans.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/clans.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/clans.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/clans.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/clans.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/clans.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/clans.o: /usr/include/limits.h
+o/clans.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/clans.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/clans.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/clans.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/clans.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/clans.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/color.o: /usr/include/string.h /usr/include/features.h
+o/color.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/color.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/color.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/color.o: /usr/include/stdio.h /usr/include/bits/types.h
+o/color.o: /usr/include/bits/typesizes.h /usr/include/libio.h
+o/color.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/color.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/color.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/color.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/color.o: /usr/include/dirent.h /usr/include/bits/dirent.h mud.h
+o/color.o: /usr/include/stdlib.h /usr/include/limits.h
+o/color.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/color.o: /usr/include/sys/time.h /usr/include/time.h
+o/color.o: /usr/include/bits/time.h /usr/include/sys/select.h
+o/color.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+o/color.o: /usr/include/math.h /usr/include/bits/huge_val.h
+o/color.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h pfiles.h
+o/color.o: color.h
+o/comm.o: /usr/include/sys/types.h /usr/include/features.h
+o/comm.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/comm.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/comm.o: /usr/include/bits/types.h
+o/comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/comm.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/comm.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/comm.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/comm.o: /usr/include/bits/sigset.h /usr/include/sys/stat.h
+o/comm.o: /usr/include/bits/stat.h /usr/include/ctype.h /usr/include/endian.h
+o/comm.o: /usr/include/bits/endian.h /usr/include/errno.h
+o/comm.o: /usr/include/bits/errno.h /usr/include/linux/errno.h
+o/comm.o: /usr/include/asm/errno.h /usr/include/stdio.h /usr/include/libio.h
+o/comm.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/comm.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/comm.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/comm.o: /usr/include/string.h /usr/include/fcntl.h
+o/comm.o: /usr/include/bits/fcntl.h /usr/include/signal.h
+o/comm.o: /usr/include/bits/signum.h mud.h /usr/include/stdlib.h
+o/comm.o: /usr/include/limits.h
+o/comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/comm.o: /usr/include/math.h /usr/include/bits/huge_val.h
+o/comm.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h pfiles.h
+o/comm.o: color.h md5.h /usr/include/unistd.h /usr/include/bits/posix_opt.h
+o/comm.o: /usr/include/bits/confname.h /usr/include/sys/socket.h
+o/comm.o: /usr/include/sys/uio.h /usr/include/bits/uio.h
+o/comm.o: /usr/include/bits/socket.h /usr/include/bits/sockaddr.h
+o/comm.o: /usr/include/asm/socket.h /usr/include/asm/sockios.h
+o/comm.o: /usr/include/netinet/in.h /usr/include/stdint.h
+o/comm.o: /usr/include/bits/in.h /usr/include/bits/byteswap.h
+o/comm.o: /usr/include/netinet/in_systm.h /usr/include/netinet/ip.h
+o/comm.o: /usr/include/arpa/inet.h /usr/include/arpa/telnet.h
+o/comm.o: /usr/include/netdb.h /usr/include/bits/netdb.h
+o/comments.o: /usr/include/sys/types.h /usr/include/features.h
+o/comments.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/comments.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/comments.o: /usr/include/bits/types.h
+o/comments.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/comments.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/comments.o: /usr/include/ctype.h /usr/include/endian.h
+o/comments.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/comments.o: /usr/include/libio.h /usr/include/_G_config.h
+o/comments.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/comments.o: /usr/include/gconv.h
+o/comments.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/comments.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/comments.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/comments.o: /usr/include/limits.h
+o/comments.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/comments.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/comments.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/comments.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/comments.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/comments.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/const.o: /usr/include/sys/types.h /usr/include/features.h
+o/const.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/const.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/const.o: /usr/include/bits/types.h
+o/const.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/const.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/const.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+o/const.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/const.o: /usr/include/gconv.h
+o/const.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/const.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/const.o: mud.h /usr/include/stdlib.h /usr/include/limits.h
+o/const.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/const.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/const.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/const.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/const.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/const.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/db.o: /usr/include/sys/types.h /usr/include/features.h
+o/db.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/db.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/db.o: /usr/include/bits/types.h
+o/db.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/db.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/db.o: /usr/include/ctype.h /usr/include/endian.h /usr/include/bits/endian.h
+o/db.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+o/db.o: /usr/include/wchar.h /usr/include/bits/wchar.h /usr/include/gconv.h
+o/db.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/db.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/db.o: /usr/include/string.h /usr/include/unistd.h
+o/db.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+o/db.o: /usr/include/sys/stat.h /usr/include/bits/stat.h
+o/db.o: /usr/include/dirent.h /usr/include/bits/dirent.h /usr/include/math.h
+o/db.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/db.o: /usr/include/bits/mathcalls.h mud.h /usr/include/stdlib.h
+o/db.o: /usr/include/limits.h
+o/db.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/db.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/db.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/db.o: /usr/include/bits/sigset.h pfiles.h color.h
+o/editor.o: /usr/include/sys/types.h /usr/include/features.h
+o/editor.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/editor.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/editor.o: /usr/include/bits/types.h
+o/editor.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/editor.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/editor.o: /usr/include/ctype.h /usr/include/endian.h
+o/editor.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/editor.o: /usr/include/libio.h /usr/include/_G_config.h
+o/editor.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/editor.o: /usr/include/gconv.h
+o/editor.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/editor.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/editor.o: /usr/include/string.h /usr/include/unistd.h
+o/editor.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+o/editor.o: /usr/include/sys/stat.h /usr/include/bits/stat.h
+o/editor.o: /usr/include/dirent.h /usr/include/bits/dirent.h mud.h
+o/editor.o: /usr/include/stdlib.h /usr/include/limits.h
+o/editor.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/editor.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/editor.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/editor.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/editor.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/editor.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/fight.o: /usr/include/sys/types.h /usr/include/features.h
+o/fight.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/fight.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/fight.o: /usr/include/bits/types.h
+o/fight.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/fight.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/fight.o: /usr/include/ctype.h /usr/include/endian.h
+o/fight.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/fight.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/fight.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/fight.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/fight.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/fight.o: /usr/include/string.h /usr/include/unistd.h
+o/fight.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+o/fight.o: /usr/include/sys/stat.h /usr/include/bits/stat.h mud.h
+o/fight.o: /usr/include/stdlib.h /usr/include/limits.h
+o/fight.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/fight.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/fight.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/fight.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/fight.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/fight.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/finfo.o: /usr/include/stdio.h /usr/include/features.h
+o/finfo.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/finfo.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/finfo.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/finfo.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/finfo.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/finfo.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/finfo.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/finfo.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/finfo.o: /usr/include/stdlib.h /usr/include/string.h /usr/include/time.h
+o/finfo.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+o/finfo.o: /usr/include/bits/confname.h /usr/include/ctype.h
+o/finfo.o: /usr/include/endian.h /usr/include/bits/endian.h
+o/finfo.o: /usr/include/sys/types.h /usr/include/sys/stat.h
+o/finfo.o: /usr/include/bits/stat.h /usr/include/errno.h
+o/finfo.o: /usr/include/bits/errno.h /usr/include/linux/errno.h
+o/finfo.o: /usr/include/asm/errno.h mud.h /usr/include/limits.h
+o/finfo.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/finfo.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/finfo.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/finfo.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/finfo.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/finfo.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/force.o: /usr/include/stdio.h /usr/include/features.h
+o/force.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/force.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/force.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/force.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/force.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/force.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/force.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/force.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/force.o: /usr/include/stdlib.h /usr/include/string.h /usr/include/time.h
+o/force.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+o/force.o: /usr/include/bits/confname.h /usr/include/ctype.h
+o/force.o: /usr/include/endian.h /usr/include/bits/endian.h
+o/force.o: /usr/include/sys/types.h /usr/include/sys/stat.h
+o/force.o: /usr/include/bits/stat.h /usr/include/errno.h
+o/force.o: /usr/include/bits/errno.h /usr/include/linux/errno.h
+o/force.o: /usr/include/asm/errno.h mud.h /usr/include/limits.h
+o/force.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/force.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/force.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/force.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/force.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/force.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/fskills.o: /usr/include/stdio.h /usr/include/features.h
+o/fskills.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/fskills.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/fskills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/fskills.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/fskills.o: /usr/include/libio.h /usr/include/_G_config.h
+o/fskills.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/fskills.o: /usr/include/gconv.h
+o/fskills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/fskills.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/fskills.o: /usr/include/stdlib.h /usr/include/string.h /usr/include/time.h
+o/fskills.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+o/fskills.o: /usr/include/bits/confname.h /usr/include/ctype.h
+o/fskills.o: /usr/include/endian.h /usr/include/bits/endian.h
+o/fskills.o: /usr/include/sys/types.h /usr/include/sys/stat.h
+o/fskills.o: /usr/include/bits/stat.h /usr/include/errno.h
+o/fskills.o: /usr/include/bits/errno.h /usr/include/linux/errno.h
+o/fskills.o: /usr/include/asm/errno.h mud.h /usr/include/limits.h
+o/fskills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/fskills.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/fskills.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/fskills.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/fskills.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/fskills.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/functions.o: /usr/include/stdio.h /usr/include/features.h
+o/functions.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/functions.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/functions.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/functions.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/functions.o: /usr/include/libio.h /usr/include/_G_config.h
+o/functions.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/functions.o: /usr/include/gconv.h
+o/functions.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/functions.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/functions.o: /usr/include/string.h /usr/include/time.h
+o/functions.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+o/functions.o: /usr/include/bits/confname.h /usr/include/ctype.h
+o/functions.o: /usr/include/endian.h /usr/include/bits/endian.h
+o/functions.o: /usr/include/sys/types.h /usr/include/sys/stat.h
+o/functions.o: /usr/include/bits/stat.h /usr/include/errno.h
+o/functions.o: /usr/include/bits/errno.h /usr/include/linux/errno.h
+o/functions.o: /usr/include/asm/errno.h mud.h /usr/include/stdlib.h
+o/functions.o: /usr/include/limits.h
+o/functions.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/functions.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/functions.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/functions.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/functions.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/functions.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/handler.o: /usr/include/sys/types.h /usr/include/features.h
+o/handler.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/handler.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/handler.o: /usr/include/bits/types.h
+o/handler.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/handler.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/handler.o: /usr/include/ctype.h /usr/include/endian.h
+o/handler.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/handler.o: /usr/include/libio.h /usr/include/_G_config.h
+o/handler.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/handler.o: /usr/include/gconv.h
+o/handler.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/handler.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/handler.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/handler.o: /usr/include/limits.h
+o/handler.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/handler.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/handler.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/handler.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/handler.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/handler.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/hashstr.o: /usr/include/stdio.h /usr/include/features.h
+o/hashstr.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/hashstr.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/hashstr.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/hashstr.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/hashstr.o: /usr/include/libio.h /usr/include/_G_config.h
+o/hashstr.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/hashstr.o: /usr/include/gconv.h
+o/hashstr.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/hashstr.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/hashstr.o: /usr/include/stdlib.h /usr/include/string.h
+o/hashstr.o: /usr/include/sys/types.h /usr/include/time.h
+o/hunter.o: /usr/include/sys/types.h /usr/include/features.h
+o/hunter.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/hunter.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/hunter.o: /usr/include/bits/types.h
+o/hunter.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/hunter.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/hunter.o: /usr/include/stdio.h /usr/include/libio.h
+o/hunter.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/hunter.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/hunter.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/hunter.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/hunter.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/hunter.o: /usr/include/limits.h
+o/hunter.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/hunter.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/hunter.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/hunter.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/hunter.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/hunter.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/interp.o: /usr/include/sys/types.h /usr/include/features.h
+o/interp.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/interp.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/interp.o: /usr/include/bits/types.h
+o/interp.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/interp.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/interp.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/interp.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/interp.o: /usr/include/bits/sigset.h /usr/include/ctype.h
+o/interp.o: /usr/include/endian.h /usr/include/bits/endian.h
+o/interp.o: /usr/include/stdio.h /usr/include/libio.h
+o/interp.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/interp.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/interp.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/interp.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/interp.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/interp.o: /usr/include/limits.h
+o/interp.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/interp.o: /usr/include/math.h /usr/include/bits/huge_val.h
+o/interp.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h
+o/interp.o: pfiles.h color.h
+o/magic.o: /usr/include/sys/types.h /usr/include/features.h
+o/magic.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/magic.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/magic.o: /usr/include/bits/types.h
+o/magic.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/magic.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/magic.o: /usr/include/ctype.h /usr/include/endian.h
+o/magic.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/magic.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/magic.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/magic.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/magic.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/magic.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/magic.o: /usr/include/limits.h
+o/magic.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/magic.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/magic.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/magic.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/magic.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/magic.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/makeobjs.o: /usr/include/sys/types.h /usr/include/features.h
+o/makeobjs.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/makeobjs.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/makeobjs.o: /usr/include/bits/types.h
+o/makeobjs.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/makeobjs.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/makeobjs.o: /usr/include/stdio.h /usr/include/libio.h
+o/makeobjs.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/makeobjs.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/makeobjs.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/makeobjs.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/makeobjs.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/makeobjs.o: /usr/include/limits.h
+o/makeobjs.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/makeobjs.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/makeobjs.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/makeobjs.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/makeobjs.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/makeobjs.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/marriage.o: /usr/include/stdio.h /usr/include/features.h
+o/marriage.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/marriage.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/marriage.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/marriage.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/marriage.o: /usr/include/libio.h /usr/include/_G_config.h
+o/marriage.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/marriage.o: /usr/include/gconv.h
+o/marriage.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/marriage.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/marriage.o: /usr/include/string.h /usr/include/time.h /usr/include/unistd.h
+o/marriage.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+o/marriage.o: /usr/include/ctype.h /usr/include/endian.h
+o/marriage.o: /usr/include/bits/endian.h /usr/include/sys/types.h
+o/marriage.o: /usr/include/sys/stat.h /usr/include/bits/stat.h
+o/marriage.o: /usr/include/errno.h /usr/include/bits/errno.h
+o/marriage.o: /usr/include/linux/errno.h /usr/include/asm/errno.h mud.h
+o/marriage.o: /usr/include/stdlib.h /usr/include/limits.h
+o/marriage.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/marriage.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/marriage.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/marriage.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/marriage.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/marriage.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/md5.o: md5.h /usr/include/string.h /usr/include/features.h
+o/md5.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/md5.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/md5.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/misc.o: /usr/include/sys/types.h /usr/include/features.h
+o/misc.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/misc.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/misc.o: /usr/include/bits/types.h
+o/misc.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/misc.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/misc.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+o/misc.o: /usr/include/wchar.h /usr/include/bits/wchar.h /usr/include/gconv.h
+o/misc.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/misc.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/misc.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/misc.o: /usr/include/limits.h
+o/misc.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/misc.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/misc.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/misc.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/misc.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/misc.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/mud_comm.o: /usr/include/sys/types.h /usr/include/features.h
+o/mud_comm.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/mud_comm.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/mud_comm.o: /usr/include/bits/types.h
+o/mud_comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/mud_comm.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/mud_comm.o: /usr/include/stdio.h /usr/include/libio.h
+o/mud_comm.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/mud_comm.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/mud_comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/mud_comm.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/mud_comm.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/mud_comm.o: /usr/include/limits.h
+o/mud_comm.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/mud_comm.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/mud_comm.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/mud_comm.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/mud_comm.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/mud_comm.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/mud_prog.o: /usr/include/sys/types.h /usr/include/features.h
+o/mud_prog.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/mud_prog.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/mud_prog.o: /usr/include/bits/types.h
+o/mud_prog.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/mud_prog.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/mud_prog.o: /usr/include/stdio.h /usr/include/libio.h
+o/mud_prog.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/mud_prog.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/mud_prog.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/mud_prog.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/mud_prog.o: /usr/include/string.h /usr/include/ctype.h
+o/mud_prog.o: /usr/include/endian.h /usr/include/bits/endian.h mud.h
+o/mud_prog.o: /usr/include/stdlib.h /usr/include/limits.h
+o/mud_prog.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/mud_prog.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/mud_prog.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/mud_prog.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/mud_prog.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/mud_prog.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/newarena.o: /usr/include/sys/types.h /usr/include/features.h
+o/newarena.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/newarena.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/newarena.o: /usr/include/bits/types.h
+o/newarena.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/newarena.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/newarena.o: /usr/include/ctype.h /usr/include/endian.h
+o/newarena.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/newarena.o: /usr/include/libio.h /usr/include/_G_config.h
+o/newarena.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/newarena.o: /usr/include/gconv.h
+o/newarena.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/newarena.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/newarena.o: /usr/include/stdlib.h /usr/include/string.h mud.h
+o/newarena.o: /usr/include/limits.h
+o/newarena.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/newarena.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/newarena.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/newarena.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/newarena.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/newarena.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/pfiles.o: /usr/include/stdio.h /usr/include/features.h
+o/pfiles.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/pfiles.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/pfiles.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/pfiles.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/pfiles.o: /usr/include/libio.h /usr/include/_G_config.h
+o/pfiles.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/pfiles.o: /usr/include/gconv.h
+o/pfiles.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/pfiles.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/pfiles.o: /usr/include/string.h /usr/include/unistd.h
+o/pfiles.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+o/pfiles.o: /usr/include/dirent.h /usr/include/bits/dirent.h
+o/pfiles.o: /usr/include/sys/stat.h /usr/include/bits/stat.h
+o/pfiles.o: /usr/include/time.h mud.h /usr/include/stdlib.h
+o/pfiles.o: /usr/include/limits.h
+o/pfiles.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/pfiles.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/pfiles.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/pfiles.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/pfiles.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/pfiles.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/planets.o: /usr/include/sys/types.h /usr/include/features.h
+o/planets.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/planets.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/planets.o: /usr/include/bits/types.h
+o/planets.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/planets.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/planets.o: /usr/include/ctype.h /usr/include/endian.h
+o/planets.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/planets.o: /usr/include/libio.h /usr/include/_G_config.h
+o/planets.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/planets.o: /usr/include/gconv.h
+o/planets.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/planets.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/planets.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/planets.o: /usr/include/limits.h
+o/planets.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/planets.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/planets.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/planets.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/planets.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/planets.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/player.o: /usr/include/sys/types.h /usr/include/features.h
+o/player.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/player.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/player.o: /usr/include/bits/types.h
+o/player.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/player.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/player.o: /usr/include/ctype.h /usr/include/endian.h
+o/player.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/player.o: /usr/include/libio.h /usr/include/_G_config.h
+o/player.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/player.o: /usr/include/gconv.h
+o/player.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/player.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/player.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/player.o: /usr/include/limits.h
+o/player.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/player.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/player.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/player.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/player.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/player.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/reset.o: /usr/include/string.h /usr/include/features.h
+o/reset.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/reset.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/reset.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/reset.o: /usr/include/stdio.h /usr/include/bits/types.h
+o/reset.o: /usr/include/bits/typesizes.h /usr/include/libio.h
+o/reset.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/reset.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/reset.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/reset.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/reset.o: mud.h /usr/include/stdlib.h /usr/include/limits.h
+o/reset.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/reset.o: /usr/include/sys/time.h /usr/include/time.h
+o/reset.o: /usr/include/bits/time.h /usr/include/sys/select.h
+o/reset.o: /usr/include/bits/select.h /usr/include/bits/sigset.h
+o/reset.o: /usr/include/math.h /usr/include/bits/huge_val.h
+o/reset.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h pfiles.h
+o/reset.o: color.h
+o/save.o: /usr/include/sys/types.h /usr/include/features.h
+o/save.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/save.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/save.o: /usr/include/bits/types.h
+o/save.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/save.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/save.o: /usr/include/ctype.h /usr/include/endian.h
+o/save.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/save.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/save.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/save.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/save.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/save.o: /usr/include/string.h /usr/include/unistd.h
+o/save.o: /usr/include/bits/posix_opt.h /usr/include/bits/confname.h
+o/save.o: /usr/include/sys/stat.h /usr/include/bits/stat.h
+o/save.o: /usr/include/dirent.h /usr/include/bits/dirent.h mud.h
+o/save.o: /usr/include/stdlib.h /usr/include/limits.h
+o/save.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/save.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/save.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/save.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/save.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/save.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/ships.o: /usr/include/stdio.h /usr/include/features.h
+o/ships.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/ships.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/ships.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/ships.o: /usr/include/bits/types.h /usr/include/bits/typesizes.h
+o/ships.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/ships.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/ships.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/ships.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/ships.o: /usr/include/stdlib.h /usr/include/string.h /usr/include/time.h
+o/ships.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+o/ships.o: /usr/include/bits/confname.h /usr/include/ctype.h
+o/ships.o: /usr/include/endian.h /usr/include/bits/endian.h
+o/ships.o: /usr/include/sys/types.h /usr/include/sys/stat.h
+o/ships.o: /usr/include/bits/stat.h /usr/include/errno.h
+o/ships.o: /usr/include/bits/errno.h /usr/include/linux/errno.h
+o/ships.o: /usr/include/asm/errno.h mud.h /usr/include/limits.h
+o/ships.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/ships.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/ships.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/ships.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/ships.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/ships.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/shops.o: /usr/include/sys/types.h /usr/include/features.h
+o/shops.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/shops.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/shops.o: /usr/include/bits/types.h
+o/shops.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/shops.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/shops.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+o/shops.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/shops.o: /usr/include/gconv.h
+o/shops.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/shops.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/shops.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/shops.o: /usr/include/limits.h
+o/shops.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/shops.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/shops.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/shops.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/shops.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/shops.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/skills.o: /usr/include/sys/types.h /usr/include/features.h
+o/skills.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/skills.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/skills.o: /usr/include/bits/types.h
+o/skills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/skills.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/skills.o: /usr/include/stdio.h /usr/include/libio.h
+o/skills.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/skills.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/skills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/skills.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/skills.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/skills.o: /usr/include/limits.h
+o/skills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/skills.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/skills.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/skills.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/skills.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/skills.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/slicers.o: /usr/include/sys/types.h /usr/include/features.h
+o/slicers.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/slicers.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/slicers.o: /usr/include/bits/types.h
+o/slicers.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/slicers.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/slicers.o: /usr/include/ctype.h /usr/include/endian.h
+o/slicers.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/slicers.o: /usr/include/libio.h /usr/include/_G_config.h
+o/slicers.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/slicers.o: /usr/include/gconv.h
+o/slicers.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/slicers.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/slicers.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/slicers.o: /usr/include/limits.h
+o/slicers.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/slicers.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/slicers.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/slicers.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/slicers.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/slicers.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/space.o: /usr/include/math.h /usr/include/features.h
+o/space.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/space.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/space.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/space.o: /usr/include/bits/mathcalls.h /usr/include/sys/types.h
+o/space.o: /usr/include/bits/types.h
+o/space.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/space.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/space.o: /usr/include/ctype.h /usr/include/endian.h
+o/space.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/space.o: /usr/include/libio.h /usr/include/_G_config.h /usr/include/wchar.h
+o/space.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/space.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/space.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/space.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/space.o: /usr/include/limits.h
+o/space.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/space.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/space.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/space.o: /usr/include/bits/sigset.h pfiles.h color.h
+o/special.o: /usr/include/sys/types.h /usr/include/features.h
+o/special.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/special.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/special.o: /usr/include/bits/types.h
+o/special.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/special.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/special.o: /usr/include/stdio.h /usr/include/libio.h
+o/special.o: /usr/include/_G_config.h /usr/include/wchar.h
+o/special.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+o/special.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/special.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/special.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/special.o: /usr/include/limits.h
+o/special.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/special.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/special.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/special.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/special.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/special.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/swskills.o: /usr/include/math.h /usr/include/features.h
+o/swskills.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/swskills.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/swskills.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/swskills.o: /usr/include/bits/mathcalls.h /usr/include/sys/types.h
+o/swskills.o: /usr/include/bits/types.h
+o/swskills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/swskills.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/swskills.o: /usr/include/ctype.h /usr/include/endian.h
+o/swskills.o: /usr/include/bits/endian.h /usr/include/stdio.h
+o/swskills.o: /usr/include/libio.h /usr/include/_G_config.h
+o/swskills.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/swskills.o: /usr/include/gconv.h
+o/swskills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/swskills.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/swskills.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/swskills.o: /usr/include/limits.h
+o/swskills.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/swskills.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/swskills.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/swskills.o: /usr/include/bits/sigset.h pfiles.h color.h
+o/tables.o: /usr/include/time.h /usr/include/bits/types.h
+o/tables.o: /usr/include/features.h /usr/include/sys/cdefs.h
+o/tables.o: /usr/include/gnu/stubs.h /usr/include/bits/wordsize.h
+o/tables.o: /usr/include/gnu/stubs-32.h
+o/tables.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/tables.o: /usr/include/bits/typesizes.h /usr/include/stdio.h
+o/tables.o: /usr/include/libio.h /usr/include/_G_config.h
+o/tables.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/tables.o: /usr/include/gconv.h
+o/tables.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/tables.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/tables.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/tables.o: /usr/include/limits.h
+o/tables.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/tables.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/tables.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/tables.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/tables.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/tables.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/track.o: /usr/include/sys/types.h /usr/include/features.h
+o/track.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/track.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/track.o: /usr/include/bits/types.h
+o/track.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/track.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/track.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+o/track.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/track.o: /usr/include/gconv.h
+o/track.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/track.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/track.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/track.o: /usr/include/limits.h
+o/track.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/track.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/track.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/track.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/track.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/track.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/tech.o: /usr/include/sys/types.h /usr/include/features.h
+o/tech.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/tech.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/tech.o: /usr/include/bits/types.h
+o/tech.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/tech.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/tech.o: /usr/include/stdio.h /usr/include/libio.h /usr/include/_G_config.h
+o/tech.o: /usr/include/wchar.h /usr/include/bits/wchar.h /usr/include/gconv.h
+o/tech.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/tech.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/tech.o: /usr/include/string.h mud.h /usr/include/stdlib.h
+o/tech.o: /usr/include/limits.h
+o/tech.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h
+o/tech.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/tech.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/tech.o: /usr/include/bits/sigset.h /usr/include/math.h
+o/tech.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/tech.o: /usr/include/bits/mathcalls.h pfiles.h color.h
+o/update.o: /usr/include/sys/types.h /usr/include/features.h
+o/update.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+o/update.o: /usr/include/bits/wordsize.h /usr/include/gnu/stubs-32.h
+o/update.o: /usr/include/bits/types.h
+o/update.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stddef.h
+o/update.o: /usr/include/bits/typesizes.h /usr/include/time.h
+o/update.o: /usr/include/sys/time.h /usr/include/bits/time.h
+o/update.o: /usr/include/sys/select.h /usr/include/bits/select.h
+o/update.o: /usr/include/bits/sigset.h /usr/include/stdio.h
+o/update.o: /usr/include/libio.h /usr/include/_G_config.h
+o/update.o: /usr/include/wchar.h /usr/include/bits/wchar.h
+o/update.o: /usr/include/gconv.h
+o/update.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/stdarg.h
+o/update.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+o/update.o: /usr/include/string.h /usr/include/math.h
+o/update.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+o/update.o: /usr/include/bits/mathcalls.h mud.h /usr/include/stdlib.h
+o/update.o: /usr/include/limits.h
+o/update.o: /usr/lib/gcc/i386-redhat-linux/4.0.1/include/limits.h pfiles.h
+o/update.o: color.h

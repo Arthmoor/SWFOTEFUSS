@@ -1,0 +1,9 @@
+#FORCE
+Name      general~
+Status    1
+Type      0
+Desc      Possessing the force makes you a marked person, you will$RN$never have a moments rest.  There are those that will$RN$wish to kill you, and those that will wish to venerate$RN$you.$RN$$RN$Once you have found a master and been apprenticed you$RN$will need to be instructed in skills, and then practice$RN$those skills.  In order to be promoted by your master$RN$you must have an average of atleast 50% in all of your$RN$skills.  This doesn't mean that they MUST promote you$RN$but that they will be allowed to.  It is up to your$RN$Master to decide when you are truly ready.$RN$~
+Skill     -1
+End
+
+#END

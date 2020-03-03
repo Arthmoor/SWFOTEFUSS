@@ -1,0 +1,9 @@
+#FORCE
+Name      sith~
+Status    1
+Type      2
+Desc      As part of the Sith order you are among the last of an$RN$order of people devoted to the study of the Dark Side$RN$of the Force.  Your devotion to this order has brought$RN$much suffering to you and those around you, though it$RN$has also brought you power.$RN$$RN$After the great Sith Wars it has come to be that the$RN$practice of the Sith arts is only passed from master$RN$to student.$RN$$RN$The Sith have vowed to destroy the Jedi though at$RN$times your own struggle for power seems to get in the$RN$way.$RN$$RN$Sith specific help files:$RN$$RN$Apprentice           Lord                 Master$RN$~
+Skill     -1
+End
+
+#END

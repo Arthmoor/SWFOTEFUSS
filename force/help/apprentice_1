@@ -1,0 +1,9 @@
+#FORCE
+Name      apprentice~
+Status    1
+Type      1
+Desc      As an apprentice you are tasked to learn about the force$RN$under the teaching of your master.  Under their teaching$RN$you will be taught new skills and the ways of the force.$RN$$RN$Apprentice Skills:$RN$$RN$Parry          Refresh        Finfo          Strike$RN$Heal           Parry$RN$~
+Skill     -1
+End
+
+#END

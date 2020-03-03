@@ -1,0 +1,30 @@
+#CLAN
+Name         The Empire~
+Shortname    empire~
+Filename     empire.clan~
+Description  ~
+Leader       ~
+NumberOne    ~
+NumberTwo    ~
+PKills       0
+PDeaths      0
+MKills       0
+MDeaths      0
+Type         0
+Members      0
+Board        0
+Storeroom    0
+GuardOne     1154
+atwar	   The New Republic ~
+GuardTwo     0
+PatrolOne    0
+PatrolTwo    0
+Acro         TGE~
+TrooperOne   20
+TrooperTwo   0
+Troops       0
+Funds        749854
+Jail         1206
+End
+
+#END

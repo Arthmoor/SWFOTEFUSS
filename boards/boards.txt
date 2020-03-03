@@ -1,0 +1,144 @@
+Filename          student.board~
+Vnum              10414
+Min_read_level    0
+Min_post_level    0
+Min_remove_level  0
+Max_posts         100
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          imm_monitor~
+Vnum              100
+Min_read_level    31
+Min_post_level    31
+Min_remove_level  36
+Max_posts         100
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          quest.board~
+Vnum              102
+Min_read_level    101
+Min_post_level    101
+Min_remove_level  103
+Max_posts         30
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          galactic_net~
+Vnum              32201
+Min_read_level    0
+Min_post_level    0
+Min_remove_level  103
+Max_posts         100
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          mail_net~
+Vnum              38
+Min_read_level    0
+Min_post_level    0
+Min_remove_level  0
+Max_posts         200
+Type 	           1
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          hguild.brd~
+Vnum              228
+Min_read_level    0
+Min_post_level    0
+Min_remove_level  0
+Max_posts         15
+Type 	           0
+Read_group        The Hunters Guild~
+Post_group        The Hunters Guild~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          hyperterminal~
+Vnum              265
+Min_read_level    0
+Min_post_level    0
+Min_remove_level  0
+Max_posts         30
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          1141~
+Vnum              0
+Min_read_level    0
+Min_post_level    0
+Min_remove_level  32
+Max_posts         0
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          contest.board~
+Vnum              1141
+Min_read_level    0
+Min_post_level    0
+Min_remove_level  0
+Max_posts         50
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          imperialboard.board~
+Vnum              1248
+Min_read_level    0
+Min_post_level    0
+Min_remove_level  0
+Max_posts         15
+Type 	           0
+Read_group        The Empire~
+Post_group        The Empire~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          builders board~
+Vnum              153
+Min_read_level    1
+Min_post_level    1
+Min_remove_level  32
+Max_posts         100
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End
+Filename          imperial.brd~
+Vnum              19076
+Min_read_level    1
+Min_post_level    1
+Min_remove_level  1
+Max_posts         25
+Type 	           0
+Read_group        ~
+Post_group        ~
+Extra_readers     ~
+Extra_removers    ~
+End

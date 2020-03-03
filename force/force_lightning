@@ -1,0 +1,32 @@
+#FORCE
+Alter          1
+ChEffect0     $RN$You hold your hands out and clench your face, glaring at $v.$RN$~
+ChEffect1     &YSmall bolts of lightning erupt from your fingers.$RN$&wThe force lightning surrounds $vo, causing $vo to scream in agony!$RN$$RN$~
+ChEffect2     &YSmall bolts of lightning erupt from your fingers.$RN$&wYou do not have enough control, and the force lightning shocks you!$RN$$RN$~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_force_lightning~
+Cost           100
+Control        1
+Disabled       0
+Mastertrain    0
+Index          13
+Name           lightning~
+Notskill       0
+RoomEffect0     $RN$$n holds $np hands out at $v and clenches $np face.$RN$~
+RoomEffect1     &YSmall bolts of lightning erupt from $n's fingers.$RN$&wThe force lightning surrounds $vo, causing $vo to scream in agony!$RN$$RN$~
+RoomEffect2     &YSmall bolts of lightning erupt from $n's fingers.$RN$&wThe force lightning backfires, shocking $n!$RN$$RN$~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          1
+Status         3
+Type           2
+VictimEffect0     $RN$$n stretches out toward you, and clenches $np face.$RN$~
+VictimEffect1     &YSmall bolts of lightning erupt from $n's fingers.$RN$&wThe force lightning surrounds you, and you scream in agony!$RN$$RN$~
+VictimEffect2     &YSmall bolts of lightning erupt from $n's fingers.$RN$&wThe force lightning backfires, shocking $n!$RN$$RN$~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      3
+End
+
+#END

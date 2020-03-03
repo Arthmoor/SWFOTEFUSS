@@ -1,0 +1,32 @@
+#FORCE
+Alter          0
+ChEffect0     $RN$You gracefully arc your lightsaber across $v's torso.$RN$~
+ChEffect1     Your attack slashes painfully across $v's midsection.$RN$$RN$~
+ChEffect2     $v parries your blow.$RN$$RN$~
+ChEffect3     $v dodges your blow.$RN$$RN$~
+ChEffect4     You miss $v.$RN$$RN$~
+Code           fskill_slash~
+Cost           10
+Control        1
+Disabled       0
+Mastertrain    1
+Index          11
+Name           slash~
+Notskill       0
+RoomEffect0     $RN$$n slashes $np lightsaber sideways upon $v.$RN$~
+RoomEffect1     $n's lightsaber hits $v with $np attack.$RN$$RN$~
+RoomEffect2     $v parries $n's blow.$RN$$RN$~
+RoomEffect3     $v dodges $n's blow.$RN$$RN$~
+RoomEffect4     $v is missed by $n's blow.$RN$$RN$~
+Sense          0
+Status         1
+Type           0
+VictimEffect0     $RN$$n slashes $np lightsaber at your torso.$RN$~
+VictimEffect1     $n's lightsaber slices painfully into your midsection.$RN$$RN$~
+VictimEffect2     You parry $n's blow.$RN$$RN$~
+VictimEffect3     You dodge $n's blow.$RN$$RN$~
+VictimEffect4     You are missed by $n's blow.$RN$$RN$~
+WaitState      1
+End
+
+#END

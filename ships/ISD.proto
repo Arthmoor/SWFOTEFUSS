@@ -1,0 +1,1925 @@
+#HEADER
+
+Name           Imperial class Star Destroyer~
+Sname          ISD~
+NumRooms       31
+Cost           2321500
+Class          10
+Tractor        0
+primaryType    6
+primaryCount   12
+secondaryType  9
+secondaryCount 8
+RangeWeapons0  25
+RangeWeapons1  25
+RangeWeapons2  0
+Hull           2000
+Shields        500
+Energy         18000
+Chaff          20
+Maxbombs       60
+Speed          30
+Hyperspeed     2
+Manuever       20
+Turrets        6
+Mods	    6
+Clan           The Empire~
+End
+
+#ROOMS
+
+#ROOM
+
+RoomNum           1
+Name              The Bridge of an Imperial-I class Star Destroyer~
+Desc              You are in the hub of this massive machine, an Imperial Star Destroyer. A major, but perhaps outdated, vessel in the Imperial navy, it comes equipped with several laser and ion cannons, two Om-Thaim BB Shield Generators, and a large payload of both concussion missiles and torpedoes. The bridge spans east and west of here, leading to other command stations.~
+Flags             indoors spacecraft nomob~
+Tunnel            315
+Exits0       0
+Exits1       3
+Exits2       4
+Exits3       2
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          1
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           2
+Name              Gunner's Station~
+Desc              A large targetting computer is mounted against the forward wall here, accompanied by several smaller computers, a radar, and a ship status indicator. Pilots hurry back and forth, appearing to be busy, although there is not much to be done. A walkway leads back to the main bridge east of here.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       1
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          11
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           3
+Name              Navigation Station~
+Desc              Here is where the navigational computer is kept. A holovid screen encircles a console, flickering somewhat as it displays a starsystem. Duraplast windowing stretches along the far wall and above you, providing a wide view of surrounding space. To the west a walkway leads to the main bridge.~
+Flags             indoors spacecraft nomob ~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       1
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          10
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           4
+Name              A Bright Corridor - Bridge Level~
+Desc              This corridor leads to the bridge, where the ship is looked after and controlled. A few automated turbolaser sentries are mounted above the turbolift door, slowly moving back and forth, silently watching. This somewhat long corridor ends at a walkway, not too far off north.~
+Flags             indoors spacecraft nomob~
+Tunnel            315
+Exits0       1
+Exits1       0
+Exits2       5
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           5
+Name              Turbolift~
+Desc              The turbolift walls are metallic, showing a vague, fuzzy reflection of everything inside. A simple sign has been attached to the wall, beneath a commbox. It reads:
+
+&z+&w------------------&z+
+&w|&G 1&z:&G Hangar level  &w|
+&w|&G 2&z:&G Crew level    &w|
+&w|&G 3&z:&G Turret level  &w|
+&w|&G 4&z:&G Bridge level  &w|
+&z+&w------------------&z+
+
+&wTo move to a level, speak into the commbox, and you will go.
+~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        speech 1 mpechoat $n The turbolift quickly moves to the hanger level.
+mptransfer $n $RNUM:21$
+mpat $RNUM:21$ mpechoaround $n $n steps from the turbolift.
+mpat $RNUM:21$ mpforce $n look 
+~
+Rprog1        speech 2 mpechoat $n The turbolift quickly moves to the crew level.
+mptransfer $n $RNUM:25$
+mpat $RNUM:25$ mpechoaround $n $n steps from the turbolift.
+mpat $RNUM:25$ mpforce $n look
+~
+Rprog2        speech 3 mpechoat $n The turbolift quickly moves to the turret level.
+mptransfer $n $RNUM:6$
+mpat $RNUM:6$ mpechoaround $n $n steps from the turbolift.
+mpat $RNUM:6$ mpforce $n look
+~
+Rprog3        speech 4 mpechoat $n The turbolift quickly moves to the bridge level.
+mptransfer $n $RNUM:4$
+mpat $RNUM:4$ mpechoaround $n $n steps from the turbolift.
+mpat $RNUM:4$ mpforce $n look~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           6
+Name              A Bright Corridor - Turret Level~
+Desc              This corridor spans east and west, leading to the starboard and starport turret arrays. The ISD-I comes equipped with six independantly operating turbolaser turrets, placed as to cover all angles of the ship from attack. Southward lies another corridor leading toward the main engine rooms.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       5
+Exits1       13
+Exits2       19
+Exits3       7
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           7
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       8
+Exits1       6
+Exits2       9
+Exits3       11
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           8
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       7
+Exits3       10
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           9
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       7
+Exits1       0
+Exits2       0
+Exits3       12
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           10
+Name              Port Turret One~
+Desc              You are inside an external dome affixed to the hull of the ISD. This turret is, roughly, with a quad-laser battery attached to a half constructed cockpit. The turbolaser is controlled in part by the yoke in front of you, part by the internal targetting computers which fire in a grid pattern, allowing for easier destruction of the quick, maneuverable starfighters.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       8
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          12
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           11
+Name              Port Turret Two~
+Desc              You are inside an external dome affixed to the hull of the ISD. This turret is, roughly, with a quad-laser battery attached to a half constructed cockpit. The turbolaser is controlled in part by the yoke in front of you, part by the internal targetting computers which fire in a grid pattern, allowing for easier destruction of the quick, maneuverable starfighters.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       7
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          13
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           12
+Name              Port Turret Three~
+Desc              You are inside an external dome affixed to the hull of the ISD. This turret is, roughly, with a quad-laser battery attached to a half constructed cockpit. The turbolaser is controlled in part by the yoke in front of you, part by the internal targetting computers which fire in a grid pattern, allowing for easier destruction of the quick, maneuverable starfighters.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       9
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          14
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           13
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       14
+Exits1       17
+Exits2       15
+Exits3       6
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           14
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       16
+Exits2       13
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           15
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       13
+Exits1       18
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           16
+Name              Starboard Turret One~
+Desc              You are inside an external dome affixed to the hull of the ISD. This turret is, roughly, with a quad-laser battery attached to a half constructed cockpit. The turbolaser is controlled in part by the yoke in front of you, part by the internal targetting computers which fire in a grid pattern, allowing for easier destruction of the quick, maneuverable starfighters.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       14
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          15
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           17
+Name              Starboard Turret Two~
+Desc              You are inside an external dome affixed to the hull of the ISD. This turret is, roughly, with a quad-laser battery attached to a half constructed cockpit. The turbolaser is controlled in part by the yoke in front of you, part by the internal targetting computers which fire in a grid pattern, allowing for easier destruction of the quick, maneuverable starfighters.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       13
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          16
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           18
+Name              Starboard Turret Three~
+Desc              You are inside an external dome affixed to the hull of the ISD. This turret is, roughly, with a quad-laser battery attached to a half constructed cockpit. The turbolaser is controlled in part by the yoke in front of you, part by the internal targetting computers which fire in a grid pattern, allowing for easier destruction of the quick, maneuverable starfighters.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       15
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          17
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           19
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       6
+Exits1       0
+Exits2       20
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           20
+Name              Engineroom of an ISD-I~
+Desc              Vast rows of generators and propulsion machines are setup here. The noise from just one of them is deafening, but the roar of them all is almost too much to bear. Several technicians are moving about, checking various gauges and consoles, making sure everything is running smoothly. A narrow corridor leads back north to the main turret area.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       19
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          7
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           21
+Name              A Bright Corridor - Hangar Level~
+Desc              This corridor runs toward the central aft portion of the ship, where other vessels can dock with the ISD. Security is heightened here, several small automated laser cannons line the hallway, and regular patrols move to and from the hangers. Northward is the main turbolift.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       5
+Exits1       0
+Exits2       22
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           22
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       21
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       23
+Exits9       24
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           23
+Name              Hanger 1260~
+Desc              This is the main docking area. Above the tall bay there is a command station where the baydoors, secondary tractor controls, and several other devices are put to use. This vast area comes to an end northwest of here, where some blast-shielded doors lead elsewhere.~
+Flags             indoors spacecraft nomob can_fly can_land prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       22
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          3
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           24
+Name              Hanger 2257~
+Desc              This is the secondary docking area. Above the tall bay there is a command station where the baydoors, secondary tractor controls, and several other devices are put to use. This vast area comes to an end northeast of here, where some blast-shielded doors lead elsewhere.~
+Flags             indoors spacecraft nomob can_fly can_land prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       22
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          4
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           25
+Name              A Bright Corridor - Crew Level~
+Desc              This corridor leads to the crew level, where the garrison bunks, mess hall, and bacta tanks are. Several off-duty personnel hang around this area. A short corridor leads eastward into a larger area of this level.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       26
+Exits2       0
+Exits3       5
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           26
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       30
+Exits3       25
+Exits4       0
+Exits5       0
+Exits6       28
+Exits7       27
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           27
+Name              The Bunk Hall~
+Desc              Small bunkbeds line each wall here, with a duraplast case of some sort at the foot of each. Some personnel are occupying a few, getting some rest from the day-to-day routines. The doorway southeast leads back to the main crew level.
+
+You may safely SAVE and QUIT here.~
+Flags             indoors spacecraft nomob hotel prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       26
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           28
+Name              The Mess Hall~
+Desc              Several tables span this large room, where personnel come to get food and drink. A holoscreen spans the eastern wall, displaying various news programs and other information. You can leave to the main crew area southwest of here.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       26
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           29
+Name              A Bacta Tank~
+Desc              You are floating in a blue gelatin-like liquid, breathing through a mask. The bacta rushes over and around your body, cooling and soothing away any discomfort or injury. It is very peaceful in here.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       30
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        rand 100 mpecho The bacta soothes your pain.
+mprestore $n 250
+~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           30
+Name              A Bright Corridor~
+Desc              Another pristine, well-lit, and sterile corridor running through the endless mass of this Star Destroyer. Personnel walk briskly throughout, and little messenger droids are constantly scurrying around. There is a low hum emanating from the walls, subtly reminding the crew of the immense power this vessel has.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       26
+Exits1       29
+Exits2       0
+Exits3       31
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           31
+Name              A Bacta Tank~
+Desc              You are floating in a blue gelatin-like liquid, breathing through a mask. The bacta rushes over and around your body, cooling and soothing away any discomfort or injury. It is very peaceful in here.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       30
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        rand 100 mpecho The bacta soothes your pain.
+mprestore $n 250
+~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+
+#ENDROOMS
+
+#END

@@ -1,0 +1,32 @@
+#FORCE
+Alter          1
+ChEffect0     ~
+ChEffect1     ~
+ChEffect2     ~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_makelightsaber~
+Cost           0
+Control        1
+Disabled       0
+Mastertrain    0
+Index          15
+Name           makelightsaber~
+Notskill       0
+RoomEffect0     ~
+RoomEffect1     ~
+RoomEffect2     ~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          1
+Status         1
+Type           0
+VictimEffect0     ~
+VictimEffect1     ~
+VictimEffect2     ~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      0
+End
+
+#END

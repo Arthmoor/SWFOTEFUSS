@@ -1,0 +1,702 @@
+#AREA   Silence Industries~
+
+
+
+#AUTHOR tawnos~
+
+#RANGES
+0 36 0 36
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 3285333
+
+#MOBILES
+#10501
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10502
+Droid Shopkeeper~
+SI Droid Shopkeeper~
+A Silence Industries Model Q-V341 Droid Shopkeeper waits here to sell to you.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10503
+Ewok Moko Silence Industries~
+Moko, the Ewok Bartender~
+Moko, the Ewok Bartender sits here, cleaning the bar.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 129 128 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+Mpecho Moko looks up from wiping down the bar, and waves a small paw.
+mpecho She then shouts at you "&WYub Yub! Me Moko, Bartender! What you want, cutie?&w"
+~
+|
+#10504
+Squeaky Silence Industries CP-40~
+Squeaky, The Learning Droid.~
+Squeaky, the silver protocol droid stands here, giving directions.
+~
+~
+68157953 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+20 20 20 20 20 20 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10505
+Silence Industries Sewing Droid SI-1132A~
+Droid SI-1132A~
+SI-1132A is standing behind a low counter, selling fabrics.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10506
+Silence Industries Construction Droid SI-1132B~
+Droid SI-1132B~
+Droid SI-1132B is standing here behind a low counter, selling parts.
+~
+~
+67108865 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+25 10 10 25 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10507
+Silence Industries destroyer droid SI-643A~
+Droidekar SI-643A~
+Droidekar SI-643A stands here, shields raised and blasters armed.
+~
+~
+1140883459 4194304 0 Z
+1 0 0 56d20+800 14d20+0
+0 0
+8 8 0
+18 10 10 18 18 10 10
+0 0 0 0 0
+0 0 0 0 1 1 6
+35 35 0 64 16 0 0 3
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpecho The droidekars weapons snap up at you and it glares. "Present Identity for
+Confirmation"
+Mpecho "Retinal Scan in Progress. Do not Move."
+if isimmort($n)
+mpecho The droidekar's weapons turn away.  "Identify Confirmed.  Access Granted."
+bow $n
+mppkset 10507 no
+else
+if name($n) == Gwen
+mpecho The droidekar's weapons turn away.  "Identify Confirmed.  Access Granted."
+bow $n
+mppkset 10507 no
+else
+if name($n) == Blake
+mpecho The droidekar's weapons turn away.  "Identify Confirmed.  Access Granted."
+bow $n
+mppkset 10507 no
+else
+if clan($n) == Silence Industries
+mpecho The droidekar's weapons turn away.  "Identify Confirmed.  Access Granted."
+bow $n
+mppkset 10507 no
+else
+mpecho The droiddekar's weapons whine to full power. "Identity Not Confirmed. Open
+Fire."
+mppkset 10507 yes
+mpkill $n
+endif
+endif
+endif
+endif
+~
+|
+#10575
+hi_obj~
+a newly created hi_obj~
+Some god abandoned a newly created hi_obj here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#10501
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#10502
+Force Staff Spear~
+a Force Staff Spear~
+A Force Staff Spear is here.~
+~
+5 0 24577
+0 0 0 11
+1 0 0
+#10575
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#10501
+Central Landing Bay, Caernaerveron Station~
+The navigational beacons point clearly to a pair of bay doors, marked "BAY 1"
+that are slowly opening in the rock-face. You wouldnt haven even know it was
+there if the navigation beacons werent pointing to it.  The bay doors slide
+closed behind a landing space craft, and it touches down softly onto the marked 
+zone. A crew of techs swarm around other craft, refueling them, repairing them
+building a few, and in some cases, repairing them. A few tech crews wait off 
+to the sides, waiting for orders to begin work.
+~
+0 60 1 0 0 0 29896
+D1
+~
+~
+0 -1 10502
+S
+#10502
+Main Turbo Lift~
+This is simply a lift to take you down to the Main Promenade of the station.
+Soft elevator music plays as the door closes, almost compelling you to sleep.
+~
+0 12 1 0 0 0 29896
+> speech_prog p 1~
+mpecho The turbolift hums as it moves to the Promenade.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 10504
+~
+> speech_prog p 2~
+mpecho The turbolift hums as it moves to the landing pad.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 10501
+~
+> speech_prog 3~
+mpecho The turbolift hums as it moves to the Construction Level.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 10509
+~
+> speech_prog 4~
+mpecho The turbolift hums as it moves to the Office Level.
+mpecho The turbolift slows and comes to a stop, and you exit.
+mptransfer $n 10503
+~
+|
+S
+#10503
+Office Hallway~
+The hall here is sparsely decorated, but what little that does
+decorate it is tasteful. Bits of art, and a few trinkets. A
+hologram of a beautiful woman with feathery white hair and a
+quiet smile, floats overhead below a Silence Industries Logo.
+
+The Silence Industries Logo: A sword with wings, on a field of
+stars, shimmering with stardust.
+~
+0 8 1 0 0 0 29896
+D0
+~
+~
+0 -1 10515
+D1
+~
+~
+0 -1 10502
+D2
+~
+~
+0 -1 10517
+D3
+~
+~
+0 -1 10512
+S
+#10504
+Promenade~
+The Caernaerveron Promenade is the largest area of the station.
+Its many shops and businesses encompass the entire middle tier
+of the station. Many races walk the promenade.  The flooring is
+made of plasteel paneling, bluish in tint. The walls curve
+upward towards the ceiling and the second floor of the promenade,
+the observation windows. The blue tinge of the walls blends with
+the space seen through the windows, cloaking them in night. The
+bright white lights however make sure everything is seen. 
+Security guards in black and silver uniforms scout the crowd,
+keeping the peace.
+~
+0 12 1 0 0 0 29896
+D0
+~
+~
+0 -1 10507
+D1
+~
+~
+0 -1 10502
+D2
+~
+~
+0 -1 10506
+D3
+~
+~
+0 -1 10505
+D7
+~
+~
+0 -1 10523
+S
+#10505
+Sunset Bar and Grill~
+The Sunset Bar and Grill is a popular restauraunt and bar, 
+catering primarily to the Corporate population. The only time 
+things get rough here is when the Coporate battles rage in
+the station. Then the normally peaceful clientele is displaced
+by soldiers, smugglers, and such. Dark corners lend themselves
+well to dark dealings.
+
+Just what you wanted to see, the relaxation point for every 
+corporate man in the galaxy! Id recomend beating a hasty retreat
+before the tax men get here!
+~
+0 8 1 0 0 0 29896
+D1
+~
+~
+0 -1 10504
+S
+#10506
+Trauma Team Infirmary~
+When the health crisis really began to affect the industrialized
+planets in the last century, Trauma Team, then a large hospital
+on a single planet, came up with the answer: Rapid Cloning. That
+service remains expensive though. However any other medical
+services are still offered at the local branches. This branch
+proves to be no exception, as many nurses and doctors bustle about
+patients in their bio-beds and bacta tanks, healing and tending
+to them.
+~
+0 8 1 0 0 0 29896
+D0
+~
+~
+0 -1 10504
+> rand_prog 100~
+if ispc($n)
+mpecho The bacta starts healing your wounds.
+mprestore $n 500
+endif
+~
+|
+S
+#10507
+Caernaveron General Store~
+A large, classy general store, Marshall's has every item you could
+desire. It runs towards the expensive and stylish, with items that
+run towards Designer Lamps, Electronic Rope, Personal Cybernetics,
+and Imported Rations. It is difficult to get through the front door
+if you look suspiciously un-monied. Plainclothes security is Tight.
+
+The shelves are cluttered with every item....
+~
+0 8 1 0 0 0 29896
+D2
+~
+~
+0 -1 10504
+S
+#10508
+Empty~
+~
+0 4 1 0 0 0 29896
+S
+#10509
+Engineer's Construction Level~
+The sound of clanking and rattling comes from all over this level, as
+you look around. It is a construction level, for where the Silence Industries
+gets its power and money.
+~
+0 12 1 0 0 0 29896
+D0
+~
+~
+0 -1 10510
+D1
+~
+~
+0 -1 10502
+D2
+~
+~
+0 -1 10511
+D3
+~
+~
+0 -1 10516
+S
+#10510
+Quiet Sewing Shop~
+As you enter, you hear the faint chatter of sewing machines and the quick
+whick-whick-whick of needle being stitched through various fabrics. Many tables
+are spread around the room, and only a couple are occupied.
+~
+0 67108876 1 0 0 0 29896
+D2
+~
+~
+0 -1 10509
+S
+#10511
+Quiet Workshop~
+As you step into this quiet workshop, you notice many tables, spread out
+amongst the walls, each with a lamp and rack of tools above it. Each table
+is also immaculately kept.
+~
+0 67108872 1 0 0 0 29896
+D0
+~
+~
+0 -1 10509
+S
+#10512
+CEO's Guardroom~
+The Silence Industries CEO's Office  is well guarded, stocked, and
+quite impressive. Suits of battlearmor, Armored Space suits, Assault
+gear, blasters, Laser rifles, Fusion cannons.... Its enough to make
+you regret coming this way... A door on the north wall says: "DO NOT
+ENTER, GUARDS WILL SHOOT TO KILL ON SIGHT"
+
+Beware, for you have entered the Silence Industries Security Zones.
+No Admitance without authorization.
+~
+0 8 1 0 0 0 29896
+D1
+~
+~
+0 -1 10503
+D3
+~
+~
+0 -1 10513
+S
+#10513
+CEO's Office~
+A large dark office with a oak desk in the center and black leather 
+chair behind it. In the corners stand two Marines, looking at you
+with deadly intent.  The far wall has a view of the black void of
+space... and suddenly, it becomes faintly hard to breathe.
+
+The whine of the pulse rifles in the background are the only sound
+you hear, and you can feel the red dots burning into your back as
+they are leveled.
+
+A voice intones flatly,  "Stay where you are...and state your
+business, or die."
+~
+0 8 1 0 0 0 29896
+D1
+~
+~
+0 -1 10512
+> speech_prog Paltrow~
+mpecho A secret hatch opens up, and you vanish into it.
+mpecho As you pass through the hatch, it closes behind you.
+mptransfer $n 10514
+~
+|
+S
+#10514
+CEO's Study~
+Small, but cozy. Brown carpeting, and a large window with a seat
+overlooks the landing bay. The walls are lined with shelves, only 
+about a fourth of the shelves are filled with books, another third
+of the shelves are filled with business paraphenelia and the
+occasional archeological item. The rest is filled with knick-knacks
+of the past. A medium sized desk sits along one wall, and three comfy,
+overstuffed chairs are arranged arround the room.
+~
+0 109051912 1 0 0 0 29896
+D0
+~
+~
+0 -1 10524
+D2
+~
+~
+0 -1 10513
+S
+#10515
+Board Room~
+A big boardroom for meetings of the high staff of Silence Industries
+Eight chairs around the huge oak table, and six more against the north
+wall are the compliment. A large video screen, a computer interface,
+and a holoprojector fill out the room.
+~
+0 8 1 0 0 0 29896
+D2
+~
+~
+0 -1 10503
+S
+#10516
+Spice Refining Chamber~
+A small processing station lies here, ready for refining that illegal
+substance known as Glitterstim. The room seems deserted other than your
+own footsteps.
+~
+0 33554440 1 0 0 0 29896
+D1
+~
+~
+0 -1 10509
+S
+#10517
+Office Hallway~
+The hall here is sparsely decorated, but what little that does
+decorate it is tasteful. Bits of art, and a few trinkets.
+~
+0 8 1 0 0 0 29896
+D0
+~
+~
+0 -1 10503
+D1
+~
+~
+0 -1 10520
+D2
+~
+~
+0 -1 10518
+D3
+~
+~
+0 -1 10519
+S
+#10518
+Office Hallway~
+The hall here is sparsely decorated, but what little that does
+decorate it is tasteful. Bits of art, and a few trinkets.
+~
+0 8 1 0 0 0 29896
+D0
+~
+~
+0 -1 10517
+D1
+~
+~
+0 -1 10521
+D3
+~
+~
+0 -1 10522
+S
+#10519
+Vice President's Office~
+A large office with a oak desk in the center and leather chair behind it.
+The far wall has a view of the Engineering Level.
+~
+0 8388616 1 0 0 0 29896
+D1
+~
+~
+0 -1 10517
+S
+#10520
+Executive Presidents Office~
+A large office with a oak desk in the center and leather chair behind it.
+The far wall has a view of the Promenade Level.
+~
+0 8388616 1 0 0 0 29896
+D3
+~
+~
+0 -1 10517
+S
+#10521
+Chief Security Officer's Office~
+A large office with a oak desk in the center and leather chair behind it.
+The far wall has a viewscreen with Security views all over it.
+~
+0 8388616 1 0 0 0 29896
+D3
+~
+~
+0 -1 10518
+S
+#10522
+Chief Recruiting Officer's Office~
+A large office with a oak desk in the center and leather chair behind it.
+The far wall has a viewscreen with personnel records on it.
+~
+0 8388616 1 0 0 0 29896
+D1
+~
+~
+0 -1 10518
+S
+#10523
+Banking Terminal~
+A small banking terminal lies in the alcove here, guarded by a pair of 
+autoblasters. Its kept clean, like everything else on this station.
+~
+0 264 1 0 0 0 29896
+D8
+~
+~
+0 -1 10504
+S
+#10524
+Private Landing Pad~
+This is the CEO's private landing pad, for personal use.
+~
+0 1073741872 1 1024 0 0 29896
+D2
+~
+~
+0 -1 10514
+S
+#10575
+Floating in a void~
+~
+0 4 1 0 0 0 29896
+S
+#0
+
+
+#RESETS
+M 1 10503 1 10505
+G 1 9006 1
+G 1 1857 1
+G 1 133 1
+G 1 1858 1
+G 1 201 1
+M 1 10502 1 10507
+G 1 150 1
+G 1 136 1
+G 1 4504 1
+G 1 142 1
+G 1 4501 1
+G 1 65 1
+M 1 10504 1 10509
+M 1 10506 1 10511
+G 1 145 1
+G 1 144 1
+G 1 148 1
+G 1 146 1
+G 1 147 1
+G 1 1142 1
+G 1 143 1
+G 1 140 1
+G 1 138 1
+G 1 139 1
+O 1 1097 1 10511
+M 1 10507 8 10512
+M 1 10507 8 10512
+M 1 10507 8 10512
+M 1 10507 8 10513
+M 1 10507 8 10519
+M 1 10507 8 10520
+M 1 10507 8 10521
+M 1 10507 8 10522
+M 1 10501 1 10575
+M 1 10575 1 10575
+O 1 10575 1 10575
+O 1 10501 1 10575
+M 1 10505 1 10510
+G 1 766 1
+G 1 765 1
+G 1 764 1
+G 1 763 1
+G 1 762 1
+G 1 761 1
+O 1 1097 1 10510
+O 1 1097 1 10514
+O 1 1141 1 10514
+S
+
+
+#SHOPS
+ 10502    0  0  0  0  0   120  90         0 23    ; SI Droid Shopkeeper
+ 10503    0  0  0  0  0   120  90         0 23    ; Moko, the Ewok Bartender
+ 10505    0  0  0  0  0   120  90         0 23    ; Droid SI-1132A
+ 10506    0  0  0  0  0   120  90         0 23    ; Droid SI-1132B
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

@@ -1,0 +1,15 @@
+#FORCE
+Name      convert~
+Status    3
+Type      0
+Desc      It is now possible to convert a player to the other side of the
+force.  There are several things you must do.
+
+1: The player must reverse their alignment (Low for Jedi, High for Sith)
+2: They must spend time at this alignment for their soul to adjust
+3: When they are ready you will be able to convert <player>
+~
+Skill     -1
+End
+
+#END

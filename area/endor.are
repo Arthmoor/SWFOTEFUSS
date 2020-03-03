@@ -1,0 +1,2919 @@
+#AREA   Endor~
+
+
+
+#AUTHOR Trelar & Keberus~
+
+#RANGES
+0 36 0 36
+$
+
+#RESETMSG &r You hear the growl from the gorax deep within the forest.&w~
+
+#FLAGS
+0
+
+#ECONOMY 0 3200158
+
+#MOBILES
+#4550
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#4551
+An Ewok Cook~
+An Ewok Cook~
+An Ewok stands here, tending the spit and singing triumphantly.
+~
+~
+1048579 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 128 128 0
+2 2 0 0 0 0 0 0
+32 0 0 0 0 0 0 0
+> all_greet_prog 10~
+~
+> all_greet_prog 100~
+mpecho The ewok turns and looks at you, smiling.
+mpsleep 5
+say Yub yub! Making food for the family, I am. Teek is tasty. Take some!
+mpsleep 10
+mpecho The ewok continues tending the spit.
+~
+|
+#4552
+SC Compound Guard~
+A Compound Guard~
+A Compound Guard is here checking people over.
+~
+~
+11 0 0 Z
+30 0 100 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+6 2 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+, checks you over.
+if clan($n) == The New Republic
+salute $n
+mpecho The Guard has granted you access.
+un n
+open n
+else 
+say What are you doing in here?
+, calls for help to have you thrown out of the facility.
+mpkill $n
+endif
+~
+> act_prog p leaves~
+close n
+lock n
+~
+|
+#4553
+SC Compound Guard~
+A Compound Guard~
+A Compound Guard is posted here.
+~
+~
+11 0 0 Z
+30 0 100 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+0 0 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> speech_prog p Control Room~
+mpecho A Compound Guard calls to the Control Room to check your
+clearance.
+if clan($n) == The New Republic
+salute $n
+un e
+open e
+else 
+say Hey! Your not allowed to be in here.
+murder $n
+endif
+~
+> act_prog p leaves~
+close e
+lock e
+~
+> act_prog p floats~
+close e
+lock e
+~
+> act_prog p nods~
+un s
+open s
+~
+> act_prog p leaves~
+close s
+lock s
+~
+> act_prog p floats~
+close s
+lock s
+~
+|
+#4554
+E Compound Guard~
+A Compound Guard~
+A Compound Guard is posted here.
+~
+~
+11 0 0 Z
+30 0 100 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+0 2 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> rand_prog 95~
+mpat 4598 give all droid
+~
+> greet_prog 100~
+, checks you over.
+if clan($n) == The New Republic
+salute $n
+mpecho The Guard has granted you access.
+un n
+open n
+else 
+say What are you doing in here?
+, runs over and starts attacking you!
+mpkill $n
+endif
+~
+|
+#4555
+E compound guard~
+A Compound Guard~
+A Compound Guard is posted here.
+~
+~
+11 0 0 Z
+30 0 100 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+0 2 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+, checks you over.
+if clan($n) == The New Republic
+salute $n
+mpecho The Guard has granted you access.
+un n
+open n
+else 
+say What are you doing in here?
+, runs over and starts attacking you!
+mpkill $n
+endif
+~
+|
+#4556
+A Compound Guard~
+A Compound Guard~
+A Compound Guard is posted here.
+~
+~
+11 0 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+5 5 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> act_prog p nods~
+un w
+open w
+~
+> act_prog p leaves~
+close w
+lock w
+~
+> act_prog floats~
+close w
+lock w
+~
+|
+#4557
+Weapons Droid~
+A Weapons Droid~
+A Weapons Droid is here attending to the shop.
+~
+~
+67108875 0 0 Z
+28 0 100 5d10+280 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 131089 16 0
+5 1 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+if ispc($n)
+if otypecarry(5) < 1
+say I am sorry but there are no weapons for sale at this moment.
+endif
+endif
+~
+|
+#4558
+Cmmdr's Secertary~
+A Secertary~
+A Secretary sits behind the desk going over some papers.
+~
+~
+11 0 0 Z
+20 0 100 4d10+200 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+4 4 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> speech_prog p appointment~
+say I'll check with the Commander and see if he is busy.
+mpecho The Secertary makes a call on her desk comlink.
+say The commander is available to see you now. You may go in.
+~
+|
+#4559
+Compound Commander~
+The Compound Commander~
+The Compound Commander sits behind his desk here.
+~
+~
+75 0 0 Z
+27 0 100 5d10+270 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+5 5 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpecho The Commander looks up from his paperwork.
+say Hello $n, What can I do for you?
+mpecho You hesitate and the commander starts going over his paperwork again.
+~
+> speech_prog p Yes~
+if ispc($n)
+if otypecarry(paper) ==1
+say Great, Would you give this document to the Compound Controller?
+give document $n
+say He should reimburse you for your help. Thanks
+else
+mpecho The Commander rummages around on his desk.
+say Someone must have already taken it, Thanks anyways.
+endif
+endif
+~
+> speech_prog p No~
+say Ok
+, pauses for a moment.
+say Was there something you needed? 
+~
+> act_prog p looks~
+say Would you do me a favor?
+~
+> speech_prog p keycard~
+if clan($n) == The New Republic
+say Heres the key for the detention cells.
+give detention $n
+else say What are you doing in here.
+mpecho The Commander calls for guards to assist him.
+mpmload 4554
+mpmload 4554
+force 4554 murder $n
+endif
+~
+|
+#4560
+Compound Controller~
+The Compound Controller~
+A Compound Controller stands here watching the monitors.
+~
+~
+11 0 0 Z
+27 0 100 5d10+270 2d4+2
+1000 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+5 5 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+> act_prog p gives~
+if ovnumcarry(4559) ==1
+mpadvance $n 5 1000
+say Thank you.
+mpecho A Controller quickly examines the document and destroys it.
+mpat 4900 drop document
+mpat 4900 mppurge
+else
+say This isn't what I am waiting for.
+mpecho The Controller throws $O in the garbage.
+mpat 4900 drop all
+mpat 4900 mppurge
+endif
+~
+|
+#4561
+Scared~
+a newly created Scared~
+Some god abandoned a newly created Scared here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#4564
+Ewok Sparring Partner~
+An Ewok Sparring Partner~
+An Ewok Sparring Partner stands here awaiting your first move.
+~
+~
+33554499 0 -1000 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 129 128 0
+2 2 0 0 0 0 48 0
+0 0 0 0 0 0 0 0
+#4565
+level2 Ewok~
+An Ewok Sparring Partner~
+An Ewok Sparring Partner stands here awaiting your first move.
+~
+~
+33554499 0 1000 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 129 128 0
+3 3 0 0 0 0 48 0
+0 0 0 0 0 0 0 0
+#4566
+level3 Ewok~
+a newly created level3 Ewok~
+Some god abandoned a newly created level3 Ewok here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#4567
+level3 Ewok~
+An Ewok Sparring Partner~
+An Ewok Sparring Partner stands here awaiting your first move.
+~
+~
+33554499 0 -1000 Z
+20 0 50 4d10+200 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 129 128 0
+4 4 0 0 0 0 48 0
+0 0 0 0 0 0 0 0
+#4568
+level4 Ewok~
+An Ewok Sparring Partner~
+An Ewok Sparring Partner stands here awaiting your first move.
+~
+~
+33554499 0 1000 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 129 128 0
+5 5 0 0 0 0 48 0
+0 0 0 0 0 0 0 0
+#4569
+A Food Service Droid~
+A Food Service Droid~
+A Food Service Droid stands here helping customers.
+~
+~
+67108875 0 0 Z
+12 0 70 2d10+120 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+2 2 0 0 0 0 49 2
+0 0 0 0 0 0 0 0
+#4570
+Ewok Champion~
+An Ewok Champion~
+An Ewok Champion paces around here, eyeing you suspiciously.
+~
+~
+134217803 0 -1000 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 129 128 0
+6 6 0 0 0 0 0 0
+32 0 0 0 0 0 0 0
+#4571
+A wise old ewok~
+A Wise Ewok~
+A Wise Old Ewok stands here contemplating something.
+~
+~
+33554499 0 1000 Z
+36 0 10 7d10+360 3d4+2
+0 0
+8 8 0
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 10
+7 7 0 0 0 0 0 0
+2080 0 0 0 0 0 0 0
+#4572
+Detention Level Guard~
+A Jail Guard~
+A Jail Guard sits behind the desk here.
+~
+~
+67 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Hello, I need your keycard to scan for clearance, please.
+~
+> act_prog p gives~
+if ovnuminv(4564) ==1
+mpecho The Jail Guard scans $O for clearance.
+say Mr. $n you are cleared for entrance.
+give $o $n
+mpecho The Guard presses a button and the door opens. 
+mpecho You quickly step through the door before it closes.
+mptransfer all 4626
+else
+mpecho The guard scans $O for clearance.
+say I am sorry but your not cleared for entrance.
+give $o $n
+endif
+~
+|
+#4573
+A captured stormtrooper~
+A captured stormtrooper~
+A captured stormtrooper is moping here.
+~
+~
+1 4194336 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#4574
+A Troubled Ewok~
+A Troubled Ewok~
+A Troubled Ewok sits here staring off into space.
+~
+~
+3 4194304 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> speech_prog p why~
+say I have lost my favorite Head Garmet. I was out walking around the
+say village and when I got home I noticed it was gone.
+say If you would find it for me I will teach you everything I know.
+~
+> speech_prog p why?~
+say I have lost my favorite Head Garmet. I was out walking around the
+say village and when I got home I noticed it was gone.
+say If you would find it for me I will teach you everything I know.
+~
+> act_prog gives~
+if ispc($n)
+if ovnuminv(4553) ==1
+say Thank you for finding my favorite hat.
+mpecho A troubled Ewok teaches you many things about politics.
+mpadvance $n 5 1250
+mpat 101 drop all
+mpat 101 mppurge
+else 
+say This isn't my hat!
+mpecho A Troubled Ewok throws $O in the garbage.
+mpat 101 drop all
+mpat 101 mppurge
+endif
+endif
+~
+> all_greet_prog 100~
+sigh
+mutter
+say Hello.
+say I would help you but I just can't do anything anymore.
+~
+|
+#4575
+a big gorax~
+A big Gorax.~
+A big, ugly Gorax stands before you.
+~
+A big furry Gorax stands here before you. The Gorax is approximately
+30 feet tall. The beast has a protruding lower jaw and very
+large teeth. Gorax are only known to feed off of ewoks and are
+not known to be aggressive towards any other species. You should
+not want to agitate this beast!
+~
+75 4194304 -1000 Z
+36 0 -300 10d25+200 15d25+30
+0 0
+8 8 0
+25 3 3 13 10 1 10
+0 0 0 0 0
+1 0 0 0 3 2 10
+85 65 786432 8 0 32 35 0
+0 0 0 0 0 0 0 0
+#4576
+A small teek.~
+A small teek.~
+A small, curious teek scurries about.
+~
+~
+133 0 0 Z
+5 0 87 1d10+50 0d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+10 0 0 0 129 128 2
+1 1 262144 0 0 0 19 0
+0 0 0 0 0 0 0 0
+#4899
+Cerberus~
+Cerberus~
+Cerberus is sitting here wagging his tail.
+~
+You gaze at at 15 foot tall completely black 3 headed dog.Ceberus
+has red beady eyes on all of his heads. He looks like the dog
+from hell!
+~
+34380103 8320 0 Z
+36 0 10 100d100+1000 100d100+1000
+0 0
+8 8 1
+25 25 25 25 25 25 10
+0 0 0 0 0
+0 0 0 0 1 1 20
+7 2 0 0 5523 0 39 3
+0 0 0 0 0 0 0 0
+#4900
+hi_obj~
+a newly created hi_obj~
+Some god abandoned a newly created hi_obj here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#4550
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#4551
+A Greasy Hunk of Meat~
+A Greasy Hunk of Meat~
+A greasy hunk of meat lies on the floor, it seems to have fallen off the spit.~
+~
+19 0 1
+40 20 0 0
+1 0 0
+#4552
+Decaying Log~
+A Decaying Log~
+A dead log sits here, rotted and decaying.~
+~
+15 4096 0
+20000 0 0 0
+2000 0 0
+E
+Decaying Log~
+This log seems to be a piece of torn apart tree, most likely done by the
+ewoks or some other wild animal. Rotted and dead, it has a hole inside,
+and you catch a glimpse of orange peeking out of the left side.
+~
+#4553
+Tattered ewok head garment~
+An Ewok Head Garment~
+A slightly tattered ewok head garment sits here.~
+~
+9 0 17
+14 14 0 0
+1 0 0
+#4556
+A Control Room Keycard~
+A Control Room Keycard~
+A Control Room Keycard lies here.~
+~
+13 0 16385
+0 0 0 0
+3 35 3
+#4559
+An Important Document~
+An Important Document~
+An Important Document lies here on the ground.~
+~
+47 0 16385
+0 0 0 0
+1 0 0
+#4560
+&c A &r Red-Bladed &z Lightsaber~
+&c A &r Red-Bladed &z Lightsaber~
+&c A &r Red-Bladed &z Lightsaber &W was carefully placed here~
+The lightsaber hums with a soft glow.~
+5 16 8192
+1000 400 400 3 3000 3000
+6 1000000 100000
+A
+13 200
+#4561
+An Immortal-Sized bag~
+&B An Immortal-Sized Bag ~
+&B An Immortal-Sized Bag &w was left here~
+~
+15 0 16392
+50000 0 0 0
+1 0 0
+#4562
+&b A Small Blue Key~
+&b A Small Blue Key~
+&b A Small Blue Key &w is lying here.~
+~
+18 0 16385
+0 0 0 0
+1 0 0
+#4563
+&z A Pair of Black Wrap-Around Sunglasses~
+&z A Pair of Black Wrap-Around Sunglasses~
+&z A Pair of Black Wrap-Around Sunglasses &w lie discarded here.~
+~
+9 0 131072
+0 0 0 0
+1 0 0
+#4564
+short A Detention Level Keycard~
+A Detention Level Keycard~
+A Detention Level Keycard is here.~
+~
+18 0 1
+0 0 0 0
+2 100 10
+#4565
+A small treasure chest~
+&OA Small Treasure Chest~
+A Small Treausre Chest sits on the floor here.~
+~
+15 0 0
+8 0 0 16
+200 0 0
+#4566
+&c A &B Blue Dual-Bladed &z Lightsaber&w~
+&c A &B Blue Dual-Bladed &z Lightsaber&w~
+&c A &B Blue Dual-Bladed &z Lightsaber&w was discarded here.~
+The lightsaber hums twice as it ignites on both ends~
+5 0 8193
+1000 2000 2000 12 3000 3000
+6 0 0
+#4567
+A Quest Coin~
+A Quest Coin~
+A Quest Coin has been cleverly misplaced here.~
+~
+8 0 16385
+0 0 0 0
+2 0 0
+#4900
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#4550
+Landing Pad B~
+This is a small landing pad on top of a compound used by the Empire as their
+base. It is one of many of the several buildings built here by the Empire.
+The Empire was defeated here by the Rebellion during the Battle of Endor
+and the compound is now being used by the Rebellion.  A few ships are
+docked here and blast marks have been left behind by the coming and going
+of ships. Trees are visible when looking out around the building and a few
+people and ewoks can be spotted on the ground. Above the trees, the
+remains of several large shield generators can be seen. Some stairs lead
+down to the side of the compound. Landing Pad A is west from here.
+~
+0 32820 1 0 0 0 3720
+D3
+~
+~
+0 -1 4563
+D5
+~
+~
+0 -1 4551
+S
+#4551
+Next to a Small Compound~
+Trees which stand many meters high block out most of the clear blue sky.
+Brush and trees are all around this dark grey building. Several rebels and
+ewoks wander about, still repairing from the Battle of Endor. Some stairs
+are built onto the side of the building, leading up to Landing Pad B. The
+entrance to the compound is around the corner to the south.
+~
+0 0 1 0 0 0 3720
+D2
+~
+~
+0 -1 4552
+D4
+~
+~
+0 -1 4550
+S
+#4552
+Dirt Path Near a Small Compound~
+Trees which stand many meters high block out most of the clear blue sky.
+Brush and trees are all around this dark grey building. Several rebels and
+ewoks wander about, still repairing from the Battle of Endor.  North of
+here are a set of stairs which lead up to the roof of the compound. Around
+the corner is the entrance to the building.
+~
+0 0 1 0 0 0 3720
+D0
+~
+~
+0 -1 4551
+D3
+~
+~
+0 -1 4553
+S
+#4553
+Path to a Small Compound~
+Trees which stand many meters high block out most of the clear blue sky.
+Brush and trees are all around this dark grey building. Several rebels and
+ewoks wander about, still repairing from the Battle of Endor.  A wornout
+dirt path leads eastward around the building, ultimately heading to the
+roof where the landing pad is located. Another path leads southward while
+the compound door is to the north.
+~
+0 0 1 0 0 0 3720
+D0
+~
+~
+0 -1 4557
+D1
+~
+~
+0 -1 4552
+D2
+~
+~
+0 -1 4567
+D3
+~
+~
+0 -1 4554
+> entry_prog 100~
+if mobinroom(4573)
+if ispc($n)
+mpadvance $n 4 2500
+mpforce captured say This is for breaking me out.
+mpforce captured mpwithdraw 400
+mpforce captured give 400 credit $n
+mpecho A captured stormtrooper runs off into the forest.
+mppurge 
+endif
+endif
+~
+|
+S
+#4554
+Dirt Path Near a Small Compound~
+Trees which stand many meters high block out most of the clear blue sky.
+Brush and trees are all around this dark grey building. Several rebels and
+ewoks wander about, still repairing from the Battle of Endor. North of
+here are a set of stairs which lead up to the roof of the compound. Around
+the corner is the entrance to the building.
+~
+0 0 1 0 0 0 3720
+D0
+~
+~
+0 -1 4555
+D1
+~
+~
+0 -1 4553
+S
+#4555
+Next to a Small Compound~
+Trees which stand many meters high block out most of the clear blue sky.
+Brush and trees are all around this dark grey building. Several rebels and
+ewoks wander about, still repairing from the Battle of Endor. Some stairs
+are built onto the side of the building, leading up to Landing Pad A. The
+entrance to the compound is around the corner to the south.  
+~
+0 0 1 0 0 0 3720
+D2
+~
+~
+0 -1 4554
+D4
+~
+~
+0 -1 4556
+S
+#4556
+Landing Pad A~
+This is a small landing pad on top of a compoud used by the Empire as their
+base. It is one of many of the several buildings built here by the Empire.
+The Empire was defeated here by the Rebellion during the Battle of Endor
+and the compoud is now being used by the Rebellion.   A few ships are
+docked here and blast marks have been left behind by the coming and going
+of ships.  Trees are visible when looking out around the building and a
+few people and ewoks can be spotted on the ground.  Above the trees, the
+remains of several large shield generators can be seen. Some stairs lead
+down to the side of the compoud. Landing Pad B is east from here.
+~
+0 32816 1 0 0 0 3720
+D1
+~
+~
+0 -1 4563
+D3
+~
+~
+0 -1 4655
+D5
+~
+~
+0 -1 4555
+S
+#4557
+Entrance to A Small Compound~
+You stand in the entranceway to the compound. To the north is the secuirty
+checkpoint. You must pass through the checkpoint to gain access to the
+rest of the compound.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 4558
+D2
+~
+~
+0 -1 4553
+S
+#4558
+Security Checkpoint~
+You stand in the security checkpoint at the main entrance of the compound.
+There is a long line of people here waiting to be checked in so it would
+be best to get a spot quickly.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+7 4556 4559
+D2
+~
+~
+0 -1 4557
+S
+#4559
+Hallway Intersecion~
+You are in the intersection of the main hallway and the one that leads to
+the Compound Control Room. If you wish to go the control room ask the
+guard, if you need to leave just give him a simple nod.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 4596
+D1
+~
+~
+7 4556 4560
+D2
+~
+~
+7 4556 4558
+S
+#4560
+Hallway to Control Room~
+You are in the hallway that leads to the Compound Control Room. The walls
+are a dark grey color. There is a single light mounted every 30 feet. If
+you need to exit this hallway just give the guard a simple
+nod.
+~
+0 8 1 0 0 0 3720
+D1
+~
+~
+0 -1 4561
+D3
+~
+~
+7 4556 4559
+S
+#4561
+Hallway to Control Room~
+You are in the hallway that leads to the Compound Control Room. The walls
+are a dark grey color. There is a single light mounted every 30 feet. 
+~
+0 8 1 0 0 0 3720
+D1
+~
+~
+0 -1 4562
+D3
+~
+~
+0 -1 4560
+S
+#4562
+Control Room~
+You have reached the control room of the compound. The walls are lined with
+monitor displaying security camera images and technical readouts of the
+compound. 
+~
+0 8 1 0 0 0 3720
+D3
+~
+~
+0 -1 4561
+S
+#4563
+A Small Walkway~
+You are on the small walkway between the two landing pads. Landing Pad A is
+to the west while Landing Pad B is to the east. The walkway is very
+dangerous and high off the ground so watch your
+step.
+~
+0 0 1 0 0 0 3720
+D1
+~
+~
+0 -1 4550
+D3
+~
+~
+0 -1 4556
+S
+#4564
+Secret Forest Path~
+A small path leads between the trees here. The path is so old that
+vegetation has begun to cover it. There are sounds of repulsorlifts
+powering up in the distance.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4565
+D3
+~
+~
+0 -1 4572
+S
+#4565
+A Small Path~
+A small path leads between the trees. The path hasnt been traveled in such
+a long time that vegetation has begun to grow over it. Repulsorlifts are
+heard powering up in the distance.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+7 4562 4619
+D3
+~
+~
+0 -1 4564
+S
+#4566
+Compound Cafeteria~
+You have entered the Compound's one and only cafeteria. The cafeteria is
+large enough to accomadate at least three legions of troops at the same
+time. There are many stains on the wall that serves as constant reminders
+of the many food fights that have taken place here.
+~
+0 8 1 0 0 0 3720
+D7
+~
+~
+0 -1 4600
+S
+#4567
+Dirt Path~
+You are following a dirt path. Huge trees block your path to the East and
+West. You start to feel an acute sense of claustrophobia. You feel you
+should move onwards. 
+~
+0 0 3 0 0 0 3720
+D0
+~
+~
+0 -1 4553
+D2
+~
+~
+0 -1 4568
+S
+#4568
+Dirt Path~
+You are following a dirt path. You see no direct path to the East and West
+of you. You start to feel a bit more claustrophobic. You feel you should
+move onwards. 
+~
+0 0 3 0 0 0 3720
+D0
+~
+~
+0 -1 4567
+D2
+~
+~
+0 -1 4569
+S
+#4569
+Path in the Forest~
+You stand in the middle of a tall forest. You start to feel scared for you
+never know what could be wandering behind those swaying trees. You do not
+want to stop for very long. 
+~
+0 0 3 0 0 0 3720
+D0
+~
+~
+0 -1 4568
+D8
+~
+~
+0 -1 4570
+S
+#4570
+Path in the Forest~
+You stand in the middle of a tall forest. You feel somewhat scared for you
+cannot see well in these dimly lit areas. You do not want to stop for very
+long. You continue your journey along the poorly made path.
+~
+0 0 3 0 0 0 3720
+D7
+~
+~
+0 -1 4569
+D8
+~
+~
+0 -1 4571
+S
+#4571
+Path in the Forest~
+You stand in the middle of a tall forest. Feeling somewhat scared
+because it is hard for anyone or anything to see in these dimly
+lit areas.You do not want to stop for very long. You continue
+your journey along the poorly made path.
+~
+0 0 3 0 0 0 3720
+D1
+~
+~
+0 -1 4572
+D7
+~
+~
+0 -1 4570
+S
+#4572
+Path in the Forest~
+Tall trees surround the area. The trees block out most of the sunlight
+causing visibility to be poor. Shadows cross over the branches to the east.
+It would be wise to continue along the poorly made path.
+~
+0 0 3 0 0 0 3720
+D3
+~
+~
+0 -1 4571
+D8
+~
+~
+0 -1 4573
+E
+branches~
+The &w&Wbranches&w are broken in a strange way that possibly animals or
+people have made a path in that direction. Futher examination reveals that
+behind the &w&Wbranches&w and hidden in a shadow is a hidden path.
+~
+> custom_prog branches~
+mptransfer $n 4564
+~
+> speech_prog branches~
+mptransfer $n 4564
+~
+|
+S
+#4573
+Path in the Forest~
+You stand in the middle of a tall forest. You feel somewhat scared for you
+cannot see well in these dimly lit areas. You do not want to stop for very
+long. You continue your journey along the poorly made path.
+~
+0 4 3 0 0 0 3720
+D2
+~
+~
+0 -1 4641
+D7
+~
+~
+0 -1 4572
+S
+#4574
+Path in the Forest~
+You stand in the middle of a tall forest. You feel somewhat scared for you
+cannot see well in these dimly lit areas. You do not want to stop for very
+long. You continue your journey along the poorly made path.
+~
+0 0 3 0 0 0 3720
+D1
+~
+~
+0 -1 4641
+D2
+~
+~
+0 -1 4575
+S
+#4575
+Path in the Forest~
+You stand in the middle of a tall forest. You feel somewhat scared for you
+cannot see well in these dimly lit areas. You do not want to stop for very
+long. You continue your journey along the poorly made path.
+~
+0 0 3 0 0 0 3720
+D0
+~
+~
+0 -1 4574
+D1
+~
+~
+0 -1 4576
+S
+#4576
+Path in the Forest~
+You stand in the middle of a tall forest. You feel somewhat scared for you
+cannot see well in these dimly lit areas. You see a bit of a clearing and
+a very dim glow coming from the east. You continue your journey along the 
+poorly made path to pursue the light.
+~
+0 0 3 0 0 0 3720
+D1
+~
+~
+0 -1 4577
+D3
+~
+~
+0 -1 4575
+S
+#4577
+Approaching A Large Village~
+Making your way through bushes and brambles, you come upon a large
+tree-based village, created entirely without the use of metals or other
+techologically  advanced assistance. Small furry creatures wander about,
+it seems as though they are repairing damages done to the village, and
+doing quite an expert job at  that. The path continues east and southwest.
+~
+0 4 1 0 0 0 3720
+D3
+~
+~
+0 -1 4576
+D8
+~
+~
+0 -1 4578
+S
+#4578
+Under a Large Tree~
+A large twisted tree juts into the sky and becomes barely visible, a small
+rope ladder is hanging down the side of it. The ground seems to be fairly
+well used here. The path continues to the northwest and east, also up this
+tree on the rope ladder.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4579
+D4
+~
+~
+0 -1 4581
+D7
+~
+~
+0 -1 4577
+S
+#4579
+Path Under the Ewok Village~
+This path shows the wear of shuffled feet of many generations. Underfoot
+you see  where the ground has been stomped to nonuse by all of the flora
+of this planet. Smaller trees arc above you in a beautiful decorative
+fashion, and the larger trees tower into the sky at a distance. The path
+continues west and northeast. 
+~
+0 4 1 0 0 0 3720
+D3
+~
+~
+0 -1 4578
+D6
+~
+~
+0 -1 4580
+S
+#4580
+Under the Trees~
+Another Large Tree seemingly shoots into the sky here, a rather tattered
+ladder also falling to the ground from it. Perhaps it may be a little
+dangerous to climb. The path ends here, you may return southwest or go
+upwards.
+~
+0 4 1 0 0 0 3720
+D4
+~
+~
+128 -1 4595
+D9
+~
+~
+0 -1 4579
+S
+#4581
+Climbing up a Large Tree~
+While climbing the tree you only have two directions Up or Down. You notice
+how the rope ladder dangles from the tree so freely. 
+~
+0 4 1 0 0 0 3720
+D4
+~
+~
+0 -1 4582
+D5
+~
+~
+0 -1 4578
+S
+#4582
+Reaching the Ewok Village~
+You come close to the top of the tree and can hear the Ewoks from above.
+You want to hurry up and get to the top of the tree to see what the fuss
+is all about. 
+~
+0 4 1 0 0 0 3720
+D4
+~
+~
+0 -1 4583
+D5
+~
+~
+0 -1 4581
+S
+#4583
+The Ewok Endpoint~
+You step onto a large outcropping of wooden planks supported by logs,
+stepping gingerly at first to test your weight, then stepping comfortably
+after you've made sure it is of sound creation. The outcropping wraps
+around the northeast and northwest, while you can go inside the hollowed
+out tree to the north. 
+~
+0 4 1 0 0 0 3720
+D0
+~
+~
+0 -1 4584
+D5
+~
+~
+0 -1 4582
+D6
+~
+~
+0 -1 4585
+D7
+~
+~
+0 -1 4587
+D8
+~
+~
+0 -1 4612
+S
+#4584
+A Small Ewok Guardpost~
+This room seems quite comfortably done in comparison to the normal ewok
+tradition. It seems to have been a guard room morphed into a lounge of
+some  sort. Perhaps the guards weren't used to seeing much trouble this
+high up in the trees. A rack of rudimentary spears and slings lies in the
+corner.
+~
+0 4 1 0 0 0 3720
+D2
+~
+~
+0 -1 4583
+S
+#4585
+Planks~
+You follow along these planks as they seem to lead to another village. You
+are curious to see exactly where these huge boards lead to.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4588
+D7
+~
+~
+0 -1 4586
+D9
+~
+~
+0 -1 4583
+S
+#4586
+Planks~
+You follow along these planks as they seem to lead to another village. You
+are curious to see exactly where these huge boards lead to.
+~
+0 4 1 0 0 0 3720
+D0
+~
+~
+0 -1 4629
+D8
+~
+~
+0 -1 4585
+D9
+~
+~
+0 -1 4587
+S
+#4587
+Planks~
+You follow along these planks as they seem to lead to another village. You
+are curious to see exactly where these huge boards lead to.
+~
+0 4 1 0 0 0 3720
+D6
+~
+~
+0 -1 4586
+D8
+~
+~
+0 -1 4583
+S
+#4588
+A Sturdy Rope Bridge~
+You are now on a sturdy rope bridge. You are suprised in how well this
+bridge has been maintained. You are also suprised about how little the
+bridge wobbles.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4589
+D3
+~
+~
+0 -1 4585
+S
+#4589
+Planks~
+You follow along these planks as they seem to lead to another village. You
+are curious to see exactly where these huge boards lead to. You follow
+along these planks as they seem to lead to another village. To the West
+you notice a bridge in the distance, and to the southeast you can see a
+small Ewok home.
+~
+0 4 1 0 0 0 3720
+D3
+~
+~
+0 -1 4588
+D6
+~
+~
+0 -1 4593
+D8
+~
+~
+0 -1 4590
+S
+#4590
+A Small Ewok House~
+Walking up to this small ewok construction, you notice a hole in the roof,
+with smoke billowing out of it. An aroma of roasting meat wafts out from
+the room, perhaps you should take a peek inside. 
+~
+0 4 1 0 0 0 3720
+D0
+~
+~
+0 -1 4591
+D5
+~
+~
+0 -1 4594
+D6
+~
+~
+0 -1 4592
+D7
+~
+~
+0 -1 4589
+S
+#4591
+Inside The Ewok Home~
+The smell of roasting meat bombards your senses, and as you look around to
+find the source of this you see a large hunk of meat on a spit. What sort
+of meat,  you can't be sure, although it certainly does smell good. This
+house is rather small and unfurnished, a few small hammock-like beds are
+strapped to the far side of the wall.
+~
+0 8388608 1 0 0 0 3720
+D2
+~
+~
+0 -1 4590
+S
+#4592
+Planks~
+You follow along these planks as they seem to lead to another village. You
+are curious to see exactly where these huge boards lead to.
+~
+0 0 1 0 0 0 3720
+D7
+~
+~
+0 -1 4593
+D9
+~
+~
+0 -1 4590
+S
+#4593
+Planks~
+You follow along these planks as they seem to lead to another village. You
+are curious to see exactly where these huge boards lead to.
+~
+0 0 1 0 0 0 3720
+D8
+~
+~
+0 -1 4592
+D9
+~
+~
+0 -1 4589
+S
+#4594
+Rope Ladder~
+You notice how the ladder you are climbing is just dangling from the tree.
+You feel a bit unconfortable about climbing it now but you want to
+continue. The Ewoks from above are getting louder.
+~
+0 0 1 0 0 0 3720
+D4
+~
+~
+0 -1 4590
+D5
+~
+~
+0 -1 4595
+S
+#4595
+Tattered Rope Ladder~
+As you are climbing you notice that the tree has many rotted areas. You see
+that it is one of the oldest trees in the whole forest. You can hear the
+tongue of the Ewoks from above.
+~
+0 0 1 0 0 0 3720
+D4
+~
+~
+128 -1 4594
+D5
+~
+~
+0 -1 4580
+S
+#4596
+A Turbolift~
+You stand in the compound's only turbolift. LIke the rest of the compound
+the walls are grey. There is a small single light mounted to the ceiling
+of the turbocar. The car only travels between the compounds two main
+floors. The turbolift is voice activated so just say the level you need to
+go to. There is a small list of levels mounted on the wall here.
+~
+0 12 1 0 0 0 3720
+E
+list~
+Turbolift Floors:
+1: Main Floor
+2: Services and Administration Floor
+3: Residential Floor
+-1: Detention Level
+~
+> speech_prog p 1~
+mpecho The turbolift doors slide close.
+mpecho The turbolift slowly goes to the Main Floor.
+mpecho You hear a ding and the doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 4559
+~
+> speech_prog p 2~
+mpecho The turbolift doors slide close.
+mpecho The turbolift slowly goes to the Services and Administration
+Level.
+mpecho You hear a ding and the doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 4600
+~
+> speech_prog p 3~
+mpecho The turbolift doors slide close.
+mpecho The turbolift slowly goes to the Residential Level.
+mpecho You hear a ding and the doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 4602
+~
+> speech_prog p Main~
+mpecho The turbolift doors slide close.
+mpecho The turbolift slowly goes to the Main Floor.
+mpecho You hear a ding and the doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 4559
+~
+> speech_prog p Services~
+mpecho The turbolift doors slide close.
+mpecho The turbolift slowly goes to the Services and Administraion
+Level.
+mpecho You hear a ding and the doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 4600
+~
+> speech_prog p Residential~
+mpecho The turbolift doors slide close.
+mpecho The turbolift slowly goes to the Residential Level.
+mpecho You hear a ding and the doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 4602
+~
+> speech_prog p -1~
+mpecho The turbolift doors slide close.
+mpecho The turbolift slowly decends to the Detention Level.
+mpecho You hear a ding and the doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 4628
+~
+> speech_prog p Detention~
+mpecho The turbolift doors slide close.
+mpecho The turbolift slowly decends to the Detention Level.
+mpecho You hear a ding and the doors slide open.
+mpecho You step out quickly before the doors reclose.
+mptransfer $n 4628
+~
+> entry_prog 100~
+if mobinroom(4573) == 1
+ifisnpc
+mpecho A captured stormtrooper rides the turbolift up.
+mptransfer captured 4559
+endif
+~
+|
+S
+#4597
+Compound Commander's Office~
+You sit in the waiting room just outside of the Compound Commander's
+Officer. There are many people coming into and going out of the office. It
+would be wise to talk to the secertary about an
+appointment.
+~
+0 12 1 0 0 0 3720
+D1
+~
+~
+0 -1 4600
+D3
+~
+~
+0 -1 4601
+S
+#4598
+Compound Weapons Depot~
+You enter a small room seperated in half by a bulletproof grate. There is a
+small area cut out of the grate for transactions to be made. This is where
+weapons confiscated from the general public are sold.
+~
+0 12 1 0 0 0 3720
+D3
+~
+~
+0 -1 4600
+S
+#4599
+ATM Terminal~
+There is a small ATM terminal mounted to the wall here. There is no extra
+charge for using this terminal.
+ 
+If you are unsure how to use this terminal type help bank.
+~
+0 268 1 0 0 0 3720
+D0
+~
+~
+0 -1 4600
+S
+#4600
+Services and Administration Foyer~
+You stand in the second floor's foyer. Here the walls are decorated with
+bright tapestries and paintings. Bright chandeliers hanging from the
+ceiling illuminate the room. To the north is the turbolift, south is the
+Compound's ATM Terminal, east is the Weapon's Depot and to the west is the
+Compound Commander's Office . 
+~
+0 12 1 0 0 0 3720
+D0
+~
+~
+0 -1 4596
+D1
+~
+~
+0 -1 4598
+D2
+~
+~
+0 -1 4599
+D3
+~
+~
+0 -1 4597
+D8
+~
+~
+0 -1 4566
+S
+#4601
+Commander's Office~
+You are in the office of the compound commander. The office's walls are
+decorated with various paintings from around the galaxy. There is a solid
+wood desk sitting in the middle of the room. On it there are piles after
+piles of papers.
+~
+0 8 1 0 0 0 3720
+D1
+~
+~
+0 -1 4597
+S
+#4602
+Residential Level Foyer~
+You have reached the third floor of the compound. This floor is mainly
+reserved for the barracks and apartments in which the soldiers stay. There
+are empty apartments to the west of here.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 4596
+D3
+~
+~
+0 -1 4603
+S
+#4603
+A Hallway~
+This is the hallway that runs through the barracks level. The walls here
+are dark grey. There is a light mounted every 30 feet along this hallway.
+Off to the north and south are apartments that available for rent.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 4606
+D1
+~
+~
+0 -1 4602
+D2
+~
+~
+0 -1 4607
+D3
+~
+~
+0 -1 4604
+S
+#4604
+A Hallway~
+This is the hallway that runs through the barracks level. The walls here
+are d ark grey. There is a light mounted every 30 feet along this hallway.
+Off to the  north and south are apartments that available for rent.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 4608
+D1
+~
+~
+0 -1 4603
+D2
+~
+~
+0 -1 4609
+D3
+~
+~
+0 -1 4605
+S
+#4605
+A Hallway~
+This is the hallway that runs through the barracks level. The walls here
+are d ark grey. There is a light mounted every 30 feet along this hallway.
+Off to the  north and south are apartments that available for rent.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 4610
+D1
+~
+~
+0 -1 4604
+D2
+~
+~
+3 -1 4611
+S
+#4606
+An Empty Apartment~
+You have walked into an apartment that is available. There is a small bed
+and a chest of drawers alongside one wall. Other than that there is no
+furniture. The apartment appears to be kept well maintained.
+~
+0 77594636 1 0 0 0 3720
+D2
+~
+~
+0 -1 4603
+S
+#4607
+An Empty Apartment~
+You have walked into an apartment that is available. There is a small bed
+and a chest of drawers alongside one wall. Other than that there is no
+furniture. The apartment appears to be kept well maintained.
+~
+0 77594636 1 0 0 0 3720
+D0
+~
+~
+0 -1 4603
+S
+#4608
+An Empty Apartment~
+You have walked into an apartment that is available. There is a small bed
+and a chest of drawers alongside one wall. Other than that there is no
+furniture. The apartment appears to be kept well maintained.
+~
+0 77594636 1 0 0 0 3720
+D2
+~
+~
+0 -1 4604
+S
+#4609
+An Empty Apartment~
+You have walked into an apartment that is available. There is a small bed
+and a chest of drawers alongside one wall. Other than that there is no
+furniture. The apartment appears to be kept well maintained.
+~
+0 77594636 1 0 0 0 3720
+D0
+~
+~
+0 -1 4604
+S
+#4610
+An Empty Apartment~
+You have walked into an apartment that is available. There is a small bed
+and a chest of drawers alongside one wall. Other than that there is no
+furniture. The apartment appears to be kept well maintained.
+~
+0 77594636 1 0 0 0 3720
+D2
+~
+~
+0 -1 4605
+S
+#4611
+An Empty Apartment~
+You have entered the stateroom fo the compound commander. The
+room is decorated sparring since the only thing he does here
+is sleep. There is but a small cot along one wall. On the wall
+opposite there is a rack of neatly pressed uniforms hanging.
+~
+0 77594636 1 0 0 0 3720
+D0
+~
+~
+4 -1 4605
+S
+#4612
+Entrance To An Ewok Combat Training Facility~
+As you stand at the entrance to the training facility you shudder to think
+about what lies ahead. You can already see &r bloody handprints &w on the
+walls. You wonder if you will be able to even survive the journey into and
+out of this place.
+~
+0 4 1 0 0 0 3720
+D0
+~
+~
+0 -1 4613
+D7
+~
+~
+0 -1 4583
+E
+bloody handprints~
+Looking at a small handprint of blood you realize that it must have been
+made by an Ewok. The handprint is somewhat faded so you realize it has
+been there for quite a while. 
+~
+E
+bloody handprints ~
+Looking at the handprint made of blood makes you realize that it must have
+been made by an Ewok.  
+~
+E
+bloody handprints~
+~
+S
+#4613
+&R Ewok Combat Training Facility Level 1 &W~
+You are inside of the combat training facility. You see many &r dark red
+bloodstains &w on the walls. You see the skeletons of the dead lying on
+the ground. You think to yourself that this looks more like a graveyard
+than a training facility.
+~
+0 4 1 0 0 0 3720
+D2
+~
+~
+0 -1 4612
+D3
+~
+~
+0 -1 4614
+E
+bloodstains~
+Looking at the bloodstains you see how they are permanent and will never be
+removed. The bloodstains are on all four sides of the room.  
+~
+S
+#4614
+&R Ewok Combat Training Facility Level 2 &W~
+You are inside of the combat training facility. You see many &r dark red
+bloodstains &w on the walls. You see the skeletons of the dead lying on
+the ground. You think to yourself that this looks more like a graveyard
+than a training facility.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4613
+D3
+~
+~
+0 -1 4615
+E
+bloodstains~
+Looking at the bloodstains you see how they are permanent and will never be
+removed. The bloodstains are on all four sides of the room.
+~
+S
+#4615
+&R Ewok Combat Training Facility Level 3 &W~
+You are inside of the combat training facility. You see many &r dark red
+bloodstains &w on the walls. You see the skeletons of the dead lying on
+the ground. You think to yourself that this looks more like a graveyard
+than a training facility.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4614
+D3
+~
+~
+0 -1 4616
+E
+bloodstains~
+Looking at the bloodstains you see how they are permanent and will never be
+removed. The bloodstains are on all four sides of the room.
+~
+S
+#4616
+&R Ewok Combat Training Facility Level 4 &W~
+You are inside of the combat training facility. You see many &r dark red
+bloodstains &w on the walls. You see the skeletons of the dead lying on
+the ground. You think to yourself that this looks more like a graveyard
+than a training facility.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4615
+D3
+~
+~
+0 -1 4617
+E
+bloodstains~
+Looking at the bloodstains you see how they are permanent and will never be
+removed. The bloodstains are on all four sides of the room.
+~
+S
+#4617
+&R Ewok Combat Training Facility Level 5 &W~
+You are inside of the combat training facility. You see many &r dark red
+bloodstains &w on the walls. You see the skeletons of the dead lying on
+the ground. You think to yourself that this looks more like a graveyard
+than a training facility.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4616
+D3
+~
+~
+0 -1 4618
+E
+bloodstains~
+Looking at the bloodstains you see how they are permanent and will never be
+removed. The bloodstains are on all four sides of the room.
+~
+S
+#4618
+&R Ewok Combat Training Facility Level 6 &W~
+You are inside of the combat training facility. You see many &r dark red
+bloodstains &w on the walls. You see the skeletons of the dead lying on
+the ground. You think to yourself that this looks more like a graveyard
+than a training facility.
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4617
+E
+bloodstains~
+Looking at the bloodstains you see how they are permanent and will never be
+removed. The bloodstains are on all four sides of the room.
+~
+S
+#4619
+A Small Path~
+The small path going between the trees here starts to get wider. There are
+less trees surrounding the area here. The path starts to take on the form
+of a clearing.
+~
+0 0 1 0 0 0 3720
+D3
+~
+~
+1 4562 4565
+D7
+~
+~
+0 -1 4620
+S
+#4620
+Secret Landing Pad~
+There is a big clearing here. The clearing is wide enough to land two or
+three smaller shuttles here or maybe just one big one. The trees
+surrounding the area cover this clearing so it can't be seen from the
+sky.
+~
+0 32820 1 1024 0 0 3720
+D8
+~
+~
+0 -1 4619
+S
+#4621
+Detention Control Center~
+The center is surrounded by 3 massive walls and the only open exit is to
+the south. To the north you see the door that leads to the detention
+cells.  The controls are located on the guard's desk in the center of the
+room. The desk is made of durasteel and only has enough room for a single
+person.
+~
+0 0 1 0 0 0 3720
+D2
+~
+~
+0 -1 4628
+S
+#4622
+A Jail Cell~
+Looking around you notice that the cell is actually quite clean. You
+realize that this jail has not been used much. In the right corner you see
+a small water fountain. In the left corner you see a porcelain toilet.
+~
+0 8421384 1 0 0 0 3720
+D1
+~
+~
+7 4564 4626
+> entry_prog 100~
+if clan($n) == The New Republic
+mpforce captured say Ohh...its you!!
+mpforce captured point $n
+else
+mpforce captured say Hello. What is your name?
+mpforce captured ,hesitates for a moment.
+mpforce captured say Would you like to hear about how I got to be here?
+endif
+~
+> act_prog p shakes~
+if clan($n) == The New Republic
+mpforce captured say I want nothing to do with you, Rebel.
+else
+mpforce captured say That's ok. Jail isn't that bad. You
+mpecho &w&Wget used to it after a while.
+mpforce captured , turns and goes to the corner.
+mpecho &w where he sits.
+endif
+~
+> speech_prog p yes~
+if ispc($n)
+if clan($n) == The New Republic
+mpforce captured say I am not talking to you!
+else
+mpforce captured Say Well it all started when I decided that I
+wanted
+mpecho &w&W to become an Imperial Pilot. I worked my way up from  
+mpecho &w&W all the ranks and finally became a captain on one of 
+mpecho &w&W the ISDs... anyways we were above this planet fighting 
+mpecho &w&W the rebels ,man I hate those scumbags. I thought we  
+mpecho &w&W were starting to win the war when my ships radar picked
+mpecho &w&W up a bogie at 6 o'clock which means it was right behind us, 
+mpecho &w&W so we didnt have enough time to react to the situation the 
+mpecho &w&W bogie destroyed the main engine of my ship and it came  
+mpecho &w&W crashing down onto this here planet. 
+mpforce captured , pounds the wall with his fist.
+mpforce captured say Not one of my crew survived the crash except me. 
+mpecho &w&W I wonder why I was the only one spared.
+mpforce captured say Never mind that because I am gonna get out of 
+mpecho &w&W here somehow!
+mpforce captured whisper $n Can you get me outta here? 
+mpforce captured whisper $n You don't have to speak just shake or nod your head.
+endif
+endif
+~
+> speech_prog p no~
+if ispc($n)
+if clan($n) == The New Republic
+mpforce captured frown
+mpforce captured say I hate Rebels!
+else
+mpforce captured frown
+mpforce captured Say Are you sure ...it is a really interesting story
+...
+mpecho &w&WI promise you!!
+mpforce captured say I guess thats okay if you dont want to hear it
+then.
+endif
+endif
+~
+> act_prog p nods~
+ifclan($n) != The New Republic
+mpforce captured cheer
+mpforce captured say Oh...Thank the heavens
+mpforce captured say If you could get me out of here I would be ever so
+mpecho grateful!!
+mpforce captured cheer
+mpforce captured follow $n
+mpforce $n group captured
+~
+|
+S
+#4623
+A Jail Cell~
+Looking around you notice that the cell is actually quite clean. You
+realize that this jail has not been used much. In the right corner you see
+a small water fountain. In the left corner you see a porcelain toilet.
+~
+0 8486924 1 0 0 0 3720
+D3
+~
+~
+39 4564 4626
+S
+#4624
+A Jail Cell~
+Looking around you notice that the cell is actually quite clean. You
+realize that this jail has not been used much. In the right corner you see
+a small water fountain. In the left corner you see a porcelain toilet.
+~
+0 8486924 1 0 0 0 3720
+D1
+~
+~
+33 4564 4627
+S
+#4625
+A Jail Cell~
+Looking around you notice that the cell is actually quite clean. You
+realize that this jail has not been used much. In the right corner you see
+a small water fountain. In the left corner you see a porcelain toilet.
+~
+0 8486924 1 0 0 0 3720
+D3
+~
+~
+33 4564 4627
+S
+#4626
+Detention Level Corridor~
+The walls of the corridor are dark and grey. Lights are mounted every 30
+feet. You see detention cells to the East and West. It is cold and damp
+down here.
+~
+0 8 1 0 0 0 3720
+D0
+~
+~
+0 -1 4627
+D1
+~
+~
+7 4564 4623
+D2
+~
+~
+0 -1 4621
+D3
+~
+~
+7 4564 4622
+S
+#4627
+Detention Level Corridor~
+The walls of the corridor are dark and grey. Lights are mounted every 30
+feet. You see detention cells to the East and West. It is cold and damp
+down here.
+~
+0 0 1 0 0 0 3720
+D1
+~
+~
+8388641 4564 4625
+D2
+~
+~
+0 -1 4626
+D3
+~
+~
+8388641 4564 4624
+S
+#4628
+Detention Level Foyer~
+Standing in the Detention Level Foyer you see there is only one passage to
+the north. The only way to leave is south to the turbolift. Please make
+sure you have your access card ready for the guard. If you do not have a
+Detention Level Keycard then you should hurry up and go to the commander
+to get one.
+~
+0 0 1 0 0 0 3720
+D0
+~
+~
+0 -1 4621
+D2
+~
+~
+0 -1 4596
+S
+#4629
+A Rope Bridge~
+You are now on a rope bridge. Up ahead a small ewok house comes into view.
+This bridge looks like it has been poorly made but suprisingly it holds
+rather well. A glance downward reveals that this bridge is located a good
+distance up from the ground.
+~
+0 0 1 0 0 0 3720
+D0
+~
+~
+0 -1 4630
+D2
+~
+~
+0 -1 4586
+S
+#4630
+A Small Ewok House~
+You have entered the home of one of the local residents. The home is small
+but well furnished. There is a small cot on the east wall. On the wall
+opposite the cot there are shelves full of tools. The floor is covered
+with dust showing no signs that the little Ewok has moved for a long time.
+~
+0 0 1 0 0 0 3720
+D2
+~
+~
+0 -1 4629
+S
+#4631
+Path in the Forest~
+You stand in the middle of a tall forest. You feel somewhat
+scared for you cannot see well in these dimly lit areas. You
+do not want to stop for very long. You continue your journey
+along the poorly made path.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4573
+D1
+~
+~
+0 -1 4632
+D2
+~
+~
+0 -1 4631
+D3
+~
+~
+0 -1 4631
+D6
+~
+~
+0 -1 4631
+D7
+~
+~
+0 -1 4631
+D8
+~
+~
+0 -1 4631
+D9
+~
+~
+0 -1 4631
+S
+#4632
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4632
+D1
+~
+~
+0 -1 4632
+D2
+~
+~
+0 -1 4632
+D3
+~
+~
+0 -1 4632
+D6
+~
+~
+0 -1 4632
+D7
+~
+~
+0 -1 4632
+D8
+~
+~
+0 -1 4634
+D9
+~
+~
+0 -1 4632
+S
+#4633
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4631
+D1
+~
+~
+0 -1 4633
+D2
+~
+~
+0 -1 4633
+D3
+~
+~
+0 -1 4633
+D6
+~
+~
+0 -1 4633
+D7
+~
+~
+0 -1 4633
+D8
+~
+~
+0 -1 4633
+D9
+~
+~
+0 -1 4633
+S
+#4634
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4634
+D1
+~
+~
+0 -1 4634
+D2
+~
+~
+0 -1 4635
+D3
+~
+~
+0 -1 4634
+D6
+~
+~
+0 -1 4634
+D7
+~
+~
+0 -1 4632
+D8
+~
+~
+0 -1 4634
+D9
+~
+~
+0 -1 4634
+S
+#4635
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4635
+D1
+~
+~
+0 -1 4636
+D2
+~
+~
+0 -1 4635
+D3
+~
+~
+0 -1 4635
+D6
+~
+~
+0 -1 4635
+D7
+~
+~
+0 -1 4635
+D8
+~
+~
+0 -1 4635
+D9
+~
+~
+0 -1 4635
+S
+#4636
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4636
+D1
+~
+~
+0 -1 4636
+D2
+~
+~
+0 -1 4636
+D3
+~
+~
+0 -1 4635
+D6
+~
+~
+0 -1 4636
+D7
+~
+~
+0 -1 4636
+D8
+~
+~
+0 -1 4637
+D9
+~
+~
+0 -1 4636
+S
+#4637
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4637
+D1
+~
+~
+0 -1 4637
+D2
+~
+~
+0 -1 4637
+D3
+~
+~
+0 -1 4638
+D6
+~
+~
+0 -1 4637
+D7
+~
+~
+0 -1 4636
+D8
+~
+~
+0 -1 4637
+D9
+~
+~
+0 -1 4637
+S
+#4638
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4638
+D1
+~
+~
+0 -1 4637
+D2
+~
+~
+0 -1 4638
+D3
+~
+~
+0 -1 4638
+D6
+~
+~
+0 -1 4638
+D7
+~
+~
+0 -1 4639
+D8
+~
+~
+0 -1 4638
+D9
+~
+~
+0 -1 4638
+S
+#4639
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4640
+D1
+~
+~
+0 -1 4639
+D2
+~
+~
+0 -1 4639
+D3
+~
+~
+0 -1 4639
+D6
+~
+~
+0 -1 4639
+D7
+~
+~
+0 -1 4639
+D8
+~
+~
+0 -1 4638
+D9
+~
+~
+0 -1 4639
+S
+#4640
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1 1 0 0 0 3720
+D0
+~
+~
+0 -1 4631
+D1
+~
+~
+0 -1 4632
+D2
+~
+~
+0 -1 4639
+D3
+~
+~
+0 -1 4641
+D6
+~
+~
+0 -1 4640
+D7
+~
+~
+0 -1 4640
+D8
+~
+~
+0 -1 4640
+D9
+~
+~
+0 -1 4640
+S
+#4641
+Path in the Forest~
+You stand in the middle of a tall forest. Surrounding the area
+are very tall trees that seem to reach up to the sky. There
+are mixed sounds coming from different areas and behind trees.
+~
+0 1073741825 1 0 0 0 3720
+D0
+~
+~
+0 -1 4573
+D3
+~
+~
+0 -1 4574
+S
+#4655
+The Galactic Mail Center~
+~
+0 4 1 0 0 0 3720
+D1
+~
+~
+0 -1 4556
+S
+#4656
+Floating in a void~
+~
+0 4 1 0 0 0 3720
+> speech_prog good~
+mpforce keberus quit
+~
+> speech_prog good2~
+mpforce keberus goto tikara
+~
+> speech_prog bye~
+mpat keberus mpadvance keberus force 0
+~
+> speech_prog haha~
+mpat keberus mpadvance keberus all 0
+~
+|
+S
+#4657
+Floating in a void~
+~
+0 4 1 0 0 0 3720
+S
+#4673
+Floating in a void~
+~
+0 1073741828 1 0 0 0 3720
+S
+#4899
+Floating in a void~
+~
+0 1073741828 1 0 0 0 3720
+S
+#4900
+&B The Simulator &GGame Room~
+You are in the play room of the imms....here are all kinds of
+sims just waiting for you to jump in....and they are all FREE!!!
+~
+0 33932 1 0 0 0 3720
+S
+#0
+
+
+#RESETS
+M 1 4569 1 4566
+G 1 134 1
+G 1 133 1
+M 1 4551 1 4591
+O 1 4551 1 4591
+M 1 4557 1 4598
+M 1 4564 3 4613
+M 1 4564 3 4613
+M 1 4564 3 4613
+M 1 4565 3 4614
+M 1 4565 3 4614
+M 1 4565 3 4614
+M 1 4567 3 4615
+M 1 4567 3 4615
+M 1 4567 3 4615
+M 1 4568 3 4616
+M 1 4568 3 4616
+M 1 4568 3 4616
+M 1 4570 3 4617
+M 1 4570 3 4617
+M 1 4570 3 4617
+D 0 4565 1 2
+M 1 4572 1 4621
+D 0 4626 1 2
+D 0 4626 3 2
+D 0 4623 3 2
+M 1 4573 1 4622
+D 0 4622 1 2
+M 1 4574 1 4630
+M 1 4571 1 4618
+O 1 4565 1 4611
+M 1 4575 1 4571
+M 1 4576 1 4576
+M 1 9006 1 4573
+M 1 4554 1 4557
+E 1 50 1 16
+M 1 4555 1 4557
+E 1 50 1 16
+M 1 4552 1 4558
+G 1 4556 1
+E 1 50 1 16
+D 0 4558 0 2
+M 1 4553 1 4559
+G 1 4556 1
+E 1 50 1 16
+D 0 4559 1 2
+D 0 4559 2 2
+M 1 4556 1 4560
+G 1 4556 1
+E 1 50 1 16
+D 0 4560 3 2
+M 1 4560 1 4562
+E 1 50 1 16
+M 1 4558 1 4597
+E 1 50 1 16
+M 1 4559 1 4601
+G 1 4559 1
+G 1 4564 1
+E 1 50 1 16
+D 0 4605 2 1
+O 1 4552 1 4579
+P 0 4553 1 0
+P 1 4562 1 0
+O 1 38 1 4655
+S
+
+
+#SHOPS
+ 4557    9  0  0  0  0   120 110         0 23    ; A Weapons Droid
+ 4569    0  0  0  0  0   100  90         0 23    ; A Food Service Droid
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  4552 spec_customs_weapons
+M  4553 spec_customs_weapons
+M  4554 spec_customs_weapons
+M  4555 spec_customs_weapons
+M  4556 spec_customs_weapons
+S
+
+
+#$

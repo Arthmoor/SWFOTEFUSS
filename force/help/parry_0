@@ -1,0 +1,9 @@
+#FORCE
+Name      parry~
+Status    1
+Type      0
+Desc      This skill is used along with a lightsaber to parry your$RN$enemy's attacks.  It is an automatic skill meaning that it$RN$will happen on it's own.$RN$~
+Skill     -1
+End
+
+#END

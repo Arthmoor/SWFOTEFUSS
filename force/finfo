@@ -1,0 +1,32 @@
+#FORCE
+Alter          0
+ChEffect0     You close your eyes and tune into your inner force.$RN$~
+ChEffect1     ~
+ChEffect2     You close your eyes but are unable to tune into your inner force.$RN$~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_finfo~
+Cost           0
+Control        0
+Disabled       0
+Mastertrain    0
+Index          1
+Name           finfo~
+Notskill       0
+RoomEffect0     $n closes $np eyes and tunes into $np inner force.$RN$~
+RoomEffect1     ~
+RoomEffect2     $n closes $np eyes but is unable to tune into $np inner force.$RN$~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          1
+Status         1
+Type           0
+VictimEffect0     ~
+VictimEffect1     ~
+VictimEffect2     ~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      0
+End
+
+#END

@@ -1,0 +1,10309 @@
+#AREA   New Coruscant~
+
+
+
+#AUTHOR Eleven~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6263361
+
+#MOBILES
+#19000
+lowmob~
+a newly created lowmob~
+Some god abandoned a newly created lowmob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19001
+farrell bantha cook~
+Farrell the Bantha Cook~
+A man in a half bloodied apron stands behind the counter.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpsleep 4
+emote wipes his hands, and looks at you.
+say How can I help ya?
+~
+|
+#19002
+gillian~
+Gillian~
+An elderly woman is here, humming a soft tune.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> rand_prog 90~
+emote quietly hums a song.
+~
+|
+#19003
+teenage clerk~
+A teenage clerk~
+A young man sits behind a counter, playing a hologame.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19004
+gordon~
+Gordon~
+A rugged looking man sits behind a counter, polishing a blade.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19005
+stormtrooper sentry~
+A stormtrooper~
+A stormtrooper stands here, watching over the area.
+~
+~
+3 0 0 Z
+1 0 0 300d1+50 12d1+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+20 10 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19006
+_planetdefense imperial officer~
+an Imperial Officer~
+An Imperial Officer stands beside the entrance.
+~
+~
+3 0 0 Z
+1 0 -250 300d1+50 12d1+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+20 0 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if clan($n) == The Empire
+say Good say sir.
+mpsleep 6
+say Do you need entry? If so, say 'Let me in, officer.'
+else
+say This is a restricted area. You must leave.
+emote places a hand on his blaster.
+endif
+~
+> speech_prog 'Let me in, officer.'~
+if clan($n) == The Empire
+say Right away sir.
+mpsleep 6
+emote slides a keycard through a scanner, and the doors slide open.
+mpechoat $n The Officer ushers you through the entrance.
+mpechoaround $n The Officer ushers $n through the entrance.
+mptransfer $n 19276
+mpat $n mpechoaround $n The entrance slides open.
+mpat $n mpechoaround $n $n steps through, and the doors quickly slide closed.
+mpat $n mpechoat $n The doors quickly slide closed.
+else
+say This is a restricted area. LEAVE NOW.
+emote unholsters his blaster, aiming toward you.
+mpecho A Stormtrooper begins talking into his comlink.
+endif
+~
+|
+#19007
+_planetdefense stormtrooper~
+a Stormtrooper~
+A Stormtrooper stands here, looking for a reason to blast someone.
+~
+~
+32771 0 0 Z
+1 0 -200 300d1+50 12d1+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+14 5 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+#19008
+_pd desk officer~
+an Imperial Officer~
+An officer is sitting behind the desk, reading some documents.
+~
+~
+1073741827 0 0 Z
+1 0 -250 300d1+50 12d1+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+12 0 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+#19009
+_tbyolar protocol droid~
+a Protocol Droid~
+A protocol droid stands here, directing passengers to the turbocar.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say Greetings. I am C-90A.
+say If you wish to use the turbocar, the fee is 50 credits.
+~
+> bribe_prog 50~
+say Very good sir. Right this way...
+mpechoat $n You walk to the turbocar stop.
+mpechoaround $n $n walks to the turbocar stop.
+mptransfer $n 19283
+mpat $n mpechoaround $n $n arrives from the east.
+mpat $n mpforce $n look
+mpsleep 4
+mpat $n mpechoat $n Protocol Droid C-90A leaves east.
+~
+|
+#19010
+_tbbulova protocol droid~
+a Protocol Droid~
+A protocol droid stands here, directing passengers to the turbocar.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say Greetings. I am C-90B.
+say If you wish to use the turbocar, the fee is 50 credits.
+~
+> bribe_prog 50~
+say Very good sir. Right this way...
+mpechoat $n You talk to the turbocar stop.
+mpechoaround $n $n walks to the turbocar stop.
+mptransfer $n 19284
+mpat $n mpechoaround $n $n arrives from the north.
+mpat $n mpforce $n look
+mpsleep 4
+mpat $n mpechoat $n Protocol Droid C-90B leaves north.
+~
+|
+#19011
+_tbmenari protocol droid~
+a Protocol Droid~
+A protocol droid stands here, directing passengers to the turbocar.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say Greetings. I am C-90C.
+say If you wish to use the turbocar, the fee is 50 credits.
+~
+> bribe_prog 50~
+say Very good sir. Right this way...
+mpechoat $n You walk to the turbocar stop.
+mpechoaround $n $n walks to the turbocar stop.
+mptransfer $n 19286
+mpat $n mpechoaround $n $n arrives from the northeast.
+mpat $n mpforce $n look
+mpsleep 4
+mpat $n mpechoat $n Protocol Droid C-90C leaves northeast.
+~
+|
+#19012
+_cit_serin old man citizen~
+an old man~
+An old man sits here, awaiting the Serin shuttle.
+~
+~
+3 0 0 Z
+1 0 0 500d1+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19013
+_cit_m_1 male citizen man~
+a young man~
+A young man idly walks through the streets.
+~
+~
+1 0 0 Z
+1 0 0 500d1+0 0d0+0
+24 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19014
+_cit_m_2 male citizen man~
+a middle-aged man~
+A middle-aged man strolls along, looking at the ground.
+~
+~
+1 0 0 Z
+1 0 0 500d1+0 0d0+0
+14 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19015
+_cit_m_3 male citizen man~
+an elderly man~
+An elderly man slowly walks throughout the city.
+~
+~
+1 0 0 Z
+1 0 0 500d1+0 0d0+0
+8 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19016
+_cit_m_4 male citizen business man~
+a businessman~
+A businessman briskly walks along, reading a datasheet.
+~
+~
+1 0 0 Z
+1 0 0 500d1+0 0d0+0
+68 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19017
+_cit_m_5 male citizen boy~
+a little boy~
+A small child runs around, narrowly avoiding the turbocars.
+~
+~
+1 0 0 Z
+1 0 0 500d1+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19018
+_cit_f_1 female citizen woman~
+a young woman~
+A young woman happily moves through the city.
+~
+~
+1 0 0 Z
+1 0 0 500d1+0 0d0+0
+31 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19019
+_cit_f_2 female citizen woman~
+an older woman~
+An older woman strolls along, watching the traffic fly by.
+~
+~
+1 0 0 Z
+1 0 0 500d1+0 0d0+0
+9 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19020
+_cit_f_3 female citizen girl~
+a young girl~
+A young girl walks along, singing to herself.
+~
+~
+1 0 0 Z
+1 0 0 500d1+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19021
+A Chadra Fan Citizen Chadra-Fan~
+A Chadra-Fan Citizen~
+A Chadra-Fan citizen makes its way through the crowd here.
+~
+~
+1073741953 0 0 Z
+20 0 50 4d10+200 2d4+2
+7 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+14 0 0 0 8388609 8388608 0
+4 4 0 0 0 0 0 0
+1 0 0 0 0 0 0 0
+#19022
+_palace detention level officer~
+an Imperial Officer~
+An Imperial officer is monitoring the cells from here.
+~
+~
+3 0 0 Z
+1 0 0 750d1+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+20 5 0 0 0 0 0 2
+0 0 0 0 0 0 0 0
+#19023
+_palace detention level stormtrooper~
+a Stormtrooper~
+A Stormtrooper guards entry to the detention area.
+~
+~
+3 0 0 Z
+1 0 -150 600d1+0 5d1+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+18 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19024
+_tbgardens protocol droid~
+a Protocol Droid~
+A protocol droid stands here, directing passengers to the turbocar.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say Greetings. I am C-90D.
+say If you wish to use the turbocar, the fee is 50 credits.
+~
+> bribe_prog 50~
+say Very good sir. Right this way...
+mpechoat $n You walk to the turbocar stop.
+mpechoaround $n $n walks to the turbocar stop.
+mptransfer $n 19370
+mpat $n mpforce $n look
+mpsleep 4
+mpat $n mpechoat $n Protocol Droid C-90D leaves south.
+~
+|
+#19025
+_gardens lobby clerk~
+a beautiful clerk~
+A clerk is here, watching for visitors coming in.
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19026
+droid~
+shopping droid~
+A droid is behind a counter, awaiting your purchases.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 18 10 10 10
+0 0 0 0 0
+21 0 0 0 1 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19027
+_msb shopper~
+A shopper~
+A shopper is looking at the blasters thoughtfully.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> rand_prog 100~
+hmm
+~
+|
+#19028
+_sfinc host~
+A SimFlight Host~
+A host with a big, artificial smile on his face stands in front of the door.
+~
+~
+3 4194304 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say Hello!
+say Are you a member?
+~
+> speech_prog yes~
+say May I see your membership card please?
+~
+> act_prog p nods~
+say May I see your membership card please?
+~
+> speech_prog no~
+say Oh, well then, now is the perfect time to join!
+emote goes through some paperwork.
+say If you purchase a membership now, you can take advantage of our special new-member discount! Only 500 credits allows you access to any of our facilities, teachers, and equipment!
+say Doesn't that sound just &wgreat&W?
+emote flashes a big, toothy smile.
+say Interested? You can pay me now, and I'll get you setup!
+~
+> act_prog shakes~
+say Oh, well then, now is the perfect time to join!
+emote goes through some paperwork.
+say If you purchase membership now, you can take advantage of our special new-member discount! Only 500 credits allows you access to any of our facilities, teachers, and equipment!
+say Doesn't that sound just &wgreat&W?
+emote flashes a big, toothy smile.
+say Interested? You can pay me now, and I'll get you setup!
+~
+> give_prog _sfinc membership card~
+if ovnuminv(19088) == 1
+nod
+give card $n
+say Right this way!
+mptransfer $n 19411
+mpat $n mea $n You are escorted through the entrance.
+else
+endif
+~
+> bribe_prog 500~
+say Great! Welcome to SimFlight!
+mpoload 19088
+give card $n
+say If you need to use our facilities, simply show this card to the host at the SimFlight location of your choice, and they will let you in! Enjoy!
+~
+|
+#19029
+duros manager~
+a Duros store manager~
+The manager of the store briskly moves around the area.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19030
+merr-sonn manager~
+The Manager~
+The manager sits behind his desk, shuffling through papers.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if isevil($n)
+ if lck($n) > 16
+ say Hm....
+ say You look like the prospective type.
+ say Interested in a hot item? Can't find it anywhere...
+ endif
+else
+say Can I help you?
+endif
+~
+> act_prog p nods~
+if isevil($n)
+ if lck($n) > 16
+ grin
+ say Great.
+ emote flashes a Merr-Sonn Quickfire-4 holdout blaster.
+ say Illegal on every planet known to the great Empire.
+ say And a steal, at 25000 credits. Can be yours.
+ endif
+else
+say ...What can I help you with?
+endif
+~
+> speech_prog yes~
+if isevil($n)
+ if lck($n) > 16
+ grin
+ say Great.
+ emote flashes a Merr-Sonn Quickfire-4 holdout blaster.
+ say Illegal on every planet known to the great Empire.
+ say And a steal, at 25000 credits. Can be yours.
+ endif
+else
+say ...What can I help you with?
+endif
+~
+> bribe_prog 25000~
+if isevil($n)
+ if lck($n) > 16
+ smile
+ say Been a pleasure.
+ say If you need ammo for this thing, give 500 creds to the ammo droid.
+ mpoload 19047
+ give blaster $n
+ mpat 11 drop all
+ else
+ emote gives you a wary look.
+ say ...What is this for?
+ shake
+ drop all
+ endif
+else
+emote gives you a wary look.
+say ...What is this for?
+shake
+drop all
+endif
+~
+|
+#19031
+turret mounted~
+a Stormtrooper mounted on a turret~
+A turbolaser turret is being manned by a stormtrooper here.
+~
+~
+3 0 0 Z
+1 0 0 800d1+50 12d1+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+25 30 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19501
+_market verpine jewelry attendant~
+A verpine jewelry attendant~
+A verpine jewelry attendant stands behind the main display case.
+~
+~
+134217731 0 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1048577 1 0
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+if ispc($n)
+say Hello, welcome to Jewelry Mil'Ranis. I am Ix'lan, if you need assistance I will be here to help.
+else
+endif
+~
+|
+#19502
+_market droid service TI-2033~
+TI-2033~
+A Service Droid stands behind the counter, ready to assist.
+~
+~
+1207959555 0 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 1 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19503
+_ctrain moving target~
+a moving target~
+&R&GA moving target slides around the firing range.
+~
+~
+67108865 0 0 Z
+1 0 0 20000d1+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 1 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19504
+_ctrain stationary target~
+a stationary target~
+&R&GA stationary target is here, waiting to be shot at.
+~
+~
+67108867 0 0 Z
+1 0 0 20000d1+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 1 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19600
+Glip shopkeeper~
+Glip~
+Glip the shop owner is standing by the register, keeping track of credits.
+~
+~
+1073741827 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 0 0 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#19999
+himob~
+a newly created himob~
+Some god abandoned a newly created himob here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#19000
+lowobj~
+a lowobj~
+A lowobj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19001
+drinking fountain~
+a drinking fountain~
+A drinking fountain has been attached to the wall.~
+~
+25 0 0
+0 0 0 0
+1 0 0
+#19002
+mall fountain~
+an enormous fountain~
+An enormous fountain is built here, elegantly displaying water patterns.~
+~
+25 0 0
+0 0 0 0
+1 0 0
+#19003
+_mallbutton3 3~
+the '3' button~
+A button with the number '3' is attached to the panel.~
+~
+39 0 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpechoat $n You press the '3' button in.
+mpechoaround $n $n presses the '3' button.
+mppurge _mallbutton1
+mppurge _mallbutton2
+mppurge _mallbutton3
+mpoload 19005
+mpoload 19004
+mpoload 19003
+mpechoat $n *ding* The turbolift moves to level 3, and you step off.
+mpechoaround $n *ding* The turbolift moves to level 3, and $n steps off.
+mptransfer $n 19211
+mpat $n mpechoaround $n $n steps from the turbolift.
+mpat $n mpforce $n look
+~
+|
+#19004
+_mallbutton2 2~
+the '2' button~
+A button with the number '2' is attached to the panel.~
+~
+39 0 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpechoat $n You press the '2' button in.
+mpechoaround $n $n presses the '2' button.
+mppurge _mallbutton1
+mppurge _mallbutton2
+mppurge _mallbutton3
+mpoload 19005
+mpoload 19004
+mpoload 19003
+mpechoat $n *ding* The turbolift moves to level 2, and you step off.
+mpechoaround $n *ding* The turbolift moves to level 2, and $n steps off.
+mptransfer $n 19210
+mpat $n mpechoaround $n $n steps from the turbolift.
+mpat $n mpforce $n look
+~
+|
+#19005
+_mallbutton1 1~
+the '1' button~
+A button with the number '1' is attached to the panel.~
+~
+39 0 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpechoat $n You press the '1' button in.
+mpechoaround $n $n presses the '1' button.
+mppurge _mallbutton1
+mppurge _mallbutton2
+mppurge _mallbutton3
+mpoload 19005
+mpoload 19004
+mpoload 19003
+mpechoat $n *ding* The turbolift moves to level 1, and you step off.
+mpechoaround $n *ding* The turbolift moves to level 1, and $n steps off.
+mptransfer $n 19185
+mpat $n mpechoaround $n $n steps from the turbolift.
+mpat $n mpforce $n look
+~
+|
+#19006
+bantha burger~
+a bantha burger~
+A bantha burger has been tossed on the ground.~
+~
+19 8192 1
+20 0 0 0
+1 20 2
+#19007
+bantha slab meat~
+a slab of bantha meat~
+A slab of meat is decomposing here.~
+~
+19 8192 1
+40 0 0 0
+1 22 2
+#19008
+bantha jerky~
+a piece of bantha jerky~
+A strip of bantha is here.~
+~
+19 8192 1
+40 0 0 0
+1 15 1
+#19009
+black shirt~
+a black shirt~
+A crumpled mass of black cloth is here.~
+~
+9 8192 9
+10 10 0 0
+1 54 5
+#19010
+worn denim jacket~
+a worn denim jacket~
+A crumpled mass of demin is here.~
+~
+9 8192 1025
+15 15 0 0
+1 72 7
+#19011
+khaki pants~
+a pair of khaki pants~
+A crumpled mass of pants is here.~
+~
+9 8192 33
+15 15 0 0
+1 60 6
+#19012
+white dress~
+A long, white dress~
+A crumpled mass of dress is here.~
+~
+9 8192 9
+10 10 0 0
+1 81 8
+#19013
+denim jeans~
+a pair of denim jeans~
+A crumpled mass of denim is here.~
+~
+9 8192 33
+18 18 0 0
+1 60 6
+#19014
+sabaac card deck~
+a deck of sabaac cards~
+A deck of sabaac cards has been discarded here.~
+~
+13 8192 1
+0 0 0 0
+1 12 1
+#19015
+hologame starpilot~
+A hologame of 'Starpilot'~
+A portable hologame is on the ground.~
+~
+13 8192 1
+0 0 0 0
+1 193 19
+#19016
+datapad small~
+a small datapad~
+A small datapad has been misplaced here.~
+~
+89 8192 1
+0 0 0 0
+1 1015 101
+#19017
+sunglasses glasses~
+a pair of sunglasses~
+A pair of sunglasses have been tossed away here.~
+~
+9 8192 131073
+5 5 0 0
+1 38 3
+#19018
+sharp vibroblade~
+a sharp vibroblade~
+A sharp vibroblade is here.~
+~
+5 8194 8193
+12 25 40 2 1200 1200
+1 1542 154
+#19019
+large vibro axe~
+a large vibroaxe~
+A large vibroaxe rests here.~
+~
+5 8194 8193
+12 25 60 1
+1 2100 210
+A
+18 -2
+#19020
+stormtrooper armor gear~
+a set of white stormtrooper gear~
+A stormtrooper's armor is here.~
+~
+9 0 9
+50 50 0 0
+1 500 50
+#19021
+stormtrooper helmet~
+a stormtrooper helmet~
+A stormtrooper's helmet has been dropped here.~
+~
+9 0 17
+50 50 0 0
+1 200 20
+#19022
+imperial e-11 blaster rifle~
+an Imperial-issue E-11 Blaster Rifle~
+An imperial blaster rifle was dropped here.~
+~
+5 0 8193
+0 40 65 6
+10 3250 325
+A
+18 2
+#19023
+sorosuub q1 q-1 blaster pistol~
+a Sorosuub Q-1 blaster pistol~
+A small blaster pistol was dropped here.~
+~
+5 8192 8193
+0 20 30 6 250 250
+10 790 79
+A
+19 2
+#19024
+merr-sonn deathhammer blaster pistol~
+a Merr-Sonn 'DeathHammer' blaster pistol~
+A somewhat large blaster pistol is on the ground.~
+~
+5 8192 8193
+0 40 65 6 400 400
+10 6500 354
+A
+18 2
+A
+19 1
+#19025
+merr-sonn b22 holdout blaster~
+a Merr-Sonn B22 holdout blaster~
+A very small blaster is on the ground.~
+~
+5 8192 8193
+0 30 50 6 200 200
+10 709 325
+#19026
+sorosuub bmc-150 blaster carbine~
+a Sorosuub BMC-150 blaster carbine~
+A somewhat long blaster is here.~
+~
+5 8192 8193
+0 25 40 6 750 750
+10 7501 750
+A
+19 4
+A
+18 -2
+#19027
+merr-sonn g8 blaster rifle~
+a Merr-Sonn G8 blaster rifle~
+A blaster rifle is here.~
+~
+5 8192 8193
+0 20 65 6 750 750
+10 5140 325
+A
+18 2
+#19028
+merr-sonn ir-5 intimidator blaster pistol~
+a Merr-Sonn IR-5 'Intimidator' blaster pistol~
+A blaster pistol was dropped here.~
+~
+5 8192 8193
+0 25 28 6
+10 2350 235
+A
+18 4
+A
+19 -3
+#19029
+merr-sonn kylan blaster pistol~
+a Merr-Sonn Kylan-3 blaster pistol~
+A blaster pistol has been dropped here.~
+~
+5 8192 8193
+0 20 35 6 500 500
+10 1005 100
+A
+19 2
+#19030
+sorosuub q2 q-2 holdout blaster~
+a Sorosuub Q-2 holdout blaster~
+A small blaster pistol was dropped here.~
+~
+5 8192 8193
+0 20 35 6 400 250
+10 900 90
+A
+19 2
+#19031
+sorosuub quicksnap 36t blaster carbine~
+a Sorosuub QuickSnap 36T blaster carbine~
+A somewhat long blaster is here.~
+~
+5 8192 8193
+0 25 40 6 750 750
+10 5600 560
+A
+18 3
+#19032
+sorosuub quicksnap2 36t/i blaster carbine~
+a Sorosuub QuickSnap 36T/I blaster carbine~
+A somewhat long blaster is here.~
+~
+5 8192 8193
+0 25 55 6 750 750
+10 6250 625
+A
+18 3
+A
+19 2
+#19033
+sorosuub renegade heavy blaster pistol~
+a Sorosuub 'Renegade' heavy blaster pistol~
+A heavy blaster pistol was dropped here.~
+~
+5 8192 8193
+0 50 70 6 1100 1100
+10 9560 956
+A
+18 2
+A
+19 1
+#19034
+blastech dh-17 blaster rifle~
+a BlasTech DH-17 blaster rifle~
+A blaster rifle was dropped here.~
+~
+5 8192 8193
+0 30 40 6 650 650
+10 4401 230
+A
+19 2
+A
+18 1
+#19035
+blastech dl-18 blaster pistol~
+a BlasTech DL-18 blaster pistol~
+A blaster pistol is here.~
+~
+5 8192 8193
+0 20 30 6 350 350
+10 1800 180
+A
+18 1
+A
+19 1
+#19036
+blastech dl-22 blaster pistol~
+a BlasTech DL-22 blaster pistol~
+A blaster pistol is on the ground.~
+~
+5 8192 8193
+0 30 40 6 350 350
+10 3800 380
+A
+18 4
+#19037
+blastech dl-44 heavy blaster pistol~
+a BlasTech DL-44 heavy blaster pistol~
+A heavy blaster pistol is here.~
+~
+5 8192 8193
+0 25 55 6 400 400
+10 7610 761
+A
+18 3
+A
+19 2
+#19038
+blastech dl-56 heavy blaster pistol~
+a BlasTech DL-56 heavy blaster pistol~
+A heavy blaster pistol is here.~
+~
+5 8192 8193
+0 25 55 6 400 400
+10 8800 880
+A
+19 6
+#19039
+blastech dlt-19 light blaster rifle~
+a BlasTech DLT-19 light blaster rifle~
+A somewhat long blaster is here.~
+~
+5 8192 8193
+0 25 40 6 750 750
+10 5001 500
+A
+18 3
+#19040
+blastech dlt-20a blaster rifle~
+a BlasTech DLT-20a blaster rifle~
+A somewhat long blaster is here.~
+~
+5 8192 8193
+0 25 40 6 750 750
+10 8500 850
+A
+53 100
+#19041
+blastech dy-225 heavy blaster pistol~
+a BlasTech DY-225 heavy blaster pistol~
+A heavy blaster pistol is lying here.~
+~
+5 8192 8193
+0 40 55 6 300 300
+10 9200 920
+A
+18 2
+A
+19 1
+#19042
+blastech ekx-10 blaster rifle~
+a BlasTech EKX-10 blaster rifle~
+A blaster rifle is here.~
+~
+5 8192 8193
+0 20 50 6 650 650
+10 4400 440
+A
+18 2
+#19043
+merr-sonn flash4 heavy blaster pistol~
+a Merr-Sonn 'Flash 4' heavy blaster pistol~
+A heavy blaster pistol is here.~
+~
+5 8192 8193
+0 25 55 6 950 950
+10 6400 640
+A
+18 3
+A
+19 2
+#19044
+sorosuub glx firelance blaster rifle~
+a Sorosuub GLX 'Firelance' blaster rifle~
+A blaster rifle was dropped here.~
+~
+5 8192 8193
+0 30 45 6 600 600
+10 5750 340
+A
+19 2
+A
+18 1
+#19045
+sorosuub heavy tracker blaster rifle~
+a Sorosuub HeavyTracker 16 blaster rifle~
+A long blaster rifle was dropped here.~
+~
+5 0 8193
+0 30 40 6 650 650
+10 3300 270
+A
+18 2
+#19046
+blastech hunter v blaster carbine~
+a BlasTech Hunter V blaster carbine~
+A somewhat long blaster is here.~
+~
+5 8192 8193
+0 25 55 6 650 650
+10 9100 660
+A
+18 3
+A
+19 3
+#19047
+merr-sonn quickfire-4 holdout blaster~
+a Merr-Sonn Quickfire-4 holdout blaster~
+A small holdout blaster is here.~
+~
+5 8192 8193
+0 50 90 6 25 25
+10 11050 1105
+#19048
+blastech se-14 blaster rifle~
+a BlasTech SE-14 blaster rifle~
+A blaster rifle is here.~
+~
+5 8192 8193
+0 20 40 6 400 400
+10 3000 300
+A
+18 2
+#19049
+blastech se-14c blaster rifle~
+a BlasTech SE-14C blaster rifle~
+A blaster rifle is here.~
+~
+5 8192 8193
+0 25 50 6 400 400
+10 3800 380
+A
+18 2
+#19050
+blastech t-21 light repeating blaster~
+a BlasTech T-21 light repeating blaster~
+A blaster rifle was dropped here.~
+~
+5 8192 8193
+0 30 55 6 400 400
+10 3100 280
+A
+18 4
+#19051
+blastech t-6 thunderer blaster pistol~
+a BlasTech T-6 'Thunderer' heavy blaster pistol~
+A heavy blaster pistol was dropped here.~
+~
+5 8192 8193
+0 50 70 6 800 800
+10 9560 956
+A
+18 2
+A
+19 1
+#19052
+drink vending machine~
+a drink vending machine~
+&gA vending machine has been installed here, stocked with beverages.~
+~
+13 2 0
+0 0 0 0
+1 0 0
+E
+drink vending machine~
+&B+&b----------------------------&B+
+&B|&w  A VendCo Vending Machine  &B|
+&B+&b----------------------------&B+
+&B|&w  Say the name of the item  &B|
+&B|&w  you want and the machine  &B|
+&B|&w        will provide.       &B|
+&B+&b----------------------------&B+
+&B|&w Cola             4 credits &B|
+&B|&w Water            2 credits &B|
+&B|&w Caf              3 credits &B|
+&B|&w Tea              4 credits &B|
+&B+&b----------------------------&B+&w
+~
+E
+vending machine vend~
+&B+&b----------------------------&B+&w
+&B|&w  A VendCo Vending Machine  &B|
+&B+&b----------------------------&B+&w
+&B|&w  Say the name of the item  &B|
+&B|&w  you want and the machine  &B|
+&B|&w        will provide.       &B|
+&B+&b----------------------------&B+&w
+&B|&w Cola             4 credits &B|
+&B|&w Water            2 credits &B|
+&B|&w Caf              3 credits &B|
+&B|&w Tea              4 credits &B|
+&B+&b----------------------------&B+&w
+~
+> speech_prog cola~
+mpechoat $n You place 4 credits into the vending machine.
+mpforce $n drop 4 credits
+mppurge credits
+mpecho The vending machine hums and whirrs, and expunges a bottle of cola.
+mpoload 19055
+drop cola
+mpforce $n get cola
+~
+> speech_prog water~
+mpechoat $n You place 2 credits into the vending machine.
+mpforce $n drop 2 credits
+mppurge credits
+mpecho The vending machine hums and whirrs, and expunges a bottle of water.
+mpoload 19053
+drop water
+mpforce $n get water
+~
+> speech_prog caf~
+mpechoat $n You place 3 credits into the vending machine.
+mpforce $n drop 3 credits
+mppurge credits
+mpecho The vending machine hums and whirrs, and expunges a cup of caf.
+mpoload 19054
+drop caf
+mpforce $n get caf
+~
+> speech_prog tea~
+mpechoat $n You place 4 credits into the vending machine.
+mpforce $n drop 4 credits
+mppurge credits
+mpecho The vending machine hums and whirrs, and expunges a bottle of tea.
+mpoload 19056
+drop bottle
+mpforce $n get tea
+~
+|
+#19053
+bottle aquilie water~
+a bottle of Aquilie water~
+A clear bottle lies tipped over here.~
+~
+17 0 16385
+15 15 0 0
+1 0 0
+#19054
+cup caf~
+a cup of caf~
+A steaming cup of caf is here.~
+~
+17 8192 1
+2 2 12 0
+1 10 1
+#19055
+bottle kero cola~
+a bottle of Kero cola~
+A bottle of cola was dropped here.~
+~
+17 0 1
+6 6 15 0
+1 0 0
+#19056
+bottle chilled corellian tea~
+a bottle of chilled Corellian tea~
+A bottle of tea was dropped here.~
+~
+17 0 1
+6 6 11 0
+1 0 0
+#19057
+merr-sonn dd6 blaster pistol~
+a Merr-Sonn DD6 blaster pistol~
+A blaster pistol is on the ground.~
+~
+5 8192 8193
+0 30 55 6 500 500
+10 4110 411
+A
+18 4
+#19058
+blastech hsb-200 holdout blaster~
+a BlasTech HSB-200 holdout blaster~
+A very small blaster is on the ground.~
+~
+5 8192 8193
+0 20 35 6 200 200
+10 1300 130
+#19059
+cell ammo 25~
+an ammo cell (Rating:25)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+25 0 0 0
+1 1600 160
+#19060
+cell ammo 200~
+an ammo cell (Rating:200)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+200 0 0 0
+1 30 3
+#19061
+cell ammo 300~
+an ammo cell (Rating:300)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+300 0 0 0
+1 45 4
+#19062
+cell ammo 350~
+an ammo cell (Rating:350)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+350 0 0 0
+1 50 5
+#19063
+cell ammo 375~
+an ammo cell (Rating:375)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+375 0 0 0
+1 120 12
+#19064
+cell ammo 400~
+an ammo cell (Rating:400)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+400 0 0 0
+1 65 6
+#19065
+cell ammo 450~
+an ammo cell (Rating:450)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+450 0 0 0
+1 68 6
+#19066
+cell ammo 500~
+an ammo cell (Rating:500)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+500 0 0 0
+1 72 7
+#19067
+cell ammo 600~
+an ammo cell (Rating:600)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+600 0 0 0
+1 78 7
+#19068
+cell ammo 650~
+an ammo cell (Rating:650)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+650 0 0 0
+1 84 8
+#19069
+cell ammo 750~
+an ammo cell (Rating:750)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+750 0 0 0
+1 84 8
+#19070
+cell ammo 999~
+an ammo cell (Rating:999)~
+An ammo cell has been discarded here.~
+~
+57 8192 1
+999 0 0 0
+1 112 11
+#19071
+imperial officer uniform~
+an Imperial officer uniform~
+An imperial uniform was discarded here.~
+~
+9 0 9
+50 50 0 0
+1 500 50
+A
+40 25
+#19072
+coruscant defense system keycard~
+a green keycard~
+A green keycard is on the ground.~
+~
+18 0 1
+0 0 0 0
+1 0 0
+#19073
+_cdsbutton exit button~
+an 'Exit' button~
+A small button labeled 'EXIT' is attached to the wall.~
+~
+39 0 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpechoat $n You press the button in.
+mpechoat $n The doors quickly slide open, and you step through.
+mpechoaround $n $n presses the exit button.
+mpechoaround $n The doors quickly slide open, and $n steps through.
+mptransfer $n 19275
+mpat $n mpechoaround $n The entrance slides open, and $n steps through.
+mpat $n mpecho The doors slide closed.
+mppurge _cdsbutton
+mpoload 19073
+~
+|
+#19074
+_cds desk~
+a durasteel desk~
+A durasteel desk is in the center of the room.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19075
+_tb bench~
+a bench~
+A bench is provided for waiting passengers.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19076
+imperial message board~
+a imperial message board~
+A holographic terminal is setup here, providing Imperial information.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19077
+_ss bench~
+a bench~
+A long bench stretches across the station wall.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19078
+_palace detention level keycard~
+a detention level keycard~
+A small keycard was dropped here.~
+~
+18 0 1
+0 0 0 0
+1 0 0
+#19079
+_palace painting~
+a strange painting~
+A very strange painting has been mounted on the wall.~
+~
+39 0 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpechoat $n You tilt the painting a little, and a hidden stairway opens.
+mpechoaround $n $n tilts the painting a little, and a hidden stairway opens.
+mpopenpassage 19360 19361 5
+~
+> pull_prog 100~
+mpechoat $n You adjust the painting back to its normal place.
+mpechoaround $n $n adjusts the painting back to its normal place.
+mpecho The hidden stairway closes up.
+mpclosepassage 19360 5
+~
+|
+#19080
+_palace emperor bed~
+a bed~
+&zA beautiful silk-covered bed is in the center of the room.~
+~
+12 0 0
+0 0 0 0
+1 0 0
+#19081
+_jara bed~
+a cheap bed~
+A cheap, worn out bed is set against the wall.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19082
+lamp~
+a lamp~
+A lamp has been placed on a table next to the bed.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19083
+white blouse~
+a white blouse~
+A crumpled mass of cloth lies here.~
+~
+13 0 9
+15 0 0 0
+1 12 1
+#19084
+short crimson skirt~
+a short crimson skirt~
+A red skirt was dropped here.~
+~
+13 0 33
+12 0 0 0
+1 22 2
+#19085
+high heels shoes white~
+a pair of white high-heels~
+A pair of white high heels has been discarded here.~
+~
+13 0 65
+12 0 0 0
+1 30 3
+#19086
+gardens brochure~
+a brochure outlining the Skydome Botanical Gardens~
+A gardens brochure is here.~
+~
+13 1073741824 1
+0 0 0 0
+1 0 0
+#19087
+duraplast case~
+a duraplast case~
+A transparent display case is mounted on the wall, containing a few blasters.~
+~
+12 0 0
+0 0 0 0
+1 0 0
+#19088
+_sfinc membership card~
+a SimFlight, Inc. membership card~
+A small card has been thrown away here.~
+~
+47 0 1
+0 0 0 0
+1 500 50
+#19089
+desks desk~
+a desk~
+Several desks fill the classroom, awaiting students to sit in them.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19090
+handheld comlink~
+a handheld comlink~
+A small communications device was dropped here.~
+~
+72 8192 16385
+10 0 0 0
+1 15 1
+#19091
+earbud comlink~
+an earbud comlink~
+A very small comlink, made for the ears, is here.~
+~
+72 8192 65537
+15 0 0 0
+1 59 5
+#19092
+metal ring comlink~
+a glossy metal ring~
+A small comlink, shaped like a ring, was misplaced here.~
+~
+72 8192 3
+7 0 0 0
+1 560 56
+#19093
+commsystem zz-2~
+a GalTek ZZ-2 commsystem~
+A portable commsystem was left here.~
+~
+88 8192 1
+0 0 0 0
+1 2510 251
+#19094
+p44a runner datapad~
+a Hapo-Gorrd P44a 'Runner' datapad~
+A datapad was dropped here.~
+~
+89 8192 1
+0 0 0 0
+1 1100 110
+#19095
+commsystem generic nuradio~
+a generic NuRadio commsystem~
+A small, bland commsystem is here.~
+~
+88 8192 1
+0 0 0 0
+1 750 75
+#19096
+tekker toa headset comlink~
+a Tekker TOA comlink headset~
+A small headset was discarded here.~
+~
+72 8192 17
+0 0 0 0
+1 221 22
+#19097
+corudat elite datapad~
+a CoruDat 'Elite' wrist datapad~
+A wrist-mounted datapad is here.~
+~
+89 8192 4097
+0 0 0 0
+1 4200 420
+#19098
+scanner detector~
+a scanner detector~
+A device has been setup here to scan for stolen merchandise.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#19501
+_market An Oriban Crystal Necklace~
+An Oriban Crystal Necklace~
+A slightly yellow necklace lies here, quite contrasting to the dust.~
+~
+9 0 5
+10 10 0 0
+1 970 97
+#19502
+_market A small silver ring~
+A small silver ring~
+A small silver ring sits in the dirt.~
+~
+9 0 3
+4 4 0 0
+2 680 68
+A
+18 2
+#19503
+_market shimmering violet bracelet~
+A shimmering violet bracelet~
+A shimmering violet bracelet lies here, forgotten.~
+~
+9 0 4097
+10 10 0 0
+1 1026 102
+#19504
+_market shining unmolded metal~
+A shining piece of unmolded metal~
+A hunk of rare metal sits here.~
+~
+75 0 1
+4 4 0 0
+1 77 7
+#19505
+A white medpac~
+A white medpac~
+A white medpac sits here, probably used and discarded.~
+~
+73 1073750016 16385
+10 10 10 0
+1 15 1
+#19506
+A large medkit~
+A large medkit~
+A large medkit sits here, opened.~
+~
+73 1073750016 16385
+20 20 10 0
+1 32 3
+#19507
+_glip white sneakers~
+&G&wA pair of Glip brand white sneakers~
+A pair of cheap looking white sneakers were left here.~
+~
+9 8192 65
+2 2 0 0
+1 5 0
+#19508
+_glip black sneakers~
+&G&wA pair of Glip brand &xblack&G&w sneakers~
+A pair of cheap looking black sneakers were left here.~
+~
+9 8192 65
+2 2 0 0
+1 5 0
+#19509
+_glip grey sneakers~
+&G&wA pair of Glip brand &zgrey&G&w sneakers~
+A pair of cheap looking grey sneakers were left here.~
+~
+9 8192 65
+2 2 0 0
+1 5 0
+#19999
+hiobj~
+a hiobj~
+A hiobj is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#19000
+Floating in a void~
+~
+0 4 1 0 0 0 14624
+S
+#19001
+Menari Platform~
+This is the main landing platform at Menari spaceport. Many ships line
+the pad here, including some that are available to the public for rent.
+The platform stretches for quite a ways, eventually leading to an exit
+northeast of here, where Vera Street connects it to the rest of the
+main part of Imperial City.
+~
+0 1073741872 1 0 0 0 14624
+D2
+~
+~
+0 -1 19285
+D6
+~
+~
+0 -1 19002
+S
+#19002
+Inside Menari Spaceport~
+Vera street comes to an end here, where the Menari Spaceport and the
+Serin Shuttle pad are located. This concourse is well traversed, as
+quite a few travellers come through Menari Spaceport. The Spaceport
+itself lies southwest of here, and the Serin pad is northwest.
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19423
+D1
+~
+~
+0 -1 19004
+D7
+~
+~
+0 -1 19003
+D9
+~
+~
+0 -1 19001
+S
+#19003
+Serin Shuttle Bus Station~
+This is where the Serin shuttles await passengers on Coruscant. The
+Serin transports are a free service, allowing anyone to use them for
+space travel.
+
+When the Serin arrives, type 'BOARD <shipname>' to enter.
+~
+0 1073741824 1 0 0 0 14624
+D8
+~
+~
+0 -1 19002
+S
+#19004
+Intersection of Vera Street and Tedium Way~
+Vera Street and Tedium Way intersect here, further west leads to the
+Menari spaceport, and northward will take you through Tedium Way. The
+buildings around here tower above you, a monument to the Empire's
+technological and architectural genius.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19043
+D1
+~
+~
+0 -1 19005
+D3
+~
+~
+0 -1 19002
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19005
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19006
+D3
+~
+~
+0 -1 19004
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19006
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19007
+D3
+~
+~
+0 -1 19005
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19007
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19008
+D2
+~
+~
+0 -1 19404
+D3
+~
+~
+0 -1 19006
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19008
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19009
+D3
+~
+~
+0 -1 19007
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19009
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19010
+D3
+~
+~
+0 -1 19008
+D7
+~
+~
+0 -1 19422
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19010
+Intersection of Vera Street and Ceres Way~
+Ceres and Vera intersect here. The Menari spaceport is west of here
+along Vera Street, and east along Vera lies the Skydome Botanical
+Gardens. Ceres Way runs northward, through most of Imperial City.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19035
+D1
+~
+~
+0 -1 19011
+D3
+~
+~
+0 -1 19009
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19011
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19010
+D8
+~
+~
+0 -1 19012
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19012
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19011
+D8
+~
+~
+0 -1 19013
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19013
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19014
+D7
+~
+~
+0 -1 19012
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19014
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19015
+D3
+~
+~
+0 -1 19013
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19015
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19016
+D3
+~
+~
+0 -1 19014
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19016
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19017
+D3
+~
+~
+0 -1 19015
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19017
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19018
+D3
+~
+~
+0 -1 19016
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19018
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19019
+D3
+~
+~
+0 -1 19017
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19019
+Intersection of Vera Street and Rakka Avenue~
+Vera and Rakka intersect here. Quite a ways west of here is the
+Menari spaceport. The Skydome Botanical Gardens is a short distance
+east. Rakka Avenue leads north, around a large commercial district.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19023
+D1
+~
+~
+0 -1 19020
+D3
+~
+~
+0 -1 19018
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19020
+Vera Street~
+You are on Vera Street, which runs along the southern sector of
+Imperial City. The structures are very tall, very mechanical,
+and efficient for their use. Many turbocars and transports speed
+along the concourse.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19021
+D3
+~
+~
+0 -1 19019
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19021
+Vera Street - Approaching the Skydome Botanical Gardens~
+The street comes to an abrupt halt as it comes upon the Skydome
+Botanical Gardens, one of the premier sightseeing attractions on
+Coruscant. It lies further southeast, and north of here is a
+turbocar station.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19022
+D3
+~
+~
+0 -1 19020
+D8
+~
+~
+0 -1 19371
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19022
+Concourse to the turbocar station~
+This short concourse runs between Vera Street and the turbocar
+station, which is further north of here. Many beings walk
+to and from the station, which is an easy means of getting around
+Imperial City. To use the turbocar, pay the droid and he will
+escort you to the station.
+~
+0 1073742856 1 0 0 0 14624
+D2
+~
+~
+0 -1 19021
+S
+#19023
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19019
+D7
+~
+~
+0 -1 19024
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19024
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19025
+D8
+~
+~
+0 -1 19023
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19025
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19026
+D8
+~
+~
+0 -1 19024
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19026
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19027
+D8
+~
+~
+0 -1 19025
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19027
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19028
+D8
+~
+~
+0 -1 19026
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19028
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19029
+D8
+~
+~
+0 -1 19027
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19029
+Intersection of Rakka Avenue and Niemand Boulevard~
+Rakka and Niemand intersect here. Niemand Boulevard is a very short
+concourse linking Ceres way, Rakka avenue, and Martyr road, which
+leads to the Bulova spaceport. Further southeast of here lies the
+Skydome Botanical Gardens.
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19030
+D6
+~
+~
+0 -1 19074
+D8
+~
+~
+0 -1 19028
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19030
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19029
+D3
+~
+~
+0 -1 19031
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19031
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19030
+D3
+~
+~
+0 -1 19032
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19032
+Intersection of Ceres Way and Rakka Avenue~
+You are on southern Ceres Way. Southwest of here is the Menari
+spaceport, and following Rakka Avenue east will take you to the
+Skydome Botanical Gardens.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19058
+D1
+~
+~
+0 -1 19031
+D2
+~
+~
+0 -1 19033
+D3
+~
+~
+0 -1 19036
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19033
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19032
+D2
+~
+~
+0 -1 19034
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19034
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19033
+D1
+~
+~
+0 -1 19424
+D2
+~
+~
+0 -1 19035
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19035
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19034
+D2
+~
+~
+0 -1 19010
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19036
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19032
+D3
+~
+~
+0 -1 19037
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19037
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19036
+D3
+~
+~
+0 -1 19038
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19038
+Rakka Avenue~
+This is Rakka avenue, a short concourse built to connect Vera Street
+and Ceres Way, circling around a large cluster of towers which house
+several businesses. Not unlike the rest of the city, many turbocars
+and transports whiz by.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19037
+D3
+~
+~
+0 -1 19039
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19039
+Intersection of Tedium Way and Rakka Avenue~
+Tedium and Rakka intersect here. Northwest leads further on Tedium, and
+east will lead to Rakka, a short avenue that circles around a large
+commercial district. Many turbocars speed around the corner, narrowly
+missing each other in the process.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19038
+D7
+~
+~
+0 -1 19044
+D9
+~
+~
+0 -1 19040
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19040
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19039
+D9
+~
+~
+0 -1 19041
+> rand_prog 100~
+mpechoat $n &YAn imperial patrol car speeds by.
+~
+|
+S
+#19041
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19040
+D9
+~
+~
+0 -1 19042
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19042
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19043
+D6
+~
+~
+0 -1 19041
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19043
+Tedium Way~
+This is Tedium Way, a concourse running along the westernmost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19042
+D2
+~
+~
+0 -1 19004
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19044
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741828 1 0 0 0 14624
+D7
+~
+~
+0 -1 19045
+D8
+~
+~
+0 -1 19039
+> rand_prog 100~
+mpechoat $n &YAn imperial patrol car speeds by.
+~
+|
+S
+#19045
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19047
+D3
+~
+~
+0 -1 19046
+D8
+~
+~
+0 -1 19044
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19046
+The Jara Lodge~
+~
+0 1082130444 1 0 0 0 14624
+D1
+~
+~
+0 -1 19045
+D3
+~
+~
+0 -1 19362
+S
+#19047
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19048
+D2
+~
+~
+0 -1 19045
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19048
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19049
+D2
+~
+~
+0 -1 19047
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19049
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19048
+D6
+~
+~
+0 -1 19050
+> rand_prog 100~
+mpechoat $n &YAn imperial patrol car speeds by.
+~
+|
+S
+#19050
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19169
+D1
+~
+~
+0 -1 19051
+D9
+~
+~
+0 -1 19049
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19051
+A Dark Alleyway~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19052
+D3
+~
+~
+0 -1 19050
+S
+#19052
+A Dark Alleyway~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19053
+D3
+~
+~
+0 -1 19051
+S
+#19053
+A Dark Alleyway~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19054
+D3
+~
+~
+0 -1 19052
+S
+#19054
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19055
+D3
+~
+~
+0 -1 19053
+D6
+~
+~
+0 -1 19059
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19055
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19054
+D2
+~
+~
+0 -1 19056
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19056
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19055
+D2
+~
+~
+0 -1 19057
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19057
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19056
+D2
+~
+~
+0 -1 19058
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19058
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19057
+D2
+~
+~
+0 -1 19032
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19059
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19060
+D9
+~
+~
+0 -1 19054
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19060
+Intersection of Ceres Way and Museum Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19065
+D7
+~
+~
+0 -1 19061
+D9
+~
+~
+0 -1 19059
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19061
+Museum Avenue~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19062
+D8
+~
+~
+0 -1 19060
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19062
+Museum Avenue - Approaching the Holographic Museum of History~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19064
+D2
+~
+~
+0 -1 19061
+D3
+~
+~
+0 -1 19063
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19063
+Turbocar Station~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19062
+S
+#19064
+Scenic Attraction 2~
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19062
+S
+#19065
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19066
+D9
+~
+~
+0 -1 19060
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19066
+Intersection of Ceres Way and Niemand Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19098
+D8
+~
+~
+0 -1 19067
+D9
+~
+~
+0 -1 19065
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19067
+Niemand Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19066
+D8
+~
+~
+0 -1 19068
+S
+#19068
+Niemand Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19069
+D7
+~
+~
+0 -1 19067
+S
+#19069
+Niemand Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19068
+D2
+~
+~
+0 -1 19070
+S
+#19070
+Niemand Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19069
+D2
+~
+~
+0 -1 19071
+S
+#19071
+Niemand Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19070
+D2
+~
+~
+0 -1 19072
+S
+#19072
+Intersection of Niemand Boulevard and Martyr Road~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19071
+D1
+~
+~
+0 -1 19075
+D9
+~
+~
+0 -1 19073
+S
+#19073
+Niemand Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19072
+D9
+~
+~
+0 -1 19074
+S
+#19074
+Niemand Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19073
+D9
+~
+~
+0 -1 19029
+S
+#19075
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19076
+D3
+~
+~
+0 -1 19072
+S
+#19076
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19077
+D3
+~
+~
+0 -1 19075
+S
+#19077
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19078
+D3
+~
+~
+0 -1 19076
+S
+#19078
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19080
+D1
+~
+~
+0 -1 19079
+D2
+~
+~
+0 -1 19077
+S
+#19079
+A hotel~
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19078
+S
+#19080
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19081
+D2
+~
+~
+0 -1 19078
+S
+#19081
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19080
+D6
+~
+~
+0 -1 19082
+S
+#19082
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19083
+D9
+~
+~
+0 -1 19081
+S
+#19083
+Martyr Road - Approaching Bulova Spaceport~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19086
+D1
+~
+~
+0 -1 19084
+D9
+~
+~
+0 -1 19082
+S
+#19084
+Bulova Spaceport~
+Many ships are located on this large pad. Crates full of equipment are
+everywhere, and mechanics are busy working on damaged ships. Technicians
+are pumping fuel and gettings ships prepared for launch. Thousands of ships
+of all shapes and sizes launch and land here every hour.
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19083
+D8
+~
+~
+0 -1 19085
+S
+#19085
+Concourse to the turbocar station~
+~
+0 1073742856 1 0 0 0 14624
+D7
+~
+~
+0 -1 19084
+S
+#19086
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19087
+D2
+~
+~
+0 -1 19083
+S
+#19087
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19086
+D6
+~
+~
+0 -1 19088
+S
+#19088
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19089
+D9
+~
+~
+0 -1 19087
+S
+#19089
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19111
+D7
+~
+~
+0 -1 19090
+D9
+~
+~
+0 -1 19088
+S
+#19090
+A Dark Alleyway~
+~
+0 1073741828 1 0 0 0 14624
+D7
+~
+~
+0 -1 19091
+D8
+~
+~
+0 -1 19089
+S
+#19091
+A Dark Alleyway~
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19092
+D8
+~
+~
+0 -1 19090
+S
+#19092
+A Dark Alleyway~
+~
+0 1073741828 1 0 0 0 14624
+D7
+~
+~
+0 -1 19093
+D8
+~
+~
+0 -1 19091
+S
+#19093
+Intersection of Ceres Way and Palace Avenue~
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19099
+D7
+~
+~
+0 -1 19112
+D8
+~
+~
+0 -1 19092
+D9
+~
+~
+0 -1 19094
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19094
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19093
+D9
+~
+~
+0 -1 19095
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19095
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19094
+D9
+~
+~
+0 -1 19096
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19096
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19095
+D9
+~
+~
+0 -1 19097
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19097
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19096
+D9
+~
+~
+0 -1 19098
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19098
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19097
+D9
+~
+~
+0 -1 19066
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19099
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19100
+D9
+~
+~
+0 -1 19093
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19100
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19101
+D9
+~
+~
+0 -1 19099
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19101
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19102
+D9
+~
+~
+0 -1 19100
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19102
+Intersection of Ceres Way and Martyr Road~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19133
+D1
+~
+~
+0 -1 19103
+D9
+~
+~
+0 -1 19101
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19103
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19104
+D3
+~
+~
+0 -1 19102
+S
+#19104
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19103
+D8
+~
+~
+0 -1 19105
+S
+#19105
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19104
+D8
+~
+~
+0 -1 19106
+S
+#19106
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19439
+D7
+~
+~
+0 -1 19105
+D9
+~
+~
+0 -1 19107
+S
+#19107
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19106
+D9
+~
+~
+0 -1 19108
+S
+#19108
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19107
+D9
+~
+~
+0 -1 19109
+S
+#19109
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19108
+D9
+~
+~
+0 -1 19110
+S
+#19110
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19109
+D9
+~
+~
+0 -1 19111
+S
+#19111
+Martyr Road~
+This is Martyr Road, a concourse running through a major residential
+sector and along the easternmost boundary of Imperial City. Several
+citizens and such walk the streets, trying to avoid the multitude of
+speeding turbocars.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19110
+D9
+~
+~
+0 -1 19089
+S
+#19112
+Palace Avenue~
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19113
+D8
+~
+~
+0 -1 19093
+S
+#19113
+Palace Avenue~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19112
+D3
+~
+~
+0 -1 19114
+S
+#19114
+Palace Avenue~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19113
+D3
+~
+~
+0 -1 19115
+S
+#19115
+Intersection of Palace Avenue and Savior Road~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19114
+D3
+~
+~
+0 -1 19264
+D7
+~
+~
+0 -1 19116
+S
+#19116
+Savior Road~
+Savior Road runs north/south between Ceres Way and Palace Avenue,
+crossing a large residential sector. Many citizens walk around, a
+sign of prosperity in the area. Transports fly by at a ludicrous
+speed.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19117
+D8
+~
+~
+0 -1 19115
+S
+#19117
+Savior Road~
+Savior Road runs north/south between Ceres Way and Palace Avenue,
+crossing a large residential sector. Many citizens walk around, a
+sign of prosperity in the area. Transports fly by at a ludicrous
+speed.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19118
+D2
+~
+~
+0 -1 19116
+S
+#19118
+Intersection of Savior Road and Zull Boulevard~
+Savior Road runs north/south between Ceres Way and Palace Avenue,
+crossing a large residential sector. Many citizens walk around, a
+sign of prosperity in the area. Transports fly by at a ludicrous
+speed.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19119
+D1
+~
+~
+0 -1 19139
+D2
+~
+~
+0 -1 19117
+S
+#19119
+Savior Road~
+Savior Road runs north/south between Ceres Way and Palace Avenue,
+crossing a large residential sector. Many citizens walk around, a
+sign of prosperity in the area. Transports fly by at a ludicrous
+speed.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19120
+D2
+~
+~
+0 -1 19118
+S
+#19120
+Savior Road~
+Savior Road runs north/south between Ceres Way and Palace Avenue,
+crossing a large residential sector. Many citizens walk around, a
+sign of prosperity in the area. Transports fly by at a ludicrous
+speed.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19121
+D2
+~
+~
+0 -1 19119
+S
+#19121
+Intersection of Ceres Way and Savior Road~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19122
+D2
+~
+~
+0 -1 19120
+D3
+~
+~
+0 -1 19140
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19122
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19123
+D3
+~
+~
+0 -1 19121
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19123
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19124
+D3
+~
+~
+0 -1 19122
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19124
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19125
+D3
+~
+~
+0 -1 19123
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19125
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19126
+D3
+~
+~
+0 -1 19124
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19126
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19127
+D3
+~
+~
+0 -1 19125
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19127
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19126
+D8
+~
+~
+0 -1 19128
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19128
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19127
+D8
+~
+~
+0 -1 19129
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19129
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19128
+D8
+~
+~
+0 -1 19130
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19130
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19131
+D7
+~
+~
+0 -1 19129
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19131
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19130
+D2
+~
+~
+0 -1 19132
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19132
+Intersection of Ceres Way and Zull Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19131
+D2
+~
+~
+0 -1 19133
+D3
+~
+~
+0 -1 19134
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19133
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19132
+D2
+~
+~
+0 -1 19102
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19134
+Zull Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19132
+D3
+~
+~
+0 -1 19135
+S
+#19135
+Zull Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19134
+D3
+~
+~
+0 -1 19136
+S
+#19136
+Zull Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19135
+D3
+~
+~
+0 -1 19137
+S
+#19137
+Zull Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19136
+D3
+~
+~
+0 -1 19138
+S
+#19138
+Zull Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19137
+D3
+~
+~
+0 -1 19139
+S
+#19139
+Zull Boulevard~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19138
+D3
+~
+~
+0 -1 19118
+S
+#19140
+Ceres Way~
+You are on Ceres Way, which cuts diagonally through much of Imperial
+City, and provides a pretty much direct path between Yolar and Menari
+Spaceports. Several transports, speeders, and the like cruise this
+concourse very fast.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19121
+D3
+~
+~
+0 -1 19141
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19141
+Intersection of Tedium and Ceres Way~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19142
+D1
+~
+~
+0 -1 19140
+D2
+~
+~
+0 -1 19145
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19142
+Tedium Way - Approaching Yolar Spaceport~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19143
+D2
+~
+~
+0 -1 19141
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19143
+Yolar Spaceport~
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19142
+D3
+~
+~
+0 -1 19144
+D6
+~
+~
+0 -1 19438
+S
+#19144
+Concourse to the turbocar station~
+~
+0 1073742856 1 0 0 0 14624
+D1
+~
+~
+0 -1 19143
+S
+#19145
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19141
+D9
+~
+~
+0 -1 19146
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19146
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19409
+D6
+~
+~
+0 -1 19145
+D9
+~
+~
+0 -1 19147
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19147
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19146
+D7
+~
+~
+0 -1 19148
+D9
+~
+~
+0 -1 19149
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19148
+A hotel~
+~
+0 1073741824 1 0 0 0 14624
+D8
+~
+~
+0 -1 19147
+S
+#19149
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19147
+D9
+~
+~
+0 -1 19150
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19150
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19149
+D9
+~
+~
+0 -1 19151
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19151
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19150
+D9
+~
+~
+0 -1 19152
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19152
+Intersection of Tedium Way and Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19153
+D6
+~
+~
+0 -1 19151
+D7
+~
+~
+0 -1 19200
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19153
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19152
+D2
+~
+~
+0 -1 19154
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19154
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19153
+D1
+~
+~
+0 -1 19155
+D2
+~
+~
+0 -1 19156
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19155
+Turbocar Station~
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19154
+S
+#19156
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19154
+D2
+~
+~
+0 -1 19157
+> rand_prog 100~
+mpechoat $n &YA turbocar narrowly misses you as it speeds along.
+~
+|
+S
+#19157
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19156
+D9
+~
+~
+0 -1 19158
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19158
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19157
+D9
+~
+~
+0 -1 19159
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19159
+Intersection of Tedium Way and Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19160
+D3
+~
+~
+0 -1 19170
+D6
+~
+~
+0 -1 19158
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19160
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19159
+D2
+~
+~
+0 -1 19161
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19161
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19160
+D2
+~
+~
+0 -1 19162
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19162
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19161
+D2
+~
+~
+0 -1 19163
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19163
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19162
+D2
+~
+~
+0 -1 19164
+> rand_prog 100~
+mpechoat $n &YA turbocar recklessly drives through.
+~
+|
+S
+#19164
+Intersection of Tedium Way and Palace Avenue~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19163
+D1
+~
+~
+0 -1 19274
+D2
+~
+~
+0 -1 19165
+> rand_prog 100~
+mpechoat $n &YMany turbocars pass through the intersection.
+~
+|
+S
+#19165
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19164
+D2
+~
+~
+0 -1 19166
+> rand_prog 100~
+mpechoat $n &YAn imperial patrol car speeds by.
+~
+|
+S
+#19166
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19165
+D2
+~
+~
+0 -1 19167
+> rand_prog 100~
+mpechoat $n &YA turbocar speeds along.
+~
+|
+S
+#19167
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19166
+D2
+~
+~
+0 -1 19168
+> rand_prog 100~
+mpechoat $n &YAn imperial patrol car speeds by.
+~
+|
+S
+#19168
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19167
+D2
+~
+~
+0 -1 19169
+> rand_prog 100~
+mpechoat $n &YAn imperial patrol car speeds by.
+~
+|
+S
+#19169
+Tedium Way~
+This is Tedium Way, a concourse running along the westermost sector
+of Imperial City. One of the more well-patrolled areas, also one of
+the more crime-ridden, it would be best to travel carefully here.
+Occasionally, a speeder or transport will pass by.
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19168
+D2
+~
+~
+0 -1 19050
+> rand_prog 100~
+mpechoat $n &YSeveral turbocars quickly speed by.
+~
+|
+S
+#19170
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19159
+D3
+~
+~
+0 -1 19171
+S
+#19171
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19170
+D7
+~
+~
+0 -1 19172
+S
+#19172
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19173
+D8
+~
+~
+0 -1 19171
+S
+#19173
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19174
+D8
+~
+~
+0 -1 19172
+S
+#19174
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19175
+D2
+~
+~
+0 -1 19173
+S
+#19175
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19176
+D2
+~
+~
+0 -1 19174
+S
+#19176
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19177
+D2
+~
+~
+0 -1 19175
+S
+#19177
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19178
+D2
+~
+~
+0 -1 19176
+S
+#19178
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19177
+D6
+~
+~
+0 -1 19179
+S
+#19179
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19180
+D9
+~
+~
+0 -1 19178
+S
+#19180
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19182
+D6
+~
+~
+0 -1 19201
+D8
+~
+~
+0 -1 19181
+D9
+~
+~
+0 -1 19179
+S
+#19181
+Turbocar Station~
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19180
+S
+#19182
+South Entrance to the Coruscant Mall~
+~
+0 1073741832 1 0 0 0 14624
+D0
+~
+~
+0 -1 19183
+D2
+~
+~
+0 -1 19180
+S
+#19183
+The Coruscant Mall~
+~
+0 1073741832 1 0 0 0 14624
+D0
+~
+~
+0 -1 19184
+D1
+~
+~
+0 -1 19212
+D2
+~
+~
+0 -1 19182
+D3
+~
+~
+0 -1 19213
+S
+#19184
+The Coruscant Mall~
+~
+0 1073741832 1 0 0 0 14624
+D0
+~
+~
+0 -1 19185
+D1
+~
+~
+0 -1 19214
+D2
+~
+~
+0 -1 19183
+D3
+~
+~
+0 -1 19215
+S
+#19185
+Center of the Mall~
+~
+0 1073741832 1 0 0 0 14624
+D0
+~
+~
+0 -1 19186
+D1
+~
+~
+0 -1 19189
+D2
+~
+~
+0 -1 19184
+D3
+~
+~
+0 -1 19205
+D7
+~
+~
+0 -1 19209
+S
+#19186
+The Coruscant Mall~
+~
+0 1073741832 1 0 0 0 14624
+D0
+~
+~
+0 -1 19187
+D1
+~
+~
+0 -1 19218
+D2
+~
+~
+0 -1 19185
+D3
+~
+~
+0 -1 19219
+S
+#19187
+The Coruscant Mall~
+~
+0 1073741832 1 0 0 0 14624
+D0
+~
+~
+0 -1 19188
+D1
+~
+~
+0 -1 19217
+D2
+~
+~
+0 -1 19186
+D3
+~
+~
+0 -1 19216
+S
+#19188
+The Coruscant Mall~
+~
+0 1073741832 1 0 0 0 14624
+D1
+~
+~
+0 -1 19220
+D2
+~
+~
+0 -1 19187
+D3
+~
+~
+0 -1 19221
+S
+#19189
+The Coruscant Mall~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19222
+D1
+~
+~
+0 -1 19190
+D2
+~
+~
+0 -1 19223
+D3
+~
+~
+0 -1 19185
+S
+#19190
+The Coruscant Mall~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19225
+D1
+~
+~
+0 -1 19191
+D2
+~
+~
+0 -1 19224
+D3
+~
+~
+0 -1 19189
+S
+#19191
+The Coruscant Mall~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19192
+D3
+~
+~
+0 -1 19190
+S
+#19192
+East Entrance to the Coruscant Mall~
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19191
+D8
+~
+~
+0 -1 19193
+D9
+~
+~
+0 -1 19204
+S
+#19193
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19194
+D7
+~
+~
+0 -1 19192
+S
+#19194
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19195
+D3
+~
+~
+0 -1 19193
+S
+#19195
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19196
+D3
+~
+~
+0 -1 19194
+S
+#19196
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19197
+D3
+~
+~
+0 -1 19195
+S
+#19197
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19196
+D8
+~
+~
+0 -1 19198
+S
+#19198
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D2
+~
+~
+0 -1 19502
+D7
+~
+~
+0 -1 19197
+D8
+~
+~
+0 -1 19199
+S
+#19199
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19501
+D7
+~
+~
+0 -1 19198
+D8
+~
+~
+0 -1 19200
+S
+#19200
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D7
+~
+~
+0 -1 19199
+D8
+~
+~
+0 -1 19152
+S
+#19201
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D6
+~
+~
+0 -1 19202
+D9
+~
+~
+0 -1 19180
+S
+#19202
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19203
+D9
+~
+~
+0 -1 19201
+S
+#19203
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D1
+~
+~
+0 -1 19204
+D3
+~
+~
+0 -1 19202
+S
+#19204
+Marketplace Loop~
+~
+0 1073741824 1 0 0 0 14624
+D3
+~
+~
+0 -1 19203
+D6
+~
+~
+0 -1 19192
+S
+#19205
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19226
+D1
+~
+~
+0 -1 19185
+D2
+~
+~
+0 -1 19227
+D3
+~
+~
+0 -1 19206
+S
+#19206
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19205
+D7
+~
+~
+3 -1 19207
+D9
+~
+~
+3 -1 19208
+S
+#19207
+The Men's Room~
+~
+0 1073741836 1 0 0 0 14624
+D8
+~
+~
+3 -1 19206
+S
+#19208
+The Ladies' Room~
+~
+0 1073741836 1 0 0 0 14624
+D6
+~
+~
+3 -1 19206
+S
+#19209
+Mall Turbolift~
+This turbolift is made completely of transparent duraplast, showing
+a full view of the mall as it moves from level to level. The mall itself
+has 3 levels, with various shops on each. A panel is attached next to
+the door, complete with numbered buttons.
+~
+0 1073741836 1 0 0 0 14624
+S
+#19210
+The Coruscant Mall - Second Level~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19230
+D1
+~
+~
+0 -1 19232
+D2
+~
+~
+0 -1 19228
+D3
+~
+~
+0 -1 19234
+D7
+~
+~
+0 -1 19209
+S
+#19211
+The Coruscant Mall - Third Level~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19252
+D7
+~
+~
+0 -1 19209
+D8
+~
+~
+0 -1 19255
+D9
+~
+~
+0 -1 19257
+S
+#19212
+The Flaming Bantha~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19183
+S
+#19213
+Gillian's Discount Clothing~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19183
+S
+#19214
+A vacant store~
+~
+0 1073741836 1 2 0 0 14624
+D3
+~
+~
+0 -1 19184
+S
+#19215
+The Sarlacc Pit~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19184
+S
+#19216
+A vacant store~
+~
+0 1073741836 1 2 0 0 14624
+D1
+~
+~
+0 -1 19187
+S
+#19217
+A vacant store~
+~
+0 1073741836 1 2 0 0 14624
+D3
+~
+~
+0 -1 19187
+S
+#19218
+Martial Weaponry by Gordon~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19186
+S
+#19219
+A vacant store~
+~
+0 1073741836 1 2 0 0 14624
+D1
+~
+~
+0 -1 19186
+S
+#19220
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19188
+S
+#19221
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19188
+S
+#19222
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19189
+S
+#19223
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19189
+S
+#19224
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19190
+S
+#19225
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19190
+S
+#19226
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19205
+S
+#19227
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19205
+S
+#19228
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19210
+D1
+~
+~
+0 -1 19248
+D2
+~
+~
+0 -1 19229
+D3
+~
+~
+0 -1 19249
+S
+#19229
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19228
+D1
+~
+~
+0 -1 19251
+D3
+~
+~
+0 -1 19250
+S
+#19230
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19231
+D1
+~
+~
+0 -1 19239
+D2
+~
+~
+0 -1 19210
+D3
+~
+~
+0 -1 19238
+S
+#19231
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19236
+D2
+~
+~
+0 -1 19230
+D3
+~
+~
+0 -1 19237
+S
+#19232
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19240
+D1
+~
+~
+0 -1 19233
+D2
+~
+~
+0 -1 19241
+D3
+~
+~
+0 -1 19210
+S
+#19233
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19243
+D2
+~
+~
+0 -1 19242
+D3
+~
+~
+0 -1 19232
+S
+#19234
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19244
+D1
+~
+~
+0 -1 19210
+D2
+~
+~
+0 -1 19245
+D3
+~
+~
+0 -1 19235
+S
+#19235
+The Coruscant Mall~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19246
+D1
+~
+~
+0 -1 19234
+D2
+~
+~
+0 -1 19247
+S
+#19236
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19231
+S
+#19237
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19231
+S
+#19238
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19230
+S
+#19239
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19230
+S
+#19240
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19232
+S
+#19241
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19232
+S
+#19242
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19233
+S
+#19243
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19233
+S
+#19244
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19234
+S
+#19245
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19234
+S
+#19246
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19235
+S
+#19247
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19235
+S
+#19248
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19228
+S
+#19249
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19228
+S
+#19250
+Floating in a void~
+~
+0 4 1 0 0 0 14624
+D1
+~
+~
+0 -1 19229
+S
+#19251
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19229
+S
+#19252
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19253
+D2
+~
+~
+0 -1 19211
+S
+#19253
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+3 -1 19254
+D2
+~
+~
+0 -1 19252
+S
+#19254
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+3 -1 19253
+S
+#19255
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19261
+D7
+~
+~
+0 -1 19211
+D8
+~
+~
+0 -1 19256
+S
+#19256
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19262
+D7
+~
+~
+0 -1 19255
+S
+#19257
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19260
+D6
+~
+~
+0 -1 19211
+D9
+~
+~
+0 -1 19258
+S
+#19258
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19259
+D6
+~
+~
+0 -1 19257
+S
+#19259
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19258
+S
+#19260
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19257
+S
+#19261
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19255
+S
+#19262
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19256
+S
+#19263
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19264
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19115
+D3
+~
+~
+0 -1 19265
+S
+#19265
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19264
+D9
+~
+~
+0 -1 19266
+S
+#19266
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19265
+D9
+~
+~
+0 -1 19267
+S
+#19267
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19268
+D6
+~
+~
+0 -1 19266
+S
+#19268
+Palace Avenue - Approaching the Imperial Palace~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19287
+D1
+~
+~
+0 -1 19267
+D3
+~
+~
+0 -1 19269
+S
+#19269
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19268
+D9
+~
+~
+0 -1 19270
+S
+#19270
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19269
+D8
+~
+~
+3 -1 19275
+D9
+~
+~
+0 -1 19271
+S
+#19271
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19270
+D9
+~
+~
+0 -1 19272
+S
+#19272
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19273
+D6
+~
+~
+0 -1 19271
+S
+#19273
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19272
+D3
+~
+~
+0 -1 19274
+S
+#19274
+Palace Avenue~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19273
+D3
+~
+~
+0 -1 19164
+S
+#19275
+Security Checkpoint~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+8388647 19072 19276
+D7
+~
+~
+3 -1 19270
+S
+#19276
+Inside the Coruscant Planetary Defense System~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19277
+D3
+~
+~
+8388647 -1 19275
+S
+#19277
+A Bright Corridor~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19276
+D4
+~
+~
+0 -1 19278
+S
+#19278
+Coruscant Planetary Defense Infrastructure~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19279
+D2
+~
+~
+0 -1 19281
+D5
+~
+~
+0 -1 19277
+S
+#19279
+A Bright Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19280
+D2
+~
+~
+0 -1 19278
+S
+#19280
+Turbolaser Cannon Controls~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19279
+S
+#19281
+A Bright Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19278
+D2
+~
+~
+0 -1 19282
+S
+#19282
+Ion Cannon Controls~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19281
+S
+#19283
+Turbocar Station - Yolar Spaceport~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19144
+S
+#19284
+Turbocar Station - Bulova Spaceport~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19085
+S
+#19285
+Concourse to the turbocar station~
+This short concourse runs between the Menari Spaceport and the
+turbocar station, which is further south of here. Many beings walk
+to and from the station, which is an easy means of getting around
+Imperial City. To use the turbocar, pay the droid and he will escort
+you to the station.
+~
+0 1073742860 1 0 0 0 14624
+D0
+~
+~
+0 -1 19001
+S
+#19286
+Turbocar Station - Menari Spaceport~
+This is the Turbocar stop at Menari Spaceport. Several passengers walk
+along the line, waiting for the turbocar to arrive. It is very bright,
+and surprisingly sanitary here. You can exit the station northeast.
+~
+0 1073741836 1 0 0 0 14624
+D6
+~
+~
+0 -1 19285
+S
+#19287
+Entrevous~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19288
+D2
+~
+~
+0 -1 19268
+S
+#19288
+imppal~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19289
+D2
+~
+~
+0 -1 19287
+S
+#19289
+Lobby of the Imperial Palace~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19288
+D6
+~
+~
+0 -1 19290
+D7
+~
+~
+0 -1 19292
+S
+#19290
+imppal~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19294
+D6
+~
+~
+0 -1 19291
+D9
+~
+~
+0 -1 19289
+S
+#19291
+The Imperial Palace - Ground level~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19297
+D9
+~
+~
+0 -1 19290
+S
+#19292
+imppal~
+~
+0 1073741828 1 0 0 0 14624
+D7
+~
+~
+0 -1 19293
+D8
+~
+~
+0 -1 19289
+S
+#19293
+The Imperial Palace - Ground level~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19306
+D8
+~
+~
+0 -1 19292
+S
+#19294
+imppal~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+3 -1 19296
+D1
+~
+~
+3 -1 19295
+D3
+~
+~
+0 -1 19290
+S
+#19295
+imppalroom~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+3 -1 19294
+S
+#19296
+imppalroom~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+3 -1 19294
+S
+#19297
+Turbolift - East Wing~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19291
+S
+#19298
+The Imperial Palace - Personnel level~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19297
+D2
+~
+~
+0 -1 19299
+S
+#19299
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19298
+D9
+~
+~
+0 -1 19300
+S
+#19300
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19301
+D6
+~
+~
+0 -1 19299
+D7
+~
+~
+0 -1 19317
+S
+#19301
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19300
+D2
+~
+~
+0 -1 19307
+D3
+~
+~
+0 -1 19302
+S
+#19302
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19311
+D1
+~
+~
+0 -1 19301
+D3
+~
+~
+0 -1 19303
+D9
+~
+~
+0 -1 19324
+S
+#19303
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19302
+D7
+~
+~
+0 -1 19304
+S
+#19304
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19305
+D8
+~
+~
+0 -1 19303
+S
+#19305
+The Imperial Palace - Personnel level~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19306
+D2
+~
+~
+0 -1 19304
+S
+#19306
+Turbolift - West Wing~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19293
+S
+#19307
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19301
+D1
+~
+~
+0 -1 19322
+D2
+~
+~
+0 -1 19308
+D3
+~
+~
+0 -1 19323
+S
+#19308
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19307
+D1
+~
+~
+0 -1 19309
+D3
+~
+~
+0 -1 19310
+S
+#19309
+Officer Quarters~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19308
+S
+#19310
+Officer Quarters~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19308
+S
+#19311
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19312
+D2
+~
+~
+0 -1 19302
+S
+#19312
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19311
+D6
+~
+~
+0 -1 19313
+S
+#19313
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19321
+D1
+~
+~
+0 -1 19314
+D9
+~
+~
+0 -1 19312
+S
+#19314
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19315
+D3
+~
+~
+0 -1 19313
+D8
+~
+~
+0 -1 19316
+S
+#19315
+The Mess Hall~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19314
+S
+#19316
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19318
+D7
+~
+~
+0 -1 19314
+D8
+~
+~
+0 -1 19317
+S
+#19317
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D7
+~
+~
+0 -1 19316
+D8
+~
+~
+0 -1 19300
+S
+#19318
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19319
+D2
+~
+~
+0 -1 19316
+S
+#19319
+Security Checkpoint~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19318
+D6
+~
+~
+0 -1 19320
+S
+#19320
+The Imperial Armory~
+~
+0 1073741828 1 0 0 0 14624
+D9
+~
+~
+0 -1 19319
+S
+#19321
+Briefing and Intelligence~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19313
+S
+#19322
+Officer Quarters~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19307
+S
+#19323
+Officer Quarters~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19307
+S
+#19324
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19327
+D6
+~
+~
+0 -1 19302
+D9
+~
+~
+0 -1 19325
+S
+#19325
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19326
+D6
+~
+~
+0 -1 19324
+S
+#19326
+Recreation Area~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19325
+S
+#19327
+A Corridor~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19324
+D3
+~
+~
+0 -1 19328
+S
+#19328
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19327
+D7
+~
+~
+0 -1 19329
+D9
+~
+~
+0 -1 19330
+S
+#19329
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D8
+~
+~
+0 -1 19328
+S
+#19330
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19328
+S
+#19331
+The Imperial Palace - Detention level~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19332
+D3
+~
+~
+0 -1 19306
+S
+#19332
+A Narrow Corridor~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19331
+D6
+~
+~
+0 -1 19333
+S
+#19333
+Security Checkpoint~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+3 -1 19334
+D9
+~
+~
+0 -1 19332
+S
+#19334
+Detention Area~
+~
+0 1073741836 1 0 0 0 14624
+D2
+~
+~
+3 -1 19333
+D4
+~
+~
+0 -1 19335
+D6
+~
+~
+8388615 19078 19336
+D7
+~
+~
+8388615 19078 19337
+D8
+~
+~
+8388615 19078 19339
+D9
+~
+~
+8388615 19078 19338
+S
+#19335
+Observation platform~
+~
+0 1073741836 1 0 0 0 14624
+D5
+~
+~
+0 -1 19334
+D6
+~
+~
+33554432 -1 19336
+D7
+~
+~
+33554432 -1 19337
+D8
+~
+~
+33554432 -1 19339
+D9
+~
+~
+33554432 -1 19338
+S
+#19336
+Holding Cell (A)~
+~
+0 1073741836 1 256 0 0 14624
+D9
+~
+~
+8388615 19078 19334
+S
+#19337
+Holding Cell (B)~
+~
+0 1073741836 1 0 0 0 14624
+D8
+~
+~
+8388615 19078 19334
+S
+#19338
+Holding Cell (D)~
+~
+0 1073741836 1 0 0 0 14624
+D6
+~
+~
+8388615 19078 19334
+S
+#19339
+Holding Cell (C)~
+~
+0 1073741836 1 0 0 0 14624
+D7
+~
+~
+8388615 19078 19334
+S
+#19340
+The Imperial Palace - Landing platforms~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19297
+D6
+~
+~
+0 -1 19341
+S
+#19341
+An open walkway~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19342
+D1
+~
+~
+0 -1 19343
+D9
+~
+~
+0 -1 19340
+S
+#19342
+Imperial Landing Pad A90-C5~
+~
+0 1073741876 1 64 0 0 14624
+D2
+~
+~
+0 -1 19341
+S
+#19343
+An open walkway~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19344
+D3
+~
+~
+0 -1 19341
+S
+#19344
+Imperial Landing Pad C11-A7~
+~
+0 1073741876 1 64 0 0 14624
+D0
+~
+~
+0 -1 19343
+S
+#19345
+The Imperial Palace - Throne level~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19346
+D2
+~
+~
+0 -1 19306
+S
+#19346
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19345
+D7
+~
+~
+0 -1 19347
+S
+#19347
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D7
+~
+~
+0 -1 19348
+D8
+~
+~
+0 -1 19346
+S
+#19348
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19349
+D8
+~
+~
+0 -1 19347
+S
+#19349
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19348
+D3
+~
+~
+0 -1 19350
+S
+#19350
+An intersection of corridors~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19351
+D1
+~
+~
+0 -1 19349
+D3
+~
+~
+0 -1 19352
+S
+#19351
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19357
+D2
+~
+~
+0 -1 19350
+S
+#19352
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19350
+D3
+~
+~
+0 -1 19353
+S
+#19353
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19352
+D9
+~
+~
+0 -1 19354
+S
+#19354
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19353
+D9
+~
+~
+0 -1 19355
+S
+#19355
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19356
+D6
+~
+~
+0 -1 19354
+S
+#19356
+The Imperial Palace - Throne level~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19355
+D2
+~
+~
+0 -1 19306
+S
+#19357
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19358
+D2
+~
+~
+0 -1 19351
+S
+#19358
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19359
+D2
+~
+~
+0 -1 19357
+S
+#19359
+The Throne Room~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19358
+D6
+~
+~
+0 -1 19360
+S
+#19360
+A Luxurious Bedchamber~
+~
+0 1073741828 1 0 0 0 14624
+D9
+~
+~
+0 -1 19359
+S
+#19361
+A Quiet Study~
+~
+0 1140916228 1 0 0 0 14624
+D4
+~
+~
+0 -1 19360
+S
+#19362
+A dim hallway~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19046
+D2
+~
+~
+0 -1 19369
+D7
+~
+~
+0 -1 19363
+S
+#19363
+A dim hallway~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+3 -1 19368
+D7
+~
+~
+0 -1 19364
+D8
+~
+~
+0 -1 19362
+S
+#19364
+A dim hallway~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+3 -1 19367
+D7
+~
+~
+0 -1 19365
+D8
+~
+~
+0 -1 19363
+S
+#19365
+A dim hallway~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+3 -1 19366
+D8
+~
+~
+0 -1 19364
+S
+#19366
+A small room~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+1 -1 19365
+S
+#19367
+A small room~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+1 -1 19364
+S
+#19368
+A small room~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+1 -1 19363
+S
+#19369
+A Small, Cramped Cantina~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19362
+S
+#19370
+Turbocar Station - Skydome Botanical Gardens~
+This is the Turbocar stop near the Skydome Botanical Gardens.
+Several passengers walk along the line, waiting for the turbocar
+to arrive. It is very bright, and surprisingly sanitary here.
+You can exit the station south.
+~
+0 1073741836 1 0 0 0 14624
+D2
+~
+~
+0 -1 19022
+S
+#19371
+The Skydome Botanical Gardens~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19372
+D7
+~
+~
+0 -1 19021
+S
+#19372
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19373
+D3
+~
+~
+0 -1 19371
+S
+#19373
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19375
+D3
+~
+~
+0 -1 19372
+D6
+~
+~
+0 -1 19374
+S
+#19374
+Turbolift - Level 1~
+~
+0 1073741828 1 0 0 0 14624
+D9
+~
+~
+0 -1 19373
+S
+#19375
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19373
+D8
+~
+~
+0 -1 19376
+D9
+~
+~
+0 -1 19377
+S
+#19376
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D7
+~
+~
+0 -1 19375
+S
+#19377
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19375
+S
+#19378
+Turbolift - Level 2~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19379
+S
+#19379
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19378
+D6
+~
+~
+0 -1 19380
+D7
+~
+~
+0 -1 19399
+S
+#19380
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19382
+D6
+~
+~
+0 -1 19381
+D9
+~
+~
+0 -1 19379
+S
+#19381
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19384
+D6
+~
+~
+0 -1 19383
+D9
+~
+~
+0 -1 19380
+S
+#19382
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19380
+S
+#19383
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19385
+D9
+~
+~
+0 -1 19381
+S
+#19384
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19381
+S
+#19385
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19383
+D7
+~
+~
+0 -1 19386
+S
+#19386
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19387
+D7
+~
+~
+0 -1 19388
+D8
+~
+~
+0 -1 19385
+S
+#19387
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19386
+S
+#19388
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19389
+D8
+~
+~
+0 -1 19386
+S
+#19389
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19391
+D1
+~
+~
+0 -1 19388
+D3
+~
+~
+0 -1 19390
+D9
+~
+~
+0 -1 19392
+S
+#19390
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19389
+S
+#19391
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19389
+S
+#19392
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D6
+~
+~
+0 -1 19389
+D9
+~
+~
+0 -1 19393
+S
+#19393
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19394
+D3
+~
+~
+0 -1 19395
+D6
+~
+~
+0 -1 19392
+S
+#19394
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19393
+D1
+~
+~
+0 -1 19403
+D2
+~
+~
+0 -1 19396
+S
+#19395
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19393
+S
+#19396
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19394
+D8
+~
+~
+0 -1 19397
+S
+#19397
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19402
+D7
+~
+~
+0 -1 19396
+D8
+~
+~
+0 -1 19398
+S
+#19398
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19401
+D7
+~
+~
+0 -1 19397
+D8
+~
+~
+0 -1 19399
+S
+#19399
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19400
+D7
+~
+~
+0 -1 19398
+D8
+~
+~
+0 -1 19379
+S
+#19400
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19399
+S
+#19401
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19398
+S
+#19402
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D1
+~
+~
+0 -1 19397
+S
+#19403
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19394
+S
+#19404
+Merr-Sonn Blasters - Coruscant branch~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19007
+D2
+~
+~
+0 -1 19405
+S
+#19405
+Inside the large building~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19404
+D3
+~
+~
+35 -1 19406
+D8
+~
+~
+0 -1 19407
+S
+#19406
+The Manager's Office~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+1 -1 19405
+S
+#19407
+The Checkout Counter~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19408
+D7
+~
+~
+0 -1 19405
+S
+#19408
+Ammunition Stores~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19407
+S
+#19409
+SimFlight, Inc. - Coruscant branch~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19146
+D8
+~
+~
+0 -1 19410
+S
+#19410
+Entrance to the Simulation Area~
+~
+0 1073741836 1 0 0 0 14624
+D7
+~
+~
+0 -1 19409
+S
+#19411
+A Bright Hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+hatch~
+1 -1 19419
+D1
+~
+~
+0 -1 19412
+D2
+~
+hatch~
+3 -1 19420
+D3
+~
+~
+0 -1 19410
+S
+#19412
+A Bright Hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+hatch~
+3 -1 19418
+D1
+~
+~
+0 -1 19413
+D2
+~
+hatch~
+3 -1 19417
+D3
+~
+~
+0 -1 19411
+S
+#19413
+A Bright Hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+hatch~
+3 -1 19415
+D1
+~
+~
+0 -1 19414
+D2
+~
+hatch~
+3 -1 19416
+D3
+~
+~
+0 -1 19412
+S
+#19414
+Spaceflight Training~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19413
+S
+#19415
+Simulator Cockpit~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+hatch~
+3 -1 19413
+S
+#19416
+Simulator Cockpit~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+hatch~
+3 -1 19413
+S
+#19417
+Simulator Cockpit~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+hatch~
+3 -1 19412
+S
+#19418
+Simulator Cockpit~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+hatch~
+3 -1 19412
+S
+#19419
+Simulator Cockpit~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+hatch~
+1 -1 19411
+S
+#19420
+Simulator Cockpit~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+hatch~
+3 -1 19411
+S
+#19421
+A Docking Bay Simulation~
+~
+0 1073741860 1 0 0 0 14624
+S
+#19422
+NuRadio Communications~
+~
+0 1073741836 1 0 0 0 14624
+D8
+~
+~
+0 -1 19009
+S
+#19423
+None.~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19002
+S
+#19424
+Haat'Sun School of Combat~
+~
+0 1073741828 1 0 0 0 14624
+D3
+~
+~
+0 -1 19034
+D8
+~
+~
+0 -1 19425
+S
+#19425
+A clean, well-kept hallway~
+~
+0 1073741828 1 0 0 0 14624
+D2
+~
+~
+0 -1 19426
+D7
+~
+~
+0 -1 19424
+S
+#19426
+A clean, well-kept hallway~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19425
+D1
+~
+~
+0 -1 19427
+D2
+~
+~
+0 -1 19434
+S
+#19427
+A clean, well-kept hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19432
+D1
+~
+~
+0 -1 19428
+D2
+~
+~
+0 -1 19433
+D3
+~
+~
+0 -1 19426
+S
+#19428
+A clean, well-kept hallway~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19427
+D6
+~
+~
+0 -1 19429
+S
+#19429
+The Target Range~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+33554432 -1 19430
+D9
+~
+~
+0 -1 19428
+S
+#19430
+Further down the firing range~
+~
+0 1073741824 1 0 0 0 14624
+D0
+~
+~
+0 -1 19431
+S
+#19431
+Further down the firing range~
+~
+0 1073741832 1 0 0 0 14624
+D2
+~
+~
+0 -1 19430
+S
+#19432
+A Classroom~
+~
+0 1073741836 1 0 0 0 14624
+D2
+~
+~
+0 -1 19427
+S
+#19433
+A Classroom~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+0 -1 19427
+S
+#19434
+A clean, well-kept hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19426
+D8
+~
+~
+0 -1 19435
+S
+#19435
+A clean, well-kept hallway~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19437
+D2
+~
+~
+0 -1 19436
+D7
+~
+~
+0 -1 19434
+S
+#19436
+A Sparring Room~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+0 -1 19435
+S
+#19437
+A Sparring Room~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19435
+S
+#19438
+Yolar Platform~
+~
+0 1073741876 1 0 0 0 14624
+D9
+~
+~
+0 -1 19143
+S
+#19439
+Entrance to the Coruscant Heights Apartments~
+~
+0 1073741836 1 0 0 0 14624
+D1
+~
+~
+0 -1 19440
+D3
+~
+~
+0 -1 19106
+S
+#19440
+The Lobby~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19439
+D6
+~
+~
+0 -1 19441
+S
+#19441
+A small turbolift~
+~
+0 1073741828 1 0 0 0 14624
+> speech_prog 1~
+mea $n The turbolift slowly moves to the lobby level.
+mea $n You step off.
+mptransfer $n 19440
+mpat $n mpechoaround $n $n steps from the turbolift.
+~
+> speech_prog 2~
+mea $n The turbolift slowly moves to floor 2.
+mea $n You step off.
+mptransfer $n 19442
+mpat $n mpechoaround $n $n steps from the turbolift.
+~
+> speech_prog 3~
+mea $n The turbolift slowly moves to floor 3.
+mea $n You step off.
+mptransfer $n 19452
+mpat $n mpechoaround $n $n steps from the turbolift.
+~
+|
+S
+#19442
+Coruscant Heights: Floor 2~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19443
+D6
+~
+~
+0 -1 19441
+S
+#19443
+A hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+3 -1 19450
+D1
+~
+~
+0 -1 19442
+D2
+~
+~
+3 -1 19451
+D3
+~
+~
+0 -1 19444
+S
+#19444
+A hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+3 -1 19446
+D1
+~
+~
+0 -1 19443
+D2
+~
+~
+3 -1 19447
+D3
+~
+~
+0 -1 19445
+S
+#19445
+A hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+3 -1 19448
+D1
+~
+~
+0 -1 19444
+D2
+~
+~
+3 -1 19449
+S
+#19446
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D2
+~
+~
+3 -1 19444
+S
+#19447
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D0
+~
+~
+3 -1 19444
+S
+#19448
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D2
+~
+~
+3 -1 19445
+S
+#19449
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D0
+~
+~
+3 -1 19445
+S
+#19450
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D2
+~
+~
+3 -1 19443
+S
+#19451
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D0
+~
+~
+3 -1 19443
+S
+#19452
+Coruscant Heights: Floor 3~
+~
+0 1073741836 1 0 0 0 14624
+D3
+~
+~
+0 -1 19453
+D6
+~
+~
+0 -1 19441
+S
+#19453
+A hallway~
+~
+0 1073741828 1 0 0 0 14624
+D0
+~
+~
+3 -1 19460
+D1
+~
+~
+0 -1 19452
+D2
+~
+~
+3 -1 19461
+D3
+~
+~
+0 -1 19454
+S
+#19454
+A hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+3 -1 19458
+D1
+~
+~
+0 -1 19453
+D2
+~
+~
+3 -1 19459
+D3
+~
+~
+0 -1 19455
+S
+#19455
+A hallway~
+~
+0 1073741836 1 0 0 0 14624
+D0
+~
+~
+3 -1 19457
+D1
+~
+~
+0 -1 19454
+D2
+~
+~
+3 -1 19456
+S
+#19456
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D0
+~
+~
+3 -1 19455
+S
+#19457
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D2
+~
+~
+3 -1 19455
+S
+#19458
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D2
+~
+~
+3 -1 19454
+S
+#19459
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D0
+~
+~
+3 -1 19454
+S
+#19460
+An unoccupied apartment~
+~
+0 1075838988 1 0 0 0 14624
+D2
+~
+~
+3 -1 19453
+S
+#19461
+An unoccupied apartment~
+~
+0 2097164 1 0 0 0 14624
+D0
+~
+~
+3 -1 19453
+S
+#19462
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19463
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19464
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19465
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19466
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19467
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19468
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19469
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19470
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19471
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19472
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19473
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19474
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19475
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19476
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19477
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19478
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19479
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19480
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19481
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19482
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19483
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19484
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19485
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19486
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19487
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19488
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19489
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19490
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19491
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19492
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19493
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19494
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19495
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19496
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19497
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19498
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19499
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19500
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19501
+Jewelry Mil'Ranis~
+A rather opulent store with verpine attendants, this is said
+to be one of the most 'in' stores for jewelry in the core system.
+All hand crafted by verpine, the jewelry found here is often
+said to be the best. A large revolving door lets you into the
+store, many cases of jewelry line the walls.
+~
+0 1073741832 1 0 0 0 14624
+D2
+~
+~
+0 -1 19199
+S
+#19502
+First Providence Medical Supply~
+The sterile feel of a hospital is prevalent in this shop, white
+tile, and white shelves line the walls. A small counter with
+a credit register sits near the center.
+~
+0 1073741832 1 0 0 0 14624
+D0
+~
+~
+0 -1 19198
+S
+#19503
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19504
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19505
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19506
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19507
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19508
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19509
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19510
+Floating in a void~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19511
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19512
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19513
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19514
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19515
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19516
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19517
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19518
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19519
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19520
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19521
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19522
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19523
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19524
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19525
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19526
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19527
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19528
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19529
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19530
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19531
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19532
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19533
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19534
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19535
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19536
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19537
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19538
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19539
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19540
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19541
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19542
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19543
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19544
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19545
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19546
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19547
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19548
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19549
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19550
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19551
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19552
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19553
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19554
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19555
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19556
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19557
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19558
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19559
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19560
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19561
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19562
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19563
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19564
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19565
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19566
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19567
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19568
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19569
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19570
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19571
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19572
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19573
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19574
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19575
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19576
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19577
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19578
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19579
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19580
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19581
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19582
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19583
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19584
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19585
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19586
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19587
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19588
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19589
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19590
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19591
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19592
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19593
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19594
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19595
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19596
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19597
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19598
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19599
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19600
+Glip's Discount Clothing~
+~
+0 1073741836 1 0 0 0 14624
+S
+#19601
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19602
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19603
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19604
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19605
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19606
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19607
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19608
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19609
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19610
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19611
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19612
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19613
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19614
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19615
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19616
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19617
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19618
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19619
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19620
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19621
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19622
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19623
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19624
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19625
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19626
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19627
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19628
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19629
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19630
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19631
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19632
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19633
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19634
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19635
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19636
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19637
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19638
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19639
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19640
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19641
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19642
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19643
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19644
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19645
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19646
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19647
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19648
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19649
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19650
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19651
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19652
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19653
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19654
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19655
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19656
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19657
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19658
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19659
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19660
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19661
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19662
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19663
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19664
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19665
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19666
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19667
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19668
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19669
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19670
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19671
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19672
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19673
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19674
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19675
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19676
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19677
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19678
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19679
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19680
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19681
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19682
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19683
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19684
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19685
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19686
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19687
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19688
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19689
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19690
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19691
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19692
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19693
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19694
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19695
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19696
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19697
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19698
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19699
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19700
+Floating in a void~
+~
+0 1073741828 1 0 0 0 14624
+S
+#19999
+High Room~
+~
+0 1073741828 1 0 0 0 14624
+S
+#0
+
+
+#RESETS
+M 1 19000 1 19000
+O 1 19000 1 19000
+O 1 19002 1 19185
+O 1 19001 1 19206
+D 0 19206 7 1
+D 0 19206 9 1
+M 1 19001 1 19212
+G 1 19006 1
+G 1 19007 1
+G 1 19008 1
+M 1 19002 1 19213
+G 1 19009 1
+G 1 19010 1
+G 1 19011 1
+G 1 19012 1
+G 1 19013 1
+M 1 19003 1 19215
+G 1 19014 1
+G 1 19015 1
+G 1 19016 1
+G 1 19017 1
+M 1 19004 1 19218
+G 1 19018 1
+G 1 19019 1
+O 1 19005 1 19209
+O 1 19004 1 19209
+O 1 19003 1 19209
+M 1 19006 1 19275
+E 1 19071 1 5
+E 1 19022 1 16
+G 1 19072 1
+M 1 19007 2 19275
+E 1 19022 1 16
+E 1 19020 1 5
+E 1 19021 1 6
+M 1 19007 2 19275
+E 1 19021 1 6
+E 1 19022 1 16
+E 1 19020 1 5
+D 0 19275 1 2
+D 0 19275 7 1
+O 1 19073 1 19276
+D 0 19276 3 2
+M 1 19008 1 19277
+O 1 19074 1 19277
+M 1 19009 1 19144
+M 1 19010 1 19085
+G 1 3 1
+M 1 19011 1 19285
+G 1 3 1
+O 1 19075 1 19286
+O 1 19052 1 19286
+O 1 19075 1 19284
+O 1 19052 1 19284
+O 1 19075 1 19283
+O 1 19052 1 19283
+O 1 19076 1 19321
+M 1 19012 1 19003
+O 1 19077 1 19003
+M 1 19022 1 19335
+E 1 19071 1 5
+E 1 19022 1 16
+G 1 19078 1
+M 1 19023 2 19333
+E 1 19020 1 5
+E 1 19021 1 6
+E 1 19022 1 16
+M 1 19023 2 19333
+E 1 19020 1 5
+E 1 19022 1 16
+E 1 19021 1 6
+D 0 19333 0 1
+M 1 19999 1 19999
+O 1 19999 1 19999
+O 1 19080 1 19360
+O 1 19079 1 19360
+M 1 19024 1 19022
+O 1 19075 1 19370
+O 1 19052 1 19370
+O 1 19081 1 19368
+O 1 19082 1 19368
+D 0 19368 1 0
+O 1 19081 1 19367
+O 1 19082 1 19367
+D 0 19367 1 0
+O 1 19081 1 19366
+O 1 19082 1 19366
+D 0 19366 1 0
+M 1 19025 1 19371
+E 1 19083 1 5
+E 1 19084 1 7
+E 1 19085 1 8
+M 1 19026 1 19407
+G 1 19027 1
+G 1 19028 1
+G 1 19043 1
+G 1 19025 1
+G 1 19024 1
+G 1 19029 1
+G 1 19057 1
+G 1 19025 1
+M 1 19026 2 19408
+G 1 19070 1
+G 1 19067 1
+G 1 19066 1
+G 1 19065 1
+G 1 19062 1
+G 1 19061 1
+G 1 19060 1
+M 1 19027 1 19405
+O 1 19087 1 19405
+M 1 19028 1 19410
+O 1 19089 1 19414
+M 1 19029 1 19422
+G 1 19095 1
+G 1 19090 1
+G 1 19093 1
+G 1 19092 1
+G 1 19094 1
+G 1 19091 1
+G 1 19096 1
+G 1 19097 1
+M 1 19501 1 19501
+G 1 19502 1
+G 1 19503 1
+G 1 19504 1
+G 1 19501 1
+O 1 19098 1 19404
+M 1 19502 1 19502
+G 1 19506 1
+G 1 19505 1
+M 1 19030 1 19406
+O 1 19074 1 19406
+D 0 19406 1 0
+M 1 19504 2 19430
+M 1 19504 2 19430
+M 1 19504 3 19431
+M 1 19503 2 19431
+M 1 19503 2 19431
+O 1 19089 1 19433
+O 1 19089 1 19432
+M 1 19005 4 19001
+E 1 19020 1 5
+E 1 19021 1 6
+E 1 19022 1 16
+M 1 19005 4 19001
+E 1 19021 1 6
+E 1 19020 1 5
+E 1 19022 1 16
+M 1 19031 1 19001
+M 1 19005 6 19438
+E 1 19021 1 6
+E 1 19020 1 5
+E 1 19022 1 16
+M 1 19005 6 19438
+E 1 19020 1 5
+E 1 19021 1 6
+E 1 19022 1 16
+M 1 19031 2 19438
+M 1 19005 6 19084
+E 1 19022 1 16
+E 1 19020 1 5
+E 1 19021 1 6
+M 1 19005 6 19084
+E 1 19022 1 16
+E 1 19020 1 5
+E 1 19021 1 6
+M 1 19031 3 19084
+S
+
+
+#SHOPS
+ 19001    0  0  0  0  0   120   0         0 23    ; Farrell the Bantha Cook
+ 19002    0  0  0  0  0   120   0         0 23    ; Gillian
+ 19003    0  0  0  0  0   120   0         0 23    ; A teenage clerk
+ 19004    0  0  0  0  0   120   0         0 23    ; Gordon
+ 19026    0  0  0  0  0   150   0         0 23    ; shopping droid
+ 19029    0  0  0  0  0   120  90         0 23    ; a Duros store manager
+ 19501    0  0  0  0  0   140  90         0 23    ; A verpine jewelry attendant
+ 19502    0  0  0  0  0   120  90         0 23    ; TI-2033
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  19005 spec_stormtrooper
+M  19023 spec_stormtrooper
+M  19031 spec_stormtrooper
+S
+
+
+#$

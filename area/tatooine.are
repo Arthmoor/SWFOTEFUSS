@@ -1,0 +1,3083 @@
+#AREA   Tatooine~
+
+
+
+#AUTHOR Mael~
+
+#RANGES
+0 30 0 36
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 4456941
+
+#MOBILES
+#250
+low_mob ~
+a newly created low_mob ~
+Some god abandoned a newly created low_mob  here.
+~
+~
+1073741827 65538 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#251
+finicky jawa~
+a little, finicky Jawa~
+A finicky Jawa stands at the field's edge watching takeoffs.
+~
+Standing here is a Jawa, whom, like all of his folk is vertically
+challenged. Coming only shortly above the knee on most humans. He is
+rapped in a dark brown, hooded sand cloth robe and the only feature
+visible from within are his brightly bioilluminescent eyes. He chitters
+endlessly and seemingly without sense but if one were to listen long
+enough a talker like this could be a fountain of information.
+~
+1539 4194304 0 Z
+10 0 75 1d1+499 1d1+50
+0 0
+8 8 0
+3 3 22 3 3 3 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+> speech_prog say parts~
+mpechoat $n A shifty little Jawa fixes his eyes on you appraisingly.
+mpechoaround $n A shifty little Jawa fixes his eyes on $n appraisingly.
+emote says in an excited tone, being uncommonly helpful, "What?! What??
+mpecho Sure, the bazaar for parts!"
+emote cuts himself off then says after a long pause, "Yeah, Lady
+mpecho Valarian's Despot.. Good luck!"
+~
+> give_prog jawa tax fraud receipt corpse~
+em cries out and falls to his knees beside the body.
+mpat 101 drop corpse
+mpat 101 purge corpse
+say Here.. Take the things that were my brothers.
+mpwithdraw 200
+give 200 credits $n
+mpadvance $n 5 420
+say That bastard Talmont!
+say Kill him for me?! I'll give you all I have.
+~
+> give_prog head talmont~
+say Kind spirit!
+say You've done more good today than you realize!
+mpat 101 drop head
+mpat 101 purge head
+mpwithdraw 650
+em pushes a credstick on $n
+give 650 credits $n
+mpadvance $n 8 999
+~
+> greet_prog 15~
+em mutters quietly to himself, "Taxes, taxes!"
+em fixes his eyes on $n calculatingly
+say Talmont! He's taken my brothers to be tried
+say For tax fraud?!
+em chitters piteously
+~
+|
+#252
+lumbering ronto~
+a gargantuan, lumbering Ronto~
+A lumbering Ronto wades its way through the crowds, a pair of Jawas hanging onto its back and chittering commands.
+~
+Slowly lumbering its way down the path, this massive, saurian quadraped is
+nothing more than a beast of burden to its miniscule, Jawa masters. While
+this creature is monstrous in appearance it is surprisingly skittish
+toward passing swoops. 
+~
+131 0 0 Z
+1 0 0 1d1+699 1d1+30
+0 0
+8 8 0
+20 3 4 6 23 10 10
+0 0 0 0 0
+0 0 0 0 131073 131072 0
+7 6 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+> greet_prog 9~
+mpechoar $n A gargantuan, lumbering Ronto is startled by $n
+mpechoaround $n passing by and jolts upright, leaving its
+mpechoaround $n Jawa caretakers hanging by its halter leads.
+mpechoat $n You startle a gargantuan, lumbering Ronto in
+mpechoat $n passing and it jolts upright, leaving its Jawa
+mpechoat $n owners hanging by its halter leads.
+~
+|
+#253
+bloated askajian water vendor~
+a bloated Askajian~
+An Askajian, bloated from water intake stands here selling it drop by precious drop.
+~
+Standing behind a small, locked display counter full of duraplast bottles
+full of crystal clear water. This bloated Askajian stands, arms folded
+across his uppermost set of water bloated breasts. His skin is a dark
+sandy color, well broiled by a long life beneath Tatooine's twin suns.
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+> greet_prog 12~
+emote mops the pools of sweat from his cheeks and neck.
+~
+> greet_prog 10~
+emote spits a large green lunger out past the crowd.
+~
+> greet_prog 8~
+emote pours a gallon of water out over his bare face and chest, absorbing
+it quickly.
+~
+|
+#254
+chalmut sallow porsine hutt~
+a sallow, porsine Hutt~
+A porsine, sallow skinned Hutt stands before his display of spirits.
+~
+Chalmut, the foul, sallow skinned Hutt is semi reposed on a weapons capable
+swoop at the opening to a wide, adjoining room full of kegs and barrels, a
+display of smaller bottles, opened and otherwise occupy a glass shelf for
+samplers.
+~
+3 0 0 Z
+1 0 0 30d10+450 0d0+0
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+0 0 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+#255
+foul smelling whiphid barkeep~
+a foul smelling Whiphid female~
+A foul smelling Whiphid female hurries along the bar, serving patrons.
+~
+This old Whiphid's got her share and a half of battle scars and looks none
+too pleasant to the untrained, non-whiphid perspective. She carries
+herself with surprising grace, perhaps as a counterpoint to her
+fly-drawing aroma.
+~
+3 0 100 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+mpechoat $n &GThe sounds of one wild band blast you from the stage.
+~
+|
+#256
+jawa trader~
+a tiny, Jawa trader~
+A tiny Jawa sits cross-legged on a mat, pushing his wares.
+~
+This small hunched figure's mat is depressingly bare of salvage yet he
+continues to hawk what remains with high spirits and jovial chittering.
+His reptillian like fingers protrude on occasion from his sleeves to catch
+up a buy or hide something precious.
+~
+3 0 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 131072 1 2
+5 5 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+#257
+prefect talmont human~
+a human man of middling height~
+A human man of middling height sits behind his desk filing papers.
+~
+This short man, of middling height is buried in his paperwork and looking
+none too happy about it. When he occasionally looks up it is to sneer at a
+co-worker or reach for his foul smelling cigarettes.
+~
+1027 0 -150 Z
+35 0 12 7d10+350 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 6
+7 7 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 272
+~
+> speech_prog work~
+emote glances up again, this time obviously irritated
+emote cracks an unsettling grin
+say Sure, son. I've got something jus' for you.
+say Take them.. Receipts out to the sands and put
+say 'em in a proper Sanddigger grave..
+say And maybe.. I'll throw a cred or two your way.
+em snickers malevolently and returns his attention to his
+mpecho desk
+drop corpse
+~
+> greet_prog 30~
+say Yeah, yeah? Another Cred hunter?
+em sneers at $n
+say Well, if you want work, tell me, Smegma breath.
+~
+> speech_prog hello~
+em glances up from his work to the source of his irritation.
+say Yes? What?! I've got business, son. Scram!
+~
+|
+#258
+lady valarian whiphid female impressive~
+an impressive Whiphid female~
+An impressive Whiphid female, Lady Valarian, sits behind her desk looking the picture of calm.
+~
+Here stands a old humanoid. He is dressed in sand colored robes and seems
+wise. Looking here you can tell he is a Tusken Shaman. He doesn't seem
+aggresive but can hold his own. 
+~
+3 4194304 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+14 6 0 0 0 0 16 0
+256 0 0 0 0 0 0 0
+> greet_prog 100~
+em flutters her heavy lips, snorts and sits upright upon the lift's
+mpecho noise.
+mpechoat $n Lady Valarian thumbs her tusks briefly as she eyes you.
+mpechoaround $n Lady Valarian thumbs her tusks briefly as she eyes
+$n.
+say Well, what do you want?
+say Oh, of course.. Credits, Can you fight?
+~
+> speech_prog yes~
+emote grumbles thoughtfully
+say Alright, alright. Go deal with my janitor bot.
+em grins jaggedly
+say He seems to have had some programming malfunctions..
+say The basement.
+emote snickers, kicks her feet up on the desk and closes her eyes.
+~
+> give_prog capacitator blown~
+say Hah, impressive.
+say That piece of scrap's been ravaging my maintenance
+say personnel population.
+mpat 101 drop capacitator
+mpat 101 purge capacitator
+mpwithdraw 5
+give 5 credits $n
+mpadvance $n 3 777
+em pushes a credstick on $n then waves a hand dismissively.
+~
+|
+#259
+berserked janitor droid~
+a janitor droid running rampant~
+A janitor droid runs rampant through the cargo comparment.
+~
+~
+67108899 0 0 Z
+36 0 10 7d10+1000 5d3+50
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 2049 2049 4
+7 7 0 0 0 0 56 3
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 273
+~
+|
+#260
+miniscule jawa merchant~
+a miniscule Jawa merchant~
+A miniscule Jawa sits atop a vending machine, selling the items it will not.
+~
+This tiny excuse for a biped calls himself a Jawa and chitters ceaselessly
+about the virtues of his garbage - Claiming it all to be treasure. His
+face is only denoted as a face by the glowing red eyes from within, for
+all most could see would be the outer edges of his hood.
+~
+131 0 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+8 0 0 0 131072 131072 0
+3 3 0 0 0 0 16 0
+256 0 0 0 0 0 0 0
+#261
+ortolan ommnibox player~
+an Ortolan Ommnibox player~
+An Ortolan is tranced out on stage as he plays the Ommnibox.
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+8 0 0 0 131073 131072 0
+0 0 0 0 0 0 16 0
+0 0 0 0 0 0 0 0
+#262
+vertically challenged jawa kloo horn player~
+a vertically challenged Jawa kloo horn player~
+A vertically challenged Jawa wildly gyrates his hips as he plays the Kloo horn.
+~
+Quite uncommon, this Jawa - Unrobed, his scaly, furred little form exposed
+to the world as he gyrates his hips and gets down wildly, Kloo horn
+pressed to his lips.
+~
+1073741827 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#263
+gith gasan string drum player~
+a gith gasan string drum player~
+A Gith beats on his Gasan string drums expressionlesly.
+~
+This pale, bulb headed creature wails away on his string drums with a
+fervor like one crazed on glitterstim or even worse.. Religion. His teeth
+are small and sharp and his mouth is constantly open in a slack jawed,
+dazed expression.
+~
+1073741827 0 0 Z
+10 0 75 2d10+100 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+2 2 0 0 0 0 16 0
+0 0 0 0 0 0 0 0
+#264
+ASP droid~
+an ASP droid~
+An ASP droid silently minds a booth, perhaps too simple in programming to "advertise".
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#265
+pasty skinned hutt bouncer~
+a pasty, thick skinned Hutt bouncer~
+A pasty, thick skinned Hutt acts as bouncer.
+~
+This Hutt, yet to gain the fat his race is so prone to take on in age is
+rather imposing. His mouth gapes toothless but it is doubtful he would
+have to chew on you. His skin is as tough as tire rubber.
+~
+16777223 0 0 Z
+10 0 75 1d1+590 1d1+50
+0 0
+8 8 1
+23 10 10 10 23 10 10
+0 0 0 0 0
+4 0 0 0 1 17 0
+50 30 0 0 0 0 33 1
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+if clan($n) == The Empire
+em lets out a deafening whistle.
+mpasound a Hutt bouncers' deafening whistle can be heard.
+else
+if race($n) == Assassin Droid
+say Yer kind ain't welcome here.
+em shoves $n away from the door.
+mpforce $n sw
+else
+if race($n) == Astromech Droid
+say Yer kind ain't welcome here.
+em shoves $n away from the door.
+mpforce $n sw
+else
+if race($n) == Gladiator Droid
+say Yer kind ain't welcome here.
+em shoves $n away from the door.
+mpforce $n sw
+else
+if race($n) == Interrogation Droid
+say Yer kind ain't welcome here.
+em shoves $n away from the door.
+mpforce $n sw
+else
+if race($n) == Protocol Droid
+say Yer kind ain't welcome here.
+em shoves $n away from the door.
+mpforce $n sw
+endif
+endif
+endif
+endif
+endif
+endif
+endif
+~
+|
+#266
+citizen of tatooine~
+a male citizen of Tatooine~
+A male citizen of Tatooine wanders the streets.
+~
+This man, a resident of Mos Eisley by appearance makes his way in silence
+through the streets which are anything but. He carries a jug of water,
+three quarters of the way empty, probably to be sold. His skin is dark and
+tough as boot leather. And he carries himself like a farmer, in speech and
+clothing.
+~
+16777413 0 500 Z
+35 0 12 5d6+100 6d3+10
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+3 0 0 0 9 8 0
+7 7 0 0 0 0 16 0
+256 0 0 0 0 0 0 0
+#267
+greasy faced little concierge~
+a greasy faced little concierge~
+A greasy faced little man here acts as concierge for the casino.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 25~
+say Oh, hello.
+say Do you need a room?
+say Also.. I suggest avoiding the penthouse today
+say The Lady Valarian is in quite an uproar.
+~
+|
+#268
+tatooine citizen female~
+a female citizen of Tatooine~
+A female citizen of Tatooine wanders the streets.
+~
+This young woman, while a little water starved is what some would deem
+attractive, with her dun colored skin and clear blue eyes that speak to
+great quantities of spice consumption. She wanders the streets, comlink in
+hand all but dead to the world.
+~
+16777413 0 0 Z
+1 0 0 8d8+100 8d8+20
+20 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+#269
+sandtrooper imperial customs watch~
+an Imperial sandtrooper acting as a customs watch~
+An Imperial sandtrooper stands here checking for contraband.
+~
+This old sandtrooper's armor is worn damn near to the cloth in places but
+he carries himself like a man who knows his business - Killing. He gruffly
+stops all who pass and attempts to rustle them for weapons arbitrarily and
+seeming amused by his task.
+~
+7 4194304 0 Z
+35 0 12 8d3+400 2d4+20
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+9 0 0 0 524288 524289 0
+7 7 0 0 0 0 48 3
+256 0 0 0 0 0 0 0
+#270
+slight human pale~
+a slight, pale man~
+A slight, pale man wanders the streets, his duster seeming a little overstuffed.
+~
+~
+1090519233 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 3
+0 0 0 0 0 0 0 0
+#271
+shopkeeper~
+a newly created shopkeeper~
+A shopkeeper is here selling items
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#272
+shopkeeper~
+a newly created shopkeeper~
+Some god abandoned a newly created shopkeeper here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#273
+shop keeper~
+a newly created shop keeper~
+Some god abandoned a newly created shop keeper here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#277
+owen~
+a newly created owen~
+Some god abandoned a newly created owen here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#278
+shopkeeper~
+a newly created shopkeeper~
+Some god abandoned a newly created shopkeeper here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#290
+guar~
+&zThe Royal Guard~
+&zThe Royal Guard Stands here..
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+if clan($n) == Royals
+smile $n
+mpechoat $n The Guard says, "Access Granted!"
+else
+mpechoat $n A guard forces you to sit
+mpechoat $n A guard scans you for weapons!
+mpechoat $n A guard pulls you up!
+mpechoat $n The Guars says, "Get out! You're no Royal!"
+mpforce $n up
+endif
+~
+|
+#291
+toydarian pawn owner~
+a Toydarian pawn shop owner~
+A Toydarian stands hunched over a back counter, tinkering away, unprotected on a hand grenade.
+~
+~
+134217731 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 131073 1 0
+0 0 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+> rand_prog 30~
+em drops a few creds into a coin safe
+mpdeposit 100
+~
+|
+#292
+blahprogmob~
+~
+~
+~
+1073741827 65538 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> act_prog p digging...~
+~
+|
+#293
+athletic defel~
+an athletic Defel youngling~
+A distortion of light in the dim hall breathes shallowly.
+~
+~
+5 4227074 -25 Z
+1 0 0 48d40+350 40d56+12
+1800 0
+8 8 1
+23 10 10 23 23 10 10
+0 0 0 0 0
+12 0 0 0 2097152 2097152 4
+0 0 201 8 0 0 48 3
+256 0 0 0 0 0 0 0
+> fight_prog 15~
+set full
+say Die, Son of a Grannish Whore!
+mea $r A Defel rears back and strikes you with a left.
+mer $r A Defel rears back and strikes $r with a left.
+mpdamage $r 25
+~
+> death_prog 100~
+mpat 101 drop sliver
+mpat 101 mppurge
+~
+> rand_prog 20~
+mpdeposit 400
+~
+|
+#294
+salvage engineer~
+a tiny grease spot of an engineer~
+A tiny grease spot of an engineer sorts through a heap and mutters.
+~
+~
+1155 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+23 10 10 23 23 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+256 0 0 0 0 0 0 0
+#450
+hi_mob ~
+a newly created hi_mob ~
+Some god abandoned a newly created hi_mob  here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#250
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#251
+abandoned x-wing~
+an abandoned X-wing fighter~
+A rusty old relic of an abandoned X-wing lies here on its side.~
+~
+15 0 0
+100 0 0 0
+1000 0 0
+E
+abandoned x-wing~
+Lying here with its dejected looking hull half buried in the red sand, what
+remains above ground and untouched by the Jawa looks to be frequently used
+as a parking stop for drunken hover craft and swoop owners. The hatch
+hangs open a few inches and the soil around is loose, perhaps one with
+thin fingers could explore its innards.
+~
+E
+abandoned x-wing~
+Lying here, half buried in the red sands this worn old X wing appears to
+have
+been used as a parking stop for many swoops and small carriers. Its hatch
+is
+partially open and the sand around is loose. One with thin hands might be
+able
+to reach inside.
+~
+#252
+ragged space charts~
+a ragged, time worn chart of stellar maps~
+A ragged space charts is here.~
+~
+13 33554432 16385
+0 0 0 0
+1 0 0
+E
+ragged space charts~
+Lying rumpled up here is a pamphlet if clear plastic sheets, displaying the
+various nearby planetary systems. It reads: Coruscant -345 -987 1562 Yavin
+IV 4000 4000 4000
+~
+E
+back~
+turning the pamphlet over it displays a faded yet readable map, that would
+lead one due west, past the needle spire, through the tusken canyons and
+into the very heart of the dune sea with some vague drawings of jewels or
+pearls.
+~
+#253
+oz ounce water~
+a tiny paper cup~
+An ounce of water in a tiny paper cup.~
+~
+17 8192 1
+0 2 0 0
+1 20 2
+#254
+collapsable shovel~
+a collapsable shovel~
+A collapsable, durasteel shovel lies here.~
+~
+59 8192 1
+0 0 0 0
+1 311 31
+#255
+jawa tax fraud receipt corpse~
+a decaying Jawa corpse~
+A decaying Jawa corpse here acts as an Imperial tax "receipt"~
+~
+13 8192 16385
+0 0 0 0
+1 0 0
+#256
+blown capacitator~
+a blown capacitator~
+A capacitator lies here, hanging wires.~
+~
+13 8192 1
+0 0 0 0
+1 0 0
+#257
+sallustan gut buster shot~
+a shot of Sallustan gut buster~
+A shot of Sallustan gut buster bubbles on its own accord.~
+~
+17 8192 0
+0 3 8 0
+1 15 1
+#258
+chalmut's secret sauce keg~
+a keg of Chalmut's secret sauce~
+A keg of Chalmut's secret sauce stews here, smelling particularly foul.~
+~
+17 8192 1
+0 14 9 0
+1 180 18
+#259
+sallustan gut buster keg~
+a keg of Sallustan gut buster~
+A keg of Sallustan gut buster sits here in a container made clearly of recycled duraplast.~
+~
+17 8192 1
+0 14 8 0
+1 220 22
+#260
+kawokian gin keg~
+A Kawokian Keg~
+A large keg sits here, seems to be filled with some sort of alcohol.~
+~
+17 8192 1
+0 14 8 0
+1 330 33
+#261
+pressure catch~
+a pressure catch~
+A pressure catch is here.~
+~
+39 1073741824 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpecho A loud click is heard from behind the bar, its surface
+mpecho tilts precariously and dumps all the drinks into  a
+mpecho trough then a few gruff droids relieve everyone in the
+mpecho room of their drinks, drugs and other delicacies.
+mpforce all give shot whiphid
+mpforce all give shot whiphid
+mpforce all give spice whiphid
+mpat 450 drop all
+mpat 450 purge
+~
+|
+#264
+battered duraplast shin guards~
+a pair of battered duraplast shinguards~
+A pile of tired looking duraplast lies here.~
+~
+9 1073741824 16417
+15 -11 0 0
+3 0 0
+E
+battered duraplast shin guards~
+These well used old shin guards actually cover a good deal of the leg
+and
+bear a small sheath, behind the knee on each. The duraplast itself is a
+dull grey and entirely unextraordinary.
+~
+#265
+beaten hyperterminal board~
+a beaten hyperterminal board~
+A beaten hyperterminal board is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#266
+dun colored grenade~
+a dun colored grenade~
+A dun colored grenade blends in nicely with the sand.~
+~
+82 0 16385
+100 200 0 0
+1 1250 125
+#267
+floor plan~
+a floor plan~
+A floor plan is tacked to the duraplast wall.~
+~
+12 1073741825 0
+0 0 0 0
+1 0 0
+E
+floor plan~
+&G[&z-1&G -&z -6&G]&z Resident Homes
+&G[&z-7&G]&z Rehydration Facilities
+&G[&z-8&G]&z Dining Floor
+&G[&z-9&G]&z Security
+&G[&z-10&G]&z Maintenance
+~
+#268
+toilet lever~
+a lever to flush the ceramic toilet~
+A ceramic toilet sits here overflowing and smelling none too pleasant, dare you flush?~
+~
+39 0 0
+0 0 0 0
+1 0 0
+> push_prog 100~
+mpecho The toilet gurgles a few times ominously then,
+mpecho The wall panel behind it rotates to its side.
+mpecho Revealing a passage temporarily for $n.
+mpat 340 mptransfer $n
+mpat 279 pull toilet
+~
+|
+#269
+desert ration~
+a desert ration~
+A small, duraplast ration container.~
+~
+19 8192 1
+20 20 0 0
+1 20 2
+#270
+sand goggles~
+a pair of sand goggles~
+A pair of beaten, gritty sand goggles.~
+~
+9 8192 131073
+12 -14 0 0
+1 200 450
+#271
+durafiber dustcloak~
+a durafiber dustcloak~
+A loose, durafiber dustcloak helps to ward the heat.~
+~
+9 -2012471296 1025
+12 -16 0 0
+5 2000 200
+A
+37 10
+#272
+head talmont~
+Talmont's head~
+Talmont's head lies here, smirk gone from his cold, dead lips.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+#273
+capacitator blown~
+a blown capacitator~
+A capacitator lies here, sizzling and leaking solder.~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#274
+crumbling dun spice bindle~
+a wad of crumbling, dun hued spice~
+A brown paper bindle lies on the floor, probably thrown by some junkie.~
+~
+78 8208 1
+4 10 0 0
+1 400 40
+#275
+chalmut's secret sauce shot~
+a short of Chalmut's secret sauce~
+A shot of Chalmut's secret sauce sits here smelling foul.~
+~
+17 8192 0
+0 3 0 9
+1 10 1
+#276
+kawokian gin shot~
+a shot of Kawokian gin~
+A shot of Kawokian gin stews here~
+~
+17 8192 16385
+0 3 8 0
+1 25 2
+#277
+gaderffii gaffi stick~
+razor sharp gaffi~
+A gaderffii lies here looking quite lethal.~
+~
+5 0 24577
+100 5 6 0 100 110
+1 760 76
+#278
+sporting blaster~
+a sporting blaster~
+A sporting blaster is here.~
+~
+5 1073741824 8193
+0 0 0 0 2000 2000
+1 666 66
+#279
+tiny behind ear comlink~
+a tiny behind ear comlink~
+A tiny behind ear comlink is here.~
+~
+72 8192 81921
+0 0 0 0
+1 200 20
+A
+3 1
+A
+11 2
+#280
+toll fountain~
+a toll fountain~
+A durasteel toll-fountain is firmly attached to the wall.~
+~
+17 1073750016 0
+1000 1000 0 0
+1 0 0
+> use_prog 100~
+mpechoat $n You drop a coin into the slot and take a short drink.
+mer $n $n drops a coin into the fountain's slot and takes a drink.
+mprestore $n 1
+mpforce $n drop 5 credits
+mppurge cred 
+~
+|
+#281
+tired looking bowcaster~
+a tired looking bowcaster~
+An old bowcaster lies here forgotten.~
+~
+5 1073741824 8192
+0 0 0 9
+1 0 0
+#282
+beryl colored crystal~
+a beryl hued crystal~
+A beryl hued chunk of crystal lies here, unrecognizable.~
+~
+63 0 1
+3 0 0 0
+1 12 1
+#284
+worn looking wookiee bowcaster~
+a worn looking bowcaster~
+A worn looking bowcaster sits here looking smugly lethal.~
+~
+5 0 8193
+15 10 12 9 100 101
+6 4000 400
+E
+bowcaster~
+This piece of Wookiee machinery, while a bit dusty and certainly
+out of use for a while has the capability to quite lethal and
+that message, if any is written all over its blue durasteel and
+actual wood surfaces.
+~
+A
+19 2
+A
+18 2
+#285
+restraining bolt~
+a restraining bolt~
+A restraining bolt is here.~
+~
+13 1073745920 5
+0 0 0 0
+1 0 0
+#286
+utilitarian remote~
+a utilitarian remote~
+A utilitarian remote is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#287
+slivergun organic tissue~
+a slivergun composed of organic tissue~
+A slivergun composed of organic tissue lies here.~
+~
+5 0 8192
+12 50 0 6 2000 2000
+1 0 0
+A
+18 50
+A
+19 50
+#288
+chunk unformed duraplast~
+a chunk of unformed duraplast~
+An unformed chunk for duraplast lies here, collecting dust.~
+~
+64 0 1
+0 0 0 0
+1 4 0
+#289
+antiquated ceramic superconductor~
+an antiquated ceramic superconductor~
+An antiquated ceramic superconductor lies dormant.~
+~
+71 0 1
+0 0 0 0
+1 4 0
+#290
+chunk unformed durasteel~
+a chunk of unformed durasteel~
+A chunk of unformed durasteel lies here, collecting dust.~
+~
+67 0 1
+0 0 0 0
+1 4 0
+#291
+carbonized vial black chemicals~
+a carbonized vial of black chemical~
+A carbonized vial bubbles quietly to itself.~
+~
+87 8192 1
+150 0 0 0
+1 12 1
+#292
+scrap metal~
+a bit of scrap metal~
+A bit of scrap metal is unusually pliant and malleable.~
+~
+75 0 1
+0 0 0 0
+1 30 3
+#293
+miniature invex lens~
+a miniature invex lens~
+A miniature, invex lens sits here distorting light to its own ends.~
+~
+62 0 1
+0 0 0 0
+1 4 0
+#294
+blast furnace~
+a portable blast furnace~
+A portable blast furnace sits here radiating heat.~
+~
+68 0 1
+0 0 0 0
+1 24 2
+#295
+toolkit basic~
+a basic toolkit~
+A basic toolkit is spread out on the ground, its rusty innards exposed for all.~
+~
+66 0 1
+0 0 0 0
+1 15 1
+#296
+macro-circuit board~
+a macro-circuit board~
+A macro-circuit board lies dormant.~
+~
+70 8192 1
+0 0 0 0
+1 5 0
+#297
+battery cell industrial~
+an industrial power cell~
+An industrial power cell sits here, amped.~
+~
+65 0 1
+0 0 0 0
+1 0 0
+#298
+bit sandcloth~
+a bit of sandcloth~
+A bit of sandcloth lies here.~
+~
+74 0 1
+0 0 0 0
+1 4 0
+#299
+hand held sewing machine~
+a hand held sewing machine~
+A hand held sewing machine is here.~
+~
+77 0 1
+0 0 0 0
+1 15 1
+#300
+smut mag magazine~
+a smut mag magazine~
+A smut mag magazine is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+E
+page_1~
+8888  8888888
+                  888888888888888888888888
+               8888:::8888888888888888888888888
+             8888::::::8888888888888888888888888888
+            88::::::::888:::8888888888888888888888888
+          88888888::::8:::::::::::88888888888888888888
+        888 8::888888::::::::::::::::::88888888888   888
+           88::::88888888::::m::::::::::88888888888    8
+         888888888888888888:M:::::::::::8888888888888
+        88888888888888888888::::::::::::M88888888888888
+        8888888888888888888888:::::::::M8888888888888888
+         8888888888888888888888:::::::M888888888888888888
+        8888888888888888::88888::::::M88888888888888888888
+      88888888888888888:::88888:::::M888888888888888   8888
+     88888888888888888:::88888::::M::;o*M*o;888888888    88
+    88888888888888888:::8888:::::M:::::::::::88888888    8
+   88888888888888888::::88::::::M:;:::::::::::888888888
+  8888888888888888888:::8::::::M::aAa::::::::M8888888888       8
+  88   8888888888::88::::8::::M:::::::::::::888888888888888 8888
+ 88  88888888888:::8:::::::::M::::::::::;::88:88888888888888888
+ 8  8888888888888:::::::::::M::"@@@@@@@"::::8w8888888888888888
+  88888888888:888::::::::::M:::::"@a@":::::M8i888888888888888
+ 8888888888::::88:::::::::M88:::::::::::::M88z88888888888888888
+8888888888:::::8:::::::::M88888:::::::::MM888!888888888888888888
+~
+#450
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#250
+Giant, Wind Torn Clearing~
+This wide open gravel lot acts as a go between landing pad for smaller
+ships with their payloads of smuggled goods and armed-to-the-teeth bounty
+hunters. Skirting your vision in all directions except due west hazy red
+mesas, mountains and jagged spires of stone make themselves roughly
+visible on the skyline. Northward a trail of pilots turned pedestrian
+stream in and out of the sprawling city of Mos Eisley to do their night's
+injustice or, coming the other direction to escape retribution. The air is
+filled with swirling red, gritty and near opaque silt as the occasional
+hum and whine of an engine booster shakes this dust bowl.
+~
+0 48 1 4 0 0 32040
+D0
+~
+~
+0 -1 251
+D1
+~
+~
+0 -1 338
+D3
+~
+~
+0 -1 392
+S
+#251
+On the Outskirts of Mos Eisley~
+Sandwiched between two slowly graduating conical towers of aerodynamic
+design the foot traffic milling between the ship-filled clearing to the
+south and the packed streets northward the press of the crowd is
+oppressive. The sweet, sour smell of Bantha dung taints the clouds of
+spice reaking smoke that drift occasionaly past. The small hooded figures
+of the Jawa slip in and out of the crowd of "tourists" from the space port
+on their unguessable, individual intents. The cries of good old fashioned
+hawkers compete with mechanical voices spit out over encased speakers at
+the sides of merchandise stands covered in blinking lights northward.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 253
+D2
+~
+~
+0 -1 250
+S
+#252
+A Shallow Rut of a Path - At the edge of a Bazaar~
+This path, while devoid of the pomp and frivolous wealth of those perusing
+Slavers' way to the west but the Jawa population seems to have tripled.
+The small furry creatures scurry past with rodent like claws filled with
+electrical components or salvage. The Bazaar eastward looks like a
+low-tech engineers' fantasy, sporting a wide range of goodies that only a
+tech-head could love. This path is nothing more than a rut dug into the
+red silt ground by ages of pedestrian traffic.
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 254
+D3
+~
+~
+0 -1 253
+S
+#253
+The Beginnings of a Long, Bustling Road~
+The foot traffic collides in this intersection and seems to roll back on
+itself like the tides of a human sea. All bedecked with neon obscenities,
+flahbulb fantasies and the glinting coin slots. The rich, as one of the
+few constants in the galaxy seem nonplussed by the general state of
+poverty and hold their noses up high on the way to the nearest dealer in
+frivolty along the road northward. Huge, slathering Hutts make their way
+past on low flying swoops or meander along through the slavers' markets
+and auctioning blocks. Off in the distance to the west the outline of an
+old cargo ship dry-docked and abandoned on its side scars the already
+unimpressive cityscape. Along a thinning trail to the east commoners of
+all walks of life make their way into a small, out of the way bazaar.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 268
+D1
+~
+~
+0 -1 252
+D2
+~
+~
+0 -1 251
+S
+#254
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. West the walls of the towering sandstone
+buildings give way slightly and leave a stretch of rutted path to adjoin
+with the main road near the hover lot southward.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 261
+D1
+~
+~
+0 -1 255
+D3
+~
+~
+0 -1 252
+S
+#255
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but west and northeast, where brief respites
+show between them.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 260
+D1
+~
+~
+0 -1 256
+D3
+~
+~
+0 -1 254
+S
+#256
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but west and north, where brief respites show
+between them.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 259
+D1
+~
+~
+0 -1 257
+D3
+~
+~
+0 -1 255
+S
+#257
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but west and northwest, where brief respites
+show between them.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 258
+D1
+~
+~
+0 -1 326
+D2
+~
+~
+0 -1 364
+D3
+~
+~
+0 -1 256
+S
+#258
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but southwest and northwest, where brief
+respites show between them.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 265
+D2
+~
+~
+0 -1 257
+D3
+~
+~
+0 -1 259
+S
+#259
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but southwest and off to the north, where brief
+respites show between them.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 264
+D1
+~
+~
+0 -1 258
+D2
+~
+~
+0 -1 256
+D3
+~
+~
+0 -1 260
+S
+#260
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but southwest and northeast, where brief
+respites show between them.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 263
+D1
+~
+~
+0 -1 259
+D2
+~
+~
+0 -1 255
+D3
+~
+~
+0 -1 261
+S
+#261
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but southwest, where a brief respite shows
+between them.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 262
+D1
+~
+~
+0 -1 260
+D2
+~
+~
+0 -1 254
+S
+#262
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but southwest, where a brief respite shows
+between them.
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 263
+D2
+~
+~
+0 -1 261
+S
+#263
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but southwest and off to the northeast, where a
+brief respites show between them. 
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 264
+D2
+~
+~
+0 -1 260
+D3
+~
+~
+0 -1 262
+S
+#264
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Northward the shabby carts and and
+stands give a blocky white duraplast sided building a wide girth. The
+building while totally unimpressive seems to house something the Jawa
+dislike, to say the least.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 266
+D1
+~
+~
+0 -1 265
+D2
+~
+~
+0 -1 259
+D3
+~
+~
+0 -1 263
+S
+#265
+An Overpopulated Traders' Bazaar~
+This Bazaar is almost exclusively the racket of the Jawa judging by their
+huddled forms everywhere, on plain wood stands filled with all manners of
+technical equipment.  Sandcloth tarps hung between the buildings overhead
+keep the sun from blistering those perusing the wares as well as holding
+back the buffeting wind and sand. Tall, aerodynamic buildings scrape the
+skyline in all directions but southwest and northwest, where brief
+respites show between them.
+~
+0 0 1 0 0 0 32040
+D2
+~
+~
+0 -1 258
+D3
+~
+~
+0 -1 264
+S
+#266
+Before the Imperial Garrison~
+Saddled in between a forest of buildings larger than itself on all but one
+side, this garrison seems shabby but not without malice - Born beside the
+door: An Imperial emblem is displayed on blackened durasteel, a meter in
+diameter. There does not seem to be an overly militaristic presence in
+this building, excluding the occasional stormtrooper passing by, it is a
+place of political focus, filled with clerks and protocol droids. The Jawa
+market opens up to the south looking more like a scrap heap than not.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 267
+D2
+~
+~
+0 -1 264
+S
+#267
+A Cluttered, Imperial Garrison Office~
+Standing inside this giant cubicle of a work space for Imperial
+desk-jockeys, an overwhelming hum of activity comes to those with audial
+enhancement: Data banks hum gently to themselves on long rows, covering
+each wall. The floors and siding are all done in a standard white
+duraplast, looking a little run down and even sagging in places. There are
+multiple weapon racks and cots to be seen through a small portal into a
+back room. 
+~
+0 0 1 0 0 0 32040
+D2
+~
+~
+0 -1 266
+S
+#268
+Slavers' Way~
+This road, aptly dubbed by the Huttese, Slavers' way in a time forgotten by
+most of the residents is a straight shot north through Mos Eisley. The
+poverty which this city seemed so infused with at it's outskirts is
+completely out of sight here, hidden by giant red towers and on a more
+personal level - Mechanical vendors of every make and model, extending
+from plastic display racks and squabbling amongst each other for the
+attention of passers-by. To the west a small, offset circle between two
+towers acts as a temporary shelter for what seems to be a water
+dispensary. Further to the west, and a bit north a dry-docked freighter
+abandoned on its side scars the cityscape while northward this circus of
+mechanical market influence trails off as far as the eye can see.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 269
+D2
+~
+~
+0 -1 253
+D3
+~
+~
+0 -1 275
+S
+#269
+An Intersection on Slavers'~
+This road, aptly dubbed by the Huttese, Slavers' way in a time forgotten by
+most of the residents is a straight shot north through Mos Eisley. The
+poverty which this city seemed so infused with at it's outskirts is
+completely out of sight here, hidden by giant red towers and on a more
+personal level - Mechanical vendors of every make and model, extending
+from plastic display racks and squabbling amongst each other for the
+attention of passers-by. This intersection between the short B'Omarr Lane
+and Slavers' Way is packed regardless of the hour, almost without
+exception. West the thin lane cramped with with gamblers, alcoholics and
+sex maniacs heading toward the freighter in the distance, which, judging
+at this distance could only be a casino. Off in a crook of the road a
+milling crowd of the big losers and chain smoking bounty hunters loiter in
+front of a place of business which proclaims itself, "The Cantina"
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 270
+D2
+~
+~
+0 -1 268
+D3
+~
+~
+0 -1 281
+D6
+~
+~
+0 -1 276
+D7
+~
+~
+0 -1 280
+S
+#270
+Slavers' Way~
+This road, aptly dubbed by the Huttese, Slavers' way in a time forgotten by
+most of the residents is a straight shot north through Mos Eisley. The
+poverty which this city seemed so infused with at it's outskirts is
+completely out of sight here, hidden by giant red towers and on a more
+personal level - Mechanical vendors of every make and model, extending
+from plastic display racks and squabbling amongst each other for the
+attention of passers-by. This stretch of the way northward seems almost
+solely dedicated to preparing those impulse buyers who pass by before the
+sands. Southward is an absolutely packed intersection, the Jawa street
+tags reading Slavers' and B'omarr. 
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 271
+D2
+~
+~
+0 -1 269
+D3
+~
+~
+0 -1 317
+S
+#271
+Slavers' Way~
+This road, aptly dubbed by the Huttese, Slavers' way in a time forgotten by
+most of the residents is a straight shot north through Mos Eisley. The
+poverty which this city seemed so infused with at it's outskirts is
+completely out of sight here, hidden by giant red towers and on a more
+personal level - Mechanical vendors of every make and model, extending
+from plastic display racks and squabbling amongst each other for the
+attention of passers-by. This stretch of the way northward seems almost
+solely dedicated to preparing those impulse buyers who pass by before the
+sands.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 272
+D1
+~
+~
+0 -1 310
+D2
+~
+~
+0 -1 270
+S
+#272
+Slavers' Way~
+This road, aptly dubbed by the Huttese, Slavers' way in a time forgotten by
+most of the residents is a straight shot north through Mos Eisley. The
+poverty which this city seemed so infused with at it's outskirts is
+completely out of sight here, hidden by giant red towers and on a more
+personal level - Mechanical vendors of every make and model, extending
+from plastic display racks and squabbling amongst each other for the
+attention of passers-by. This stretch of the way northward seems almost
+solely dedicated to preparing those impulse buyers who pass by before the
+sands.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 273
+D2
+~
+~
+0 -1 271
+S
+#273
+Slavers' Way~
+This road, aptly dubbed by the Huttese, Slavers' way in a time forgotten by
+most of the residents is a straight shot north through Mos Eisley. The
+poverty which this city seemed so infused with at it's outskirts is
+completely out of sight here, hidden by giant red towers and on a more
+personal level - Mechanical vendors of every make and model, extending
+from plastic display racks and squabbling amongst each other for the
+attention of passers-by. This stretch of the way northward seems almost
+solely dedicated to preparing those impulse buyers who pass by before the
+sands.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 274
+D2
+~
+~
+0 -1 272
+S
+#274
+Slavers' Way~
+This road, aptly dubbed by the Huttese, Slavers' way in a time forgotten by
+most of the residents is a straight shot north through Mos Eisley. The
+poverty which this city seemed so infused with at it's outskirts is
+completely out of sight here, hidden by giant red towers and on a more
+personal level - Mechanical vendors of every make and model, extending
+from plastic display racks and squabbling amongst each other for the
+attention of passers-by. This stretch of the way northward seems almost
+solely dedicated to preparing those impulse buyers who pass by before the
+sands.
+~
+0 0 1 0 0 0 32040
+D2
+~
+~
+0 -1 273
+D6
+~
+~
+2048 -1 650
+S
+#275
+In Line at the Water Vendor~
+This small cul-de-sac slices itself a piece of the pie that is the crammed
+together occupants of Slavers' way eastward. Some thoughtful citizen had
+the presence of mind to lock away a few gallons of the lifeblood of all
+living things, water - in a clear, duraplast wraparound case. The soil is
+rocky and bits of glass scatter it. There is an almost ceaseless line
+before the water vendor.
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 268
+S
+#276
+The Dimly Lit Cantina Entrance~
+This small entryway, cut into the side of the Cantina in a half circle of
+red stone gives sitting room on a stone shelf for about twenty. But dozens
+upon dozens of all races stand about, smoking or using inhalant tubes,
+spice pipes and some of those Hutt's with the more deplorable tastes in
+victuals and less influence (anything goes with enough cred) loaf about
+eating live animals and drinking glasses with eyeballs or the sort
+drifting about inside. The few droids who make the attempt to shoulder or
+roll their ways through the crowd are quickly and silently expelled.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 277
+D9
+~
+~
+0 -1 269
+S
+#277
+At a Sprawling Bar, Before the Stage~
+The focal point of this section of this tavern is of course the sprawling,
+high polish durasteel bar. A few of the patrons whom are still capable of
+vertical motion are trying their hand at dancing before the stage, looking
+like a bunch of drunken, tone deaf zombies for the most part. While the
+more prudent customers, not seeing fit to waste their time encircle the
+bartender or, as an order of business - in the apalling line before the
+restroom of in a corner to the southwest.
+~
+0 8 1 0 0 0 32040
+D1
+~
+~
+0 -1 278
+D2
+~
+~
+0 -1 276
+D9
+~
+door~
+1 0 279
+S
+#278
+A Stage, Set Above the Noisy Crowd~
+This worn looking bar sits a solid two meters above the bar's dance floor
+It's durasteel surface has been worn down over generations of dancers
+pounding away on its slicked surface. The stage is dimly lit and smoky,
+being elevated to the rest of the bar.  Most of the patrons seem jaded to
+the band's presence and watch either not at all or with a glazed, "Wish I
+were doing something else" look.
+~
+0 32776 1 0 0 0 32040
+D3
+~
+~
+0 -1 277
+S
+#279
+A Filthy Restroom~
+The white tile walls in this cold, one man bathroom would appear seamless
+besides a mildew line tracing the wall behind the toilet as if moisture's
+slowly wept through. An open shudder, ill concealing type door opens back
+on the tavern main while your surroundings press in a bit just to
+emphasise their grotesque nature, maggots squirm their way through half
+eaten sandwiches and unidentifiable feces while cigarette butts of all the
+rainbow's colors lend to the aroma. Finger nail clippings and flesh
+residue, chewing gum and splattered bits of rust brown paint.. Blood? Tiny
+flecks of the rust red blood trace across the ceiling, probably from some
+stim junkie tying off. 
+~
+0 8 1 0 0 0 32040
+D6
+~
+door~
+1 -1 277
+S
+#280
+Chalmut's Spirits~
+This tiny, red stone building is conical in shape, wide open on the inside
+and well toward the inverted point of a ceiling. Dusty red carpet exposes
+in large patches the bare stone floors beneath to any customers able to
+see past their liquor bottle. Grim looking aliens of a multitude stand in
+line for the distillery, trailing even out the door where more patrons are
+insurgent from the intersection on the Slavers' to the southeast.
+~
+0 0 1 0 0 0 32040
+D8
+~
+~
+0 -1 269
+S
+#281
+B'Omarr Lane~
+This short lane curves disastrously between the nearby towers. And houses
+only the most depraved low lifes stumbling off from the freighter to the
+west. For every dozen passers by to the east, falling down or playing grab
+ass with Askajian prostitutes - Three neatly dressed, pressed, combed and
+shaved pilots or business men make their way jerkily west. Nearby to the
+west a crowd of loiterers mark the Lucky Despots entrance and off a short
+ways to the east the press and audial hum of Slavers' way infiltrates even
+this urban forest.
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 269
+D3
+~
+~
+0 -1 282
+S
+#282
+B'Omarr Lane~
+This short lane curves disastrously between the nearby towers. And houses
+only the most depraved low lifes stumbling off from the freighter to the
+west. For every dozen passers by to the east, falling down or playing grab
+ass with Askajian prostitutes - Three neatly dressed, pressed, combed and
+shaved pilots or business men make their way jerkily west. Nearby to the
+west a crowd of loiterers mark the Lucky Despots entrance and off a short
+ways to the east the press and audial hum of Slavers' way infiltrates even
+this urban forest.
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 281
+D3
+~
+~
+0 -1 283
+S
+#283
+B'Omarr Lane - At the Foot of a Drydocked Freighter~
+B'omarr lane, as this small cut over path between Slavers' and the massive
+eyesore of a cargo freighter lain on its side in the red sands southward
+has been dubbed. Named after an order of monks rumoured to inhabit this
+rock by the land developers who've long since gave up the monks' task.
+"The Lucky Despot" proclaims a four meter tall sign filled with blinking
+red bulbs on the ship's hull. A small facade has been built onto the side
+of the Despot's entrance, all red, stubbly carpeting and faux gold paint.
+Faded red, artificial velvet ropes guide the patrons in and out of the
+despots tiny entrance, herding them into easy reach of those collecting
+door fees as well as leading directly past the array of digital slot
+machines inside.
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 282
+D2
+~
+~
+0 -1 284
+S
+#284
+The Lucky Despot's Entryway~
+Through the facade the real nature of the casino makes itself apparent. Not
+through the various gambling machines, prostitutes or dealers which, all
+scream their various occupation. But by the massive bulkhead showing from
+the inside. This whole chamber is the cargo deck on the freighter, covered
+in faux gold paint and loose woven shag carpet. A good distance off
+through the crowds to the southwest a consierge's desk is apparent while
+to the north door fees are charged and the line proceeds inward like some
+multisplined, armored back insectoid.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 283
+D1
+~
+~
+0 -1 286
+D2
+~
+~
+0 -1 288
+D3
+~
+~
+0 -1 285
+S
+#285
+The Lucky Despot - Casino~
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 284
+D2
+~
+~
+0 -1 287
+S
+#286
+The Lucky Despot - Casino~
+This massive, gilt and carpeted room is nothing more than the cargo
+compartment on an old freighter. Packed with drunks, gamblers and whores,
+the only contenders in this rat race who seem to be turning a profit are
+the coin guzzling slot machines. Large Whiphid's in pressed suits wanders
+about trying to look inconspicuous as they survey business and make sure
+noone does _too_ much winning. Off to the southwest the concsierge's desk
+is apparent while the bulkhead lies northwest. This massive, gilt and
+~
+0 0 1 0 0 0 32040
+D2
+~
+~
+0 -1 289
+D3
+~
+~
+0 -1 284
+S
+#287
+The Lucky Despot - Casino~
+This massive, gilt and carpeted room is nothing more than the cargo
+compartment on an old freighter. Packed with drunks, gamblers and whores,
+the only contenders in this rat race who seem to be turning a profit are
+the coin guzzling slot machines. Large Whiphid's in pressed suits wanders
+about trying to look inconspicuous as they survey business and make sure
+noone does _too_ much winning. Off to the south the concsierge's desk is
+apparent while the bulkhead lies northeast.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 284
+D1
+~
+~
+0 -1 288
+D2
+~
+~
+0 -1 290
+S
+#288
+The Lucky Despot - Casino~
+This massive, gilt and carpeted room is nothing more than the cargo
+compartment on an old freighter. Packed with drunks, gamblers and whores,
+the only contenders in this rat race who seem to be turning a profit are
+the coin guzzling slot machines. Large Whiphid's in pressed suits wanders
+about trying to look inconspicuous as they survey business and make sure
+noone does _too_ much winning. Off to the southwest the concsierge's desk
+is apparent while the bulkhead lies north.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 284
+D1
+~
+~
+0 -1 289
+D3
+~
+~
+0 -1 287
+S
+#289
+The Lucky Despot - Casino~
+This massive, gilt and carpeted room is nothing more than the cargo
+compartment on an old freighter. Packed with drunks, gamblers and whores,
+the only contenders in this rat race who seem to be turning a profit are
+the coin guzzling slot machines. Large Whiphid's in pressed suits wanders
+about trying to look inconspicuous as they survey business and make sure
+noone does _too_ much winning. Off to the southwest the concsierge's desk
+is apparent while the bulkhead lies northwest.
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 286
+D3
+~
+~
+0 -1 288
+S
+#290
+By the Concierge and Lifts~
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 287
+D2
+~
+~
+0 -1 291
+D3
+~
+~
+0 -1 303
+S
+#291
+Inside an Antiquated Lift~
+This old, faux gold finished lift has a genuine steel grating salvaged from
+some nearly prehistoric time. There is a panel of buttons controlling the
+lift yet they are all cemented in place and replaced with a more up to
+date voice recognition system. The carpet is worn to the point of being
+pointless from the countless creatures to wander over it.
+~
+0 4 1 0 0 0 32040
+> speech_prog 1~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Ground Floor. Watch your step.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 290
+mpat 290 mpforce $n l
+mpat 290 mer $n $n gets off the turbolift.
+~
+> speech_prog -1~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Basement. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 292
+mpat 292 mer $n $n get off of the turbolift.
+~
+> speech_prog 2~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Level 2. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 293
+mpat 293 mer $n $n get off of the turbolift.
+~
+> speech_prog penthouse~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Penthouse. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 301
+mpat 301 mer $n $n get off of the turbolift.
+~
+> speech_prog basement~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Basement. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 292
+mpat 292 mer $n $n get off of the turbolift.
+~
+|
+S
+#292
+The Arid, Unfinished Innards of the Freighter~
+~
+0 4 1 0 0 0 32040
+D2
+~
+~
+0 -1 291
+S
+#293
+A Long, Carpeted Hall~
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 294
+D2
+~
+~
+0 -1 291
+S
+#294
+A long, Carpeted Hall~
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 299
+D1
+~
+~
+0 -1 295
+D2
+~
+~
+0 -1 300
+D3
+~
+~
+0 -1 293
+S
+#295
+A long, Carpeted Hall~
+~
+0 0 1 0 0 0 32040
+D1
+~
+~
+0 -1 296
+D3
+~
+~
+0 -1 294
+S
+#296
+A long, Carpeted Hall~
+~
+0 0 1 0 0 0 32040
+D0
+~
+~
+0 -1 297
+D2
+~
+~
+0 -1 298
+D3
+~
+~
+0 -1 295
+S
+#297
+A Cramped, Hot, Economy Suite~
+~
+0 8388616 1 0 0 0 32040
+D2
+~
+~
+0 -1 296
+S
+#298
+A Cramped, Hot, Economy Suite~
+~
+0 8388616 1 0 0 0 32040
+D0
+~
+~
+0 -1 296
+S
+#299
+A Cramped, Hot, Economy Suite~
+~
+0 8388616 1 0 0 0 32040
+D2
+~
+~
+0 -1 294
+S
+#300
+A Cramped, Hot, Economy Suite~
+~
+0 8388616 1 0 0 0 32040
+D0
+~
+~
+0 -1 294
+S
+#301
+Lucky Despot - Penthouse~
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 302
+D2
+~
+~
+0 -1 291
+S
+#302
+Lucky Despot - Penthouse~
+~
+0 4 1 0 0 0 32040
+D2
+~
+~
+0 -1 301
+S
+#303
+A Cramped, Hole in the Wall Arcade~
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 290
+S
+#304
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#305
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#306
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#307
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#308
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#309
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#310
+Twin Towers Apartment Complex~
+These towers actually act as an odd sort of paradox in terms, not to
+mention architectural design. Sure, one could argue that a tower built ten
+stories into the ground is less appealing than one above but the designers
+of this misgnomer were not entirely unfounded in their ideas, it is one of
+the oldest buildings on Mos Eisley, untouched by the savage wind swept
+sands and stray blaster fire that so love to frequent this province. This
+one, above ground floor is more like a bunker than an apartment complex's
+entrance and acts only to syphon off the inflow of traffic to the
+turbolifts at the ends of each fork in the hall.
+~
+0 8388620 1 0 0 0 32040
+D3
+~
+~
+0 -1 271
+D6
+~
+~
+0 -1 311
+D8
+~
+~
+0 -1 312
+S
+#311
+Twin Towers Apartments - Before the Lifts~
+This short, utilitiarian stint of hallway runs between the fork in the
+halls immediately to the southwest to and to an abrupt end at a pair of
+durasteel turbolift doors. Duraplast reinforced concrete rings out beneath
+the feet of passers-by in an almost anticlimactic thud while the lifts hum
+quietly as they go about their business of transportation.
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 314
+D9
+~
+~
+0 -1 310
+S
+#312
+Twin Towers Apartments - Before the Lifts~
+This short, utilitiarian stint of hallway runs between the fork in the
+halls immediately to the northwest and to an abrupt end at a pair of
+durasteel turbolift doors. Duraplast reinforced concrete rings out beneath
+the feet of passers-by in an almost anticlimactic thud while the lifts hum
+quietly as they go about their business of transportation.
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 313
+D7
+~
+~
+0 -1 310
+S
+#313
+A Gut Wrenching Turbolift~
+This utilitarian box of a turbolift has a very simple function and performs
+it with no second guessing or discussion, up or down. A microphone
+(running indepently of the lift's processor's it would have you know if
+its ego were properly developed) Will relay the vocal commands of any
+occupants with relative ease and in a timely fashion, no less - To the
+turbolift. In english? Say the name of the floor you wish to visit and
+give thanks to the system which created such a simple piece of equipment.
+~
+0 4 1 0 0 0 32040
+> speech_prog -1~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Housing -1. Watch your step.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 324
+mpat 324 mpforce $n l
+mpat 324 mer $n $n gets off the turbolift.
+~
+> speech_prog 1~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Ground Floor. Watch your step.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 312
+mpat 312 mpforce $n l
+mpat 312 mer $n $n gets off the turbolift.
+~
+> speech_prog -7~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Rehydration. Watch your step.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 342
+mpat 342 mpforce $n l
+mpat 342 mer $n $n gets off the turbolift.
+~
+|
+S
+#314
+A Gut Wrenching Turbo Lift~
+This utilitarian box of a turbolift has a very simple function and performs
+it with no second guessing or discussion, up or down. A microphone
+(running indepently of the lift's processor's it would have you know if
+its ego were properly developed) Will relay the vocal commands of any
+occupants with relative ease and in a timely fashion, no less - To the
+turbolift. In english? Say the name of the floor you wish to visit and
+give thanks to the system which created such a simple piece of equipment.
+~
+0 4 1 0 0 0 32040
+> speech_prog 1~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Ground Floor. Watch your step.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 311
+mpat 311 mpforce $n l
+mpat 311 mer $n $n gets off the turbolift.
+~
+> speech_prog -1~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Housing, -1. Watch your step.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 315
+mpat 315 mpforce $n l
+mpat 315 mer $n $n gets off the turbolift.
+~
+> speech_prog -7~
+mpecho The turbolift shakes slightly as it begins moving. 
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Rehydration. Watch your step.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 342
+mpat 342 mpforce $n l
+mpat 342 mer $n $n gets off the turbolift.
+~
+|
+S
+#315
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 316
+D3
+~
+~
+0 -1 314
+S
+#316
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 325
+D1
+~
+~
+0 -1 318
+D2
+~
+~
+0 -1 327
+D3
+~
+~
+0 -1 315
+S
+#317
+Mos Eisley's Bank and Trust~
+~
+0 268 1 0 0 0 32040
+D1
+~
+~
+0 -1 270
+S
+#318
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 319
+D3
+~
+~
+0 -1 316
+S
+#319
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D2
+~
+~
+0 -1 320
+D3
+~
+~
+0 -1 318
+S
+#320
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 319
+D1
+~
+~
+0 -1 328
+D2
+~
+~
+0 -1 321
+D3
+~
+~
+0 -1 329
+S
+#321
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 320
+D3
+~
+~
+0 -1 322
+S
+#322
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 330
+D1
+~
+~
+0 -1 321
+D2
+~
+~
+0 -1 331
+D3
+~
+~
+0 -1 323
+S
+#323
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 322
+D3
+~
+~
+0 -1 324
+S
+#324
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 323
+D3
+~
+~
+0 -1 313
+S
+#325
+A Vacant Apartment~
+~
+0 2097156 1 0 0 0 32040
+D2
+~
+~
+0 -1 316
+S
+#326
+The Black Pawn~
+This tiny shop is stuffed to capacity with a wild collection of guns,
+drugs, blades and car parts - It's a wonder this Toydarian keeps his life
+of crime so well beneath the Imperial's nose. One with keen eyes could see
+the garrison from the front door yet he is entirely unperturbed. The smell
+of cordite and rocket fuel, singed plasma bolts and magnetic radiation,
+heated metal all fill the air like a foul incense. Back to the west the
+Jawa market opens up with all it's wonders.
+~
+0 12 1 0 0 0 32040
+D2
+~
+~
+0 -1 365
+D3
+~
+~
+0 -1 257
+S
+#327
+A Vacant Apartment~
+~
+0 2097164 1 0 0 0 32040
+D0
+~
+~
+0 -1 316
+S
+#328
+A Vacant Apartment~
+~
+0 2097164 1 0 0 0 32040
+D3
+~
+~
+0 -1 320
+S
+#329
+A Vacant Apartment~
+~
+0 2097164 1 0 0 0 32040
+D1
+~
+~
+0 -1 320
+S
+#330
+A Vacant Apartment~
+~
+0 2097164 1 0 0 0 32040
+D2
+~
+~
+0 -1 322
+S
+#331
+A Vacant Apartment~
+~
+0 2097164 1 0 0 0 32040
+D0
+~
+~
+0 -1 322
+S
+#332
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#333
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#334
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#335
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#336
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#337
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#338
+A Nearly Abandoned Motor Pool~
+This tiny, out of the way motor pool is offered meager protection from the
+desert winds by barricades built of duraplast barrels woven between
+stakes. Gritty red sand piles up in miniature dunes, making a good attempt
+at burying everything here as the sand pours in over the barricades in a
+slow hourglass. Most of the ships and vehicles parked around look to have
+been salvaged although a few ATV's and rusting droids have been spared by
+the yard owner for auction. Off to the west the duraplast walls open up on
+a giant clearing, bustling with activity of all sorts. 
+~
+0 4 10 8 0 0 32040
+D3
+~
+~
+0 -1 250
+S
+#339
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#340
+A Cramped R2 Compartment~
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 279
+S
+#342
+A Sterile Hall~
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 343
+D3
+~
+~
+0 -1 313
+S
+#343
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 344
+D3
+~
+~
+0 -1 342
+S
+#344
+Floating in a void~
+~
+0 0 1 0 0 0 32040
+D2
+~
+~
+0 -1 343
+S
+#364
+A Hole in the Wall Workshop~
+~
+0 67108868 1 0 0 0 32040
+D0
+~
+~
+0 -1 257
+S
+#365
+The Back Lot~
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 326
+S
+#392
+The Galactic Mail Center~
+~
+0 1073741824 1 0 0 0 32040
+D1
+~
+~
+0 -1 250
+S
+#400
+Floating in a void~
+~
+0 1073741828 1 0 0 0 32040
+S
+#445
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#446
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#447
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#448
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#449
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#450
+Last room~
+~
+0 4 1 0 0 0 32040
+S
+#0
+
+
+#RESETS
+M 1 251 1 250
+M 1 266 8 250
+O 1 251 1 250
+M 1 252 1 253
+M 1 266 8 253
+M 1 268 6 254
+G 1 279 1
+M 1 268 6 257
+M 1 256 1 261
+G 1 254 1
+M 1 266 8 262
+M 1 257 1 267
+G 1 255 1
+M 1 266 8 267
+M 1 268 6 268
+M 1 268 6 270
+M 1 264 1 272
+G 1 269 1
+G 1 271 1
+G 1 270 1
+G 1 277 1
+M 1 266 8 272
+M 1 253 1 275
+G 1 253 1
+M 1 265 1 276
+E 1 50 1 16
+M 1 268 6 276
+M 1 255 1 277
+G 1 276 1
+G 1 275 1
+G 1 257 1
+D 0 277 9 0
+M 1 263 1 278
+M 1 262 1 278
+M 1 261 1 278
+M 1 266 8 279
+O 1 268 1 279
+D 0 279 6 0
+M 1 254 1 280
+G 1 260 1
+G 1 259 1
+G 1 258 1
+M 1 266 8 287
+M 1 267 1 290
+O 1 265 1 290
+M 1 259 1 292
+M 1 258 1 302
+O 1 267 1 313
+O 1 267 1 314
+M 1 293 1 319
+E 1 287 1 16
+O 1 274 1 340
+O 1 280 1 344
+M 1 294 1 365
+G 1 290 1
+G 1 289 1
+G 1 288 1
+G 1 291 1
+G 1 292 1
+G 1 293 1
+G 1 294 1
+G 1 295 1
+G 1 296 1
+G 1 297 1
+M 1 266 8 251
+M 1 269 1 251
+M 1 291 1 326
+G 1 284 1
+G 1 299 1
+G 1 298 1
+G 1 4508 1
+O 1 38 1 392
+M 1 260 1 265
+S
+
+
+#SHOPS
+ 253    0  0  0  0  0   120  90         0 23    ; a bloated Askajian
+ 254    0  0  0  0  0   120  90         0 23    ; a sallow, porsine Hutt
+ 255    0  0  0  0  0   120  90         0 23    ; a foul smelling Whiphid female
+ 256    0  0  0  0  0   120  90         0 23    ; a tiny, Jawa trader
+ 260    0  0  0  0  0   120  90         0 23    ; a miniscule Jawa merchant
+ 261    0  0  0  0  0   120  90         0 23    ; an Ortolan Ommnibox player
+ 264    0  0  0  0  0   120  90         0 23    ; an ASP droid
+ 265    0  0  0  0  0   120  90         0 23    ; a pasty, thick skinned Hutt bouncer
+ 266    0  0  0  0  0   120  90         0 23    ; a male citizen of Tatooine
+ 268    0  0  0  0  0   120  90         0 23    ; a female citizen of Tatooine
+ 269    0  0  0  0  0   120  90         0 23    ; an Imperial sandtrooper acting as a customs watch
+ 270    0  0  0  0  0   120  90         0 23    ; a slight, pale man
+ 271    0  0  0  0  0   120  90         0 23    ; a newly created shopkeeper
+ 272    0  0  0  0  0   120  90         0 23    ; a newly created shopkeeper
+ 273    0  0  0  0  0   120  90         0 23    ; a newly created shop keeper
+ 278    0  0  0  0  0   120  90         0 23    ; a newly created shopkeeper
+ 291    9 78 57  5 78    90  15         6 21    ; a Toydarian pawn shop owner
+ 294    0  0  0  0  0   120  90         0 23    ; a tiny grease spot of an engineer
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  269 spec_police_fine
+M  269 spec_customs_weapons
+M  293 spec_thief
+S
+
+
+#$

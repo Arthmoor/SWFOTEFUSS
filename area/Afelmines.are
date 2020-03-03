@@ -1,0 +1,1605 @@
+#AREA   Af'el Mines~
+
+
+
+#AUTHOR Kardon~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6250080
+
+#MOBILES
+#9501
+lowmob~
+a newly created lowmob~
+Some god abandoned a newly created lowmob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9502
+customs officer~
+A customs officer~
+A customs officer checks people for illegal items.
+~
+~
+3 0 0 Z
+35 0 12 7d10+350 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9503
+shopkeeper droid~
+A shopkeeper droid~
+A shopkeeper droid sells its goods here.
+~
+~
+1073741827 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 1 0 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Welcome $n...
+say Would you be interested in any of my wares?
+~
+|
+#9504
+full-time worker~
+A full-time worker~
+A full-time worker stands here greeting new arrivals.
+~
+~
+1073741827 0 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Welcome $n!
+smile
+say Have you come to help us mine the area?
+say We are in need of a few more workers, and you will get
+say payed for the precious rocks that you find as well!
+pat $n
+~
+|
+#9505
+worker miner~
+A miner~
+A miner is here contemplating what to do next.
+~
+~
+1073741827 0 0 Z
+35 0 12 7d10+350 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+sigh
+say I lost my best friend to a cave-in.
+say You better be careful in there, it's dangerous.
+~
+|
+#9506
+medical droid~
+A medical droid~
+A medical droid is checking in new patients.
+~
+~
+1073741827 0 0 Z
+35 0 12 7d10+350 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 1 0 0
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9507
+trandor~
+Trandor~
+Trandor stands here selling mining equipment.
+~
+~
+1073741827 0 0 Z
+35 0 12 7d10+350 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say So, you planning to help us, $n?
+say You'll want some of my mining tools before you set out!
+~
+|
+#9700
+himob~
+a newly created himob~
+Some god abandoned a newly created himob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#9501
+lowobj~
+a lowobj~
+A lowobj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#9502
+elevator list~
+An elevator list~
+&gAn Elevator List has been attached to the wall.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+E
+elevator list~
+~
+E
+elevator list~
+&rElevator Levels:
+
+&YLevel 1 == Underground Mines
+Level 2 == Surface
+~
+E
+elevator list~
+&rElevator Levels:
+
+&YLevel 1 == Underground Mines
+Level 2 == Surface
+~
+E
+elevator list~
+ummm
+~
+E
+elevator list~
+~
+E
+elevator list~
+ummm hi there
+stupid
+idiot
+~
+#9503
+miner's ration~
+A miner's ration~
+A miner's ration has been thrown away here.~
+~
+19 8192 1
+20 20 0 0
+2 5 0
+#9504
+lantern~
+A lantern~
+A lantern has been set down here.~
+~
+1 8192 16385
+0 0 15 0
+2 12 1
+#9505
+shovel~
+A shovel~
+A shovel has been dropped here.~
+~
+59 8192 16385
+0 0 0 0
+5 0 0
+#9700
+hiobj~
+a hiobj~
+A hiobj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#9501
+Floating in a void~
+~
+0 4 1 0 0 0 31352
+S
+#9502
+Barren Landing Pad~
+&cThere isn't really much to see here. A field has been plowed
+and cut down to make a small space for ships to land on. It's
+nothing technical, and there are no landing lights to help guide
+a ship in, making this a dangerous place for ships to try and
+land on in harsh conditions. A small path extends to the North,
+allowing passage through the many boulder's and cliffs of Af'el.
+~
+0 20 1 0 0 0 31352
+D0
+~
+~
+0 -1 9503
+S
+#9503
+Path to Mining Encampment~
+&cAf'el is known for its many large rocks and cliffs, and it
+is plainly seen here. Cliffs and boulder's surround the area,
+making it difficult for passage over the planet. Luckily enough,
+a path has already been cleared out going Northeast.The smell
+of something being cooked is coming from the direction of the
+path Northeast.
+~
+0 0 1 0 0 0 31352
+D2
+~
+~
+0 -1 9502
+D6
+~
+~
+0 -1 9504
+S
+#9504
+Path to Mining Encampment~
+&cAf'el is known for its many large rocks and cliffs, and it
+is plainly seen here. Cliffs and boulder's surround the area,
+making it difficult for passage over the planet. Luckily enough,
+a path has already been cleared out going Northeast.The smell
+of something being cooked is coming from the direction of the
+path Northeast.
+~
+0 0 1 0 0 0 31352
+D6
+~
+~
+0 -1 9505
+D9
+~
+~
+0 -1 9503
+S
+#9505
+Path to Mining Encampment~
+&cThe smell grows stronger and a small encampment is coming into
+view over a hill. There are men visible to the naked eye, working
+and walking around the camp, preparing for a seemingly non-stop
+day of mining.Many of the cliffs and rocks seen before are gone
+now, probably cleared out when this camp was constructed.
+~
+0 1073741824 1 0 0 0 31352
+D1
+~
+~
+0 -1 9506
+D9
+~
+~
+0 -1 9504
+S
+#9506
+Before the Mining Encampment~
+&cThere is a definate sign of activity towards the East now.
+Many people walk around cooking, working, and doing other various
+activities. Even though the camp is small, there are still many
+people crowded in, their minds all set on a specific task.
+~
+0 1073741824 1 0 0 0 31352
+D1
+~
+~
+0 -1 9507
+D3
+~
+~
+0 -1 9505
+S
+#9507
+Af'el Mining Camp~
+&cThis is one of the many mining camps on the planet Af'el. There
+is a lot of activity in this camp, because there is no time
+to spare on a miner's schedule. There are a few people huddled
+by a fire, cooking something to eat before they venture into
+the mines. Some tired miners are walking around, in a dazed
+and confused state.
+~
+0 1073741824 1 0 0 0 31352
+D1
+~
+~
+0 -1 9508
+D3
+~
+~
+0 -1 9506
+S
+#9508
+Center of Mining Camp~
+&cThe camp now braches off into many different sections. Going
+South leads to the miner's service area. Going East leads to
+the mines, and going North leads to the many tents which the
+miners have accomodated to. A rather large statue of a miner
+has been constructed in the center of the camp, signifying its
+pride in the miners and their work.
+~
+0 1073741824 1 0 0 0 31352
+D0
+~
+~
+0 -1 9509
+D1
+~
+~
+0 -1 9520
+D2
+~
+~
+0 -1 9516
+D3
+~
+~
+0 -1 9506
+S
+#9509
+Miner's Tents~
+~
+0 1073741824 1 0 0 0 31352
+D0
+~
+~
+0 -1 9510
+D1
+~
+~
+0 -1 9512
+D2
+~
+~
+0 -1 9508
+D3
+~
+~
+0 -1 9511
+S
+#9510
+Miner's Tents~
+~
+0 1073741824 1 0 0 0 31352
+D0
+~
+~
+0 -1 9514
+D1
+~
+~
+0 -1 9515
+D2
+~
+~
+0 -1 9509
+D3
+~
+~
+0 -1 9513
+S
+#9511
+A Small Tent~
+~
+0 1075838984 1 0 0 0 31352
+D1
+~
+~
+0 -1 9509
+S
+#9512
+A Small Tent~
+~
+0 1075838984 1 0 0 0 31352
+D3
+~
+~
+0 -1 9509
+S
+#9513
+A Small Tent~
+~
+0 1075838984 1 0 0 0 31352
+D1
+~
+~
+0 -1 9510
+S
+#9514
+A Small Tent~
+~
+0 1075838984 1 0 0 0 31352
+D2
+~
+~
+0 -1 9510
+S
+#9515
+A Small Tent~
+~
+0 1075838984 1 0 0 0 31352
+D3
+~
+~
+0 -1 9510
+S
+#9516
+Miner's Service Area~
+~
+0 1073741824 1 0 0 0 31352
+D0
+~
+~
+0 -1 9508
+D1
+~
+~
+0 -1 9518
+D2
+~
+~
+0 -1 9517
+D3
+~
+~
+0 -1 9519
+D8
+~
+~
+0 -1 9527
+D9
+~
+~
+0 -1 9534
+S
+#9517
+Trandor's Mining Equipment~
+~
+0 1073742856 1 0 0 0 31352
+D0
+~
+~
+0 -1 9516
+S
+#9518
+Coalminer's Lounge~
+~
+0 1082131464 1 0 0 0 31352
+D3
+~
+~
+0 -1 9516
+S
+#9519
+General Store~
+~
+0 1073742856 1 0 0 0 31352
+D1
+~
+~
+0 -1 9516
+S
+#9520
+Pathway to Mines~
+~
+0 1073741824 1 0 0 0 31352
+D1
+~
+~
+0 -1 9521
+D3
+~
+~
+0 -1 9508
+S
+#9521
+Pathway to Mines~
+~
+0 1073741824 1 0 0 0 31352
+D3
+~
+~
+0 -1 9520
+D8
+~
+~
+0 -1 9522
+S
+#9522
+Mine Elevator~
+~
+0 1073741836 1 0 0 0 31352
+E
+elevator list~
+&rLevels:
+
+&YLevel 1 == Underground Mines
+Level 2 == Surface
+~
+> speech_prog 1~
+mpechoat $n The elevator begins to descend rapidly.
+mpechoat $n It arrives at the mines and you step off.
+mpechoaround $n $n steps off of the elevator.
+mptransfer $n 9523
+mpgoto 9523
+mpforce $n look
+mpechoaround $n $n arrives from the elevator.
+~
+> speech_prog 2~
+mpechoat $n The elevator begins to descend rapidly.
+mpechoat $n It arrives at the surface and you step off.
+mpechoaround $n $n steps off of the elevator.
+mptransfer $n 9521
+mpgoto 9521
+mpforce $n look
+mpechoaround $n $n arrives from the elevator.
+~
+|
+S
+#9523
+Entrance to Mines~
+~
+0 1073741824 1 0 0 0 31352
+D0
+~
+~
+0 -1 9522
+D2
+~
+~
+0 -1 9524
+S
+#9524
+A Quick Drop~
+~
+0 1073741824 1 0 0 0 31352
+D0
+~
+~
+0 -1 9523
+D5
+~
+~
+0 -1 9525
+S
+#9525
+Af'el Mines~
+~
+0 1073741824 1 0 0 0 31352
+D1
+~
+~
+0 -1 9526
+D4
+~
+~
+0 -1 9524
+S
+#9526
+Af'el Mines~
+~
+0 1073742848 1 0 0 0 31352
+D0
+~
+~
+0 -1 9531
+D1
+~
+~
+0 -1 9532
+D2
+~
+~
+0 -1 9533
+D3
+~
+~
+0 -1 9525
+S
+#9527
+Hospital Tent~
+~
+0 1073742848 1 0 0 0 31352
+D1
+~
+~
+0 -1 9528
+D7
+~
+~
+0 -1 9516
+S
+#9528
+Resting Room~
+~
+0 1073742848 1 0 0 0 31352
+D0
+~
+~
+0 -1 9530
+D2
+~
+~
+0 -1 9529
+D3
+~
+~
+0 -1 9527
+S
+#9529
+Bacta Tank~
+~
+0 1073742848 1 0 0 0 31352
+D0
+~
+~
+0 -1 9528
+S
+#9530
+Bacta Tank~
+~
+0 1073742848 1 0 0 0 31352
+D2
+~
+~
+0 -1 9528
+S
+#9531
+Af'el Mines~
+~
+0 1073741824 1 0 0 0 31352
+D2
+~
+~
+0 -1 9526
+S
+#9532
+Af'el Mines~
+~
+0 1073741824 1 0 0 0 31352
+D3
+~
+~
+0 -1 9526
+S
+#9533
+Af'el Mines~
+~
+0 1073741824 1 0 0 0 31352
+D0
+~
+~
+0 -1 9526
+S
+#9534
+Foreman's Office~
+~
+0 1073741828 1 0 0 0 31352
+D3
+~
+~
+0 -1 9535
+D6
+~
+~
+0 -1 9516
+S
+#9535
+Back Room~
+~
+0 1073741828 1 0 0 0 31352
+D1
+~
+~
+0 -1 9534
+S
+#9536
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9537
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9538
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9539
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9540
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9541
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9542
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9543
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9544
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9545
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9546
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9547
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9548
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9549
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9550
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9551
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9552
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9553
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9554
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9555
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9556
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9557
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9558
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9559
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9560
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9561
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9562
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9563
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9564
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9565
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9566
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9567
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9568
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9569
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9570
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9571
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9572
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9573
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9574
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9575
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9576
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9577
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9578
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9579
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9580
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9581
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9582
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9583
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9584
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9585
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9586
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9587
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9588
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9589
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9590
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9591
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9592
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9593
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9594
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9595
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9596
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9597
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9598
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9599
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9600
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9601
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9602
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9603
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9604
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9605
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9606
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9607
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9608
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9609
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9610
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9611
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9612
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9613
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9614
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9615
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9616
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9617
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9618
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9619
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9620
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9621
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9622
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9623
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9624
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9625
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9626
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9627
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9628
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9629
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9630
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9631
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9632
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9633
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9634
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9635
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9636
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9637
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9638
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9639
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9640
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9641
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9642
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9643
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9644
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9645
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9646
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9647
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9648
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9649
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9650
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9651
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9652
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9653
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9654
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9655
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9656
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9657
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9658
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9659
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9660
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9661
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9662
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9663
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9664
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9665
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9666
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9667
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9668
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9669
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9670
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9671
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9672
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9673
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9674
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9675
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9676
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9677
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9678
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9679
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9680
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9681
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9682
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9683
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9684
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9685
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9686
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9687
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9688
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9689
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9690
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9691
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9692
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9693
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9694
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9695
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9696
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9697
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9698
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9699
+Floating in a void~
+~
+0 1073741828 1 0 0 0 31352
+S
+#9700
+Floating in a void~
+~
+0 4 1 0 0 0 31352
+S
+#0
+
+
+#RESETS
+M 1 9501 1 9501
+O 1 9501 1 9501
+M 1 9504 1 9507
+M 1 9507 1 9517
+G 1 9505 1
+M 1 9503 1 9519
+G 1 134 1
+G 1 9503 1
+G 1 9504 1
+O 1 9502 1 9522
+M 1 9505 1 9525
+M 1 9506 1 9527
+M 1 9700 1 9700
+O 1 9700 1 9700
+S
+
+
+#SHOPS
+ 9503    0  0  0  0  0   120  90         0 23    ; A shopkeeper droid
+ 9507    0  0  0  0  0   120  90         0 23    ; Trandor
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  9502 spec_customs_weapons
+S
+
+
+#$

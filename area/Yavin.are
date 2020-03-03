@@ -1,0 +1,3332 @@
+#AREA   Yavin~
+
+
+
+#AUTHOR Drakkar~
+
+#RANGES
+0 36 0 36
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 4457633
+
+#MOBILES
+#1850
+low_mob~
+imperial recruit~
+An Imperial Recruit walks past.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1851
+a polished kitchen droid~
+a polished kitchen droid.~
+A polished kitchen droid is here.
+~
+~
+100663299 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+21 0 0 0 2049 2048 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+say Welcome $n, I am KD-0082, the resident head chef.
+say If you would like a RATION or CANTEEN.
+say Please just say the name and I shall get you one.
+~
+> speech_prog Ration~
+emote goes into the freezer and brings out a ration.
+say Here you go $n.
+mpoload 1857
+drop ration
+~
+> speech_prog Canteen~
+emote goes into the freezer and brings out a canteen.
+say Here you go $n.
+mpoload 1858
+drop canteen
+~
+|
+#1852
+comm operator~
+A Noghri looks very stern~
+A Noghri stands here monitering transmissions
+~
+~
+16778307 0 0 Z
+12 0 -39 2d10+120 1d4+2
+0 0
+8 8 1
+11 13 11 7 9 10 10
+0 0 0 0 0
+6 0 0 0 65 64 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1853
+engineer~
+A Verpine female~
+A retired engineer stands here tinkering with a comlink
+~
+~
+1090519107 0 0 Z
+9 0 77 1d10+90 0d4+2
+0 0
+8 8 2
+10 10 17 10 10 18 10
+0 0 0 0 0
+11 0 0 0 1049603 1 0
+1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1854
+A small black bird~
+A small black bird~
+A small black bird flys around the sky
+~
+~
+65 0 0 Z
+12 0 70 2d10+120 1d4+2
+0 0
+8 8 1
+18 10 10 10 12 10 10
+0 0 0 0 0
+0 0 0 0 262144 262144 0
+2 2 0 0 0 0 3 2
+0 0 0 0 0 0 0 0
+#1855
+A large brown feline~
+A sleek brown feline~
+A sleek brown feline prowls the jungle
+~
+~
+65 0 0 Z
+24 0 -174 4d10+240 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 67108864 67108864 0
+18 20 0 0 0 0 7 2
+0 0 0 0 0 0 0 0
+#1856
+gundark~
+A green-skinned fish~
+A green-skinned fish with two huge flippers swims though the stream
+~
+~
+99 0 0 Z
+12 0 70 2d10+120 1d4+2
+0 0
+8 8 1
+11 9 12 14 8 5 18
+0 0 0 0 0
+0 0 0 0 1 1 0
+2 2 0 0 0 0 5 0
+0 0 0 0 0 0 0 0
+#1857
+A large Runyip~
+A large Runyip lumbers here~
+A massive shaggy-furred Runyip lumbers around
+~
+~
+69 0 0 Z
+20 0 -100 4d10+200 2d4+2
+0 0
+8 8 1
+18 9 5 13 15 9 12
+0 0 0 0 0
+0 0 0 0 1 1 0
+14 8 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1858
+A small Stintaril~
+A small six legged creature, with a hairless, three-pronged tail~
+A small creature runs around the base of a tree
+~
+~
+101 0 0 Z
+12 0 70 2d10+120 1d4+2
+0 0
+8 8 2
+8 14 13 17 15 11 13
+0 0 0 0 0
+0 0 0 0 1 1 8
+10 8 0 0 0 0 13 0
+0 0 0 0 0 0 0 0
+#1859
+Solemn Guard Commander Din'dak Dindak~
+Commander Din'dak~
+A Solemn Guard in a scorched grey uniform stands here.
+~
+~
+32771 0 0 Z
+1 0 0 15d30+1500 10d15+40
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 32 2
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+emote wipes a tear from his eye as he looks around him.
+mpsleep 15
+say We lost a lot of good men here, $n. I don't know how many more of these battles I can take.
+mpsleep 20
+say If only we could take down the empire, once and for all. Peace throughout the galaxy... but we need help.
+mpsleep 15
+emote looks at you hopefully.
+mpsleep 10
+say We could really use your help. Please, &genlist&w&W. I'll send out the forms right now.
+~
+> act_prog p steps out of a ship.~
+emote wipes a tear from his eye as he looks around him.
+mpsleep 15
+say We lost a lot of good men here, $n. I don't know how many more of these battles I can take.
+mpsleep 20
+say If only we could take down the empire, once and for all. Peace throughout the galaxy... but we need help.
+mpsleep 15
+emote looks at you hopefully.
+mpsleep 10
+say We could really use your help. Please, enlist. I'll send out the forms right now.
+~
+|
+#1917
+seeker sphere silver droid sith~
+A Sith Seeker Droid.~
+A Silver Sphere Hovers here
+~
+~
+1 4194304 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+If ispc($n)
+if frc($n) == 0
+mpsleep 5
+say Tracking Target.
+else 
+if frc($n) > 1
+say Target found.
+Squeal
+follow $n
+Mpsleep 20
+Emote rushes at $n and explodes!
+Mpdamage $n 300
+mpGoto 101
+mppurge
+else
+endif
+endif
+else
+endif
+~
+|
+#1918
+probe droid sith black~
+A Black Sith Probe Droid~
+A Sith probe droid
+~
+~
+1 4194304 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+If ispc($n)
+Mpat 1951 say I have encountered $n
+Else
+endif
+~
+|
+#1926
+lost traveler~
+a lost traveler~
+A lost traveler wanders about here, trying to find his way
+~
+~
+67 4194304 0 Z
+20 0 50 4d10+200 2d4+2
+5 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+4 4 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> give_prog package to lost traveler~
+if ovnuminv(1926) == 1
+  gasp
+  say My sister succeeded! Oh, thank you!
+  say I am very thankful!
+  mpadvance $n 5 1000
+  mpat 101 drop package
+  mpat 101 mppurge
+endif
+~
+|
+#1953
+radar scanner~
+A Chandra-Fan female~
+A Chadra-Fan female stands here scanning the radar for possible intruders
+~
+~
+16778307 0 0 Z
+10 0 -27 2d10+100 1d4+2
+0 0
+8 8 2
+8 16 14 9 10 18 10
+0 0 0 0 0
+14 0 0 0 8388609 8388608 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1954
+slicer observer~
+An Ewok slicer~
+An Ewok stands here observing the slicer's at work
+~
+~
+16778307 0 0 Z
+10 0 -55 2d10+100 1d4+2
+0 0
+8 8 1
+6 20 18 8 12 10 10
+0 0 0 0 0
+10 0 0 0 129 128 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1955
+man~
+A smart looking old man~
+An old man stands here reading a book
+~
+~
+17826883 0 0 Z
+8 0 80 1d10+80 0d4+2
+0 0
+8 8 1
+5 25 23 8 13 18 10
+0 0 0 0 0
+0 0 0 0 -1543501794 1 0
+1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#1956
+Rebel guard~
+A guard in a dark uniform~
+A uniformed soldier stands at attention
+~
+~
+1073741835 520 0 Z
+30 0 25 6d10+300 3d4+2
+50 0
+8 8 1
+20 13 8 11 16 10 17
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 48 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+If clan($n) == rebel alliance
+Salute $n
+Else
+Mpkill $n
+Endif
+Else
+endif
+~
+> rand_prog 100~
+if ispc($n)
+If clan($n) == rebel alliance
+Else
+Mpkill $n
+Endif
+Else
+endif
+~
+> greet_prog 100~
+say I am sorry but this facility is temporarily closed for renovation.
+~
+|
+#1957
+Rebel Trooper~
+Rebel Trooper~
+A Rebel Trooper patrols these halls.
+~
+~
+1 0 0 Z
+1 0 -55 0d0+360 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#2000
+hi_mob~
+imperial recruit~
+An Imperial Recruit walks past.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#1850
+hi_obj~
+a canteen~
+A small grey canteen has been drooped here.~
+~
+17 0 1
+40 40 0 0
+1 10 1
+#1851
+keycard~
+a keycard~
+A keycard is here.~
+~
+18 0 16385
+0 0 0 0
+1 0 0
+E
+keycard~
+A small black duraplast card with a magnetic strip and a microtronics chip
+inside. In small white letters on the front side the word 'Armory' is
+printed.
+~
+#1852
+Massive Massassi Statue~
+a Massive Massassi Statue~
+A Massive Massassi Statue is here.~
+~
+37 0 0
+0 0 0 0
+1 0 0
+E
+Massive Massassi Statue~
+An statue carved from a dark grey rock which is indigenous to the area. It
+is in the form of a great Massassi warrior. Even though the Massassi
+people have long left the moon, their spirit still remains.
+~
+E
+base~
+(The writing on the base is indistinguishable. But you notice the statue
+doesn't seem to be connected to the base?!?!)
+~
+> push_prog 100~
+mpechoat $n The statue moves and you notice a path open in the brush.
+mpechoaround $n $n did something to the statue and then...
+mpechoaround $n disappeared into the brush.
+mptransfer $n 1916
+~
+> pull_prog 100~
+mpechoat $n The statue moves and you notice a path open up
+mpecharound $n $n did something to the statue and then...
+mpecharound $n disappeared into the brush.
+mptransfer $n 1916
+~
+|
+#1853
+small crystal~
+a small crystal~
+A small crystal is here.~
+~
+63 33554432 1
+2 0 0 0
+1 0 0
+#1854
+hooded cloak~
+a hooded cloak~
+A hooded cloak is neatly folded on the floor here.~
+~
+9 0 1025
+1 1 0 0
+5 50 5
+A
+2 1
+#1855
+small metal key~
+a small metal key~
+A small metal key is here.~
+~
+18 0 16385
+0 0 0 0
+1 0 0
+#1856
+round table~
+a round table~
+A round table is sitting in the middle of the room.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#1857
+vaccuum-sealed ration~
+a vaccuum-sealed ration~
+A vaccuum-sealed ration is here.~
+~
+19 0 1
+100 0 0 0
+1 0 0
+#1858
+small travel canteen~
+a small travel canteen~
+A small travel canteen is lying here on the ground.~
+~
+17 0 1
+30 30 0 0
+1 10 1
+#1859
+black bodyglove top~
+a black bodyglove top~
+A black bodyglove top is here.~
+~
+9 256 9 1
+0 20 0 0
+1 10 1
+A
+13 20
+#1860
+black uniform top~
+a black uniform top~
+A black uniform top is here.~
+~
+9 134217728 9 10
+0 10 0 0
+1 20 2
+A
+1 1
+#1861
+pair of black leather gloves~
+a pair of black leather gloves~
+A pair of black leather gloves is here.~
+~
+9 256 129 10
+0 10 0 0
+1 10 1
+A
+53 30
+#1862
+pair of black uniform pants~
+a pair of black uniform pants~
+A pair of black uniform pants is here.~
+~
+9 256 33 10
+0 20 0 0
+1 10 1
+A
+19 2
+#1863
+pair of socks~
+a pair of socks~
+A pair of socks is here.~
+~
+9 256 65 1
+0 10 0 0
+1 10 1
+A
+18 2
+#1864
+pair of action-combat boots~
+a pair of action-combat boots~
+A pair of action-combat boots is here.~
+~
+9 0 65 13
+0 1 0 0
+1 10 1
+#1865
+black utility belt~
+a black utility belt~
+A black utility belt is here.~
+~
+15 0 2049 1
+100 0 0 0
+1 10 1
+#1866
+a lightsaber clip~
+a lightsaber clip~
+A lightsaber clip is here.~
+~
+15 0 2049 10
+50 0 0 0
+1 10 1
+#1867
+table~
+An Oak table~
+A large Oak table~
+~
+13 524288 0
+0 0 0 0
+150 0 0
+#1868
+monitor1~
+Viewing monitor I~
+Viewing monitor I stands here~
+~
+12 1074266115 0
+0 0 0 0
+1000 0 0
+#1869
+monitor2~
+Viewing monitor II~
+Viewing monitor II stands here~
+~
+12 1074266115 0
+0 0 0 0
+1000 0 0
+#1870
+monitor3~
+Viewing monitor III~
+Viewing monitor III stands here~
+~
+12 1074266115 0
+0 0 0 0
+1000 0 0
+#1915
+Midnight Black Robe~
+&zMidnight Black Robe~
+&zMidnight Black Robe~
+~
+9 0 1025
+0 0 0 0
+1 0 0
+A
+13 -100
+A
+12 -500
+A
+28 1048576
+A
+18 5
+A
+28 4
+A
+28 512
+A
+28 8
+#1917
+ring obsidian black~
+A Black Obsidian ring~
+A Black Obsidian ring is here.~
+~
+9 0 3
+0 0 0 0
+1 0 0
+A
+12 -500
+A
+18 5
+#1926
+package to lost traveler~
+a package to a lost traveler~
+A package for a lost traveler on Yavin IV lies here.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+#1927
+Armory Key~
+Armory Key~
+An Armory Key lays in the dirt here.~
+~
+18 0 16385
+0 0 0 0
+1 0 0
+#1928
+Jail Key~
+Jail Key~
+A Jail Key is laying in the dirt here.~
+~
+18 1073741824 16385
+0 0 0 0
+1 0 0
+#1929
+Corusca Gem~
+&OC&Yo&wr&Wu&ws&Yc&Oa &G&WGem~
+A corusca gem is here.~
+~
+63 536870913 1
+3 0 0 0
+1 0 0
+#2000
+hi_obj~
+a canteen~
+A small grey canteen has been drooped here.~
+~
+17 0 1
+40 40 0 0
+1 10 1
+#0
+
+
+#ROOMS
+#1850
+Landing Pad~
+A landing pad in the middle of lush and dense vegetation. This pad is not
+more than 30 meters sqare and made from black durasteel designed to blend
+in with the jungle. The pad is also just a few feet lower than the
+uppermost canopy of the forest allowing for quite a spectacular view. In
+all directions, the moon is thickly covered with vegetaion running from
+small flowers, to large trees. Off in the distance the ancient Massassi
+temples can be seen rising out of the forest like small mountains, and
+somewhat close to the pad there are a few utilitarian buildings that
+barely make it above the trees. To the east there are stairs that lead
+down to the forest floor and in the direction of the small buildings.
+ 
+(Please read room descriptions. They hold keys that will greatly help
+you.)
+~
+0 142639156 1 4 0 0 3824
+D1
+~
+~
+0 -1 1851
+D3
+~
+~
+0 -1 2001
+S
+#1851
+Durasteel Stairs~
+The stairs lead to the forest floor which is approximately 50 feet below.
+They are made from the same durasteel as the landing pad and are covered
+in posi-grip paper in order to prevent slipping. On either side of the
+steps there is a high railing and fence for safety. From here you can see
+some of the wildlife and vegetaion of the moon a little better than from
+the pad.
+~
+0 0 1 0 0 0 3824
+D3
+~
+~
+0 -1 1850
+D5
+~
+~
+0 -1 1852
+S
+#1852
+Durasteel Stairs~
+The stairs continue up and down. The forest floor is only a 25 foot drop
+from here and the lower canopies of the trees have opened up to reveal the
+floor below. The floor is covered in a dense undergrowth of shrubs,
+briars,flowers, and other vegetation that can be found no where else in
+the galaxy.
+~
+0 4 1 0 0 0 3824
+D4
+~
+~
+0 -1 1851
+D5
+~
+~
+0 -1 1853
+S
+#1853
+Forest Floor~
+The jungle is lush here. The smell of trees and brush is strong here. It is
+quite  hard to notice a path, but you manange. Sounds from the Landing Pad
+are heard loudly  from here. The jungle is a completely gorgeous sight
+from where you are standing.  Songs from animals can be heard from all
+around. This feels like quite a peaceful  place, and quite protective
+also. The lush growth of plants provides a desent cover  for you.
+~
+0 0 3 0 0 0 3824
+D0
+~
+~
+0 -1 1918
+D1
+~
+~
+0 -1 1854
+D2
+~
+~
+0 -1 1919
+D3
+~
+~
+0 -1 1920
+D4
+~
+~
+0 -1 1852
+S
+#1854
+Jungle Path~
+The Jungle is thick here. Sounds of birds and other beasts are heard
+loudly, some striking fear into your heart from the power-sounding tone of
+there roars. Sunlight manages to weave its way in through the lush tree
+groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people.
+~
+0 0 3 0 0 0 3824
+D1
+~
+~
+0 -1 1855
+D3
+~
+~
+0 -1 1853
+D6
+~
+~
+0 -1 4500
+S
+#1855
+Jungle Path~
+The Jungle is thick here. Sounds of birds and other beasts are heard
+loudly, some striking fear into your heart from the power-sounding tone of
+there roars. Sunlight manages to weave its way in through the lush tree
+groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people.
+~
+0 0 3 0 0 0 3824
+D3
+~
+~
+0 -1 1854
+D8
+~
+~
+0 -1 1856
+S
+#1856
+Jungle Path~
+The Jungle is thick here. Sounds of birds and other beasts are heard
+loudly, some striking fear into your heart from the power-sounding tone of
+there roars. Sunlight manages to weave its way in through the lush tree
+groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people.
+~
+0 4 3 0 0 0 3824
+D2
+~
+'an old path'~
+2056 -1 1907
+D6
+~
+~
+0 -1 1857
+D7
+~
+~
+0 -1 1855
+S
+#1857
+Jungle Path~
+The Jungle is extremely thick here. Sounds of birds and other beasts are
+heard loudly;, some striking fear into your heart from the power-sounding
+tone of there roars. Sunlight manages to weave its way in through the lush
+tree groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people.
+~
+0 0 3 0 0 0 3824
+D0
+~
+~
+0 -1 1905
+D1
+~
+~
+0 -1 1858
+D9
+~
+~
+0 -1 1856
+S
+#1858
+Jungle Path~
+The Jungle is extremely thick here. Sounds of birds and other beasts are
+heard loudly;, some striking fear into your heart from the power-sounding
+tone of there roars. Sunlight manages to weave its way in through the lush
+tree groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people.
+~
+0 0 3 0 0 0 3824
+D1
+~
+~
+33 -1 1859
+D3
+~
+~
+0 -1 1857
+S
+#1859
+Security Checkpoint~
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+7 -1 1860
+D2
+~
+~
+3 -1 1902
+D3
+~
+~
+1 -1 1858
+S
+#1860
+Main Rebel Complex~
+Standing in the entryway of the complex it feels as if you have walked into
+a totally different planet. The are no trees, no animals, not even plants
+in this facility. You stand at the intersection of the main hallway and a
+wide corridor that leads to the minor complex to the north.
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1864
+D1
+~
+~
+0 -1 1861
+D3
+~
+~
+1 -1 1859
+S
+#1861
+Main Corridor~
+You stand in the main corridor of the facility. This hallway leads all the
+way through the entire complex. The walls here are dark grey. The hallway
+is bare excpet for the lights mounted every 30 feet along the ceiling.
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1862
+D2
+~
+~
+0 -1 1900
+D3
+~
+~
+0 -1 1860
+S
+#1862
+Main Corridor~
+You stand in the main corridor of the facility. This hallway leads all the
+way through the entire complex. The walls here are dark grey. The hallway
+is bare excpet for the lights mounted every 30 feet along the ceiling.
+There is a workshop located south of here for Rebel engineers.
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1863
+D2
+~
+~
+0 -1 1938
+D3
+~
+~
+0 -1 1861
+S
+#1863
+Main Corridor~
+You stand at the intersection of the main corridor and another wide
+corridor. There is a sign posted here directing people north to the
+conference room. You feel a slight breeze from the north.
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1870
+D1
+~
+~
+0 -1 1895
+D2
+~
+~
+0 -1 1897
+D3
+~
+~
+0 -1 1862
+S
+#1864
+Wide Corridor~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1865
+D2
+~
+~
+0 -1 1860
+S
+#1865
+Wide Corridor~
+~
+0 8 1 0 0 0 3824
+D2
+~
+~
+0 -1 1864
+D6
+~
+~
+0 -1 1866
+S
+#1866
+Wide Corridor~
+~
+0 8 1 0 0 0 3824
+D6
+~
+~
+0 -1 1867
+D9
+~
+~
+0 -1 1865
+S
+#1867
+Wide Corridor~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1868
+D2
+~
+~
+8389671 1928 1982
+D8
+~
+~
+0 -1 1872
+D9
+~
+~
+0 -1 1866
+S
+#1868
+Short Breezeway~
+~
+0 0 2 0 0 0 3824
+D0
+~
+~
+0 -1 1869
+D2
+~
+~
+0 -1 1867
+S
+#1869
+Minor Rebel Complex~
+This is one of the smaller buildings that makes up the Alliances
+Headquarters complex. The walls, floors, and ceilings are made from a
+combination of durasteel, duraplast, tile, and stone. This building hold
+the infirmary, barracks, chow hall, and armory. Basically the only people
+who have any business here are the Alliance soldiers, and other lower
+enlisted members.
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1873
+D2
+~
+~
+0 -1 1868
+D3
+~
+~
+0 -1 1875
+S
+#1870
+Wide Corridor~
+You stand in the wide corridor of the complex. This corridor not only leads
+to the minor complex adjacent to the main but also to the main conference
+room. There walls here are dark grey. There is a single light mounted on
+the left wall.
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1871
+D2
+~
+~
+0 -1 1863
+S
+#1871
+Wide Corridor~
+You stand at the intersection of the entryway to the main conference room
+and the wide corridor. Northwest of here is the minor complex located
+adjacent to this one. 
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1893
+D2
+~
+~
+0 -1 1870
+D7
+~
+~
+0 -1 1872
+S
+#1872
+Wide Corridor~
+~
+0 8 1 0 0 0 3824
+D7
+~
+~
+0 -1 1867
+D8
+~
+~
+0 -1 1871
+S
+#1873
+Brightly Lit Corridor~
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1874
+D3
+~
+~
+0 -1 1869
+S
+#1874
+Brighty Lit Corridor~
+~
+0 12 1 0 0 0 3824
+D0
+~
+~
+0 -1 1877
+D3
+~
+~
+0 -1 1873
+D8
+~
+~
+0 -1 1983
+S
+#1875
+Brightly Lit Corridor~
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1869
+D3
+~
+~
+0 -1 1876
+S
+#1876
+Brightly Lit Corridor~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1880
+D1
+~
+~
+0 -1 1875
+S
+#1877
+Barracks~
+The barracks are where the Rebel Allience soldiers sleep and keep their
+gear. Each soldier is required to keep all of his equipment on their
+person at all times in order to become familiar and proficient with it.
+The barracks themself are just a long room with a row of two tier bunks
+set against the wall. At the foot of each bunk there is a footlocker where
+the soldiers can keep some of their supplies. The floor is made from
+shining white tiles and the walls are made from grey durasteel.
+ 
+(You may safely quit the game from here.)
+~
+0 8388616 1 0 0 0 3824
+D0
+~
+~
+0 -1 1878
+D2
+~
+~
+0 -1 1874
+S
+#1878
+Barracks~
+The barracks are where the Rebel Allience soldiers sleep and keep their
+gear. Each soldier is required to keep all of his equipment on their
+person at all times in order to become familiar and proficient with it.
+The barracks themself are just a long room with a row of two tier bunks
+set against either wall. AT the foot of each bunk there is a footlocker
+where the soldiers can keep some of their supplies. The floor is made from
+shining white tiles and the walls are made from grey durasteel.
+ 
+(You may safely quit the game from here.)
+~
+0 8388616 1 0 0 0 3824
+D0
+~
+~
+0 -1 1879
+D1
+~
+~
+0 -1 1981
+D2
+~
+~
+0 -1 1877
+S
+#1879
+Barracks~
+The barracks are where the Rebel Alliance soldiers sleep and keep their
+gear. each soldier is required to keep all of his equipment on their
+person at all times in order to become familiar and proficient with it.
+The barracks themself are just a long room with arow of two tier bunks set
+against either wall. At the foot of each bunk there is a footlocker where
+the soldiers can keep some of their supplies. The walls are made from
+shining white tiles and the walls are made from grey durasteel.
+ 
+(You may safely quit the game from here.)
+~
+0 8388616 1 0 0 0 3824
+D2
+~
+~
+0 -1 1878
+S
+#1880
+Brightly Lit Corridor~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1881
+D2
+~
+~
+0 -1 1876
+S
+#1881
+Brightly Lit Corridor~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1884
+D1
+~
+~
+0 -1 1882
+D2
+~
+~
+0 -1 1880
+S
+#1882
+Chow Hall~
+The chow hall is a large room full of rows of tables and benches. This is
+where the Alliance members socialize and eat their meals. This is a large
+complex so in order for all members to eat, they have devised a plan of
+different eating periods. All the members are assigned to eat certain time
+periods and are here precisely when it begins.
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1883
+D3
+~
+~
+0 -1 1881
+S
+#1883
+Kitchen~
+The kitchen is a large area full fo silvery looking equipment and tables
+all used to create one type of dish or another. Droids run and maintain
+the kitchen and chow hall and have become very efficient at it. They
+constantly try out new dishes in order to keep the alliances members happy
+with variety.
+~
+0 8 1 0 0 0 3824
+D3
+~
+~
+0 -1 1882
+S
+#1884
+Brightly Lit Corridor~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1885
+D2
+~
+~
+0 -1 1881
+S
+#1885
+Brightly Lit Corridor~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1890
+D1
+~
+~
+0 -1 1886
+D2
+~
+~
+0 -1 1884
+S
+#1886
+Infirmary~
+~
+0 67108872 1 0 0 0 3824
+D1
+~
+~
+0 -1 1889
+D3
+~
+~
+0 -1 1885
+D6
+~
+~
+0 -1 1887
+D8
+~
+~
+0 -1 1888
+S
+#1887
+Bacta Tank~
+~
+0 12 1 0 0 0 3824
+D9
+~
+~
+0 -1 1886
+> rand_prog 100~
+mpecho The bacta flows around you and heals your wounds.
+mprestore $n 500
+~
+> greet_prog 100~
+If $n != rebel alliance 
+mptrance $n 1886
+endif
+~
+|
+S
+#1888
+Operation Room~
+~
+0 8 1 0 0 0 3824
+D7
+~
+~
+0 -1 1886
+S
+#1889
+Recovery Room~
+This is the Recovery room where patients can take their time and rest after
+any sort of medical treatment. There are clean, soft beds lining the walls
+and it is very quiet. At each bed there is a monitor to make sure the
+patient is functioning normally.
+ 
+(You may safely quit the game from here.)
+~
+0 8389640 1 0 0 0 3824
+D3
+~
+~
+0 -1 1886
+S
+#1890
+Brightly Lit Corridor~
+~
+0 12 1 0 0 0 3824
+D0
+~
+~
+0 -1 1891
+D2
+~
+~
+0 -1 1885
+S
+#1891
+Brightly Lit Corridor~
+~
+0 12 1 0 0 0 3824
+D1
+~
+Vault~
+8388609 1927 1892
+D2
+~
+~
+0 -1 1890
+S
+#1892
+Armory~
+~
+0 32780 1 0 0 0 3824
+D3
+~
+~
+1 1851 1891
+S
+#1893
+Small Antechamber~
+You are in the small antechamber between the main conference room and the
+rest of the complex. There is just enough room here for a guard and a
+couple of Alliance members. You better hurry into the conference room
+before the meeting starts.
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+1 -1 1894
+D3
+~
+~
+0 -1 1871
+S
+#1894
+Large Conference Room~
+You stand in the main conference room of the complex. Along the wall there
+are monitors for members to pull up files for others to see. There is a
+large table in the center of the room surrounded by 12 chairs. The chairs
+are dark red and bear the logo of the New Republic.
+~
+0 8 1 0 0 0 3824
+D3
+~
+~
+1 -1 1893
+S
+#1895
+Communications Department~
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1901
+D2
+~
+~
+0 -1 1896
+D3
+~
+~
+0 -1 1863
+S
+#1896
+Slicer Terminal~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1895
+S
+#1897
+Wide Corridor~
+You stand in a wide corridor leading to the Rebel Landing Pad just south of
+here. The walls here are white. There is a single light mounted on either
+side of the wall every 30 feet.
+~
+0 12 1 0 0 0 3824
+D0
+~
+~
+0 -1 1863
+D2
+~
+~
+3 -1 1898
+S
+#1898
+Security Checkpoint~
+You stand in the security checkpoint of the Main Rebel Complex. Security is
+tight here to prevent any strangers from entering the complex. Be sure to
+have your Rebel ID card ready as it will be used for many things in this
+facility.
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+3 -1 1897
+D2
+~
+~
+1 -1 1899
+S
+#1899
+Hanger Bay~
+This is the Rebel Landing Pad adjacent to the Main Complex. The pad is very
+busy with ships arriving and departing. Technicians run to different ships
+readying them for launch. Be sure to check in at the security checkpoint
+to the north.
+~
+0 20 1 68 0 0 3824
+D0
+~
+~
+3 -1 1898
+S
+#1900
+Droid Maintenance~
+~
+0 12 1 0 0 0 3824
+D0
+~
+~
+0 -1 1861
+S
+#1901
+Radar Room~
+~
+0 8 1 0 0 0 3824
+D3
+~
+~
+0 -1 1895
+S
+#1902
+Security Office~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+35 -1 1859
+S
+#1903
+Hallway~
+~
+0 4 1 0 0 0 3824
+S
+#1904
+Conference Room~
+~
+0 4 1 0 0 0 3824
+S
+#1905
+Dense Undergrowth~
+The vegitation suddenly begins to grow extreamly thick, and becomes hard to
+travel though.  The color of the plants starts to radiate a vibrant green,
+and almost glows. The trees in the area start to get taller, and even
+taller trees can be seen in the distant. Thin vines can be seen running up
+the trees, and interwind with each other. Large bushes suddenly appear,
+and make travel extreamly hard. The ground is extreamly dry, and cracks
+can be seen in the dirt around the roots of the plants.
+~
+0 0 3 0 0 0 3824
+D0
+~
+~
+0 -1 1906
+D2
+~
+~
+0 -1 1857
+S
+#1906
+Dense Undergrowth~
+The vegitation, in the area, begins to grow even thicker than it was
+before. The vibrant growth inhibits travel, except back though the less
+thick undergrowth. The trees are all extreamly thick in diamater, and
+tower higher than any other trees in the area. Large vines grow up the
+same trees, and seem to never end, in there twisting trails. Bushes of all
+sort seem to tower higher than normal, and are a stunning shade of green.
+~
+0 0 3 0 0 0 3824
+D2
+~
+~
+0 -1 1905
+S
+#1907
+An Old Path~
+~
+0 4 3 0 0 0 3824
+D0
+~
+~
+0 -1 1856
+D2
+~
+~
+0 -1 1908
+S
+#1908
+An Old Path~
+~
+0 4 3 0 0 0 3824
+D0
+~
+~
+0 -1 1907
+D2
+~
+~
+0 -1 1909
+S
+#1909
+An Old Path~
+~
+0 4 3 0 0 0 3824
+D0
+~
+~
+0 -1 1908
+D2
+~
+~
+0 -1 1911
+D9
+~
+~
+0 -1 1910
+S
+#1910
+Under a Log~
+~
+0 4 3 0 0 0 3824
+D6
+~
+~
+0 -1 1909
+D9
+~
+~
+0 -1 1913
+S
+#1911
+An Old Path~
+~
+0 0 3 0 0 0 3824
+D0
+~
+~
+0 -1 1909
+D8
+~
+~
+0 -1 1912
+S
+#1912
+Before a Wading Pool~
+~
+0 4 3 0 0 0 3824
+D7
+~
+~
+0 -1 1911
+D8
+~
+~
+0 -1 1914
+S
+#1913
+Dense Undergrowth~
+~
+0 4 3 0 0 0 3824
+D6
+~
+~
+0 -1 1910
+D9
+~
+~
+0 -1 1915
+S
+#1914
+Wading Pool~
+~
+0 4 6 0 0 0 3824
+D5
+~
+~
+0 -1 1917
+D7
+~
+~
+0 -1 1912
+S
+#1915
+Dense Undergrowth~
+The undergrowth of the jungle becomes so thick that one cannot see more
+than  a few inches into it and all sunlight has been blocked out long ago.
+There is a small clearing an in the clearing there is an ancient 'statue'.
+It looks somewhat menacing and gives you the chills. On the 'base' of the
+statue there seems to be some sort of writing. The only way to get back
+anywhere in the undergrwoth is to go back the way you came.
+~
+0 4 3 0 0 0 3824
+D6
+~
+~
+0 -1 1913
+S
+#1916
+Steps of The Great Temple~
+~
+0 1073741828 1 0 0 0 3824
+D0
+~
+~
+0 -1 1913
+D2
+~
+~
+0 -1 1939
+S
+#1917
+Bottom of the Pool~
+The bottom of the pool is covered in thick layers of silt and mud. There
+are many types of underwater plants growing out of the ground and the
+walls. When you hit the bottom your foot sinks into the mud about 8
+inches.  There are a few small fish swimming around but not many because
+the pool is not that big. If there were anything under the mud, you would
+have no way of knowing.
+~
+0 4 12 0 0 0 3824
+D4
+~
+~
+0 -1 1914
+S
+#1918
+Jungle Path~
+The Jungle is thick here. Sounds of birds and other beasts are heard
+loudly, some striking fear into your heart from the power-sounding tone of
+there roars. Sunlight manages to weave its way in through the lush tree
+groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people.
+~
+0 4 1 0 0 0 3824
+D0
+~
+~
+0 -1 1921
+D2
+~
+~
+0 -1 1853
+S
+#1919
+Briar Patch~
+The only thing visible are briar bushes that climb almost to the middle of
+the trees. Small branches seem to reach out, almost as if they wore alive.
+Some of the thorns have blood on them, and some have cloth or hair. The
+ground is extreamly moist, and tracks from animals can be seen in the mud.
+A couple of bones from an animal of some sort, long since dead, are
+skattared about the underside of the taller bushes.
+~
+0 4 1 0 0 0 3824
+D0
+~
+~
+0 -1 1853
+D2
+~
+~
+2048 -1 1990
+> rand_prog 200~
+mpechoat $n The briars puncture your clothing and skin.
+mpdamage $n 20
+~
+|
+S
+#1920
+Humid Jungle~
+The Jungle is extremely thick here. Sounds of birds and other beasts are
+heard loudly, some striking fear into your heart from the power-sounding
+tone of there roars. Sunlight manages to weave its way in through the lush
+tree groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people.
+~
+0 4 1 0 0 0 3824
+D1
+~
+~
+0 -1 1853
+D3
+~
+~
+0 -1 1928
+S
+#1921
+Jungle Path~
+The Jungle is thick here. Sounds of birds and other beasts are heard
+loudly, some striking fear into your heart from the power-sounding tone of
+there roars. Sunlight manages to weave its way in through the lush tree
+groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people.
+~
+0 0 1 0 0 0 3824
+D2
+~
+~
+0 -1 1918
+D7
+~
+~
+0 -1 1922
+S
+#1922
+Over a Log~
+There is a mighty-large log lying in your path. There is a way over it, and
+you manage  to make it over. Everything is as usual from here, a few birds
+and animals passing  by once in a while, Lush Jungle and moist air are all
+around you. Sounds of Beasts, birds  and a few other unidentifiable
+species are heard all around you. Some close, some distant.  This place
+has a feeling of comfort to it, a feeling of saftey, but also, a nervous 
+edge to it all.
+~
+0 0 1 0 0 0 3824
+D7
+~
+~
+0 -1 1923
+D8
+~
+~
+0 -1 1921
+S
+#1923
+Through a Stream~
+~
+0 0 1 0 0 0 3824
+D0
+~
+~
+0 -1 1924
+D8
+~
+~
+0 -1 1922
+> rand_prog 100~
+mpecho &BThe cold water of the stream rushes past.
+~
+|
+S
+#1924
+Jungle Path~
+~
+0 0 1 0 0 0 3824
+D1
+~
+~
+0 -1 1925
+D2
+~
+~
+0 -1 1923
+D3
+~
+~
+0 -1 1927
+S
+#1925
+Jungle Path~
+~
+0 0 1 0 0 0 3824
+D1
+~
+~
+0 -1 1926
+D3
+~
+~
+0 -1 1924
+S
+#1926
+Jungle Path~
+~
+0 0 1 0 0 0 3824
+D1
+~
+~
+0 -1 1927
+D3
+~
+~
+0 -1 1925
+S
+#1927
+Jungle Path~
+~
+0 0 1 0 0 0 3824
+D1
+~
+~
+0 -1 1924
+D3
+~
+~
+0 -1 1926
+S
+#1928
+Humid Jungle~
+The Jungle is extremely thick here. Sounds of birds and other beasts are
+heard loudly, some striking fear into your heart from the power-sounding
+tone of there roars. Sunlight manages to weave its way in through the lush
+tree groth and other various plants. The path you are on seems to continue
+onward, but you can not see fairly far. The fresh air from the trees is
+very refreshing, even to the most royalist of people. 
+~
+0 0 1 0 0 0 3824
+D1
+~
+~
+0 -1 1920
+D3
+~
+~
+0 -1 1929
+S
+#1929
+Humid Jungle~
+~
+0 0 1 0 0 0 3824
+D1
+~
+~
+0 -1 1928
+D7
+~
+~
+0 -1 1930
+S
+#1930
+A Path through the Jungle~
+~
+0 0 1 0 0 0 3824
+D7
+~
+~
+0 -1 1931
+D8
+~
+~
+0 -1 1929
+S
+#1931
+Swampy area~
+~
+0 0 1 0 0 0 3824
+D3
+~
+~
+0 -1 1932
+D8
+~
+~
+0 -1 1930
+S
+#1932
+Swampy Area~
+~
+0 0 1 0 0 0 3824
+D1
+~
+~
+0 -1 1931
+D3
+~
+~
+0 -1 1933
+S
+#1933
+Deep in the Jungle~
+~
+0 4 1 0 0 0 3824
+D1
+~
+~
+0 -1 1932
+D3
+~
+~
+0 -1 1934
+S
+#1934
+Deep in the Jungle~
+~
+0 4 1 0 0 0 3824
+D1
+~
+~
+0 -1 1933
+D3
+~
+~
+0 -1 1935
+S
+#1935
+Deep in the Jungle~
+~
+0 4 1 0 0 0 3824
+D1
+~
+~
+0 -1 1934
+D2
+~
+~
+0 -1 1936
+S
+#1936
+Deep in the Jungle~
+~
+0 4 1 0 0 0 3824
+D0
+~
+~
+0 -1 1935
+D2
+~
+~
+0 -1 1936
+D7
+~
+~
+0 -1 1937
+D8
+~
+~
+0 -1 1937
+S
+#1937
+Deep in the Jungle~
+~
+0 4 1 0 0 0 3824
+D7
+~
+~
+0 -1 1936
+D8
+~
+~
+0 -1 1936
+S
+#1938
+Industrial Sized Workshop~
+~
+0 67109900 1 0 0 0 3824
+D0
+~
+~
+0 -1 1862
+S
+#1939
+Large Chamber~
+~
+0 1073741836 1 0 0 0 3824
+D0
+~
+~
+0 -1 1916
+D2
+~
+~
+0 -1 1940
+S
+#1940
+Large Chamber~
+~
+0 1073741836 1 0 0 0 3824
+D0
+~
+~
+0 -1 1939
+D1
+~
+~
+0 -1 1941
+D3
+~
+~
+0 -1 1948
+S
+#1941
+Dimly Lit Corridor~
+~
+0 1073741832 1 0 0 0 3824
+D1
+~
+~
+0 -1 1942
+D3
+~
+~
+0 -1 1940
+S
+#1942
+Dimly Lit Corridor~
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1943
+D3
+~
+~
+0 -1 1941
+S
+#1943
+Turbolift~
+This modern turbolift has been added by the Rebel Alliance in what used to
+be a large stairwell. The lift enables the Rebels to easily get from one
+level to another and to transport anything they wish with ease. The lift
+itself is quite large. The walls are dark grey and the floor is black.
+Above you there is a small glowbulb radiating a dim light.  Next to the
+hatch there is a 'list' of levels and above the list there is a small
+voice activation unit. Simply speak the number of the level you wish to go
+to.
+~
+0 1073742988 1 0 0 0 3824
+E
+list~
+Level List:
+(1) Ground Level / Entrance
+(2) Infirmary
+(3) Force Training
+(4) Observation Deck
+~
+> speech_prog 1~
+mpecho The turbolift shakes slightly as it begins moving.
+mpecho The turbolift slowly comes to a halt and the doors slide open.
+mpecho An electronic voice says: 'Level 1. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 1942
+~
+> speech_prog 2~
+mpecho The turbolift shakes slightly as it begins moving.
+mpecho The turbolift slowly comes to a halt
+mpecho The doors slide open
+mpecho An electronic voice says: 'Level 2. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the turbolift.
+mptransfer $n 1944
+~
+> speech_prog 3~
+mpecho The turbolift shakes slightly as it begins moving.
+mpechp The turbolift slowly comes to a halt.
+mpecho The doors slide open.
+mpecho An electronic voice says: 'Level 3. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the lift.
+mptransfer $n 1945
+~
+> speech_prog 4~
+mpecho The turbolift shakes slightly as it begins moving.
+mpecho The turbolift slowly comes to a halt.
+mpecho The doors slide open.
+mpecho An electronic voice says: 'Level 4. Please step off.'
+mpechoat $n You step out of the turbolift.
+mpechoaround $n $n steps out of the lift.
+mptransfer $n 1946
+~
+|
+S
+#1944
+Level 2 Corridor~
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1943
+D3
+~
+~
+0 -1 1957
+S
+#1945
+Level 3 Corridor~
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1943
+D3
+~
+~
+0 -1 1963
+S
+#1946
+Level 4 Corridor~
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1943
+D3
+~
+~
+0 -1 1947
+S
+#1947
+Observation Deck~
+From this large observation deck the ancient Massassi studied their
+environment and the heavens above. The view is incredible. One can stand
+here and see everything for miles and miles in every direction. The sky is
+also highly visible and at night, one can see even the faintest stars in
+the galaxy. It was from here that the Massassi formed complex theories and
+philosophies.
+~
+0 1073741828 1 0 0 0 3824
+D1
+~
+~
+0 -1 1946
+S
+#1948
+Dimly Lit Corridor~
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1940
+D3
+~
+~
+0 -1 1949
+S
+#1949
+Dimly Lit Corridor~
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1948
+D3
+~
+~
+0 -1 1950
+S
+#1950
+Dimly Lit Corridor~
+The corridor leads to the east and to the west. To the south there is a
+large library where the Jedi have stored a large expanse of the knowledge
+passed down from master to apprentice. To the north there is a large
+chamber where Jedi can use the holonet in order to see whats happening in
+the rest of the galaxy.
+~
+0 1073741836 1 0 0 0 3824
+D0
+~
+~
+0 -1 1951
+D1
+~
+~
+0 -1 1949
+D2
+~
+~
+0 -1 1953
+D3
+~
+~
+0 -1 1969
+S
+#1951
+Command Chamber~
+This room is filled with holonet terminals that can be used to  see whats
+happening in the rest of the galaxy. The terminals line the walls and
+their displays flick from one peice of information to the next. From here
+Julian can see whats going on in the galaxy and perhaps bring it up at the
+next council meeting. This is not the only means of obtaining information
+but it is the easiest. This is also the Command Station for the infamous sith "Seeker" Droids.
+~
+0 1073741832 1 0 0 0 3824
+D2
+~
+~
+0 -1 1950
+> speech_prog p Release on Coruscant~
+at 1050 mpmload 1917
+at 1050 mpecho A small sphere falls from the sky.
+~
+> speech_prog p Release on Tatooine~
+at 250 mpmload 1917
+at 250 mpecho A small sphere falls from the sky.
+~
+> speech_prog p probe coruscant~
+at 1050 mpmload 1918
+at 1050 mpecho A small sphere falls from the sky.
+~
+> speech_prog p probe tatooine~
+at 250 mpmload 1918
+at 250 mpecho A small sphere falls from the sky.
+~
+|
+S
+#1952
+Small Dorm~
+~
+0 1082130440 1 0 0 0 3824
+D0
+~
+~
+0 -1 1974
+S
+#1953
+Galactic Library~
+The galactic library holds almost any peice of info you could possibly
+dream up. The library itself is an enormous room with rows and rows of
+shelves containing books, datapads, parchments, computer terminals, and a
+good bit of other items. The library is open to anyone who wishes to gain
+knowledge and understanding of how all things interact and how the galaxy
+works.
+~
+0 1073741832 1 0 0 0 3824
+D0
+~
+~
+0 -1 1950
+D2
+~
+~
+0 -1 1956
+D3
+~
+~
+0 -1 1954
+S
+#1954
+Galactic Library~
+The galactic library holds almost any peice of info you could possibly
+dream up. The library itself is an enormous room with rows and rows of
+shelves containing books, datapads, parchments, computer terminals, and a
+good bit of other items. The library is open to anyone who wishes to gain
+knowledge and understanding of how all things interact and how the galaxy
+works.
+~
+0 1073741832 1 0 0 0 3824
+D1
+~
+~
+0 -1 1953
+D2
+~
+~
+0 -1 1955
+S
+#1955
+Galactic Library~
+The galactic library holds almost any peice of info you could possible
+dream up. The library itself is an enormous room with rows and rows of
+shelves containing books, datapads, parchments, computer terminals, and a
+good bit of other items. The library is open to anyone who wishes to gain
+knowledge and understanding of how all things interact and how the galaxy
+works.
+~
+0 1073741832 1 0 0 0 3824
+D0
+~
+~
+0 -1 1954
+D1
+~
+~
+0 -1 1956
+S
+#1956
+Galactic Library~
+The galactic library holds almost any peice of info you could possibly
+dream up. The library itself is an enormous room with rows and rows of
+shelves containing books, datapads, parchments, computer terminals, and a
+good but of other items. The pibrary is open to anyone who wishes to gain
+knowledge and understanding of how all things interact and how the galaxy
+works.
+~
+0 1073741832 1 0 0 0 3824
+D0
+~
+~
+0 -1 1953
+D3
+~
+~
+0 -1 1955
+S
+#1957
+Level 2 Corridor~
+~
+0 1073741832 1 0 0 0 3824
+D1
+~
+~
+0 -1 1944
+D2
+~
+~
+0 -1 1961
+D3
+~
+~
+0 -1 1958
+S
+#1958
+Level 2 Corridor~
+~
+0 1073741832 1 0 0 0 3824
+D1
+~
+~
+0 -1 1957
+D7
+~
+~
+0 -1 1959
+S
+#1959
+Infirmary~
+~
+0 1073741832 1 0 0 0 3824
+D0
+~
+~
+0 -1 1960
+D7
+~
+~
+0 -1 1962
+D8
+~
+~
+0 -1 1958
+S
+#1960
+Bacta Tank~
+~
+0 1073741836 1 0 0 0 3824
+D2
+~
+~
+0 -1 1959
+> rand_prog 100~
+mprestore $n 500
+mpechoat $n The bacta flows around and heals your wounds.
+~
+|
+S
+#1961
+Quiet Chamber~
+The walls, ceiling, and floor are made from the same stone as the rest of
+the temple. To the south the walls open in large windows enabling one to
+see a good part of the forest. In the middle of the floor there is a thick
+carpeting and around the base of the walls there are a couple pillows
+strewn about. This room has been set aside by the Jedi for quiet
+meditation and to ponder the riddles of the galaxy.
+~
+0 327684 1 0 0 0 3824
+D0
+~
+~
+0 -1 1957
+S
+#1962
+Recovery Room~
+The recovery room is quite small. There are 3 beds lined up against the
+wall and next to each bed is a small monitor to monitor a patient. The
+beds are soft, but very short and narrow. The walls are made from stone
+and are covered by the same ancient markings as the rest of the temple.
+ 
+(You may safely quit the game from here.)
+~
+0 1082130444 1 0 0 0 3824
+D8
+~
+~
+0 -1 1959
+S
+#1963
+Dimly Lit Corridor~
+~
+0 1073741832 1 0 0 0 3824
+D1
+~
+~
+0 -1 1945
+D2
+~
+~
+0 -1 1967
+D3
+~
+~
+0 -1 1964
+S
+#1964
+Dimly Lit Corridor~
+~
+0 1073741832 1 0 0 0 3824
+D0
+~
+~
+0 -1 1965
+D1
+~
+~
+0 -1 1963
+D2
+~
+~
+7 1855 1968
+> speech_prog p I am ready to serve~
+mpoload 1855
+drop key
+~
+|
+S
+#1965
+Force Training~
+~
+0 1073741832 1 0 0 0 3824
+D2
+~
+~
+0 -1 1964
+D3
+~
+~
+0 -1 1966
+S
+#1966
+Force Training~
+~
+0 1073741832 1 0 0 0 3824
+D1
+~
+~
+0 -1 1965
+S
+#1967
+Work Room~
+Along the walls of this room there are large work benches set up. Each
+bench has a full stock of tools and supplies needed to make almost
+anything. People come here to create devices that they need and Jedi come
+here to pass the test of creating a lightsaber. On the walls above the
+benches there are many papers tacked to bulletin boards. People who come
+here usually leave a copy of their schematics behind in order for others
+to use or improve upon them. It is very peaceful and everyone is quiet
+when in this room out of respect for everybody else.
+~
+0 1073808396 1 0 0 0 3824
+D0
+~
+~
+0 -1 1963
+S
+#1968
+Supply Closet~
+~
+0 1073741836 1 0 0 0 3824
+D0
+~
+~
+8388647 1855 1964
+> speech_prog "I am ready to serve"~
+mpoload 1916
+mpoload 1915
+mpoload 1917
+drop robe
+drop disc
+drop ring
+~
+|
+S
+#1969
+Dimly Lit Corridor~
+The corridor leads to the east and to the west there is a turbolift leading
+to the underground levels of the temple. The massassi built a few other
+temples on the moon but this one is by far the largest. The walls are cut
+from a rough stone found in a quarry not far from this site. The hallway
+is lit by small lamps mounted on the walls.
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1950
+D3
+~
+~
+0 -1 1970
+S
+#1970
+Turbolift~
+This turbolift is the only way to get to the levels of the temple that are
+below ground. The lift is of standard size and is made to hold a large
+quantity of people at a time. The floor is a dark grey and the walls and
+ceiling are white. say Next to the hatch there is a small level 'list'
+displaying all of the levels and above it there is a voice activation
+matrix. Simply SAY the number of the level you wish to go to and the lift
+will engage. 
+~
+0 1073741836 1 0 0 0 3824
+E
+list~
+(1) Ground Level / Entrance
+(-1) Combat Training Level
+(-2) Kitchen Level
+(-3) Council Level
+~
+E
+add list~
+~
+E
+delete list~
+Level 1 - Ground Level / Entrance
+Sublevel -1 - Combat Exercises
+Sublevel -2 - Kitchen
+Sublevel -3 - Council Floor
+~
+> speech_prog 1~
+mpecho The lift engages and shakes a little.
+mpecho After a few seconds the lift stops at your destination.
+mpecho An electronic voice says: 'Level 1: please step off.'
+mpechoat $n You step off the lift.
+mpechoaround $n $n steps off the lift.
+mptransfer $n 1969
+~
+> speech_prog -2~
+mpecho The lift engages and shakes a little bit.
+mpecho After a few seconds the lift arrives at its destination.
+mpechoat $n An electronic voice says: 'Level -2:please step off.'
+mpechoat $n You step off the lift.
+mpechoaround $n $n steps off the lift.
+mptransfer $n 1971
+~
+> speech_prog -1~
+mpecho The lift engages and shakes a little.
+mpecho After a few seconds the lift stops at its destination.
+mpechoat $n An electronic voice says: 'Level -1:please step off.'
+mpechoat $n You step off the lift.
+mpechoaround $n $n steps off the lift.
+mptransfer $n 1972
+~
+> speech_prog -3~
+mpecho The lift engages and shakes a little.
+mpecho After a few seconds the lift stops at your destination.
+mpecho An electronic voice says: 'Level -3: please step off.'
+mpechoat $n You step off the lift.
+mpechoaround $n $n steps off the lift.
+mptransfer $n 1973
+~
+> speech_prog Underground~
+mpecho The lift engages and shakes a little.
+mpecho After a few seconds the lights go out.
+mpechoat $n The hatch opens and you step off.
+mpechoaround $n The lights come back on and $n is gone.
+mptransfer $n 1974
+~
+|
+S
+#1971
+Kitchen Level~
+The Kitchen level is where Jedi can grab a bite to eat. The droids who work
+here do not prepare a very large variety but what they do make is
+extremely good for ones body. It helps to build the body and mind while a
+Jedi trains here. The level itself is just a large area set aside for
+eating and a small kitchen.
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1970
+D3
+~
+~
+0 -1 1996
+S
+#1972
+Combat Training Level~
+The combat training level is where Jedi can hone their skills with their
+lightsabers and other weapons. Some Jedi masters use the lightsaber as a
+way to teach their padawan how to control the force. This is because it
+takes concentration and control of the force to wield a lightsaber
+effectively. The training rooms are to the west and the lift is to the
+east.
+~
+0 12 1 0 0 0 3824
+D1
+~
+~
+0 -1 1970
+D3
+~
+~
+0 -1 1975
+S
+#1973
+Council Floor~
+This is the deepest level under the temple. It is also where the Jedi
+convene to make crucial decisions about how to maintain peace within the
+galaxy. To the west there is a hallway leading to the council chamber, and
+to the east the turbolift awaits. On the walls there are ancient carvings
+and paintings left behind by the temple builders. If one could read these
+markings, they would be able to tap into the Massassi knowledge and become
+a very powerful being in the galaxy.
+~
+0 1073741832 1 0 0 0 3824
+D1
+~
+~
+0 -1 1970
+D3
+~
+~
+0 -1 1997
+S
+#1974
+Small Dorm~
+~
+0 1073741836 13 0 0 0 3824
+D1
+~
+~
+0 -1 1970
+D2
+~
+~
+0 -1 1952
+S
+#1975
+Dimly Lit Corridor~
+The hallway leads to the east and west. To the east the turbolift awaits
+and to the west there are rooms setup for lightsaber training. The hallway
+is light by very small lamps mounted on the walls at 30 foots intervals
+creating shadows in the corners and between the lamps.
+~
+0 12 1 0 0 0 3824
+D1
+~
+~
+0 -1 1972
+D3
+~
+~
+0 -1 1976
+S
+#1976
+Dimly Lit Corridor~
+The hallway ends here. To the north there is a large room setup for
+lightsaber training and to the south there is another room setup of
+advanced lightsaber training. The remotes and holograms to the south are
+much tougher.  From the north and south you can hear the quiet whoosh of
+remotes and the silence of Jedi training.
+~
+0 12 1 0 0 0 3824
+D0
+~
+~
+0 -1 1977
+D1
+~
+~
+0 -1 1975
+D2
+~
+~
+0 -1 1978
+S
+#1977
+Lightsaber Training~
+A large room set aside for lightsaber training. The walls of stone are
+covered in carvings like the rest of the temple and the floor is covered
+in a thick mat so that falling isn't so rough. Along the ceilings there
+are small hologram projectors that create artificial combat partners and
+to the west there are a few remotes.
+~
+0 8 1 0 0 0 3824
+D2
+~
+~
+0 -1 1976
+D3
+~
+~
+0 -1 1979
+S
+#1978
+Advanced Lightsaber Training~
+A large room set aside for lightsaber training. The walls of stone are
+covered in carvings like the rest of the temple and the floor is covered
+in a thick mat so that falling isn't so rough. Along the ceilings there
+are small hologram projectors that create artificial combat partners and
+the west there are a few training remotes. The holograms and remotes are a
+good bit tougher here.
+~
+0 12 1 0 0 0 3824
+D0
+~
+~
+0 -1 1976
+D3
+~
+~
+0 -1 1980
+S
+#1979
+Lightsaber Training~
+A large room set aside for lightsaber training. The walls of stone are
+covered in carvings like the rest of the temple and the floor is covered
+in a thick mat so that falling isn't so rough. There are a myriad of small
+training remotes hovering around the area waiting to be used. These
+remotes do not have different settings and are always on adequate pain
+mode.
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1977
+S
+#1980
+Advanced Lightsaber Training~
+A large room set aside for lightsaber training. The walls of stone are
+covered in carvings like the rest of the temple and the floor is covered
+in a thick mat so that fallings isn't so rough. Along the ceilings there
+are small hologram projectors that create artificial combat partners.
+There are a decent amount of training remotes hovering close by and a few
+are already in use.
+~
+0 12 1 0 0 0 3824
+D1
+~
+~
+0 -1 1978
+S
+#1981
+Barracks Lounge~
+~
+0 8 1 0 0 0 3824
+D3
+~
+~
+0 -1 1878
+S
+#1982
+Floating in a void~
+~
+0 1073741828 1 0 0 0 3824
+S
+#1983
+Turbolift~
+This lift is of average size and is designed to hold a very large amount of
+people or equipment. It is the only way to get to the underground level of
+the base where most of the officers quarters are. Officers are usually the
+only people seen using this lift but occasionally there are a few enlisted
+personel in here doing some sort of task or another. Beside the door there
+is a 'list' of the levels and above that there is a voice-activation
+module. Simply SAY the number of the level you wish to go to.
+~
+0 12 1 0 0 0 3824
+E
+add list~
+Level 1
+Sublevel -1
+~
+> speech_prog 1~
+mpecho The lift engages and shakes slightly.
+mpecho After a few seconds it stops at its destination.
+mpecho An electronic voice says: 'Level 1: please step off.'
+mpechoat $n You step off the lift.
+mpechoaround $n $n steps off the lift.
+mptransfer $n 1874
+~
+> speech_prog -1~
+mpecho The lift engages and shakes slightly.
+mpecho After a few seconds it stops and shakes slightly.
+mpecho An electronic voice says: 'Quarters Level: Please step off.'
+mpechoat $n You step off the lift.
+mpechoaround $n $n steps off the lift.
+mptransfer $n 1984
+~
+|
+S
+#1984
+Quarters Level~
+~
+0 8 1 0 0 0 3824
+D3
+~
+~
+0 -1 1985
+D8
+~
+~
+0 -1 1983
+S
+#1985
+Quarters Level~
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1984
+D3
+~
+~
+0 -1 1986
+S
+#1986
+Quarters Level~
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1985
+D3
+~
+~
+0 -1 1987
+S
+#1987
+Quarters Level~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1991
+D1
+~
+~
+0 -1 1986
+D2
+~
+~
+0 -1 1992
+D3
+~
+~
+0 -1 1988
+S
+#1988
+Quarters Level~
+~
+0 8 1 0 0 0 3824
+D1
+~
+~
+0 -1 1987
+D3
+~
+~
+0 -1 1993
+S
+#1989
+Floating in a void~
+~
+0 1073741828 1 0 0 0 3824
+S
+#1990
+Deep Inside the Briars~
+Surrounded by briar bushes, this appears to be a very dangerous
+place to stay for long, as with every movement a needle sharp
+thorn digs into clothing and flesh.  Sunlight shines through
+a small hole in the thick foliage above, gently illuminating
+the area.
+~
+0 4 3 0 0 0 3824
+D0
+~
+~
+0 -1 1919
+> rand_prog 100~
+mpechoat $n Briars dig deep into your flesh.
+mpdamage $n 50
+~
+|
+S
+#1991
+Officers Quarters~
+This is a decent sized room furnished with everything a Rebel Alliance
+officer would need in order to be comfortable. Everything is of good
+quailty but not lavish.
+ 
+(You may purchase this room by using the buyhome command.)
+~
+0 10485768 1 0 0 0 3824
+D2
+~
+~
+0 -1 1987
+S
+#1992
+Officers Quarters~
+This is a decent sized room furnished with everything a Rebel Alliance
+officer would need in order to be comfortable. Everything is of good
+quailty but not lavish.
+ 
+(You may purchase this room by using the buyhome command.)
+~
+0 10485768 1 0 0 0 3824
+D0
+~
+~
+0 -1 1987
+S
+#1993
+Quarters Level~
+~
+0 8 1 0 0 0 3824
+D0
+~
+~
+0 -1 1994
+D1
+~
+~
+0 -1 1988
+D2
+~
+~
+0 -1 1995
+S
+#1994
+Officer Quarters~
+This is a decent sized room furnished with everything a Rebel Alliance
+officer would need in order to be comfortable. Everything is of qood
+quality but not lavish.
+ 
+(You may purchase this room using the buyhome command.)
+~
+0 10485768 1 0 0 0 3824
+D2
+~
+~
+0 -1 1993
+S
+#1995
+Officers Quarters~
+This is a decent sized room furnished with everything a Rebel Alliance
+officer would need in order to be comfortable. Everything is of good
+quailty but not lavish.
+ 
+(You may purchase this room by using the buyhome command.)
+~
+0 10485768 1 0 0 0 3824
+D0
+~
+~
+0 -1 1993
+S
+#1996
+Kitchen~
+The kitchen is quite small but has sufficient room for the droids who work
+here. They toil away from evening until night, making sure that all who
+come here leave satisfied. The droid almost look like a part of the
+kitchen because their outershells are polished chrome, the same as the
+appliances, tables, and other items in the kitchen.
+~
+0 1073742856 1 0 0 0 3824
+D1
+~
+~
+0 -1 1971
+S
+#1997
+Short Hallway~
+The narrow hallway continues to the west and east. There is only the
+faintest hint of light here. Under your feet you can feel the crunch of
+stone that is deteriorating. On the walls there are many carvings and
+symbols left behind by the makers of the temple. If one could read the
+markings, this would probably be a treasure trove of knowledge.
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1973
+D3
+~
+~
+0 -1 1998
+S
+#1998
+Short Hallway~
+The narrow hallway continues to the east and to the west there is a
+somewhat large chamber. The chamber is dimly lit compared to the darkness
+of the hallway.  On the walls there are many carvings and ancient symbols
+placed here by the temples creators. If one knew what they meant this
+would probably be a treasure trove of knowledge.
+~
+0 1073741836 1 0 0 0 3824
+D1
+~
+~
+0 -1 1997
+D3
+~
+~
+0 -1 1999
+S
+#1999
+A Quiet, Peaceful sanctuary~
+~
+0 1073808396 1 0 0 0 3824
+D2
+~
+~
+2099201 -1 2000
+D4
+~
+~
+0 -1 4500
+S
+#2000
+Monitoring Room~
+The walls,of this small room, have are painted flat black.The
+only furniture is a small table and two chairs.In the very middle
+of the room rests three screens. Each showing three diffrent
+areas.All three monitors are labled: monitor1, monitor2, or
+monitor3.A small Ewok sits on one of the chairs repeating the
+name of the monitor, as he looks at it.
+~
+0 1082130444 1 0 0 0 3824
+D0
+~
+~
+3 -1 1999
+> custom_prog monitor1~
+mptransfer $n 1859
+mpat 1859 mpforce $n look
+mpat 1859 mptransfer $n 2000
+~
+> custom_prog monitor2~
+mptransfer $n 1899
+mpat 1899 mpforce $n look
+mpat 1899 mptransfer $n 2000
+~
+> custom_prog monitor3~
+mptransfer $n 1869
+mpat 1869 mpforce $n look
+mpat 1859 mptransfer $n 2000
+~
+|
+S
+#2001
+The Galactic Mail Center~
+~
+0 1073741824 1 0 0 0 3824
+D1
+~
+~
+0 -1 1850
+S
+#0
+
+
+#RESETS
+M 1 1854 2 1853
+M 1 1854 2 1854
+M 1 1957 9 1862
+M 1 1957 9 1865
+M 1 1957 9 1865
+D 0 1867 2 2
+M 1 1853 1 1879
+M 1 1957 9 1880
+M 1 1957 9 1880
+M 1 126 3 1883
+G 1 133 1
+M 1 126 3 1883
+G 1 133 1
+M 1 1957 9 1885
+E 1 53 1 16
+M 1 1957 9 1888
+M 1 1957 9 1889
+D 0 1891 1 0
+O 1 9746 1 1892
+D 0 1892 3 0
+D 0 1893 1 0
+M 1 1955 2 1894
+D 0 1894 3 0
+M 1 1852 1 1895
+M 1 1954 1 1896
+D 0 1897 2 1
+M 1 29 4 1898
+E 1 1859 1 5
+E 1 1860 1 5
+E 1 1861 1 9
+E 1 1862 1 7
+E 1 1865 1 13
+E 1 53 1 16
+M 1 29 4 1898
+E 1 1859 1 5
+E 1 1860 1 5
+E 1 1861 1 9
+E 1 1862 1 7
+E 1 1865 1 13
+E 1 53 1 16
+M 1 29 4 1898
+E 1 1859 1 5
+E 1 1860 1 5
+E 1 1861 1 9
+E 1 1862 1 7
+E 1 1865 1 13
+E 1 53 1 16
+M 1 29 4 1898
+E 1 1859 1 5
+E 1 1860 1 5
+E 1 1861 1 9
+E 1 1862 1 7
+E 1 1865 1 13
+E 1 53 1 16
+D 0 1898 0 1
+D 0 1898 2 0
+D 0 1899 0 1
+M 1 1953 1 1901
+D 0 1902 0 1
+M 1 1957 9 1906
+O 1 1853 1 1917
+M 1 1855 6 1928
+M 1 1855 6 1928
+M 1 1855 6 1929
+M 1 1855 6 1930
+M 1 1855 6 1932
+M 1 1855 6 1932
+M 1 1858 1 1936
+M 1 1955 2 1955
+O 1 1867 1 1955
+D 0 1964 2 2
+M 1 1851 1 1996
+O 1 1856 1 1999
+D 0 1999 2 0
+O 1 1868 1 2000
+O 1 1869 1 2000
+D 0 2000 0 1
+O 0 1870 1 2000
+D 0 1859 1 2
+D 0 1859 2 1
+D 0 1860 3 0
+M 1 1859 1 1850
+M 1 1926 1 1926
+D 0 1968 0 2
+O 1 1852 1 1915
+M 1 1854 2 1855
+O 1 1929 1 1990
+O 1 38 1 2001
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  1957 spec_police
+S
+
+
+#$

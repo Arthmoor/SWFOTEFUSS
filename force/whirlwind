@@ -1,0 +1,47 @@
+#FORCE
+Alter          0
+ChEffect0     $FCYou$fc $fcconcentrate your power inward and whirl around, your lightsaber gleaming in the air.&G&w
+~
+ChEffect1     $FCYour$fc lightsaber strikes down upon $FC$v$fc and slashes through $FC$vo.&G&w
+~
+ChEffect2     $FCYou$fc grimace as your lightsaber is met in the air, $FC$v$fc rising up to parry your blow.
+~
+ChEffect3     $FC$v$fc dodges your blow quickly, rolling to the ground and then coming to $vp feet.
+~
+ChEffect4     $FCYou$fc miss $FC$v$fc with your blow.
+~
+Code           fskill_whirlwind~
+Cost           20
+Control        1
+Disabled       0
+Mastertrain    1
+Index          10
+Name           whirlwind~
+Notskill       0
+RoomEffect0     $FC$n$fc $fcconcentrates $np power inward and whirls around, $np lightsaber gleaming in the air.&G&w
+~
+RoomEffect1     $FC$n's$fc lightsaber strikes down upon $FC$v$fc and slashes through $FC$vo$fc.&G&w
+~
+RoomEffect2     $FC$n$fc grimaces as $np lightsaber is met in the air, $FC$v$fc rising up to parry $n's blow.
+~
+RoomEffect3     $FC$v$fc dodges the blow quickly, rolling to the ground and then coming to $vp feet.
+~
+RoomEffect4     $FC$n$fc misses $FC$v$fc with $np blow.
+~
+Sense          0
+Status         2
+Type           0
+VictimEffect0     $FC$n$fc $fcconcentrates $np power inward and whirls around, $np lightsaber gleaming in the air.&G&w
+~
+VictimEffect1     $FC$n's$fc lightsaber strikes down upon $FCyou$fc and slashes through $FCyou$fc.&G&w
+~
+VictimEffect2     $FC$n$fc grimaces as $np lightsaber is met in the air, $FCyours$fc rising up to parry $np blow.
+~
+VictimEffect3     $FCYou$fc dodge the blow quickly, rolling to the ground and then coming to your feet.
+~
+VictimEffect4     $FC$n$fc misses you with $np blow.
+~
+WaitState      1
+End
+
+#END

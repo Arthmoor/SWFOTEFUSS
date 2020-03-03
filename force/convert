@@ -1,0 +1,36 @@
+#FORCE
+Alter          0
+ChEffect0     You ask $v to be your student.
+~
+ChEffect1     ~
+ChEffect2     ~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_convert~
+Cost           0
+Control        0
+Disabled       0
+Mastertrain    0
+Index          21
+Name           convert~
+Notskill       1
+RoomEffect0     $n, a $nfl asks $v to be $np student.
+~
+RoomEffect1     ~
+RoomEffect2     ~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          0
+Status         3
+Type           0
+VictimEffect0     $n, a $nfl asks you to be $np student.
+master $n to accept.
+~
+VictimEffect1     ~
+VictimEffect2     ~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      0
+End
+
+#END

@@ -1,0 +1,32 @@
+#FORCE
+Alter          0
+ChEffect0     You accept $v's offer to be $np student.$RN$~
+ChEffect1     ~
+ChEffect2     ~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_master~
+Cost           0
+Control        0
+Disabled       0
+Mastertrain    0
+Index          3
+Name           master~
+Notskill       1
+RoomEffect0     $n accepts $v offer to be $np student.$RN$~
+RoomEffect1     ~
+RoomEffect2     ~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          0
+Status         0
+Type           0
+VictimEffect0     $n accepts your offer to be your student.$RN$~
+VictimEffect1     ~
+VictimEffect2     ~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      0
+End
+
+#END

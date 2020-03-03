@@ -1,0 +1,94 @@
+#HEADER
+
+Name           TIE Defender~
+Sname          TIE.D~
+NumRooms       1
+Cost           120500
+Class          1
+Tractor        0
+primaryType    4
+primaryCount   1
+secondaryType  7
+secondaryCount 2
+RangeWeapons0  8
+RangeWeapons1  0
+RangeWeapons2  0
+Hull           42
+Shields        50
+Energy         3500
+Chaff          0
+Maxbombs       0
+Speed          144
+Hyperspeed     2
+Manuever       110
+Turrets        0
+Mods	    2
+Clan           The Empire~
+End
+
+#ROOMS
+
+#ROOM
+
+RoomNum           1
+Name              Cockpit of a TIE Defender~
+Desc              An advanced form of TIE Fighters which employed shields, this starfighter took the stability and agility of the Interceptor bent-wing design and added a third bent-wing to it. Propelled by the newer P-sz9.7 twin ion engines from S.F.S., this vessel is extremely fast, boasting 4 laser cannons, 2 ion cannons, and a concussion missile launcher.~
+Flags             indoors spacecraft nomob ~
+Tunnel            1
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          1
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+
+#ENDROOMS
+
+#END

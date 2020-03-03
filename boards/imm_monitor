@@ -1,0 +1,280 @@
+Sender  Tawnos~
+Date    Sat Apr  6 13:18:50 2002~
+To      All~
+Subject Mob Package Programs~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Here is how to make a basic package program, for all you builders
+ 
+mpedit <mob> add give <name of head/package/object/whatever>
+if ovnuminv(<vnum of obj>) == 1
+<Success. Add mpadvances, mpwithdraws, etc, right here.>
+mpat 101 drop <name of object>
+mpat 101 mppurge
+else
+<Failure. Make him bitch at them, drop all if thats the only item he has,
+whatever.>
+endif
+~
+
+Sender  Bardock~
+Date    Sun Sep 15 15:45:06 2002~
+To      Coders~
+Subject Vending Machines~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Is there a way for you coders to make a vending machine script? And maybe there can be a flag called vending or something so then I can make an object a vending machine.
+~
+
+Sender  Tawnos~
+Date    Mon Sep 23 14:09:12 2002~
+To      Builders~
+Subject Items~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Builders,
+
+First off, want to thank you for making FotE a better place.
+Second, want to ask a bit from you. Heh. One thing this mud
+needs is variety of equipment. If you would, I'd prefer it if
+you made your own blasters, etc in your areas so that people
+have a feel for the broader range of equipment in the star wars
+universe. Base your items off of currently existing items, just
+modified some, though. We don't want anything overpowering :)
+
+Any questions, ask Trillen.
+-Tawnos
+~
+
+Sender  Eleven~
+Date    Sat Sep 28 02:50:12 2002~
+To      Builders~
+Subject Makefree and area building~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Area building just became a little bit easier.
+Instead of goto'ing each room before you can use it, you can
+now 'makefree <starting vnum> <end vnum>'.
+
+An example:
+
+You have area.are, vnums 1000-1500.
+You type 'makefree 1000 1500'.
+Vnums 1000 through 1500 are now available to be used.
+
+Hey, it's almost idiotproof. :cough:
+
+-||
+~
+
+Sender  Tawnos~
+Date    Wed Oct  2 14:43:42 2002~
+To      Admins~
+Subject Arilyth~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+If arilyth comes on asking for a restore, do it. Her pfile got
+lost when for some reason we had a shitload of log files and
+went over quota. Hers was the only one that was lost.
+
+-Tawnos
+~
+
+Sender  Tawnos~
+Date    Sun Oct  6 13:39:21 2002~
+To      Builders~
+Subject Picky little thing~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+With the advent of the new introduction system I think its time
+I mentioned something..When building mobprogs, try to avoid
+using names in echos (mpecho, mpechoaround, mpechoat) because,
+roleplaywise, chances are good the mob you're building doesn't
+actually know the players name. Thanks 
+
+-Tawnos
+~
+
+Sender  Eleven~
+Date    Sun Oct  6 20:41:48 2002~
+To      Admin~
+Subject Chemnos~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Chemnos is destroyed.
+
+If you really care as to why, feel free to ask.
+
+-||
+~
+
+Sender  Eleven~
+Date    Mon Oct  7 10:29:18 2002~
+To      All~
+Subject Havac/Cortana/Theryl~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Do not hire any of these players as anything.
+Damn spies.
+
+-||
+~
+
+Sender  Bardock~
+Date    Tue Oct  8 22:15:25 2002~
+To      All~
+Subject Idea~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+How bout players can sit on furniture, and engineers can makefurniture, etc? 
+Also, the player homes could be fitted to have special things for extra credits, such as door buzzers, slurpee machines, whatever...
+Thats just my one cent.
+~
+
+Sender  Eleven~
+Date    Thu Oct 10 12:46:21 2002~
+To      Admins~
+Subject Havac/Ludovik~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Caught Havac dropping credits, and relogging as Ludovik to get them.
+Both characters slain.
+
+-||
+~
+
+Sender  Tawnos~
+Date    Thu Oct 17 14:16:57 2002~
+To      Eleven~
+Subject Crashy Crashy~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Some dumbass newbie kept crashing the mud on purpose, hardbanned him.
+IP was 151. whatnot
+not seth
+
+-Tawnos
+~
+
+Sender  Eleven~
+Date    Thu Oct 17 14:51:30 2002~
+To      Admin~
+Subject none~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+204.38.47.131 (Cortana, Fox, and that group's school) has been
+prebanned due to spamming login.
+
+-||
+~
+
+Sender  Tawnos~
+Date    Sat Oct 26 12:21:44 2002~
+To      Eleven~
+Subject Hacky Hacky~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Apparently we have a hacker. Hacked Nruden and Carthan. Not sure
+how, thinking may have gotten their password from another mud.
+Its a damned AOLer. Heres the IP info.
+
+Name:    ACB66539.ipt.aol.com
+Address:  172.182.101.57
+
+~
+
+Sender  Eleven~
+Date    Tue Oct 29 22:17:40 2002~
+To      Immortal~
+Subject Kincaid/Circe~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Caught Circe going linkdead and having Kincaid fly him/her to
+Coruscant. Centurian Eagle (GAT-12j) had owner Kincaid pilot Circe,
+set to pilot none, and warned about multiplaying.
+
+Being in a non homicidal mood, didn't slay. Feel free to do so
+on second offense.
+
+-||
+~
+
+Sender  Tawnos~
+Date    Fri Nov  1 12:51:15 2002~
+To      Immortals~
+Subject Spammy Spammy ;)~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Had quite the odd problem with Omicron and his connection consistently
+sending Auth replies to us, causing the imms to get spammed
+hardcore. I asked him to reconnect and it fixed itself. So,
+future note, if you notice a lot of auth replies, check if omicron
+is on. If he is, ask him to reconnect.If not, Keep disconnecting
+people one by one until it stops, then when they reconnect ask
+them to disconnect from their ISP and reconnect. Should fix
+it.
+
+Damned Polish ;) (joking)
+-Tawnos
+~
+
+Sender  Tawnos~
+Date    Sat Nov  9 00:14:06 2002~
+To      Carissa~
+Subject Special Forces Mobs~
+Voting 0
+Yesvotes ~
+Novotes ~
+Abstentions ~
+Text
+Carissa, if you could beef up the special forces mobs (vnums 28, 31, and 34), that would be awesome.
+
+Thanks,
+Tawnos
+~
+

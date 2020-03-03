@@ -1,0 +1,9 @@
+#FORCE
+Name      refresh~
+Status    1
+Type      0
+Desc      Command:    refresh$RN$Usage:      refresh$RN$Level:      Apprentice$RN$Mana:       0$RN$Time Req:   10 seconds$RN$Duration:   Instant$RN$Components: none$RN$$RN$This skill allows a user of the force to meditate and$RN$restore their mana.  Mana is used for nearly every skill$RN$that you have so this is a very important skill for you.$RN$~
+Skill     0
+End
+
+#END

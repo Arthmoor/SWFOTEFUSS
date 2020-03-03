@@ -1,0 +1,123 @@
+#AREA   Kashyyyk~
+
+
+
+#AUTHOR Azeris and Anix~
+
+#RANGES
+0 0 1 36
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6250000
+
+#MOBILES
+#5201
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#5202
+tall wookiee shotaun~
+Shotaun~
+A tall wookiee is standing here.
+~
+~
+1073745929 0 0 Z
+36 0 10 7d10+360 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+1 0 0 0 3 2 15
+0 0 0 0 0 0 65 3
+0 0 0 0 0 0 0 0
+> death_prog 100~
+mpoload 9012
+~
+|
+#5300
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#5201
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#5300
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#5201
+Floating in a void~
+~
+0 4 1 0 0 0 10576
+S
+#5300
+Floating in a void~
+~
+0 4 1 0 0 0 10576
+S
+#0
+
+
+#RESETS
+M 1 5201 1 5201
+O 1 5201 1 5201
+M 1 5300 1 5300
+O 1 5300 1 5300
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

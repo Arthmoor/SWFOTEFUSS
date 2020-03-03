@@ -1,0 +1,3473 @@
+#AREA   Coral City~
+
+
+
+#AUTHOR Ciolec~
+
+#RANGES
+0 0 0 30
+$
+
+#RESETMSG The ocean waves gently brush against the shores.~
+
+#FLAGS
+0 20
+
+#ECONOMY 0 4868115
+
+#MOBILES
+#9701
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9702
+mon calamari customs officer agent~
+A Mon Calamari Customs Officer~
+A uniformed, bulbous-eyed customs officer stands at his post
+~
+~
+1208090691 0 0 Z
+10 0 75 2d10+100 1d4+2
+150 0
+8 8 0
+12 12 12 12 12 10 10
+0 0 0 0 0
+5 0 0 0 33 32 2
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9703
+landing bay guard~
+a Landing Bay Guard~
+A Landing Bay guard keeps watch here.
+~
+~
+131139 0 0 Z
+28 0 30 5d10+400 2d4+20
+0 0
+8 8 0
+20 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9704
+Spaceport Guard~
+a Guard~
+A Spaceport Guard Wanders Around, Looking For Suspicious Activity
+~
+~
+1 0 0 Z
+1 0 0 8d4+400 2d4+20
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9705
+Factory Receptionist~
+the factory receptionist~
+The Factory Receptionist is applying her nail polish
+~
+~
+1073741825 0 0 Z
+10 0 75 2d15+350 1d8+4
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+2 2 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 75~
+if ispc($n)
+  say Hello there, $n ! Do you have an appointment?
+  mpechoat $n The receptionist peers at you.
+  say Oh! Are you the new employee? Proceed north if you are.
+  mpechoat $n The receptionist points north.
+endif
+~
+|
+#9707
+factory retail shopkeeper~
+the retail shopkeeper~
+The factory's retail shopkeeper sells samples here
+~
+~
+1073741825 0 0 Z
+32 0 20 6d10+320 3d4+8
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9708
+warehouse shopkeeper~
+a warehouse shopkeeper~
+A Warehouse Shopkeeper looks bored
+~
+~
+1073741825 0 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9709
+factory guard~
+a factory guard~
+A factory guard stands at attention here
+~
+~
+131139 0 0 Z
+28 0 30 5d5+280 5d5+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9710
+smuggler~
+a shadowy smuggler~
+A shadowy smuggler is hiding in the corner here.
+~
+~
+3 0 0 Z
+20 0 50 4d10+200 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+4 4 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> give_prog blueprints~
+if ovnuminv(9750) == 1
+emote nods slowly.
+mpadvance $n 4 500
+mpwithdraw 200
+give 200 credits $n
+say That is your payment. Thank you.
+say This information will be very useful to us.
+mpat 101 drop all
+mpat 101 mppurge
+else
+smirk
+say Think you can fool someone who is adept at fooling?
+drop all
+endif
+~
+|
+#9711
+Mon Calamarian Citizen~
+a Calamarian Citizen~
+A Mon Calamarian citizen walks briskly about here.
+~
+~
+1 0 0 Z
+10 0 75 2d10+800 4d7+18
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 1
+2 2 0 0 0 0 0 0
+17 0 0 0 0 0 0 0
+#9713
+A Fat Wookiee Jurson~
+Jurson the Wookiee~
+A fat wookiee stands behind the counter here, serving patrons.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 70~
+emote laughs roughly.
+mpecho &W&cJurson growls, "What can I getcha, $n?"&W
+~
+|
+#9714
+A Quarren Chef~
+A Quarren Chef~
+A Quarren stands here, an grease-spattered apron covering his front.
+~
+~
+3 0 0 Z
+1 0 0 5d10+700 5d10+20
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9715
+dhelnde~
+Dhelnde~
+Dhelnde stands here, trying to hide from you.
+~
+~
+1 0 0 Z
+20 0 50 4d10+200 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+4 4 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 80~
+say Ahhhhhh! How did you get in here?
+cringe
+~
+> give_prog letterbomb~
+if ovnuminv(28611) == 1
+emote screeches in pure agony!
+mpecho &RYou watch as Dhelnde is blown apart before your eyes!&w
+mpecho &RBlood splatters everywhere!&w
+mpoload 9820
+drop corpse
+mpat 101 drop all
+mpat 101 mppurge
+mpgoto 101
+mpforce bigmob kill Dhelnde
+else
+say Ah! I knew you weren't here to kill me.
+drop all
+endif
+~
+|
+#9720
+Tillena deputy officer~
+Tillena the Deputy Officer~
+Tillena, the Deputy Officer, is trying to learn from Denal here.
+~
+~
+3 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+32 0 0 0 0 0 0 0
+#9721
+denal customs officer~
+Denal the Customs Officer~
+Denal, the Customs Officer, is standing here looking for suspects.
+~
+~
+3 0 0 Z
+35 0 12 7d10+350 3d4+2
+2 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 6
+7 7 0 0 0 0 0 0
+32 0 0 0 0 0 0 0
+#9722
+Hotel Keeper~
+the hotel keeper~
+The hotel keeper smiles beningly at you.
+~
+~
+1 0 0 Z
+20 0 50 4d10+200 2d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+4 4 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9731
+allpurpose mount~
+a horselike animal~
+A horselike animal munches .. stuff here
+~
+~
+1090781187 0 0 Z
+15 0 62 3d10+150 1d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9732
+Convenience shopkeeper~
+the convenient shopkeeper~
+A Convenient(TM) Shopkeeper stands here
+~
+~
+1073741825 0 0 Z
+34 0 15 6d10+340 3d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9733
+mounts master~
+the Master of Mounts~
+The Master of Mounts tends his animals here
+~
+~
+1073741825 4194304 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+  mpechoat $n The Master of Mounts sizes you up.
+  say Hello there. You look like you could use a mount.
+  say Just 400 credits to rent one.
+endif
+~
+> bribe_prog 400~
+say Perfect! Follow me.
+mpechoat $n The Master of Mounts leaves through a hidden exit.
+mptrans $n 9733
+~
+|
+#9738
+crying child~
+a crying child~
+A child is crying here, looking for something.
+~
+~
+3 0 0 Z
+8 0 80 1d10+80 0d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> greet_prog 100~
+say I lost my ring! I had it in my pocket and it fell out!
+cry
+say Please please find it for me, my mommy gave it to me.
+~
+> give_prog Small Ruby Ring~
+cheer
+say Thank you!
+mpwithdraw 37
+give 37 credits $n
+mpadvance $n 5 1200
+mpat 102 drop ring
+mpat 102 mppurge ring
+say thats all my money. Thank you!
+~
+|
+#9741
+calamari councillor member~
+a calamarian councillor~
+A Council Member of the Mon Calamari stands here
+~
+~
+1073872963 0 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 4
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9742
+chief calamari councillor~
+the Chief Councillor~
+The Chief Councillor stands here, radiating power
+~
+~
+1073872963 0 0 Z
+30 0 25 6d10+300 3d4+2
+0 0
+8 8 2
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+6 6 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> time_prog 19~
+mpgoto 9741
+mptrans bodyguard 9749
+say Very well. I shall ponder your suggestions overnight.
+stand
+say I bid you all a good night.
+emote motions to his bodyguard
+msleep 2
+s
+s
+s
+s
+se
+unlock e
+open e
+e
+close w
+~
+> time_prog 6~
+msleep 1
+mpgoto 9749
+mptrans bodyguard 9749
+unlock w
+open w
+w
+close e
+lock e
+nw
+n
+n
+n
+n
+say I greet you well, friends.
+sit rock
+em puts his staff across his knees.
+say Let us begin.
+~
+|
+#9743
+bodyguard~
+the chief councillor's bodyguard~
+The bodyguard of the chief councillor scans the area
+~
+~
+1073872963 4292608 0 Z
+35 0 12 7d10+2500 3d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 3
+7 7 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+follow chief
+~
+> time_prog 19~
+follow chief
+msleep 1
+emote rises from his semi-crouching position.
+em gives the all-clear.
+~
+> time_prog 6~
+follow chief
+em gives the all-clear
+~
+|
+#9744
+plainclothesman calamari~
+a plainclothesman~
+A plainclothesman tries to blend in with his surroundings
+~
+~
+1073905731 0 0 Z
+27 0 32 5d10+600 2d4+2
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 2
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9746
+guard~
+a guard~
+A guard is here
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+4 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9750
+nelduk~
+Nelduk~
+Nelduk is lying on a stretcher here, wounded and bleeding.
+~
+~
+3 0 0 Z
+25 0 37 5d10+250 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+5 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> give_prog illegal documents~
+if ovnuminv(1241) == 1
+emote nods slowly, and with much effort.
+say Tttake this...give it to...my assistant.
+mpoload 9750
+give blueprints $n
+emote gasps for air.
+say He can be found...at the L..llland...Landing Pad. Go!
+emote is lifted into the Bacta Tank.
+mpat 101 drop all
+mpat 101 mppurge
+else
+say You fool. I am dying, can you not see? How ...dddare you try
+say to ttrick a dying man.
+drop all
+endif
+~
+|
+#9751
+Ewok Shopkeeper~
+an ewok shopkeeper~
+An Ewok shopkeeper bustles about here
+~
+~
+1073741825 0 0 Z
+15 0 62 3d10+150 1d4+2
+30 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+3 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9756
+syringe~
+a newly created syringe~
+Some god abandoned a newly created syringe here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9812
+Admiral Ackbar~
+Admiral Ackbar~
+The Great Admiral Ackbar
+~
+~
+3 0 0 Z
+1 0 0 50d50+200 50d50+200
+0 0
+6 8 0
+20 20 20 20 10 10 10
+0 0 0 0 0
+5 0 0 0 33 32 0
+25 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> give_prog a datapad~
+if ovnuminv(9816) == 1
+emote looks at the datapad with his bulbous eyes and turns to you.
+mpsleep 4
+say Thank you. You have just helped the New Republic beyond what you can imagine.
+mpadvance $n 4 1500
+mpwithdraw 250
+give 250 credits $n
+mpat 101 drop datapad
+mpat 101 mppurge
+else
+emote looks quizzically at the object given.
+drop all
+endif
+~
+|
+#9816
+A Rebel Operative~
+a Rebel Operative~
+A man wearing a long dark cloak stands here, peering cautiously.
+~
+~
+32843 0 0 Z
+1 0 0 10d40+2000 20d30+40
+0 0
+8 8 0
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 0
+40 30 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+get dl holster
+wear dl
+setblaster full
+mpecho A Rebel Operative points a DL-44 Blaster to your head.
+if clan($n) == The Empire
+kill $n
+endif
+if clan($n) == The New Republic
+say Oh! A fellow Rebel!
+remove dl
+put dl hols
+say Can you take this note to Admiral Ackbar?
+say He should be holed up in an office complex on Coral Street
+give key $n
+give datapad $n
+say Thank you, and may the force be with you
+salute $n
+else
+peer $n
+endif
+~
+|
+#9817
+Rebel Guard Commander~
+A Rebel Commander~
+A Rebel guard commander stands here, ordering his troops.
+~
+~
+32843 0 0 Z
+1 0 0 10d40+2000 20d20+40
+0 0
+8 8 0
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+if ispc($n)
+If clan($n) == the empire
+mpkill $n
+else
+if clan($n) == rebel alliance
+emote nods at you in acceptance.
+else
+say What are you doing! Get out now!
+mpforce $n west
+endif
+endif
+endif
+~
+|
+#9818
+A Rebel Guard~
+A Rebel Guard~
+A Rebel Guard stands here, warily looking about.
+~
+~
+32843 0 0 Z
+1 0 0 10d40+2000 10d10+40
+0 0
+8 8 0
+20 20 20 20 20 20 20
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#9835
+quarren shopkeeper~
+a quarren shopkeeper~
+A quarren shopkeeper stands here, helping out his customers.
+~
+~
+33554435 0 0 Z
+20 0 50 4d10+200 2d4+2
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+4 4 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#10000
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#9701
+low_mob~
+a low_mob~
+A low_mob is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#9702
+qr-38 calamarian blaster rifle~
+a QR-38 Calamarian Blaster Rifle~
+An odd looking blaster rifle~
+~
+5 0 8193
+12 8 32 6 2000 2000
+15 5000 500
+A
+18 5
+#9709
+Calamarian Blaster~
+a calamarian blaster~
+A Calamarian blaster is here.~
+~
+5 1073741824 8193
+12 10 40 6 2000 2000
+1 0 0
+#9710
+Locker 210~
+Locker 210~
+Locker 210~
+~
+15 0 0
+1000 5 9711 5
+1 0 0
+#9711
+key 210~
+a small orange knob with 210 etched into the end~
+A small orange knob~
+~
+18 0 16385
+0 0 0 0
+1 0 0
+#9712
+Locker 211~
+Locker 211~
+Locker 211~
+~
+15 0 0
+1000 5 9713 5
+1 0 0
+#9713
+key 211~
+a small orange knob with 211 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9714
+Locker 212~
+Locker 212~
+Locker 212~
+~
+15 0 0
+1000 5 9715 5
+1 0 0
+#9715
+key 212~
+a small orange knob with 212 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9716
+Locker 213~
+Locker 213~
+Locker 213~
+~
+15 0 0
+1000 5 9717 5
+1 0 0
+#9717
+key 213~
+a small orange knob with 213 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9718
+Locker 214~
+Locker 214~
+Locker 214~
+~
+15 0 0
+1000 5 9719 5
+1 0 0
+#9719
+key 214~
+a small orange knob with 214 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9720
+Locker 215~
+Locker 215~
+Locker 215~
+~
+15 0 0
+1000 5 9721 5
+1 0 0
+#9721
+key 215~
+a small orange knob with 215 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9722
+Locker 216~
+Locker 216~
+Locker 216~
+~
+15 0 0
+1000 5 9723 5
+1 0 0
+#9723
+key 216~
+a small orange knob with 216 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9724
+Locker 217~
+Locker 217~
+Locker 217~
+~
+15 0 0
+1000 5 9725 5
+1 0 0
+#9725
+key 217~
+a small orange knob with 217 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9726
+Locker 218~
+Locker 218~
+Locker 218~
+~
+15 0 0
+1000 5 9727 5
+1 0 0
+#9727
+key 218~
+a small orange knob with 218 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9728
+Locker 219~
+Locker 219~
+Locker 219~
+~
+15 0 0
+1000 5 9729 5
+1 0 0
+#9729
+key 219~
+a small orange knob with 219 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9730
+Locker 220~
+Locker 220~
+Locker 220~
+~
+15 0 0
+1000 5 9731 5
+1 0 0
+#9731
+key 220~
+a small orange knob with 220 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9732
+Locker 221~
+Locker 221~
+Locker 221~
+~
+15 0 0
+1000 5 9733 5
+1 0 0
+#9733
+training whip~
+a training whip~
+A training whip is here.~
+~
+5 1073741824 8193
+12 2 4 0 2000 2000
+1 0 0
+#9734
+key 221~
+a small orange knob with 221 etched into the end~
+A small orange knob~
+~
+13 0 16385
+0 0 0 0
+1 0 0
+#9741
+chief key~
+a chief key~
+A chief key is here.~
+~
+18 1073741824 0
+0 0 0 0
+1 0 0
+#9742
+rock~
+a rock~
+A rock is here.~
+~
+12 1073741824 0
+0 0 0 0
+1 0 0
+#9746
+Storage Crate~
+a storage crate~
+A Storage Crate Used To Store Medical Supplies~
+~
+15 0 0
+1000 5 0 5
+1 0 0
+#9748
+medpac~
+a MedPac~
+A MedPac with MON CALAMARIAN MEMORIAL HOSPITAL stenciled onto it~
+~
+73 0 16385
+4 0 0 0
+1 0 0
+#9750
+blueprints~
+a smuggler's blueprints~
+Some diagrams and blueprints have been left on the ground here.~
+~
+79 16 1
+0 0 0 0
+1 0 0
+#9751
+hallucinogen~
+a hallucinogen~
+A hallucinogen lies here~
+~
+87 1073750016 1
+0 0 0 0
+1 0 0
+#9768
+syringe~
+a syringe~
+A syringe is here on the floor~
+~
+5 0 8193
+15 1 1 2 5000 5000
+1 0 0
+#9771
+Small Ruby Ring~
+a small ruby ring~
+A small ruby ring lies here.~
+~
+8 0 3
+0 0 0 0
+1 0 0
+A
+18 2
+A
+19 1
+#9810
+statue to mon calamari~
+Statue~
+&pA Statue To The Great Admiral Ackbar~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#9811
+calamarian glass desk~
+desk~
+A Beautiful Calamarian Glass Desk Sits Against The Wall Here~
+~
+12 0 0
+0 0 0 0
+1 0 0
+#9812
+Key To Admiral Ackbar's Office~
+a Key to Admiral Ackbar's Office~
+A shiny metal object~
+~
+18 0 16385
+0 0 0 0
+1 0 0
+#9815
+Holster~
+a holster~
+A brown holster~
+~
+15 0 2049
+9 0 0 25
+1 0 0
+#9816
+a datapad~
+A Datapad Addressed to Admiral Ackbar~
+A beaten up datapad~
+~
+8 0 16385
+0 0 0 0
+1 0 0
+#9817
+Broiled Glurpfish~
+Broiled Glurpfish~
+A piece of broiled glurpfish lies here, looking mighty tasty.~
+~
+19 0 1
+40 40 0 0
+1 20 2
+#9818
+won-wons~
+some won-wons~
+A plate of greasy, slimey won-won's are here.~
+~
+19 8192 1
+60 0 0 0
+1 2 0
+#9820
+mangled corpse~
+the mangled corpse of Dhelnde~
+The mangled corpse of Dhelnde is lying here, bleeding.~
+~
+13 0 1
+0 0 0 0
+1 0 0
+#9821
+Calamarian Breathing Gel~
+&CCalamarian Breathing Gel~
+A Calamarian Breathing Gel is here.~
+~
+9 8192 16401
+5 5 0 0
+1 2000 200
+A
+26 -2147483648
+#9835
+splintered seashell neckpiece~
+a &bSplintered Seashell Neckpiece&w~
+A splintered seashell neckpiece is lying on the ground here.~
+~
+9 8192 5
+10 10 0 0
+1 3000 300
+A
+19 3
+#10000
+high_obj~
+a high_obj~
+A high_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#9701
+Hanger 1337~
+As you leave your ship, you find yourself in a magnificient hanger, one of
+the many at this large spaceport. You look around you see dozens of ships,
+and dozens more tourists, walking around aimlessly as they try and find
+their way to their ships, or out of this facility. You also notice
+Calamarian guards wandering around the hanger, looking for suspicious
+looking people, one glances at you menacingly, telling you without words
+that if you step out of line, he will be the first to kill you.
+~
+0 48 1 4 0 0 10
+D1
+~
+~
+0 -1 9702
+S
+#9702
+The Mon Calamari Interplanetary Spaceport~
+You are in a long hallway of this sprawling Spaceport. You see creatures of
+every species imaginable walking around to various shops and hangers,
+coming and going.
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+1 -1 9703
+D1
+~
+~
+0 -1 9706
+D2
+~
+~
+0 -1 9704
+D3
+~
+~
+0 -1 9701
+D4
+~
+~
+0 -1 9705
+S
+#9703
+an Empty Hanger~
+This is a darkened, unused hanger, you can only imagine why it is not being
+used.
+~
+0 13 1 0 0 0 10
+D2
+~
+~
+1 -1 9702
+S
+#9704
+a Rebel Fighter Hanger~
+This is a hanger that is designated for use in deploying Rebel fighters.
+Mon Calamari must be very well protected from Imperial activity if Rebel
+operations such as this can be performed out in the open.
+~
+0 12 1 0 0 0 10
+D0
+~
+~
+0 -1 9702
+S
+#9705
+a Ship Drydock~
+You follow the stairs up to an enormous drydock bay. Workers on scaffolds
+held in the air by repulsor lifts work swarm around the massive MC-90 Mon
+Calamari Cruiser being built in this particular bay.
+~
+0 12 1 0 0 0 10
+D5
+~
+~
+0 -1 9702
+S
+#9706
+a Long Hallway~
+A nondescript hallway travelling towards the Turbolift from the
+Hanger.
+~
+0 12 1 0 0 0 10
+D0
+~
+~
+0 -1 9707
+D1
+~
+~
+0 -1 9708
+D3
+~
+~
+0 -1 9702
+S
+#9707
+A Small Eating Area~
+This is a small, beaten up area where people can eat their
+food.
+~
+0 12 1 0 0 0 10
+D2
+~
+~
+0 -1 9706
+S
+#9708
+a Large Turbolift~
+This is a rather large voice-activated turbolift used to connect to all
+areas of the spaceport. You see a list of the levels and the numbers
+associated with them on the wall.
+~
+0 12 1 0 0 0 10
+E
+list~
+4 - Hangers
+3 - Lockers
+2 - Cafeteria
+1 - Lobby
+~
+> speech_prog 4~
+mpecho The turbolift moves to the hanger level
+mpecho The turbolift stops, and you exit
+mptransfer $n 9706
+mpecho $n steps out of the turbolift.
+~
+> speech_prog 3~
+mpecho The turbolift moves to the locker level
+mpecho The turbolift stops, and you exit
+mptransfer $n 9709
+mpecho $n steps out of the turbolift.
+~
+> speech_prog 2~
+mpecho The turbolift moves to the cafeteria level
+mpecho The turbolift stops, and you exit
+mptransfer $n 9712
+mpecho $n steps out of the turbolift.
+~
+> speech_prog 1~
+mpecho The turbolift moves to the lobby level
+mpecho The turbolift stops, and you exit
+mptransfer $n 9719
+mpecho $n steps out of the turbolift.
+~
+|
+S
+#9709
+a Long Hallway~
+To the north and south are locker rooms filled with lockers. To borrow a
+locker, simply get the key from inside the locker and lock it after you
+place your belongings in it. Keep in mind this is not extremely secure and
+the lockers are cleaned every once in a while.
+(In other words, anything in the lockers will not survive a reboot or
+crash)
+~
+0 12 1 0 0 0 10
+D0
+~
+~
+1 -1 9710
+D1
+~
+~
+0 -1 9708
+D2
+~
+~
+0 -1 9711
+S
+#9710
+a Locker Room (210 - 215)~
+This is a cold, blue steel room, lined with lockers.
+~
+0 12 1 0 0 0 10
+D2
+~
+~
+0 -1 9709
+S
+#9711
+a Locker Room (216 - 221)~
+This is a cold, blue steel room lined with lockers.
+~
+0 12 1 0 0 0 10
+D0
+~
+~
+0 -1 9709
+S
+#9712
+The Cafeteria Level~
+This bustling center is where species of all types can get food that they
+are most familiar with. To the north is a resturant designated for those
+who prefer Wookiee food, to the south, for those who prefer Hutt food, and
+more stores to the east.
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9713
+D1
+~
+~
+0 -1 9715
+D3
+~
+~
+0 -1 9708
+S
+#9713
+Jurson's Wook Nook~
+~
+0 8 1 0 0 0 10
+D2
+~
+~
+0 -1 9712
+S
+#9714
+Floating in a void~
+~
+0 4 1 0 0 0 10
+S
+#9715
+The Cafeteria Level~
+This bustling center is where species of all types can get food that they
+are most familiar with. To the north is a resturant for Mon Calamari, to
+the south for Humans and to the east is a place to buy alchohol.
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9716
+D1
+~
+~
+0 -1 9718
+D3
+~
+~
+0 -1 9712
+S
+#9716
+The Fish Pool~
+~
+0 8 1 0 0 0 10
+D2
+~
+~
+0 -1 9715
+S
+#9717
+Floating in a void~
+~
+0 4 1 0 0 0 10
+S
+#9718
+Oasis~
+Here is a small oasis lined with tables, for people to enjoy their meal.
+You see various mon calamari sitting around, enjoying mostly fish type
+meals. Have a seat.
+~
+0 8 1 0 0 0 10
+D3
+~
+~
+0 -1 9715
+S
+#9719
+The Lobby~
+This is the bottom level and entrance to the spaceport, here it does not
+appear as busy as it does on the upper levels, as many people just come to
+use the ship maintenancing and cafeteria facilities, but it is still quite
+crowded.
+~
+0 12 1 0 0 0 10
+D1
+~
+~
+0 -1 9708
+D3
+~
+~
+0 -1 9720
+S
+#9720
+a Ticket Counter~
+This is a desk with Calamarian secretaries typing away quickly to the back.
+Here most commercial flights are planned, but anymore, most people go
+private.
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+0 -1 9721
+D1
+~
+~
+0 -1 9719
+S
+#9721
+Security Checkpoint~
+As soon as you enter this room, you are asked at gunpoint to empty your
+bags and show your identification. Although you manage to avoid getting
+your bags checked, a guard still asks for your identification.
+~
+0 12 1 0 0 0 10
+D0
+~
+~
+1 -1 9722
+D2
+~
+~
+0 -1 9720
+S
+#9722
+&BNautilus Street&W~
+One of the more frequently traveled streets on this planet, this street is
+a bit more polluted and congested than most of this peaceful planet. To
+the south lies the spaceport.
+~
+0 4 1 0 0 0 10
+D1
+~
+~
+0 -1 9723
+D2
+~
+~
+3 -1 9721
+D3
+~
+~
+0 -1 9729
+S
+#9723
+&BNautilus Street&W~
+One of the more frequently traveled streets on this planet, this street is
+a bit more polluted and congested than most of this peaceful planet.
+~
+0 4 1 0 0 0 10
+D1
+~
+~
+0 -1 9724
+D3
+~
+~
+0 -1 9722
+S
+#9724
+&BNautilus Street&W~
+One of the more frequently traveled streets on this planet, this street is
+a bit more polluted and congested than most of this peaceful planet. To
+the north lies the Mon Calamari Memorial Hospital.
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+3 -1 9755
+D1
+~
+~
+0 -1 9725
+D3
+~
+~
+0 -1 9723
+S
+#9725
+&BNautilus Street&W~
+One of the more frequently traveled streets on this planet, this street is
+a bit more polluted and congested than most of this peaceful planet.
+~
+0 4 1 0 0 0 10
+D1
+~
+~
+0 -1 9726
+D3
+~
+~
+0 -1 9724
+S
+#9726
+&BIntersection of Nautilus and &CSea Street&W~
+This is an intersection of the calmer Sea street, and the busier Nautilus
+street. This is undoubtedly one of the most hectic intersections on this
+planet.
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9730
+D1
+~
+~
+0 -1 9727
+D2
+~
+~
+0 -1 9743
+D3
+~
+~
+0 -1 9725
+S
+#9727
+&BNautilus Street&W~
+One of the more frequently traveled streets on this planet, this street is
+a bit more polluted and congested than most of this peaceful planet.
+~
+0 4 1 0 0 0 10
+D1
+~
+~
+0 -1 9728
+D3
+~
+~
+0 -1 9726
+S
+#9728
+&bA Dead End&w~
+A dark, frightening dead end, in sharp contrast to the colorful, cheerful
+streets of Mon Calamari.
+~
+0 4 1 0 0 0 10
+D3
+~
+~
+0 -1 9727
+S
+#9729
+&bA Dead End&W~
+A dark, frightening dead end, in sharp contrast to the colorful, cheerful
+streets of Mon Calamari. You notice an odd shadow on the northern wall,
+but something tells you that whatever may lie beyond that veil of darkness
+would not be friendly.
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+2048 -1 9816
+D1
+~
+~
+0 -1 9722
+S
+#9730
+&CSea Street&W~
+This is one of the most laid back streets on the entire planet, and is
+mostly coastal raodside. To the east you see a shore of the marvelous Mon
+Calamari oceans.
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9731
+D1
+~
+~
+0 -1 9738
+D2
+~
+~
+0 -1 9726
+S
+#9731
+&CSea Street&W~
+This is one of the most laid back streets on the entire planet, and is
+mostly coastal raodside. To the east you see a shore of the marvelous Mon
+Calamari oceans. To the west, you see a armory.
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+0 -1 9732
+D1
+~
+~
+0 -1 9737
+D2
+~
+~
+0 -1 9730
+D3
+~
+~
+0 -1 9753
+S
+#9732
+&CSea Street&W~
+This is one of the most laid back streets on the entire planet, and is
+mostly coastal raodside. To the east you see a shore of the marvelous Mon
+Calamari oceans. To the west, you see a resturant.
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+0 -1 9733
+D1
+~
+~
+0 -1 9736
+D2
+~
+~
+0 -1 9731
+S
+#9733
+&CSea Street&W~
+This is one of the most laid back streets on the entire planet, and is
+mostly coastal raodside. To the east you see a shore of the marvelous Mon
+Calamari oceans.
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+0 -1 9734
+D1
+~
+~
+0 -1 9735
+D2
+~
+~
+0 -1 9732
+S
+#9734
+&bA Dead End&w~
+A sandy end to Sea Street, you are surrounded by sand and grass. To the
+west you see complexes of buildings that make up Nautilus City, and to
+your north and west you see nothing but sand and grass, leading into
+ocean. Although, you notice what looks like a metal staircase to your
+east, but, it's probably just some rocks...
+~
+0 4 1 0 0 0 10
+D1
+~
+~
+2048 -1 9817
+D2
+~
+~
+0 -1 9733
+S
+#9735
+The Beachside~
+The sand between your toes! The water splashing up occasionally around you,
+looking out over the blue on blue on blue ocean...
+~
+0 4 1 0 0 0 10
+D1
+~
+~
+0 -1 9742
+D2
+~
+~
+0 -1 9736
+D3
+~
+~
+0 -1 9733
+S
+#9736
+The Beachside~
+The sand between your toes! The water splashing up occasionally around you,
+looking out over the blue on blue on blue ocean...
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+0 -1 9735
+D1
+~
+~
+0 -1 9741
+D2
+~
+~
+0 -1 9737
+D3
+~
+~
+0 -1 9732
+S
+#9737
+The Beachside~
+The sand between your toes! The water splashing up occasionally around you,
+looking out over the blue on blue on blue ocean...
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+0 -1 9736
+D1
+~
+~
+0 -1 9740
+D2
+~
+~
+0 -1 9738
+D3
+~
+~
+0 -1 9731
+S
+#9738
+The Beachside~
+The sand between your toes! The water splashing up occasionally around you,
+looking out over the blue on blue on blue ocean...
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+0 -1 9737
+D1
+~
+~
+0 -1 9739
+D3
+~
+~
+0 -1 9730
+S
+#9739
+In Shallow Water~
+Ankle deep in the turquoise water, you can see a barrier reef not far out,
+you don't think you could get into the open ocean through here.
+~
+0 4 6 0 0 0 10
+D0
+~
+~
+0 -1 9740
+D1
+~
+~
+0 -1 9761
+D3
+~
+~
+0 -1 9738
+S
+#9740
+In Shallow Water~
+Ankle deep in the turquoise water, you can see a barrier reef not far out,
+you don't think you could get into the open ocean through here.
+~
+0 4 6 0 0 0 10
+D0
+~
+~
+0 -1 9741
+D1
+~
+~
+0 -1 9760
+D2
+~
+~
+0 -1 9739
+D3
+~
+~
+0 -1 9737
+S
+#9741
+In Shallow Water~
+Ankle deep in the turquoise water, you can see a barrier reef not far out,
+you don't think you could get into the open ocean through here.
+~
+0 4 6 0 0 0 10
+D0
+~
+~
+0 -1 9742
+D1
+~
+~
+0 -1 9759
+D2
+~
+~
+0 -1 9740
+D3
+~
+~
+0 -1 9736
+S
+#9742
+In Shallow Water~
+Ankle deep in the turquoise water, you can see a barrier reef not far out,
+you don't think you could get into the open ocean through here.
+~
+0 4 6 0 0 0 10
+D1
+~
+~
+0 -1 9758
+D2
+~
+~
+0 -1 9741
+D3
+~
+~
+0 -1 9735
+S
+#9743
+&CSea Street&W~
+This is one of the most laid back streets on the entire planet, and is
+mostly coastal raodside. To the east you see a shore of the marvelous Mon
+Calamari oceans.
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9726
+D2
+~
+~
+0 -1 9744
+S
+#9744
+&CIntersection of Sea Street and &YShell Street&W~
+This is an intersection of the immensly calm Sea Street and the more urban
+and war torn Shell Street. Shell street is practically a ghost town, and
+has very little traffic any more...
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9743
+D1
+~
+~
+0 -1 9781
+D2
+~
+~
+0 -1 9745
+D3
+~
+~
+0 -1 9835
+S
+#9745
+&bA Dead End&w~
+A dark, frightening dead end, in sharp contrast to the colorful, cheerful
+streets of Mon Calamari. 
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9744
+S
+#9746
+Storage Level~
+In comparison, the filthiest place in this hospital by far is well kept for
+a storage area. You see crates scattered about and man here "guarding" the
+supplies.
+~
+0 12 1 0 0 0 10
+D0
+~
+~
+0 -1 9749
+D1
+~
+~
+0 -1 9747
+D3
+~
+~
+0 -1 9748
+S
+#9747
+Storage Room~
+~
+0 12 1 0 0 0 10
+D3
+~
+~
+0 -1 9746
+S
+#9748
+Storage Room~
+~
+0 12 1 0 0 0 10
+D1
+~
+~
+0 -1 9746
+S
+#9749
+Turbolift~
+A turbolift large enough to fit a strecher on, it is also rediculously
+clean, like the rest of the hospital. You see a small list on the wall.
+~
+0 12 1 0 0 0 10
+E
+list~
+3 - Bacta
+2 - Storage
+1 - Lobby
+~
+> speech_prog 1~
+mpecho The turbolfit hums as it takes you to the lobby level.
+mpecho The doors open, and you step out
+mptransfer $n 9757
+mpecho $n steps out of the turbolift
+~
+> speech_prog 2~
+mpecho The turbolfit hums as it takes you to the storage level.
+mpecho The doors open, and you step out
+mptransfer $n 9746
+mpecho $n steps out of the turbolift
+~
+> speech_prog 3~
+mpecho The turbolfit hums as it takes you to the bacta level.
+mpecho The doors open, and you step out
+mptransfer $n 9750
+mpecho $n steps out of the turbolift
+~
+|
+S
+#9750
+Bacta Level~
+This is a relatively small room of the hospital, with single man-sized
+bacta tanks to the left and right. You don't see anyone around... So you
+suppose it would be ok to just jump in... For a little while...
+~
+0 12 1 0 0 0 10
+D1
+~
+~
+0 -1 9752
+D2
+~
+~
+0 -1 9749
+D3
+~
+~
+0 -1 9751
+S
+#9751
+Floating in a Bacta Tank~
+The red fluid soothingly flows over your wounds.. you sit back and relax
+for a while.
+~
+0 12 1 0 0 0 1
+D1
+leave
+~
+leave~
+262144 -1 9750
+> rand_prog 100~
+mpecho You feel a tingling as the bacta heas your wounds.
+mprestore $n 500
+~
+|
+S
+#9752
+Floating in a Bacta Tank~
+The red fluid soothingly flows over your wounds.. you sit back and relax
+for a while. 
+~
+0 12 1 0 0 0 1
+D3
+~
+~
+262144 -1 9750
+> rand_prog 100~
+mpecho You feel a tingling as the bacta heals your wounds
+mprestore $n 500
+~
+|
+S
+#9753
+Glittering Shellfish Inn~
+You enter into a rather run down looking hotel. Although the name suggests
+opulence, it is most definitely not so. Built with what looks to be
+imported  wood, it has been warped by the salty sea air. Obviously bad
+planning on the architects part.
+~
+0 8388616 1 0 0 0 10
+D1
+~
+~
+0 -1 9731
+D4
+~
+~
+0 -1 9884
+S
+#9754
+Floating in a void~
+~
+0 4 1 0 0 0 10
+S
+#9755
+The Mon Calamari Memorial Hospital~
+This immasculinely clean facility is the epitomy of Mon Calamarian
+attention to detail. As you walk in from the street, you see rows of empty
+seats, you can only assume they're empty because either no one is being
+hurt on Mon Calamari, or, more likely because the staff of this hospital
+is very on top of things.
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9756
+D2
+~
+~
+3 -1 9724
+S
+#9756
+A hallway~
+As you enter this room, you see the rows of chairs to the northern wall and
+a reception desk to the southwest wall. To the west you see a turbolift
+and there's a small closet to the east.
+~
+0 8 1 0 0 0 10
+D1
+~
+~
+3 -1 9768
+D2
+~
+~
+0 -1 9755
+D3
+~
+~
+0 -1 9757
+S
+#9757
+At a Turbolift~
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9749
+D1
+~
+~
+0 -1 9756
+S
+#9758
+In Deep Water~
+In waist deep water, you can now clearly see the very complete barrier
+reef. Possibly man made...
+~
+0 0 8 0 0 0 10
+D1
+~
+~
+0 -1 9765
+D2
+~
+~
+0 -1 9759
+D3
+~
+~
+0 -1 9742
+S
+#9759
+In Deeper Water~
+In waist deep water, you can now clearly see the very complete barrier
+reef. Possibly man made...
+~
+0 0 8 0 0 0 10
+D0
+~
+~
+0 -1 9758
+D1
+~
+~
+0 -1 9764
+D2
+~
+~
+0 -1 9760
+D3
+~
+~
+0 -1 9741
+S
+#9760
+In Deeper Water~
+In waist deep water, you can now clearly see the very complete barrier
+reef. Possibly man made...
+~
+0 0 8 0 0 0 10
+D0
+~
+~
+0 -1 9759
+D1
+~
+~
+0 -1 9763
+D2
+~
+~
+0 -1 9761
+D3
+~
+~
+0 -1 9740
+S
+#9761
+In Deep Water~
+In waist deep water, you can now clearly see the very complete barrier
+reef. Possibly man made...
+~
+0 0 8 0 0 0 10
+D0
+~
+~
+0 -1 9760
+D1
+~
+~
+0 -1 9762
+D3
+~
+~
+0 -1 9739
+D5
+~
+~
+0 -1 9766
+S
+#9762
+In Deep Water~
+You are now deeper than you can reach, you can see the ocean floor below
+you and the barrief reef to your east. You are now certain it would
+impossible to get into the open ocean from
+here.
+~
+0 0 8 0 0 0 10
+D0
+~
+~
+0 -1 9763
+D3
+~
+~
+0 -1 9761
+D5
+~
+~
+0 -1 9767
+S
+#9763
+In Deep Water~
+You are now deeper than you can reach, you can see the ocean floor below
+you and the barrief reef to your east. You are now certain it would
+impossible to get into the open ocean from
+here.
+~
+0 0 8 0 0 0 10
+D0
+~
+~
+0 -1 9764
+D2
+~
+~
+0 -1 9762
+D3
+~
+~
+0 -1 9760
+D5
+~
+~
+0 -1 9769
+S
+#9764
+In Deep Water~
+You are now deeper than you can reach, you can see the ocean floor below
+you and the barrief reef to your east. You are now certain it would
+impossible to get into the open ocean from
+here.
+~
+0 0 8 0 0 0 10
+D0
+~
+~
+0 -1 9765
+D2
+~
+~
+0 -1 9763
+D3
+~
+~
+0 -1 9759
+D5
+~
+~
+0 -1 9770
+S
+#9765
+In Deep Water~
+You are now deeper than you can reach, you can see the ocean floor below
+you and the barrief reef to your east. You are now certain it would
+impossible to get into the open ocean from
+here.
+~
+0 0 8 0 0 0 10
+D2
+~
+~
+0 -1 9764
+D3
+~
+~
+0 -1 9758
+D5
+~
+~
+0 -1 9771
+S
+#9766
+At the &BOcean &WFloor~
+~
+0 0 12 0 0 0 10
+D0
+~
+~
+0 -1 9767
+D4
+~
+~
+0 -1 9761
+S
+#9767
+At the &BOcean &WFloor~
+At the ocean floor, you can see shells and rocks littered about, as well as
+small fish here and there. To the west you see the reef wall, with
+occasional pieces of metal and plastic lodged into
+it.
+~
+0 0 12 0 0 0 10
+D0
+~
+~
+0 -1 9769
+D2
+~
+~
+0 -1 9766
+D4
+~
+~
+0 -1 9762
+S
+#9768
+Storage Closet~
+This small closet was built into the wall of the Mon Calamari
+Memorial Hospital for storage. There are a few medical supplies
+scattered around the floor here, as well as some shelves for
+holding materials and waste.There are some cleaning items, such
+as brooms and cleaning agents on the shelves as well.
+~
+0 8 1 0 0 0 10
+D3
+~
+~
+3 -1 9756
+S
+#9769
+At the &BOcean&W Floor~
+At the ocean floor, you can see shells and rocks littered about, as well as
+small fish here and there. To the west you see the reef wall, with
+occasional pieces of metal and plastic lodged into
+it.
+~
+0 0 12 0 0 0 10
+D0
+~
+~
+0 -1 9770
+D2
+~
+~
+0 -1 9767
+D4
+~
+~
+0 -1 9763
+S
+#9770
+At the &BOcean &WFloor~
+At the ocean floor, you can see shells and rocks littered about, as well as
+small fish here and there. To the west you see the reef wall, with
+occasional pieces of metal and plastic lodged into it. You notice a
+glimmer out of the corner of your eye on the wall, but when you look, you
+can't find anything...
+~
+0 0 12 0 0 0 10
+D0
+~
+~
+0 -1 9771
+D2
+~
+~
+0 -1 9769
+D4
+~
+~
+0 -1 9764
+D6
+~
+~
+2048 -1 9772
+S
+#9771
+At the &BOcean&W Floor~
+At the ocean floor, you can see shells and rocks littered about, as well as
+small fish here and there. To the west you see the reef wall, with
+occasional pieces of metal and plastic lodged into it.  You notice a
+glimmer out of the corner of your eye on the wall, but when you look, you
+can't find anything...
+~
+0 0 12 0 0 0 10
+D2
+~
+~
+0 -1 9770
+D4
+~
+~
+0 -1 9765
+S
+#9772
+A damp airlock~
+~
+0 4 1 0 0 0 10
+D1
+~
+~
+0 -1 9773
+D9
+~
+~
+0 -1 9770
+S
+#9773
+Entrance to a Rebel Base~
+~
+0 4 1 0 0 0 10
+D1
+~
+~
+0 -1 9776
+D3
+~
+~
+0 -1 9772
+S
+#9774
+A disused corridor~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9775
+D2
+~
+~
+0 -1 9776
+S
+#9775
+a rusty stairwell~
+~
+0 4 1 0 0 0 10
+D2
+~
+~
+0 -1 9774
+D4
+~
+~
+0 -1 9777
+S
+#9776
+A Guard Post~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9774
+D3
+~
+~
+0 -1 9773
+S
+#9777
+a large intersection~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9778
+D1
+~
+~
+0 -1 9779
+D2
+~
+~
+0 -1 9780
+D3
+~
+~
+0 -1 9795
+D4
+~
+~
+0 -1 9818
+D5
+~
+~
+0 -1 9775
+S
+#9778
+A Communication Room~
+~
+0 0 1 0 0 0 10
+D2
+~
+~
+0 -1 9777
+S
+#9779
+An Armory~
+~
+0 0 1 0 0 0 10
+D3
+~
+~
+0 -1 9777
+S
+#9780
+A Briefing Room~
+~
+0 4 1 0 0 0 10
+D0
+~
+~
+0 -1 9777
+S
+#9781
+&YShell Street&W~
+This is probably the most depressing part of Mon Calamari. Shell Street was
+a major economic source during the times when Mon Calamari was ruled by
+the Empire, however, once Mon Calamari revolted, The Empire concentrated
+it's forces in this area, and even held some ground here before being
+turned back. Ironically, the primary facilities on Shell Street were those
+of the Empire, and so many Imperial bombs destroyed buildings they had
+built and killed people that worked for them. Thus, many Mon Calamari were
+happy to lose this scar on the jewel of a planet that is Mon Calamari.
+~
+0 0 1 0 0 0 10
+D1
+~
+~
+0 -1 9782
+D3
+~
+~
+0 -1 9744
+S
+#9782
+&YIntersection of Shell and &PCoral Street&W~
+This is an intersection of the two war torn Shell and Coral streets.
+Disgusting. 
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9787
+D1
+~
+~
+0 -1 9783
+D2
+~
+~
+0 -1 9788
+D3
+~
+~
+0 -1 9781
+S
+#9783
+&YShell Street&W~
+This is probably the most depressing part of Mon Calamari. Shell Street was
+a major economic source during the times when Mon Calamari was ruled by
+the Empire, however, once Mon Calamari revolted, The Empire concentrated
+it's forces in this area, and even held some ground here before being
+turned back. Ironically, the primary facilities on Shell Street were those
+of the Empire, and so many Imperial bombs destroyed buildings they had
+built and killed people that worked for them. Thus, many Mon Calamari were
+happy to lose this scar on the jewel of a planet that is Mon Calamari. To
+the north you notice a disused Imperial landing pad.
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9794
+D1
+~
+~
+0 -1 9784
+D3
+~
+~
+0 -1 9782
+D5
+~
+manhole~
+2051 -1 9795
+S
+#9784
+&YShell Street&W~
+This is probably the most depressing part of Mon Calamari. Shell Street was
+a major economic source during the times when Mon Calamari was ruled by
+the Empire, however, once Mon Calamari revolted, The Empire concentrated
+it's forces in this area, and even held some ground here before being
+turned back. Ironically, the primary facilities on Shell Street were those
+of the Empire, and so many Imperial bombs destroyed buildings they had
+built and killed people that worked for them. Thus, many Mon Calamari were
+happy to lose this scar on the jewel of a planet that is Mon Calamari.
+~
+0 0 1 0 0 0 10
+D1
+~
+~
+0 -1 9785
+D2
+~
+~
+0 -1 9796
+D3
+~
+~
+0 -1 9783
+S
+#9785
+&YShell Street&W~
+This is probably the most depressing part of Mon Calamari. Shell Street was
+a major economic source during the times when Mon Calamari was ruled by
+the Empire, however, once Mon Calamari revolted, The Empire concentrated
+it's forces in this area, and even held some ground here before being
+turned back. Ironically, the primary facilities on Shell Street were those
+of the Empire, and so many Imperial bombs destroyed buildings they had
+built and killed people that worked for them. Thus, many Mon Calamari were
+happy to lose this scar on the jewel of a planet that is Mon Calamari.
+~
+0 0 1 0 0 0 10
+D1
+~
+~
+0 -1 9786
+D3
+~
+~
+0 -1 9784
+S
+#9786
+The End of Shell Street~
+Here the road is too beaten and cratered to follow any further... Not too
+far in the distance of your path you see a marvelous wreck of a Mon
+Calamari cruiser.
+~
+0 0 1 0 0 0 10
+D3
+~
+~
+0 -1 9785
+S
+#9787
+&bA Dark Alley&w~
+This is a frightening, dark dead end, you notice disused blasters and armor
+scattered throughout... You don't like this place. 
+~
+0 0 1 0 0 0 10
+D2
+~
+~
+0 -1 9782
+S
+#9788
+&PCoral Street&W~
+War-torn Coral Street...
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9782
+D2
+~
+~
+0 -1 9789
+S
+#9789
+&PCoral Street&W~
+War-torn Coral Street...
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9788
+D2
+~
+~
+0 -1 9790
+D3
+~
+~
+0 -1 9809
+S
+#9790
+&PCoral Street&W~
+War-torn Coral Street...
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9789
+D2
+~
+~
+0 -1 9791
+S
+#9791
+&PCoral Street&W~
+War-torn Coral Street...
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9790
+D2
+~
+~
+0 -1 9792
+D3
+~
+~
+0 -1 9814
+S
+#9792
+&PCoral Street&W~
+War-torn Coral Street...
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9791
+D1
+~
+~
+0 -1 9815
+D2
+~
+~
+0 -1 9793
+S
+#9793
+&bA Dead End&W~
+Jinkies! 
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9792
+S
+#9794
+A Deserted Landing Pad~
+This landing pad is beaten and mauled into almost looking like nothing more
+than a patch of clear ground. Still, ships could land here. To the north
+you notice an odd looking rock...
+~
+0 48 1 4 0 0 10
+D0
+~
+~
+33556480 -1 9818
+D2
+~
+~
+0 -1 9783
+S
+#9795
+A Dark Stairway~
+~
+0 8 1 0 0 0 10
+D1
+~
+~
+0 -1 9777
+D4
+~
+~
+3 -1 9783
+S
+#9796
+Golden Urchin Apartment Complex~
+This building used to be the Imperial central command on Mon Calamari. It's
+frequent vacancy is testimony to this and many locals claim that this
+building is haunted. Still, it's a place to keep your stuff...
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9784
+D2
+~
+~
+0 -1 9797
+S
+#9797
+A Brightly Lit Hallway~
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9796
+D1
+~
+~
+0 -1 9798
+D2
+~
+~
+0 -1 9800
+D3
+~
+~
+0 -1 9799
+S
+#9798
+An Empty Apartment~
+~
+0 10485768 1 0 0 0 10
+D3
+~
+~
+0 -1 9797
+S
+#9799
+An Empty Apartment~
+~
+0 10485768 1 0 0 0 10
+D1
+~
+~
+0 -1 9797
+S
+#9800
+A Brightly Lit Hallway~
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9797
+D1
+~
+~
+0 -1 9801
+D2
+~
+~
+0 -1 9803
+D3
+~
+~
+0 -1 9802
+S
+#9801
+An Empty Apartment~
+~
+0 10485768 1 0 0 0 10
+D3
+~
+~
+0 -1 9800
+S
+#9802
+An Empty Apartment~
+~
+0 10485768 1 0 0 0 10
+D1
+~
+~
+0 -1 9800
+S
+#9803
+A Brightly Lit Hallway~
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9800
+D1
+~
+~
+0 -1 9804
+D2
+~
+~
+0 -1 9806
+D3
+~
+~
+0 -1 9805
+S
+#9804
+An Empty Apartment~
+~
+0 10485768 1 0 0 0 10
+D3
+~
+~
+0 -1 9803
+S
+#9805
+An Empty Apartment~
+~
+0 10485772 1 0 0 0 10
+D1
+~
+~
+0 -1 9803
+S
+#9806
+A Brightly Lit Hallway~
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9803
+D1
+~
+~
+0 -1 9807
+D3
+~
+~
+0 -1 9808
+E
+note~
+If all of these apartments are filled, please contact Trancer or another
+IMM to get more rooms added, thanks.
+ 
+-Trancer
+~
+S
+#9807
+An Empty Apartment~
+~
+0 9437960 1 0 0 0 10
+D3
+~
+~
+0 -1 9806
+S
+#9808
+An Empty Apartment~
+~
+0 1083179784 1 0 0 0 10
+D1
+~
+~
+0 -1 9806
+S
+#9809
+A Large Office Complex~
+You are surprised by the lack of guard here, you see a hallway leading to a
+turbolift to the north. 
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9810
+D1
+~
+~
+0 -1 9789
+S
+#9810
+Hallway~
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9811
+D2
+~
+~
+0 -1 9809
+S
+#9811
+At A Turbolift~
+To the east, you notice a closed door, and to the north you notice the
+turbolift. 
+~
+0 8 1 0 0 0 10
+D0
+~
+~
+0 -1 9813
+D1
+~
+~
+7 9812 9812
+D2
+~
+~
+0 -1 9810
+S
+#9812
+Admiral Ackbar's Office~
+~
+0 8 1 0 0 0 10
+D3
+~
+~
+7 9812 9811
+S
+#9813
+A Turbolift~
+A decent looking turbolift, with a small list on the wall.
+~
+0 12 1 0 0 0 10
+E
+list~
+1 - Office Level 1
+2 - Office Level 2
+3 - Office Level 3
+4 - Office Level 4
+5 - Office Level 5
+6 - Office Level 6
+7 - Office Level 7
+8 - Office Level 8
+~
+> speech_prog 1~
+mpecho The turbolift takes you to the bottom level
+mpecho The turbolift dings as it reaches the first level and you get
+off
+mptransfer $n 9811
+mpecho $n leaves a turbolift
+~
+> speech_prog 2 3 4 5 6 7 8~
+mpecho A calm voice says "You do not have authorization for that level."
+~
+|
+S
+#9814
+The Mon Calamari Branch Of Coruscant Savings And Loan~
+This is the Mon Calamari branch of the Coruscant Savings and Loan bank.
+This was previously an Imperial bunker. 
+~
+0 264 1 0 0 0 10
+D1
+~
+~
+0 -1 9791
+S
+#9815
+Herculaneum Fitness Center And Gym~
+You are surrounded by people who look strong enough to snap you like a
+tootpick, and trainers who seem very helpful and strong themselvse.
+~
+0 8 1 0 0 0 10
+D3
+~
+~
+0 -1 9792
+S
+#9816
+A Dark, Brooding Alley~
+~
+0 0 1 0 0 0 10
+D2
+~
+~
+0 -1 9729
+S
+#9817
+An Old, Disused Bunker~
+This appears to be some old, abandoned bunker. There is a single
+man standing here, he looks quite afraid and suspicious. He
+is shaking visibly, and you can tell that he doesn't get out
+much from the paleness and frailty of his body.
+~
+0 8 1 0 0 0 10
+D3
+~
+~
+0 -1 9734
+S
+#9818
+A Sniping Tower~
+You stand in a rather well-kept sniping tower. A tiny window with a small
+hole for a rifle sits at the south end of this room, most likely for
+taking out subjects before they get... well, here. Be careful though. If
+you can see in, they can see out...
+~
+0 8 1 0 0 0 10
+D2
+~
+~
+33554432 -1 9794
+D5
+~
+~
+0 -1 9777
+S
+#9819
+Ship Maintenance Room~
+~
+0 0 1 0 0 0 10
+D2
+~
+~
+0 -1 9818
+S
+#9820
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9818
+D1
+~
+~
+0 -1 9822
+D2
+~
+~
+0 -1 9824
+D3
+~
+~
+0 -1 9821
+S
+#9821
+Storage Room~
+~
+0 0 1 0 0 0 10
+D1
+~
+~
+0 -1 9820
+D2
+~
+~
+0 -1 9823
+S
+#9822
+Storage Room~
+~
+0 0 1 0 0 0 10
+D2
+~
+~
+0 -1 9825
+D3
+~
+~
+0 -1 9820
+S
+#9823
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9821
+D1
+~
+~
+0 -1 9824
+D2
+~
+~
+0 -1 9826
+S
+#9824
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9820
+D1
+~
+~
+0 -1 9825
+D2
+~
+~
+0 -1 9827
+D3
+~
+~
+0 -1 9823
+S
+#9825
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9822
+D2
+~
+~
+0 -1 9828
+D3
+~
+~
+0 -1 9824
+S
+#9826
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9823
+D1
+~
+~
+0 -1 9827
+D2
+~
+~
+0 -1 9831
+S
+#9827
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9824
+D1
+~
+~
+0 -1 9828
+D2
+~
+~
+0 -1 9830
+D3
+~
+~
+0 -1 9826
+S
+#9828
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9825
+D2
+~
+~
+0 -1 9829
+D3
+~
+~
+0 -1 9827
+S
+#9829
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9828
+D3
+~
+~
+0 -1 9830
+S
+#9830
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9827
+D1
+~
+~
+0 -1 9829
+D3
+~
+~
+0 -1 9831
+S
+#9831
+Storage Room~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9826
+D1
+~
+~
+0 -1 9830
+S
+#9832
+Detention Level~
+~
+0 0 1 0 0 0 10
+D2
+~
+~
+0 -1 9833
+S
+#9833
+Hallway~
+~
+0 0 1 0 0 0 10
+D0
+~
+~
+0 -1 9832
+S
+#9834
+Prison Cell~
+~
+0 4 1 0 0 0 10
+S
+#9835
+&zQuarren Inc.&w~
+~
+0 1073741824 1 0 0 0 10
+D1
+~
+~
+0 -1 9744
+S
+#9868
+Floating in a void~
+~
+0 4 1 0 0 0 10
+S
+#9883
+Floating in a void~
+~
+0 4 1 0 0 0 10
+S
+#9884
+The Galactic Mail Center~
+~
+0 1073741824 1 0 0 0 10
+D5
+~
+~
+0 -1 9753
+S
+#10000
+Floating in a void~
+~
+0 1073741828 1 0 0 0 10
+S
+#0
+
+
+#RESETS
+D 0 9702 0 0
+D 0 9703 2 0
+D 0 9709 0 0
+O 1 9722 1 9711
+O 1 9724 1 9711
+O 1 9726 1 9711
+O 1 9728 1 9711
+O 1 9730 1 9711
+O 1 9732 1 9711
+O 1 9810 1 9727
+M 1 9746 1 9746
+D 0 9755 2 1
+D 0 9756 1 1
+D 0 9795 4 1
+D 0 9811 1 2
+M 1 9812 1 9812
+O 1 9811 1 9812
+D 0 9812 3 2
+M 1 9711 1 9707
+O 1 9710 1 9710
+O 1 9712 1 9710
+O 1 9714 1 9710
+O 1 9716 1 9710
+O 1 9718 1 9710
+O 1 9720 1 9710
+M 1 9714 1 9716
+G 1 9817 1
+D 0 9722 2 1
+M 1 9711 2 9724
+D 0 9724 0 1
+O 1 9746 1 9768
+D 0 9768 3 1
+M 1 9711 3 9782
+M 1 9711 4 9785
+M 1 9709 1 9705
+M 1 9816 1 9816
+G 1 9812 1
+G 1 9816 1
+M 1 9713 1 9713
+G 1 9818 1
+M 1 9817 1 9776
+M 1 9818 2 9776
+M 1 9818 2 9776
+O 1 1926 1 1243
+O 1 9746 1 9748
+P 0 150 1 0
+O 1 9746 1 9747
+P 0 150 1 0
+M 1 9750 1 9750
+G 1 1241 1
+M 1 9721 1 9721
+M 1 9720 1 9721
+D 0 9721 0 0
+M 1 9703 2 9701
+M 1 9703 2 9701
+M 1 9710 1 9701
+M 1 9715 1 9817
+M 1 9738 1 9738
+M 1 9711 1 9784
+M 1 9711 2 9786
+M 1 9711 3 9783
+D 0 9783 5 1
+M 1 9711 4 9794
+M 1 9711 5 9726
+M 1 9711 6 9728
+M 1 9711 8 9731
+M 1 9711 8 9731
+M 1 9711 9 9733
+O 1 9771 1 9767
+M 1 9835 1 9835
+G 1 9835 1
+G 1 9821 1
+O 1 38 1 9884
+S
+
+
+#SHOPS
+ 9707    0  0  0  0  0   120  90         8 20    ; the retail shopkeeper
+ 9713    0  0  0  0  0   120  90         0 23    ; Jurson the Wookiee
+ 9714    0  0  0  0  0   120  90         0 23    ; A Quarren Chef
+ 9732    0  0  0  0  0   120  90         1 23    ; the convenient shopkeeper
+ 9751    0  0  0  0  0   120  90         0 23    ; an ewok shopkeeper
+ 9835    0  0  0  0  0   120  90         0 23    ; a quarren shopkeeper
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  9702 spec_customs_weapons
+M  9703 spec_police_attack
+M  9704 spec_police_attack
+M  9720 spec_police_attack
+M  9720 spec_customs_weapons
+M  9721 spec_customs_smut
+M  9721 spec_police
+M  9818 spec_guardian
+S
+
+
+#$

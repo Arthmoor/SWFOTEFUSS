@@ -1,0 +1,1469 @@
+#AREA   misc.are~
+
+
+
+#AUTHOR none~
+
+#RANGES
+0 65 0 65
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6250000
+
+#MOBILES
+#700
+low_mob~
+a newly created low_mob~
+Some god abandoned a newly created low_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#701
+Ewok~
+Ewok~
+An Ewok in a loin clothe stands here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#899
+hi_mob~
+a newly created hi_mob~
+Some god abandoned a newly created hi_mob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#700
+low_obj~
+a low_obj~
+A low_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#701
+Ewok Shopkeeper~
+a Ewok Shopkeeper~
+A Ewok Shopkeeper is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#702
+Ewok~
+a Ewok~
+A Ewok is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#750
+Yautja Predator Gauntlets~
+Yautja Gauntlets~
+Large Metal Gauntlets Lie here, covered in blood~
+~
+9 0 129
+0 -10 0 0
+2 3 0
+#751
+Yautja Predator Hunter Armor~
+Yautja Hunter Armor~
+A Pile of Metal and Mesh lies here~
+~
+9 524544 9
+12 -30 0 0
+2 3 0
+#752
+Predator yautja helmet biohelmet~
+A Yautja Biohelmet~
+A Strangely shaped helmet sits here waiting to be picked up~
+~
+9 -2146697208 17
+12 -10 0 0
+2 3 0
+A
+26 4194304
+A
+26 16
+A
+26 512
+A
+26 32
+> speech_prog test~
+mpmset $n sex 0
+~
+|
+#753
+yautja predator shiftsuit shift suit~
+A Yautja Shiftsuit~
+A Yautja Shiftsuit is resting here~
+~
+9 0 1025
+12 -10 0 0
+2 3 0
+#754
+yautja predator sleeves mesh~
+Mesh Sleeves~
+A pile of steel-like strands lies here~
+~
+9 0 257
+12 -10 0 0
+2 3 0
+#755
+predator yautja laser sight~
+A Tri-Beaded Laser Sight~
+A small eye-piece rests gently on the ground~
+~
+9 524289 131073
+0 3 0 0
+1 2800 280
+A
+18 20
+#756
+yautja predator trophy belt~
+A Trophy Belt~
+A large belt with lots of pouches and compartments is here~
+~
+9 0 2049
+12 -10 0 0
+2 3 0
+#757
+Yautja Predator Audio Comlink Waveform wave form analyzer~
+An Audio Waveform Analyzer~
+An earpiece is here~
+~
+72 0 65537
+0 0 0 0
+1 300 30
+#758
+yautja knee pads kneepads predator~
+Yautja Knee Pads~
+Some knee pads lie here in a heap~
+~
+9 0 33
+12 -10 0 0
+2 3 0
+#759
+yautja wrist computer predator~
+A Wrist Computer~
+A circular computer has been discarded here~
+~
+9 8192 4097
+10 0 0 0
+1 25 2
+#760
+yautja predator Serrated Yautja Wrist Blades~
+Serrated Yautja Wrist Blades~
+Long, Sharp Blades were left here~
+~
+9 8192 4097
+10 0 0 0
+1 25 2
+#761
+piece of silk~
+a piece of silk~
+A piece of silk is here.~
+~
+74 0 16385 1
+3 3 0 0
+1 6 0
+#762
+a piece of satin~
+a piece of satin~
+A piece of satin is here.~
+~
+74 0 16385 2
+4 4 0 0
+1 12 1
+#763
+piece of cotton~
+a piece of cotton~
+A piece of cotton is here.~
+~
+74 0 16385 4
+5 5 0 0
+1 20 2
+#764
+piece of leather~
+a piece of leather~
+A piece of leather is here.~
+~
+74 8192 16385 8
+6 6 0 0
+1 30 3
+#765
+piece of canvas~
+a piece of canvas~
+A piece of canvas is here.~
+~
+74 0 16385 16
+7 7 0 0
+1 50 5
+#766
+piece of durasteel plating~
+a piece of durasteel plating~
+A piece of durasteel plating is here.~
+~
+74 0 16385 32
+10 10 0 0
+1 125 12
+#767
+starfire crystal~
+&G&wa &G&rs&G&Rt&G&ra&G&Rr&G&rf&G&Ri&G&rr&G&Re &G&wcrystal&G&w~
+&G&WA &G&rs&G&Rt&G&ra&G&Rr&G&rf&G&Ri&G&rr&G&Re &G&Wcrystal is lying here.~
+~
+63 0 16385
+40 40 2 0
+1 0 0
+#768
+advanced ammunition cell ammo~
+an advanced ammunition cell~
+An advanced ammunition cell was left here.~
+~
+57 8192 16385
+2000 0 0 0
+1 250 25
+#799
+hi_obj~
+a hi_obj~
+A hi_obj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#700
+Outside The Convienence Store~
+Outside A Normal Convienence Store Called "Pammies"
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 701
+> speech_prog level~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor -3
+~
+> speech_prog levels~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+|
+S
+#701
+Entering the Convienience Store.~
+Entering the Convienience Store.
+~
+0 4 1 0 0 0 32040
+D0
+~
+~
+0 -1 704
+D1
+~
+~
+0 -1 702
+D2
+~
+~
+0 -1 700
+D3
+~
+~
+0 -1 703
+> speech_prog level~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog levels~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog floors~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog 1~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 701
+~
+> speech_prog one~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 701
+~
+> speech_prog 2~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 702
+~
+> speech_prog two~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 702
+~
+> speech_prog 3~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 710
+~
+> speech_prog three~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 710
+~
+|
+S
+#702
+Banking Machines~
+Banking machines are placed here
+~
+0 4 1 0 0 0 32040
+D3
+~
+~
+0 -1 701
+> speech_prog level~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog levels~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog floors~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog 1~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 701
+~
+> speech_prog one~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 701
+~
+> speech_prog 2~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 702
+~
+> speech_prog two~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 702
+~
+> speech_prog 3~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 710
+~
+> speech_prog three~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 710
+~
+|
+S
+#703
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+D1
+~
+~
+0 -1 701
+S
+#704
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+D2
+~
+~
+0 -1 701
+S
+#705
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#706
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#707
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#708
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#709
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#710
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+> speech_prog level~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog levels~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog floors~
+mpechoat $n Levels:
+mpechoat $n Platform/Landing Platform - 1
+mpechoat $n Platform/Second Level - 2
+mpechoat $n Platform/Forest Floor - 3
+~
+> speech_prog 1~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 701
+~
+> speech_prog one~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 701
+~
+> speech_prog 2~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 702
+~
+> speech_prog two~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 702
+~
+> speech_prog 3~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 710
+~
+> speech_prog three~
+mpechoat $n The Turbolift doors swiftly close as you exit.
+mptrans $n 710
+~
+|
+S
+#711
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#712
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#713
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#714
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#715
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#716
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#717
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#718
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#719
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#720
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#721
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#722
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#723
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#724
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#725
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#726
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#727
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#728
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#729
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#730
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#731
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#732
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#733
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#734
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#735
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#736
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#737
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#738
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#739
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#740
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#741
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#742
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#743
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#744
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#745
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#746
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#747
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#748
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#749
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#750
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#751
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#752
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#753
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#754
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#755
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#756
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#757
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#758
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#759
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#760
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#761
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#762
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#763
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#764
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#765
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#766
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#767
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#768
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#769
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#770
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#771
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#772
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#773
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#774
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#775
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#776
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#777
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#778
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#779
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#780
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#781
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#782
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#783
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#784
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#785
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#786
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#787
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#788
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#789
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#790
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#791
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#792
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#793
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#794
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#795
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#796
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#797
+Sith Temple~
+You are finally in the Sith Temple!!! You see dark portraits of former Sith Leaders, as well as a larger portait of the Current Leader, Lord Zoiloin Fett! It makes you proud just to LOOK at it!
+~
+0 4 1 0 0 0 32040
+S
+#798
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#799
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#800
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#801
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#802
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#803
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#804
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#805
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#806
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#807
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#808
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#809
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#810
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#811
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#812
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#813
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#814
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#815
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#816
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#817
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#818
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#819
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#820
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#821
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#822
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#823
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#824
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#825
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#826
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#827
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#828
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#829
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#830
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#831
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#832
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#833
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#834
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#835
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#836
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#837
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#838
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#839
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#840
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#841
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#842
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#843
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#844
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#845
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#846
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#847
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#848
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#849
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#850
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#851
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#852
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#853
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#854
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#855
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#856
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#857
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#858
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#859
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#860
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#861
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#862
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#863
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#864
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#865
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#866
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#867
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#868
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#869
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#870
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#871
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#872
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#873
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#874
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#875
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#876
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#877
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#878
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#879
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#880
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#881
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#882
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#883
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#884
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#885
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#886
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#887
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#888
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#889
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#890
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#891
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#892
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#893
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#894
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#895
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#896
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#897
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#898
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#899
+Floating in a void~
+~
+0 4 1 0 0 0 32040
+S
+#0
+
+
+#RESETS
+M 1 700 1 899
+M 1 899 1 899
+O 1 700 1 899
+O 1 799 1 899
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

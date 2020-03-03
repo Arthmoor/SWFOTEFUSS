@@ -1,0 +1,9 @@
+#FORCE
+Name      master~
+Status    3
+Type      2
+Desc      Being a Sith Master is a dangerous thing, not only do$RN$you have to teach and induct new students, but you must$RN$also protect yourself from both Jedi and would be Sith$RN$Masters.$RN$$RN$Master Skills:$RN$$RN$Force_lightning  Identify       Student        Promote$RN$Instruct$RN$~
+Skill     -1
+End
+
+#END

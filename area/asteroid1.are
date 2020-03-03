@@ -1,0 +1,109 @@
+#AREA   {PROTO} Asteroid 1~
+
+
+
+#AUTHOR Eleven~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6250000
+
+#MOBILES
+#18202
+lomob~
+a newly created lomob~
+Some god abandoned a newly created lomob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18225
+himob~
+a newly created himob~
+Some god abandoned a newly created himob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#18202
+loobj~
+a loobj~
+A loobj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#18225
+hiobj~
+a hiobj~
+A hiobj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#18202
+1~
+~
+0 4 1 0 0 0 840
+S
+#18203
+A large crater~
+~
+0 1073741876 1 2048 0 0 840
+S
+#18225
+0~
+~
+0 4 1 0 0 0 840
+S
+#0
+
+
+#RESETS
+M 1 18202 1 18202
+O 1 18202 1 18202
+M 1 18225 1 18225
+O 1 18225 1 18225
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

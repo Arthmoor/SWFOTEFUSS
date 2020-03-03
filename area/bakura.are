@@ -1,0 +1,2779 @@
+#AREA   Bakura~
+
+
+
+#AUTHOR Carissa~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6135257
+
+#MOBILES
+#18001
+lomob~
+a newly created lomob~
+Some god abandoned a newly created lomob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18002
+Bakuran Technician~
+Bakuran Technician~
+A Bakuran Technician stands here, looking over the HLAF, analyzing its repairs.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18003
+Bakuran ATC~
+Bakuran Air Traffic Controler~
+A Bakuran Air Traffic Controller sits here, working over his screen.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18004
+William Bakuran Bartender~
+William, the Cantina Bartender~
+William, the bartender stands here, wiping down the bar.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18005
+Gibson Bakuran Cook~
+Gibson, Bakuran Short Order Cook~
+Gibson stands here, tending to his grill and selling sandwiches.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18006
+Black Marketeer~
+Black Marketeer Salesman~
+A squinty eyed man stands here, watching over the ships.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> all_greet_prog 100~
+mpecho The squinty eyed man looks at you, leers, and chuckles.
+mpecho He speaks with a lispy voice: &R&CI see you made it to the Market. How can I
+mpecho &R&Chelp ya, eh, choomb?&R&W
+~
+|
+#18007
+GD-7 Gardening Droid~
+GD-7 Gardening Droid~
+A GD-7 Gardening Droid moves among the foilage here, working.
+~
+~
+67108865 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> rand_prog 80~
+Mpecho The droid ratchets upward, and trims the trees back a bit with audible
+mpecho clanking noises. It then ratchets downward, and resumes clicking.
+~
+|
+#18008
+Bakuran Citizen~
+Bakuran Citizen~
+A Bakuran Citizen wanders the streets, admiring the buildings.
+~
+~
+1 0 0 Z
+1 0 0 5d20+50 2d10+0
+30 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+512 0 0 0 0 0 0 0
+#18009
+Reimar Smuggler~
+Reimar the Smuggler~
+A shadowy man stands here, his lips clamped tight around a cigar.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+23 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+> give_prog Golden Dragon Statue~
+say You got it?! Ill be damned! Heres the money I said id give ya!
+mpwithdraw 500
+give 500 credits $n
+say Thanks a bunch!
+mpat 101 drop dragon
+mpat 101 mppurge
+~
+> greet_prog 100~
+Say How did you get in here?!
+say Well, no matter! I got a deal for ya! If you can get into the
+say bakura complex, and get the golden dragon statue, Ill give you
+say some credits to make it worth your while! Now get out there
+say and get it!
+~
+|
+#18010
+Kraven Armorer~
+Kraven the Armorer~
+Kraven the Armorer sits at his table, sewing armor
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18011
+Johnny the Weaponsmith~
+Johnny the Weaponsmith~
+Johnny stands here, selling blasters behind his counter.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+100 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18012
+Biggs the Clerk~
+Biggs the Clerk~
+Biggs wanders around his shop, dusting items.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+100 0
+8 8 0
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18013
+Glynna Jenson~
+Glynna Jenson~
+Glynna Jenson, cook and waitress of Jenson's Diner.
+~
+~
+3 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18014
+Sentry Trooper~
+Bakuran Sentry Trooper~
+A Bakuran sentry trooper stands here, ready for combat.
+~
+~
+3 0 0 Z
+1 0 -200 3d100+40 4d8+10
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+8 10 0 0 0 0 0 0
+512 0 0 0 0 0 0 0
+#18015
+Gaeriel Capriston~
+Gaeriel Capriston~
+Gaeriel Capriston sits here, behind her desk, looking over paperwork.
+~
+~
+3 0 0 Z
+1 0 -200 3d100+40 4d8+10
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+512 0 0 0 0 0 0 0
+#18016
+Pter Thanas~
+Pter Thanas~
+Pter Thanas stands behind his desk, looking over the readouts from his viewscreen.
+~
+~
+3 0 0 Z
+1 0 -200 3d100+40 4d8+10
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+512 0 0 0 0 0 0 0
+#18017
+Blaine Harris~
+Blaine Harris~
+Blain Harris, Bakuran Defense Minister stands here, watching the rain pillars.
+~
+~
+3 0 0 Z
+1 0 -200 3d100+40 4d8+10
+0 0
+8 8 1
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18018
+Aaron Dyer~
+Aaron Dyer~
+Aaron Dyer stands here, overseeing the workshop of his Refinery.
+~
+~
+3 0 0 Z
+1 0 0 4d40+50 5d3+0
+300 0
+8 8 0
+20 10 10 20 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+512 0 0 0 0 0 0 0
+#18019
+Merril Harris~
+Merril Harris, Hospital Director.~
+Merril Harris, the Hospital Director, stands here, greeting patients.
+~
+~
+3 0 0 Z
+1 0 0 1d90+50 0d0+0
+100 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+512 0 0 0 0 0 0 0
+> greet_prog 100~
+if ispc($n)
+say Hello, and welcome to the Imperial Bakuran Hospital.
+say There is a small fee of 100 credits, but we can have you feeling great in no time!
+shake $n
+endif
+~
+> bribe_prog 100~
+say Thank you! Just sign here!
+emote holds out a sheaf of papers, which you quickly sign.
+mea $n Merril ushers you through a door.
+mer $n Merril ushers $n through a door.
+mptrans $n 18105
+mpat 101 drop all
+mpat 101 mppurge
+~
+|
+#18201
+himob~
+a newly created himob~
+Some god abandoned a newly created himob here.
+~
+~
+1 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#18001
+loobj~
+a loobj~
+A loobj is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#18002
+Half Dissasembled HLAF-500~
+A Half Dissassembled HLAF-500 Fighter~
+A Half Dissassembled HLAF-500 Fighter sits here.~
+~
+13 0 0
+0 0 0 0
+7000 0 0
+#18003
+Big Square Bar~
+Large Square Bar~
+A large, square, polished metal bar sits in the center of the room.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18004
+Bar Stools~
+Many Bar Stools~
+Many bar stools surround the edge of the bar.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18005
+Namana Nectar~
+A bottle of Namana Nectar~
+A bottle of Namana Nectar lies discarded here.~
+~
+17 8192 16385
+15 15 16 0
+8 150 15
+#18006
+Short Bar~
+Short, Grease Stained Bar.~
+A Short, Grease Stained bar sits infront of the grill.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18007
+Grill~
+Large Greasy Grill~
+A large greasy grill sits here, sizzling with meat-steaks.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18008
+Gibson Special Sandwich~
+Gibson Special Meat Sandwich~
+A heavy duty meaty sandwich lies here.~
+~
+19 8192 1
+5 0 0 0
+1 0 0
+#18009
+Incom T-16 Skyhopper~
+a Incom T-16 Skyhopper~
+A full sized model of a Incom T-16 Skyhopper sits here.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18010
+Z-74 Military Speeder Bike~
+a Z-74 Military Speeder Bike~
+A full sized model Z-74 Military Speeder Bike is here.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18011
+Holovid Screen~
+Wall-Mounted Holovid Screen~
+A Holovid screen is mounted to the south wall.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18012
+Tall Corner Lamp~
+Tall Corner Lamp~
+A tall lamp sits in the corner, shedding light.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18013
+Repulsorlift Circular Bed~
+Circular Repulsorlift Bed~
+A circular repulsorlift bed sits here, beckoning you to rest on it.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18014
+Golden Dragon Statue~
+Golden Dragon Statue~
+A medium sized statue of a ornate golden dragon sits here, its claws curled around a orb.~
+~
+8 8192 1
+0 0 0 0
+75 0 0
+#18015
+Tooth Ivory Desk~
+a Tooth Ivory Desk~
+A desk made of a massive slab of tooth-ivory sits here.~
+~
+13 0 0
+0 0 0 0
+9999 0 0
+#18016
+Standard Issue Durasteel Desk~
+a Standard Issue Durasteel Desk~
+A standar issue durasteel desk sits here, neatly kept.~
+~
+12 0 0
+0 0 0 0
+9999 0 0
+#18017
+Ripe Namana Fruit~
+a Ripe Namana Fruit~
+A pale pink fruit hangs on a branch here, waiting to be picked.~
+~
+61 8208 1
+3 10 0 0
+1 50 5
+#18018
+Namana Twists~
+Namana Twists~
+A small pile of Namana Twists lie here.~
+~
+19 8192 1
+10 0 0 0
+1 50 5
+#18019
+Namana Bread~
+Loaf of Namana Bread~
+A loaf of fresh Namana Bread lies here.~
+~
+19 8192 1
+30 0 0 0
+1 100 10
+#18020
+Pink Namana Candy~
+Pink Namana Candy~
+A small pile of pink Namana Lozenge Candies lies here.~
+~
+26 8192 1
+3 -1 -1 -1
+1 200 20
+#18021
+Red Namana Candy~
+Red Namana Candy~
+A small pile of red Namana Lozenge Candies lies here.~
+~
+26 8192 1
+3 -1 -1 -1
+1 200 20
+#18022
+Blue Namana Candy~
+Blue Namana Candy~
+A small pile of blue Namana Lozenge Candies lies here.~
+~
+26 8192 1
+4 -1 -1 -1
+1 200 20
+#18023
+Yellow Namana Candy~
+Yellow Namana Candy~
+A small pile of yellow Namana Lozenge Candies lies here.~
+~
+26 8192 1
+4 -1 -1 -1
+1 200 20
+#18201
+hiobj~
+hiobj~
+A himob is here.~
+~
+13 0 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#18001
+Salis D'aar Spaceport~
+The spaceport sits on a natural bedrock of nearly pure white quartz. Its
+slightly roughened to allow people ease of walking on it, without the risk
+of slipping and falling. Four central landing pads surround the center comm
+tower, each sitting on the outcropping of quartz. It makes a bright
+spectacle when the sun hits it just right, or even the landing lights from
+a descending freighter or fighter.
+
+Off to one side sits the Air/Space Traffic Control tower, a set of durasteel
+stairs leading up its side and into the tower itself.
+~
+0 4 1 0 0 0 15288
+D0
+~
+~
+0 -1 18017
+D1
+~
+~
+0 -1 18015
+D2
+~
+~
+0 -1 18007
+D4
+~
+~
+0 -1 18006
+D6
+~
+~
+0 -1 18004
+D7
+~
+~
+0 -1 18002
+D8
+~
+~
+0 -1 18005
+D9
+~
+~
+0 -1 18003
+S
+#18002
+Landing Pad 2~
+The landing pad is suprisingly free of engine-burn marks and weathering.
+Then you realize its been armor-annealed and roughed slightly. And that
+it is a bed of pure rock quartz, naturally occuring. Very ingenious use
+at that. A few techs peek out of their somewhat weathered hab-dome, and
+give you a slight wave.
+~
+0 48 1 0 0 0 15288
+D8
+~
+~
+0 -1 18001
+S
+#18003
+Landing Pad 4~
+The landing pad is suprisingly free of engine-burn marks and
+weathering.Then you realize its been armor-annealed and roughed
+slightly. And that it is a bed of pure rock quartz, naturally
+occuring. Very ingenious use at that. A few techs peek out of
+their somewhat weathered hab-dome, and give you a slight wave.
+A bus stop is also here.
+~
+0 48 1 0 0 0 15288
+D6
+~
+~
+0 -1 18001
+S
+#18004
+Landing Pad 1~
+The landing pad is suprisingly free of engine-burn marks and weathering.
+Then you realize its been armor-annealed and roughed slightly. And that
+it is a bed of pure rock quartz, naturally occuring. Very ingenious use
+at that. A few techs peek out of their somewhat weathered hab-dome, and
+give you a slight wave.
+~
+0 48 1 0 0 0 15288
+D9
+~
+~
+0 -1 18001
+S
+#18005
+Landing Pad 3~
+The landing pad is suprisingly free of engine-burn marks and weathering.
+Then you realize its been armor-annealed and roughed slightly. And that
+it is a bed of pure rock quartz, naturally occuring. Very ingenious use
+at that. The technicians seem more active here, and several fighters are in
+various states of repair.
+~
+0 48 1 0 0 0 15288
+D7
+~
+~
+0 -1 18001
+S
+#18006
+Salis D'aar Spaceport Tower~
+You ascend into the spaceport tower, and from the windows, you can see the
+four landing pads. Each has a set of floodlights on it, to be kept well lit
+at all times. Radar screens and operators are all over, each giving clearance
+for landing and takeoff. One screen is dedicated to just the space surrounding
+the planet itself.
+~
+0 8 1 0 0 0 15288
+D5
+~
+~
+0 -1 18001
+> rand_prog 70~
+mpecho One of the controllers looks up, and speaks into his mike to a
+mpecho incoming ship. "Independent Vessel Garrets Gold, you are cleared
+mpecho to land on Pad 3."
+~
+> rand_prog 40~
+mpecho One of the controllers looks up, and speaks into his mike to a
+mpecho Outgoing ship. "Independent Vessel Garrets Gold, you are cleared
+mpecho for takeoff. Safe Flight"
+~
+|
+S
+#18007
+Infront of the Salis D'aar Spaceport Cantina~
+This lane between the two southernmost landing pads leads to the Salis
+D'aar Spaceport, where the technicians and engineers hang out after hours
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18001
+D2
+~
+~
+0 -1 18008
+S
+#18008
+Salis D'aar Spaceport Cantina Entrance~
+Your eyes adjust as you step into the slightly dimmer interior of the 
+spaceport cantina. A few tables are scattered about, and near the bar 
+and back are empty, more private booths. Several off duty technicians
+are around one table, playing a hand of sabacc. A grill near the bar
+is cooking up some sort of greasy meat and bread sandwiches, while 
+several R2 droids scurry about, serving drinks and delivering trays.
+~
+0 12 1 0 0 0 15288
+D0
+~
+~
+0 -1 18007
+D2
+~
+~
+0 -1 18009
+S
+#18009
+Salis D'aar Spaceport Cantina Bar~
+Near the center of the cantina you stand now. The smell of cooking food
+is stronger here, but your only at the bar, not the grill. To each side
+sit empty booths. R2 droids still scurry about, delivering orders. The
+center of the cantina is dominated by a large island bar, with a wide
+assortment of drinks available. A faint haze of smoke comes from the 
+grill to the south.
+~
+0 12 1 0 0 0 15288
+D0
+~
+~
+0 -1 18008
+D1
+~
+~
+0 -1 18010
+D2
+~
+~
+0 -1 18012
+D3
+~
+~
+0 -1 18011
+S
+#18010
+Private Booth~
+A large private booth, capable of seating several people. The table in
+the center is completed with a silvery cloth, and a small holoprojector
+for private viewings.
+~
+0 12 1 0 0 0 15288
+D3
+~
+~
+0 -1 18009
+S
+#18011
+Private Booth~
+A large private booth, capable of seating several people. The table in
+the center is completed with a silvery cloth, and a small holoprojector
+for private viewings.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18009
+S
+#18012
+Salis D'aar Spaceport Cantina Grill~
+On the back wall of the cantina rests the large grill, and food preparation
+area. The smell of cooking food is mouth-watering, though a bit greasy. The
+bar doesnt stretch this far, but a short counter extends infront of the grill
+for the few patrons that wish to sit this close and risk grease-splatters.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18009
+D1
+~
+~
+0 -1 18014
+D3
+~
+~
+0 -1 18013
+S
+#18013
+Private Booth~
+A large private booth, capable of seating several people. The table in
+the center is completed with a silvery cloth, and a small holoprojector
+for private viewings.
+~
+0 12 1 0 0 0 15288
+D1
+~
+~
+0 -1 18012
+S
+#18014
+Private Booth~
+A large private booth, capable of seating several people. The table in
+the center is completed with a silvery cloth, and a small holoprojector
+for private viewings.
+~
+0 12 1 0 0 0 15288
+D3
+~
+~
+0 -1 18012
+S
+#18015
+Shipyard Junkyard~
+Towering mounds of ship parts, engines, wreched spacecraft, and even some
+normal craft sit around this junkyard. A thin trail seems to run further
+east of here, and the smell of old oil is strong. A large rodent darts out
+of a pile of parts and across your shoe.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+2056 -1 18016
+D3
+~
+~
+0 -1 18001
+S
+#18016
+Black Market Shipyard~
+The walls of junk rise high to each side, hiding this place where people
+rarely come. Several fully built ships sit here, under extensive cammo
+tarping and reflection netting. This is the Black Market Shipyard...
+
+To see a listing of Black Market ships, type 'buyship'.
+~
+0 48 1 1536 0 0 15288
+D3
+~
+~
+0 -1 18015
+S
+#18017
+Salis D'aar Spaceport Road~
+The road drifts over the ribbon of slightly roughened quartz. Off to the
+far right, you can see the huge groves of Namana trees, waving green and
+golden in the light. Small beacons mark the roadway to each side.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18018
+D2
+~
+~
+0 -1 18001
+S
+#18018
+Salis D'aar Spaceport Road~
+The road drifts over the ribbon of slightly roughened quartz. Off to the
+near left, you see the city of Salis D'aar sitting on its natural ribbon
+bed of quartz and carven out of the same rock. It makes for a sparkling
+view indeed. Small beacons mark the roadway to each side.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18019
+D2
+~
+~
+0 -1 18017
+S
+#18019
+Salis D'aar Spaceport Road~
+The road takes a slight turn downward here, dipping between two large
+valley-sides. The quartz is a slightly darker color here, and the
+beacons that marked the roadway are no-longer existant. Your views of
+the city and the factory are blocked by the valley sides now.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18020
+D2
+~
+~
+0 -1 18018
+S
+#18020
+Fork in the Road~
+The road takes a sudden divergence here, splitting off both to the left
+and the right. A sign sits here, that says. "West: Salis D'aar City.
+ East: Tyers Repulsorlift Factory." The smoothed ribbon of quarts continues
+to the west only. The east is a duracrete road, grey in color, and bordered
+by trees.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18022
+D2
+~
+~
+0 -1 18019
+D3
+~
+~
+0 -1 18021
+S
+#18021
+Taslorian West Road~
+The road drifts along the ribbon of quartz, the grey color of it fading
+to a smoky crystal now. Namana trees line both sides of the road, and
+the beacons that marked the road have returned. Off in the distance, 
+rising just above the trees, you can see the top of the Bakur Complex
+seat of the Imperial presence in this system.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18020
+D3
+~
+~
+0 -1 18027
+S
+#18022
+Tyers East Road~
+Tyers road is a recent addition, and the main access road to the Tyers
+Repulsorlift Factory. The road is made of duracrete, and bordered by young
+namana trees with silverish leaves.
+~
+0 0 1 0 0 0 15288
+D3
+~
+~
+0 -1 18020
+D6
+~
+~
+0 -1 18023
+S
+#18023
+Tyers East Road~
+The road curves here from east to north, and along a cliff-face on the
+west side. On the east, the silvery-leaved namana trees still border
+the road, the road wide enough for two repulsorcars to pass side by side
+~
+0 4 1 0 0 0 15288
+D0
+~
+~
+0 -1 18024
+D9
+~
+~
+0 -1 18022
+S
+#18024
+Before the Tyers Repulsorlift Factory~
+Before you, carved out of the solid bedrock and colums of durasteel and
+duracrete lies the Tyers Repulsorlift Factory. Inside are made the best
+quality repulsorlifts used in the galaxy. The namana trees stop a good
+thirty feet away from the building.
+~
+0 4 1 0 0 0 15288
+D0
+~
+~
+0 -1 18025
+D2
+~
+~
+0 -1 18023
+S
+#18025
+Factory Showroom~
+The interior of the first area is cooler than the outside, possibly because
+of the strong refrigeration units built into the building for the comfort
+of its occupants. The walls are a undertone of grey,durasteel with various
+makes and models of speeders, swoop bikes, pod-racers and fighter craft
+that all use the fine repulsorlifts made by Tyers Inc.
+
+Several models sit on the floor, for the admiration of the masses.
+~
+0 12 1 0 0 0 15288
+D1
+~
+~
+0 -1 18026
+D2
+~
+~
+0 -1 18024
+S
+#18026
+Factory Floor~
+The interior of the factory is cavernous, with your footsteps echoing around
+the huge space. Machines assemble repulsorlifts for distribution all over
+the galaxy. A small workspace could be used for a limited time, if one wanted
+to use it.
+~
+0 67108876 1 0 0 0 15288
+D3
+~
+~
+0 -1 18025
+S
+#18027
+Taslorian West Road~
+The road drifts along the ribbon of quartz, the smoky color uniform through
+it now. The namana trees show signs of being worked by a gardener and well
+kept. The beacons wink on and off slowly, leading you onward towards the
+capital city.
+~
+0 4 1 0 0 0 15288
+D1
+~
+~
+0 -1 18021
+D3
+~
+~
+0 -1 18028
+S
+#18028
+Taslorian West Road~
+The road drifts along the ribbon of quartz, the smoky color uniform through
+it now. The namana trees show signs of being worked by a gardener and well
+kept. The beacons wink on and off slowly, leading you onward towards the
+capital city.
+
+To the south, the beacons take a second path to the south, through the trees
+and onto a duracrete road. To the far south, you can see the impressive 
+duracrete and durasteel hexagonal structure of the Imperial Garrison.
+~
+0 4 1 0 0 0 15288
+D1
+~
+~
+0 -1 18027
+D2
+~
+~
+0 -1 18031
+D3
+~
+~
+0 -1 18029
+S
+#18029
+Taslorian West Road~
+The road drifts along the ribbon of quartz, the smoky color uniform through
+it now. The namana trees show signs of being worked by a gardener and well
+kept. The beacons wink on and off slowly, leading you onward towards the
+capital city.
+~
+0 4 1 0 0 0 15288
+D1
+~
+~
+0 -1 18028
+D3
+~
+~
+0 -1 18030
+S
+#18030
+Archway Entrance to Salis D'aar~
+A archway rises from the ground around each side of the road. It is made
+of pale green marble, and polished to a mirrior shine. Marked upon it is
+the words. "Imperial Colony Bakura, in the memory of our Emperor Palpatine"
+~
+0 4 1 0 0 0 15288
+D1
+~
+~
+0 -1 18029
+D3
+~
+~
+0 -1 18032
+S
+#18031
+Imperial Garrison Road~
+~
+0 1073741824 1 0 0 0 15288
+D0
+~
+~
+0 -1 18028
+S
+#18032
+Promenade Main Street~
+You step through the arch and into the city of Salis D'aar proper. All around
+you, the buildings are made of a fine combination of rose quartz, smoky crystal
+and pale green marble. Its a wonderful blend of colors that adds to the natural
+beauty of this city. All over, speeders and skycars zip through the streets,
+each of them on some errand or another. All the people hold themselves high.
+They must really love their city.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18030
+D3
+~
+~
+0 -1 18033
+S
+#18033
+Promenade Main Street~
+The buildings here show a slight weathering, showing how truly old they are
+to be weathered marble and quartz. A speeder is broke down on the side of the
+road, the driver having crawled into the hood to repair it. A puff of smoke
+erupts from under the hood, and a loud curse comes from it.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18039
+D1
+~
+~
+0 -1 18032
+D2
+~
+~
+0 -1 18038
+D3
+~
+~
+0 -1 18034
+S
+#18034
+Promenade Main Street~
+The buildings here show a slight weathering, showing how truly old they are
+to be weathered marble and quartz. Two shops sit here, on either side of the
+street, one proclaiming a weapon store, the other, a armorer.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18047
+D1
+~
+~
+0 -1 18033
+D2
+~
+~
+0 -1 18046
+D3
+~
+~
+0 -1 18035
+S
+#18035
+Promenade Main Street~
+The buildings here show a slight weathering, showing how truly old they are
+to be weathered marble and quartz. Two shops sit here, on either side of the
+street, one proclaiming a general services store, the other, a fine eatery.
+~
+0 1073741824 1 0 0 0 15288
+D0
+~
+~
+0 -1 18048
+D1
+~
+~
+0 -1 18034
+D2
+~
+~
+0 -1 18049
+D3
+~
+~
+0 -1 18036
+S
+#18036
+Promenade City Square~
+The buildings here show a slight weathering, showing how truly old they are
+to be weathered marble and quartz. Just ahead, you can see the area infront
+of the Bakura Imperial Senate Complex.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18041
+D1
+~
+~
+0 -1 18035
+D2
+~
+~
+0 -1 18040
+D3
+~
+~
+0 -1 18037
+D7
+~
+~
+0 -1 18050
+D8
+~
+~
+0 -1 18104
+D9
+~
+~
+0 -1 18103
+S
+#18037
+Promenade Main Street~
+The main street starts to widen here, and you stand near the foot of the
+imposing Bakura Imperial Senate Complex. The facing buildings are still
+a pleasant mix of green marble, rose quartz and smoke grey quartz. Namana
+trees grow in ordered rows along the sidwalks.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18051
+D1
+~
+~
+0 -1 18036
+D2
+~
+~
+0 -1 18052
+D3
+~
+~
+0 -1 18072
+S
+#18038
+Second Street~
+In this part of town, you see less of the pale marble, and more of the buildings
+constructed of the smoky and rose quartzes. A small workshop sits to the west.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18033
+D3
+~
+~
+0 -1 18042
+S
+#18039
+Second Street~
+In this part of town, you see less of the pale marble, and more of the buildings
+constructed of the smoky and rose quartzes. A small alley runs to the east.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18043
+D2
+~
+~
+0 -1 18033
+S
+#18040
+First Street~
+The buildings here werent constructed of the rose quartz, but a extra helping
+of the pale green marble and smoky crystal. The road continues to the south,
+heading towards the Namana fruit processing plant and groves.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18036
+D2
+~
+~
+0 -1 18083
+S
+#18041
+First Street~
+The buildings here werent constructed of the rose quartz, but a extra helping
+of the pale green marble and smoky crystal. The road continues to the north
+leading to the Capriston Residence.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18106
+D2
+~
+~
+0 -1 18036
+S
+#18042
+Small, Hole in the Wall Workshop~
+A small workshop, but well stocked with tools. A old droid sits in the corner
+wrecked and stripped beyond use.
+~
+0 100663300 1 0 0 0 15288
+D1
+~
+~
+0 -1 18038
+S
+#18043
+Small Dark Alley~
+The alley is small and dark. Trash containers are all over, piled high with
+refuse. A battered crate with a old shield tubing sits in one corner. A door
+is set into the north wall of the alley, with a heavy durasteel facing.
+A small slit is cut into the door, for people to look out.
+~
+0 0 1 0 0 0 15288
+D3
+~
+~
+0 -1 18039
+> speech_prog :Emperor's Bones~
+mpecho the door opens suddenly, and a hand lashes out and grabs you, dragging
+mpecho inside the door. It slams shut behind you.
+mptransfer $n 18045
+~
+|
+S
+#18044
+Smuggler's Den~
+The room youve been drug into is small, and hard to see in. A man stands in
+the shadows, his eyes narrowed at you. His guards stand to each side,
+weapons clenched.
+~
+0 12 1 0 0 0 15288
+D2
+~
+~
+0 -1 18045
+S
+#18045
+Smugglers Antechamber~
+The antechamber has only one exit. To the north into a dimly lit room.
+The shadows are thick on each side of you.
+~
+0 13 1 0 0 0 15288
+D0
+~
+~
+0 -1 18044
+D2
+~
+~
+0 -1 18043
+S
+#18046
+Kravens Imperial Armory~
+You step into the most cluttered shop youve ever seen! all kinds of armor
+and pieces of armor lay about. Stacks of chest plates and helmets are in
+bins. A table in the back is cluttered with the armor-makers paraphenalia.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18034
+S
+#18047
+Efficency Blaster Builders~
+Another packed store resides behind the outer stone facade, where hundreds
+of blasters and weapons line the walls, in racks. A gun-nuts paradise
+~
+0 8 1 0 0 0 15288
+D2
+~
+~
+0 -1 18034
+S
+#18048
+Biggs' General Store~
+A large, classy general store, Biggs' has every item you could desire.
+It almost seems to be a subsidary of Marshall's General store!
+~
+0 8 1 0 0 0 15288
+D2
+~
+~
+0 -1 18035
+S
+#18049
+Jenson's Diner~
+As you open the door, your assaulted with casualness, but grandeur. Across 
+the room is a bar,and behind it you see an array of liquors proudly displayed,
+some of the bottles you've never seen before. The fireplace is snugged up
+against a nearby wall, with a wide hearth exactly suited for a singer to sit
+and spin a tale for you. There is an open-beam ceiling, with various and
+sundry cooking herbs hanging from the beams to dry. There are trestle tables
+with benches that will easily accomodate eight or ten people (as long as one
+of them isn't a wookiee). There are smaller tables that will accomodate a
+more intimate group of two or three.
+~
+0 1073741832 1 0 0 0 15288
+D0
+~
+~
+0 -1 18035
+> rand_prog 40~
+mpecho Someone jostles your elbow as you go past them, and a letter falls into
+mpecho your pocket. It reads "The password to the Smuggler is Emperors Bones"
+~
+|
+S
+#18050
+Coruscant Savings and Loan, Bakura Branch~
+Their are bank tellers to the north, helping out customers. Automated defense
+systems deter robbers, along with guards. A few sofas teamed with tables offer
+people places to sit while they make their transactions.
+~
+0 264 1 0 0 0 15288
+D8
+~
+~
+0 -1 18036
+S
+#18051
+Bakuran Hilton Hotel~
+A posh hotel, usually reserved for visiting dignitaries and wealthy patrons.
+But if your lucky, their may be a room free just for you! Maybe youll even
+get one of those fancy chocolates on your pillows!
+~
+0 8388620 1 0 0 0 15288
+D2
+~
+~
+0 -1 18037
+S
+#18052
+Bakura Skylight Apartments~
+The marble floor, the sandalwood paneling, the potted Namana trees and
+expensive fountain in the center of the lobby. This place looks more like
+a hotel than a Apartment Complex. Many Imperial Senators and important
+dignitaries have apartments here, in this most posh of housing complexes in
+the galaxy. A guard sits behind a rosewood desk, his scaner playing over each
+person as they enter the complex. They protect their people well.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18037
+D2
+~
+~
+0 -1 18053
+S
+#18053
+Bakura Skylights Turbolift~
+This has got to be one of the most luxuriant turbolifts youve ever seen in
+the galaxy. Thickly carpeted floor, wood paneling, gold leaf on the voice
+grid pickup, and silver fittings on the doors. A fortune must have been
+spent on this!
+
+If you need a list of floors, say List.
+~
+0 12 1 0 0 0 15288
+> speech_prog List~
+Mpecho 1: Lobby
+mpecho 2: 1st Floor
+mpecho 3: 2nd Floor
+mpecho 4: 3rd Floor
+~
+> speech_prog 1~
+Mpecho You hardly feel any motion as the turbolift moves downward to the
+mpecho Lobby level, and you disembark.
+mptransfer $n 18052
+~
+> speech_prog 2~
+mpecho You hardly feel any motion as the turbolift moves upward to the
+mpecho first floor, and you disembark.
+mptransfer $n 18054
+~
+> speech_prog 3~
+mpecho You hardly feel any motion as the turbolift moves upward to the
+mpecho second floor, and you disembark.
+mptransfer $n 18056
+~
+> speech_prog 4~
+mpecho You hardly feel any motion as the turbolift moves upward to the
+mpecho third floor, and you disembark.
+mptransfer $n 18058
+~
+|
+S
+#18054
+1st Floor, Hallway~
+The hallway is luxuriously carpeted and paneled with rich exotic woods and
+expensive paintings and portraits, all of important imperial figures. Small
+cleaning droids drift up and down the hallway, on occasion, cleaning the
+carpets from your footprints.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18055
+D1
+~
+~
+0 -1 18066
+D2
+~
+~
+0 -1 18053
+D3
+~
+~
+0 -1 18060
+S
+#18055
+1st Floor, Hallway~
+The hallway is luxuriously carpeted and paneled with rich exotic woods and
+expensive paintings and portraits, all of important imperial figures. Small
+cleaning droids drift up and down the hallway, on occasion, cleaning the
+carpets from your footprints.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18067
+D2
+~
+~
+0 -1 18054
+D3
+~
+~
+0 -1 18061
+S
+#18056
+2nd Floor, Hallway~
+The hallway is luxuriously carpeted and paneled with rich exotic woods and
+expensive paintings and portraits, all of important imperial figures. Small
+cleaning droids drift up and down the hallway, on occasion, cleaning the
+carpets from your footprints.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18057
+D1
+~
+~
+0 -1 18068
+D2
+~
+~
+0 -1 18053
+D3
+~
+~
+0 -1 18062
+S
+#18057
+2nd Floor, Hallway~
+The hallway is luxuriously carpeted and paneled with rich exotic woods and
+expensive paintings and portraits, all of important imperial figures. Small
+cleaning droids drift up and down the hallway, on occasion, cleaning the
+carpets from your footprints.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18069
+D2
+~
+~
+0 -1 18056
+D3
+~
+~
+0 -1 18063
+S
+#18058
+3rd Floor, Hallway~
+The hallway is luxuriously carpeted and paneled with rich exotic woods and
+expensive paintings and portraits, all of important imperial figures. Small
+cleaning droids drift up and down the hallway, on occasion, cleaning the
+carpets from your footprints.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18059
+D1
+~
+~
+0 -1 18070
+D2
+~
+~
+0 -1 18053
+D3
+~
+~
+0 -1 18064
+S
+#18059
+3rd Floor, Hallway~
+The hallway is luxuriously carpeted and paneled with rich exotic woods and
+expensive paintings and portraits, all of important imperial figures. Small
+cleaning droids drift up and down the hallway, on occasion, cleaning the
+carpets from your footprints.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18071
+D2
+~
+~
+0 -1 18058
+D3
+~
+~
+0 -1 18065
+S
+#18060
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Bakur Complex.
+~
+0 2097160 1 0 0 0 15288
+D1
+~
+~
+0 -1 18054
+S
+#18061
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Bakur Complex.
+~
+0 2097160 1 0 0 0 15288
+D1
+~
+~
+0 -1 18055
+S
+#18062
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Bakur Complex.
+~
+0 2097160 1 0 0 0 15288
+D1
+~
+~
+0 -1 18056
+S
+#18063
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Bakur Complex.
+~
+0 2097160 1 0 0 0 15288
+D1
+~
+~
+0 -1 18057
+S
+#18064
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Bakur Complex.
+~
+0 2097160 1 0 0 0 15288
+D1
+~
+~
+0 -1 18058
+S
+#18065
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Bakur Complex.
+~
+0 2097160 1 0 0 0 15288
+D1
+~
+~
+0 -1 18059
+S
+#18066
+Imperial Citizens Apt~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Imperial Garrison
+and the Salis D'aar Spaceport.
+~
+0 9437192 1 0 0 0 15288
+D3
+~
+~
+0 -1 18054
+S
+#18067
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Imperial Garrison
+and the Salis D'aar Spaceport.
+~
+0 2097160 1 0 0 0 15288
+D3
+~
+~
+0 -1 18055
+S
+#18068
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Imperial Garrison
+and the Salis D'aar Spaceport.
+~
+0 2097160 1 0 0 0 15288
+D3
+~
+~
+0 -1 18056
+S
+#18069
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Imperial Garrison
+and the Salis D'aar Spaceport.
+~
+0 2097160 1 0 0 0 15288
+D3
+~
+~
+0 -1 18057
+S
+#18070
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Imperial Garrison
+and the Salis D'aar Spaceport.
+~
+0 2097164 1 0 0 0 15288
+D3
+~
+~
+0 -1 18058
+S
+#18071
+Empty Bakuran Apartment~
+These apartments are luxuriously furnished, well appointed, and have excellent
+views from their balconies. Namana fruit trees are potted on the balcony and
+around the apartment, and from the balcony, you can see the Imperial Garrison
+and the Salis D'aar Spaceport.
+~
+0 2097164 1 0 0 0 15288
+D3
+~
+~
+0 -1 18059
+S
+#18072
+Bakura Imperial Senate Complex Guard Post~
+You step beyond the gates, and into a beautiful building carven of rose colored
+quartz. The windows are of a clear duraplast construction, and outside of them
+you can see the forests of namana trees that surround the complex on three sides.
+Ahead, you see what looks like a guard post, their weapons at easy stand-by.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18037
+D3
+~
+~
+0 -1 18073
+S
+#18073
+Bakura Imperial Senate Complex Plaza~
+The rose quarts here is polished to a mirror shine, and the colums about you
+are carved from red veined black marble. Small gardens dot the inside of the
+plaza, each centered with a ancient sized namana tree and tulips planted around
+it. A low dais stands in the middle of the complex. Several small, gold plated
+oriental dragon sculptures sit at each of the gardens, like small protectors.
+Above, a huge skylight lets in the sunlight, allowing you to see the weather
+above the plaza.
+~
+0 4 1 0 0 0 15288
+D0
+~
+~
+0 -1 18074
+D1
+~
+~
+0 -1 18072
+D2
+~
+~
+0 -1 18075
+D3
+~
+~
+0 -1 18077
+S
+#18074
+Bakura Senate Antechamber~
+You step beneath a arch of glistening white stone. A rough wooden wall blocks
+most of it, while scanners hovering on silent repulsorlifts drift on each side
+and overhead. To one side of the archway stands a rack of cubicles, for weapons
+storage, each cubby coded with a rapid-scan palmlock.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18082
+D2
+~
+~
+0 -1 18073
+S
+#18075
+Senate Hallway~
+The hallway is carpeted with a lush, rich, thick red carpet, and panelled
+in a deep grey wall-scrolling. A few pictures of past planetary goveners line
+the walls, and various views of the best places on Bakura to visit compete
+for the same space. 
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18073
+D1
+~
+~
+0 -1 18079
+D2
+~
+~
+0 -1 18076
+D3
+~
+~
+0 -1 18080
+S
+#18076
+Senate Hallway~
+The hallway is carpeted with a lush, rich, thick red carpet, and panelled
+in a deep grey wall-scrolling. A few pictures of past planetary goveners line
+the walls, and various views of the best places on Bakura to visit compete
+for the same space.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18075
+D1
+~
+~
+0 -1 18081
+S
+#18077
+Senate Museum Antechamber~
+In the distant, footsteps echo from the huge Museum ahead. But here, scanners
+sit to make sure noone brings weapons into the museum. Of course, that often
+doesnt work. You can see in the distance huge statues and large paintings
+depicting Imperial leaders.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18073
+D3
+~
+~
+0 -1 18078
+S
+#18078
+Senate Museum~
+Footsteps echo through the cavernous chamber, filled with statues of the greatest
+people that have influenced the Imperial regime, and paintings of the greatest
+military minds that they have to offer. The liknesses of Grand Moff Tarkin,
+Emperor Palpantine, Lord Darth Vader, Grand Admiral Thrawn and others dot the
+myriad of walls and pedastles in the chamber. It is a awe inspiring sight.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18077
+S
+#18079
+Public Office, Gaeriel Capriston~
+This office is fairly well apointed. The desk infront of you is made out of
+one enormous slab of ivory, possibly some sort of giant tooth. It is a relic
+of the former govener, Wilek Nereus. Several awards for outstanding imperial
+service decorate the walls, and behind the chair sits a large window, showing
+downtown Salis D'aar.
+~
+0 12 1 0 0 0 15288
+D3
+~
+~
+0 -1 18075
+S
+#18080
+Public Office, Pter Thanas~
+Pter Thanas public office is as austere and as little decorated as one would
+expect for a Imperial Commander. His desk, meticuously kept, his window replaced
+by a viewscreen showing the readouts of his garrison. The walls were bare of
+decoration except one example of the Imperial Symbol, on the north wall.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18075
+S
+#18081
+Bakur Complex Private Landing Pad~
+The private landing pad of the Bakuran goverment, for those people that want
+to visit the goverment in private and secrecy. The duracrete landing pad is
+nearly spotless.
+~
+0 48 1 1024 0 0 15288
+D3
+~
+~
+0 -1 18076
+S
+#18082
+Bakuran Senate Chamber~
+The chamber was square under a tiled ceiling, and in each corner stood a
+tall, glassy pillar that seemed to direct rainwater in a beautiful cascade
+down each corner, channeled there by roof gutters. The pillars were lit from
+below, giving them the shimmer of the liquid pulse of Bakura's biosphere.
+The room is arranged in three tiers, with a long table sitting at the
+topmost layer, with a single chair upon it, reserved for the planetary
+govener. The second tier had two long tables, for the senior senators of the
+planet, and the bottom most tier had two tables surrounding a square area,
+that could be slid aside to expose a planetary holographic display, or for
+the latest news from Imperial Center.
+~
+0 0 1 0 0 0 15288
+D2
+~
+~
+0 -1 18074
+S
+#18083
+First Street~
+The buildings here werent constructed of the rose quartz, but a extra helping
+of the pale green marble and smoky crystal. The road continues to the south.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18040
+D2
+~
+~
+0 -1 18084
+S
+#18084
+First Street~
+The buildings here werent constructed of the rose quartz, but a extra helping
+of the pale green marble and smoky crystal. The road continues to the south.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18083
+D2
+~
+~
+0 -1 18085
+S
+#18085
+Fork in the Road~
+The buildings here are of a less elaborate construction of those to the north
+but are in good repair. To the east, you can see the groves where the namanna
+fruit trees are grown and the fruit is picked. To the west, you can see the
+factory where the fruit is processed.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18084
+D1
+~
+~
+0 -1 18086
+D3
+~
+~
+0 -1 18100
+S
+#18086
+Dyer's Orchard Road~
+The quartz ribbon doesnt extend this way, and the path is a well sculpted gravel
+path, well suited to the traversing of hovercarts or foot traffic. Around you,
+you can smell the sweet scents of the namana fruit trees, along with the foiliage
+in full bloom year round.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18087
+D3
+~
+~
+0 -1 18085
+S
+#18087
+Dyer's Orchard Road~
+The quartz ribbon doesnt extend this way, and the path is a well sculpted gravel
+path, well suited to the traversing of hovercarts or foot traffic. Around you,
+you can smell the sweet scents of the namana fruit trees, along with the foiliage
+in full bloom year round.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18088
+D3
+~
+~
+0 -1 18086
+S
+#18088
+Dyer's Namana Fruit Orchard~
+As your footfalls carry you into the beginnigns of the orchard, your surrounded
+by silver-barked trees and leaves of the deepest viridian green. Each tree is
+heavy with fruit, and and the sweet scent is much stronger here. Trees stand in
+orderly rows, and droids drift through them, tending to them.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18089
+D2
+~
+~
+0 -1 18093
+D3
+~
+~
+0 -1 18087
+S
+#18089
+Dyer's Namana Fruit Orchard~
+Your surrounded by silver-barked trees and leaves of the deepest viridian green.
+Each tree is heavy with fruit, and the sweet scent is much stronger here. Trees
+stand in orderly rows, and droids drift through and among them, tending to them.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18090
+D2
+~
+~
+0 -1 18092
+D3
+~
+~
+0 -1 18088
+S
+#18090
+Dyer's Namana Fruit Orchard~
+Your surrounded by silver-barked trees and leaves of the deepest viridian green.
+Each tree is heavy with fruit, and the sweet scent is much stronger here. Trees
+stand in orderly rows, and droids drift through and among them, tending to them.
+~
+0 0 1 0 0 0 15288
+D2
+~
+~
+0 -1 18091
+D3
+~
+~
+0 -1 18089
+S
+#18091
+Dyer's Namana Fruit Orchard~
+Your surrounded by silver-barked trees and leaves of the deepest viridian green.
+Each tree is heavy with fruit, and the sweet scent is much stronger here. Trees
+stand in orderly rows, and droids drift through and among them, tending to them.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18090
+D2
+~
+~
+0 -1 18096
+D3
+~
+~
+0 -1 18092
+S
+#18092
+Dyer's Namana Fruit Orchard Center~
+Your surrounded by silver-barked trees and leaves of the deepest viridian green.
+Each tree is heavy with fruit, and the sweet scent is much stronger here. Trees
+stand in orderly rows, and droids drift through and among them, tending to them.
+
+In the center of this area stands the largest Namana tree youve ever seen. It
+is easily ten foot in diameter and a hundred foot tall. Maybe you can climb it?
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18089
+D1
+~
+~
+0 -1 18091
+D2
+~
+~
+0 -1 18095
+D3
+~
+~
+0 -1 18093
+D4
+~
+~
+65664 -1 18097
+S
+#18093
+Dyer's Namana Fruit Orchard~
+Your surrounded by silver-barked trees and leaves of the deepest viridian green.
+Each tree is heavy with fruit, and the sweet scent is much stronger here. Trees
+stand in orderly rows, and droids drift through and among them, tending to them.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18088
+D1
+~
+~
+0 -1 18092
+D2
+~
+~
+0 -1 18094
+S
+#18094
+Dyer's Namana Fruit Orchard~
+Your surrounded by silver-barked trees and leaves of the deepest viridian green.
+Each tree is heavy with fruit, and the sweet scent is much stronger here. Trees
+stand in orderly rows, and droids drift through and among them, tending to them.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18093
+D1
+~
+~
+0 -1 18095
+S
+#18095
+Dyer's Namana Fruit Orchard~
+Your surrounded by silver-barked trees and leaves of the deepest viridian green.
+Each tree is heavy with fruit, and the sweet scent is much stronger here. Trees
+stand in orderly rows, and droids drift through and among them, tending to them.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18092
+D1
+~
+~
+0 -1 18096
+D3
+~
+~
+0 -1 18094
+S
+#18096
+Dyer's Namana Fruit Orchard~
+Your surrounded by silver-barked trees and leaves of the deepest viridian green.
+Each tree is heavy with fruit, and the sweet scent is much stronger here. Trees
+stand in orderly rows, and droids drift through and among them, tending to them.
+~
+0 0 1 0 0 0 15288
+D0
+~
+~
+0 -1 18091
+D3
+~
+~
+0 -1 18095
+S
+#18097
+Great Namana Tree Trunk~
+Your a third of the way up the great tree in the center of the orchard. The branches
+are at least one more climb upward, and the top past that. The silvery bark is
+smooth under your hands.
+~
+0 0 1 0 0 0 15288
+D4
+~
+~
+65664 -1 18098
+D5
+~
+~
+65664 -1 18092
+S
+#18098
+Great Namana Tree Branches~
+Your half way up the great tree in the center of the orchard. The branches surround
+you on each side. The top awaits you up ahead. The climb is a bit easier here, and
+the silvery bark isnt quite so smooth.
+~
+0 0 1 0 0 0 15288
+D4
+~
+~
+65664 -1 18099
+D5
+~
+~
+65664 -1 18097
+S
+#18099
+Great Namana Tree Top~
+You stand at the top of the great tree in the center of the orchard. The view 
+from here is astounding. You can even see the starport. Several planks of wood
+lie around, secured to a few of the more sturdy branches. This looks like a
+favorite area for people to come and watch the surrounding countryside. Several
+globes of Namana fruit hang around you, just in reach for picking.
+~
+0 0 1 0 0 0 15288
+D5
+~
+~
+65664 -1 18098
+S
+#18100
+Dyer's Refinery Road~
+The ribbon of quartz takes another turn here, running alongside of the Salis
+D'aar River. To the north, you can see orderly rows of namana trees and droids
+scuttling between each tree, plucking fruit and carrying it to the Processing
+plant ahead for processing into Namana fruit nectar and candy.
+~
+0 0 1 0 0 0 15288
+D1
+~
+~
+0 -1 18085
+D3
+~
+~
+0 -1 18101
+S
+#18101
+Dyer's Namana Fruit Refinery Entrance~
+Before you, carved out of the granite quartz protusions and colums of durasteel
+and duracrete lies the Dyer's Namana Fruit Refinery. Inside, the only processing
+plant of the Namana Fruit, into nectar, candies and other uses, exists. The trees
+run all the way up to the doors of the building, atteneded by gardening droids.
+~
+0 1073741824 1 0 0 0 15288
+D1
+~
+~
+0 -1 18100
+D3
+~
+~
+0 -1 18102
+S
+#18102
+Dyer's Refinery~
+The interior is much cooler than outside, owing to the fact that the namana fruit
+is best processed at a colder than room temperature. The walls are panneled in
+a rich blend of namana wood and oak, and pictures of the various products line
+the walls. Namana Nectar, Namana Twists, Namana Candy, Namana Bread, and Namana
+Spice are all made here.
+~
+0 1107296264 1 0 0 0 15288
+D1
+~
+~
+0 -1 18101
+S
+#18103
+Bakura Central Post Office.~
+The noise from the street dies down as you step inside the Post Office. Little
+more than a isolated nich in the middle of the city, with mail-boxes and terminals
+spread across the room, with privacy dividers.
+~
+0 0 1 0 0 0 15288
+D6
+~
+~
+0 -1 18036
+S
+#18104
+Imperial Bakuran Hospital~
+The hospital is clean, and efficently run, like all Imperial operations. Doctors
+walk around, talking with each other and the patients as well. They look at you
+and smile once, then turn back to their conversations.
+~
+0 8 1 0 0 0 15288
+D7
+~
+~
+0 -1 18036
+S
+#18105
+Bacta Tank~
+You step into the tube, and it seals around you cleanly, leaving you staring out
+at the doctors and medics standing around, walking between groups of tubes, and
+checking out other patients. The air mask is lowered to you, and the doctors
+wave for you to put it on.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18104
+> rand_prog 100~
+if ispc($n)
+mpecho You look around, with the mask on your face, and the tank begins to fill
+mpecho with clear liquid, causing you to float in the warm solution. After a
+mpecho moment, the liquid begins to darken to a red color, and the warm waves
+mpecho bathe your injured body, balming and healing your wounds.
+mprestore $n 250
+endif
+~
+|
+S
+#18106
+Capriston Street~
+The buildings here werent constructed of the rose quartz, but a extra helping
+of the pale green marble and smoky crystal.
+~
+0 1073741824 1 0 0 0 15288
+D0
+~
+~
+0 -1 18107
+D2
+~
+~
+0 -1 18041
+S
+#18107
+Capriston Residence Main Gate~
+You step up the roads from the main city, to a wall made of translucent crystal,
+and covered with strands of golden ivy. The ivy has leaves of silver, and veins
+of purest platinum. Whats even more shocking, is the plant is not a sculpture.
+Its actually living.
+
+The gates are stunning to look at. Made of beaten copper, burnished to a golden
+sheen, they wink like fire in the light. Tendrils of ivy cling to the gates, but
+dont hamper its movement. The gates are unlocked, and a path cobblestoned leads
+into the yard of the mannor. The grass beyond the wall is green, and thriving.
+Trees line both sides of the path, and shade the path in all but a few dapples of
+light. Its quite breathtaking.
+~
+0 1073741824 1 0 0 0 15288
+D0
+~
+~
+1 -1 18108
+D2
+~
+~
+0 -1 18106
+S
+#18108
+In Front of Capriston Residence~
+You wander through the paths for a few moments, but soon you realize they all
+lead to one place, Capriston Mannor. The walls of the mansion are made of the
+purest opaque blue and silver crystal. The entire mansion glitters in the light,
+but you realize its not blinding as it should be. The same ivy that is growing
+on the gates and outer walls is growing on the mansion too, enhancing its look.
+
+Off to each side, flanking the door are a pair of statues, done in the oriental
+style, one of a water dragon, its scales glittering sapphire the ingrained crystals
+in it. The other statue is of a fire dragon, its mouth open in a silent scream, and
+its scales glowing a ruby red.
+
+The door is made of bronzewood, reinforced with iron. The entire look of the 
+mannor is of a huge fortified castle of the early Rennisance.
+~
+0 1073741824 1 0 0 0 15288
+D0
+~
+~
+1 -1 18109
+D2
+~
+~
+1 -1 18107
+S
+#18109
+In the Main Hall of Capriston Mannor~
+The hall of Capriston Mannor is decorated in definative Rennsance style, its walls
+covered in paintings and sculptures. The hall looks like it was taken straight from
+a history holo... untill you realize this probably was the hall USED for the picture
+of the history holo. A set of sculpted stairs leads up towards the north. To the
+west, you can see the huge ballroom of the mannor. And to the east, through the open
+door is a fencing studio.
+~
+0 8 1 0 0 0 15288
+D0
+~
+~
+0 -1 18112
+D1
+~
+~
+0 -1 18110
+D2
+~
+~
+1 -1 18108
+D3
+~
+~
+0 -1 18111
+S
+#18110
+Fencing Studio~
+The fencing studios walls are done in oak paneling, the floors are covered
+with practice mats. Padded fencing uniforms are hung on hooks on the south
+wall, along with slim rapiers with endcaps on them. On the east wall, several
+real swords and daggers are wired to the wall. The north wall is a picture
+window, with a lovely view overseeing the grounds of Capriston Mannor. The
+mats look well used, and one of the support posts in the studio bears many
+chip marks and gouges, as if someone used it to practice on.
+~
+0 8 1 0 0 0 15288
+D3
+~
+~
+0 -1 18109
+S
+#18111
+Grand Ballroom~
+You step out onto the ballroom floor of the Mannor, and you can see that it is
+expensively made of a shining bright mirror-like material, that reflects the
+grand chandelieres overhead, and the light streaming in from the huge mirrors
+to the north and south. You can just imagine the huge receptions and dances
+that are held in here. A elaborate music system is built into the walls, that
+turns the entire room into one giant concert hall, with the smallest bands.
+The Capristons defiantely payed top price for this.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18109
+S
+#18112
+Capriston Mannor Hall~
+The hallway continues this direction, ending in a set of sculpted, ballroom stairs,
+flanked on each side with a huge dragon statue, and carpeted in the lushest red
+carpet possible.  To the east is a kitchen, and to the west is the grand dining hall.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18113
+D2
+~
+~
+0 -1 18109
+D3
+~
+~
+0 -1 18114
+D4
+~
+~
+0 -1 18115
+S
+#18113
+Capriston Mannor Kitchen~
+Double swinging doors lead to the kitchen from the Hall. The kitchen is spacious
+and has room enough for four or five cooks to be working at once. There are
+foodlockers to keep items warm, keep them cold, or keep them dry. There is also
+a larger foodlocker for the large amount of foods and wines that are kept on hand
+at all times.
+~
+0 8 1 0 0 0 15288
+D3
+~
+~
+0 -1 18112
+S
+#18114
+Grand Dining Hall~
+As you step into the grand dining hall, your eyes are at first drawn downward.
+Blue-green water ripples beneath transparent flooring. Underwater lights cast
+small moving shadows of fish and an occasional long, snakelike creature. As you
+approach the central dining table, you notice that it is literally a part of the
+floor and can easily seat 30 people. The center of the table is sculpted like
+a miniature mountain range, delicately carved from the translucent mineral, and
+lit from within like the rain pillars in the corners of the room. Tiny blue
+rivers trickled down the mountain's sides, to the tables corners, and down inside
+of its legs into the floor.
+
+Trees along the vine-covered walls raise their brances like arms. They seem to
+almost move on command, and it leaves you wondering if their flexible trees,
+some kind of primitive animal, or artificial.
+~
+0 8 1 0 0 0 15288
+D1
+~
+~
+0 -1 18112
+S
+#18115
+Upstairs Hall~
+The hall here is sparsely decorated, but what little that does decorate it is
+tasteful. Bits of art, and a few trinkets. A picture of a handsome man with
+black hair and a quiet smile adorns the north wall. 
+~
+0 1073741832 1 0 0 0 15288
+D3
+~
+~
+1 -1 18116
+D5
+~
+~
+0 -1 18112
+S
+#18116
+Arboretum~
+The arboretum of the mannor  is open to the air, and the indoor garden is huge.
+You could get lost in here, if you werent careful. The fragrance here is like a
+fine wine. Rosebushes in every hue and species, cover a majority of the area,
+some towering over six feet tall. Flagstoned paths lead all over the garden.
+
+The center of the garden is built around a single rosebush. Its almost like a
+shrine there. The single rosebush is silver in color, and thornless. Its delicate
+flowers have opened to the air and light, each releasing a faint fragrance. A grey
+square of marble, with a bronze plaque set into it is right infront of the bush.
+~
+0 1073741824 1 0 0 0 15288
+D1
+~
+~
+1 -1 18115
+S
+#18201
+Floating in a void~
+~
+0 4 1 0 0 0 15288
+S
+#0
+
+
+#RESETS
+M 1 18201 1 18201
+O 1 18201 1 18201
+M 1 18002 1 18005
+O 1 18002 1 18005
+O 1 1856 1 18011
+O 1 1856 1 18010
+O 1 1856 1 18013
+O 1 1856 1 18014
+M 1 18006 1 18016
+M 1 18004 1 18009
+G 1 9006 1
+G 1 7510 1
+G 1 1146 1
+G 1 18005 1
+O 1 18003 1 18009
+O 1 18004 1 18009
+M 1 18005 1 18012
+G 1 18008 1
+G 1 18008 1
+O 1 18006 1 18012
+O 1 18007 1 18012
+O 1 18009 1 18025
+O 1 18010 1 18025
+M 1 18007 1 18029
+M 1 18007 2 18037
+M 1 18008 7 18038
+M 1 18008 7 18038
+M 1 18008 7 18038
+M 1 18008 7 18038
+M 1 18008 7 18038
+M 1 18008 7 18038
+M 1 18008 7 18038
+M 1 18008 7 18033
+M 1 18010 1 18046
+G 1 1865 1
+G 1 1862 1
+G 1 1861 1
+G 1 1860 1
+G 1 1859 1
+M 1 18011 1 18047
+G 1 60 1
+G 1 54 1
+G 1 50 1
+M 1 18013 1 18049
+G 1 18005 1
+G 1 7508 1
+G 1 201 1
+G 1 9005 1
+M 1 18003 4 18006
+M 1 18003 4 18006
+M 1 18003 4 18006
+M 1 18003 4 18006
+O 1 18011 1 18067
+O 1 18012 1 18067
+O 1 18013 1 18067
+O 1 18011 1 18061
+O 1 18012 1 18061
+O 1 18013 1 18061
+O 1 18011 1 18060
+O 1 18012 1 18060
+O 1 18013 1 18060
+O 1 18011 1 18066
+O 1 18012 1 18066
+O 1 18013 1 18066
+O 1 18011 1 18062
+O 1 18012 1 18062
+O 1 18013 1 18062
+O 1 18011 1 18068
+O 1 18012 1 18068
+O 1 18013 1 18068
+O 1 18011 1 18063
+O 1 18012 1 18063
+O 1 18013 1 18063
+O 1 18011 1 18069
+O 1 18012 1 18069
+O 1 18013 1 18069
+O 1 18011 1 18064
+O 1 18012 1 18064
+O 1 18013 1 18064
+O 1 18011 1 18070
+O 1 18012 1 18070
+O 1 18013 1 18070
+O 1 18011 1 18065
+O 1 18012 1 18065
+O 1 18013 1 18065
+O 1 18011 1 18071
+O 1 18012 1 18071
+O 1 18013 1 18071
+M 1 18009 1 18044
+M 1 18012 1 18048
+G 1 65 1
+G 1 291 1
+G 1 290 1
+G 1 288 1
+G 1 138 1
+G 1 297 1
+G 1 296 1
+G 1 289 1
+G 1 4505 1
+O 1 133 1 18048
+O 1 134 1 18048
+M 1 18015 1 18079
+O 1 18015 1 18079
+M 1 18016 1 18080
+O 1 18016 1 18080
+M 1 18017 1 18082
+M 1 18014 2 18072
+M 1 18014 2 18072
+M 1 18014 4 18077
+M 1 18014 4 18077
+M 1 18014 6 18074
+M 1 18014 6 18074
+O 1 18017 1 18099
+M 1 18018 1 18102
+G 1 18005 1
+G 1 18017 1
+G 1 18018 1
+G 1 18019 1
+G 1 18021 1
+G 1 18020 1
+G 1 18022 1
+G 1 18023 1
+O 1 18014 1 18078
+O 1 38 1 18103
+M 1 18019 1 18104
+S
+
+
+#SHOPS
+ 18004    0  0  0  0  0   120  90         0 23    ; William, the Cantina Bartender
+ 18005    0  0  0  0  0   120  90         0 23    ; Gibson, Bakuran Short Order Cook
+ 18010    0  0  0  0  0   120  90         0 23    ; Kraven the Armorer
+ 18011    0  0  0  0  0   120  90         0 23    ; Johnny the Weaponsmith
+ 18012    0  0  0  0  0   120  90         0 23    ; Biggs the Clerk
+ 18013    0  0  0  0  0   120  90         0 23    ; Glynna Jenson
+ 18018   75 75 75 75 75   120  75         0 23    ; Aaron Dyer
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+M  18014 spec_police
+M  18014 spec_customs_weapons
+S
+
+
+#$

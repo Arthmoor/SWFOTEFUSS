@@ -1,0 +1,104 @@
+#AREA   Ship vnums~
+
+
+
+#AUTHOR Eleven~
+
+#RANGES
+0 0 0 0
+$
+
+#FLAGS
+0
+
+#ECONOMY 0 6252987
+
+#MOBILES
+#12000
+lowmob~
+a newly created lowmob~
+Some god abandoned a newly created lowmob here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#18000
+himob~
+a newly created himob~
+Some god abandoned a newly created himob here.
+~
+~
+1073741825 0 0 Z
+1 0 0 0d0+0 0d0+0
+0 0
+8 8 0
+10 10 10 10 10 10 10
+0 0 0 0 0
+0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0
+#0
+
+
+#OBJECTS
+#12000
+lowobj~
+a lowobj~
+A lowobj is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#18000
+hiobj~
+a hiobj~
+A hiobj is here.~
+~
+13 1073741824 0
+0 0 0 0
+1 0 0
+#0
+
+
+#ROOMS
+#12000
+Floating in a void~
+~
+0 1073741828 1 0 0 0 256
+S
+#18000
+Floating in a void~
+~
+0 1073741828 1 0 0 0 256
+S
+#0
+
+
+#RESETS
+M 1 12000 1 12000
+O 1 12000 1 12000
+M 1 18000 1 18000
+O 1 18000 1 18000
+S
+
+
+#SHOPS
+0
+
+
+#REPAIRS
+0
+
+
+#SPECIALS
+S
+
+
+#$

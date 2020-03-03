@@ -1,0 +1,32 @@
+#FORCE
+Alter          0
+ChEffect0     You close your eyes and relax.$RN$~
+ChEffect1     You open your eyes and take in a breath feeling refreshed.$RN$~
+ChEffect2     You open your eyes and gasp for breath.$RN$~
+ChEffect3     ~
+ChEffect4     ~
+Code           fskill_refresh~
+Cost           0
+Control        1
+Disabled       0
+Mastertrain    0
+Index          0
+Name           meditate~
+Notskill       0
+RoomEffect0     $n closes $np eyes and relaxes.$RN$~
+RoomEffect1     $n opens $np eyes and takes in a breath.$RN$~
+RoomEffect2     $n opens $np eyes and gasps for breath.$RN$~
+RoomEffect3     ~
+RoomEffect4     ~
+Sense          0
+Status         1
+Type           0
+VictimEffect0     ~
+VictimEffect1     ~
+VictimEffect2     ~
+VictimEffect3     ~
+VictimEffect4     ~
+WaitState      0
+End
+
+#END

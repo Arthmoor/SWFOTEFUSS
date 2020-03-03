@@ -1,0 +1,9 @@
+#FORCE
+Name      makelightsaber~
+Status    2
+Type      0
+Desc      Command:    makelightsaber$RN$Usage:      makelightsaber <description>$RN$Level:      Knight/Lord$RN$Mana:       0$RN$Time Req:   Varies$RN$Duration:   Instant$RN$Components: Many, your Master will teach you$RN$$RN$The weapon of a user of the force, you will learn to$RN$not only wield it but you will learn many forms of$RN$combat in using it.$RN$~
+Skill     15
+End
+
+#END

@@ -1,0 +1,185 @@
+#PLAYER
+Version      4
+Name         User~
+Comfreq      455.111~
+Sex          1
+Race         0
+MainAbility  0
+SecondAbility  1
+Languages    -1 -8193
+Toplevel     36
+Pheight      0
+Build        1
+Played       54462
+Ship            ~
+ShipNum         0
+Room         100
+HpManaMove   500 500 0 0 1000 1000
+Force        0 0 0 0
+ForceControl 0
+ForceSense   0
+ForceAlter   0
+ForceChance   0
+ForceId      0
+ForceAlign   0
+ForceConverted   0
+ForceType      0
+ForceLvlStatus 0
+ForceSkill   0 0
+ForceSkill   1 0
+ForceSkill   2 0
+ForceSkill   3 0
+ForceSkill   4 0
+ForceSkill   5 0
+ForceSkill   6 0
+ForceSkill   7 0
+ForceSkill   8 0
+ForceSkill   9 0
+ForceSkill   10 0
+ForceSkill   11 0
+ForceSkill   12 0
+ForceSkill   13 0
+ForceSkill   14 0
+ForceSkill   15 0
+ForceSkill   16 0
+ForceSkill   17 0
+ForceSkill   18 0
+ForceSkill   19 0
+ForceSkill   20 0
+ForceSkill   21 0
+ForceSkill   22 0
+ForceSkill   23 0
+Gold         1998988430
+Bank         0
+Salary       0
+Ability        0 1 0 0
+Ability        1 200 19800500 0
+Ability        2 200 19800500 0
+Ability        3 1 0 0
+Ability        4 30 420500 0
+Ability        5 1 0 0
+Ability        6 0 0 0
+Ability        7 21 215840 0
+Ability        8 1 0 0
+Ability        9 200 19999999 0
+Act          574641736
+Position     8
+SavingThrows 0 0 0 0 0
+Alignment    0
+Glory        0
+MGlory       0
+Hitroll      0
+Damroll      0
+Armor        100
+Rppoints   0
+Restore_time 1045234137
+Mentalstate  0
+Password     UsNzKe0MKEkaU~
+Lastplayed   1068855711
+Title         New User~
+AuthedBy     Eleven~
+Addiction    0 0 0 0 0 0 0 0 0 0
+Druglevel    0 0 0 0 0 0 0 0 0 0
+WizInvis     36
+Flags        2048
+MKills       0
+MDeaths      0
+AttrPerm     13 14 8 17 13 12 9
+AttrMod      0 0 0 0 0 0 0
+Condition    0 48 48 10
+Site         samson.arthmoor.com
+Skill        100 'aid'
+Skill        100 'bargain'
+Skill        100 'barrel roll'
+Skill        100 'beg'
+Skill        100 'bomb'
+Skill        100 'checkbeacons'
+Skill        100 'checkbugs'
+Skill        100 'checkprints'
+Skill        100 'climb'
+Skill        32 'codecrack'
+Skill        100 'commsystem'
+Skill        100 'cover_trail'
+Skill        100 'dig'
+Skill        100 'disguise'
+Skill        100 'gemcutting'
+Skill        100 'hide'
+Skill        100 'hijack'
+Skill        100 'inquire'
+Skill        100 'installmodule'
+Skill        100 'jail'
+Skill        100 'juke'
+Skill        100 'kick'
+Skill        100 'large spacecraft'
+Skill        100 'makearmor'
+Skill        100 'makebeacon'
+Skill        100 'makebinders'
+Skill        100 'makeblade'
+Skill        100 'makeblaster'
+Skill        100 'makebug'
+Skill        100 'makecomlink'
+Skill        100 'makecommsystem'
+Skill        100 'makecontainer'
+Skill        100 'makedatapad'
+Skill        100 'makeflashlight'
+Skill        100 'makegoggles'
+Skill        100 'makegrenade'
+Skill        100 'makejewelry'
+Skill        100 'makelandmine'
+Skill        100 'makemissile'
+Skill        100 'makemodule'
+Skill        100 'makepike'
+Skill        100 'makeshield'
+Skill        100 'makeshipbomb '
+Skill        100 'medium spacecraft'
+Skill        100 'navigation'
+Skill        100 'nullifybeacons'
+Skill        100 'peek'
+Skill        100 'pick lock'
+Skill        100 'pick ship lock'
+Skill        100 'plantbeacon'
+Skill        100 'removebug'
+Skill        100 'removemodule'
+Skill        100 'repair'
+Skill        100 'sabotage'
+Skill        100 'scan'
+Skill        100 'search'
+Skill        100 'ship systems'
+Skill        100 'shipmaintenance'
+Skill        100 'shiprepair'
+Skill        100 'showbeacons'
+Skill        100 'showmodules'
+Skill        100 'small spacecraft'
+Skill        100 'sneak'
+Skill        100 'space combat 1'
+Skill        100 'space combat 2'
+Skill        100 'space combat 3'
+Skill        100 'spice refining'
+Skill        100 'spy'
+Skill        100 'steal'
+Skill        100 'tractor beams'
+Skill        100 'weapon systems'
+Weapon       100 'vibro-blades'
+Tongue       100 'basic'
+Fellow        Test Test~
+Fellow        Nexttest Nexttest~
+Fellow        Julian Julian~
+Fellow        Mikor Mikor~
+Fellow        Inryi Inryi~
+MaxColors    97
+Colors       0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 25 7 7 12 10 14 15 7 7 11 7 7 7 12 7 7 2 6 7 7 12 7 7 7 9 7 12 13 7 7 11 7 7 3 12 9 7 7 10 2 2 3 7 9 7 2 9 12 9 6 11 13 2 13 15 12 12 12 10 7 10 10 11 8 10 13 2 6 9 15 12 2 6 1 9 2 10 10 10 10 10 
+i3perm       5
+i3flags	256
+End
+
+#OBJECT
+Vnum         141
+Level        36
+End
+
+#OBJECT
+Vnum         63
+Level        36
+End
+
+#END

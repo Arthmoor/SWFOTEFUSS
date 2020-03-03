@@ -1,0 +1,30 @@
+#CLAN
+Name         The Hunters Guild~
+Shortname    huntersguild~
+Filename     hunters.guild~
+Description  ~
+Leader       ~
+NumberOne    ~
+NumberTwo    ~
+PKills       0
+PDeaths      0
+MKills       0
+MDeaths      0
+Type         2
+Members      0
+Board        228
+Storeroom    0
+GuardOne     0
+atwar	   ~
+GuardTwo     0
+PatrolOne    0
+PatrolTwo    0
+Acro         THG~
+TrooperOne   0
+TrooperTwo   0
+Troops       0
+Funds        0
+Jail         241
+End
+
+#END

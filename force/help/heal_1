@@ -1,0 +1,9 @@
+#FORCE
+Name      heal~
+Status    1
+Type      1
+Desc      Command:    heal$RN$Usage:      heal$RN$Level:      Jedi Apprentice$RN$Mana:       40$RN$Time Req:   20 seconds$RN$Duration:   Instant$RN$Components: None$RN$$RN$This skill allows you to meditate and heal your injuries.$RN$During this time, you will be vulnerable to attack.$RN$~
+Skill     7
+End
+
+#END

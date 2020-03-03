@@ -1,0 +1,1204 @@
+#HEADER
+
+Name           Blockade Runner Corvette: BRC~
+Sname          BRC~
+NumRooms       19
+Cost           6000000
+Class          3
+Tractor        0
+Lasers         15
+Ions           0
+RangeWeapons0  30
+RangeWeapons1  20
+RangeWeapons2  10
+Hull           10000
+Shields        2500
+Energy         35000
+Chaff          30
+Speed          150
+Hyperspeed     2
+Manuever       150
+Turrets        4
+Plasma         0
+End
+
+#ROOMS
+
+#ROOM
+
+RoomNum           1
+Name              Cockpit of $SN$, Blockade Runner~
+Desc              This cockpit is meant for a small but effective crew to pilot this ship. There are displays for navigation, control, weapon and shield systems, and the controls associated with each.
+~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            6
+Exits0       0
+Exits1       0
+Exits2       2
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          1
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           2
+Name              Durasteel Corridor, Level 3: $SN$~
+Desc              The ship's cockpit can be seen ahead of you in this corridor.  Small displays are on the wall here showing the area around the ship, perhaps used by spotters when on the ground.  The corridor continues to the west, while the captains quarters are to the south of you.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       1
+Exits1       0
+Exits2       5
+Exits3       3
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           3
+Name              Durasteel Corridor, Level 3: $SN$~
+Desc              The ship's lounge is to the west of you where the crew and officers are able to relax and get something to eat.  The corridor continues to the captain's quarters and the bridge to the east while it heads to the turbolift and crews barracks to the south.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       2
+Exits2       6
+Exits3       4
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           4
+Name              Ship's Lounge: $SN$~
+Desc              Two tables cover the floor of this room with food and drink replicators in teh center of each.  They remind you of picnic benchs with enough room for about half of the crew to sit down at once.  Small galactic news monitors are on the walls where the crew can relax and get information about current events.~
+Flags             indoors spacecraft nomob prototype safe~
+Tunnel            315
+Exits0       0
+Exits1       3
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           5
+Name              Captain's Quarters: $SN$~
+Desc              Not much more spacious than the crew's barracks about the only difference is that there is a small desk where the ship's captain can do paper work and other record keeping.  There is a small wash basin where the captain can clean up before leaving the ship, and his personal lockers are on the east wall.~
+Flags             indoors spacecraft nomob prototype safe hotel~
+Tunnel            315
+Exits0       2
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           6
+Name              Durasteel Corridor, Level 3: $SN$~
+Desc              A small corridor running in the ship, it leads to through the upper level, winding between the various rooms of it.  To the south is the ship's turbolift, to the west is the barracks that the ship's crew uses.  To the north the corridor continues.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       3
+Exits1       0
+Exits2       8
+Exits3       7
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           7
+Name              Crew's Barracks: $SN$~
+Desc              This is a compact chamber with 5 bunks, meant for the ships crew of 10 to sleep in shifts.  There are small lockers lining the walls where the crew can store what little personal equipment is allowed on the ship.~
+Flags             indoors spacecraft nomob prototype safe hotel~
+Tunnel            315
+Exits0       0
+Exits1       6
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           8
+Name              Turbolift Level 3: $SN$~
+Desc              A small steel cylinder that is used to travel between the levels of this ship, all that you need to do is say a number from 1 to 3 to be taken to the various levels of the ship.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       6
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        speech 1 mpechoat $n The turbolift quickly moves to Level 1
+mpat $RNUM:19$ $n arrives from above.
+mptrans $n $RNUM:19$ 
+~
+Rprog1        speech 2 mpechoat $n The turbolift quickly moves to Level 2
+mpat $RNUM:14$ $n arrives from above.
+mptrans $n $RNUM:14$ 
+~
+Rprog2        speech 3 mpechoat $n The turbolift quickly moves to Level 3
+mpat $RNUM:8$ $n presses a button but nothing happens.
+mptrans $n $RNUM:8$ 
+~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           9
+Name              Turret 1: $SN$~
+Desc              A small chair sits in fron of a small window here which rotates as you move the turbo-laser's controls.  You can see a targeting system and various readouts of the star system around you.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            1
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       11
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          12
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           10
+Name              Turret 2: $SN$~
+Desc              A small chair sits in fron of a small window here which rotates as you move the turbo-laser's controls.  You can see a targeting system and various readouts of the star system around you.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            1
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       11
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          13
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           11
+Name              Turret Access: $SN$~
+Desc              A small circular chamber that is dimly lit, you can see the ship's turbolift to the south.  The dim glow of the ships 4 turrets can be seen all around you from the weapon's displays inside of them.
+~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       14
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       9
+Exits7       10
+Exits8       12
+Exits9       13
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           12
+Name              Turret 3: $SN$~
+Desc              A small chair sits in fron of a small window here which rotates as you move the turbo-laser's controls.  You can see a targeting system and various readouts of the star system around you.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            1
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       11
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          14
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           13
+Name              Turret 4: $SN$~
+Desc              A small chair sits in fron of a small window here which rotates as you move the turbo-laser's controls.  You can see a targeting system and various readouts of the star system around you.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            1
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       11
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          15
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           14
+Name              Turbolift Level 2: $SN$~
+Desc              A small steel cylinder that is used to travel between the levels of this ship, all that you need to do is say a number from 1 to 3 to be taken to the various levels of the ship.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       11
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        speech 1 mpechoat $n The turbolift quickly moves to Level 1
+mpat $RNUM:19$ $n arrives from above.
+mptrans $n $RNUM:19$ 
+~
+Rprog1        speech 2 mpechoat $n The turbolift quickly moves to Level 2
+mpat $RNUM:14$ $n presses a button but nothing happens.
+mptrans $n $RNUM:14$ 
+~
+Rprog2        speech 3 mpechoat $n The turbolift quickly moves to Level 3
+mpat $RNUM:8$ $n arrives from below.
+mptrans $n $RNUM:8$ 
+~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           15
+Name              Cargo Hold: $SN$~
+Desc              Boxes and other crates are stacked around the walls, filled with the supplies needed for the operation of this ship.  There is room available across the entire floor where cargo that is being transported can be stored.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       16
+Exits9       18
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           16
+Name              Starfighter Hanger: $SN$~
+Desc              The oil and fuel which has been spilled on the floor here from the various ships that have landed here can be smelled in the air.  The giant bay doors that open to allow ships to land are to the east, and the cargo hold can be seen to the northwest.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       17
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       15
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          3
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           17
+Name              Corridor Level 1: $SN$~
+Desc              The Corridor opens up here and there is a terminal on the north wall that has the controls for the engines of the ship.  To the east is the Hanger which allows starfighters to land here.  While to the south the turbolift that can be used to go from level to level can be seen.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       16
+Exits2       19
+Exits3       18
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          7
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           18
+Name              Entrance Ramp: $SN$~
+Desc              To the side of the room here is a large door which folds down into a ramp so that the various equipment and troops that this ship can carry.  A durasteel corridor and a path to the Cargo hold of this ship can be seen here.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       0
+Exits1       17
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       15
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          2
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+#ROOM
+
+RoomNum           19
+Name              Turbolift Level 1: $SN$~
+Desc              A small steel cylinder that is used to travel between the levels of this ship, all that you need to do is say a number from 1 to 3 to be taken to the various levels of the ship.~
+Flags             indoors spacecraft nomob prototype~
+Tunnel            315
+Exits0       17
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          22
+Rprog0        speech 1 mpechoat $n The turbolift quickly moves to Level 1
+mpat $RNUM:19$ $n presses a button but nothing happens.
+mptrans $n $RNUM:19$ 
+~
+Rprog1        speech 2 mpechoat $n The turbolift quickly moves to Level 2
+mpat $RNUM:14$ $n arrives from below.
+mptrans $n $RNUM:14$ 
+~
+Rprog2        speech 3 mpechoat $n The turbolift quickly moves to Level 3
+mpat $RNUM:8$ $n arrives from below.
+mptrans $n $RNUM:8$ 
+~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+
+#ENDROOMS
+
+
+#KEYS
+
+#ENDKEYS
+
+#END

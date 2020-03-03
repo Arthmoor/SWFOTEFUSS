@@ -1,0 +1,42 @@
+Well, where to start? So many changes...
+
+The main files where space is located is in space.c, ships.c, and 11.c.
+Code-generated ship building/buying is in ships.c
+Two pilot maneuvers are in 11.c, the rest (generally) is in space.c
+
+Alright, so, primary and secondary weapon systems. Instead of lasers or 
+ions, there is now primaryType, secondaryType, primary/secondaryCount, 
+etc. Many different beam weapons, such as lasers, duallasers, 
+triplelasers, quadlasers, autoblasters, heavy lasers, light ions, heavy 
+ions, repeating ions...
+
+Ship-to-ship hit calculations now based on speed, maneuver, and most 
+importantly, ship size.
+
+There's a 'black market' shipyard, made by typing 'redit flags2 
+blackmarket'. On boot/copyover, it generates a new list of ships. Ships 
+available are only clanned ships. You can buy from, and also sell to, the 
+black market.
+
+Capability to link-fire primary, secondary, and warhead weapon systems.
+
+Ship simulators, which allow for risk-free space combat, can be made. You 
+must 'setship <ship> flags simulator' and 'setship <ship> simvnum <room 
+vnum to return to when destroyed/endsimmed>'. Not doing the former will 
+cause the ship to blow, not doing the latter will cause crashes.
+
+Two maneuvers, barrel roll and juke. Barrel roll evades beam attacks for a 
+time, juke evades warheads for a time. After a set amount of time, or when 
+the command is interrupted, flight pattern 'levels out' and becomes as 
+vulnerable as it was before.
+
+Likely much more...probably best just to skim through the files.
+
+-||
+
+Addendum: Upon some servers with limited file space there may be some
+troubles with corrupt pfiles or a corrupt shipvnum.are. Provided is a
+shipvnum.are.CLEAN, so if your shipvnum.are becomes corrupt, just replace
+it with this one and clear out the space file of any bought ships. (This
+is also how to do a shipwipe). Also recommended if you have limited file
+space is to make pfile cleanup delete players quicker.

@@ -1,0 +1,26 @@
+The changes system is now in. This also automatically updates the web page with changes, so if you are interested in checking out mud changes without being able to log in, you can also check on the web site.~
+Assassin contracts are now in! Type 'help contracts for more info.~
+RPPoints have been implemented. You can get bonuses with them. Read help rppoints and help rpconvert for more info.~
+To all clan members: Members lists are now in. To see your clan members, type 'members'. As a side note, this is not meant to be 'sold' to other clans, or any sort of activity similar to such. It is mainly to be used as a reference.~
+Simulators are in, and have been for a day or so. These allow you to learn to fly without the risk of death, and dogfight with friends just for fun. Enjoy.~
+Droid characteristics are now in, so instead of "A muscular droid" you will now see "A Sleek Droid", etc.~
+Infrared vision has been added to all droids on creation. If you want to toggle this, type setinfrared on/off.~
+Introductions have been added. See 'help introduce' for more information.~
+Both chat and tells operate on commfrequencies now.~
+Missile launchers have been added. Bwaha. Engineers cannot make them, but can make ammunition for them. See helpfile for more information.~
+The Web Player Database is in. It is found at fote.dune.net and click on the 'players' link. It shows every players name, race, bio, desc, homepage, and email.(cont)~
+Homepage and email can be set using the 'homepage' and 'email' commands. To set your image, type on mud 'wwwimage (URL of image)'. Note: Your info will not update until you type SAVE.~
+AIM screenname has also been added to the database. To change, type 'screenname (aimname)'~
+Technicians can now repair turrets. Use 'shiprepair turret' in the damaged turret to repair.~
+Disguise will now be shown upon 'look self'~
+Added two new introduce based commands, 'remember' and 'describe'. Fairly self explanatory, so read help files for further information.~
+Quitting has been made invisible to prevent who-list abuse.~
+Ship hailing works now. Use the command hail~
+Spy has been converted to comm frequencies and is now in full working order.~
+Clones now cost 4 RPPoints instead of 75000 credits. For more information on rppoints, type help rppoints.~
+Buymobship has been added. For clans, it allows purchasing of mobile ships to aid in system defense. See helpfile for more information.~
+Grenade skill has been removed upon the realization that it is in fact not difficult to push a button.~
+The FotE Gameplay Guide by OwEn is on the website now. Feel free to take a look at it.~
+The new space system is in. It includes several different types of beam weaponry, primary and secondary weapon systems, hyperdrive
+'classes' instead of speeds, and the ability to 'link' fire each of the weapon systems. See help space, help fire, and help link.~
+

@@ -1,0 +1,33 @@
+#SYSTEM
+Highplayers    32
+Highplayertime Fri Apr  5 22:40:57 2002~
+Nameresolving  0
+Waitforauth    1
+Readallmail    32
+Readmailfree   31
+Writemailfree  1
+Takeothersmail 32
+Muse           32
+Think          32
+Build          32
+Log            32
+Protoflag      32
+Overridepriv   32
+Msetplayer     32
+Stunplrvsplr   20
+Stunregular    0
+Damplrvsplr    32
+Damplrvsmob    32
+Dammobvsplr    32
+Dammobvsmob    32
+Forcepc        32
+Guildoverseer  ~
+Guildadvisor   ~
+Saveflags      2557
+Savefreq       0
+Newbie_purge	5
+Regular_purge	30
+Autopurge		1
+End
+
+#END

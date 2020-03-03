@@ -1,0 +1,92 @@
+#HEADER
+
+Name           K-Wing Heavy Bomber~
+Sname          K-Wing~
+NumRooms       1
+Cost           92380
+Class          1
+Tractor        0
+Lasers         2
+Ions           2
+RangeWeapons0  20
+RangeWeapons1  20
+RangeWeapons2  0
+Hull           90
+Shields        60
+Energy         3000
+Chaff          0
+Maxbombs       0
+Speed          96
+Hyperspeed     0
+Manuever       82
+Turrets        0
+Mods	    2
+Clan           The New Republic~
+End
+
+#ROOMS
+
+#ROOM
+
+RoomNum           1
+Name              Cockpit of a K-Wing~
+Desc              The K-Wing Bomber was designed by FreiTek Inc. after their initial limited success run with the E-Wing starfighter. Its powerful shields and strong hull can protect it from almost anything while fulfillings its primary mission: delivery of its destructive payload. This payload consists of concussion missiles and proton torpedoes, and also has two laser and ion cannons.~
+Flags             indoors spacecraft nomob ~
+Tunnel            1
+Exits0       0
+Exits1       0
+Exits2       0
+Exits3       0
+Exits4       0
+Exits5       0
+Exits6       0
+Exits7       0
+Exits8       0
+Exits9       0
+Exflags0     0
+Exflags1     0
+Exflags2     0
+Exflags3     0
+Exflags4     0
+Exflags5     0
+Exflags6     0
+Exflags7     0
+Exflags8     0
+Exflags9     0
+Keys0        0
+Keys1        0
+Keys2        0
+Keys3        0
+Keys4        0
+Keys5        0
+Keys6        0
+Keys7        0
+Keys8        0
+Keys9        0
+RoomType          1
+Rprog0        ~
+Rprog1        ~
+Rprog2        ~
+Rprog3        ~
+Rprog4        ~
+Rprog5        ~
+Rprog6        ~
+Rprog7        ~
+Rprog8        ~
+Rprog9        ~
+Reset0        ~
+Reset1        ~
+Reset2        ~
+Reset3        ~
+Reset4        ~
+Reset5        ~
+Reset6        ~
+Reset7        ~
+Reset8        ~
+Reset9        ~
+End
+
+
+#ENDROOMS
+
+#END

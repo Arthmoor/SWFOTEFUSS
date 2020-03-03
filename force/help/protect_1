@@ -1,0 +1,9 @@
+#FORCE
+Name      protect~
+Status    3
+Type      1
+Desc      Command:    protect$RN$Usage:      protect <target>$RN$Level:      Jedi Master$RN$Mana:       75$RN$Time Req:   10 seconds$RN$Duration:   1 - 5 minutes$RN$Components: none$RN$$RN$Place a protective shield around a target to protect$RN$them from the blows of the various weapons of the Galaxy$RN$~
+Skill     8
+End
+
+#END
