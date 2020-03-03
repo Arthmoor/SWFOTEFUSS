@@ -24,11 +24,9 @@ Original DikuMUD code by: Hans Staerfeldt, Katja Nyboe, Tom Madsen,
 Michael Seifert, and Sebastian Hammer.
 
 */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
 
 #if !defined(FALSE)
 #define FALSE 0
@@ -38,7 +36,10 @@ Michael Seifert, and Sebastian Hammer.
 #define TRUE 1
 #endif
 
+#ifndef __cplusplus
 typedef unsigned char bool;
+#endif
+extern bool mud_down;
 
 #define STR_HASH_SIZE	1024
 
@@ -49,7 +50,7 @@ struct hashstr_data
    unsigned short int length; /* length of string */
 };
 
-char *str_alloc( char *str );
+const char *str_alloc( const char *str );
 char *quick_link( char *str );
 int str_free( char *str );
 void show_hash( int count );
@@ -62,7 +63,7 @@ struct hashstr_data *string_hash[STR_HASH_SIZE];
  * If found, increase link count, and return pointer,
  * otherwise add new string to hash table, and return pointer.
  */
-char *str_alloc( char *str )
+const char *str_alloc( const char *str )
 {
    register int len, hash, psize;
    register struct hashstr_data *ptr;
@@ -95,14 +96,14 @@ char *str_alloc( char *str )
  * in the hash table.  Function increments the link count and returns the
  * same pointer passed.
  */
-char *quick_link( char *str )
+const char *quick_link( const char *str )
 {
    register struct hashstr_data *ptr;
 
    ptr = ( struct hashstr_data * )( str - sizeof( struct hashstr_data ) );
    if( ptr->links == 0 )
    {
-      fprintf( stderr, "quick_link: bad pointer\n" );
+      fprintf( stderr, "quick_link: bad pointer. String = %s\n", str );
       return NULL;
    }
    if( ptr->links < 65535 )
@@ -116,10 +117,11 @@ char *quick_link( char *str )
  * hash table and disposed of.
  * returns how many links are left, or -1 if an error occurred.
  */
-int str_free( char *str )
+int str_free( const char *str )
 {
    register int len, hash;
    register struct hashstr_data *ptr, *ptr2, *ptr2_next;
+
    len = strlen( str );
    hash = len % STR_HASH_SIZE;
    ptr = ( struct hashstr_data * )( str - sizeof( struct hashstr_data ) );
@@ -184,13 +186,14 @@ void hash_dump( int hash )
       str = ( char * )( ( ( long )ptr ) + psize );
       fprintf( stderr, "Len:%4d Lnks:%5d Str: %s\r\n", ptr->length, ptr->links, str );
    }
-   fprintf( stderr, "Total strings in hash %d: %d\r\n", hash, c );
+   if( !mud_down || ( mud_down && c > 0 ) )
+      fprintf( stderr, "Total strings in hash %d: %d\r\n", hash, c );
 }
 
-char *check_hash( char *str )
+const char *check_hash( const char *str )
 {
    static char buf[1024];
-   int len, hash, psize, p, c;
+   int len, hash, psize, p = 0, c;
    struct hashstr_data *ptr, *fnd;
 
    buf[0] = '\0';
@@ -204,10 +207,10 @@ char *check_hash( char *str )
          p = c + 1;
       }
    if( fnd )
-      sprintf( buf, "Hash info on string: %s\r\nLinks: %d  Position: %d/%d  Hash: %d  Length: %d\r\n",
-               str, fnd->links, p, c, hash, fnd->length );
+      snprintf( buf, 1024, "Hash info on string: %s\r\nLinks: %d  Position: %d/%d  Hash: %d  Length: %d\r\n",
+                str, fnd->links, p, c, hash, fnd->length );
    else
-      sprintf( buf, "%s not found.\r\n", str );
+      snprintf( buf, 1024, "%s not found.\r\n", str );
    return buf;
 }
 
@@ -229,12 +232,12 @@ char *hash_stats( void )
             hilink = ptr->links;
          totlinks += ptr->links;
          bytesused += ( ptr->length + 1 + sizeof( struct hashstr_data ) );
-         wouldhave += ( ( ptr->links * sizeof(struct hashstr_data) ) + ( ptr->links * ( ptr->length + 1 ) ) );
+         wouldhave += ( ( ptr->links * sizeof( struct hashstr_data ) ) + ( ptr->links * ( ptr->length + 1 ) ) );
       }
    }
-   sprintf( buf,
-            "Hash strings allocated:%8d  Total links  : %d\r\nString bytes allocated:%8d  Bytes saved  : %d\r\nUnique (wasted) links :%8d  Hi-Link count: %d\r\n",
-            total, totlinks, bytesused, wouldhave - bytesused, unique, hilink );
+   snprintf( buf, 1024,
+             "Hash strings allocated:%8d  Total links  : %d\r\nString bytes allocated:%8d  Bytes saved  : %d\r\nUnique (wasted) links :%8d  Hi-Link count: %d\r\n",
+             total, totlinks, bytesused, wouldhave - bytesused, unique, hilink );
    return buf;
 }
 
@@ -254,7 +257,7 @@ void show_high_hash( int top )
          }
 }
 
-bool in_hash_table( char *str )
+bool in_hash_table( const char *str )
 {
    register int len, hash, psize;
    register struct hashstr_data *ptr;
@@ -263,7 +266,8 @@ bool in_hash_table( char *str )
    psize = sizeof( struct hashstr_data );
    hash = len % STR_HASH_SIZE;
    for( ptr = string_hash[hash]; ptr; ptr = ptr->next )
-      if( len == ptr->length && str == ( (char *)ptr + psize ) )
+      if( len == ptr->length && str == ( ( char * )ptr + psize ) )
          return TRUE;
    return FALSE;
 }
+

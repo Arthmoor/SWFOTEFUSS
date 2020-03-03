@@ -6,6 +6,7 @@ Y            1100
 Z            2300
 Sector       0
 Type    	   0
+BaseValue    0
 PopSupport   100
 Starsystem   Endor~
 GovernedBy   The Empire~

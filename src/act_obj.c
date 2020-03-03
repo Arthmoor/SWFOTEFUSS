@@ -37,8 +37,8 @@ Michael Seifert, and Sebastian Hammer.
 /*
  * Local functions.
  */
-void get_obj args( ( CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * container ) );
-void wear_obj args( ( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit ) );
+void get_obj( CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * container );
+void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit );
 
 /*
  * how resistant an object is to damage				-Thoric
@@ -196,7 +196,7 @@ void get_obj( CHAR_DATA * ch, OBJ_DATA * obj, OBJ_DATA * container )
    return;
 }
 
-void do_get( CHAR_DATA * ch, char *argument )
+void do_get( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -372,7 +372,7 @@ void do_get( CHAR_DATA * ch, char *argument )
          if( !obj )
          {
             act( AT_PLAIN, IS_OBJ_STAT( container, ITEM_COVERING ) ?
-                 "I see nothing like that beneath the $T." : "I see nothing like that in the $T.", ch, NULL, arg2, TO_CHAR );
+                 "I see nothing like that beneath the $T." : "I see nothing like that in the $T.", ch, NULL, container->short_descr, TO_CHAR );
             return;
          }
          separate_obj( obj );
@@ -434,11 +434,11 @@ void do_get( CHAR_DATA * ch, char *argument )
          {
             if( fAll )
                act( AT_PLAIN, IS_OBJ_STAT( container, ITEM_COVERING ) ?
-                    "I see nothing beneath the $T." : "I see nothing in the $T.", ch, NULL, arg2, TO_CHAR );
+                    "I see nothing beneath the $T." : "I see nothing in the $T.", ch, NULL, container->short_descr, TO_CHAR );
             else
                act( AT_PLAIN, IS_OBJ_STAT( container, ITEM_COVERING ) ?
                     "I see nothing like that beneath the $T." :
-                    "I see nothing like that in the $T.", ch, NULL, arg2, TO_CHAR );
+                    "I see nothing like that in the $T.", ch, NULL, container->short_descr, TO_CHAR );
          }
          else
             check_for_trap( ch, container, TRAP_GET );
@@ -453,7 +453,7 @@ void do_get( CHAR_DATA * ch, char *argument )
 
 
 
-void do_put( CHAR_DATA * ch, char *argument )
+void do_put( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -735,7 +735,7 @@ void do_put( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_drop( CHAR_DATA * ch, char *argument )
+void do_drop( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char logbuf[MAX_STRING_LENGTH];
@@ -954,7 +954,7 @@ void do_drop( CHAR_DATA * ch, char *argument )
 
 
 
-void do_give( CHAR_DATA * ch, char *argument )
+void do_give( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2056,7 +2056,7 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
 }
 
 
-void do_wear( CHAR_DATA * ch, char *argument )
+void do_wear( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2118,7 +2118,7 @@ void do_wear( CHAR_DATA * ch, char *argument )
 
 
 
-void do_remove( CHAR_DATA * ch, char *argument )
+void do_remove( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj, *obj_next;
@@ -2167,7 +2167,7 @@ void do_remove( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_bury( CHAR_DATA * ch, char *argument )
+void do_bury( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2245,7 +2245,7 @@ void do_bury( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_sacrifice( CHAR_DATA * ch, char *argument )
+void do_sacrifice( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2286,7 +2286,7 @@ void do_sacrifice( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_brandish( CHAR_DATA * ch, char *argument )
+void do_brandish( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *vch;
    CHAR_DATA *vch_next;
@@ -2377,7 +2377,7 @@ void do_brandish( CHAR_DATA * ch, char *argument )
 
 
 
-void do_zap( CHAR_DATA * ch, char *argument )
+void do_zap( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -2511,7 +2511,7 @@ void save_clan_storeroom( CHAR_DATA * ch, CLAN_DATA * clan )
 }
 
 /* put an item on auction, or see the stats on the current item or bet */
-void do_auction( CHAR_DATA * ch, char *argument )
+void do_auction( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    char arg1[MAX_INPUT_LENGTH];
@@ -2821,7 +2821,7 @@ void do_auction( CHAR_DATA * ch, char *argument )
    else
    {
       act( AT_TELL, "Try again later - $p is being auctioned right now!", ch, auction->item, NULL, TO_CHAR );
-      WAIT_STATE( ch, 1.5 * PULSE_VIOLENCE );
+      WAIT_STATE( ch, ( int ) 1.5 * PULSE_VIOLENCE );
       return;
    }
 }

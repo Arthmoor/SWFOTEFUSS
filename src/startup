@@ -1,6 +1,6 @@
 #! /bin/csh -f
 
-set port = 1111
+set port = 4020
 if ( "$1" != "" ) set port="$1"
 
 cd ../area
@@ -36,3 +36,4 @@ while ( 1 )
     sleep 10
 
 end
+

@@ -35,22 +35,21 @@ Michael Seifert, and Sebastian Hammer.
 #include <time.h>
 #include "mud.h"
 
-SHIP_DATA *first_ship;
-SHIP_DATA *last_ship;
+extern SHIP_DATA *first_ship;
+extern SHIP_DATA *last_ship;
 
-MISSILE_DATA *first_missile;
-MISSILE_DATA *last_missile;
+extern MISSILE_DATA *first_missile;
+extern MISSILE_DATA *last_missile;
 
-SPACE_DATA *first_starsystem;
-SPACE_DATA *last_starsystem;
+extern SPACE_DATA *first_starsystem;
+extern SPACE_DATA *last_starsystem;
 
-void explode_emissile args( ( CHAR_DATA * ch, ROOM_INDEX_DATA * proom, int mindam, int maxdam, bool incendiary ) );
+void explode_emissile( CHAR_DATA * ch, ROOM_INDEX_DATA * proom, int mindam, int maxdam, bool incendiary );
 extern int top_affect;
-SHIP_DATA *ship_from_gunseat args( ( int vnum ) );
+SHIP_DATA *ship_from_gunseat( int vnum );
 
-char *primary_beam_name( SHIP_DATA * ship )
+const char *primary_beam_name( SHIP_DATA * ship )
 {
-
    if( ship->primaryCount != 0 )
    {
       sprintf( bname, "%d %s", ship->primaryCount,
@@ -76,10 +75,13 @@ char *primary_beam_name( SHIP_DATA * ship )
       return bname;
    }
    else
-      return "None.";
+   {
+      sprintf( bname, "%s", "None." );
+      return bname;
+   }
 }
 
-char *secondary_beam_name( SHIP_DATA * ship )
+const char *secondary_beam_name( SHIP_DATA * ship )
 {
 
    if( ship->secondaryCount != 0 )
@@ -107,7 +109,10 @@ char *secondary_beam_name( SHIP_DATA * ship )
       return bname;
    }
    else
-      return "None.";
+   {
+      sprintf( bname, "%s", "None." );
+      return bname;
+   }
 }
 
 
@@ -154,7 +159,7 @@ void explode_emissile( CHAR_DATA * ch, ROOM_INDEX_DATA * proom, int mindam, int 
    }
 }
 
-void do_makegoggles( CHAR_DATA * ch, char *argument )
+void do_makegoggles( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -251,9 +256,9 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ch->dest_buf_2 );
+         strcpy( arg2, ( const char * )ch->dest_buf_2 );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -383,7 +388,7 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makegoggles );
 }
 
-void do_makemissile( CHAR_DATA * ch, char *argument )
+void do_makemissile( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -476,7 +481,7 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -624,15 +629,15 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makemissile );
 }
 
-void do_launch2( CHAR_DATA * ch, char *argument )
+void do_launch2( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *rch;
    CHAR_DATA *zch;
    OBJ_DATA *wield;
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
-   char *dtxt;
-   char *ftxt;
+   const char *dtxt;
+   const char *ftxt;
    short dir, dist = 0, max_dist;
    EXIT_DATA *pexit;
    ROOM_INDEX_DATA *proom;
@@ -772,6 +777,20 @@ void do_launch2( CHAR_DATA * ch, char *argument )
                   if( IS_SET( pexit->exit_info, EX_LOCKED ) )
                      REMOVE_BIT( pexit->exit_info, EX_LOCKED );
                   SET_BIT( pexit->exit_info, EX_BASHED );
+
+                  
+                  EXIT_DATA *other_pexit;
+                  for( other_pexit = pexit->to_room->first_exit; other_pexit; other_pexit = other_pexit->next )
+                  {
+                      if( other_pexit->to_room == ch->in_room )
+                      {
+                          REMOVE_BIT( other_pexit->exit_info, EX_CLOSED );
+                          if( IS_SET( other_pexit->exit_info, EX_LOCKED ) )
+                             REMOVE_BIT( other_pexit->exit_info, EX_LOCKED );
+                          SET_BIT( other_pexit->exit_info, EX_BASHED );
+                      }
+                  }
+
                   for( rch = ch->in_room->first_person; rch; rch = rch->next_in_room )
                   {
                      if( rch == ch )
@@ -1094,7 +1113,7 @@ void do_launch2( CHAR_DATA * ch, char *argument )
 	*/
 }
 
-void do_load( CHAR_DATA * ch, char *argument )
+void do_load( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *rch;
    OBJ_DATA *obj;
@@ -1167,7 +1186,7 @@ void do_load( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_unload( CHAR_DATA * ch, char *argument )
+void do_unload( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *rch;
    OBJ_DATA *obj;
@@ -1249,7 +1268,7 @@ void do_unload( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_link( CHAR_DATA * ch, char *argument )
+void do_link( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    int x;
@@ -1405,7 +1424,7 @@ void do_link( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_unlink( CHAR_DATA * ch, char *argument )
+void do_unlink( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
 
@@ -1494,7 +1513,7 @@ void do_unlink( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_barrel_roll( CHAR_DATA * ch, char *argument )
+void do_barrel_roll( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char buf[MAX_STRING_LENGTH];
@@ -1574,7 +1593,7 @@ void do_barrel_roll( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_juke( CHAR_DATA * ch, char *argument )
+void do_juke( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char buf[MAX_STRING_LENGTH];

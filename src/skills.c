@@ -31,24 +31,24 @@ Michael Seifert, and Sebastian Hammer.
 #include <time.h>
 #include "mud.h"
 
-char *const spell_flag[] = { "water", "earth", "air", "astral", "area", "distant", "reverse",
+const char *const spell_flag[] = { "water", "earth", "air", "astral", "area", "distant", "reverse",
    "save_half_dam", "save_negates", "accumulative", "recastable", "noscribe",
    "nobrew", "group", "object", "character", "secretskill", "pksensitive"
 };
 
-char *const spell_saves[] = { "none", "poison_death", "wands", "para_petri", "breath", "spell_staff" };
+const char *const spell_saves[] = { "none", "poison_death", "wands", "para_petri", "breath", "spell_staff" };
 
-char *const spell_damage[] = { "none", "fire", "cold", "electricity", "energy", "acid", "poison", "drain" };
+const char *const spell_damage[] = { "none", "fire", "cold", "electricity", "energy", "acid", "poison", "drain" };
 
-char *const spell_action[] = { "none", "create", "destroy", "resist", "suscept", "divinate", "obscure",
+const char *const spell_action[] = { "none", "create", "destroy", "resist", "suscept", "divinate", "obscure",
    "change"
 };
 
-char *const spell_power[] = { "none", "minor", "greater", "major" };
+const char *const spell_power[] = { "none", "minor", "greater", "major" };
 
-char *const spell_class[] = { "none", "lunar", "solar", "travel", "summon", "life", "death", "illusion" };
+const char *const spell_class[] = { "none", "lunar", "solar", "travel", "summon", "life", "death", "illusion" };
 
-char *const target_type[] = { "ignore", "offensive", "defensive", "self", "objinv" };
+const char *const target_type[] = { "ignore", "offensive", "defensive", "self", "objinv" };
 
 
 void show_char_to_char( CHAR_DATA * list, CHAR_DATA * ch );
@@ -58,24 +58,24 @@ bool check_illegal_psteal( CHAR_DATA * ch, CHAR_DATA * victim );
 /* from magic.c */
 void failed_casting( struct skill_type *skill, CHAR_DATA * ch, CHAR_DATA * victim, OBJ_DATA * obj );
 
-int xp_compute args( ( CHAR_DATA * gch, CHAR_DATA * victim ) );
+int xp_compute( CHAR_DATA * gch, CHAR_DATA * victim );
 
 ROOM_INDEX_DATA *generate_exit( ROOM_INDEX_DATA * in_room, EXIT_DATA ** pexit );
-bool validate_spec_fun( char *name );
+bool validate_spec_fun( const char *name );
 
 /*
  * Dummy function
  */
-void skill_notfound( CHAR_DATA * ch, char *argument )
+void skill_notfound( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "Huh?\r\n", ch );
    return;
 }
 
 
-int get_ssave( char *name )
+int get_ssave( const char *name )
 {
-   int x;
+   unsigned int x;
 
    for( x = 0; x < sizeof( spell_saves ) / sizeof( spell_saves[0] ); x++ )
       if( !str_cmp( name, spell_saves[x] ) )
@@ -83,9 +83,9 @@ int get_ssave( char *name )
    return -1;
 }
 
-int get_starget( char *name )
+int get_starget( const char *name )
 {
-   int x;
+   unsigned int x;
 
    for( x = 0; x < sizeof( target_type ) / sizeof( target_type[0] ); x++ )
       if( !str_cmp( name, target_type[x] ) )
@@ -93,9 +93,9 @@ int get_starget( char *name )
    return -1;
 }
 
-int get_sflag( char *name )
+int get_sflag( const char *name )
 {
-   int x;
+   unsigned int x;
 
    for( x = 0; x < sizeof( spell_flag ) / sizeof( spell_flag[0] ); x++ )
       if( !str_cmp( name, spell_flag[x] ) )
@@ -103,9 +103,9 @@ int get_sflag( char *name )
    return -1;
 }
 
-int get_sdamage( char *name )
+int get_sdamage( const char *name )
 {
-   int x;
+   unsigned int x;
 
    for( x = 0; x < sizeof( spell_damage ) / sizeof( spell_damage[0] ); x++ )
       if( !str_cmp( name, spell_damage[x] ) )
@@ -113,9 +113,9 @@ int get_sdamage( char *name )
    return -1;
 }
 
-int get_saction( char *name )
+int get_saction( const char *name )
 {
-   int x;
+   unsigned int x;
 
    for( x = 0; x < sizeof( spell_action ) / sizeof( spell_action[0] ); x++ )
       if( !str_cmp( name, spell_action[x] ) )
@@ -123,9 +123,9 @@ int get_saction( char *name )
    return -1;
 }
 
-int get_spower( char *name )
+int get_spower( const char *name )
 {
-   int x;
+   unsigned int x;
 
    for( x = 0; x < sizeof( spell_power ) / sizeof( spell_power[0] ); x++ )
       if( !str_cmp( name, spell_power[x] ) )
@@ -133,9 +133,9 @@ int get_spower( char *name )
    return -1;
 }
 
-int get_sclass( char *name )
+int get_sclass( const char *name )
 {
-   int x;
+   unsigned int x;
 
    for( x = 0; x < sizeof( spell_class ) / sizeof( spell_class[0] ); x++ )
       if( !str_cmp( name, spell_class[x] ) )
@@ -153,14 +153,14 @@ bool is_legal_kill( CHAR_DATA * ch, CHAR_DATA * vch )
 }
 
 
-extern char *target_name;  /* from magic.c */
+extern const char *target_name;  /* from magic.c */
 
 /*
  * Perform a binary search on a section of the skill table
  * Each different section of the skill table is sorted alphabetically
  * Only match skills player knows				-Thoric
  */
-bool check_skill( CHAR_DATA * ch, char *command, char *argument )
+bool check_skill( CHAR_DATA * ch, const char *command, const char *argument )
 {
    int sn;
    int first = gsn_first_skill;
@@ -365,7 +365,7 @@ bool check_skill( CHAR_DATA * ch, char *command, char *argument )
  * Lookup a skills information
  * High god command
  */
-void do_slookup( CHAR_DATA * ch, char *argument )
+void do_slookup( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
@@ -472,9 +472,9 @@ void do_slookup( CHAR_DATA * ch, char *argument )
          ch_printf( ch, "Participants: %d\r\n", ( int )skill->participants );
       if( skill->userec.num_uses )
          send_timer( &skill->userec, ch );
-      for( aff = skill->affects; aff; aff = aff->next )
+      for( aff = skill->first_affect; aff; aff = aff->next )
       {
-         if( aff == skill->affects )
+         if( aff == skill->first_affect )
             send_to_char( "\r\n", ch );
          sprintf( buf, "Affect %d", ++cnt );
          if( aff->location )
@@ -552,7 +552,7 @@ void do_slookup( CHAR_DATA * ch, char *argument )
  * Set a skill's attributes or what skills a player has.
  * High god command, with support for creating skills/spells/herbs/etc
  */
-void do_sset( CHAR_DATA * ch, char *argument )
+void do_sset( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -874,33 +874,25 @@ void do_sset( CHAR_DATA * ch, char *argument )
       }
       if( !str_cmp( arg2, "rmaffect" ) )
       {
-         SMAUG_AFF *aff = skill->affects;
-         SMAUG_AFF *aff_next;
+         SMAUG_AFF *aff, *aff_next;
          int num = atoi( argument );
-         int cnt = 1;
+         int cnt = 0;
 
-         if( !aff )
+         if( !skill->first_affect )
          {
             send_to_char( "This spell has no special affects to remove.\r\n", ch );
             return;
          }
-         if( num == 1 )
+         for( aff = skill->first_affect; aff; aff = aff_next )
          {
-            skill->affects = aff->next;
-            DISPOSE( aff->duration );
-            DISPOSE( aff->modifier );
-            DISPOSE( aff );
-            send_to_char( "Removed.\r\n", ch );
-            return;
-         }
-         for( ; aff; aff = aff->next )
-         {
-            if( ++cnt == num && ( aff_next = aff->next ) != NULL )
+            aff_next = aff->next;
+
+            if( ++cnt == num )
             {
-               aff->next = aff_next->next;
-               DISPOSE( aff_next->duration );
-               DISPOSE( aff_next->modifier );
-               DISPOSE( aff_next );
+               UNLINK( aff, skill->first_affect, skill->last_affect, next, prev );
+               DISPOSE( aff->duration );
+               DISPOSE( aff->modifier );
+               DISPOSE( aff );
                send_to_char( "Removed.\r\n", ch );
                return;
             }
@@ -908,6 +900,7 @@ void do_sset( CHAR_DATA * ch, char *argument )
          send_to_char( "Not found.\r\n", ch );
          return;
       }
+
       /*
        * affect <location> <modifier> <duration> <bitvector>
        */
@@ -960,8 +953,7 @@ void do_sset( CHAR_DATA * ch, char *argument )
          }
          aff->modifier = str_dup( modifier );
          aff->bitvector = bit;
-         aff->next = skill->affects;
-         skill->affects = aff;
+         LINK( aff, skill->first_affect, skill->last_affect, next, prev );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1272,7 +1264,7 @@ void learn_from_success( CHAR_DATA * ch, int sn )
 
 void learn_from_failure( CHAR_DATA * ch, int sn )
 {
-   int adept, gain, sklvl, learn, percent, schance;
+   int adept, sklvl, learn, percent, schance;
    if( IS_NPC( ch ) || ch->pcdata->learned[sn] == 0 )
       return;
 
@@ -1304,7 +1296,6 @@ void learn_from_failure( CHAR_DATA * ch, int sn )
       else
          learn = 1;
       ch->pcdata->learned[sn] = UMIN( adept, ch->pcdata->learned[sn] + learn );
-      gain = 10 * sklvl;
       if( !ch->fighting && sn != gsn_hide && sn != gsn_sneak )
       {
          set_char_color( AT_WHITE, ch );
@@ -1313,7 +1304,7 @@ void learn_from_failure( CHAR_DATA * ch, int sn )
    }
 }
 
-void do_gouge( CHAR_DATA * ch, char *argument )
+void do_gouge( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    AFFECT_DATA af;
@@ -1387,7 +1378,7 @@ void do_gouge( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_detrap( CHAR_DATA * ch, char *argument )
+void do_detrap( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -1453,7 +1444,7 @@ void do_detrap( CHAR_DATA * ch, char *argument )
             bug( "do_detrap: ch->dest_buf NULL!", 0 );
             return;
          }
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          ch->substate = SUB_NONE;
@@ -1507,7 +1498,7 @@ void do_detrap( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_dig( CHAR_DATA * ch, char *argument )
+void do_dig( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -1577,7 +1568,7 @@ void do_dig( CHAR_DATA * ch, char *argument )
             bug( "do_dig: dest_buf NULL", 0 );
             return;
          }
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1662,14 +1653,14 @@ void do_dig( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_search( CHAR_DATA * ch, char *argument )
+void do_search( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
    OBJ_DATA *container;
    OBJ_DATA *startobj;
    int percent, door;
-   bool found, room;
+   bool found;
 
    door = -1;
    switch ( ch->substate )
@@ -1717,7 +1708,7 @@ void do_search( CHAR_DATA * ch, char *argument )
             bug( "do_search: dest_buf NULL", 0 );
             return;
          }
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
       case SUB_TIMER_DO_ABORT:
@@ -1729,7 +1720,6 @@ void do_search( CHAR_DATA * ch, char *argument )
    ch->substate = SUB_NONE;
    if( arg[0] == '\0' )
    {
-      room = TRUE;
       startobj = ch->in_room->first_content;
    }
    else
@@ -1802,7 +1792,7 @@ void do_search( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_steal( CHAR_DATA * ch, char *argument )
+void do_steal( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char logbuf[MAX_STRING_LENGTH];
@@ -2006,7 +1996,7 @@ void do_steal( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_dualstab( CHAR_DATA * ch, char *argument )
+void do_dualstab( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -2091,7 +2081,7 @@ void do_dualstab( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_backstab( CHAR_DATA * ch, char *argument )
+void do_backstab( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -2194,7 +2184,7 @@ void do_backstab( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_rescue( CHAR_DATA * ch, char *argument )
+void do_rescue( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -2286,7 +2276,7 @@ void do_rescue( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_kick( CHAR_DATA * ch, char *argument )
+void do_kick( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
 
@@ -2316,7 +2306,7 @@ void do_kick( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_punch( CHAR_DATA * ch, char *argument )
+void do_punch( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
 
@@ -2353,27 +2343,27 @@ void do_punch( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_bite( CHAR_DATA * ch, char *argument )
+void do_bite( CHAR_DATA * ch, const char *argument )
 {
 }
 
 
-void do_claw( CHAR_DATA * ch, char *argument )
+void do_claw( CHAR_DATA * ch, const char *argument )
 {
 }
 
 
-void do_sting( CHAR_DATA * ch, char *argument )
+void do_sting( CHAR_DATA * ch, const char *argument )
 {
 }
 
 
-void do_tail( CHAR_DATA * ch, char *argument )
+void do_tail( CHAR_DATA * ch, const char *argument )
 {
 }
 
 
-void do_bash( CHAR_DATA * ch, char *argument )
+void do_bash( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    int schance;
@@ -2424,7 +2414,7 @@ void do_bash( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_stun( CHAR_DATA * ch, char *argument )
+void do_stun( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    AFFECT_DATA af;
@@ -2509,7 +2499,7 @@ void do_stun( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_feed( CHAR_DATA * ch, char *argument )
+void do_feed( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "It is not of your nature to feed on living creatures.\r\n", ch );
    return;
@@ -2564,7 +2554,7 @@ void disarm( CHAR_DATA * ch, CHAR_DATA * victim )
 }
 
 
-void do_disarm( CHAR_DATA * ch, char *argument )
+void do_disarm( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    OBJ_DATA *obj;
@@ -2653,7 +2643,7 @@ void trip( CHAR_DATA * ch, CHAR_DATA * victim )
 }
 
 
-void do_pick( CHAR_DATA * ch, char *argument )
+void do_pick( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int x, y;
@@ -2856,7 +2846,7 @@ void do_pick( CHAR_DATA * ch, char *argument )
 
 
 
-void do_sneak( CHAR_DATA * ch, char *argument )
+void do_sneak( CHAR_DATA * ch, const char *argument )
 {
    AFFECT_DATA af;
 
@@ -2878,7 +2868,7 @@ void do_sneak( CHAR_DATA * ch, char *argument )
    if( IS_NPC( ch ) || number_percent(  ) < ch->pcdata->learned[gsn_sneak] )
    {
       af.type = gsn_sneak;
-      af.duration = ch->skill_level[SMUGGLING_ABILITY] * DUR_CONV;
+      af.duration = ( int )( ch->skill_level[SMUGGLING_ABILITY] * DUR_CONV );
       af.location = APPLY_NONE;
       af.modifier = 0;
       af.bitvector = AFF_SNEAK;
@@ -2893,7 +2883,7 @@ void do_sneak( CHAR_DATA * ch, char *argument )
 
 
 
-void do_hide( CHAR_DATA * ch, char *argument )
+void do_hide( CHAR_DATA * ch, const char *argument )
 {
    if( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
    {
@@ -2922,7 +2912,7 @@ void do_hide( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_concealment( CHAR_DATA * ch, char *argument )
+void do_concealment( CHAR_DATA * ch, const char *argument )
 {
    if( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
    {
@@ -2956,12 +2946,14 @@ void do_concealment( CHAR_DATA * ch, char *argument )
 /*
  * Contributed by Alander.
  */
-void do_visible( CHAR_DATA * ch, char *argument )
+void do_visible( CHAR_DATA * ch, const char *argument )
 {
    affect_strip( ch, gsn_invis );
    affect_strip( ch, gsn_mass_invis );
    affect_strip( ch, gsn_sneak );
    affect_strip( ch, gsn_silent );
+   affect_strip( ch, gsn_hide );
+
    REMOVE_BIT( ch->affected_by, AFF_HIDE );
    if( ch->race != RACE_DEFEL )  /* Defel has perm invis */
       REMOVE_BIT( ch->affected_by, AFF_INVISIBLE );
@@ -2972,7 +2964,7 @@ void do_visible( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_recall( CHAR_DATA * ch, char *argument )
+void do_recall( CHAR_DATA * ch, const char *argument )
 {
    ROOM_INDEX_DATA *location;
    CHAR_DATA *opponent;
@@ -3048,7 +3040,7 @@ void do_recall( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_aid( CHAR_DATA * ch, char *argument )
+void do_aid( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -3124,7 +3116,7 @@ void do_aid( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_mount( CHAR_DATA * ch, char *argument )
+void do_mount( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
 
@@ -3192,7 +3184,7 @@ void do_mount( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_dismount( CHAR_DATA * ch, char *argument )
+void do_dismount( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
 
@@ -3331,7 +3323,7 @@ bool check_dodge( CHAR_DATA * ch, CHAR_DATA * victim )
    return TRUE;
 }
 
-void do_poison_weapon( CHAR_DATA * ch, char *argument )
+void do_poison_weapon( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    OBJ_DATA *pobj;
@@ -3467,11 +3459,11 @@ void do_poison_weapon( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_scribe( CHAR_DATA * ch, char *argument )
+void do_scribe( CHAR_DATA * ch, const char *argument )
 {
 }
 
-void do_brew( CHAR_DATA * ch, char *argument )
+void do_brew( CHAR_DATA * ch, const char *argument )
 {
 }
 
@@ -3506,7 +3498,7 @@ bool check_grip( CHAR_DATA * ch, CHAR_DATA * victim )
    return TRUE;
 }
 
-void do_circle( CHAR_DATA * ch, char *argument )
+void do_circle( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -3592,7 +3584,7 @@ void do_circle( CHAR_DATA * ch, char *argument )
 }
 
 /* Berserk and HitAll. -- Altrag */
-void do_berserk( CHAR_DATA * ch, char *argument )
+void do_berserk( CHAR_DATA * ch, const char *argument )
 {
    short percent;
    AFFECT_DATA af;
@@ -3638,8 +3630,9 @@ void do_berserk( CHAR_DATA * ch, char *argument )
 }
 
 /* External from fight.c */
-ch_ret one_hit args( ( CHAR_DATA * ch, CHAR_DATA * victim, int dt ) );
-void do_hitall( CHAR_DATA * ch, char *argument )
+ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt );
+
+void do_hitall( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *vch;
    CHAR_DATA *vch_next;
@@ -3705,7 +3698,7 @@ bool check_illegal_psteal( CHAR_DATA * ch, CHAR_DATA * victim )
    return FALSE;
 }
 
-void do_scan( CHAR_DATA * ch, char *argument )
+void do_scan( CHAR_DATA * ch, const char *argument )
 {
    ROOM_INDEX_DATA *was_in_room;
    ROOM_INDEX_DATA *to_room;

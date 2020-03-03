@@ -39,17 +39,13 @@ Michael Seifert, and Sebastian Hammer.
 
 void subtract_times( struct timeval *etime, struct timeval *sttime );
 
-
-
-bool check_social args( ( CHAR_DATA * ch, char *command, char *argument ) );
-
+bool check_social( CHAR_DATA * ch, const char *command, const char *argument );
 
 /*
  * Log-all switch.
  */
 bool fLogAll = FALSE;
 bool fLogPC = FALSE;
-
 
 CMDTYPE *command_hash[126];   /* hash table for cmd_table */
 SOCIALTYPE *social_index[27]; /* hash table for socials   */
@@ -104,7 +100,7 @@ extern char lastplayercmd[MAX_INPUT_LENGTH * 2];
  * The main entry point for executing commands.
  * Can be recursively called from 'at', 'order', 'force'.
  */
-void interpret( CHAR_DATA * ch, char *argument )
+void interpret( CHAR_DATA * ch, const char *argument )
 {
    char command[MAX_INPUT_LENGTH];
    char logline[MAX_INPUT_LENGTH];
@@ -276,6 +272,17 @@ void interpret( CHAR_DATA * ch, char *argument )
       else
          sprintf( log_buf, "Log %s: %s", ch->name, logline );
 
+      if( cmd && IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) && IS_CMD_MPROG( cmd ) )
+      {
+         send_to_char( "You can't do that while charmed!\r\n", ch );
+         return;
+      }
+      if( cmd && IS_NPC( ch ) && IS_CMDFLAG( cmd, CMD_PLR_ONLY ) )
+      {
+         send_to_char( "Only player's can use this command!\r\n", ch );
+         return;
+      }
+
       /*
        * Make it so a 'log all' will send most output to the log
        * file only, and not spam the log channel to death   -Thoric
@@ -320,9 +327,12 @@ void interpret( CHAR_DATA * ch, char *argument )
       write_to_buffer( ch->desc->snoop_by, "\r\n", 2 );
    }
 
+   bool check = TRUE; // Make sure we got a default value for no goof-ups! - Gatz
 
+   if( cmd && IS_CMDFLAG( cmd, CMD_OOC ) )
+       check = FALSE;
 
-   if( cmd && timer && str_cmp( command, "ooc" ) )
+   if( check && timer )
    {
       int tempsub;
 
@@ -373,7 +383,8 @@ void interpret( CHAR_DATA * ch, char *argument )
                   send_to_char( "You cannot do that here.\r\n", ch );
                return;
             }
-            move_char( ch, pexit, 0 );
+            if( check_pos( ch, POS_STANDING ) )
+               move_char( ch, pexit, 0 );
             return;
          }
          if( rprog_custom_trigger( command, argument, ch ) )
@@ -431,7 +442,7 @@ void interpret( CHAR_DATA * ch, char *argument )
    tail_chain(  );
 }
 
-CMDTYPE *find_command( char *command )
+CMDTYPE *find_command( char *command, bool exact )
 {
    CMDTYPE *cmd;
    int hash;
@@ -439,18 +450,24 @@ CMDTYPE *find_command( char *command )
    hash = LOWER( command[0] ) % 126;
 
    for( cmd = command_hash[hash]; cmd; cmd = cmd->next )
-      if( !str_prefix( command, cmd->name ) )
+      if( !str_cmp( command, cmd->name ) )
          return cmd;
 
+   if( !exact )
+   {
+      for( cmd = command_hash[hash]; cmd; cmd = cmd->next )
+         if( !str_prefix( command, cmd->name ) )
+            return cmd;
+   }
    return NULL;
 }
 
-SOCIALTYPE *find_social( const char *command )
+SOCIALTYPE *find_social( const char *command, bool exact )
 {
    SOCIALTYPE *social;
    int hash;
 
-   char c = LOWER(command[0]);
+   char c = LOWER( command[0] );
 
    if( c < 'a' || c > 'z' )
       hash = 0;
@@ -458,19 +475,25 @@ SOCIALTYPE *find_social( const char *command )
       hash = ( c - 'a' ) + 1;
 
    for( social = social_index[hash]; social; social = social->next )
-      if( !str_prefix( command, social->name ) )
+      if( !str_cmp( command, social->name ) )
          return social;
 
+   if( !exact )
+   {
+      for( social = social_index[hash]; social; social = social->next )
+         if( !str_prefix( command, social->name ) )
+            return social;
+   }
    return NULL;
 }
 
-bool check_social( CHAR_DATA * ch, char *command, char *argument )
+bool check_social( CHAR_DATA * ch, const char *command, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
    SOCIALTYPE *social;
 
-   if( ( social = find_social( command ) ) == NULL )
+   if( ( social = find_social( command, FALSE ) ) == NULL )
       return FALSE;
 
    if( !IS_NPC( ch ) && IS_SET( ch->act, PLR_NO_EMOTE ) )
@@ -583,7 +606,7 @@ bool check_social( CHAR_DATA * ch, char *command, char *argument )
 /*
  * Return true if an argument is completely numeric.
  */
-bool is_number( char *arg )
+bool is_number( const char *arg )
 {
    if( *arg == '\0' )
       return FALSE;
@@ -602,18 +625,23 @@ bool is_number( char *arg )
 /*
  * Given a string like 14.foo, return 14 and 'foo'
  */
-int number_argument( char *argument, char *arg )
+int number_argument( const char *argument, char *arg )
 {
-   char *pdot;
+   const char *pdot;
    int number;
 
    for( pdot = argument; *pdot != '\0'; pdot++ )
    {
       if( *pdot == '.' )
       {
-         *pdot = '\0';
-         number = atoi( argument );
-         *pdot = '.';
+         char *numPortion = ( char * )malloc( pdot - argument + 1 );
+         memcpy( numPortion, argument, pdot - argument );
+         numPortion[pdot - argument] = '\0';
+
+         number = atoi( numPortion );
+
+         free( numPortion );
+
          strcpy( arg, pdot + 1 );
          return number;
       }
@@ -623,11 +651,16 @@ int number_argument( char *argument, char *arg )
    return 1;
 }
 
+char *one_argument( char *argument, char *arg_first )
+{
+   return ( char * )one_argument( ( const char * )argument, arg_first );
+}
+
 /*
  * Pick off one argument from a string and return the rest.
  * Understands quotes. No longer mangles case either. That used to be annoying.
  */
-char *one_argument( char *argument, char *arg_first )
+const char *one_argument( const char *argument, char *arg_first )
 {
    char cEnd;
    int count;
@@ -665,7 +698,7 @@ char *one_argument( char *argument, char *arg_first )
  * Understands quotes.  Delimiters = { ' ', '-' }
  * No longer mangles case either. That used to be annoying.
  */
-char *one_argument2( char *argument, char *arg_first )
+const char *one_argument2( const char *argument, char *arg_first )
 {
    char cEnd;
    short count;
@@ -704,7 +737,7 @@ char *one_argument2( char *argument, char *arg_first )
    return argument;
 }
 
-void do_timecmd( CHAR_DATA * ch, char *argument )
+void do_timecmd( CHAR_DATA * ch, const char *argument )
 {
    struct timeval sttime;
    struct timeval etime;

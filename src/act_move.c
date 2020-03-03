@@ -37,7 +37,7 @@ const short movement_loss[SECT_MAX] = {
    1, 2, 2, 3, 4, 6, 4, 1, 6, 10, 6, 5, 7, 4
 };
 
-char *const dir_name[] = {
+const char *const dir_name[] = {
    "north", "east", "south", "west", "up", "down",
    "northeast", "northwest", "southeast", "southwest", "somewhere"
 };
@@ -59,10 +59,10 @@ ROOM_INDEX_DATA *vroom_hash[64];
 /*
  * Local functions.
  */
-bool has_key args( ( CHAR_DATA * ch, int key ) );
+bool has_key( CHAR_DATA * ch, int key );
 
 
-char *const sect_names[SECT_MAX][2] = {
+const char *const sect_names[SECT_MAX][2] = {
    {"In a room", "inside"}, {"A City Street", "cities"},
    {"In a field", "fields"}, {"In a forest", "forests"},
    {"hill", "hills"}, {"On a mountain", "mountains"},
@@ -77,7 +77,7 @@ const int sent_total[SECT_MAX] = {
    4, 24, 4, 4, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1
 };
 
-char *const room_sents[SECT_MAX][25] = {
+const char *const room_sents[SECT_MAX][25] = {
    {
     "The rough hewn walls are made of granite.",
     "You see an occasional spider crawling around.",
@@ -444,17 +444,17 @@ short encumbrance( CHAR_DATA * ch, short move )
    max = can_carry_w( ch );
    cur = ch->carry_weight;
    if( cur >= max )
-      return move * 4;
+      return ( short )move * 4;
    else if( cur >= max * 0.95 )
-      return move * 3.5;
+      return ( short )move * 3.5;
    else if( cur >= max * 0.90 )
-      return move * 3;
+      return ( short )move * 3;
    else if( cur >= max * 0.85 )
-      return move * 2.5;
+      return ( short )move * 2.5;
    else if( cur >= max * 0.80 )
-      return move * 2;
+      return ( short )move * 2;
    else if( cur >= max * 0.75 )
-      return move * 1.5;
+      return ( short )move * 1.5;
    else
       return move;
 }
@@ -583,7 +583,7 @@ ch_ret move_char( CHAR_DATA * ch, EXIT_DATA * pexit, int fall )
 {
    ROOM_INDEX_DATA *in_room, *to_room, *from_room;
    char buf[MAX_STRING_LENGTH];
-   char *txt, *dtxt;
+   const char *txt, *dtxt;
    ch_ret retcode;
    short door, distance;
    bool drunk = FALSE, brief = FALSE;
@@ -736,7 +736,7 @@ ch_ret move_char( CHAR_DATA * ch, EXIT_DATA * pexit, int fall )
 /*
 	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
 	{
-	    if ( iClass != ch->class
+	    if ( iClass != ch->sclass
 	    &&   to_room->vnum == class_table[iClass]->guild )
 	    {
 		send_to_char( "You aren't allowed in there.\r\n", ch );
@@ -1207,7 +1207,7 @@ ch_ret move_char( CHAR_DATA * ch, EXIT_DATA * pexit, int fall )
 }
 
 
-void do_north( CHAR_DATA * ch, char *argument )
+void do_north( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1220,7 +1220,7 @@ void do_north( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_east( CHAR_DATA * ch, char *argument )
+void do_east( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1233,7 +1233,7 @@ void do_east( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_south( CHAR_DATA * ch, char *argument )
+void do_south( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1246,7 +1246,7 @@ void do_south( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_west( CHAR_DATA * ch, char *argument )
+void do_west( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1259,7 +1259,7 @@ void do_west( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_up( CHAR_DATA * ch, char *argument )
+void do_up( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1272,7 +1272,7 @@ void do_up( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_down( CHAR_DATA * ch, char *argument )
+void do_down( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1284,7 +1284,7 @@ void do_down( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_northeast( CHAR_DATA * ch, char *argument )
+void do_northeast( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1296,7 +1296,7 @@ void do_northeast( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_northwest( CHAR_DATA * ch, char *argument )
+void do_northwest( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1308,7 +1308,7 @@ void do_northwest( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_southeast( CHAR_DATA * ch, char *argument )
+void do_southeast( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1320,7 +1320,7 @@ void do_southeast( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_southwest( CHAR_DATA * ch, char *argument )
+void do_southwest( CHAR_DATA * ch, const char *argument )
 {
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
@@ -1332,7 +1332,7 @@ void do_southwest( CHAR_DATA * ch, char *argument )
    return;
 }
 
-EXIT_DATA *find_door( CHAR_DATA * ch, char *arg, bool quiet )
+EXIT_DATA *find_door( CHAR_DATA * ch, const char *arg, bool quiet )
 {
    EXIT_DATA *pexit;
    int door;
@@ -1426,7 +1426,7 @@ void remove_bexit_flag( EXIT_DATA * pexit, int flag )
       REMOVE_BIT( pexit_rev->exit_info, flag );
 }
 
-void do_open( CHAR_DATA * ch, char *argument )
+void do_open( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -1530,7 +1530,7 @@ void do_open( CHAR_DATA * ch, char *argument )
 
 
 
-void do_close( CHAR_DATA * ch, char *argument )
+void do_close( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -1634,7 +1634,7 @@ bool has_key( CHAR_DATA * ch, int key )
 }
 
 
-void do_lock( CHAR_DATA * ch, char *argument )
+void do_lock( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -1732,7 +1732,7 @@ void do_lock( CHAR_DATA * ch, char *argument )
 
 
 
-void do_unlock( CHAR_DATA * ch, char *argument )
+void do_unlock( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -1828,7 +1828,7 @@ void do_unlock( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_bashdoor( CHAR_DATA * ch, char *argument )
+void do_bashdoor( CHAR_DATA * ch, const char *argument )
 {
    EXIT_DATA *pexit;
    char arg[MAX_INPUT_LENGTH];
@@ -1858,7 +1858,7 @@ void do_bashdoor( CHAR_DATA * ch, char *argument )
       ROOM_INDEX_DATA *to_room;
       EXIT_DATA *pexit_rev;
       int schance;
-      char *keyword;
+      const char *keyword;
 
       if( !IS_SET( pexit->exit_info, EX_CLOSED ) )
       {
@@ -1926,7 +1926,7 @@ void do_bashdoor( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_stand( CHAR_DATA * ch, char *argument )
+void do_stand( CHAR_DATA * ch, const char *argument )
 {
    switch ( ch->position )
    {
@@ -1967,7 +1967,7 @@ void do_stand( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_sit( CHAR_DATA * ch, char *argument )
+void do_sit( CHAR_DATA * ch, const char *argument )
 {
    switch ( ch->position )
    {
@@ -2010,7 +2010,7 @@ void do_sit( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_rest( CHAR_DATA * ch, char *argument )
+void do_rest( CHAR_DATA * ch, const char *argument )
 {
    switch ( ch->position )
    {
@@ -2055,7 +2055,7 @@ void do_rest( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_sleep( CHAR_DATA * ch, char *argument )
+void do_sleep( CHAR_DATA * ch, const char *argument )
 {
    switch ( ch->position )
    {
@@ -2115,7 +2115,7 @@ void do_sleep( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_wake( CHAR_DATA * ch, char *argument )
+void do_wake( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -2205,12 +2205,10 @@ void teleport( CHAR_DATA * ch, int room, int flags )
 /*
  * "Climb" in a certain direction.				-Thoric
  */
-void do_climb( CHAR_DATA * ch, char *argument )
+void do_climb( CHAR_DATA * ch, const char *argument )
 {
    EXIT_DATA *pexit;
-   bool found;
 
-   found = FALSE;
    if( argument[0] == '\0' )
    {
       for( pexit = ch->in_room->first_exit; pexit; pexit = pexit->next )
@@ -2235,12 +2233,10 @@ void do_climb( CHAR_DATA * ch, char *argument )
 /*
  * "enter" something (moves through an exit)			-Thoric
  */
-void do_enter( CHAR_DATA * ch, char *argument )
+void do_enter( CHAR_DATA * ch, const char *argument )
 {
    EXIT_DATA *pexit;
-   bool found;
 
-   found = FALSE;
    if( argument[0] == '\0' )
    {
       for( pexit = ch->in_room->first_exit; pexit; pexit = pexit->next )
@@ -2265,12 +2261,10 @@ void do_enter( CHAR_DATA * ch, char *argument )
 /*
  * Leave through an exit.					-Thoric
  */
-void do_leave( CHAR_DATA * ch, char *argument )
+void do_leave( CHAR_DATA * ch, const char *argument )
 {
    EXIT_DATA *pexit;
-   bool found;
 
-   found = FALSE;
    if( argument[0] == '\0' )
    {
       for( pexit = ch->in_room->first_exit; pexit; pexit = pexit->next )

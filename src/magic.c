@@ -35,13 +35,13 @@ Michael Seifert, and Sebastian Hammer.
 /*
  * Local functions.
  */
-void say_spell args( ( CHAR_DATA * ch, int sn ) );
-CHAR_DATA *make_poly_mob args( ( CHAR_DATA * ch, int vnum ) );
-ch_ret spell_affect args( ( int sn, int level, CHAR_DATA * ch, void *vo ) );
-ch_ret spell_affectchar args( ( int sn, int level, CHAR_DATA * ch, void *vo ) );
+void say_spell( CHAR_DATA * ch, int sn );
+CHAR_DATA *make_poly_mob( CHAR_DATA * ch, int vnum );
+ch_ret spell_affect( int sn, int level, CHAR_DATA * ch, void *vo );
+ch_ret spell_affectchar( int sn, int level, CHAR_DATA * ch, void *vo );
 
 /* from shops.c */
-CHAR_DATA *find_keeper args( ( CHAR_DATA * ch ) );
+CHAR_DATA *find_keeper( CHAR_DATA * ch );
 
 /*
  * Is immune to a damage type
@@ -463,11 +463,11 @@ int ris_save( CHAR_DATA * ch, int schance, int ris )
  */
 int rd_parse( CHAR_DATA * ch, int level, char *texp )
 {
-   int x, lop = 0, gop = 0, eop = 0;
+   int lop = 0, gop = 0, eop = 0;
    char operation;
    char *sexp[2];
-   int total = 0, len = 0;
-
+   int total = 0;
+   unsigned int x, len=0;
    /*
     * take care of nulls coming in 
     */
@@ -605,7 +605,7 @@ int rd_parse( CHAR_DATA * ch, int level, char *texp )
          break;
       case '^':
       {
-         int y = rd_parse( ch, level, sexp[1] ), z = total;
+         unsigned int y = rd_parse( ch, level, sexp[1] ), z = total;
 
          for( x = 1; x < y; ++x, z *= total );
          total = z;
@@ -1036,13 +1036,13 @@ void *locate_targets( CHAR_DATA * ch, char *arg, int sn, CHAR_DATA ** victim, OB
 /*
  * The kludgy global is for spells who want more stuff from command line.
  */
-char *target_name;
+const char *target_name;
 
 
 /*
  * Cast a spell.  Multi-caster and component support by Thoric
  */
-void do_cast( CHAR_DATA * ch, char *argument )
+void do_cast( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1237,7 +1237,7 @@ void do_cast( CHAR_DATA * ch, char *argument )
             return;
          }
          mana = IS_NPC( ch ) ? 0 : skill->min_mana;
-         strcpy( staticbuf, ch->dest_buf );
+         strcpy( staticbuf, (const char*)ch->dest_buf );
          target_name = one_argument( staticbuf, arg2 );
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
@@ -1251,7 +1251,7 @@ void do_cast( CHAR_DATA * ch, char *argument )
                if( tmp != ch
                    && ( t = get_timerptr( tmp, TIMER_DO_FUN ) ) != NULL
                    && t->count >= 1 && t->do_fun == do_cast
-                   && tmp->tempnum == sn && tmp->dest_buf && !str_cmp( tmp->dest_buf, staticbuf ) )
+                   && tmp->tempnum == sn && tmp->dest_buf && !str_cmp( (const char*)tmp->dest_buf, staticbuf ) )
                   ++cnt;
             if( cnt >= skill->participants )
             {
@@ -1259,7 +1259,7 @@ void do_cast( CHAR_DATA * ch, char *argument )
                   if( tmp != ch
                       && ( t = get_timerptr( tmp, TIMER_DO_FUN ) ) != NULL
                       && t->count >= 1 && t->do_fun == do_cast
-                      && tmp->tempnum == sn && tmp->dest_buf && !str_cmp( tmp->dest_buf, staticbuf ) )
+                      && tmp->tempnum == sn && tmp->dest_buf && !str_cmp( (const char*)tmp->dest_buf, staticbuf ) )
                   {
                      extract_timer( tmp, t );
                      act( AT_MAGIC, "Channeling your energy into $n, you help direct the force", ch, NULL, tmp, TO_VICT );
@@ -1647,7 +1647,7 @@ ch_ret spell_blindness( int sn, int level, CHAR_DATA * ch, void *vo )
    af.type = sn;
    af.location = APPLY_HITROLL;
    af.modifier = -4;
-   af.duration = ( 1 + ( level / 3 ) ) * DUR_CONV;
+   af.duration = ( int )( ( 1 + ( level / 3 ) ) * DUR_CONV );
    af.bitvector = AFF_BLIND;
    affect_to_char( victim, &af );
    set_char_color( AT_MAGIC, victim );
@@ -1802,7 +1802,7 @@ ch_ret spell_change_sex( int sn, int level, CHAR_DATA * ch, void *vo )
    if( is_affected( victim, sn ) )
       return rSPELL_FAILED;
    af.type = sn;
-   af.duration = 10 * level * DUR_CONV;
+   af.duration = ( int )( 10 * level * DUR_CONV );
    af.location = APPLY_SEX;
    do
    {
@@ -1867,7 +1867,7 @@ ch_ret spell_charm_person( int sn, int level, CHAR_DATA * ch, void *vo )
       stop_follower( victim );
    add_follower( victim, ch );
    af.type = sn;
-   af.duration = ( number_fuzzy( ( level + 1 ) / 3 ) + 1 ) * DUR_CONV;
+   af.duration = ( int )( ( number_fuzzy( ( level + 1 ) / 3 ) + 1 ) * DUR_CONV );
    af.location = 0;
    af.modifier = 0;
    af.bitvector = AFF_CHARM;
@@ -2112,7 +2112,7 @@ ch_ret spell_curse( int sn, int level, CHAR_DATA * ch, void *vo )
       return rSPELL_FAILED;
    }
    af.type = sn;
-   af.duration = ( 4 * level ) * DUR_CONV;
+   af.duration = ( int )( ( 4 * level ) * DUR_CONV );
    af.location = APPLY_HITROLL;
    af.modifier = -1;
    af.bitvector = AFF_CURSE;
@@ -2484,7 +2484,7 @@ ch_ret spell_faerie_fire( int sn, int level, CHAR_DATA * ch, void *vo )
       return rSPELL_FAILED;
    }
    af.type = sn;
-   af.duration = level * DUR_CONV;
+   af.duration = ( int )( level * DUR_CONV );
    af.location = APPLY_AC;
    af.modifier = 2 * level;
    af.bitvector = AFF_FAERIE_FIRE;
@@ -2846,7 +2846,7 @@ ch_ret spell_invis( int sn, int level, CHAR_DATA * ch, void *vo )
 
       act( AT_MAGIC, "$n fades out of existence.", victim, NULL, NULL, TO_ROOM );
       af.type = sn;
-      af.duration = ( ( level / 4 ) + 12 ) * DUR_CONV;
+      af.duration = ( int )( ( ( level / 4 ) + 12 ) * DUR_CONV );
       af.location = APPLY_NONE;
       af.modifier = 0;
       af.bitvector = AFF_INVISIBLE;
@@ -2882,7 +2882,7 @@ ch_ret spell_invis( int sn, int level, CHAR_DATA * ch, void *vo )
 ch_ret spell_know_alignment( int sn, int level, CHAR_DATA * ch, void *vo )
 {
    CHAR_DATA *victim = ( CHAR_DATA * ) vo;
-   char *msg;
+   const char *msg;
    int ap;
    SKILLTYPE *skill = get_skilltype( sn );
 
@@ -3061,7 +3061,7 @@ ch_ret spell_pass_door( int sn, int level, CHAR_DATA * ch, void *vo )
       return rSPELL_FAILED;
    }
    af.type = sn;
-   af.duration = number_fuzzy( level / 4 ) * DUR_CONV;
+   af.duration = ( int )( number_fuzzy( level / 4 ) * DUR_CONV );
    af.location = APPLY_NONE;
    af.modifier = 0;
    af.bitvector = AFF_PASS_DOOR;
@@ -3091,7 +3091,7 @@ ch_ret spell_poison( int sn, int level, CHAR_DATA * ch, void *vo )
    if( IS_AFFECTED( victim, AFF_POISON ) )
       first = FALSE;
    af.type = sn;
-   af.duration = level * DUR_CONV;
+   af.duration = ( int )( level * DUR_CONV );
    af.location = APPLY_STR;
    af.modifier = -2;
    af.bitvector = AFF_POISON;
@@ -3251,7 +3251,7 @@ ch_ret spell_sleep( int sn, int level, CHAR_DATA * ch, void *vo )
       }
    }
    af.type = sn;
-   af.duration = ( 4 + level ) * DUR_CONV;
+   af.duration = ( int )( ( 4 + level ) * DUR_CONV );
    af.location = APPLY_NONE;
    af.modifier = 0;
    af.bitvector = AFF_SLEEP;
@@ -3336,7 +3336,7 @@ ch_ret spell_weaken( int sn, int level, CHAR_DATA * ch, void *vo )
    if( is_affected( victim, sn ) || saves_wands( level, victim ) )
       return rSPELL_FAILED;
    af.type = sn;
-   af.duration = level / 2 * DUR_CONV;
+   af.duration = ( int )( level / 2 * DUR_CONV );
    af.location = APPLY_STR;
    af.modifier = -2;
    af.bitvector = 0;
@@ -3431,7 +3431,7 @@ ch_ret spell_fire_breath( int sn, int level, CHAR_DATA * ch, void *vo )
    {
       for( obj_lose = victim->first_carrying; obj_lose; obj_lose = obj_next )
       {
-         char *msg;
+         const char *msg;
 
          obj_next = obj_lose->next_content;
          if( number_bits( 2 ) != 0 )
@@ -3500,7 +3500,7 @@ ch_ret spell_frost_breath( int sn, int level, CHAR_DATA * ch, void *vo )
    {
       for( obj_lose = victim->first_carrying; obj_lose; obj_lose = obj_next )
       {
-         char *msg;
+         const char *msg;
 
          obj_next = obj_lose->next_content;
          if( number_bits( 2 ) != 0 )
@@ -3959,7 +3959,7 @@ ch_ret spell_animate_dead( int sn, int level, CHAR_DATA * ch, void *vo )
       mob->long_descr = STRALLOC( buf );
       add_follower( mob, ch );
       af.type = sn;
-      af.duration = ( number_fuzzy( ( level + 1 ) / 4 ) + 1 ) * DUR_CONV;
+      af.duration = ( int )( ( number_fuzzy( ( level + 1 ) / 4 ) + 1 ) * DUR_CONV );
       af.location = 0;
       af.modifier = 0;
       af.bitvector = AFF_CHARM;
@@ -4189,7 +4189,7 @@ CHAR_DATA *make_poly_mob( CHAR_DATA * ch, int vnum )
    return mob;
 }
 
-void do_revert( CHAR_DATA * ch, char *argument )
+void do_revert( CHAR_DATA * ch, const char *argument )
 {
 
    CHAR_DATA *mob;
@@ -4314,7 +4314,7 @@ ch_ret spell_scorching_surge( int sn, int level, CHAR_DATA * ch, void *vo )
       dam /= 2;
    act( AT_MAGIC, "A fiery current lashes through $n's body!", ch, NULL, NULL, TO_ROOM );
    act( AT_MAGIC, "A fiery current lashes through your body!", ch, NULL, NULL, TO_CHAR );
-   return damage( ch, victim, ( dam * 1.4 ), sn );
+   return damage( ch, victim, ( int )( dam * 1.4 ), sn );
 }
 
 
@@ -4389,7 +4389,7 @@ ch_ret spell_attack( int sn, int level, CHAR_DATA * ch, void *vo )
    if( saved )
       dam /= 2;
    retcode = damage( ch, victim, dam, sn );
-   if( retcode == rNONE && skill->affects && !char_died( ch ) && !char_died( victim ) )
+   if( retcode == rNONE && skill->first_affect && !char_died( ch ) && !char_died( victim ) )
       retcode = spell_affectchar( sn, level, ch, victim );
    return retcode;
 }
@@ -4404,7 +4404,6 @@ ch_ret spell_area_attack( int sn, int level, CHAR_DATA * ch, void *vo )
    bool saved;
    bool affects;
    int dam;
-   bool ch_died = FALSE;
    ch_ret retcode;
 
    send_to_char( "You feel the hatred grow within you!\r\n", ch );
@@ -4418,7 +4417,7 @@ ch_ret spell_area_attack( int sn, int level, CHAR_DATA * ch, void *vo )
       return rSPELL_FAILED;
    }
 
-   affects = ( skill->affects ? TRUE : FALSE );
+   affects = ( skill->first_affect ? TRUE : FALSE );
    if( skill->hit_char && skill->hit_char[0] != '\0' )
       act( AT_MAGIC, skill->hit_char, ch, NULL, NULL, TO_CHAR );
    if( skill->hit_room && skill->hit_room[0] != '\0' )
@@ -4450,10 +4449,7 @@ ch_ret spell_area_attack( int sn, int level, CHAR_DATA * ch, void *vo )
       if( retcode == rNONE && affects && !char_died( ch ) && !char_died( vch ) )
          retcode = spell_affectchar( sn, level, ch, vch );
       if( retcode == rCHAR_DIED || char_died( ch ) )
-      {
-         ch_died = TRUE;
          break;
-      }
    }
    return retcode;
 }
@@ -4470,7 +4466,7 @@ ch_ret spell_affectchar( int sn, int level, CHAR_DATA * ch, void *vo )
 
    if( SPELL_FLAG( skill, SF_RECASTABLE ) )
       affect_strip( victim, sn );
-   for( saf = skill->affects; saf; saf = saf->next )
+   for( saf = skill->first_affect; saf; saf = saf->next )
    {
       if( saf->location >= REVERSE_APPLY )
          victim = ch;
@@ -4620,7 +4616,7 @@ ch_ret spell_affect( int sn, int level, CHAR_DATA * ch, void *vo )
    bool hitchar, hitroom, hitvict = FALSE;
    ch_ret retcode;
 
-   if( !skill->affects )
+   if( !skill->first_affect )
    {
       bug( "spell_affect has no affects sn %d", sn );
       return rNONE;
@@ -4661,7 +4657,7 @@ ch_ret spell_affect( int sn, int level, CHAR_DATA * ch, void *vo )
          return rSPELL_FAILED;
       }
 
-      if( ( saf = skill->affects ) && !saf->next
+      if( ( saf = skill->first_affect ) && !saf->next
           && saf->location == APPLY_STRIPSN && !is_affected( victim, dice_parse( ch, level, saf->modifier ) ) )
       {
          failed_casting( skill, ch, victim, NULL );
@@ -5041,7 +5037,7 @@ ch_ret spell_create_mob( int sn, int level, CHAR_DATA * ch, void *vo )
    char_to_room( mob, ch->in_room );
    add_follower( mob, ch );
    af.type = sn;
-   af.duration = ( number_fuzzy( ( level + 1 ) / 3 ) + 1 ) * DUR_CONV;
+   af.duration = ( int )( ( number_fuzzy( ( level + 1 ) / 3 ) + 1 ) * DUR_CONV );
    af.location = 0;
    af.modifier = 0;
    af.bitvector = AFF_CHARM;

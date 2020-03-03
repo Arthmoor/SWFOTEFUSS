@@ -6,6 +6,7 @@ Y            -1397
 Z            2230
 Sector       0
 Type    	   0
+BaseValue    0
 PopSupport   92
 Starsystem   Kashyyyk~
 GovernedBy   The Empire~

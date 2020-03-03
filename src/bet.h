@@ -59,7 +59,7 @@ Michael Seifert, and Sebastian Hammer.
   once.
 */
 
-int advatoi( char *s )
+int advatoi( const char *s )
 {
    int number = 0;   /* number to be returned */
    int multiplier = 0;  /* multiplier used to get the extra digits right */
@@ -134,7 +134,7 @@ int advatoi( char *s )
   gives 10,000 etc.
 
 */
-int parsebet( const int currentbet, char *s )
+int parsebet( const int currentbet, const char *s )
 {
    /*
     * check to make sure it's not blank 

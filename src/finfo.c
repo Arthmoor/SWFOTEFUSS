@@ -39,7 +39,7 @@ Michael Seifert, and Sebastian Hammer.
 void fread_forcehelp( FORCE_HELP * fhelp, FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
 
    for( ;; )
@@ -75,7 +75,7 @@ void fread_forcehelp( FORCE_HELP * fhelp, FILE * fp )
    }
 }
 
-bool load_forcehelp( char *forcehelpfile )
+bool load_forcehelp( const char *forcehelpfile )
 {
    char filename[256];
    FORCE_HELP *fhelp;
@@ -138,7 +138,7 @@ bool load_forcehelp( char *forcehelpfile )
 void load_force_help(  )
 {
    FILE *fpList;
-   char *filename;
+   const char *filename;
    char forcehelpslist[256];
    char buf[MAX_STRING_LENGTH];
 
@@ -247,7 +247,7 @@ void save_forcehelp( FORCE_HELP * fhelp )
 void fread_forceskill( FORCE_SKILL * fskill, FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
 
    for( ;; )
@@ -313,7 +313,7 @@ void fread_forceskill( FORCE_SKILL * fskill, FILE * fp )
    }
 }
 
-bool load_forceskill( char *forceskillfile )
+bool load_forceskill( const char *forceskillfile )
 {
    char filename[256];
    FORCE_SKILL *fskill;
@@ -379,7 +379,7 @@ bool load_forceskill( char *forceskillfile )
 void load_force_skills(  )
 {
    FILE *fpList;
-   char *filename;
+   const char *filename;
    char forceskillslist[256];
    char buf[MAX_STRING_LENGTH];
 
@@ -414,7 +414,7 @@ void load_force_skills(  )
    return;
 }
 
-DO_FUN *get_force_skill_function( char *name )
+DO_FUN *get_force_skill_function( const char *name )
 {
    if( !name || name[0] == '\0' || strlen( name ) < 8 )
       return skill_notfound;

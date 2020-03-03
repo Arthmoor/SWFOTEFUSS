@@ -6,6 +6,7 @@ Y            -16541
 Z            1024
 Sector       0
 Type    	   0
+BaseValue    0
 PopSupport   99
 Starsystem   Y'toub~
 GovernedBy   The Empire~

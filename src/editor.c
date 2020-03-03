@@ -102,10 +102,10 @@ struct editor_data
  */
 
 /* funcs to manipulate editor datas */
-EDITOR_LINE *make_new_line( char *str );
+EDITOR_LINE *make_new_line( const char *str );
 void discard_editdata( EDITOR_DATA * edd );
 EDITOR_DATA *clone_editdata( EDITOR_DATA * edd );
-EDITOR_DATA *str_to_editdata( char *str, short max_size );
+EDITOR_DATA *str_to_editdata( const char *str, short max_size );
 char *editdata_to_str( EDITOR_DATA * edd );
 
 /* misc functions */
@@ -115,7 +115,7 @@ char *text_replace( char *src, char *word_src, char *word_dst, short *pnew_size,
 /* editor sub functions */
 void editor_print_info( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
 void editor_help( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
-void editor_clear_buf( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
+void editor_clear_buf( CHAR_DATA * ch, EDITOR_DATA * edd, const char *argument );
 void editor_search_and_replace( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
 void editor_insert_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
 void editor_delete_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
@@ -123,7 +123,7 @@ void editor_goto_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
 void editor_list( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
 void editor_abort( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
 void editor_escaped_cmd( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
-void editor_save( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument );
+void editor_save( CHAR_DATA * ch, EDITOR_DATA * edd, const char *argument );
 void editor_format_lines( CHAR_DATA * ch, EDITOR_DATA * edd );
 
 
@@ -131,7 +131,7 @@ void editor_format_lines( CHAR_DATA * ch, EDITOR_DATA * edd );
  * Edit_data manipulation functions
  */
 
-EDITOR_LINE *make_new_line( char *str )
+EDITOR_LINE *make_new_line( const char *str )
 {
    EDITOR_LINE *new_line;
    short size;
@@ -191,9 +191,9 @@ EDITOR_DATA *clone_editdata( EDITOR_DATA * edd )
    return new_edd;
 }
 
-EDITOR_DATA *str_to_editdata( char *str, short max_size )
+EDITOR_DATA *str_to_editdata( const char *str, short max_size )
 {
-   char *p;
+   const char *p;
    EDITOR_DATA *edd;
    EDITOR_LINE *eline;
    short i;
@@ -339,7 +339,7 @@ void set_editor_desc( CHAR_DATA * ch, char *new_desc )
    ch->editor->desc = STRALLOC( new_desc );
 }
 
-void editor_desc_printf( CHAR_DATA * ch, char *desc_fmt, ... )
+void editor_desc_printf( CHAR_DATA * ch, const char *desc_fmt, ... )
 {
    char buf[MAX_STRING_LENGTH * 2]; /* umpf.. */
    va_list args;
@@ -546,13 +546,12 @@ void edit_buffer( CHAR_DATA * ch, char *argument )
 void editor_format_lines( CHAR_DATA * ch, EDITOR_DATA * edd )
 {
    EDITOR_LINE *eline;
-   short from, to;
    int srclen, x, inp;
    char src[MAX_STRING_LENGTH];
    char newsrc[MAX_STRING_LENGTH];
    char newsrc2[MAX_STRING_LENGTH];
-   from = 1;
-   to = edd->line_count;
+   char editbuf[MSL];
+
    eline = edd->first_line;
    inp = 0;
    while( eline )
@@ -567,7 +566,8 @@ void editor_format_lines( CHAR_DATA * ch, EDITOR_DATA * edd )
    src[inp] = '\0';
    strcpy( newsrc, strrep( src, "(NL)", "\r\n" ) );
    strcpy( newsrc, strlinwrp( newsrc, 60 ) );
-   edit_buffer( ch, "/c" );
+   snprintf( editbuf, MSL, "%s", "/c" );
+   edit_buffer( ch, editbuf );
    inp = 0;
    srclen = strlen( newsrc );
    for( x = 0; x < srclen; x++ )
@@ -584,8 +584,6 @@ void editor_format_lines( CHAR_DATA * ch, EDITOR_DATA * edd )
    }
    send_to_char( "\r\nOk - Reformatted.\r\n", ch );
 }
-
-
 
 void editor_print_info( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
 {
@@ -612,8 +610,8 @@ void editor_print_info( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
 void editor_help( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
 {
    short i;
-   char *arg[] = { "", "l", "c", "d", "g", "i", "r", "a", "p", "!", "s", NULL };
-   char *ceditor_help[] = {
+   const char *arg[] = { "", "l", "c", "d", "g", "i", "r", "a", "p", "!", "s", NULL };
+   const char *ceditor_help[] = {
       /*
        * general help 
        */
@@ -669,7 +667,7 @@ void editor_help( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
       send_to_char( ceditor_help[i], ch );
 }
 
-void editor_clear_buf( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
+void editor_clear_buf( CHAR_DATA * ch, EDITOR_DATA * edd, const char *argument )
 {
    char *desc;
    short max_size;
@@ -942,7 +940,7 @@ void editor_escaped_cmd( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
       send_to_char( "You can't use '/!'.\r\n", ch );
 }
 
-void editor_save( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
+void editor_save( CHAR_DATA * ch, EDITOR_DATA * edd, const char *argument )
 {
    DESCRIPTOR_DATA *d;
 

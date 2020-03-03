@@ -6,6 +6,7 @@ Y            -19001
 Z            -1890
 Sector       0
 Type    	   0
+BaseValue    0
 PopSupport   92
 Starsystem   Outer Rim~
 GovernedBy   The Empire~

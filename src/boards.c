@@ -41,12 +41,10 @@ Michael Seifert, and Sebastian Hammer.
 BOARD_DATA *first_board;
 BOARD_DATA *last_board;
 
-bool is_note_to args( ( CHAR_DATA * ch, NOTE_DATA * pnote ) );
-void note_attach args( ( CHAR_DATA * ch ) );
-void note_remove args( ( CHAR_DATA * ch, BOARD_DATA * board, NOTE_DATA * pnote ) );
-void do_note args( ( CHAR_DATA * ch, char *arg_passed, bool IS_MAIL ) );
-
-
+bool is_note_to( CHAR_DATA * ch, NOTE_DATA * pnote );
+void note_attach( CHAR_DATA * ch );
+void note_remove( CHAR_DATA * ch, BOARD_DATA * board, NOTE_DATA * pnote );
+void do_note( CHAR_DATA * ch, const char *arg_passed, bool IS_MAIL );
 
 bool can_remove( CHAR_DATA * ch, BOARD_DATA * board )
 {
@@ -293,7 +291,7 @@ OBJ_DATA *find_quill( CHAR_DATA * ch )
    return quill;
 }
 
-void do_noteroom( CHAR_DATA * ch, char *argument )
+void do_noteroom( CHAR_DATA * ch, const char *argument )
 {
    BOARD_DATA *board;
    char arg[MAX_STRING_LENGTH];
@@ -337,7 +335,7 @@ void do_noteroom( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_mailroom( CHAR_DATA * ch, char *argument )
+void do_mailroom( CHAR_DATA * ch, const char *argument )
 {
    BOARD_DATA *board;
    char arg[MAX_STRING_LENGTH];
@@ -381,7 +379,7 @@ void do_mailroom( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_note( CHAR_DATA * ch, char *arg_passed, bool IS_MAIL )
+void do_note( CHAR_DATA * ch, const char *arg_passed, bool IS_MAIL )
 {
    char buf[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
@@ -419,7 +417,7 @@ void do_note( CHAR_DATA * ch, char *arg_passed, bool IS_MAIL )
             stop_editing( ch );
             return;
          }
-         ed = ch->dest_buf;
+         ed = (EXTRA_DESCR_DATA*)ch->dest_buf;
          STRFREE( ed->description );
          ed->description = copy_buffer( ch );
          stop_editing( ch );
@@ -864,17 +862,18 @@ void do_note( CHAR_DATA * ch, char *arg_passed, bool IS_MAIL )
          send_to_char( "You cannot modify this message.\r\n", ch );
          return;
       }
+      char argp_buf[MSL];
+      snprintf( argp_buf, MSL, "%s", arg_passed );
+      argp_buf[0] = UPPER( argp_buf[0] );
 
-      arg_passed[0] = UPPER( arg_passed[0] );
+      sprintf( fname, "%s%c/%s", PLAYER_DIR, tolower( argp_buf[0] ), capitalize( argp_buf ) );
 
-      sprintf( fname, "%s%c/%s", PLAYER_DIR, tolower( arg_passed[0] ), capitalize( arg_passed ) );
-
-      if( !IS_MAIL || stat( fname, &fst ) != -1 || !str_cmp( arg_passed, "all" ) )
+      if( !IS_MAIL || stat( fname, &fst ) != -1 || !str_cmp( argp_buf, "all" ) )
       {
          paper->value[2] = 1;
          ed = SetOExtra( paper, "_to_" );
          STRFREE( ed->description );
-         ed->description = STRALLOC( arg_passed );
+         ed->description = STRALLOC( argp_buf );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -888,7 +887,7 @@ void do_note( CHAR_DATA * ch, char *arg_passed, bool IS_MAIL )
 
    if( !str_cmp( arg, "show" ) )
    {
-      char *subject, *to_list, *text;
+      const char *subject, *to_list, *text;
 
       if( ( paper = get_eq_char( ch, WEAR_HOLD ) ) == NULL || paper->item_type != ITEM_PAPER )
       {
@@ -1132,7 +1131,7 @@ void do_note( CHAR_DATA * ch, char *arg_passed, bool IS_MAIL )
 BOARD_DATA *read_board( char *boardfile, FILE * fp )
 {
    BOARD_DATA *board;
-   char *word;
+   const char *word;
    char buf[MAX_STRING_LENGTH];
    bool fMatch;
    char letter;
@@ -1323,7 +1322,7 @@ void load_boards( void )
 }
 
 
-void do_makeboard( CHAR_DATA * ch, char *argument )
+void do_makeboard( CHAR_DATA * ch, const char *argument )
 {
    BOARD_DATA *board;
 
@@ -1345,7 +1344,7 @@ void do_makeboard( CHAR_DATA * ch, char *argument )
    board->extra_removers = str_dup( "" );
 }
 
-void do_bset( CHAR_DATA * ch, char *argument )
+void do_bset( CHAR_DATA * ch, const char *argument )
 {
    BOARD_DATA *board;
    bool found;
@@ -1550,7 +1549,7 @@ void do_bset( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_bstat( CHAR_DATA * ch, char *argument )
+void do_bstat( CHAR_DATA * ch, const char *argument )
 {
    BOARD_DATA *board;
    bool found;
@@ -1588,7 +1587,7 @@ void do_bstat( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_boards( CHAR_DATA * ch, char *argument )
+void do_boards( CHAR_DATA * ch, const char *argument )
 {
    BOARD_DATA *board;
 

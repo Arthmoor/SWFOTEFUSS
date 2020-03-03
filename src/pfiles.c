@@ -63,7 +63,7 @@ void save_timedata( void )
 /* Reads the actual time file from disk - Samson 1-21-99 */
 void fread_timedata( FILE * fp )
 {
-   char *word = NULL;
+   const char *word = NULL;
    bool fMatch = FALSE;
 
    for( ;; )
@@ -193,11 +193,10 @@ short days = 0;
 
 void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
 {
-   char *word;
+   const char *word;
    char *name = NULL;
    char *clan = NULL;
    short level = 0;
-   short file_ver = 0;
    int pact;
    bool fMatch;
 
@@ -233,10 +232,6 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
          case 'T':
             KEY( "Toplevel", level, fread_number( fp ) );
             break;
-
-         case 'V':
-            KEY( "Version", file_ver, fread_number( fp ) );
-            break;
       }
       if( !fMatch )
          fread_to_eol( fp );
@@ -259,6 +254,8 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
             remove_from_auth( name );
 #endif
             deleted++;
+            STRFREE( clan );
+            STRFREE( name );
             return;
          }
       }
@@ -278,6 +275,8 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
                remove_from_auth( name );
 #endif
                deleted++;
+               STRFREE( clan );
+               STRFREE( name );
                return;
             }
          }
@@ -292,6 +291,8 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
          guild->members++;
    }
 
+   STRFREE( clan );
+   STRFREE( name );
    return;
 }
 
@@ -315,7 +316,7 @@ void read_pfile( char *dirname, char *filename, bool count )
          for( ;; )
          {
             char letter;
-            char *word;
+            const char *word;
 
             letter = fread_letter( fp );
 
@@ -414,7 +415,7 @@ void pfile_scan( bool count )
    return;
 }
 
-void do_pfiles( CHAR_DATA * ch, char *argument )
+void do_pfiles( CHAR_DATA * ch, const char *argument )
 {
    char buf[MSL];
 
@@ -521,3 +522,43 @@ void check_pfiles( time_t reset )
    }
    return;
 }
+
+void do_exempt( CHAR_DATA *ch, const char *argument )
+{
+    CHAR_DATA *victim;
+
+    if( argument[0] == '\0' )
+    {
+        send_to_char( "Syntax: exempt <char>\r\n", ch );
+        return;
+    }
+
+    if( ( victim = get_char_world( ch, argument ) ) == NULL )
+    {
+        send_to_char( "They must be online to exempt them.\r\n", ch );
+        return;
+    }
+
+    if( IS_NPC( victim ) )
+    {
+        send_to_char( "You can not exempt mobs.\r\n", ch );
+        return;
+    }
+
+    if( IS_SET( victim->act, PLR_EXEMPT ) )
+    {
+        REMOVE_BIT( victim->act, PLR_EXEMPT );
+        send_to_char( "You now have the possibility of being deleted.\r\n", victim );
+        send_to_char( "They now have the possiblity of being deleted.\r\n", ch );
+        return;
+    }
+    else
+    {
+        SET_BIT( victim->act, PLR_EXEMPT );
+        send_to_char( "You have been exempt from deletion.\r\n", victim );
+        send_to_char( "They have been exempt from deletion.\r\n", ch );
+        return;
+    }
+    return;
+}
+

@@ -1,27 +1,43 @@
-Changes from SWFotE 1.0
------==============-----
--Fixed a bug involving setclan shortname
--Fixed a memory leak in the acctname function in slicers.c
--Fixed a bug in do_installmodule where i was never intialized to 0
--Fixed a bug in ships.c that had a pointer comparison instead of a strcmp
--Fixed a bug in slicers.c where learn_from_failure raised gsn_commsystem instead of gsn_makecommsystem
--Fixed a bug involving ship targeting by putting in an untarget function, also removing missiles without targets
--Fixed a bug in do_ordership involving black market purchases
--Fixed a bug when an imm who is switched into a mob types `who'.
--Fixed two bugs in do_make_master function
--Fixed a bug in space.c that could crash when a ship was destroyed
--Fixed a bug in make_prototype_ship that never initialized ship->owner, causing bugs when ships were purchased
--Fixed a bug causing the mud to crash when a non-clanned player tried to purchase a clan ship
--Fixed a bug in do_buymobship that could reset a player's clan name and cause a crash
--Fixed a bug in ship_to_starsystem
--Fixed a bug in do_shiprepair that could cause crashes if a hyperdrive was repaired during hyperspace
--Added a check in do_codecrack to see if a ship has launched since cracking began
--Fixed a bug where maxmods weren't saving or loading in ship files
--Fixed bug with invalid racial languages
--Modified wizhelp code to sort commands by level
--Modified hlist to accept a keyword limiting results
--Fixed primary and secondary weapon modules
--Installed missile, rocket, and torpedo modules
--Installed alarm modules, making it harder for codecrack and pickshiplock
--Fixed a bug in protect force skill where it gave perm sanc to users under
-       specific conditions. All sanctuary is now removed upon extract_char
+This is a log of changes made to the base after it became SWFotEFUSS v.1.4
+AF = Applied Fix
+CE = Code Enhancement
+----------------
+12-19-08-AF: Homes deleting house contents
+12-19-08-AF/CE: Fixed problems with find_social and find_command for when you needed an exact match
+12-19-08-AF/CE: Made it so if you are hungry or thirsty, hp is removed without calling damage function
+12-19-08-AF: Fixed a problem where an imm couldn't advance thier own abilties
+12-19-08-AF: Made it so base_value for planets saves/loads and is settable
+12-19-08-AF/CE: Added in do_exempt function removed ACT_EXEMPT flag 
+12-19-08-AF: Made it so imms can't backup or clone
+12-19-08-AF: Fixed a memleak in do_makecomlink
+12-19-08-AF: Call/Hail was able to transport players to other players' homes
+12-19-08-AF: Made it so not just anyone can peek into an Imms inventory
+12-19-08-AF: Made it so you can't set the rank of someone who's in a diff clan
+12-19-08-AF: Made it so you can't set an obj name to nothing
+12-19-08-AF: Made it so Sim ships don't cost anything to relaunch
+12-19-08-AF: Made it so planet names can't be set to nothing
+12-19-08-AF: Put in checks for setplanet filename
+12-19-08-AF: Fixed memory leaks in pfiles with freeing name and clan
+12-19-08-AF: Fixed 2 memory mismatch erros in fread_sysdata
+12-19-08-AF: Called affect_strip gsn_hide for do_visible
+12-19-08-AF: Made it so mppurge only purges 1 instance of an object instead of all of the same
+12-19-08-AF: Made it so players can't order switched Imms
+12-20-08-AF: Added in is_valid_vnum code and checks
+12-20-08-CE: Added in mudstrlcpy and mudstrlcat
+12-20-08-AF: Fixed a few problems with droptroops, instaroom, and instazone not working
+12-20-08-AF: Added in Kayle's Act_string fix
+12-20-08-AF: Added in command flags, fread_flagstring, and cedit raise, lower, list options
+12-20-08-AF: Added in setforcer command
+12-20-08-AF: Added in Shaddai's DONT_UPPER fix
+12-20-08-AF: Fixed problems with background colors not showing up right in a bunch of slicers.c functions
+12-23-08-AF: Made it so missile launchers also blow up the 'other side' of the door 
+12-23-08-AF: Fixed a crash bug with msetting someone in a clan
+12-24-08-AF: Made it so if you sell a home, the .home file is removed
+12-24-08-AF: Fixed a crash_bug with a ship landing in another ship
+01-02-09-AF: Numattacks aren't initialized properly - Fixed.
+01-02-09-AF: Applied additional fix to act_string for two missed variables.
+01-16-09-AF: Made it so throw echoes to the room
+01-16-09-AF: Made the command flags ooc and player_only actually work 
+01-16-09-AF: Made it so snipe echo's to the shooter's room
+09-29-13-AF: Made it so it compiled clean in CYGWIN 4.7.3
+09-29-13-AF: Fixed all the bugs I know of that haven't been fixed in the base

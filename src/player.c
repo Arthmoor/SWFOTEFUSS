@@ -35,9 +35,9 @@ Michael Seifert, and Sebastian Hammer.
 /*
  *  Locals
  */
-char *tiny_affect_loc_name( int location );
+const char *tiny_affect_loc_name( int location );
 
-void do_gold( CHAR_DATA * ch, char *argument )
+void do_gold( CHAR_DATA * ch, const char *argument )
 {
    set_char_color( AT_GOLD, ch );
    ch_printf( ch, "You have %d credits.\r\n", ch->gold );
@@ -148,7 +148,7 @@ char *drawalign( int align )
 /* 
   New Score by Goku
 */
-void do_score( CHAR_DATA * ch, char *argument )
+void do_score( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    int ability;
@@ -219,7 +219,7 @@ void do_score( CHAR_DATA * ch, char *argument )
 /*
  * Return ascii name of an affect location.
  */
-char *tiny_affect_loc_name( int location )
+const char *tiny_affect_loc_name( int location )
 {
    switch ( location )
    {
@@ -361,14 +361,14 @@ char *tiny_affect_loc_name( int location )
    return "(? ? ?)";
 }
 
-char *get_race( CHAR_DATA * ch )
+const char *get_race( CHAR_DATA * ch )
 {
    if( ch->race < MAX_NPC_RACE && ch->race >= 0 )
       return ( npc_race[ch->race] );
    return ( "Unknown" );
 }
 
-void do_oldscore( CHAR_DATA * ch, char *argument )
+void do_oldscore( CHAR_DATA * ch, const char *argument )
 {
    AFFECT_DATA *paf;
    SKILLTYPE *skill;
@@ -622,7 +622,7 @@ void do_oldscore( CHAR_DATA * ch, char *argument )
 /*								-Thoric
  * Display your current exp, level, and surrounding level exp requirements
  */
-void do_level( CHAR_DATA * ch, char *argument )
+void do_level( CHAR_DATA * ch, const char *argument )
 {
    int ability;
 
@@ -634,7 +634,7 @@ void do_level( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_affected( CHAR_DATA * ch, char *argument )
+void do_affected( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    AFFECT_DATA *paf;
@@ -712,7 +712,7 @@ void do_affected( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_inventory( CHAR_DATA * ch, char *argument )
+void do_inventory( CHAR_DATA * ch, const char *argument )
 {
    set_char_color( AT_RED, ch );
    send_to_char( "You are carrying:\r\n", ch );
@@ -721,7 +721,7 @@ void do_inventory( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_equipment( CHAR_DATA * ch, char *argument )
+void do_equipment( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    int iWear, dam;
@@ -783,28 +783,7 @@ void do_equipment( CHAR_DATA * ch, char *argument )
                      else if( dam == 12 )
                         strcat( buf, " (broken) " );
                      send_to_char( buf, ch );
-                     if( obj->value[3] == WEAPON_BLASTER )
-                     {
-                        if( obj->blaster_setting == BLASTER_FULL )
-                           ch_printf( ch, "FULL" );
-                        else if( obj->blaster_setting == BLASTER_HIGH )
-                           ch_printf( ch, "HIGH" );
-                        else if( obj->blaster_setting == BLASTER_NORMAL )
-                           ch_printf( ch, "NORMAL" );
-                        else if( obj->blaster_setting == BLASTER_HALF )
-                           ch_printf( ch, "HALF" );
-                        else if( obj->blaster_setting == BLASTER_LOW )
-                           ch_printf( ch, "LOW" );
-                        else if( obj->blaster_setting == BLASTER_STUN )
-                           ch_printf( ch, "STUN" );
-                        ch_printf( ch, " %d", obj->value[4] );
-                     }
-                     else if( ( obj->value[3] == WEAPON_LIGHTSABER ||
-                                obj->value[3] == WEAPON_VIBRO_BLADE
-                                || obj->value[3] == WEAPON_FORCE_PIKE || obj->value[3] == WEAPON_BOWCASTER ) )
-                     {
-                        ch_printf( ch, "%d", obj->value[4] );
-                     }
+                     
                      break;
                }
                send_to_char( "\r\n", ch );
@@ -823,7 +802,7 @@ void do_equipment( CHAR_DATA * ch, char *argument )
 
 
 
-void set_title( CHAR_DATA * ch, char *title )
+void set_title( CHAR_DATA * ch, const char *title )
 {
    char buf[MAX_STRING_LENGTH];
 
@@ -848,7 +827,7 @@ void set_title( CHAR_DATA * ch, char *title )
 
 
 
-void do_title( CHAR_DATA * ch, char *argument )
+void do_title( CHAR_DATA * ch, const char *argument )
 {
    if( IS_NPC( ch ) )
       return;
@@ -877,7 +856,7 @@ void do_title( CHAR_DATA * ch, char *argument )
    send_to_char( "Ok.\r\n", ch );
 }
 
-void do_email( CHAR_DATA * ch, char *argument )
+void do_email( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
 
@@ -914,7 +893,7 @@ void do_email( CHAR_DATA * ch, char *argument )
    send_to_char( "Email address set.\r\n", ch );
 }
 
-void do_screenname( CHAR_DATA * ch, char *argument )
+void do_screenname( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
 
@@ -951,7 +930,7 @@ void do_screenname( CHAR_DATA * ch, char *argument )
    send_to_char( "AIM Screnname set.\r\n", ch );
 }
 
-void do_homepage( CHAR_DATA * ch, char *argument )
+void do_homepage( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
 
@@ -989,7 +968,7 @@ void do_homepage( CHAR_DATA * ch, char *argument )
    send_to_char( "Homepage set.\r\n", ch );
 }
 
-void do_wwwimage( CHAR_DATA * ch, char *argument )
+void do_wwwimage( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
 
@@ -1031,7 +1010,7 @@ void do_wwwimage( CHAR_DATA * ch, char *argument )
 /*
  * Set your personal description				-Thoric
  */
-void do_description( CHAR_DATA * ch, char *argument )
+void do_description( CHAR_DATA * ch, const char *argument )
 {
    if( IS_NPC( ch ) )
    {
@@ -1071,7 +1050,7 @@ void do_description( CHAR_DATA * ch, char *argument )
 }
 
 /* Ripped off do_description for whois bio's -- Scryn*/
-void do_bio( CHAR_DATA * ch, char *argument )
+void do_bio( CHAR_DATA * ch, const char *argument )
 {
    if( IS_NPC( ch ) )
    {
@@ -1112,7 +1091,7 @@ void do_bio( CHAR_DATA * ch, char *argument )
 
 
 
-void do_report( CHAR_DATA * ch, char *argument )
+void do_report( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
 
@@ -1133,9 +1112,10 @@ void do_report( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_prompt( CHAR_DATA * ch, char *argument )
+void do_prompt( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
+   char argbuf[MIL];
 
    if( IS_NPC( ch ) )
    {
@@ -1152,8 +1132,9 @@ void do_prompt( CHAR_DATA * ch, char *argument )
    if( ch->pcdata->prompt )
       STRFREE( ch->pcdata->prompt );
 
-   if( strlen( argument ) > 128 )
-      argument[128] = '\0';
+   snprintf( argbuf, MIL, "%s", argument );
+   if( strlen( argbuf ) > 128 )
+      argbuf[128] = '\0';
 
    /*
     * Can add a list of pre-set prompts here if wanted.. perhaps
@@ -1162,7 +1143,7 @@ void do_prompt( CHAR_DATA * ch, char *argument )
    if( !str_cmp( arg, "default" ) )
       ch->pcdata->prompt = STRALLOC( "" );
    else
-      ch->pcdata->prompt = STRALLOC( argument );
+      ch->pcdata->prompt = STRALLOC( argbuf );
    send_to_char( "Ok.\r\n", ch );
    return;
 }

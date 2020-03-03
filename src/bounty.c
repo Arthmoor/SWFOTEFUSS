@@ -40,8 +40,8 @@ BOUNTY_DATA *first_disintegration;
 BOUNTY_DATA *last_disintegration;
 
 
-void disintegration args( ( CHAR_DATA * ch, CHAR_DATA * victim, long amount ) );
-void nodisintegration args( ( CHAR_DATA * ch, CHAR_DATA * victim, long amount ) );
+void disintegration( CHAR_DATA * ch, CHAR_DATA * victim, long amount );
+void nodisintegration( CHAR_DATA * ch, CHAR_DATA * victim, long amount );
 int xp_compute( CHAR_DATA * ch, CHAR_DATA * victim );
 
 void save_disintegrations(  )
@@ -78,7 +78,7 @@ bool is_disintegration( CHAR_DATA * victim )
    return FALSE;
 }
 
-BOUNTY_DATA *get_disintegration( char *target )
+BOUNTY_DATA *get_disintegration( const char *target )
 {
    BOUNTY_DATA *bounty;
 
@@ -91,7 +91,7 @@ BOUNTY_DATA *get_disintegration( char *target )
 void load_bounties(  )
 {
    FILE *fpList;
-   char *target;
+   const char *target;
    char bountylist[256];
    BOUNTY_DATA *bounty;
    long int amount;
@@ -125,7 +125,7 @@ void load_bounties(  )
    return;
 }
 
-void do_bounties( CHAR_DATA * ch, char *argument )
+void do_bounties( CHAR_DATA * ch, const char *argument )
 {
    BOUNTY_DATA *bounty;
    int count = 0;
@@ -146,7 +146,7 @@ void do_bounties( CHAR_DATA * ch, char *argument )
       return;
    }
 }
-void do_rembounty( CHAR_DATA * ch, char *argument )
+void do_rembounty( CHAR_DATA * ch, const char *argument )
 {
    BOUNTY_DATA *bounty;
    char buf[MAX_INPUT_LENGTH];
@@ -198,7 +198,7 @@ void disintegration( CHAR_DATA * ch, CHAR_DATA * victim, long amount )
 
 }
 
-void do_addbounty( CHAR_DATA * ch, char *argument )
+void do_addbounty( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_STRING_LENGTH];
    long int amount;

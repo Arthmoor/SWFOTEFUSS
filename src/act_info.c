@@ -43,7 +43,7 @@ bool EXA_prog_trigger = TRUE;
 
 ROOM_INDEX_DATA *generate_exit( ROOM_INDEX_DATA * in_room, EXIT_DATA ** pexit );
 
-char *const where_name[] = {
+const char *const where_name[] = {
    "&G&b[&wused as light    &b]&G&w ",
    "&G&b[&wworn on finger   &b]&G&w ",
    "&G&b[&wworn on finger   &b]&G&w ",
@@ -101,7 +101,7 @@ char *format_obj_to_char( OBJ_DATA * obj, CHAR_DATA * ch, bool fShort )
       strcat( buf, "(Burried) " );
    if( IS_IMMORTAL( ch ) && IS_OBJ_STAT( obj, ITEM_PROTOTYPE ) )
       strcat( buf, "(PROTO) " );
-   if( IS_AFFECTED( ch, AFF_DETECTTRAPS ) && is_trapped( obj ) )
+   if( ( IS_AFFECTED( ch, AFF_DETECTTRAPS ) || IS_SET( ch->act, PLR_HOLYLIGHT ) ) && is_trapped( obj ) )
       strcat( buf, "(Trap) " );
 
    if( fShort )
@@ -122,7 +122,7 @@ char *format_obj_to_char( OBJ_DATA * obj, CHAR_DATA * ch, bool fShort )
 /*
  * Some increasingly freaky halucinated objects		-Thoric
  */
-char *halucinated_object( int ms, bool fShort )
+const char *halucinated_object( int ms, bool fShort )
 {
    int sms = URANGE( 1, ( ms + 10 ) / 5, 20 );
 
@@ -729,6 +729,9 @@ void show_char_to_char_1( CHAR_DATA * victim, CHAR_DATA * ch )
    if( IS_NPC( ch ) || victim == ch )
       return;
 
+   if( IS_IMMORTAL( victim ) && ( victim->top_level > ch->top_level ) )
+      return;
+
    if( number_percent(  ) < ch->pcdata->learned[gsn_peek] )
    {
       send_to_char( "\r\nYou peek at the inventory:\r\n", ch );
@@ -808,7 +811,7 @@ bool check_blind( CHAR_DATA * ch )
 /*
  * Returns classical DIKU door direction based on text in arg	-Thoric
  */
-int get_door( char *arg )
+int get_door( const char *arg )
 {
    int door;
 
@@ -837,7 +840,7 @@ int get_door( char *arg )
    return door;
 }
 
-void do_look( CHAR_DATA * ch, char *argument )
+void do_look( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
@@ -967,7 +970,7 @@ void do_look( CHAR_DATA * ch, char *argument )
                {
                   if( target != ship )
                   {
-                     if( ship->class != 11 )
+                     if( ship->sclass != 11 )
                         ch_printf( ch, "&C%s\r\n", target->name );
                      else
                         ch_printf( ch, "&O%s\r\n", target->name );
@@ -1396,7 +1399,7 @@ the condition of a mob or pc, or if used without an argument, the
 same you would see if you enter the room and have config +brief.
 -- Narn, winter '96
 */
-void do_glance( CHAR_DATA * ch, char *argument )
+void do_glance( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -1451,7 +1454,7 @@ void do_glance( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_examine( CHAR_DATA * ch, char *argument )
+void do_examine( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
@@ -1729,7 +1732,7 @@ void do_examine( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_exits( CHAR_DATA * ch, char *argument )
+void do_exits( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    EXIT_DATA *pexit;
@@ -1796,23 +1799,23 @@ void do_exits( CHAR_DATA * ch, char *argument )
    return;
 }
 
-char *const day_name[] = {
+const char *const day_name[] = {
    "Redemption", "Stealth", "Deception", "Uprising", "the Fight",
    "Renaissance", "Beauty"
 };
 
-char *const month_name[] = {
+const char *const month_name[] = {
    "the Emperor", "the Empire", "the Smuggler", "the Tear",
    "the Twin Suns", "the Jedi", "Honoghr", "D'an Imal", "the Force",
    "the Assassin", "Eleven", "the Clone", "the Dark Shades",
    "the Sith", "the Massassi", "the Ancients", "Kashyyyk"
 };
 
-void do_time( CHAR_DATA * ch, char *argument )
+void do_time( CHAR_DATA * ch, const char *argument )
 {
    extern char str_boot_time[];
    extern char reboot_time[];
-   char *suf;
+   const char *suf;
    int day;
 
    day = time_info.day + 1;
@@ -1847,9 +1850,9 @@ void do_time( CHAR_DATA * ch, char *argument )
 
 
 
-void do_weather( CHAR_DATA * ch, char *argument )
+void do_weather( CHAR_DATA * ch, const char *argument )
 {
-   static char *const sky_look[4] = {
+   static const char *const sky_look[4] = {
       "cloudless",
       "cloudy",
       "rainy",
@@ -1874,7 +1877,7 @@ void do_weather( CHAR_DATA * ch, char *argument )
  * Moved into a separate function so it can be used for other things
  * ie: online help editing				-Thoric
  */
-HELP_DATA *get_help( CHAR_DATA * ch, char *argument )
+HELP_DATA *get_help( CHAR_DATA * ch, const char *argument )
 {
    char argall[MAX_INPUT_LENGTH];
    char argone[MAX_INPUT_LENGTH];
@@ -1885,7 +1888,7 @@ HELP_DATA *get_help( CHAR_DATA * ch, char *argument )
    if( argument[0] == '\0' )
       argument = "summary";
 
-   if( isdigit( argument[0] ) )
+   if( isdigit( argument[0] ) && !is_number( argument ) )
    {
       lev = number_argument( argument, argnew );
       argument = argnew;
@@ -1937,7 +1940,7 @@ short str_similarity( const char *astr, const char *bstr )
    return matches;
 }
 
-void similar_help_files( CHAR_DATA * ch, char *argument )
+void similar_help_files( CHAR_DATA * ch, const char *argument )
 {
    HELP_DATA *pHelp = NULL;
    char buf[MAX_STRING_LENGTH];
@@ -2017,7 +2020,7 @@ void similar_help_files( CHAR_DATA * ch, char *argument )
 /*
  * Now this is cleaner
  */
-void do_help( CHAR_DATA * ch, char *argument )
+void do_help( CHAR_DATA * ch, const char *argument )
 {
    HELP_DATA *pHelp;
    char buf[MAX_STRING_LENGTH];
@@ -2053,7 +2056,7 @@ void do_help( CHAR_DATA * ch, char *argument )
 /*
  * Help editor							-Thoric
  */
-void do_hedit( CHAR_DATA * ch, char *argument )
+void do_hedit( CHAR_DATA * ch, const char *argument )
 {
    HELP_DATA *pHelp;
 
@@ -2068,7 +2071,7 @@ void do_hedit( CHAR_DATA * ch, char *argument )
       default:
          break;
       case SUB_HELP_EDIT:
-         if( ( pHelp = ch->dest_buf ) == NULL )
+         if( ( pHelp = ( HELP_DATA * ) ch->dest_buf ) == NULL )
          {
             bug( "hedit: sub_help_edit: NULL ch->dest_buf", 0 );
             stop_editing( ch );
@@ -2118,7 +2121,7 @@ void do_hedit( CHAR_DATA * ch, char *argument )
 /*
  * Stupid leading space muncher fix				-Thoric
  */
-char *help_fix( char *text )
+const char *help_fix( const char *text )
 {
    char *fixed;
 
@@ -2130,13 +2133,13 @@ char *help_fix( char *text )
    return fixed;
 }
 
-void do_hset( CHAR_DATA * ch, char *argument )
+void do_hset( CHAR_DATA * ch, const char *argument )
 {
    HELP_DATA *pHelp;
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
 
-   smash_tilde( argument );
+   argument = smash_tilde_copy( argument );
    argument = one_argument( argument, arg1 );
    if( arg1[0] == '\0' )
    {
@@ -2193,14 +2196,14 @@ void do_hset( CHAR_DATA * ch, char *argument )
    {
       int lev;
 
-      if( !is_number(arg2) )
+      if( !is_number( arg2 ) )
       {
          send_to_char( "Level field must be numeric.\r\n", ch );
          return;
       }
 
-      lev = atoi(arg2);
-      if( lev < -1 || lev > get_trust(ch) )
+      lev = atoi( arg2 );
+      if( lev < -1 || lev > get_trust( ch ) )
       {
          send_to_char( "You can't set the level to that.\r\n", ch );
          return;
@@ -2225,7 +2228,7 @@ void do_hset( CHAR_DATA * ch, char *argument )
  * Idea suggested by Gorog
  * prefix keyword indexing added by Fireblade
  */
-void do_hlist( CHAR_DATA * ch, char *argument )
+void do_hlist( CHAR_DATA * ch, const char *argument )
 {
    int min, max, minlimit, maxlimit, cnt;
    char arg[MAX_INPUT_LENGTH];
@@ -2253,7 +2256,7 @@ void do_hlist( CHAR_DATA * ch, char *argument )
             ch_printf( ch, "You may only use a single keyword to index the list.\r\n" );
             return;
          }
-         idx = STRALLOC( arg );
+         idx = arg;
       }
       else
       {
@@ -2296,11 +2299,6 @@ void do_hlist( CHAR_DATA * ch, char *argument )
       pager_printf( ch, "\r\n%d pages found.\r\n", cnt );
    else
       send_to_char( "None found.\r\n", ch );
-
-   if( idx )
-      STRFREE( idx );
-
-   return;
 }
 
 /*
@@ -2353,7 +2351,7 @@ void do_hlist( CHAR_DATA *ch, char *argument )
  *
  * Uh, new do_who with no clan or race. Heh. -||
  */
-void do_who( CHAR_DATA * ch, char *argument )
+void do_who( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char clan_name[MAX_INPUT_LENGTH];
@@ -2704,7 +2702,7 @@ void do_who( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_setrank( CHAR_DATA * ch, char *argument )
+void do_setrank( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *vict;
    char arg1[MAX_INPUT_LENGTH];
@@ -2755,7 +2753,7 @@ void do_setrank( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( vict->pcdata->clan == NULL && !IS_IMMORTAL( ch ) )
+   if( ( vict->pcdata->clan == NULL || ch->pcdata->clan != vict->pcdata->clan ) && !IS_IMMORTAL( ch ) )
    {
       send_to_char( "&RThey are not a PART of your CLAN&d.\r\n", ch );
       return;
@@ -2776,8 +2774,8 @@ void do_setrank( CHAR_DATA * ch, char *argument )
    if( !str_cmp( argument, "none" ) )
    {
       if( vict->rank )
-         STRFREE( vict->rank );
-      vict->rank = STRALLOC( "                  " );
+         DISPOSE( vict->rank );
+      vict->rank = str_dup( "                  " );
       ch_printf( ch, "You have removed %s's rank.\r\n", PERS( vict, ch ) );
       ch_printf( vict, "%s has removed your rank.\r\n", PERS( ch, vict ) );
       return;
@@ -2790,18 +2788,19 @@ void do_setrank( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   smash_tilde( argument );
+   argument = smash_tilde_copy( argument );
 //  argument = rembg(argument);
    sprintf( buf, "%s", argument );
+
+   if( vict->rank )
+      DISPOSE( vict->rank );
    vict->rank = str_dup( buf );
 
    ch_printf( ch, "&wYou have set %s's rank to &w%s&w.\r\n", PERS( vict, ch ), argument );
    ch_printf( vict, "&w%s has assigned the rank of '%s&w' to you.\r\n", PERS( ch, vict ), argument );
-
-   return;
 }
 
-void do_compare( CHAR_DATA * ch, char *argument )
+void do_compare( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2809,7 +2808,7 @@ void do_compare( CHAR_DATA * ch, char *argument )
    OBJ_DATA *obj2;
    int value1;
    int value2;
-   char *msg;
+   const char *msg;
 
    argument = one_argument( argument, arg1 );
    argument = one_argument( argument, arg2 );
@@ -2898,7 +2897,7 @@ void do_compare( CHAR_DATA * ch, char *argument )
 
 
 
-void do_where( CHAR_DATA * ch, char *argument )
+void do_where( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -2958,7 +2957,7 @@ void do_where( CHAR_DATA * ch, char *argument )
 
 
 
-void do_consider( CHAR_DATA * ch, char *argument )
+void do_consider( CHAR_DATA * ch, const char *argument )
 {
    /*
     * New Concider code by Ackbar counts in a little bit more than
@@ -2967,7 +2966,7 @@ void do_consider( CHAR_DATA * ch, char *argument )
     */
    int diff;
    int con_hp;
-   char *msg;
+   const char *msg;
    int overall;
    CHAR_DATA *victim;
    /*
@@ -3181,7 +3180,7 @@ void do_consider( CHAR_DATA * ch, char *argument )
  */
 #define CANT_PRAC "Tongue"
 
-void do_practice( CHAR_DATA * ch, char *argument )
+void do_practice( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    int sn;
@@ -3347,7 +3346,7 @@ void do_practice( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_viewskills( CHAR_DATA * ch, char *argument )
+void do_viewskills( CHAR_DATA * ch, const char *argument )
 {
    int sn;
    CHAR_DATA *victim;
@@ -3435,7 +3434,7 @@ void do_viewskills( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_teach( CHAR_DATA * ch, char *argument )
+void do_teach( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    int sn;
@@ -3525,7 +3524,7 @@ void do_teach( CHAR_DATA * ch, char *argument )
 }
 
 //Deprecated in FotE, but left in in case we decide to use it again.
-void do_wimpy( CHAR_DATA * ch, char *argument )
+void do_wimpy( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int wimpy;
@@ -3554,7 +3553,7 @@ void do_wimpy( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_password( CHAR_DATA * ch, char *argument )
+void do_password( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
    char *pArg, *pwdnew;
@@ -3640,7 +3639,7 @@ void do_password( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_socials( CHAR_DATA * ch, char *argument )
+void do_socials( CHAR_DATA * ch, const char *argument )
 {
    int iHash;
    int col = 0;
@@ -3661,7 +3660,7 @@ void do_socials( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_commands( CHAR_DATA * ch, char *argument )
+void do_commands( CHAR_DATA * ch, const char *argument )
 {
    int col;
    bool found;
@@ -3675,7 +3674,7 @@ void do_commands( CHAR_DATA * ch, char *argument )
       for( hash = 0; hash < 126; hash++ )
          for( command = command_hash[hash]; command; command = command->next )
             if( command->level < LEVEL_HERO
-                && command->level <= get_trust( ch ) && ( command->name[0] != 'm' || command->name[1] != 'p' ) )
+                && command->level <= get_trust( ch ) && !IS_CMD_MPROG( command ) )
             {
                pager_printf( ch, "[%-2d] %-12s", command->level, command->name );
                if( ++col % 4 == 0 )
@@ -3691,7 +3690,7 @@ void do_commands( CHAR_DATA * ch, char *argument )
          for( command = command_hash[hash]; command; command = command->next )
             if( command->level < LEVEL_HERO
                 && command->level <= get_trust( ch )
-                && !str_prefix( argument, command->name ) && ( command->name[0] != 'm' || command->name[1] != 'p' ) )
+                && !str_prefix( argument, command->name ) && !IS_CMD_MPROG( command ) )
             {
                pager_printf( ch, "%-12s", command->name );
                found = TRUE;
@@ -3708,7 +3707,7 @@ void do_commands( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_channels( CHAR_DATA * ch, char *argument )
+void do_channels( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
 
@@ -3812,10 +3811,10 @@ void do_channels( CHAR_DATA * ch, char *argument )
       else if( !str_cmp( arg + 1, "ooc" ) )
          bit = CHANNEL_OOC;
       else if( !str_cmp( arg + 1, "clan" ) && !IS_NPC( ch ) && ch->pcdata->clan
-       && ch->pcdata->clan->clan_type != CLAN_GUILD )
+               && ch->pcdata->clan->clan_type != CLAN_GUILD )
          bit = CHANNEL_CLAN;
-      else if( !str_cmp( arg + 1, "guild" )  && !IS_NPC( ch ) && ch->pcdata->clan
-       && ch->pcdata->clan->clan_type == CLAN_GUILD )
+      else if( !str_cmp( arg + 1, "guild" ) && !IS_NPC( ch ) && ch->pcdata->clan
+               && ch->pcdata->clan->clan_type == CLAN_GUILD )
          bit = CHANNEL_GUILD;
       else if( !str_cmp( arg + 1, "quest" ) )
          bit = CHANNEL_QUEST;
@@ -3845,7 +3844,7 @@ void do_channels( CHAR_DATA * ch, char *argument )
          bit = CHANNEL_YELL;
       else if( !str_cmp( arg + 1, "comm" ) && get_trust( ch ) >= sysdata.log_level )
          bit = CHANNEL_COMM;
-      else if( !str_cmp( arg + 1, "order" )  && !IS_NPC( ch ) && ch->pcdata->clan )
+      else if( !str_cmp( arg + 1, "order" ) && !IS_NPC( ch ) && ch->pcdata->clan )
          bit = CHANNEL_ORDER;
       else if( !str_cmp( arg + 1, "wartalk" ) )
          bit = CHANNEL_WARTALK;
@@ -3932,7 +3931,7 @@ void do_channels( CHAR_DATA * ch, char *argument )
 /*
  * display WIZLIST file						-Thoric
  */
-void do_wizlist( CHAR_DATA * ch, char *argument )
+void do_wizlist( CHAR_DATA * ch, const char *argument )
 {
    set_pager_color( AT_IMMORT, ch );
    show_file( ch, WIZLIST_FILE );
@@ -3941,7 +3940,7 @@ void do_wizlist( CHAR_DATA * ch, char *argument )
 /*
  * Contributed by Grodyn.
  */
-void do_config( CHAR_DATA * ch, char *argument )
+void do_config( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
 
@@ -4122,7 +4121,7 @@ void do_config( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_credits( CHAR_DATA * ch, char *argument )
+void do_credits( CHAR_DATA * ch, const char *argument )
 {
    do_help( ch, "credits" );
 }
@@ -4161,7 +4160,7 @@ void do_areas( CHAR_DATA *ch, char *argument )
  * New do_areas with soft/hard level ranges 
  */
 
-void do_areas( CHAR_DATA * ch, char *argument )
+void do_areas( CHAR_DATA * ch, const char *argument )
 {
    AREA_DATA *pArea;
 
@@ -4176,7 +4175,7 @@ void do_areas( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_afk( CHAR_DATA * ch, char *argument )
+void do_afk( CHAR_DATA * ch, const char *argument )
 {
    if( IS_NPC( ch ) )
       return;
@@ -4196,9 +4195,9 @@ void do_afk( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_slist( CHAR_DATA * ch, char *argument )
+void do_slist( CHAR_DATA * ch, const char *argument )
 {
-   int sn, i, lFound;
+   int sn, i;
    char skn[MAX_INPUT_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -4224,9 +4223,6 @@ void do_slist( CHAR_DATA * ch, char *argument )
    if( arg2[0] != '\0' )
       hilev = atoi( arg2 );
 
-/*   if ((hilev<0) || (hilev>=LEVEL_IMMORTAL))
-      hilev=LEVEL_HERO;
-*/
    if( hilev > 100 )
       hilev = 100;
 
@@ -4250,7 +4246,6 @@ void do_slist( CHAR_DATA * ch, char *argument )
       send_to_pager( skn, ch );
       for( i = lowlev; i <= hilev; i++ )
       {
-         lFound = 0;
          for( sn = 0; sn < top_sn; sn++ )
          {
             if( !skill_table[sn]->name )
@@ -4285,7 +4280,7 @@ void do_slist( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_whois( CHAR_DATA * ch, char *argument )
+void do_whois( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    char buf[MAX_STRING_LENGTH];
@@ -4418,7 +4413,7 @@ void do_whois( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_pager( CHAR_DATA * ch, char *argument )
+void do_pager( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
 
@@ -4468,7 +4463,7 @@ bool is_online( char *argument )
 
 }
 
-void do_whoinvis( CHAR_DATA * ch, char *argument )
+void do_whoinvis( CHAR_DATA * ch, const char *argument )
 {
    if( IS_NPC( ch ) )
       return;
@@ -4486,7 +4481,7 @@ void do_whoinvis( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_introduce( CHAR_DATA * ch, char *argument )
+void do_introduce( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    CHAR_DATA *rch;
@@ -4495,6 +4490,7 @@ void do_introduce( CHAR_DATA * ch, char *argument )
    FELLOW_DATA *vfellow;
    FELLOW_DATA *fellow;
    int count;
+   char arg[MIL];
 
    argument = one_argument( argument, arg1 );
    argument = remand( argument );
@@ -4509,7 +4505,8 @@ void do_introduce( CHAR_DATA * ch, char *argument )
    }
 
    arg1[0] = UPPER( arg1[0] );
-   argument[0] = UPPER( argument[0] );
+   snprintf( arg, MIL, "%s", argument );
+   arg[0] = UPPER( arg[0] );
 
    if( ( str_cmp( arg1, "all" ) ) && ( victim = get_char_room( ch, arg1 ) ) == NULL )
    {
@@ -4529,19 +4526,19 @@ void do_introduce( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( strlen( argument ) < 3 )
+   if( strlen( arg ) < 3 )
    {
       send_to_char( "Introductions must be at least 3 characters long.\r\n", ch );
       return;
    }
 
-   if( strlen( argument ) > 40 )
-      argument[40] = '\0';
+   if( strlen( arg ) > 40 )
+      arg[40] = '\0';
 
-   if( argument[1] == '.' )
-      argument[1] = 'x';
+   if( arg[1] == '.' )
+      arg[1] = 'x';
 
-   if( !str_cmp( argument, "Someone" ) )
+   if( !str_cmp( arg, "Someone" ) )
    {
       send_to_char( "Nice try, ass.\r\n", ch );
       return;
@@ -4578,45 +4575,46 @@ void do_introduce( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   smash_tilde( argument );
+   smash_tilde( arg );
 
    for( vfellow = victim->first_fellow; vfellow; vfellow = vfellow->next )
    {
       if( !str_cmp( vfellow->victim, ch->name ) )
       {
-         if( !str_cmp( vfellow->knownas, argument ) )
+         if( !str_cmp( vfellow->knownas, arg ) )
          {
-            ch_printf( ch, "They already know you as %s.\r\n", argument );
+            ch_printf( ch, "They already know you as %s.\r\n", arg );
             return;
          }
 
-         ch_printf( ch, "&GYou reintroduce yourself to %s as %s.\r\n", PERS( victim, ch ), argument );
+         ch_printf( ch, "&GYou reintroduce yourself to %s as %s.\r\n", PERS( victim, ch ), arg );
          ch_printf( victim, "&G%s reintroduces %sself as %s.\r\n", PERS( ch, victim ),
-                    ch->sex == 2 ? "her" : ch->sex == 1 ? "him" : "it", argument );
+                    ch->sex == 2 ? "her" : ch->sex == 1 ? "him" : "it", arg );
 
          STRFREE( vfellow->knownas );
-         vfellow->knownas = STRALLOC( argument );
+         vfellow->knownas = STRALLOC( arg );
          return;
       }
    }
    ch_printf( victim, "&G%s introduces %sself as %s.\r\n", PERS( ch, victim ),
-              ch->sex == 2 ? "her" : ch->sex == 1 ? "him" : "it", argument );
+              ch->sex == 2 ? "her" : ch->sex == 1 ? "him" : "it", arg );
 
    CREATE( fellow, FELLOW_DATA, 1 );
    fellow->victim = QUICKLINK( ch->name );
-   fellow->knownas = STRALLOC( argument );
+   fellow->knownas = STRALLOC( arg );
    LINK( fellow, victim->first_fellow, victim->last_fellow, next, prev );
 
-   ch_printf( ch, "&GYou introduce yourself to %s as %s.\r\n", PERS( victim, ch ), argument );
+   ch_printf( ch, "&GYou introduce yourself to %s as %s.\r\n", PERS( victim, ch ), arg );
    return;
 }
 
-void do_remember( CHAR_DATA * ch, char *argument )
+void do_remember( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    char arg1[MAX_INPUT_LENGTH];
    FELLOW_DATA *fellow;
    FELLOW_DATA *nfellow;
+   char arg[MIL];
 
    argument = one_argument( argument, arg1 );
    argument = remand( argument );
@@ -4631,7 +4629,8 @@ void do_remember( CHAR_DATA * ch, char *argument )
    }
 
    arg1[0] = UPPER( arg1[0] );
-   argument[0] = UPPER( argument[0] );
+   snprintf( arg, MIL, "%s", argument );
+   arg[0] = UPPER( arg[0] );
 
    if( !( victim = get_char_room( ch, arg1 ) ) )
    {
@@ -4645,19 +4644,19 @@ void do_remember( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( strlen( argument ) < 3 )
+   if( strlen( arg ) < 3 )
    {
       send_to_char( "You find it quite hard to remember them with such a short name.\r\n", ch );
       return;
    }
 
-   if( strlen( argument ) > 40 )
-      argument[40] = '\0';
+   if( strlen( arg ) > 40 )
+      arg[40] = '\0';
 
-   if( argument[1] == '.' )
-      argument[1] = 'x';
+   if( arg[1] == '.' )
+      arg[1] = 'x';
 
-   if( !str_cmp( argument, "Someone" ) )
+   if( !str_cmp( arg, "Someone" ) )
    {
       send_to_char( "Perhaps a little more descriptive?\r\n", ch );
       return;
@@ -4669,7 +4668,7 @@ void do_remember( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   smash_tilde( argument );
+   smash_tilde( arg );
 
    for( fellow = ch->first_fellow; fellow; fellow = fellow->next )
    {
@@ -4677,30 +4676,31 @@ void do_remember( CHAR_DATA * ch, char *argument )
       {
          if( !str_cmp( fellow->knownas, argument ) )
          {
-            ch_printf( ch, "You already know them as %s.\r\n", argument );
+            ch_printf( ch, "You already know them as %s.\r\n", arg );
             return;
          }
 
-         ch_printf( ch, "%s will be remembered as %s.\r\n", PERS( victim, ch ), argument );
+         ch_printf( ch, "%s will be remembered as %s.\r\n", PERS( victim, ch ), arg );
 
          STRFREE( fellow->knownas );
-         fellow->knownas = STRALLOC( argument );
+         fellow->knownas = STRALLOC( arg );
          return;
       }
    }
-   ch_printf( ch, "%s will be remembered as %s.\r\n", PERS( victim, ch ), argument );
+   ch_printf( ch, "%s will be remembered as %s.\r\n", PERS( victim, ch ), arg );
 
    CREATE( nfellow, FELLOW_DATA, 1 );
    nfellow->victim = QUICKLINK( victim->name );
-   nfellow->knownas = STRALLOC( argument );
+   nfellow->knownas = STRALLOC( arg );
    LINK( nfellow, ch->first_fellow, ch->last_fellow, next, prev );
    return;
 }
 
-void do_describe( CHAR_DATA * ch, char *argument )
+void do_describe( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    char arg1[MAX_INPUT_LENGTH];
+   char arg[MIL];
    FELLOW_DATA *fellow;
    FELLOW_DATA *nfellow;
    FELLOW_DATA *vfellow;
@@ -4718,7 +4718,8 @@ void do_describe( CHAR_DATA * ch, char *argument )
    }
 
    arg1[0] = UPPER( arg1[0] );
-   argument[0] = UPPER( argument[0] );
+   snprintf( arg, MIL, "%s", argument );
+   arg[0] = UPPER( arg[0] );
 
    if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
    {
@@ -4732,19 +4733,19 @@ void do_describe( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( strlen( argument ) < 3 )
+   if( strlen( arg ) < 3 )
    {
       send_to_char( "You find it hard to describe someone based on such a short name.\r\n", ch );
       return;
    }
 
-   if( strlen( argument ) > 40 )
-      argument[40] = '\0';
+   if( strlen( arg ) > 40 )
+      arg[40] = '\0';
 
-   if( argument[1] == '.' )
-      argument[1] = 'x';
+   if( arg[1] == '.' )
+      arg[1] = 'x';
 
-   if( !str_cmp( argument, "Someone" ) )
+   if( !str_cmp( arg, "Someone" ) )
    {
       send_to_char( "Perhaps a little more descriptive?\r\n", ch );
       return;
@@ -4756,7 +4757,7 @@ void do_describe( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   smash_tilde( argument );
+   smash_tilde( arg );
 
    for( fellow = ch->first_fellow; fellow; fellow = fellow->next )
    {
@@ -4783,7 +4784,7 @@ void do_describe( CHAR_DATA * ch, char *argument )
          ch_printf( victim, "%s describes %s to you.\r\n", PERS( ch, victim ), fellow->knownas );
          CREATE( nfellow, FELLOW_DATA, 1 );
          nfellow->victim = QUICKLINK( victim->name );
-         nfellow->knownas = fellow->knownas;
+         nfellow->knownas = STRALLOC( fellow->knownas );
          LINK( nfellow, victim->first_fellow, victim->last_fellow, next, prev );
          return;
       }

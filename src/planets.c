@@ -37,20 +37,20 @@ extern int top_area;
 extern int top_r_vnum;
 void write_area_list( void );
 void write_starsystem_list( void );
-extern const char *sector_name[SECT_MAX];
+
 
 PLANET_DATA *first_planet;
 PLANET_DATA *last_planet;
 
-GUARD_DATA *first_guard;
-GUARD_DATA *last_guard;
+extern GUARD_DATA *first_guard;
+extern GUARD_DATA *last_guard;
 
 /* local routines */
-void fread_planet args( ( PLANET_DATA * planet, FILE * fp ) );
-bool load_planet_file args( ( char *planetfile ) );
-void write_planet_list args( ( void ) );
+void fread_planet( PLANET_DATA * planet, FILE * fp );
+bool load_planet_file( const char *planetfile );
+void write_planet_list( void );
 
-PLANET_DATA *get_planet( char *name )
+PLANET_DATA *get_planet( const char *name )
 {
    PLANET_DATA *planet;
 
@@ -133,14 +133,12 @@ void save_planet( PLANET_DATA * planet )
       fprintf( fp, "Z            %d\n", planet->z );
       fprintf( fp, "Sector       %d\n", planet->sector );
       fprintf( fp, "Type    	   %d\n", planet->controls );
+      fprintf( fp, "BaseValue    %d\n",       planet->base_value );
       fprintf( fp, "PopSupport   %d\n", ( int )( planet->pop_support ) );
       if( planet->starsystem && planet->starsystem->name )
          fprintf( fp, "Starsystem   %s~\n", planet->starsystem->name );
       if( planet->governed_by && planet->governed_by->name )
          fprintf( fp, "GovernedBy   %s~\n", planet->governed_by->name );
-      //pArea = planet->area;
-      //if (pArea->filename)
-      // fprintf( fp, "Area         %s~\n",  pArea->filename  );
       for( pArea = planet->first_area; pArea; pArea = pArea->next_on_planet )
          fprintf( fp, "Area         %s~\n", pArea->filename );
       fprintf( fp, "End\n\n" );
@@ -154,7 +152,7 @@ void save_planet( PLANET_DATA * planet )
 void fread_planet( PLANET_DATA * planet, FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
 
    for( ;; )
@@ -170,43 +168,6 @@ void fread_planet( PLANET_DATA * planet, FILE * fp )
             break;
 
          case 'A':
-/*	    if ( !str_cmp( word, "Area" ) )
-	    {
-	        char aName[MAX_STRING_LENGTH];
-                AREA_DATA *pArea;
-                	        
-	     	sprintf (aName, fread_string(fp));
-		for( pArea = first_area ; pArea ; pArea = pArea->next )
-	          if (pArea->filename && !str_cmp(pArea->filename , aName ) )
-	          {
-	             ROOM_INDEX_DATA *room;
-	             
-	             planet->size = 0;
-	             planet->citysize = 0;
-	             planet->wilderness = 0;
-	             planet->farmland = 0;
-	             planet->barracks = 0;
-	             planet->controls = 0;
-	             pArea->planet = planet; 
-	             planet->area = pArea;
-	             for( room = pArea->first_room ; room ; room = room->next_in_area )
-                     {  	       
-                       	  planet->size++;
-                          if ( room->sector_type <= SECT_CITY )
-                             planet->citysize++;    
-                          else if ( room->sector_type == SECT_FARMLAND )
-                             planet->farmland++;    
-                          else if ( room->sector_type != SECT_DUNNO )
-                             planet->wilderness++;
-                             
-                          if ( IS_SET( room->room_flags , ROOM_CONTROL ))
-                             planet->controls++;    
-                          if ( IS_SET( room->room_flags , ROOM_BARRACKS ))
-                             planet->barracks++;    
-                     } 	       
-	          }      */
-            //fMatch = TRUE;
-            //}
             if( !str_cmp( word, "area" ) )
             {
                planet->area = get_area( fread_string( fp ) );
@@ -218,8 +179,11 @@ void fread_planet( PLANET_DATA * planet, FILE * fp )
                }
                fMatch = TRUE;
             }
-
             break;
+
+           case 'B':
+               KEY( "BaseValue", planet->base_value, fread_number( fp ) );
+               break;
 
          case 'E':
             if( !str_cmp( word, "End" ) )
@@ -237,8 +201,10 @@ void fread_planet( PLANET_DATA * planet, FILE * fp )
          case 'G':
             if( !str_cmp( word, "GovernedBy" ) )
             {
-               planet->governed_by = get_clan( fread_string( fp ) );
+               const char *clan_name = fread_string( fp );
+               planet->governed_by = get_clan( clan_name );
                fMatch = TRUE;
+               STRFREE( clan_name );
             }
             break;
 
@@ -254,7 +220,8 @@ void fread_planet( PLANET_DATA * planet, FILE * fp )
             KEY( "Sector", planet->sector, fread_number( fp ) );
             if( !str_cmp( word, "Starsystem" ) )
             {
-               planet->starsystem = starsystem_from_name( fread_string( fp ) );
+               const char *starsystem_name = fread_string( fp );
+               planet->starsystem = starsystem_from_name( starsystem_name );
                if( planet->starsystem )
                {
                   SPACE_DATA *starsystem = planet->starsystem;
@@ -262,6 +229,7 @@ void fread_planet( PLANET_DATA * planet, FILE * fp )
                   LINK( planet, starsystem->first_planet, starsystem->last_planet, next_in_system, prev_in_system );
                }
                fMatch = TRUE;
+               STRFREE( starsystem_name );
             }
             break;
          case 'T':
@@ -290,7 +258,7 @@ void fread_planet( PLANET_DATA * planet, FILE * fp )
    }
 }
 
-bool load_planet_file( char *planetfile )
+bool load_planet_file( const char *planetfile )
 {
    char filename[256];
    PLANET_DATA *planet;
@@ -363,7 +331,7 @@ bool load_planet_file( char *planetfile )
 void load_planets(  )
 {
    FILE *fpList;
-   char *filename;
+   const char *filename;
    char planetlist[256];
    char buf[MAX_STRING_LENGTH];
 
@@ -397,7 +365,7 @@ void load_planets(  )
    return;
 }
 
-AREA_DATA *get_area( char *argument )
+AREA_DATA *get_area( const char *argument )
 {
    AREA_DATA *pArea;
    for( pArea = first_area; pArea; pArea = pArea->next )
@@ -407,7 +375,7 @@ AREA_DATA *get_area( char *argument )
    return NULL;
 }
 
-void do_setplanet( CHAR_DATA * ch, char *argument )
+void do_setplanet( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -426,7 +394,7 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
    {
       send_to_char( "Usage: setplanet <planet> <field> [value]\r\n", ch );
       send_to_char( "\r\nField being one of:\r\n", ch );
-      send_to_char( " name filename area starsystem governed_by x y z\r\n", ch );
+      send_to_char( " name filename area base_value starsystem governed_by x y z\r\n", ch );
       return;
    }
 
@@ -438,12 +406,42 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
 
    if( !strcmp( arg2, "name" ) )
    {
+      PLANET_DATA *tplanet;
+      if( !argument || argument[0] == '\0' )
+      {
+         send_to_char( "You must choose a name.\r\n", ch );
+         return;
+      }
+      if( ( tplanet = get_planet( argument ) ) != NULL )
+      {
+         send_to_char( "A planet with that name already Exists!\r\n", ch );
+         return;
+      }
+
       STRFREE( planet->name );
       planet->name = STRALLOC( argument );
       send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       return;
    }
+
+    if( !strcmp( arg2, "base_value" ) )
+    {
+        int bval;
+
+        bval = atoi( argument );
+
+        if( (bval < 1) || (bval > MAX_PLANET_BASE_VALUE) )
+        {
+           ch_printf( ch, "&YPlanet base values range from &W%d &Yto &W%d&Y!\n\r", 1, MAX_PLANET_BASE_VALUE );
+           return;
+        }
+        planet->base_value = bval;
+        send_to_char( "Done.\n\r", ch );
+        save_planet( planet );
+        write_planet_list(  );
+        return;
+    }
 
    if( !strcmp( arg2, "type" ) )
    {
@@ -539,6 +537,22 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
 
    if( !strcmp( arg2, "filename" ) )
    {
+      PLANET_DATA *tplanet;
+
+      if( !argument || argument[0] == '\0' )
+      {
+         send_to_char( "You must choose a file name.\r\n", ch );
+         return;
+      }
+      for( tplanet = first_planet; tplanet; tplanet = tplanet->next )
+      {
+          if( !str_cmp( tplanet->filename, argument ) )
+          {
+              send_to_char( "A planet with that filename already exists!\r\n", ch );
+              return;
+          }
+      }
+
       DISPOSE( planet->filename );
       planet->filename = str_dup( argument );
       send_to_char( "Done.\r\n", ch );
@@ -546,11 +560,12 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
       write_planet_list(  );
       return;
    }
+
    do_setplanet( ch, "" );
    return;
 }
 
-void do_showplanet( CHAR_DATA * ch, char *argument )
+void do_showplanet( CHAR_DATA * ch, const char *argument )
 {
    GUARD_DATA *guard;
    PLANET_DATA *planet;
@@ -588,14 +603,15 @@ void do_showplanet( CHAR_DATA * ch, char *argument )
       float tempf;
 
       tempf = planet->citysize;
-      pc = tempf / planet->size * 100;
+      pc = ( int )( tempf / planet->size * 100 );
 
       tempf = planet->wilderness;
-      pw = tempf / planet->size * 100;
+      pw = ( int )( tempf / planet->size * 100 );
 
       tempf = planet->farmland;
-      pf = tempf / planet->size * 100;
+      pf = ( int )( tempf / planet->size * 100 );
    }
+
 
    ch_printf( ch, "&W%s\r\n", planet->name );
    if( IS_IMMORTAL( ch ) )
@@ -611,6 +627,8 @@ void do_showplanet( CHAR_DATA * ch, char *argument )
    ch_printf( ch, "&WPatrols: &G%d&W/%d\r\n", num_guards, planet->barracks * 5 );
    ch_printf( ch, "&WPopulation: &G%d&W\r\n", planet->population );
    ch_printf( ch, "&WPopular Support: &G%.2f\r\n", planet->pop_support );
+ch_printf( ch, "&WBase Value: &G%d\n\r", planet->base_value );
+
    ch_printf( ch, "&WCurrent Monthly Revenue: &G%ld\r\n", get_taxes( planet ) );
    area[0] = '\0';
    for( pArea = planet->first_area; pArea; pArea = pArea->next_on_planet )
@@ -628,12 +646,10 @@ void do_showplanet( CHAR_DATA * ch, char *argument )
    return;
 }
 
-
-void do_makeplanet( CHAR_DATA * ch, char *argument )
+void do_makeplanet( CHAR_DATA * ch, const char *argument )
 {
    char filename[256];
    PLANET_DATA *planet;
-   bool found;
 
    if( !argument || argument[0] == '\0' )
    {
@@ -641,7 +657,6 @@ void do_makeplanet( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   found = FALSE;
    sprintf( filename, "%s%s", PLANET_DIR, strlower( argument ) );
 
    CREATE( planet, PLANET_DATA, 1 );
@@ -659,7 +674,7 @@ void do_makeplanet( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_planets( CHAR_DATA * ch, char *argument )
+void do_planets( CHAR_DATA * ch, const char *argument )
 {
    PLANET_DATA *planet;
    int count = 0;
@@ -710,7 +725,7 @@ void do_planets( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_capture( CHAR_DATA * ch, char *argument )
+void do_capture( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
    PLANET_DATA *planet;
@@ -815,6 +830,7 @@ void do_capture( CHAR_DATA * ch, char *argument )
 
    save_planet( planet );
 
+
    return;
 }
 
@@ -823,9 +839,10 @@ long get_taxes( PLANET_DATA * planet )
    long gain;
 
    gain = planet->base_value;
-   gain += planet->base_value * ( planet->pop_support / 100 );
+   gain += ( long )( planet->base_value * ( planet->pop_support / 100 ) );
    gain += ( planet->population * 150 );
-   gain += UMAX( 0, planet->pop_support / 10 * ( planet->population * 20 ) );
+   gain += UMAX( 0, ( int )( planet->pop_support / 10 * ( planet->population * 20 ) ) );
 
    return gain;
 }
+

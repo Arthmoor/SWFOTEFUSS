@@ -64,9 +64,9 @@
 #define MAX_NEST	100
 static OBJ_DATA *rgObjNest[MAX_NEST];
 
-bool write_to_descriptor( DESCRIPTOR_DATA * d, char *txt, int length );
-bool write_to_descriptor_old( int desc, char *txt, int length );
-void update_room_reset( CHAR_DATA *ch, bool setting );
+bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
+bool write_to_descriptor_old( int desc, const char *txt, int length );
+void update_room_reset( CHAR_DATA * ch, bool setting );
 
 extern ROOM_INDEX_DATA *room_index_hash[MAX_KEY_HASH];
 extern int port;  /* Port number to be used       */
@@ -84,7 +84,7 @@ void write_ship( FILE * fp, SHIP_DATA * ship )
     */
    if( ship->shipstate == SHIP_DOCKED )
       return;
-//   if( ship->class > SHIP_PLATFORM )
+//   if( ship->sclass > SHIP_PLATFORM )
 //      return;
 
    fprintf( fp, "%s", "#SHIP\n" );
@@ -512,7 +512,7 @@ void save_world( CHAR_DATA * ch )
 CHAR_DATA *load_mobile( FILE * fp )
 {
    CHAR_DATA *mob = NULL;
-   char *word;
+   const char *word;
    bool fMatch;
    int inroom = 0;
    ROOM_INDEX_DATA *pRoomIndex = NULL;
@@ -764,14 +764,12 @@ void read_obj_file( char *dirname, char *filename )
    if( ( fp = fopen( fname, "r" ) ) != NULL )
    {
       short iNest;
-      bool found;
       OBJ_DATA *tobj, *tobj_next;
 
       rset_supermob( room );
       for( iNest = 0; iNest < MAX_NEST; iNest++ )
          rgObjNest[iNest] = NULL;
 
-      found = TRUE;
       for( ;; )
       {
          char letter;
@@ -941,7 +939,7 @@ void load_world( CHAR_DATA * ch )
 }
 
 /*  Warm reboot stuff, gotta make sure to thank Erwin for this :) */
-void do_hotboot( CHAR_DATA * ch, char *argument )
+void do_hotboot( CHAR_DATA * ch, const char *argument )
 {
    FILE *fp;
    CHAR_DATA *victim = NULL;
@@ -1024,7 +1022,7 @@ void do_hotboot( CHAR_DATA * ch, char *argument )
    log_string( "Saving player files and connection states...." );
    if( ch && ch->desc )
       write_to_descriptor( ch->desc, "\033[0m", 0 );
-   sprintf( buf, "\r\nYou feel a great disturbance in the Force." );
+   sprintf( buf, "\r\nYou feel a great disturbance in the Force.\r\n" );
    /*
     * For each playing descriptor, save its state 
     */
@@ -1095,8 +1093,8 @@ void do_hotboot( CHAR_DATA * ch, char *argument )
    sysdata.dlHandle = dlopen( NULL, RTLD_LAZY );
    if( !sysdata.dlHandle )
    {
-	bug( "%s", "FATAL ERROR: Unable to reopen system executable handle!" );
-	exit( 1 );
+      bug( "%s", "FATAL ERROR: Unable to reopen system executable handle!" );
+      exit( 1 );
    }
    send_to_char( "Hotboot FAILED!\r\n", ch );
 }
@@ -1155,6 +1153,8 @@ void hotboot_recover( void )
       d->scrlen = 24;
       d->newstate = 0;
       d->prevcolor = 0x08;
+      d->ifd = -1;
+      d->ipid = -1;
       CREATE( d->outbuf, char, d->outsize );
       CREATE( d->mccp, MCCP, 1 );
       d->can_compress = dcompress;

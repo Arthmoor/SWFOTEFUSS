@@ -42,8 +42,8 @@ MISSILE_DATA *last_missile;
 SPACE_DATA *first_starsystem;
 SPACE_DATA *last_starsystem;
 
-char *primary_beam_name args( ( SHIP_DATA * ship ) );
-char *secondary_beam_name args( ( SHIP_DATA * ship ) );
+char *primary_beam_name( SHIP_DATA * ship );
+char *secondary_beam_name( SHIP_DATA * ship );
 
 int bus_pos = 0;
 int bus_planet = 0;
@@ -63,7 +63,7 @@ int const station_vnum[MAX_STATION] = {
    215, 216, 217, 218, 219, 220, 221, 222, 223, 224
 };
 
-char *const station_name[MAX_STATION] = {
+const char *const station_name[MAX_STATION] = {
    "Menari Spaceport", "Skydome Botanical Gardens", "Grand Towers",
    "Grandis Mon Theater", "Palace Station", "Great Galactic Museum",
    "College Station", "Holographic Zoo of Extinct Animals",
@@ -74,13 +74,13 @@ int const bus_vnum[MAX_BUS_STOP] = {
    1053, 1850, 250, 4556, 28613, 9701, 7801, 9000, 10154, 18003
 };
 
-char *const bus_stop[MAX_BUS_STOP + 1] = {
+const char *const bus_stop[MAX_BUS_STOP + 1] = {
    "Coruscant", "Yavin IV", "Tatooine", "Endor",
    "Kashyyyk", "Mon Calamari", "Nal Hutta", "Ord Mantell", "Corellia",
    "Bakura", "Coruscant"   /* last should always be same as first */
 };
 
-char *const ship_flags[] = {
+const char *const ship_flags[] = {
    "nohijack", "shield_boost", "torp_boost", "chaff_boost", "hull_boost",
    "laser_boost", "missile_boost", "rocket_boost", "simulator", "nodestroy", "noslicer", "ion_lasers",
    "ion_drive", "ion_ion", "ion_turret1", "ion_turret2", "ion_turret3",
@@ -101,28 +101,28 @@ int get_shipflag( char *flag )
 }
 
 /* local routines */
-void fread_ship args( ( SHIP_DATA * ship, FILE * fp ) );
-bool load_ship_file args( ( char *shipfile ) );
-void fread_starsystem args( ( SPACE_DATA * starsystem, FILE * fp ) );
-bool load_starsystem args( ( char *starsystemfile ) );
-void write_starsystem_list args( ( void ) );
-void landship args( ( SHIP_DATA * ship, char *arg ) );
-void launchship args( ( SHIP_DATA * ship ) );
-bool land_bus args( ( SHIP_DATA * ship, int destination ) );
-void launch_bus args( ( SHIP_DATA * ship ) );
-void echo_to_room_dnr args( ( int ecolor, ROOM_INDEX_DATA * room, char *argument ) );
+void fread_ship( SHIP_DATA * ship, FILE * fp );
+bool load_ship_file( const char *shipfile );
+void fread_starsystem( SPACE_DATA * starsystem, FILE * fp );
+bool load_starsystem( const char *starsystemfile );
+void write_starsystem_list( void );
+void landship( SHIP_DATA * ship, char *arg );
+void launchship( SHIP_DATA * ship );
+bool land_bus( SHIP_DATA * ship, int destination );
+void launch_bus( SHIP_DATA * ship );
+void echo_to_room_dnr( int ecolor, ROOM_INDEX_DATA * room, const char *argument );
 ch_ret drive_ship( CHAR_DATA * ch, SHIP_DATA * ship, EXIT_DATA * pexit, int fall );
 bool autofly( SHIP_DATA * ship );
 bool is_facing( SHIP_DATA * ship, SHIP_DATA * target );
-void sound_to_ship( SHIP_DATA * ship, char *argument );
+void sound_to_ship( SHIP_DATA * ship, const char *argument );
 
 /* from comm.c */
-bool write_to_descriptor args( ( int desc, char *txt, int length ) );
+bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
 
 ROOM_INDEX_DATA *generate_exit( ROOM_INDEX_DATA * in_room, EXIT_DATA ** pexit );
 
 /*free up ship data by Keberus */
-void free_ship( SHIP_DATA *ship )
+void free_ship( SHIP_DATA * ship )
 {
    MODULE_DATA *mod, *mod_next;
    TURRET_DATA *turret, *tnext;
@@ -139,7 +139,9 @@ void free_ship( SHIP_DATA *ship )
    STRFREE( ship->pbeacon );
    STRFREE( ship->dest );
 
-   /* dispose of ship module data */
+   /*
+    * dispose of ship module data 
+    */
    for( mod = ship->first_module; mod; mod = mod_next )
    {
       mod_next = mod->next;
@@ -147,7 +149,9 @@ void free_ship( SHIP_DATA *ship )
       DISPOSE( mod );
    }
 
-   /* dispose of ship turret data */
+   /*
+    * dispose of ship turret data 
+    */
    for( turret = ship->first_turret; turret; turret = tnext )
    {
       tnext = turret->next;
@@ -158,7 +162,7 @@ void free_ship( SHIP_DATA *ship )
    return;
 }
 
-void echo_to_room_dnr( int ecolor, ROOM_INDEX_DATA * room, char *argument )
+void echo_to_room_dnr( int ecolor, ROOM_INDEX_DATA * room, const char *argument )
 {
    CHAR_DATA *vic;
 
@@ -521,21 +525,21 @@ void move_ships(  )
       {
 
          if( missile->mx < target->vx )
-            missile->mx += UMIN( missile->speed / 5, target->vx - missile->mx );
+            missile->mx += UMIN( missile->speed / 5, ( int )( target->vx - missile->mx ) );
          else if( missile->mx > target->vx )
-            missile->mx -= UMIN( missile->speed / 5, missile->mx - target->vx );
+            missile->mx -= UMIN( missile->speed / 5, ( int )( missile->mx - target->vx ) );
          if( missile->my < target->vy )
-            missile->my += UMIN( missile->speed / 5, target->vy - missile->my );
+            missile->my += UMIN( missile->speed / 5, ( int )( target->vy - missile->my ) );
          else if( missile->my > target->vy )
-            missile->my -= UMIN( missile->speed / 5, missile->my - target->vy );
+            missile->my -= UMIN( missile->speed / 5, ( int )( missile->my - target->vy ) );
          if( missile->mz < target->vz )
-            missile->mz += UMIN( missile->speed / 5, target->vz - missile->mz );
+            missile->mz += UMIN( missile->speed / 5, ( int )( target->vz - missile->mz ) );
          else if( missile->mz > target->vz )
-            missile->mz -= UMIN( missile->speed / 5, missile->mz - target->vz );
+            missile->mz -= UMIN( missile->speed / 5, ( int )( missile->mz - target->vz ) );
 
-         if( abs( missile->mx ) - abs( target->vx ) <= 20 && abs( missile->mx ) - abs( target->vx ) >= -20
-             && abs( missile->my ) - abs( target->vy ) <= 20 && abs( missile->my ) - abs( target->vy ) >= -20
-             && abs( missile->mz ) - abs( target->vz ) <= 20 && abs( missile->mz ) - abs( target->vz ) >= -20 )
+         if( abs( ( int )missile->mx ) - abs( ( int )target->vx ) <= 20 && abs( ( int )missile->mx ) - abs( ( int )target->vx ) >= -20
+             && abs( ( int )missile->my ) - abs( ( int )target->vy ) <= 20 && abs( ( int )missile->my ) - abs( ( int )target->vy ) >= -20
+             && abs( ( int )missile->mz ) - abs( ( int )target->vz ) <= 20 && abs( ( int )missile->mz ) - abs( ( int )target->vz ) >= -20 )
          {
             if( target->chaff_released <= 0 )
             {
@@ -627,7 +631,7 @@ void move_ships(  )
          continue;
 
 /*           
-          if ( ship->class != SHIP_SPACE_STATION && !autofly(ship) )
+          if ( ship->sclass != SHIP_SPACE_STATION && !autofly(ship) )
           {
             if ( ship->starsystem->star1 && strcmp(ship->starsystem->star1,"") )
             {
@@ -695,8 +699,8 @@ void move_ships(  )
           }
 */
       if( ship->starsystem->star1 && strcmp( ship->starsystem->star1, "" ) &&
-          abs( ship->vx - ship->starsystem->s1x ) < 10 &&
-          abs( ship->vy - ship->starsystem->s1y ) < 10 && abs( ship->vz - ship->starsystem->s1z ) < 10 )
+          abs( ( int )( ship->vx - ship->starsystem->s1x ) ) < 10 &&
+          abs( ( int )( ship->vy - ship->starsystem->s1y ) ) < 10 && abs( ( int )( ship->vz - ship->starsystem->s1z ) ) < 10 )
       {
          echo_to_cockpit( AT_BLOOD + AT_BLINK, ship, "You fly directly into the sun." );
          sprintf( buf, "%s flies directly into %s!", ship->name, ship->starsystem->star1 );
@@ -705,8 +709,8 @@ void move_ships(  )
          continue;
       }
       if( ship->starsystem->star2 && strcmp( ship->starsystem->star2, "" ) &&
-          abs( ship->vx - ship->starsystem->s2x ) < 10 &&
-          abs( ship->vy - ship->starsystem->s2y ) < 10 && abs( ship->vz - ship->starsystem->s2z ) < 10 )
+          abs( ( int )( ship->vx - ship->starsystem->s2x ) ) < 10 &&
+          abs( ( int )( ship->vy - ship->starsystem->s2y ) ) < 10 && abs( ( int )( ship->vz - ship->starsystem->s2z ) ) < 10 )
       {
          echo_to_cockpit( AT_BLOOD + AT_BLINK, ship, "You fly directly into the sun." );
          sprintf( buf, "%s flys directly into %s!", ship->name, ship->starsystem->star2 );
@@ -718,8 +722,8 @@ void move_ships(  )
       if( ship->currspeed > 0 )
       {
          if( ship->starsystem->planet1 && strcmp( ship->starsystem->planet1, "" ) &&
-             abs( ship->vx - ship->starsystem->p1x ) < 10 &&
-             abs( ship->vy - ship->starsystem->p1y ) < 10 && abs( ship->vz - ship->starsystem->p1z ) < 10 )
+             abs( ( int )( ship->vx - ship->starsystem->p1x ) ) < 10 &&
+             abs( ( int )( ship->vy - ship->starsystem->p1y ) ) < 10 && abs( ( int )( ship->vz - ship->starsystem->p1z ) ) < 10 )
          {
             sprintf( buf, "You begin orbitting %s.", ship->starsystem->planet1 );
             echo_to_cockpit( AT_YELLOW, ship, buf );
@@ -729,8 +733,8 @@ void move_ships(  )
             continue;
          }
          if( ship->starsystem->planet2 && strcmp( ship->starsystem->planet2, "" ) &&
-             abs( ship->vx - ship->starsystem->p2x ) < 10 &&
-             abs( ship->vy - ship->starsystem->p2y ) < 10 && abs( ship->vz - ship->starsystem->p2z ) < 10 )
+             abs( ( int )( ship->vx - ship->starsystem->p2x ) ) < 10 &&
+             abs( ( int )( ship->vy - ship->starsystem->p2y ) ) < 10 && abs( ( int )( ship->vz - ship->starsystem->p2z ) ) < 10 )
          {
             sprintf( buf, "You begin orbitting %s.", ship->starsystem->planet2 );
             echo_to_cockpit( AT_YELLOW, ship, buf );
@@ -740,8 +744,8 @@ void move_ships(  )
             continue;
          }
          if( ship->starsystem->planet3 && strcmp( ship->starsystem->planet3, "" ) &&
-             abs( ship->vx - ship->starsystem->p3x ) < 10 &&
-             abs( ship->vy - ship->starsystem->p3y ) < 10 && abs( ship->vz - ship->starsystem->p3z ) < 10 )
+             abs( ( int )( ship->vx - ship->starsystem->p3x ) ) < 10 &&
+             abs( ( int )( ship->vy - ship->starsystem->p3y ) ) < 10 && abs( ( int )( ship->vz - ship->starsystem->p3z ) ) < 10 )
          {
             sprintf( buf, "You begin orbitting %s.", ship->starsystem->planet2 );
             echo_to_cockpit( AT_YELLOW, ship, buf );
@@ -896,18 +900,18 @@ void recharge_ships(  )
                {
                   if( ship->shipstate != SHIP_HYPERSPACE && ship->energy > 25
                       && ship->target0->starsystem == ship->starsystem
-                      && abs( target->vx - ship->vx ) <= 1000
-                      && abs( target->vy - ship->vy ) <= 1000
-                      && abs( target->vz - ship->vz ) <= 1000 && ship->primaryState < ship->primaryCount )
+                      && abs( ( int )( target->vx - ship->vx ) ) <= 1000
+                      && abs( ( int )( target->vy - ship->vy ) ) <= 1000
+                      && abs( ( int )( target->vz - ship->vz ) ) <= 1000 && ship->primaryState < ship->primaryCount )
                   {
-                     if( ship->class >= SHIP_SHUTTLE || is_facing( ship, target ) )
+                     if( ship->sclass >= SHIP_SHUTTLE || is_facing( ship, target ) )
                      {
-                        schance += target->class * 25;
+                        schance += target->sclass * 25;
                         schance -= target->manuever / 10;
                         schance -= target->currspeed / 20;
-                        schance -= ( abs( target->vx - ship->vx ) / 70 );
-                        schance -= ( abs( target->vy - ship->vy ) / 70 );
-                        schance -= ( abs( target->vz - ship->vz ) / 70 );
+                        schance -= ( abs( ( int )( target->vx - ship->vx ) ) / 70 );
+                        schance -= ( abs( ( int )( target->vy - ship->vy ) ) / 70 );
+                        schance -= ( abs( ( int )( target->vz - ship->vz ) ) / 70 );
                         schance = URANGE( 10, schance, 90 );
                         if( number_percent(  ) > schance )
                         {
@@ -948,10 +952,10 @@ void update_space(  )
    {
       if( ship->starsystem )
       {
-         if( ship->energy > 0 && ship->shipstate == SHIP_DISABLED && ship->class != SHIP_SPACE_STATION )
+         if( ship->energy > 0 && ship->shipstate == SHIP_DISABLED && ship->sclass != SHIP_SPACE_STATION )
             ship->energy -= 100;
          else if( ship->energy > 0 )
-            ship->energy += ( 5 + ship->class * 5 );
+            ship->energy += ( 5 + ship->sclass * 5 );
          else if( ship->type == MOB_SHIP )
             ship->energy = ship->maxenergy;
          else
@@ -1045,11 +1049,11 @@ void update_space(  )
          ship->shipstate = SHIP_LAUNCH_2;
 
 
-      ship->shield = UMAX( 0, ship->shield - 1 - ship->class );
+      ship->shield = UMAX( 0, ship->shield - 1 - ship->sclass );
 
       if( ship->autorecharge && ship->maxshield > ship->shield && ship->energy > 100 )
       {
-         recharge = UMIN( ship->maxshield - ship->shield, 10 + ship->class * 10 );
+         recharge = UMIN( ship->maxshield - ship->shield, 10 + ship->sclass * 10 );
          recharge = UMIN( recharge, ship->energy / 2 - 100 );
          recharge = UMAX( 1, recharge );
          ship->shield += recharge;
@@ -1144,8 +1148,8 @@ void update_space(  )
          {
             target_too_close = too_close + target->currspeed;
             if( target != ship &&
-                abs( ship->vx - target->vx ) < target_too_close &&
-                abs( ship->vy - target->vy ) < target_too_close && abs( ship->vz - target->vz ) < target_too_close )
+                abs( ( int )( ship->vx - target->vx ) ) < target_too_close &&
+                abs( ( int )( ship->vy - target->vy ) ) < target_too_close && abs( ( int )( ship->vz - target->vz ) ) < target_too_close )
             {
                sprintf( buf, "Proximity alert: %s  %.0f %.0f %.0f", target->name, target->vx, target->vy, target->vz );
                echo_to_room( AT_RED, get_room_index( ship->pilotseat ), buf );
@@ -1153,40 +1157,40 @@ void update_space(  )
          }
          too_close = ship->currspeed + 100;
          if( ship->starsystem->star1 && strcmp( ship->starsystem->star1, "" ) &&
-             abs( ship->vx - ship->starsystem->s1x ) < too_close &&
-             abs( ship->vy - ship->starsystem->s1y ) < too_close && abs( ship->vz - ship->starsystem->s1z ) < too_close )
+             abs( ( int )( ship->vx - ship->starsystem->s1x ) ) < too_close &&
+             abs( ( int )( ship->vy - ship->starsystem->s1y ) ) < too_close && abs( ( int )( ship->vz - ship->starsystem->s1z ) ) < too_close )
          {
             sprintf( buf, "Proximity alert: %s  %d %d %d", ship->starsystem->star1,
                      ship->starsystem->s1x, ship->starsystem->s1y, ship->starsystem->s1z );
             echo_to_room( AT_RED, get_room_index( ship->pilotseat ), buf );
          }
          if( ship->starsystem->star2 && strcmp( ship->starsystem->star2, "" ) &&
-             abs( ship->vx - ship->starsystem->s2x ) < too_close &&
-             abs( ship->vy - ship->starsystem->s2y ) < too_close && abs( ship->vz - ship->starsystem->s2z ) < too_close )
+             abs( ( int )( ship->vx - ship->starsystem->s2x ) ) < too_close &&
+             abs( ( int )( ship->vy - ship->starsystem->s2y ) ) < too_close && abs( ( int )( ship->vz - ship->starsystem->s2z ) ) < too_close )
          {
             sprintf( buf, "Proximity alert: %s  %d %d %d", ship->starsystem->star2,
                      ship->starsystem->s2x, ship->starsystem->s2y, ship->starsystem->s2z );
             echo_to_room( AT_RED, get_room_index( ship->pilotseat ), buf );
          }
          if( ship->starsystem->planet1 && strcmp( ship->starsystem->planet1, "" ) &&
-             abs( ship->vx - ship->starsystem->p1x ) < too_close &&
-             abs( ship->vy - ship->starsystem->p1y ) < too_close && abs( ship->vz - ship->starsystem->p1z ) < too_close )
+             abs( ( int )( ship->vx - ship->starsystem->p1x ) ) < too_close &&
+             abs( ( int )( ship->vy - ship->starsystem->p1y ) ) < too_close && abs( ( int )( ship->vz - ship->starsystem->p1z ) ) < too_close )
          {
             sprintf( buf, "Proximity alert: %s  %d %d %d", ship->starsystem->planet1,
                      ship->starsystem->p1x, ship->starsystem->p1y, ship->starsystem->p1z );
             echo_to_room( AT_RED, get_room_index( ship->pilotseat ), buf );
          }
          if( ship->starsystem->planet2 && strcmp( ship->starsystem->planet2, "" ) &&
-             abs( ship->vx - ship->starsystem->p2x ) < too_close &&
-             abs( ship->vy - ship->starsystem->p2y ) < too_close && abs( ship->vz - ship->starsystem->p2z ) < too_close )
+             abs( ( int )( ship->vx - ship->starsystem->p2x ) ) < too_close &&
+             abs( ( int )( ship->vy - ship->starsystem->p2y ) ) < too_close && abs( ( int )( ship->vz - ship->starsystem->p2z ) ) < too_close )
          {
             sprintf( buf, "Proximity alert: %s  %d %d %d", ship->starsystem->planet2,
                      ship->starsystem->p2x, ship->starsystem->p2y, ship->starsystem->p2z );
             echo_to_room( AT_RED, get_room_index( ship->pilotseat ), buf );
          }
          if( ship->starsystem->planet3 && strcmp( ship->starsystem->planet3, "" ) &&
-             abs( ship->vx - ship->starsystem->p3x ) < too_close &&
-             abs( ship->vy - ship->starsystem->p3y ) < too_close && abs( ship->vz - ship->starsystem->p3z ) < too_close )
+             abs( ( int )( ship->vx - ship->starsystem->p3x ) ) < too_close &&
+             abs( ( int )( ship->vy - ship->starsystem->p3y ) ) < too_close && abs( ( int )( ship->vz - ship->starsystem->p3z ) ) < too_close )
          {
             sprintf( buf, "Proximity alert: %s  %d %d %d", ship->starsystem->planet3,
                      ship->starsystem->p3x, ship->starsystem->p3y, ship->starsystem->p3z );
@@ -1233,24 +1237,24 @@ void update_space(  )
    for( ship = first_ship; ship; ship = ship->next )
    {
 
-      if( ship->autotrack && ship->target0 && ship->class < SHIP_CRUISER )
+      if( ship->autotrack && ship->target0 && ship->sclass < SHIP_CRUISER )
       {
          target = ship->target0;
          too_close = ship->currspeed + 10;
          target_too_close = too_close + target->currspeed;
          if( target != ship && ship->shipstate == SHIP_READY &&
-             abs( ship->vx - target->vx ) < target_too_close &&
-             abs( ship->vy - target->vy ) < target_too_close && abs( ship->vz - target->vz ) < target_too_close )
+             abs( ( int )( ship->vx - target->vx ) ) < target_too_close &&
+             abs( ( int )( ship->vy - target->vy ) ) < target_too_close && abs( ( int )( ship->vz - target->vz ) ) < target_too_close )
          {
             ship->hx = 0 - ( ship->target0->vx - ship->vx );
             ship->hy = 0 - ( ship->target0->vy - ship->vy );
             ship->hz = 0 - ( ship->target0->vz - ship->vz );
             ship->energy -= ship->currspeed / 10;
             echo_to_room( AT_RED, get_room_index( ship->pilotseat ), "Autotrack: Evading to avoid collision!\r\n" );
-            if( ( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
-                || ( ( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE ) && ship->manuever > 50 ) )
+            if( ( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
+                || ( ( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE ) && ship->manuever > 50 ) )
                ship->shipstate = SHIP_BUSY_3;
-            else if( ship->class >= SHIP_CRUISER || ( ship->class == SHIP_DREADNAUGHT && ship->manuever > 50 ) )
+            else if( ship->sclass >= SHIP_CRUISER || ( ship->sclass == SHIP_DREADNAUGHT && ship->manuever > 50 ) )
                ship->shipstate = SHIP_BUSY_2;
             else
                ship->shipstate = SHIP_BUSY;
@@ -1262,10 +1266,10 @@ void update_space(  )
             ship->hz = ship->target0->vz - ship->vz;
             ship->energy -= ship->currspeed / 10;
             echo_to_room( AT_BLUE, get_room_index( ship->pilotseat ), "Autotracking target ... setting new course.\r\n" );
-            if( ( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
-                || ( ( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE ) && ship->manuever > 50 ) )
+            if( ( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
+                || ( ( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE ) && ship->manuever > 50 ) )
                ship->shipstate = SHIP_BUSY_3;
-            else if( ship->class >= SHIP_CRUISER || ( ship->class == SHIP_DREADNAUGHT && ship->manuever > 50 ) )
+            else if( ship->sclass >= SHIP_CRUISER || ( ship->sclass == SHIP_DREADNAUGHT && ship->manuever > 50 ) )
                ship->shipstate = SHIP_BUSY_2;
             else
                ship->shipstate = SHIP_BUSY;
@@ -1303,7 +1307,7 @@ void update_space(  )
 
                target = ship->target0;
                ship->autotrack = TRUE;
-               if( ship->class != SHIP_SPACE_STATION )
+               if( ship->sclass != SHIP_SPACE_STATION )
                   ship->currspeed = ship->realspeed;
                if( ship->energy > 200 )
                   ship->autorecharge = TRUE;
@@ -1311,17 +1315,17 @@ void update_space(  )
 
                if( ship->shipstate != SHIP_HYPERSPACE && ship->energy > 25
                    && ship->missilestate == MISSILE_READY && ship->target0->starsystem == ship->starsystem
-                   && abs( target->vx - ship->vx ) <= 1200
-                   && abs( target->vy - ship->vy ) <= 1200 && abs( target->vz - ship->vz ) <= 1200 && ship->missiles > 0 )
+                   && abs( ( int )( target->vx - ship->vx ) ) <= 1200
+                   && abs( ( int )( target->vy - ship->vy ) ) <= 1200 && abs( ( int )( target->vz - ship->vz ) ) <= 1200 && ship->missiles > 0 )
                {
-                  if( ship->class >= SHIP_CRUISER || is_facing( ship, target ) )
+                  if( ship->sclass >= SHIP_CRUISER || is_facing( ship, target ) )
                   {
                      schance -= target->manuever / 5;
                      schance -= target->currspeed / 20;
-                     schance += target->class * target->class * 25;
-                     schance -= ( abs( target->vx - ship->vx ) / 100 );
-                     schance -= ( abs( target->vy - ship->vy ) / 100 );
-                     schance -= ( abs( target->vz - ship->vz ) / 100 );
+                     schance += target->sclass * target->sclass * 25;
+                     schance -= ( abs( ( int )( target->vx - ship->vx ) / 100 ) );
+                     schance -= ( abs( ( int )( target->vy - ship->vy ) / 100 ) );
+                     schance -= ( abs( ( int )( target->vz - ship->vz ) / 100 ) );
                      schance += ( 30 );
                      schance = URANGE( 10, schance, 90 );
 
@@ -1337,7 +1341,7 @@ void update_space(  )
                         sprintf( buf, "%s fires a missile towards %s.", ship->name, target->name );
                         echo_to_system( AT_ORANGE, target, buf, NULL );
 
-                        if( ship->class >= SHIP_CRUISER )
+                        if( ship->sclass >= SHIP_CRUISER )
                            ship->missilestate = MISSILE_RELOAD_2;
                         else
                            ship->missilestate = MISSILE_FIRED;
@@ -1407,7 +1411,7 @@ void update_space(  )
          }
       }
 
-      if( ( ship->class >= SHIP_CRUISER ) && ship->target0 == NULL )
+      if( ( ship->sclass >= SHIP_CRUISER ) && ship->target0 == NULL )
       {
          if( ship->missiles < ship->maxmissiles )
             ship->missiles++;
@@ -1445,7 +1449,7 @@ void write_starsystem_list(  )
 /*
  * Get pointer to space structure from starsystem name.
  */
-SPACE_DATA *starsystem_from_name( char *name )
+SPACE_DATA *starsystem_from_name( const char *name )
 {
    SPACE_DATA *starsystem;
 
@@ -1601,7 +1605,7 @@ void save_starsystem( SPACE_DATA * starsystem )
 void fread_starsystem( SPACE_DATA * starsystem, FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
 
 
@@ -1740,7 +1744,7 @@ void fread_starsystem( SPACE_DATA * starsystem, FILE * fp )
  * Load a starsystem file
  */
 
-bool load_starsystem( char *starsystemfile )
+bool load_starsystem( const char *starsystemfile )
 {
    char filename[256];
    SPACE_DATA *starsystem;
@@ -1807,7 +1811,7 @@ bool load_starsystem( char *starsystemfile )
 void load_space(  )
 {
    FILE *fpList;
-   char *filename;
+   const char *filename;
    char starsystemlist[256];
    char buf[MAX_STRING_LENGTH];
 
@@ -1842,7 +1846,7 @@ void load_space(  )
    return;
 }
 
-void do_setstarsystem( CHAR_DATA * ch, char *argument )
+void do_setstarsystem( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2168,7 +2172,9 @@ void do_setstarsystem( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   /*Make sure the planet actually exists --Keberus and RapidRunner */
+   /*
+    * Make sure the planet actually exists --Keberus and RapidRunner 
+    */
    if( !str_cmp( arg2, "planet1" ) || !str_cmp( arg2, "planet2" ) || !str_cmp( arg2, "planet3" ) )
    {
       PLANET_DATA *tplanet;
@@ -2328,7 +2334,7 @@ void showstarsystem( CHAR_DATA * ch, SPACE_DATA * starsystem )
    return;
 }
 
-void do_showstarsystem( CHAR_DATA * ch, char *argument )
+void do_showstarsystem( CHAR_DATA * ch, const char *argument )
 {
    SPACE_DATA *starsystem;
 
@@ -2341,7 +2347,7 @@ void do_showstarsystem( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_makestarsystem( CHAR_DATA * ch, char *argument )
+void do_makestarsystem( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char filename[256];
@@ -2381,7 +2387,7 @@ void do_makestarsystem( CHAR_DATA * ch, char *argument )
    write_starsystem_list(  );
 }
 
-void do_starsystems( CHAR_DATA * ch, char *argument )
+void do_starsystems( CHAR_DATA * ch, const char *argument )
 {
    SPACE_DATA *starsystem;
    int count = 0;
@@ -2409,7 +2415,7 @@ void do_starsystems( CHAR_DATA * ch, char *argument )
    }
 }
 
-void echo_to_ship( int color, SHIP_DATA * ship, char *argument )
+void echo_to_ship( int color, SHIP_DATA * ship, const char *argument )
 {
    int room;
 
@@ -2420,7 +2426,7 @@ void echo_to_ship( int color, SHIP_DATA * ship, char *argument )
 
 }
 
-void sound_to_ship( SHIP_DATA * ship, char *argument )
+void sound_to_ship( SHIP_DATA * ship, const char *argument )
 {
    int roomnum;
    ROOM_INDEX_DATA *room;
@@ -2441,7 +2447,7 @@ void sound_to_ship( SHIP_DATA * ship, char *argument )
 
 }
 
-void echo_to_cockpit( int color, SHIP_DATA * ship, char *argument )
+void echo_to_cockpit( int color, SHIP_DATA * ship, const char *argument )
 {
    int room;
 
@@ -2459,7 +2465,7 @@ void echo_to_cockpit( int color, SHIP_DATA * ship, char *argument )
 
 }
 
-void echo_to_system( int color, SHIP_DATA * ship, char *argument, SHIP_DATA * ignore )
+void echo_to_system( int color, SHIP_DATA * ship, const char *argument, SHIP_DATA * ignore )
 {
    SHIP_DATA *target;
 
@@ -2524,7 +2530,7 @@ void write_ship_list(  )
    fclose( fpout );
 }
 
-SHIP_DATA *ship_in_room( ROOM_INDEX_DATA * room, char *name )
+SHIP_DATA *ship_in_room( ROOM_INDEX_DATA * room, const char *name )
 {
    SHIP_DATA *ship;
 
@@ -2545,7 +2551,7 @@ SHIP_DATA *ship_in_room( ROOM_INDEX_DATA * room, char *name )
 /*
  * Get pointer to ship structure from ship name.
  */
-SHIP_DATA *get_ship( char *name )
+SHIP_DATA *get_ship( const char *name )
 {
    SHIP_DATA *ship;
 
@@ -2563,7 +2569,7 @@ SHIP_DATA *get_ship( char *name )
 /*
  * Checks if ships in a starsystem and returns poiner if it is.
  */
-SHIP_DATA *get_ship_here( char *name, SPACE_DATA * starsystem )
+SHIP_DATA *get_ship_here( const char *name, SPACE_DATA * starsystem )
 {
    SHIP_DATA *ship;
 
@@ -2755,7 +2761,7 @@ void save_ship( SHIP_DATA * ship )
       fprintf( fp, "Owner        %s~\n", ship->owner );
       fprintf( fp, "Pilot        %s~\n", ship->pilot );
       fprintf( fp, "Copilot      %s~\n", ship->copilot );
-      fprintf( fp, "Class        %d\n", ship->class );
+      fprintf( fp, "Class        %d\n", ship->sclass );
       fprintf( fp, "primaryType        %d\n", ship->primaryType );
       fprintf( fp, "primaryCount       %d\n", ship->primaryCount );
       fprintf( fp, "secondaryType      %d\n", ship->secondaryType );
@@ -2847,9 +2853,8 @@ void save_ship( SHIP_DATA * ship )
 void fread_ship( SHIP_DATA * ship, FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
-   int dummy_number;
    int x1, x2;
    char *line;
 
@@ -2878,7 +2883,7 @@ void fread_ship( SHIP_DATA * ship, FILE * fp )
             KEY( "Cockpit", ship->cockpit, fread_number( fp ) );
             KEY( "Coseat", ship->coseat, fread_number( fp ) );
             KEY( "ClanOwner", ship->clanowner, fread_string( fp ) );
-            KEY( "Class", ship->class, fread_number( fp ) );
+            KEY( "Class", ship->sclass, fread_number( fp ) );
             KEY( "Copilot", ship->copilot, fread_string( fp ) );
             KEY( "Comm", ship->comm, fread_number( fp ) );
             KEY( "Cost", ship->cost, fread_number( fp ) );
@@ -2924,7 +2929,7 @@ void fread_ship( SHIP_DATA * ship, FILE * fp )
                if( ship->lastdoc <= 0 )
                   ship->lastdoc = ship->shipyard;
                ship->bayopen = FALSE;
-               if( ship->class >= SHIP_CRUISER )
+               if( ship->sclass >= SHIP_CRUISER )
                   ship->autopilot = TRUE;
                else
                   ship->autopilot = FALSE;
@@ -3016,7 +3021,6 @@ void fread_ship( SHIP_DATA * ship, FILE * fp )
 
          case 'O':
             KEY( "Owner", ship->owner, fread_string( fp ) );
-            KEY( "Objectnum", dummy_number, fread_number( fp ) );
             break;
 
          case 'P':
@@ -3097,7 +3101,7 @@ void fread_ship( SHIP_DATA * ship, FILE * fp )
  * Load a ship file
  */
 
-bool load_ship_file( char *shipfile )
+bool load_ship_file( const char *shipfile )
 {
    char filename[256];
    SHIP_DATA *ship;
@@ -3161,7 +3165,7 @@ bool load_ship_file( char *shipfile )
       if( !str_cmp( "Public", ship->owner ) || ship->type == MOB_SHIP )
       {
 
-         if( ship->class <= SHIP_CORVETTE && ship->type != MOB_SHIP )
+         if( ship->sclass <= SHIP_CORVETTE && ship->type != MOB_SHIP )
          {
             extract_ship( ship );
             ship_to_room( ship, ship->shipyard );
@@ -3299,7 +3303,7 @@ bool load_ship_file( char *shipfile )
                ship->cockpit == ROOM_CORUSCANT_TURBOCAR || ship->cockpit == ROOM_CORUSCANT_SHUTTLE )
       {
       }
-      else if( ( pRoomIndex = get_room_index( ship->lastdoc ) ) != NULL && ship->class <= SHIP_CORVETTE )
+      else if( ( pRoomIndex = get_room_index( ship->lastdoc ) ) != NULL && ship->sclass <= SHIP_CORVETTE )
       {
          LINK( ship, pRoomIndex->first_ship, pRoomIndex->last_ship, next_in_room, prev_in_room );
          ship->in_room = pRoomIndex;
@@ -3307,10 +3311,10 @@ bool load_ship_file( char *shipfile )
       }
 
 
-      if( ship->class >= SHIP_CRUISER || ship->type == MOB_SHIP )
+      if( ship->sclass >= SHIP_CRUISER || ship->type == MOB_SHIP )
       {
          ship_to_starsystem( ship, starsystem_from_name( ship->home ) );
-         if( ship->class >= SHIP_CRUISER )
+         if( ship->sclass >= SHIP_CRUISER )
          {
 
             if( !str_cmp( ship->home, "Coruscant" ) || !str_cmp( ship->home, "coruscant" ) )
@@ -3396,7 +3400,7 @@ bool load_ship_file( char *shipfile )
 
       if( ship->type != MOB_SHIP && ( clan = get_clan( ship->owner ) ) != NULL )
       {
-         if( ship->class != LAND_VEHICLE )
+         if( ship->sclass != LAND_VEHICLE )
             clan->spacecraft++;
          else
             clan->vehicles++;
@@ -3413,7 +3417,7 @@ bool load_ship_file( char *shipfile )
 void load_ships(  )
 {
    FILE *fpList;
-   char *filename;
+   const char *filename;
    char shiplist[256];
    char buf[MAX_STRING_LENGTH];
 
@@ -3495,7 +3499,7 @@ void resetship( SHIP_DATA * ship )
    untargetship( ship );
    ship->shipstate = SHIP_READY;
 
-   if( ship->class != SHIP_SPACE_STATION && ship->type != MOB_SHIP )
+   if( ship->sclass != SHIP_SPACE_STATION && ship->type != MOB_SHIP )
    {
       extract_ship( ship );
       ship_to_room( ship, ship->shipyard );
@@ -3632,7 +3636,7 @@ void resetship( SHIP_DATA * ship )
 
       if( ship->type != MOB_SHIP && ( clan = get_clan( ship->owner ) ) != NULL )
       {
-         if( ship->class != LAND_VEHICLE )
+         if( ship->sclass != LAND_VEHICLE )
             clan->spacecraft--;
          else
             clan->vehicles--;
@@ -3650,7 +3654,7 @@ void resetship( SHIP_DATA * ship )
    save_ship( ship );
 }
 
-void do_resetship( CHAR_DATA * ch, char *argument )
+void do_resetship( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
 
@@ -3663,7 +3667,7 @@ void do_resetship( CHAR_DATA * ch, char *argument )
 
    resetship( ship );
 
-   if( ( ship->class >= SHIP_CRUISER || ship->type == MOB_SHIP ) && ship->home )
+   if( ( ship->sclass >= SHIP_CRUISER || ship->type == MOB_SHIP ) && ship->home )
    {
       ship_to_starsystem( ship, starsystem_from_name( ship->home ) );
       ship->vx = number_range( -5000, 5000 );
@@ -3677,7 +3681,7 @@ void do_resetship( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_setship( CHAR_DATA * ch, char *argument )
+void do_setship( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -3721,7 +3725,7 @@ void do_setship( CHAR_DATA * ch, char *argument )
       CLAN_DATA *clan;
       if( ship->type != MOB_SHIP && ( clan = get_clan( ship->owner ) ) != NULL )
       {
-         if( ship->class != LAND_VEHICLE )
+         if( ship->sclass != LAND_VEHICLE )
             clan->spacecraft--;
          else
             clan->vehicles--;
@@ -3732,7 +3736,7 @@ void do_setship( CHAR_DATA * ch, char *argument )
       save_ship( ship );
       if( ship->type != MOB_SHIP && ( clan = get_clan( ship->owner ) ) != NULL )
       {
-         if( ship->class != LAND_VEHICLE )
+         if( ship->sclass != LAND_VEHICLE )
             clan->spacecraft++;
          else
             clan->vehicles++;
@@ -4174,7 +4178,7 @@ void do_setship( CHAR_DATA * ch, char *argument )
          send_to_char( "You can't name a ship nothing.\r\n", ch );
          return;
       }
-      if( ( uship = get_ship( argument ) ) != NULL  )
+      if( ( uship = get_ship( argument ) ) != NULL )
       {
          send_to_char( "There is already another ship with that name.\r\n", ch );
          return;
@@ -4239,7 +4243,7 @@ void do_setship( CHAR_DATA * ch, char *argument )
 
    if( !str_cmp( arg2, "class" ) )
    {
-      ship->class = atoi( argument );
+      ship->sclass = atoi( argument );
       send_to_char( "Done.\r\n", ch );
       save_ship( ship );
       return;
@@ -4399,7 +4403,7 @@ void do_setship( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_showship( CHAR_DATA * ch, char *argument )
+void do_showship( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
 
@@ -4426,18 +4430,18 @@ void do_showship( CHAR_DATA * ch, char *argument )
               ship->type == SHIP_REPUBLIC ? "New Republic" :
               ( ship->type == SHIP_IMPERIAL ? "Imperial" :
                 ( ship->type == PLAYER_SHIP ? "Civilian" : "Mob" ) ),
-              ship->class == SHIP_FIGHTER ? "Starfighter" :
-              ship->class == SHIP_BOMBER ? "Bomber" :
-              ship->class == SHIP_SHUTTLE ? "Shuttle" :
-              ship->class == SHIP_FREIGHTER ? "Freighter" :
-              ship->class == SHIP_FRIGATE ? "Frigate" :
-              ship->class == SHIP_TT ? "Troop Transport" :
-              ship->class == SHIP_CORVETTE ? "Corvette" :
-              ship->class == SHIP_CRUISER ? "Cruiser" :
-              ship->class == SHIP_DREADNAUGHT ? "Dreadnaught" :
-              ship->class == SHIP_DESTROYER ? "Star Destroyer" :
-              ship->class == SHIP_SPACE_STATION ? "Space Station" :
-              ship->class == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship->name, ship->filename );
+              ship->sclass == SHIP_FIGHTER ? "Starfighter" :
+              ship->sclass == SHIP_BOMBER ? "Bomber" :
+              ship->sclass == SHIP_SHUTTLE ? "Shuttle" :
+              ship->sclass == SHIP_FREIGHTER ? "Freighter" :
+              ship->sclass == SHIP_FRIGATE ? "Frigate" :
+              ship->sclass == SHIP_TT ? "Troop Transport" :
+              ship->sclass == SHIP_CORVETTE ? "Corvette" :
+              ship->sclass == SHIP_CRUISER ? "Cruiser" :
+              ship->sclass == SHIP_DREADNAUGHT ? "Dreadnaught" :
+              ship->sclass == SHIP_DESTROYER ? "Star Destroyer" :
+              ship->sclass == SHIP_SPACE_STATION ? "Space Station" :
+              ship->sclass == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship->name, ship->filename );
    ch_printf( ch, "Home: %s   Description: %s  Current system: %s\r\nOwner: %s   Pilot: %s   Copilot: %s\r\n",
               ship->home, ship->description,
               ship->starsystem ? ship->starsystem->name : "None", ship->owner, ship->pilot, ship->copilot );
@@ -4490,7 +4494,7 @@ void do_showship( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_makeship( CHAR_DATA * ch, char *argument )
+void do_makeship( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char arg[MAX_INPUT_LENGTH];
@@ -4539,7 +4543,7 @@ void do_makeship( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_copyship( CHAR_DATA * ch, char *argument )
+void do_copyship( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    SHIP_DATA *old;
@@ -4573,7 +4577,7 @@ void do_copyship( CHAR_DATA * ch, char *argument )
    ship->pilot = STRALLOC( "" );
    ship->home = STRALLOC( "" );
    ship->type = old->type;
-   ship->class = old->class;
+   ship->sclass = old->sclass;
    ship->primaryCount = old->primaryCount;
    ship->maxmissiles = old->maxmissiles;
    ship->maxrockets = old->maxrockets;
@@ -4599,7 +4603,7 @@ void do_copyship( CHAR_DATA * ch, char *argument )
    write_ship_list(  );
 }
 
-void do_ships( CHAR_DATA * ch, char *argument )
+void do_ships( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    int count;
@@ -4614,7 +4618,7 @@ void do_ships( CHAR_DATA * ch, char *argument )
          if( str_cmp( ship->owner, ch->name ) )
          {
             if( !ch->pcdata || !ch->pcdata->clan || str_cmp( ship->owner, ch->pcdata->clan->name )
-                || ship->class > SHIP_SPACE_STATION )
+                || ship->sclass > SHIP_SPACE_STATION )
                continue;
          }
 
@@ -4649,7 +4653,7 @@ void do_ships( CHAR_DATA * ch, char *argument )
     send_to_char( "\r\n&WShip                               Owner          Cost/Rent\r\n", ch );
     for ( ship = first_ship; ship; ship = ship->next )
     {   
-        if ( ship->location != ch->in_room->vnum || ship->class > SHIP_SPACE_STATION)
+        if ( ship->location != ch->in_room->vnum || ship->sclass > SHIP_SPACE_STATION)
                continue;
 
         if (ship->type == MOB_SHIP)
@@ -4662,7 +4666,7 @@ void do_ships( CHAR_DATA * ch, char *argument )
           set_char_color( AT_BLUE, ch );
         
         ch_printf( ch, "%-35s %-15s", ship->name, ship->owner );
-        if (ship->type == MOB_SHIP || ship->class == SHIP_SPACE_STATION )
+        if (ship->type == MOB_SHIP || ship->sclass == SHIP_SPACE_STATION )
         {
           ch_printf( ch, "\r\n");
           continue;
@@ -4686,7 +4690,7 @@ void do_ships( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_speeders( CHAR_DATA * ch, char *argument )
+void do_speeders( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    int count;
@@ -4701,10 +4705,10 @@ void do_speeders( CHAR_DATA * ch, char *argument )
          if( str_cmp( ship->owner, ch->name ) )
          {
             if( !ch->pcdata || !ch->pcdata->clan || str_cmp( ship->owner, ch->pcdata->clan->name )
-                || ship->class <= SHIP_SPACE_STATION )
+                || ship->sclass <= SHIP_SPACE_STATION )
                continue;
          }
-         if( ship->location != ch->in_room->vnum || ship->class != LAND_VEHICLE )
+         if( ship->location != ch->in_room->vnum || ship->sclass != LAND_VEHICLE )
             continue;
 
          if( ship->type == MOB_SHIP )
@@ -4735,7 +4739,7 @@ void do_speeders( CHAR_DATA * ch, char *argument )
    send_to_char( "\r\n&WVehicle                            Owner          Cost/Rent\r\n", ch );
    for( ship = first_ship; ship; ship = ship->next )
    {
-      if( ship->location != ch->in_room->vnum || ship->class != LAND_VEHICLE )
+      if( ship->location != ch->in_room->vnum || ship->sclass != LAND_VEHICLE )
          continue;
 
       if( ship->type == MOB_SHIP )
@@ -4768,7 +4772,7 @@ void do_speeders( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_allspeeders( CHAR_DATA * ch, char *argument )
+void do_allspeeders( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    int count = 0;
@@ -4779,7 +4783,7 @@ void do_allspeeders( CHAR_DATA * ch, char *argument )
    send_to_char( "\r\n&WVehicle                            Owner\r\n", ch );
    for( ship = first_ship; ship; ship = ship->next )
    {
-      if( ship->class != LAND_VEHICLE )
+      if( ship->sclass != LAND_VEHICLE )
          continue;
 
       if( ship->type == MOB_SHIP )
@@ -4814,7 +4818,7 @@ void do_allspeeders( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_allships( CHAR_DATA * ch, char *argument )
+void do_allships( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    int count = 0;
@@ -4831,7 +4835,7 @@ void do_allships( CHAR_DATA * ch, char *argument )
 
    for( ship = first_ship; ship; ship = ship->next )
    {
-      if( ship->class == LAND_VEHICLE )
+      if( ship->sclass == LAND_VEHICLE )
          continue;
 
       if( ship->type == MOB_SHIP )
@@ -4844,7 +4848,7 @@ void do_allships( CHAR_DATA * ch, char *argument )
          set_char_color( AT_BLUE, ch );
 
       ch_printf( ch, "%-35s %-15s ", ship->name, ship->owner );
-      if( ship->type == MOB_SHIP || ship->class == SHIP_SPACE_STATION )
+      if( ship->type == MOB_SHIP || ship->sclass == SHIP_SPACE_STATION )
       {
          ch_printf( ch, "\r\n" );
          continue;
@@ -4928,9 +4932,9 @@ void new_missile( SHIP_DATA * ship, SHIP_DATA * target, CHAR_DATA * ch, int miss
    else
       missile->speed = 50;
 
-   missile->mx = ship->vx;
-   missile->my = ship->vy;
-   missile->mz = ship->vz;
+   missile->mx = ( int )ship->vx;
+   missile->my = ( int )ship->vy;
+   missile->mz = ( int )ship->vz;
 
    if( starsystem->first_missile == NULL )
       starsystem->first_missile = missile;
@@ -5226,7 +5230,7 @@ void damage_ship_ch( SHIP_DATA * ship, int min, int max, CHAR_DATA * ch )
             && ch->pcdata->learned[gsn_spacecombat3] > 1 )
       ship->hull -= sdamage * 6;
    else
-      ship->hull -= sdamage * 5;
+      ship->hull -= sdamage * 3;
 
    if( ship->hull <= 0 )
    {
@@ -5246,19 +5250,11 @@ void damage_ship_ch( SHIP_DATA * ship, int min, int max, CHAR_DATA * ch )
 
 void damage_ship_ch_ion( SHIP_DATA * ship, int min, int max, CHAR_DATA * ch )
 {
-   int sdamage, numloop, shields, range, schance;
+   int sdamage, shields, range, schance;
    long xp;
    //Used to store all systems damaged to then be displayed when done.
 
    sdamage = number_range( min, max );
-
-   /*
-    * Random # used for a loop. The loop will run through accordingly disabling a random system each time.
-    * Could disable as many as all 11 systems in one hit though highly unlikely.
-    *
-    */
-   numloop = number_range( 1, 7 );
-
 
    xp = ( exp_level( ch->skill_level[PILOTING_ABILITY] + 1 ) - exp_level( ch->skill_level[PILOTING_ABILITY] ) ) / 25;
    xp = UMIN( get_ship_value( ship ) / 100, xp );
@@ -5275,27 +5271,8 @@ void damage_ship_ch_ion( SHIP_DATA * ship, int min, int max, CHAR_DATA * ch )
          ship->shield = 0;
       if( ship->shield == 0 )
          echo_to_cockpit( AT_BLOOD, ship, "&G[&gShip Computer&G]&w Warning. Shields down.\r\n" );
-
-
-
    }
-/*    
-    if (ship->plasmashield > 0)
-    {
-      //The ship has plasma shielding which will protect it from those nasty ion cannons :P
-      int plasmashields;
-      plasmashields = ( ( ship->maxplasmashield - damage) / (damage / 2) );
-      ship->plasmashield -= plasmashields;
-      if (ship->plasmashield < 0)
-        ship->plasmashield = 0;
-      if (ship->plasmashield == 0)
-        echo_to_cockpit( AT_BLOOD, ship, "&R[&WALERT&R] &WWarning Plasma Shielding Down!\r\n");
 
-      //Exit out of the damage function with no damage recieved to the ship for now :)  
-      
-      return;
-   }  
-*/
    //This is what picks out 
    range = number_range( 1, 7 );
 
@@ -5504,7 +5481,7 @@ void damage_ship( SHIP_DATA * ship, int min, int max )
       echo_to_cockpit( AT_BLOOD + AT_BLINK, ship, "&G[&gShip Computer&G]&w Warning. Ship hull critically damaged." );
 }
 
-void destroy_ship( SHIP_DATA * ship, CHAR_DATA * ch, char *reason )
+void destroy_ship( SHIP_DATA * ship, CHAR_DATA * ch, const char *reason )
 {
    char buf[MAX_STRING_LENGTH];
    int roomnum;
@@ -5664,6 +5641,8 @@ void destroy_ship( SHIP_DATA * ship, CHAR_DATA * ch, char *reason )
       sprintf( buf, "%s%s", SHIP_DIR, ship->filename );
       remove( buf );
 
+      extract_ship( ship );
+
       UNLINK( ship, first_ship, last_ship, next, prev );
       free_ship( ship );
 
@@ -5685,9 +5664,8 @@ bool ship_to_room( SHIP_DATA * ship, int vnum )
 }
 
 
-void do_board( CHAR_DATA * ch, char *argument )
+void do_board( CHAR_DATA * ch, const char *argument )
 {
-   ROOM_INDEX_DATA *fromroom;
    ROOM_INDEX_DATA *toroom;
    SHIP_DATA *ship;
 
@@ -5708,8 +5686,6 @@ void do_board( CHAR_DATA * ch, char *argument )
       act( AT_PLAIN, "You can't go in there riding THAT.", ch, NULL, argument, TO_CHAR );
       return;
    }
-
-   fromroom = ch->in_room;
 
    if( ( toroom = get_room_index( ship->entrance ) ) != NULL )
    {
@@ -5751,7 +5727,6 @@ void do_board( CHAR_DATA * ch, char *argument )
 
 bool rent_ship( CHAR_DATA * ch, SHIP_DATA * ship )
 {
-
    long price;
 
    if( IS_NPC( ch ) )
@@ -5774,10 +5749,9 @@ bool rent_ship( CHAR_DATA * ch, SHIP_DATA * ship )
    ch->gold -= price;
    ch_printf( ch, "&GYou pay %ld credits to rent the ship.\r\n", price );
    return TRUE;
-
 }
 
-void do_leaveship( CHAR_DATA * ch, char *argument )
+void do_leaveship( CHAR_DATA * ch, const char *argument )
 {
    ROOM_INDEX_DATA *fromroom;
    ROOM_INDEX_DATA *toroom;
@@ -5791,7 +5765,7 @@ void do_leaveship( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "You can't do that here.\r\n", ch );
       return;
@@ -5828,7 +5802,7 @@ void do_leaveship( CHAR_DATA * ch, char *argument )
       send_to_char( "The exit doesn't seem to be working properly.\r\n", ch );
 }
 
-void do_launch( CHAR_DATA * ch, char *argument )
+void do_launch( CHAR_DATA * ch, const char *argument )
 {
    int schance, password;
    long price = 0;
@@ -5847,7 +5821,7 @@ void do_launch( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == LAND_VEHICLE )
+   if( ship->sclass == LAND_VEHICLE )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -5865,7 +5839,7 @@ void do_launch( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "You can't do that here.\r\n", ch );
       return;
@@ -5906,11 +5880,11 @@ void do_launch( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_smallspace] );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_mediumspace] );
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_largespace] );
    if( number_percent(  ) < schance )
    {
@@ -5919,9 +5893,9 @@ void do_launch( CHAR_DATA * ch, char *argument )
             return;
       if( !is_rental( ch, ship ) )
       {
-         if( ship->class <= SHIP_SHUTTLE )
+         if( ship->sclass <= SHIP_SHUTTLE )
             price = 20;
-         else if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+         else if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
             price = 50;
          else
             price = 500;
@@ -5965,7 +5939,8 @@ void do_launch( CHAR_DATA * ch, char *argument )
       }
 
 
-      if( ch->pcdata && ch->pcdata->clan && !str_cmp( ch->pcdata->clan->name, ship->owner ) )
+      if( ch->pcdata && ch->pcdata->clan && !str_cmp( ch->pcdata->clan->name, ship->owner )
+          && !IS_SET( ship->flags, SHIP_SIMULATOR ) )
       {
          if( ch->pcdata->clan->funds < price )
          {
@@ -5976,7 +5951,7 @@ void do_launch( CHAR_DATA * ch, char *argument )
          ch->pcdata->clan->funds -= price;
          ch_printf( ch, "&GIt costs %s %ld credits to ready this ship for launch.\r\n", ch->pcdata->clan->name, price );
       }
-      else if( str_cmp( ship->owner, "Public" ) )
+      else if( str_cmp( ship->owner, "Public" ) && !IS_SET( ship->flags, SHIP_SIMULATOR ) )
       {
          if( ch->gold < price )
          {
@@ -6032,22 +6007,22 @@ void do_launch( CHAR_DATA * ch, char *argument )
       ship->shipstate = SHIP_LAUNCH;
       ship->currspeed = ship->realspeed;
 
-      if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+      if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
          learn_from_success( ch, gsn_smallspace );
-      if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+      if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
          learn_from_success( ch, gsn_mediumspace );
-      if( ship->class >= SHIP_CRUISER )
+      if( ship->sclass >= SHIP_CRUISER )
          learn_from_success( ch, gsn_largespace );
       sound_to_ship( ship, "!!SOUND(xwing)" );
       return;
    }
    set_char_color( AT_RED, ch );
    send_to_char( "You fail to work the controls properly!\r\n", ch );
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       learn_from_failure( ch, gsn_smallspace );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       learn_from_failure( ch, gsn_mediumspace );
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
       learn_from_failure( ch, gsn_largespace );
    return;
 
@@ -6167,7 +6142,7 @@ void showland( AREA_DATA * tarea, CHAR_DATA * ch )
 
 }
 
-void do_land( CHAR_DATA * ch, char *argument )
+void do_land( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
@@ -6189,7 +6164,7 @@ void do_land( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -6201,13 +6176,13 @@ void do_land( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "&RYou can't land space stations.\r\n", ch );
       return;
    }
 
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
    {
       send_to_char( "&RCapital ships are far to large to land.\r\n", ch );
       return;
@@ -6269,7 +6244,7 @@ void do_land( CHAR_DATA * ch, char *argument )
           */
          if( target->hanger1 || target->hanger2 )
             ch_printf( ch, "%s%s    %.0f %.0f %.0f\r\n         ",
-                       target->class == 11 ? "Asteroid" : "", target->name, target->vx, target->vy, target->vz );
+                       target->sclass == 11 ? "Asteroid" : "", target->name, target->vx, target->vy, target->vz );
       }
       for( planet = ship->starsystem->first_planet; planet; planet = planet->next_in_system )
          ch_printf( ch, "%s%s   %d %d %d\r\n",
@@ -6379,16 +6354,16 @@ void do_land( CHAR_DATA * ch, char *argument )
             return;
          }
          if( ( target->hanger1 &&
-               ( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE ) )
-             || ( target->hanger2 && ( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE ) ) )
+               ( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE ) )
+             || ( target->hanger2 && ( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE ) ) )
          {
             if( ( target->hanger1 && !target->hanger2 )
-                && ( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE ) )
+                && ( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE ) )
             {
                send_to_char( "&RThat ship only has a small-sized ship hanger.\r\n", ch );
                return;
             }
-            if( ship->class >= SHIP_FREIGHTER && target->hanger2 == 0 )
+            if( ship->sclass >= SHIP_FREIGHTER && target->hanger2 == 0 )
             {
                send_to_char( "&RThat ship doesn't have a midsized ship hanger.\r\n", ch );
                return;
@@ -6431,13 +6406,15 @@ void do_land( CHAR_DATA * ch, char *argument )
       send_to_char( "&G[&gShip Computer&G] &wLanding sequence initiated.\r\n", ch );
       act( AT_PLAIN, "$n begins the landing sequence.", ch, NULL, "", TO_ROOM );
       echo_to_ship( AT_YELLOW, ship, "The ship slowly begins its landing approach." );
+      if( ship->dest )
+         STRFREE( ship->dest );
       ship->dest = STRALLOC( arg );
       ship->shipstate = SHIP_LAND;
       ship->currspeed = 0;
 
-      if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+      if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
          learn_from_success( ch, gsn_smallspace );
-      if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+      if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
          learn_from_success( ch, gsn_mediumspace );
 
 
@@ -6452,9 +6429,9 @@ void do_land( CHAR_DATA * ch, char *argument )
       return;
    }
    send_to_char( "You fail to work the controls properly.\r\n", ch );
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       learn_from_failure( ch, gsn_smallspace );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       learn_from_failure( ch, gsn_mediumspace );;
    return;
 }
@@ -6540,7 +6517,7 @@ void landship( SHIP_DATA * ship, char *argument )
          droom = get_room_index( target->hanger1 );
       if( ship->type == 2 )
          droom = get_room_index( target->hanger2 );
-      if( !ship_to_room( ship, room->vnum ) )
+      if( !ship_to_room( ship, droom->vnum ) )
       {
          echo_to_room( AT_YELLOW, get_room_index( ship->pilotseat ), "Could not complete approach. Landing aborted." );
          echo_to_ship( AT_YELLOW, ship, "The ship pulls back up out of its landing sequence." );
@@ -6564,7 +6541,7 @@ void landship( SHIP_DATA * ship, char *argument )
    }
 }
 
-void do_accelerate( CHAR_DATA * ch, char *argument )
+void do_accelerate( CHAR_DATA * ch, const char *argument )
 {
    int schance;
    int change;
@@ -6577,7 +6554,7 @@ void do_accelerate( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -6595,7 +6572,7 @@ void do_accelerate( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "&RSpace stations can't move.\r\n", ch );
       return;
@@ -6622,21 +6599,21 @@ void do_accelerate( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_smallspace] );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_mediumspace] );
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_largespace] );
 
    if( number_percent(  ) >= schance )
    {
       send_to_char( "&RYou fail to work the controls properly.\r\n", ch );
-      if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+      if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
          learn_from_failure( ch, gsn_smallspace );
-      if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+      if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
          learn_from_failure( ch, gsn_mediumspace );
-      if( ship->class >= SHIP_CRUISER )
+      if( ship->sclass >= SHIP_CRUISER )
          learn_from_failure( ch, gsn_largespace );
       return;
    }
@@ -6665,16 +6642,16 @@ void do_accelerate( CHAR_DATA * ch, char *argument )
 
    ship->currspeed = URANGE( 0, change, ship->realspeed );
 
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       learn_from_success( ch, gsn_smallspace );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       learn_from_success( ch, gsn_mediumspace );
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
       learn_from_success( ch, gsn_largespace );
 
 }
 
-void do_trajectory( CHAR_DATA * ch, char *argument )
+void do_trajectory( CHAR_DATA * ch, const char *argument )
 {
    PLANET_DATA *planet;
    bool foundplanet = FALSE;
@@ -6692,7 +6669,7 @@ void do_trajectory( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -6715,7 +6692,7 @@ void do_trajectory( CHAR_DATA * ch, char *argument )
       send_to_char( "&RThe ships drive is disabled. Unable to manuever.\r\n", ch );
       return;
    }
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "&RSpace stations can't turn.\r\n", ch );
       return;
@@ -6742,20 +6719,20 @@ void do_trajectory( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_smallspace] );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_mediumspace] );
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_largespace] );
    if( number_percent(  ) > schance )
    {
       send_to_char( "&RYou fail to work the controls properly.\r\n", ch );
-      if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+      if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
          learn_from_failure( ch, gsn_smallspace );
-      if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+      if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
          learn_from_failure( ch, gsn_mediumspace );
-      if( ship->class >= SHIP_CRUISER )
+      if( ship->sclass >= SHIP_CRUISER )
          learn_from_failure( ch, gsn_largespace );
       return;
    }
@@ -6812,23 +6789,23 @@ void do_trajectory( CHAR_DATA * ch, char *argument )
    sprintf( buf, "%s turns altering its present course.", ship->name );
    echo_to_system( AT_ORANGE, ship, buf, NULL );
 
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       ship->shipstate = SHIP_BUSY_3;
-   else if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   else if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       ship->shipstate = SHIP_BUSY_2;
    else
       ship->shipstate = SHIP_BUSY;
 
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       learn_from_success( ch, gsn_smallspace );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       learn_from_success( ch, gsn_mediumspace );
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
       learn_from_success( ch, gsn_largespace );
 
 }
 
-void do_buyship( CHAR_DATA * ch, char *argument )
+void do_buyship( CHAR_DATA * ch, const char *argument )
 {
    long price;
    SHIP_DATA *ship;
@@ -6901,7 +6878,7 @@ void do_buyship( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_clanbuyship( CHAR_DATA * ch, char *argument )
+void do_clanbuyship( CHAR_DATA * ch, const char *argument )
 {
    long price;
    SHIP_DATA *ship;
@@ -6990,13 +6967,13 @@ void do_clanbuyship( CHAR_DATA * ch, char *argument )
    ship->owner = STRALLOC( clan->name );
    save_ship( ship );
 
-   if( ship->class != LAND_VEHICLE )
+   if( ship->sclass != LAND_VEHICLE )
       clan->spacecraft++;
    else
       clan->vehicles++;
 }
 
-void do_sellship( CHAR_DATA * ch, char *argument )
+void do_sellship( CHAR_DATA * ch, const char *argument )
 {
    long price;
    SHIP_DATA *ship;
@@ -7033,7 +7010,7 @@ void do_sellship( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_info( CHAR_DATA * ch, char *argument )
+void do_info( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    SHIP_DATA *target;
@@ -7067,8 +7044,8 @@ void do_info( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( abs( target->vx - ship->vx ) > 500 + ship->sensor * 2 ||
-       abs( target->vy - ship->vy ) > 500 + ship->sensor * 2 || abs( target->vz - ship->vz ) > 500 + ship->sensor * 2 )
+   if( abs( ( int )( target->vx - ship->vx ) ) > 500 + ship->sensor * 2 ||
+       abs( ( int )( target->vy - ship->vy ) ) > 500 + ship->sensor * 2 || abs( ( int )( target->vz - ship->vz ) ) > 500 + ship->sensor * 2 )
    {
       send_to_char( "&RThat ship is to far away to scan.\r\n", ch );
       return;
@@ -7079,18 +7056,18 @@ void do_info( CHAR_DATA * ch, char *argument )
               target->type == SHIP_REPUBLIC ? "New Republic" :
               target->type == SHIP_IMPERIAL ? "Imperial" :
               target->type == PLAYER_SHIP ? "Civilian" : "Mob",
-              target->class == SHIP_FIGHTER ? "Starfighter" :
-              target->class == SHIP_BOMBER ? "Bomber" :
-              target->class == SHIP_SHUTTLE ? "Shuttle" :
-              target->class == SHIP_FREIGHTER ? "Freighter" :
-              target->class == SHIP_FRIGATE ? "Frigate" :
-              target->class == SHIP_TT ? "Troop Transport" :
-              target->class == SHIP_CORVETTE ? "Corvette" :
-              target->class == SHIP_CRUISER ? "Cruiser" :
-              target->class == SHIP_DREADNAUGHT ? "Dreadnaught" :
-              target->class == SHIP_DESTROYER ? "Star Destroyer" :
-              target->class == SHIP_SPACE_STATION ? "Space Station" :
-              target->class == LAND_VEHICLE ? "Land vehicle" : "Unknown", target->name );
+              target->sclass == SHIP_FIGHTER ? "Starfighter" :
+              target->sclass == SHIP_BOMBER ? "Bomber" :
+              target->sclass == SHIP_SHUTTLE ? "Shuttle" :
+              target->sclass == SHIP_FREIGHTER ? "Freighter" :
+              target->sclass == SHIP_FRIGATE ? "Frigate" :
+              target->sclass == SHIP_TT ? "Troop Transport" :
+              target->sclass == SHIP_CORVETTE ? "Corvette" :
+              target->sclass == SHIP_CRUISER ? "Cruiser" :
+              target->sclass == SHIP_DREADNAUGHT ? "Dreadnaught" :
+              target->sclass == SHIP_DESTROYER ? "Star Destroyer" :
+              target->sclass == SHIP_SPACE_STATION ? "Space Station" :
+              target->sclass == LAND_VEHICLE ? "Land vehicle" : "Unknown", target->name );
 
    if( !str_cmp( target->owner, ch->name ) || !str_cmp( target->pilot, ch->name ) || !str_cmp( target->copilot, ch->name ) )
       ch_printf( ch, "&G| &WOwner: &w%s&G || &WPilot: &w%s&G || &WCoPilot: &w%s&G |\r\n",
@@ -7114,7 +7091,7 @@ void do_info( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_autorecharge( CHAR_DATA * ch, char *argument )
+void do_autorecharge( CHAR_DATA * ch, const char *argument )
 {
    int schance;
    SHIP_DATA *ship;
@@ -7185,17 +7162,17 @@ void do_autorecharge( CHAR_DATA * ch, char *argument )
 
    if( ship->autorecharge )
    {
-      recharge = URANGE( 1, ship->maxshield - ship->shield, 25 + ship->class * 25 );
+      recharge = URANGE( 1, ship->maxshield - ship->shield, 25 + ship->sclass * 25 );
       recharge = UMIN( recharge, ship->energy * 5 + 100 );
       ship->shield += recharge;
-      ship->energy -= ( recharge * 2 + recharge * ship->class );
+      ship->energy -= ( recharge * 2 + recharge * ship->sclass );
    }
    if( ship->shield > ship->maxshield )
       ship->shield = ship->maxshield;
    learn_from_success( ch, gsn_shipsystems );
 }
 
-void do_autopilot( CHAR_DATA * ch, char *argument )
+void do_autopilot( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
 
@@ -7242,7 +7219,7 @@ void do_autopilot( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_openhatch( CHAR_DATA * ch, char *argument )
+void do_openhatch( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char buf[MAX_STRING_LENGTH];
@@ -7252,7 +7229,7 @@ void do_openhatch( CHAR_DATA * ch, char *argument )
 
    argument = one_argument( argument, arg1 );
    argument = one_argument( argument, arg2 );
-   if( !arg1 || arg1[0] == '\0' || !str_cmp( argument, "hatch" ) )
+   if( arg1[0] == '\0' || !str_cmp( argument, "hatch" ) )
    {
       ship = ship_from_entrance( ch->in_room->vnum );
       if( ship == NULL )
@@ -7265,7 +7242,7 @@ void do_openhatch( CHAR_DATA * ch, char *argument )
          if( !ship->hatchopen )
          {
 
-            if( ship->class >= SHIP_CRUISER )
+            if( ship->sclass >= SHIP_CRUISER )
             {
                send_to_char( "&RTry one of the docking bays!\r\n", ch );
                return;
@@ -7338,7 +7315,7 @@ void do_openhatch( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_closehatch( CHAR_DATA * ch, char *argument )
+void do_closehatch( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char buf[MAX_STRING_LENGTH];
@@ -7354,7 +7331,7 @@ void do_closehatch( CHAR_DATA * ch, char *argument )
       else
       {
 
-         if( ship->class == SHIP_SPACE_STATION )
+         if( ship->sclass == SHIP_SPACE_STATION )
          {
             send_to_char( "&RTry one of the docking bays!\r\n", ch );
             return;
@@ -7413,7 +7390,7 @@ void do_closehatch( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_status( CHAR_DATA * ch, char *argument )
+void do_status( CHAR_DATA * ch, const char *argument )
 {
    int schance, x;
    SHIP_DATA *ship;
@@ -7436,8 +7413,8 @@ void do_status( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( abs( target->vx - ship->vx ) > 500 + ship->sensor * 2 ||
-       abs( target->vy - ship->vy ) > 500 + ship->sensor * 2 || abs( target->vz - ship->vz ) > 500 + ship->sensor * 2 )
+   if( abs( ( int )( target->vx - ship->vx ) ) > 500 + ship->sensor * 2 ||
+       abs( ( int )( target->vy - ship->vy ) ) > 500 + ship->sensor * 2 || abs( ( int )( target->vz - ship->vz ) ) > 500 + ship->sensor * 2 )
    {
       send_to_char( "&RThat ship is to far away to scan.\r\n", ch );
       return;
@@ -7459,9 +7436,9 @@ void do_status( CHAR_DATA * ch, char *argument )
               target->vx, target->vy, target->vz, target->hx, target->hy, target->hz );
    ch_printf( ch, "&zSpeed:&w %d&W/%d   &zHyperdrive: &wClass %d   %s %s\r\n",
               target->currspeed, target->realspeed, target->hyperspeed,
-              ship->class >= SHIP_CRUISER ? "&zBay doors:" : "",
-              ( ship->class >= SHIP_CRUISER && ship->bayopen == TRUE ) ? "&wOpen" :
-              ( ship->class >= SHIP_CRUISER && ship->bayopen == FALSE ) ? "&wClosed" : "" );
+              ship->sclass >= SHIP_CRUISER ? "&zBay doors:" : "",
+              ( ship->sclass >= SHIP_CRUISER && ship->bayopen == TRUE ) ? "&wOpen" :
+              ( ship->sclass >= SHIP_CRUISER && ship->bayopen == FALSE ) ? "&wClosed" : "" );
 
    ch_printf( ch, "&zHull:&w %d&W/%d   &zShields:&w %d&W/%d   &zFuel:&w %d&W/%d\r\n\r\n",
               target->hull, target->maxhull, target->shield, target->maxshield, target->energy, target->maxenergy );
@@ -7610,7 +7587,7 @@ void do_status( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_shipsystems );
 }
 
-void do_hyperspace( CHAR_DATA * ch, char *argument )
+void do_hyperspace( CHAR_DATA * ch, const char *argument )
 {
    int schance;
    SHIP_DATA *ship;
@@ -7623,7 +7600,7 @@ void do_hyperspace( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -7643,7 +7620,7 @@ void do_hyperspace( CHAR_DATA * ch, char *argument )
    }
 
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "&RSpace Stations can't move!\r\n", ch );
       return;
@@ -7701,28 +7678,28 @@ void do_hyperspace( CHAR_DATA * ch, char *argument )
       if( eShip == ship )
          continue;
 
-      if( abs( eShip->vx - ship->vx ) < 500
-          && abs( eShip->vy - ship->vy ) < 500 && abs( eShip->vz - ship->vz ) < 500 && eShip->class > SHIP_CRUISER )
+      if( abs( ( int )( eShip->vx - ship->vx ) ) < 500
+          && abs( ( int )( eShip->vy - ship->vy ) ) < 500 && abs( ( int )( eShip->vz - ship->vz ) ) < 500 && eShip->sclass > SHIP_CRUISER )
       {
          ch_printf( ch, "&RYou are too close to %s to make the jump to lightspeed.\r\n", eShip->name );
          return;
       }
    }
 
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_smallspace] );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_mediumspace] );
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
       schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_largespace] );
    if( number_percent(  ) > schance )
    {
       send_to_char( "&RYou can't figure out which lever to use.\r\n", ch );
-      if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+      if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
          learn_from_failure( ch, gsn_smallspace );
-      if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+      if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
          learn_from_failure( ch, gsn_mediumspace );
-      if( ship->class >= SHIP_CRUISER )
+      if( ship->sclass >= SHIP_CRUISER )
          learn_from_failure( ch, gsn_largespace );
       return;
    }
@@ -7743,16 +7720,16 @@ void do_hyperspace( CHAR_DATA * ch, char *argument )
    ship->vy = ship->jy;
    ship->vz = ship->jz;
 
-   if( ship->class >= SHIP_FIGHTER && ship->class <= SHIP_SHUTTLE )
+   if( ship->sclass >= SHIP_FIGHTER && ship->sclass <= SHIP_SHUTTLE )
       learn_from_success( ch, gsn_smallspace );
-   if( ship->class >= SHIP_FREIGHTER && ship->class <= SHIP_CORVETTE )
+   if( ship->sclass >= SHIP_FREIGHTER && ship->sclass <= SHIP_CORVETTE )
       learn_from_success( ch, gsn_mediumspace );
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
       learn_from_success( ch, gsn_largespace );
 
 }
 
-void do_target( CHAR_DATA * ch, char *argument )
+void do_target( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance;
@@ -7771,7 +7748,7 @@ void do_target( CHAR_DATA * ch, char *argument )
             return;
          }
 
-         if( ship->class > SHIP_SPACE_STATION )
+         if( ship->sclass > SHIP_SPACE_STATION )
          {
             send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
             return;
@@ -7847,8 +7824,8 @@ void do_target( CHAR_DATA * ch, char *argument )
             return;
          }
 
-         if( abs( ship->vx - target->vx ) > 5000 ||
-             abs( ship->vy - target->vy ) > 5000 || abs( ship->vz - target->vz ) > 5000 )
+         if( abs( ( int )( ship->vx - target->vx ) ) > 5000 ||
+             abs( ( int )( ship->vy - target->vy ) ) > 5000 || abs( ( int )( ship->vz - target->vz ) ) > 5000 )
          {
             send_to_char( "&RThat ship is too far away to target.\r\n", ch );
             return;
@@ -7870,7 +7847,7 @@ void do_target( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -7946,7 +7923,7 @@ void do_target( CHAR_DATA * ch, char *argument )
 
 /* Fire update by ||, primary/secondary usage, autoblasters, repeating ions... */
 
-void do_fire( CHAR_DATA * ch, char *argument )
+void do_fire( CHAR_DATA * ch, const char *argument )
 {
    int schance;
    int range = 1500;
@@ -7974,7 +7951,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -8091,19 +8068,19 @@ void do_fire( CHAR_DATA * ch, char *argument )
          ship->target0 = NULL;
          return;
       }
-      if( abs( target->vx - ship->vx ) > 1000 || abs( target->vy - ship->vy ) > 1000 || abs( target->vz - ship->vz ) > 1000 )
+      if( abs( ( int )( target->vx - ship->vx ) ) > 1000 || abs( ( int )( target->vy - ship->vy ) ) > 1000 || abs( ( int )( target->vz - ship->vz ) ) > 1000 )
       {
          send_to_char( "&RThat ship is out of range.\r\n", ch );
          return;
       }
-      if( ship->class < SHIP_CRUISER && !is_facing( ship, target ) )
+      if( ship->sclass < SHIP_CRUISER && !is_facing( ship, target ) )
       {
          send_to_char( "&RYou can only fire in a forward direction. You'll need to turn your ship!\r\n", ch );
          return;
       }
       ship->primaryState++;
 
-      switch ( target->class )
+      switch ( target->sclass )
       {
          case 0:
             size = 10;
@@ -8144,9 +8121,9 @@ void do_fire( CHAR_DATA * ch, char *argument )
       }
 
       schance = 100 - ( ( target->manuever - ship->manuever ) + 65 );
-      schance -= ( abs( target->vx - ship->vx ) / 100 );
-      schance -= ( abs( target->vy - ship->vy ) / 100 );
-      schance -= ( abs( target->vz - ship->vz ) / 100 );
+      schance -= ( abs( ( int )( target->vx - ship->vx ) ) / 100 );
+      schance -= ( abs( ( int )( target->vy - ship->vy ) ) / 100 );
+      schance -= ( abs( ( int )( target->vz - ship->vz ) ) / 100 );
       schance += size - 10;
       if( target->rolling == FALSE )
          schance = URANGE( 5, schance, 95 );
@@ -8319,19 +8296,19 @@ void do_fire( CHAR_DATA * ch, char *argument )
          ship->target0 = NULL;
          return;
       }
-      if( abs( target->vx - ship->vx ) > range ||
-          abs( target->vy - ship->vy ) > range || abs( target->vz - ship->vz ) > range )
+      if( abs( ( int )( target->vx - ship->vx ) ) > range ||
+          abs( ( int )( target->vy - ship->vy ) ) > range || abs( ( int )( target->vz - ship->vz ) ) > range )
       {
          send_to_char( "&RThat ship is out of range.\r\n", ch );
          return;
       }
-      if( ship->class < SHIP_CRUISER && !is_facing( ship, target ) )
+      if( ship->sclass < SHIP_CRUISER && !is_facing( ship, target ) )
       {
          send_to_char( "&RYou can only fire in a forward direction. You'll need to turn your ship!\r\n", ch );
          return;
       }
       ship->secondaryState++;
-      switch ( target->class )
+      switch ( target->sclass )
       {
          case 0:
             size = 10;
@@ -8371,9 +8348,9 @@ void do_fire( CHAR_DATA * ch, char *argument )
             break;
       }
       schance = 100 - ( ( target->manuever - ship->manuever ) + 65 );
-      schance -= ( abs( target->vx - ship->vx ) / 100 );
-      schance -= ( abs( target->vy - ship->vy ) / 100 );
-      schance -= ( abs( target->vz - ship->vz ) / 100 );
+      schance -= ( abs( ( int )( target->vx - ship->vx ) ) / 100 );
+      schance -= ( abs( ( int )( target->vy - ship->vy ) ) / 100 );
+      schance -= ( abs( ( int )( target->vz - ship->vz ) ) / 100 );
       schance += size - 10;
       schance = URANGE( 5, schance, 95 );
       act( AT_PLAIN, "$n presses the fire button.", ch, NULL, argument, TO_ROOM );
@@ -8519,20 +8496,20 @@ void do_fire( CHAR_DATA * ch, char *argument )
          ship->target0 = NULL;
          return;
       }
-      if( abs( target->vx - ship->vx ) > 1000 || abs( target->vy - ship->vy ) > 1000 || abs( target->vz - ship->vz ) > 1000 )
+      if( abs( ( int )( target->vx - ship->vx ) ) > 1000 || abs( ( int )( target->vy - ship->vy ) ) > 1000 || abs( ( int )( target->vz - ship->vz ) ) > 1000 )
       {
          send_to_char( "&RThat ship is out of missile range.\r\n", ch );
          return;
       }
-      if( ship->class < SHIP_CRUISER && !is_facing( ship, target ) )
+      if( ship->sclass < SHIP_CRUISER && !is_facing( ship, target ) )
       {
          send_to_char( "&RMissiles can only fire forward. You'll need to turn your ship!\r\n", ch );
          return;
       }
       schance = 100 - ( ( target->manuever - ship->manuever ) + 50 );
-      schance -= ( abs( target->vx - ship->vx ) / 100 );
-      schance -= ( abs( target->vy - ship->vy ) / 100 );
-      schance -= ( abs( target->vz - ship->vz ) / 100 );
+      schance -= ( abs( ( int )( target->vx - ship->vx ) ) / 100 );
+      schance -= ( abs( ( int )( target->vy - ship->vy ) ) / 100 );
+      schance -= ( abs( ( int )( target->vz - ship->vz ) ) / 100 );
       //Extra chance for missiles due to computer compensation.
       schance += 20;
       schance = URANGE( 5, schance, 95 );
@@ -8552,7 +8529,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
       sprintf( buf, "%s fires a missile towards %s.", ship->name, target->name );
       echo_to_system( AT_ORANGE, ship, buf, target );
       learn_from_success( ch, gsn_weaponsystems );
-      if( ship->class >= SHIP_CRUISER )
+      if( ship->sclass >= SHIP_CRUISER )
          ship->missilestate = MISSILE_RELOAD;
       else
          ship->missilestate = MISSILE_FIRED;
@@ -8602,20 +8579,20 @@ void do_fire( CHAR_DATA * ch, char *argument )
          ship->target0 = NULL;
          return;
       }
-      if( abs( target->vx - ship->vx ) > 1000 || abs( target->vy - ship->vy ) > 1000 || abs( target->vz - ship->vz ) > 1000 )
+      if( abs( ( int )( target->vx - ship->vx ) ) > 1000 || abs( ( int )( target->vy - ship->vy ) ) > 1000 || abs( ( int )( target->vz - ship->vz ) ) > 1000 )
       {
          send_to_char( "&RThat ship is out of torpedo range.\r\n", ch );
          return;
       }
-      if( ship->class < SHIP_CRUISER && !is_facing( ship, target ) )
+      if( ship->sclass < SHIP_CRUISER && !is_facing( ship, target ) )
       {
          send_to_char( "&RTorpedos can only fire forward. You'll need to turn your ship!\r\n", ch );
          return;
       }
       schance = 100 - ( ( target->manuever - ship->manuever ) + 50 );
-      schance -= ( abs( target->vx - ship->vx ) / 100 );
-      schance -= ( abs( target->vy - ship->vy ) / 100 );
-      schance -= ( abs( target->vz - ship->vz ) / 100 );
+      schance -= ( abs( ( int )( target->vx - ship->vx ) ) / 100 );
+      schance -= ( abs( ( int )( target->vy - ship->vy ) ) / 100 );
+      schance -= ( abs( ( int )( target->vz - ship->vz ) ) / 100 );
       //Extra chance for missiles due to computer compensation.
       schance += 20;
       schance = URANGE( 5, schance, 95 );
@@ -8635,7 +8612,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
       sprintf( buf, "%s fires a torpedo towards %s.", ship->name, target->name );
       echo_to_system( AT_ORANGE, ship, buf, target );
       learn_from_success( ch, gsn_weaponsystems );
-      if( ship->class >= SHIP_CRUISER )
+      if( ship->sclass >= SHIP_CRUISER )
          ship->torpedostate = MISSILE_RELOAD;
       else
          ship->torpedostate = MISSILE_FIRED;
@@ -8686,20 +8663,20 @@ void do_fire( CHAR_DATA * ch, char *argument )
          ship->target0 = NULL;
          return;
       }
-      if( abs( target->vx - ship->vx ) > 800 || abs( target->vy - ship->vy ) > 800 || abs( target->vz - ship->vz ) > 800 )
+      if( abs( ( int )( target->vx - ship->vx ) ) > 800 || abs( ( int )( target->vy - ship->vy ) ) > 800 || abs( ( int )( target->vz - ship->vz ) ) > 800 )
       {
          send_to_char( "&RThat ship is out of rocket range.\r\n", ch );
          return;
       }
-      if( ship->class < SHIP_CRUISER && !is_facing( ship, target ) )
+      if( ship->sclass < SHIP_CRUISER && !is_facing( ship, target ) )
       {
          send_to_char( "&RRockets can only fire forward. You'll need to turn your ship!\r\n", ch );
          return;
       }
       schance = 100 - ( ( target->manuever - ship->manuever ) + 50 );
-      schance -= ( abs( target->vx - ship->vx ) / 100 );
-      schance -= ( abs( target->vy - ship->vy ) / 100 );
-      schance -= ( abs( target->vz - ship->vz ) / 100 );
+      schance -= ( abs( ( int )( target->vx - ship->vx ) ) / 100 );
+      schance -= ( abs( ( int )( target->vy - ship->vy ) ) / 100 );
+      schance -= ( abs( ( int )( target->vz - ship->vz ) ) / 100 );
       //Extra chance for missiles due to computer compensation.
       schance += 20;
       schance = URANGE( 5, schance, 95 );
@@ -8719,7 +8696,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
       sprintf( buf, "%s fires a heavy rocket towards %s.", ship->name, target->name );
       echo_to_system( AT_ORANGE, ship, buf, target );
       learn_from_success( ch, gsn_weaponsystems );
-      if( ship->class >= SHIP_CRUISER )
+      if( ship->sclass >= SHIP_CRUISER )
          ship->rocketstate = MISSILE_RELOAD;
       else
          ship->rocketstate = MISSILE_FIRED;
@@ -8793,7 +8770,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet1 > ship->class )
+            if( ship->statet1 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -8817,7 +8794,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet2 > ship->class )
+            if( ship->statet2 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -8841,7 +8818,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet3 > ship->class )
+            if( ship->statet3 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -8865,7 +8842,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet4 > ship->class )
+            if( ship->statet4 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -8889,7 +8866,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet5 > ship->class )
+            if( ship->statet5 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -8913,7 +8890,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet6 > ship->class )
+            if( ship->statet6 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -8937,7 +8914,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet7 > ship->class )
+            if( ship->statet7 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -8961,7 +8938,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet8 > ship->class )
+            if( ship->statet8 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -8985,7 +8962,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet9 > ship->class )
+            if( ship->statet9 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -9009,7 +8986,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
                send_to_char( "&RThe ships turret is damaged.\r\n", ch );
                return;
             }
-            if( ship->statet10 > ship->class )
+            if( ship->statet10 > ship->sclass )
             {
                send_to_char( "&RThe turbolaser is recharging.\r\n", ch );
                return;
@@ -9028,7 +9005,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
             }
       }  /* end switch */
 
-      if( abs( target->vx - ship->vx ) > 1000 || abs( target->vy - ship->vy ) > 1000 || abs( target->vz - ship->vz ) > 1000 )
+      if( abs( ( int )( target->vx - ship->vx ) ) > 1000 || abs( ( int )( target->vy - ship->vy ) ) > 1000 || abs( ( int )( target->vz - ship->vz ) ) > 1000 )
       {
          send_to_char( "&RThat ship is out of laser range.\r\n", ch );
          return;
@@ -9074,9 +9051,9 @@ void do_fire( CHAR_DATA * ch, char *argument )
       act( AT_PLAIN, "$n presses the fire button.", ch, NULL, argument, TO_ROOM );
 
       schance = 100 - ( ( target->manuever - ship->manuever ) + 50 );
-      schance -= ( abs( target->vx - ship->vx ) / 100 );
-      schance -= ( abs( target->vy - ship->vy ) / 100 );
-      schance -= ( abs( target->vz - ship->vz ) / 100 );
+      schance -= ( abs( ( int )( target->vx - ship->vx ) ) / 100 );
+      schance -= ( abs( ( int )( target->vy - ship->vy ) ) / 100 );
+      schance -= ( abs( ( int )( target->vz - ship->vz ) ) / 100 );
       schance = URANGE( 5, schance, 95 );
 
       if( number_percent(  ) > schance )
@@ -9128,7 +9105,7 @@ void do_fire( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_calculate( CHAR_DATA * ch, char *argument )
+void do_calculate( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -9147,7 +9124,7 @@ void do_calculate( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -9165,7 +9142,7 @@ void do_calculate( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "&RAnd what exactly are you going to calculate...?\r\n", ch );
       return;
@@ -9247,8 +9224,8 @@ void do_calculate( CHAR_DATA * ch, char *argument )
       starsystem2 = ship->currjump;
 
       if( starsystem2->star1 && strcmp( starsystem2->star1, "" ) &&
-          abs( ship->jx - starsystem2->s1x ) < 300 &&
-          abs( ship->jy - starsystem2->s1y ) < 300 && abs( ship->jz - starsystem2->s1z ) < 300 )
+          abs( ( int )( ship->jx - starsystem2->s1x ) ) < 300 &&
+          abs( ( int )( ship->jy - starsystem2->s1y ) ) < 300 && abs( ( int )( ship->jz - starsystem2->s1z ) ) < 300 )
       {
          echo_to_cockpit( AT_RED, ship, "WARNING.. Jump coordinates too close to stellar object." );
          echo_to_cockpit( AT_RED, ship, "WARNING.. Hyperjump NOT set." );
@@ -9256,8 +9233,8 @@ void do_calculate( CHAR_DATA * ch, char *argument )
          return;
       }
       else if( starsystem2->star2 && strcmp( starsystem2->star2, "" ) &&
-               abs( ship->jx - starsystem2->s2x ) < 300 &&
-               abs( ship->jy - starsystem2->s2y ) < 300 && abs( ship->jz - starsystem2->s2z ) < 300 )
+               abs( ( int )( ship->jx - starsystem2->s2x ) ) < 300 &&
+               abs( ( int )( ship->jy - starsystem2->s2y ) ) < 300 && abs( ( int )( ship->jz - starsystem2->s2z ) ) < 300 )
       {
          echo_to_cockpit( AT_RED, ship, "WARNING.. Jump coordinates too close to stellar object." );
          echo_to_cockpit( AT_RED, ship, "WARNING.. Hyperjump NOT set." );
@@ -9265,8 +9242,8 @@ void do_calculate( CHAR_DATA * ch, char *argument )
          return;
       }
       else if( starsystem2->planet1 && strcmp( starsystem2->planet1, "" ) &&
-               abs( ship->jx - starsystem2->p1x ) < 300 &&
-               abs( ship->jy - starsystem2->p1y ) < 300 && abs( ship->jz - starsystem2->p1z ) < 300 )
+               abs( ( int )( ship->jx - starsystem2->p1x ) ) < 300 &&
+               abs( ( int )( ship->jy - starsystem2->p1y ) ) < 300 && abs( ( int )( ship->jz - starsystem2->p1z ) ) < 300 )
       {
          echo_to_cockpit( AT_RED, ship, "WARNING.. Jump coordinates too close to stellar object." );
          echo_to_cockpit( AT_RED, ship, "WARNING.. Hyperjump NOT set." );
@@ -9274,8 +9251,8 @@ void do_calculate( CHAR_DATA * ch, char *argument )
          return;
       }
       else if( starsystem2->planet2 && strcmp( starsystem2->planet2, "" ) &&
-               abs( ship->jx - starsystem2->p2x ) < 300 &&
-               abs( ship->jy - starsystem2->p2y ) < 300 && abs( ship->jz - starsystem2->p2z ) < 300 )
+               abs( ( int )( ship->jx - starsystem2->p2x ) ) < 300 &&
+               abs( ( int )( ship->jy - starsystem2->p2y ) ) < 300 && abs( ( int )( ship->jz - starsystem2->p2z ) ) < 300 )
       {
          echo_to_cockpit( AT_RED, ship, "WARNING.. Jump coordinates too close to stellar object." );
          echo_to_cockpit( AT_RED, ship, "WARNING.. Hyperjump NOT set." );
@@ -9283,8 +9260,8 @@ void do_calculate( CHAR_DATA * ch, char *argument )
          return;
       }
       else if( starsystem2->planet3 && strcmp( starsystem2->planet3, "" ) &&
-               abs( ship->jx - starsystem2->p3x ) < 300 &&
-               abs( ship->jy - starsystem2->p3y ) < 300 && abs( ship->jz - starsystem2->p3z ) < 300 )
+               abs( ( int )( ship->jx - starsystem2->p3x ) ) < 300 &&
+               abs( ( int )( ship->jy - starsystem2->p3y ) ) < 300 && abs( ( int )( ship->jz - starsystem2->p3z ) ) < 300 )
       {
          echo_to_cockpit( AT_RED, ship, "WARNING.. Jump coordinates too close to stellar object." );
          echo_to_cockpit( AT_RED, ship, "WARNING.. Hyperjump NOT set." );
@@ -9318,7 +9295,7 @@ void do_calculate( CHAR_DATA * ch, char *argument )
    WAIT_STATE( ch, 2 * PULSE_VIOLENCE );
 }
 
-void do_recharge( CHAR_DATA * ch, char *argument )
+void do_recharge( CHAR_DATA * ch, const char *argument )
 {
    int recharge;
    int schance;
@@ -9368,7 +9345,7 @@ void do_recharge( CHAR_DATA * ch, char *argument )
       learn_from_success( ch, gsn_shipsystems );
 
       recharge = UMIN( ship->maxshield - ship->shield, ship->energy * 5 + 100 );
-      recharge = URANGE( 1, recharge, 25 + ship->class * 25 );
+      recharge = URANGE( 1, recharge, 25 + ship->sclass * 25 );
       ship->shield += recharge;
       ship->energy -= recharge * 3;
    }
@@ -9376,11 +9353,11 @@ void do_recharge( CHAR_DATA * ch, char *argument )
       send_to_char( "&GShip shields are at maximum.\r\n", ch );
 }
 
-void do_refuel( CHAR_DATA * ch, char *argument )
+void do_refuel( CHAR_DATA * ch, const char *argument )
 {
 }
 
-void do_addpilot( CHAR_DATA * ch, char *argument )
+void do_addpilot( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
 
@@ -9390,7 +9367,7 @@ void do_addpilot( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "&RYou can't do that here.\r\n", ch );
       return;
@@ -9398,7 +9375,6 @@ void do_addpilot( CHAR_DATA * ch, char *argument )
 
    if( str_cmp( ship->owner, ch->name ) )
    {
-
       if( !IS_NPC( ch ) && ch->pcdata && ch->pcdata->clan && !str_cmp( ch->pcdata->clan->name, ship->owner ) )
          if( !str_cmp( ch->pcdata->clan->leader, ch->name ) )
             ;
@@ -9450,7 +9426,7 @@ void do_addpilot( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_rempilot( CHAR_DATA * ch, char *argument )
+void do_rempilot( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
 
@@ -9460,7 +9436,7 @@ void do_rempilot( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "&RYou can't do that here.\r\n", ch );
       return;
@@ -9517,7 +9493,7 @@ void do_rempilot( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_radar( CHAR_DATA * ch, char *argument )
+void do_radar( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *target;
    PLANET_DATA *planet;
@@ -9531,7 +9507,7 @@ void do_radar( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -9632,7 +9608,7 @@ void do_radar( CHAR_DATA * ch, char *argument )
    {
       if( target != ship )
       {
-         if( ship->class != 11 )
+         if( ship->sclass != 11 )
             ch_printf( ch, "&R&C%s    %.0f %.0f %.0f\r\n", target->name, target->vx, target->vy, target->vz );
          else
             ch_printf( ch, "&R&O%s     %.0f %.0f %.0f\r\n", target->name, target->vx, target->vy, target->vz );
@@ -9655,7 +9631,7 @@ void do_radar( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_autotrack( CHAR_DATA * ch, char *argument )
+void do_autotrack( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    int schance;
@@ -9666,19 +9642,19 @@ void do_autotrack( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
    }
 
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "&RPlatforms don't have autotracking systems!\r\n", ch );
       return;
    }
-   if( ship->class >= SHIP_CRUISER )
+   if( ship->sclass >= SHIP_CRUISER )
    {
       send_to_char( "&RThis ship is too big for autotracking!\r\n", ch );
       return;
@@ -9724,16 +9700,19 @@ void do_autotrack( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_jumpvector( CHAR_DATA * ch, char *argument )
+void do_jumpvector( CHAR_DATA * ch, const char *argument )
 {
 }
-void do_reload( CHAR_DATA * ch, char *argument )
+
+void do_reload( CHAR_DATA * ch, const char *argument )
 {
 }
-void do_closebay( CHAR_DATA * ch, char *argument )
+
+void do_closebay( CHAR_DATA * ch, const char *argument )
 {
 }
-void do_openbay( CHAR_DATA * ch, char *argument )
+
+void do_openbay( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char buf[MAX_STRING_LENGTH];
@@ -9780,7 +9759,7 @@ void do_openbay( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_tractorbeam( CHAR_DATA * ch, char *argument )
+void do_tractorbeam( CHAR_DATA * ch, const char *argument )
 {
 
    char arg[MAX_INPUT_LENGTH];
@@ -9897,20 +9876,20 @@ void do_tractorbeam( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class <= target->class )
+   if( ship->sclass <= target->sclass )
    {
       send_to_char( "&RThat ship is too big for your hanger.\r\n", ch );
       return;
    }
 
-   if( target->class >= SHIP_CRUISER )
+   if( target->sclass >= SHIP_CRUISER )
    {
       send_to_char( "&RYou can't capture capital ships.\r\n", ch );
       return;
    }
 
 
-   if( ship->energy < ( 25 + 25 * target->class ) )
+   if( ship->energy < ( 25 + 25 * target->sclass ) )
    {
       send_to_char( "&RThere's not enough fuel!\r\n", ch );
       return;
@@ -9929,6 +9908,8 @@ void do_tractorbeam( CHAR_DATA * ch, char *argument )
       if( autofly( target ) && !target->target0 )
          target->target0 = ship;
 
+      if( target->dest )
+         STRFREE( target->dest );
       target->dest = STRALLOC( ship->name );
       target->shipstate = SHIP_LAND;
       target->autopilot = FALSE;
@@ -9951,7 +9932,7 @@ void do_tractorbeam( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_pluogus( CHAR_DATA * ch, char *argument )
+void do_pluogus( CHAR_DATA * ch, const char *argument )
 {
    bool ch_comlink = FALSE;
    OBJ_DATA *obj;
@@ -10059,11 +10040,11 @@ void do_pluogus( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_fly( CHAR_DATA * ch, char *argument )
+void do_fly( CHAR_DATA * ch, const char *argument )
 {
 }
 
-void do_drive( CHAR_DATA * ch, char *argument )
+void do_drive( CHAR_DATA * ch, const char *argument )
 {
    int dir;
    SHIP_DATA *ship;
@@ -10074,7 +10055,7 @@ void do_drive( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class != LAND_VEHICLE )
+   if( ship->sclass != LAND_VEHICLE )
    {
       send_to_char( "&RThis isn't a land vehicle!\r\n", ch );
       return;
@@ -10107,13 +10088,12 @@ ch_ret drive_ship( CHAR_DATA * ch, SHIP_DATA * ship, EXIT_DATA * pexit, int fall
 {
    ROOM_INDEX_DATA *in_room;
    ROOM_INDEX_DATA *to_room;
-   ROOM_INDEX_DATA *from_room;
    ROOM_INDEX_DATA *original;
    char buf[MAX_STRING_LENGTH];
-   char *txt;
-   char *dtxt;
+   const char *txt;
+   const char *dtxt;
    ch_ret retcode;
-   short door, distance;
+   short door;
    bool drunk = FALSE;
    CHAR_DATA *rch;
    CHAR_DATA *next_rch;
@@ -10140,7 +10120,6 @@ ch_ret drive_ship( CHAR_DATA * ch, SHIP_DATA * ship, EXIT_DATA * pexit, int fall
    txt = NULL;
 
    in_room = get_room_index( ship->location );
-   from_room = in_room;
    if( !pexit || ( to_room = pexit->to_room ) == NULL )
    {
       if( drunk )
@@ -10151,7 +10130,6 @@ ch_ret drive_ship( CHAR_DATA * ch, SHIP_DATA * ship, EXIT_DATA * pexit, int fall
    }
 
    door = pexit->vdir;
-   distance = pexit->distance;
 
    if( IS_SET( pexit->exit_info, EX_WINDOW ) && !IS_SET( pexit->exit_info, EX_ISDOOR ) )
    {
@@ -10194,11 +10172,6 @@ ch_ret drive_ship( CHAR_DATA * ch, SHIP_DATA * ship, EXIT_DATA * pexit, int fall
       return rNONE;
    }
 
-/*
-    if ( distance > 1 )
-	if ( (to_room=generate_exit(in_room, &pexit)) == NULL )
-	    send_to_char( "Alas, you cannot go that way.\r\n", ch );
-*/
    if( room_is_private( ch, to_room ) )
    {
       send_to_char( "That room is private right now.\r\n", ch );
@@ -10296,7 +10269,7 @@ ch_ret drive_ship( CHAR_DATA * ch, SHIP_DATA * ship, EXIT_DATA * pexit, int fall
       txt = "falls";
    else if( !txt )
    {
-      if( ship->class == LAND_VEHICLE )
+      if( ship->sclass == LAND_VEHICLE )
       {
          txt = "drive";
       }
@@ -10316,7 +10289,7 @@ ch_ret drive_ship( CHAR_DATA * ch, SHIP_DATA * ship, EXIT_DATA * pexit, int fall
 
    if( fall )
       txt = "falls";
-   if( ship->class == LAND_VEHICLE )
+   if( ship->sclass == LAND_VEHICLE )
    {
       txt = "drives in";
    }
@@ -10372,31 +10345,11 @@ ch_ret drive_ship( CHAR_DATA * ch, SHIP_DATA * ship, EXIT_DATA * pexit, int fall
       char_to_room( rch, original );
    }
 
-/*
-    if (  CHECK FOR FALLING HERE
-    &&   fall > 0 )
-    {
-	if (!IS_AFFECTED( ch, AFF_FLOATING )
-	|| ( ch->mount && !IS_AFFECTED( ch->mount, AFF_FLOATING ) ) )
-	{
-	  set_char_color( AT_HURT, ch );
-	  send_to_char( "OUCH! You hit the ground!\r\n", ch );
-	  WAIT_STATE( ch, 20 );
-	  retcode = damage( ch, ch, 50 * fall, TYPE_UNDEFINED );
-	}
-	else
-	{
-	  set_char_color( AT_MAGIC, ch );
-	  send_to_char( "You lightly float down to the ground.\r\n", ch );
-	}
-    }
-
-*/
    return retcode;
 
 }
 
-void do_bomb( CHAR_DATA * ch, char *argument )
+void do_bomb( CHAR_DATA * ch, const char *argument )
 {
    int vnum, i, hibomb, lowbomb;
    SHIP_DATA *ship;
@@ -10423,7 +10376,7 @@ void do_bomb( CHAR_DATA * ch, char *argument )
    bombs = atoi( argument );
 
 
-   if( ship->class != SHIP_BOMBER )
+   if( ship->sclass != SHIP_BOMBER )
    {
       send_to_char( "&RYou must be in the cockpit of the bomber to do this.\r\n", ch );
       return;
@@ -10544,7 +10497,7 @@ void do_bomb( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_bomb );
 }
 
-void do_chaff( CHAR_DATA * ch, char *argument )
+void do_chaff( CHAR_DATA * ch, const char *argument )
 {
    int schance;
    SHIP_DATA *ship;
@@ -10556,7 +10509,7 @@ void do_chaff( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -10612,7 +10565,6 @@ void do_chaff( CHAR_DATA * ch, char *argument )
 
 bool autofly( SHIP_DATA * ship )
 {
-
    if( !ship )
       return FALSE;
 
@@ -10623,7 +10575,6 @@ bool autofly( SHIP_DATA * ship )
       return TRUE;
 
    return FALSE;
-
 }
 
 
@@ -10640,7 +10591,7 @@ SHIP_DATA *ship_from_room( int vnum )
 }
 
 
-void do_salvage( CHAR_DATA * ch, char *argument )
+void do_salvage( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    int value;
@@ -10702,7 +10653,7 @@ void do_salvage( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_clansalvage( CHAR_DATA * ch, char *argument )
+void do_clansalvage( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    CLAN_DATA *clan;
@@ -10753,7 +10704,7 @@ void do_clansalvage( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_endsimulator( CHAR_DATA * ch, char *argument )
+void do_endsimulator( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char buf[MAX_INPUT_LENGTH];
@@ -10786,7 +10737,7 @@ void do_endsimulator( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_freeship( CHAR_DATA * ch, char *argument )
+void do_freeship( CHAR_DATA * ch, const char *argument )
 {
 /*	SHIP_DATA *ship;
 	char buf[MAX_INPUT_LENGTH];
@@ -10813,7 +10764,7 @@ void do_freeship( CHAR_DATA * ch, char *argument )
   return;*/
 }
 
-void do_giveship( CHAR_DATA * ch, char *argument )
+void do_giveship( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    CHAR_DATA *victim;
@@ -10868,7 +10819,7 @@ void do_giveship( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_clangiveship( CHAR_DATA * ch, char *argument )
+void do_clangiveship( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    CLAN_DATA *clan;
@@ -10917,7 +10868,7 @@ void do_clangiveship( CHAR_DATA * ch, char *argument )
    sprintf( logbuf, "%s gave the ship %s to %s.\r\n", ch->name, ship->name, clan->name );
    log_string( logbuf );
 
-   if( ship->class <= SHIP_SPACE_STATION )
+   if( ship->sclass <= SHIP_SPACE_STATION )
       clan->spacecraft++;
    else
       clan->vehicles++;
@@ -10925,7 +10876,7 @@ void do_clangiveship( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_request( CHAR_DATA * ch, char *argument )
+void do_request( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    SHIP_DATA *target;
@@ -11037,23 +10988,23 @@ void do_request( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_makesimulator( CHAR_DATA * ch, char *argument )
+void do_makesimulator( CHAR_DATA * ch, const char *argument )
 {
 
 }
 
-void do_makemobship( CHAR_DATA * ch, char *argument )
+void do_makemobship( CHAR_DATA * ch, const char *argument )
 {
 
 }
 
-void do_prototypes( CHAR_DATA * ch, char *argument )
+void do_prototypes( CHAR_DATA * ch, const char *argument )
 {
 
 }
 
 //Written by Ackbar, updated by Tranin, Reupdated by Tawnos
-void do_sabotage( CHAR_DATA * ch, char *argument )
+void do_sabotage( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance;
@@ -11100,7 +11051,7 @@ void do_sabotage( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -11145,7 +11096,7 @@ void do_sabotage( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_sabotage );
 }
 
-void do_makeshipbomb( CHAR_DATA * ch, char *argument )
+void do_makeshipbomb( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_INPUT_LENGTH];
@@ -11257,7 +11208,7 @@ void do_makeshipbomb( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -11423,7 +11374,7 @@ void do_makeshipbomb( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_shiprepair( CHAR_DATA * ch, char *argument )
+void do_shiprepair( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance, change;
@@ -11579,7 +11530,7 @@ void do_shiprepair( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -11658,7 +11609,7 @@ void do_shiprepair( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_transship( CHAR_DATA * ch, char *argument )
+void do_transship( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -11692,7 +11643,7 @@ void do_transship( CHAR_DATA * ch, char *argument )
    ship->shipstate = SHIP_READY;
    ship->location = arg3;
 
-   if( ship->class != SHIP_SPACE_STATION && ship->type != MOB_SHIP )
+   if( ship->sclass != SHIP_SPACE_STATION && ship->type != MOB_SHIP )
    {
       extract_ship( ship );
       ship_to_room( ship, ship->location );
@@ -11708,7 +11659,7 @@ void do_transship( CHAR_DATA * ch, char *argument )
    send_to_char( "Ship Transfered.\r\n", ch );
 }
 
-void do_transshipss( CHAR_DATA * ch, char *argument )
+void do_transshipss( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -11761,7 +11712,7 @@ void do_transshipss( CHAR_DATA * ch, char *argument )
    send_to_char( "Ship transferred.\r\n", ch );
 }
 
-void do_removeship( CHAR_DATA * ch, char *argument )
+void do_removeship( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char buf[MAX_STRING_LENGTH];
@@ -11802,7 +11753,7 @@ SHIP_DATA *get_ship2( char *name )
    return NULL;
 }
 
-void do_shiplock( CHAR_DATA * ch, char *argument )
+void do_shiplock( CHAR_DATA * ch, const char *argument )
 {
    int locknum;
    char buf[MAX_INPUT_LENGTH];
@@ -11833,7 +11784,7 @@ void do_shiplock( CHAR_DATA * ch, char *argument )
    save_ship( ship );
 }
 
-char *ship_bit_name( int vector )
+const char *ship_bit_name( int vector )
 {
    static char buf[512];
 
@@ -11897,7 +11848,7 @@ char *ship_bit_name( int vector )
    return ( buf[0] != '\0' ) ? buf + 1 : "none";
 }
 
-void do_cut( CHAR_DATA * ch, char *argument )
+void do_cut( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
 //  char buf[MAX_STRING_LENGTH];

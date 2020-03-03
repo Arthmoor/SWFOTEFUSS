@@ -5,10 +5,13 @@
  *                /-----\  |      | \  |  v  | |     | |  /                 *
  *               /       \ |      |  \ |     | +-----+ +-/                  *
  ****************************************************************************
- * AFKMud Copyright 1997-2003 by Roger Libiez (Samson),                     *
+ * AFKMud Copyright 1997-2005 by Roger Libiez (Samson),                     *
  * Levi Beckerson (Whir), Michael Ward (Tarl), Erik Wolfe (Dwip),           *
  * Cameron Carroll (Cam), Cyberfox, Karangi, Rathian, Raine, and Adjani.    *
  * All Rights Reserved.                                                     *
+ * Registered with the United States Copyright Office. TX 5-877-286         *
+ *                                                                          *
+ * External contributions from Xorith, Quixadhal, Zarius, and many others.  *
  *                                                                          *
  * Original SMAUG 1.4a written by Thoric (Derek Snider) with Altrag,        *
  * Blodkai, Haus, Narn, Scryn, Swordbearer, Tricops, Gorog, Rennard,        *
@@ -24,18 +27,20 @@
  *                      Enhanced ANSI parser by Samson                      *
  ****************************************************************************/
 
-#define SAMSONCOLOR  /* To interact with other snippets */
-
-#define COLOR_DIR "../color/"
-
-DECLARE_DO_FUN( do_color );
-
-void reset_colors( CHAR_DATA * ch );
+void reset_colors( CHAR_DATA * );
 void set_char_color( short AType, CHAR_DATA * ch );
 void set_pager_color( short AType, CHAR_DATA * ch );
-char *color_str( short AType, CHAR_DATA * ch );
-const char *const_color_align( const char *argument, int size, int align );
+const char *color_str( short AType, CHAR_DATA * ch );
+char *color_align( const char *argument, int size, int align );
+int color_strlen( const char *src );
+char *colorize( const char *txt, DESCRIPTOR_DATA * d );
+int colorcode( const char *src, char *dst, DESCRIPTOR_DATA * d, int dstlen, int *vislen );
 void send_to_desc_color( const char *txt, DESCRIPTOR_DATA * d );
+
+
+
+#define COLOR_DIR "../color/"
+DECLARE_DO_FUN( do_color );
 
 /*
  * Color Alignment Parameters
@@ -89,9 +94,17 @@ void send_to_desc_color( const char *txt, DESCRIPTOR_DATA * d );
 #define BACK_PURPLE     "\033[45m"
 #define BACK_CYAN       "\033[46m"
 #define BACK_GREY       "\033[47m"
+#define BACK_DGREY    	"\033[50m"
+#define BACK_RED       	"\033[51m"
+#define BACK_GREEN    	"\033[52m"
+#define BACK_YELLOW    	"\033[53m"
+#define BACK_BLUE    	"\033[54m"
+#define BACK_PINK   	"\033[55m"
+#define BACK_LBLUE    	"\033[56m"
+#define BACK_WHITE    	"\033[57m"
 
 /* Other miscelaneous ANSI tags that can be used */
-#define ANSI_RESET	"\033[0m"
+#define ANSI_RESET	"\033[0m"   /* Reset to terminal default */
 #define ANSI_BOLD		"\033[1m"   /* For bright color stuff */
 #define ANSI_ITALIC	"\033[3m"   /* Italic text */
 #define ANSI_UNDERLINE  "\033[4m"   /* Underline text */
@@ -117,7 +130,7 @@ void send_to_desc_color( const char *txt, DESCRIPTOR_DATA * d );
 #define AT_WHITE        15
 #define AT_BLINK        16
 
-/* These should be 17 - 31 normally */
+/* These should be 17 - 31 normaly */
 #define AT_BLACK_BLINK  AT_BLACK + AT_BLINK
 #define AT_BLOOD_BLINK  AT_BLOOD + AT_BLINK
 #define AT_DGREEN_BLINK AT_DGREEN + AT_BLINK
@@ -182,12 +195,12 @@ void send_to_desc_color( const char *txt, DESCRIPTOR_DATA * d );
 #define AT_MUSE         76
 #define AT_THINK        77
 #define AT_AFLAGS          78 /* Added by Samson 9-29-98 for area flag display line */
-#define AT_WHO            79 /* Added by Samson 9-29-98 for wholist */
-#define AT_RACETALK       80 /* Added by Samson 9-29-98 for version 1.4 code */
-#define AT_IGNORE         81 /* Added by Samson 9-29-98 for version 1.4 code */
-#define AT_WHISPER        82 /* Added by Samson 9-29-98 for version 1.4 code */
-#define AT_DIVIDER        83 /* Added by Samson 9-29-98 for version 1.4 code */
-#define AT_MORPH          84 /* Added by Samson 9-29-98 for version 1.4 code */
+#define AT_WHO            79  /* Added by Samson 9-29-98 for wholist */
+#define AT_RACETALK       80  /* Added by Samson 9-29-98 for version 1.4 code */
+#define AT_IGNORE         81  /* Added by Samson 9-29-98 for version 1.4 code */
+#define AT_WHISPER        82  /* Added by Samson 9-29-98 for version 1.4 code */
+#define AT_DIVIDER        83  /* Added by Samson 9-29-98 for version 1.4 code */
+#define AT_MORPH          84  /* Added by Samson 9-29-98 for version 1.4 code */
 #define AT_SHOUT        85 /* Added by Samson 9-29-98 for shout channel */
 #define AT_RFLAGS       86 /* Added by Samson 12-20-98 for room flag display line */
 #define AT_STYPE        87 /* Added by Samson 12-20-98 for sector display line */
@@ -211,12 +224,15 @@ void send_to_desc_color( const char *txt, DESCRIPTOR_DATA * d );
 #define AT_PRAC4       105 /* Added by Samson 1-21-02 */
 #define AT_MXPPROMPT   106 /* Added by Samson 2-27-02 */
 #define AT_GUILDTALK   107 /* Added by Tarl 28 Nov 02 */
-#define AT_OOC         108
-#define AT_AVATAR      109
-#define AT_SHIP        110
-#define AT_CLAN        111
+#define AT_BOARD       108 /* Samson 10-14-03 */
+#define AT_BOARD2      109 /* Samson 10-14-03 */
+#define AT_BOARD3      110 /* Samson 10-14-03 */
+#define AT_OOC         111 /* Kayle 8-6-09 */
+#define AT_AVATAR	   112 /* Kayle 2-6-09 */
+#define AT_SHIP	   113 /* Kayle 2-6-09 */
+#define AT_CLAN	   114 /* Kayle 2-6-09 */
 
 /* Should ALWAYS be one more than the last numerical value in the list */
-#define MAX_COLORS    112
+#define MAX_COLORS    115
 
 extern const short default_set[MAX_COLORS];

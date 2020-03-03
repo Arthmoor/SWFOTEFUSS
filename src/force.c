@@ -36,6 +36,9 @@ Michael Seifert, and Sebastian Hammer.
 #include <errno.h>
 #include "mud.h"
 
+FORCE_HELP *first_force_help;
+FORCE_HELP *last_force_help;
+
 void free_forceskill( FORCE_SKILL * fskill )
 {
    short x;
@@ -45,7 +48,7 @@ void free_forceskill( FORCE_SKILL * fskill )
       bug( "%s: null forceskill pointer!", __FUNCTION__ );
       return;
    }
-     
+
    STRFREE( fskill->name );
    STRFREE( fskill->code );
 
@@ -74,7 +77,7 @@ void free_forcehelp( FORCE_HELP * fhelp )
    return;
 }
 
-int check_force_skill( CHAR_DATA * ch, char *command, char *argument )
+int check_force_skill( CHAR_DATA * ch, const char *command, const char *argument )
 {
    FORCE_SKILL *fskill;
    bool SKILL_FOUND = FALSE;
@@ -97,7 +100,7 @@ int check_force_skill( CHAR_DATA * ch, char *command, char *argument )
    return 1;
 }
 
-void force_send_to_room( CHAR_DATA * ch, CHAR_DATA * victim, char *msg )
+void force_send_to_room( CHAR_DATA * ch, CHAR_DATA * victim, const char *msg )
 {
    DESCRIPTOR_DATA *i;
    CHAR_DATA *dch;
@@ -113,7 +116,7 @@ void force_send_to_room( CHAR_DATA * ch, CHAR_DATA * victim, char *msg )
    }
 }
 
-CHAR_DATA *force_get_victim( CHAR_DATA * ch, char *argument, int loc )
+CHAR_DATA *force_get_victim( CHAR_DATA * ch, const char *argument, int loc )
 {
    CHAR_DATA *victim;
    char target[MAX_STRING_LENGTH];
@@ -132,7 +135,7 @@ CHAR_DATA *force_get_victim( CHAR_DATA * ch, char *argument, int loc )
    return victim;
 }
 
-char *force_get_possessive( CHAR_DATA * ch )
+const char *force_get_possessive( CHAR_DATA * ch )
 {
    if( ch->sex == SEX_MALE )
       return "his";
@@ -141,7 +144,7 @@ char *force_get_possessive( CHAR_DATA * ch )
    return "its";
 }
 
-char *force_get_objective( CHAR_DATA * ch )
+const char *force_get_objective( CHAR_DATA * ch )
 {
    if( ch->sex == SEX_MALE )
       return "him";
@@ -150,7 +153,7 @@ char *force_get_objective( CHAR_DATA * ch )
    return "it";
 }
 
-char *force_get_pronoun( CHAR_DATA * ch )
+const char *force_get_pronoun( CHAR_DATA * ch )
 {
    if( ch->sex == SEX_MALE )
       return "he";
@@ -159,7 +162,7 @@ char *force_get_pronoun( CHAR_DATA * ch )
    return "it";
 }
 
-char *force_get_level( CHAR_DATA * ch )
+const char *force_get_level( CHAR_DATA * ch )
 {
    switch ( ch->force_level_status )
    {
@@ -189,7 +192,7 @@ char *force_get_level( CHAR_DATA * ch )
    }
 }
 
-char *force_parse_string( CHAR_DATA * ch, CHAR_DATA * victim, char *srcmsg )
+char *force_parse_string( CHAR_DATA * ch, CHAR_DATA * victim, const char *srcmsg )
 {
    static char msg[MAX_STRING_LENGTH];
 
@@ -296,7 +299,7 @@ void force_learn_from_success( CHAR_DATA * ch, FORCE_SKILL * fskill )
       ch->force_skill[fskill->index] = 100;
 }
 
-FORCE_SKILL *force_test_skill_use( char *fskill_name, CHAR_DATA * ch, int skill_type )
+FORCE_SKILL *force_test_skill_use( const char *fskill_name, CHAR_DATA * ch, int skill_type )
 {
    FORCE_SKILL *fskill;
    bool SKILL_FOUND = FALSE;
@@ -567,7 +570,7 @@ void draw_force_line( CHAR_DATA * ch, int length )
    send_to_char( "&G&w", ch );
 }
 
-FORCE_SKILL *get_force_skill( char *argument )
+FORCE_SKILL *get_force_skill( const char *argument )
 {
    FORCE_SKILL *fskill;
    for( fskill = first_force_skill; fskill; fskill = fskill->next )
@@ -576,7 +579,7 @@ FORCE_SKILL *get_force_skill( char *argument )
    return fskill;
 }
 
-void do_fstat( CHAR_DATA * ch, char *argument )
+void do_fstat( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    char arg1[MAX_STRING_LENGTH];
@@ -619,7 +622,7 @@ void do_fstat( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_fset( CHAR_DATA * ch, char *argument )
+void do_fset( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    char arg1[MAX_STRING_LENGTH];
@@ -1074,6 +1077,7 @@ void do_fset( CHAR_DATA * ch, char *argument )
       write_all_forceskills(  );
       return;
    }
+
    switch ( ch->substate )
    {
       default:
@@ -1089,128 +1093,128 @@ void do_fset( CHAR_DATA * ch, char *argument )
          send_to_char( "PUT VALID FIELDS HERE\r\n", ch );
          return;
       case SUB_FORCE_CH0:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->ch_effect[0] );
-         fskill->ch_effect[0] = STRALLOC( copy_buffer( ch ) );
+         fskill->ch_effect[0] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_CH1:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->ch_effect[1] );
-         fskill->ch_effect[1] = STRALLOC( copy_buffer( ch ) );
+         fskill->ch_effect[1] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_CH2:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->ch_effect[2] );
-         fskill->ch_effect[2] = STRALLOC( copy_buffer( ch ) );
+         fskill->ch_effect[2] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_CH3:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->ch_effect[3] );
-         fskill->ch_effect[3] = STRALLOC( copy_buffer( ch ) );
+         fskill->ch_effect[3] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_CH4:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->ch_effect[4] );
-         fskill->ch_effect[4] = STRALLOC( copy_buffer( ch ) );
+         fskill->ch_effect[4] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_ROOM0:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->room_effect[0] );
-         fskill->room_effect[0] = STRALLOC( copy_buffer( ch ) );
+         fskill->room_effect[0] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_ROOM1:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->room_effect[1] );
-         fskill->room_effect[1] = STRALLOC( copy_buffer( ch ) );
+         fskill->room_effect[1] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_ROOM2:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->room_effect[2] );
-         fskill->room_effect[2] = STRALLOC( copy_buffer( ch ) );
+         fskill->room_effect[2] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_ROOM3:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->room_effect[3] );
-         fskill->room_effect[3] = STRALLOC( copy_buffer( ch ) );
+         fskill->room_effect[3] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_ROOM4:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->room_effect[4] );
-         fskill->room_effect[4] = STRALLOC( copy_buffer( ch ) );
+         fskill->room_effect[4] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_VICTIM0:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->victim_effect[0] );
-         fskill->victim_effect[0] = STRALLOC( copy_buffer( ch ) );
+         fskill->victim_effect[0] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_VICTIM1:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->victim_effect[1] );
-         fskill->victim_effect[1] = STRALLOC( copy_buffer( ch ) );
+         fskill->victim_effect[1] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_VICTIM2:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->victim_effect[2] );
-         fskill->victim_effect[2] = STRALLOC( copy_buffer( ch ) );
+         fskill->victim_effect[2] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_VICTIM3:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->victim_effect[3] );
-         fskill->victim_effect[3] = STRALLOC( copy_buffer( ch ) );
+         fskill->victim_effect[3] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
 
       case SUB_FORCE_VICTIM4:
-         fskill = ch->spare_ptr;
+         fskill = ( FORCE_SKILL * ) ch->spare_ptr;
          STRFREE( fskill->victim_effect[4] );
-         fskill->victim_effect[4] = STRALLOC( copy_buffer( ch ) );
+         fskill->victim_effect[4] = copy_buffer( ch );
          stop_editing( ch );
          save_forceskill( fskill );
          return;
    }
 }
 
-void do_fhstat( CHAR_DATA * ch, char *argument )
+void do_fhstat( CHAR_DATA * ch, const char *argument )
 {
    FORCE_HELP *fhelp, *ghelp, *shelp, *jhelp;
    char type[MAX_STRING_LENGTH];
@@ -1294,7 +1298,7 @@ void do_fhstat( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_fhset( CHAR_DATA * ch, char *argument )
+void do_fhset( CHAR_DATA * ch, const char *argument )
 {
    FORCE_HELP *fhelp;
    char arg1[MAX_STRING_LENGTH];
@@ -1397,16 +1401,16 @@ void do_fhset( CHAR_DATA * ch, char *argument )
          send_to_char( "PUT VALID FIELDS HERE\r\n", ch );
          return;
       case SUB_FORCE_HELP:
-         fhelp = ch->spare_ptr;
+         fhelp = ( FORCE_HELP * ) ch->spare_ptr;
          STRFREE( fhelp->desc );
-         fhelp->desc = STRALLOC( copy_buffer( ch ) );
+         fhelp->desc = copy_buffer( ch );
          stop_editing( ch );
          save_forcehelp( fhelp );
          return;
    }
 }
 
-FORCE_HELP *get_force_help( char *fname, char *type )
+FORCE_HELP *get_force_help( const char *fname, const char *type )
 {
    FORCE_HELP *fhelp, *ghelp, *shelp, *jhelp;
    bool found_general = FALSE;
@@ -1458,3 +1462,145 @@ FORCE_HELP *get_force_help( char *fname, char *type )
       fhelp = ghelp;
    return fhelp;
 }
+
+/*Setforcer allows you to instantly set someone with force, you can use this for your imms or players
+  who deserve it.  -->Keberus 12/20/08 */
+
+void do_setforcer( CHAR_DATA *ch, const char *argument )
+{
+    char arg_victim[MSL];
+    char arg_flevel[MSL];
+    char arg_jsn[MSL];
+    char arg_fls[MSL];
+    short fls = 0, flevel = 0, ft = 0;
+    int base = 0;
+    CHAR_DATA *victim;
+    FORCE_SKILL *skill;
+
+    if( !argument || argument[0] == '\0' ) //dont waste my time setting null stuff
+    {
+        send_to_char
+            ( "&YSyntax: setforcer victim <force level/force_chance> [jedi/sith/neutral] <force-level status>  <skill percent>\r\n", ch );
+        return;
+    }
+
+    argument = one_argument( argument, arg_victim );
+    argument = one_argument( argument, arg_flevel );
+    argument = one_argument( argument, arg_jsn );
+    argument = one_argument( argument, arg_fls );
+
+    if( arg_victim[0] == '\0' || ( ( victim = get_char_world( ch, arg_victim ) ) == NULL ) )
+    {
+        send_to_char( "&YNo such victim\r\n", ch );
+        return;
+    }
+    if( IS_NPC( victim ) )
+    {
+        send_to_char( "&YAre you trying to &RCRASH &Ythe mud!\r\n", ch );
+        return;
+    }
+
+    if( is_number( arg_flevel ) )
+        flevel = atoi( arg_flevel );
+    else
+    {
+        if( !str_cmp( arg_flevel, "force_chance" ) )
+        {
+            victim->force_chance = 1;
+            ch_printf( ch, "%s has been set with a force chance of 1!\r\n", victim->name );
+            save_char_obj( victim );
+            return;
+        }
+        else
+        {
+            send_to_char
+                ( "&YSyntax: setforcer victim <force level/force chance> [jedi/sith/neutral] <force-level status>  <skill percent>\r\n",
+                  ch );
+            return;
+        }
+    }
+    if( ( flevel < 1 ) || ( flevel > 20 ) )
+    {
+        send_to_char( "&YValid force levels go from &W1 &Yto &W20&Y!\r\n", ch );
+        return;
+    }
+
+    if( (arg_jsn[0] == '\0') || ( str_cmp( arg_jsn, "jedi" ) && str_cmp( arg_jsn, "sith" ) && str_cmp( arg_jsn, "neutral" ) ) )
+    {
+        send_to_char( "&YYou must choose: &WJedi&Y, &WSith&Y, or &WNeutral&Y!\r\n", ch );
+        return;
+    }
+
+    fls = atoi( arg_fls );
+    if( fls < 1 || fls > 3 )
+    {
+        send_to_char( "Invalid force level status: (1)Apprentice, (2)Jedi Knight/Sith Lord (3)Master\r\n", ch );
+        return;
+    }
+    if( !argument || argument[0] == '\0' )
+    {
+        send_to_char( "&YWhat skill percentage do you want them to be set with?\r\n", ch );
+        return;
+    }
+    short spercent = 0;
+    spercent = atoi( argument );
+    if( ( spercent < 0 ) || ( spercent > 100 ) )
+    {
+        send_to_char( "&YValid &Gskill percents &Yare between &W0 &Yand &W100&Y.\r\n", ch );
+        return;
+    }
+    victim->force_level_status = fls;
+
+    if( !str_cmp( arg_jsn, "jedi" ) )
+    {
+        victim->force_align = 100;
+        ft = 1;
+    }
+    else if( !str_cmp( arg_jsn, "sith" ) )
+    {
+        victim->force_align = -100;
+        ft = 2;
+    }
+    else
+        victim->force_align = 0;
+
+    victim->force_type = ft;
+    victim->perm_frc = flevel;
+    victim->force_identified = 1;
+
+    base = ( ( flevel * 100 ) / 20 );
+    victim->force_control = number_range( base, 100 );
+    victim->force_alter = number_range( base, 100 );
+    victim->force_sense = number_range( base, 100 );
+    victim->max_mana = ( victim->force_control + victim->force_sense + victim->force_alter ) * 3 * victim->force_level_status;
+    victim->mana = ( victim->max_mana / 2 );
+
+    if( victim->force_chance != 1 )
+      victim->force_chance = 1;
+
+    for( skill = first_force_skill; skill; skill = skill->next )
+        if( ( skill->type == ft || skill->type == FORCE_GENERAL )
+            && ( strcmp( skill->name, "master" ) && strcmp( skill->name, "student" ) && strcmp( skill->name, "promote" )
+                 && strcmp( skill->name, "instruct" ) ) )
+        {
+            // if( victim->force_skill[skill->index] < spercent )
+            victim->force_skill[skill->index] = spercent;
+        }
+        else
+            victim->force_skill[skill->index] = 0;
+
+    ch_printf( ch, "&G%s &Yis now set as a level &W%d %s %s\r\n", victim->name, victim->perm_frc,
+               ( ft == 1 ) ? "&BJedi" : ( ft == 2 ) ? "&RSith" : "&G",
+               ( fls == 1 ) ? "Apprentice" : ( fls == 3 ) ? "Master" : ( ( fls == 2 )
+                                                                         && ( ft == 1 ) ) ? "Knight" : ( ( fls == 2 )
+                                                                                                         && ( ft ==
+                                                                                                              2 ) ) ? "Lord" : "Forcer" );
+    ch_printf( victim, "%s has graced you and you are now a %s %s\r\n", ch->name,
+               ( ft == 1 ) ? "&BJedi" : ( ft == 2 ) ? "&RSith" : "&G",
+               ( fls == 1 ) ? "Apprentice" : ( fls == 3 ) ? "Master" : ( ( fls == 2 )
+                                                                         && ( ft == 1 ) ) ? "Knight" : ( ( fls == 2 )
+                                                                                                         && ( ft ==
+                                                                                                              2 ) ) ? "Lord" : "Forcer" );
+    return;
+}
+

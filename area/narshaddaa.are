@@ -1,813 +1,1226 @@
-#AREA   Nar Shadda~
+#FUSSAREA
+#AREADATA
+Version      1
+Name         Nar Shadda~
+Author       Trelar~
+Ranges       0 36 0 36
+Economy      0 3242950
+ResetMsg     &OThe air pollution around you seems to grow thicker.&w&W~
+#ENDAREADATA
 
+#MOBILE
+Vnum       11051
+Keywords   low_mob~
+Short      a newly created low_mob~
+Long       Some god abandoned a newly created low_mob here.
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
 
+#MOBILE
+Vnum       11052
+Keywords   A Customs Authority Guard~
+Short      A Customs Authority Guard~
+Long       A Customs Authority Guard is here checking people for contraband.
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Specfun    spec_customs_weapons~
+Gender     neuter~
+Actflags   npc sentinel noflee stayarea~
+Stats1     0 10 0 -150 0 0
+Stats2     2 10 100
+Stats3     1 4 2
+Stats4     0 0 2 2 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    punch kick trip~
+Defenses   dodge~
+#ENDMOBILE
 
-#AUTHOR Trelar~
+#MOBILE
+Vnum       11053
+Keywords   Gordo ~
+Short      Gordo~
+Long       Gordo is here working on a piece of armor.
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea~
+Stats1     0 10 0 75 0 0
+Stats2     2 10 100
+Stats3     1 4 2
+Stats4     0 0 2 2 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic wookiee twilek rodian hutt noghri gamorrean hapan binary clan togorian ithorian~
+Speaking   basic wookiee twilek rodian hutt noghri gamorrean hapan binary clan togorian ithorian~
+Attacks    bite punch kick trip~
+Defenses   dodge~
+RepairData 9 0 0 110 1 0 23
+#ENDMOBILE
 
-#RANGES
-0 36 0 36
-$
+#MOBILE
+Vnum       11054
+Keywords   An Innkeeper Droid~
+Short      An Innkeeper Droid~
+Long       An Innkeeper Droid is here helping customers.
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea droid~
+Stats1     0 8 0 -75 0 0
+Stats2     1 10 80
+Stats3     0 4 2
+Stats4     0 0 1 1 1
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    punch kick trip~
+Defenses   dodge~
+#MUDPROG
+Progtype  greet_prog~
+Arglist   100~
+Comlist   say Welcome to the Corellian Hotel in the Corellian Sector of Nar Shadda. Rooms are 50 credits per night. Please pay in advance.
+~
+#ENDPROG
 
-#RESETMSG &OThe air pollution around you seems to grow thicker.&w&W~
-
-#FLAGS
-0
-
-#ECONOMY 0 3242950
-
-#MOBILES
-#11051
-low_mob~
-a newly created low_mob~
-Some god abandoned a newly created low_mob here.
-~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#11052
-A Customs Authority Guard~
-A Customs Authority Guard~
-A Customs Authority Guard is here checking people for contraband.
-~
-~
-75 0 0 Z
-10 0 -150 2d10+100 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 2
-2 2 0 0 0 0 112 2
-0 0 0 0 0 0 0 0
-#11053
-Gordo ~
-Gordo~
-Gordo is here working on a piece of armor.
-~
-~
-67 0 0 Z
-10 0 75 2d10+100 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1075462367 1075462367 2
-2 2 0 0 0 0 113 2
-0 0 0 0 0 0 0 0
-#11054
-An Innkeeper Droid~
-An Innkeeper Droid~
-An Innkeeper Droid is here helping customers.
-~
-~
-67108931 0 0 Z
-8 0 -75 1d10+80 0d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 1
-1 1 0 0 0 0 112 2
-0 0 0 0 0 0 0 0
-> greet_prog 100~
-say Welcome to the Corellian Hotel in the Corellian Sector of Nar Shadda. Rooms are 50 credits per night. Please pay in advance.
-~
-> bribe_prog 50~
-say Thank you for staying at the Corellian Hotel. Your room is right this way.
+#MUDPROG
+Progtype  bribe_prog~
+Arglist   50~
+Comlist   say Thank you for staying at the Corellian Hotel. Your room is right this way.
 mpecho The Droid escorts you to the sleeping room. 
 mptransfer $n 11179
 mpat 11179 mpforce $n l
 ~
-|
-#11055
-Hollo~
-Hollo~
-Hollo stands here awaiting customers.
-~
-~
-67 0 0 Z
-15 0 62 3d10+150 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 8193 1 2
-3 3 0 0 0 0 112 2
-0 0 0 0 0 0 0 0
-#11056
-A Bartender~
-A bartender~
-A bartender stands here helping customers.
-~
-~
-75 0 0 Z
-10 0 75 2d10+100 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 66732255 66732255 2
-2 2 0 0 0 0 112 2
-0 0 0 0 0 0 0 0
-#11250
-hi_obj~
-a newly created hi_obj~
-Some god abandoned a newly created hi_obj here.
-~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#0
+#ENDPROG
 
+#ENDMOBILE
 
-#OBJECTS
-#11051
-low_obj~
-a low_obj~
-A low_obj is here.~
+#MOBILE
+Vnum       11055
+Keywords   Hollo~
+Short      Hollo~
+Long       Hollo stands here awaiting customers.
 ~
-13 0 0
-0 0 0 0
-1 0 0
-#11052
-a jug of the Burning Deck~
-a jug of the Burning Deck~
-A Jug of the Burning Deck has been carelessly misplaced here.~
-~
-17 8192 16385
-10 10 8 0
-4 250 25
-#11053
-A Small Statue of Han Solo~
-A Small Statue of Han Solo~
-A Small Statue of Han Solo has been mounted to the table here. ~
-~
-8 0 0
-0 0 0 0
-1000 0 0
-#11250
-hi_obj~
-a hi_obj~
-A hi_obj is here.~
-~
-13 0 0
-0 0 0 0
-1 0 0
-#0
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea~
+Stats1     0 15 0 62 0 0
+Stats2     3 10 150
+Stats3     1 4 2
+Stats4     0 0 2 3 3
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic trandoshan~
+Speaking   basic~
+Attacks    punch kick trip~
+Defenses   dodge~
+ShopData   0 0 0 0 0 150 90 0 23
+#ENDMOBILE
 
+#MOBILE
+Vnum       11056
+Keywords   A Bartender~
+Short      A bartender~
+Long       A bartender stands here helping customers.
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel noflee stayarea~
+Stats1     0 10 0 75 0 0
+Stats2     2 10 100
+Stats3     1 4 2
+Stats4     0 0 2 2 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic wookiee twilek rodian hutt noghri gamorrean hapan binary clan togorian shistavanen kubaz yevethan gand duros~
+Speaking   basic wookiee twilek rodian hutt noghri gamorrean hapan binary clan togorian shistavanen kubaz yevethan gand duros~
+Attacks    punch kick trip~
+Defenses   dodge~
+ShopData   0 0 0 0 0 120 90 0 23
+#ENDMOBILE
 
-#ROOMS
-#11051
-Hutt Sector Landing Pad~
-~
-0 4 1 0 0 0 26144
-S
-#11052
-Floating in a void~
-~
-0 1073741828 1 0 0 0 26144
-S
-#11053
-Floating in a void~
-~
-0 1073741828 1 0 0 0 26144
-S
-#11054
-Floating in a void~
-~
-0 1073741828 1 0 0 0 26144
-S
-#11117
-Hutt Sector End~
-~
-0 1073741828 1 0 0 0 26144
-D0
-~
-~
-0 -1 11249
-S
-#11118
-C Sector Landing Pad~
-~
-0 1073741876 1 4 0 0 26144
-D2
-~
-~
-0 -1 11119
-S
-#11119
-C Sector Customs Authority~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11118
-D9
-~
-~
-0 -1 11120
-S
-#11120
-Diktat Ave.~
-~
-0 1073741824 1 0 0 0 26144
-D2
-~
-~
-0 -1 11121
-D6
-~
-~
-0 -1 11119
-S
-#11121
-Diktat Ave.~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11120
-D1
-~
-~
-0 -1 11176
-D2
-~
-~
-0 -1 11122
-S
-#11122
-Diktat Ave.~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11121
-D2
-~
-~
-0 -1 11123
-S
-#11123
-Intersection of Diktat Ave. and Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11122
-D1
-~
-~
-0 -1 11127
-D2
-~
-~
-0 -1 11124
-D3
-~
-~
-0 -1 11130
-S
-#11124
-Diktat Ave.~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11123
-D1
-~
-~
-0 -1 11177
-D2
-~
-~
-0 -1 11125
-S
-#11125
-Diktat Ave.~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11124
-D2
-~
-~
-0 -1 11126
-S
-#11126
-Diktat Ave.~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11125
-D3
-~
-~
-0 -1 11171
-S
-#11127
-Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D1
-~
-~
-0 -1 11128
-D2
-~
-~
-0 -1 11175
-D3
-~
-~
-0 -1 11123
-S
-#11128
-Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11185
-D1
-~
-~
-0 -1 11129
-D3
-~
-~
-0 -1 11127
-S
-#11129
-Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D1
-~
-~
-0 -1 11133
-D3
-~
-~
-0 -1 11128
-S
-#11130
-Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D1
-~
-~
-0 -1 11123
-D3
-~
-~
-0 -1 11131
-S
-#11131
-Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D1
-~
-~
-0 -1 11130
-D2
-~
-~
-0 -1 11174
-D3
-~
-~
-0 -1 11132
-S
-#11132
-Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D1
-~
-~
-0 -1 11131
-D3
-~
-~
-0 -1 11142
-S
-#11133
-Intersection of the Residential Circle and Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D3
-~
-~
-0 -1 11129
-D6
-~
-~
-0 -1 11134
-D8
-~
-~
-0 -1 11140
-S
-#11134
-Residential Circle~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11149
-D2
-~
-~
-0 -1 11150
-D6
-~
-~
-0 -1 11135
-D9
-~
-~
-0 -1 11133
-S
-#11135
-Residential Circle~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11151
-D2
-~
-~
-0 -1 11152
-D8
-~
-~
-0 -1 11136
-D9
-~
-~
-0 -1 11134
-S
-#11136
-Residential Circle~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11153
-D2
-~
-~
-0 -1 11154
-D7
-~
-~
-0 -1 11135
-D8
-~
-~
-0 -1 11137
-S
-#11137
-Residential Circle~
-~
-0 1073741824 1 0 0 0 26144
-D1
-~
-~
-0 -1 11141
-D7
-~
-~
-0 -1 11136
-D9
-~
-~
-0 -1 11138
-S
-#11138
-Residential Circle~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11155
-D6
-~
-~
-0 -1 11137
-D9
-~
-~
-0 -1 11139
-S
-#11139
-Residential Circle~
-~
-0 1073741824 1 0 0 0 26144
-D2
-~
-~
-0 -1 11156
-D6
-~
-~
-0 -1 11138
-D7
-~
-~
-0 -1 11140
-S
-#11140
-Residential Circle~
-~
-0 1073741824 1 0 0 0 26144
-D2
-~
-~
-0 -1 11157
-D7
-~
-~
-0 -1 11133
-D8
-~
-~
-0 -1 11139
-S
-#11141
-C Sector Apartment Building~
-~
-0 1073741832 1 0 0 0 26144
-D1
-~
-~
-0 -1 11158
-D3
-~
-~
-0 -1 11137
-S
-#11142
-Intersection of Far End Lane and Smuggler's Bend~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11143
-D1
-~
-~
-0 -1 11132
-D2
-~
-~
-0 -1 11146
-S
-#11143
-Far End Lane~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11144
-D2
-~
-~
-0 -1 11142
-S
-#11144
-Far End Lane~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11145
-D1
-~
-~
-0 -1 11173
-D2
-~
-~
-0 -1 11143
-S
-#11145
-Far End Lane~
-~
-0 1073741824 1 0 0 0 26144
-D2
-~
-~
-0 -1 11144
-D3
-~
-~
-0 -1 11188
-S
-#11146
-Far End Lane~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11142
-D2
-~
-~
-0 -1 11147
-S
-#11147
-Far End Lane~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11146
-D2
-~
-~
-0 -1 11148
-D3
-~
-~
-0 -1 11172
-S
-#11148
-Far End Lane~
-~
-0 1073741824 1 0 0 0 26144
-D0
-~
-~
-0 -1 11147
-S
-#11149
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D2
-~
-~
-0 -1 11134
-S
-#11150
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11134
-S
-#11151
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D2
-~
-~
-0 -1 11135
-S
-#11152
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11135
-S
-#11153
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D2
-~
-~
-0 -1 11136
-S
-#11154
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11136
-S
-#11155
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D2
-~
-~
-0 -1 11138
-S
-#11156
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11139
-S
-#11157
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11140
-S
-#11158
-First Floor Hallway~
-~
-0 1073741836 1 0 0 0 26144
-D0
-~
-~
-0 -1 11163
-D1
-~
-~
-0 -1 11159
-D2
-~
-~
-0 -1 11164
-D3
-~
-~
-0 -1 11141
-S
-#11159
-First Floor Hallway~
-~
-0 1073741828 1 0 0 0 26144
-D0
-~
-~
-0 -1 11165
-D1
-~
-~
-0 -1 11160
-D2
-~
-~
-0 -1 11166
-D3
-~
-~
-0 -1 11158
-S
-#11160
-C Sector Apartment Building Turbolift~
-~
-0 1073741828 1 0 0 0 26144
-> speech_prog 1 First~
-mpecho The turbolift doors slide close.
+#MOBILE
+Vnum       11250
+Keywords   hi_obj~
+Short      a newly created hi_obj~
+Long       Some god abandoned a newly created hi_obj here.
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#OBJECT
+Vnum     11051
+Keywords blaster Blastech E11 rifle E-11~
+Type     weapon~
+Short    a Blastech E-11 blaster rifle~
+Long     A Blastech E-11 blaster rifle was left here.~
+WFlags   take wield~
+Values   0 8 4 6 2000 2000
+Stats    10 3250 750 0 0
+Affect       -1 -1 2 18 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11052
+Keywords a jug of the Burning Deck~
+Type     drinkcon~
+Short    a jug of the Burning Deck~
+Long     A Jug of the Burning Deck has been carelessly misplaced here.~
+Flags    inventory~
+WFlags   take hold~
+Values   10 10 8 0 0 0
+Stats    4 250 25 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11053
+Keywords A Small Statue of Han Solo~
+Type     treasure~
+Short    A Small Statue of Han Solo~
+Long     A Small Statue of Han Solo has been mounted to the table here. ~
+Values   0 0 0 0 0 0
+Stats    1000 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11054
+Keywords Glass of Corellian Whiskey~
+Type     drinkcon~
+Short    a Glass of Corellian Whiskey~
+Long     A Glass of Corellian Whiskey is here.~
+WFlags   take~
+Values   3 3 5 0 0 0
+Stats    1 4 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11055
+Keywords macro-circuit board~
+Type     circuit~
+Short    a macro-circuit board~
+Long     A macro-circuit board lies dormant.~
+Flags    inventory~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11056
+Keywords battery cell industrial~
+Type     battery~
+Short    an industrial power cell~
+Long     An industrial power cell sits here, amped.~
+Flags    inventory~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11057
+Keywords a piece of durasteel~
+Type     durasteel~
+Short    a piece of durasteel~
+Long     A piece of durasteel was dropped here~
+Flags    inventory~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11058
+Keywords a superconductor~
+Type     superconductor~
+Short    a superconductor~
+Long     A superconductor was dropped here~
+Flags    inventory~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11059
+Keywords a piece of duraplast~
+Type     duraplast~
+Short    a piece of duraplast~
+Long     A piece of duraplast was dropped here~
+Flags    inventory~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11060
+Keywords a lens~
+Type     lens~
+Short    a lens~
+Long     A lens was dropped here~
+Flags    inventory~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11061
+Keywords A Jug of Rhyll Spiced Whiskey~
+Type     drinkcon~
+Short    A Jug of Rhyll Spiced Whiskey~
+Long     A Jug of Rhyll Spiced Whiskey sits on the ground here.~
+Values   15 20 5 0 0 0
+Stats    3 100 10 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11062
+Keywords Salty Wine~
+Type     drinkcon~
+Short    &rSalty Wine&w~
+Long     &rSalty Wine has been spilled here.&w&W~
+Flags    inventory~
+WFlags   take~
+Values   5 5 2 0 0 0
+Stats    1 3000 300 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     11250
+Keywords hi_obj~
+Type     trash~
+Short    a hi_obj~
+Long     A hi_obj is here.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#ROOM
+Vnum     11051
+Name     Hutt Sector Landing Pad~
+Sector   city~
+Flags    nomob~
+Stats    0 0 26144
+#ENDROOM
+
+#ROOM
+Vnum     11052
+Name     Floating in a void~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#ENDROOM
+
+#ROOM
+Vnum     11053
+Name     Floating in a void~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#ENDROOM
+
+#ROOM
+Vnum     11054
+Name     Floating in a void~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#ENDROOM
+
+#ROOM
+Vnum     11117
+Name     Hutt Sector End~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11249
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11118
+Name     C Sector Landing Pad~
+Sector   city~
+Flags    nomob can_land can_fly prototype~
+Flags2   shipyard~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11119
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11119
+Name     C Sector Customs Authority~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11118
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    11120
+#ENDEXIT
+
+Reset M 0 11052 2 11119
+  Reset E 1 11051 1 16
+Reset M 0 11052 2 11119
+  Reset E 1 11051 1 16
+#ENDROOM
+
+#ROOM
+Vnum     11120
+Name     Diktat Ave.~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11121
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    11119
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11121
+Name     Diktat Ave.~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11120
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11176
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11122
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11122
+Name     Diktat Ave.~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11121
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11123
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11123
+Name     Intersection of Diktat Ave. and Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11122
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11127
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11124
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11130
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11124
+Name     Diktat Ave.~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11123
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11177
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11125
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11125
+Name     Diktat Ave.~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11124
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11126
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11126
+Name     Diktat Ave.~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11125
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11171
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11127
+Name     Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11128
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11175
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11123
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11128
+Name     Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11185
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11129
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11127
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11129
+Name     Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11133
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11128
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11130
+Name     Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11123
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11131
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11131
+Name     Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11130
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11174
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11132
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11132
+Name     Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11131
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11142
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11133
+Name     Intersection of the Residential Circle and Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction west~
+ToRoom    11129
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    11134
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    11140
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11134
+Name     Residential Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11149
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11150
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    11135
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    11133
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11135
+Name     Residential Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11151
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11152
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    11136
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    11134
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11136
+Name     Residential Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11153
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11154
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    11135
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    11137
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11137
+Name     Residential Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11141
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    11136
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    11138
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11138
+Name     Residential Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11155
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    11137
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    11139
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11139
+Name     Residential Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11156
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    11138
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    11140
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11140
+Name     Residential Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11157
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    11133
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    11139
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11141
+Name     C Sector Apartment Building~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11158
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11137
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11142
+Name     Intersection of Far End Lane and Smuggler's Bend~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11143
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11132
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11146
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11143
+Name     Far End Lane~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11144
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11142
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11144
+Name     Far End Lane~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11145
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11173
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11143
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11145
+Name     Far End Lane~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11144
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11188
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11146
+Name     Far End Lane~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11142
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11147
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11147
+Name     Far End Lane~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11146
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11148
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11172
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11148
+Name     Far End Lane~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11147
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11149
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11134
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11150
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11134
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11151
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11135
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11152
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11135
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11153
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11136
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11154
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11136
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11155
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11138
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11156
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11139
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11157
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11140
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11158
+Name     First Floor Hallway~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11163
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11159
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11164
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11141
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11159
+Name     First Floor Hallway~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11165
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11160
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11166
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11158
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11160
+Name     C Sector Apartment Building Turbolift~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#MUDPROG
+Progtype  speech_prog~
+Arglist   1 First~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift hums as it goes to the First Floor.
 mpsleep 2
 mpecho The turbolift doors slide open.
@@ -815,8 +1228,12 @@ mpecho You step out qiickly before the door reclose.
 mptransfer $n 11159
 mpat 11159 mpforce $n l
 ~
-> speech_prog 2 Second~
-mpecho The turbolift doors slide close.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   2 Second~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift hums as it goes to the Second Floor.
 mpsleep 2
 mpecho The turbolift doors slide open.
@@ -826,427 +1243,567 @@ mpat 11161 mpforce $n l
 
 
 ~
-|
-S
-#11161
-Second Floor Hallway~
-~
-0 1073741828 1 0 0 0 26144
-D0
-~
-~
-0 -1 11167
-D1
-~
-~
-0 -1 11160
-D2
-~
-~
-0 -1 11168
-D3
-~
-~
-0 -1 11162
-S
-#11162
-Second Floor Hallway~
-~
-0 1073741828 1 0 0 0 26144
-D0
-~
-~
-0 -1 11169
-D1
-~
-~
-0 -1 11161
-D2
-~
-~
-0 -1 11170
-S
-#11163
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D2
-~
-~
-0 -1 11158
-S
-#11164
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11158
-S
-#11165
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D2
-~
-~
-0 -1 11159
-S
-#11166
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11159
-S
-#11167
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D2
-~
-~
-0 -1 11161
-S
-#11168
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11161
-S
-#11169
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D2
-~
-~
-0 -1 11162
-S
-#11170
-An Empty Apartment~
-~
-0 1075838984 1 0 0 0 26144
-D0
-~
-~
-0 -1 11162
-S
-#11171
-&zHollo's Hardware&w&W~
-~
-0 1073741832 1 0 0 0 26144
-D1
-~
-~
-0 -1 11126
-S
-#11172
-&rThe Slag Pit&w&W~
-~
-0 1073741832 1 0 0 0 26144
-D1
-~
-~
-0 -1 11147
-S
-#11173
-&BKleebo's Junk Heap&w&W~
-~
-0 1073741832 1 0 0 0 26144
-D3
-~
-~
-0 -1 11144
-S
-#11174
-&YThe Rental Shack&w&W~
-~
-0 1073741832 1 0 0 0 26144
-D0
-~
-~
-0 -1 11131
-S
-#11175
-&GThe Smuggler's Friend&w&W~
-~
-0 1073741832 1 0 0 0 26144
-D0
-~
-~
-0 -1 11127
-S
-#11176
-&GGordo's Tools and Repair&w&W~
-~
-0 1073741824 1 0 0 0 26144
-D3
-~
-~
-0 -1 11121
-S
-#11177
-&RCorellian Hotel&w&W~
-~
-0 1073741832 1 0 0 0 26144
-D1
-~
-~
-0 -1 11178
-D3
-~
-~
-0 -1 11124
-S
-#11178
-Registration Desk~
-~
-0 1073741832 1 0 0 0 26144
-D3
-~
-~
-0 -1 11177
-S
-#11179
-A Sleeping Room~
-~
-0 1073741832 1 0 0 0 26144
-D3
-~
-~
-0 -1 11178
-S
-#11180
-Potion World~
-~
-0 1073741828 1 0 0 0 26144
-S
-#11181
-The Back Room~
-~
-0 1073741824 1 0 0 0 26144
-D1
-~
-~
-0 -1 11180
-S
-#11182
-Secret Storage Area~
-~
-0 1073741824 1 0 0 0 26144
-D2
-~
-~
-0 -1 11186
-> entry_prog 100~
-mpecho The doorway closes softly...
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     11161
+Name     Second Floor Hallway~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11167
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11160
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11168
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11162
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11162
+Name     Second Floor Hallway~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11169
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    11161
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11170
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11163
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11158
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11164
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11158
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11165
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11159
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11166
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11159
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11167
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11161
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11168
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11161
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11169
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11162
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11170
+Name     An Empty Apartment~
+Sector   city~
+Flags    indoors empty_home prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11162
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11171
+Name     &zHollo's Hardware&w&W~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11126
+#ENDEXIT
+
+Reset M 0 11055 1 11171
+  Reset G 1 11055 1
+  Reset G 1 11056 1
+  Reset G 1 11057 1
+  Reset G 1 11060 1
+  Reset G 1 11058 1
+  Reset G 1 11059 1
+#ENDROOM
+
+#ROOM
+Vnum     11172
+Name     &rThe Slag Pit&w&W~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11147
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11173
+Name     &BKleebo's Junk Heap&w&W~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction west~
+ToRoom    11144
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11174
+Name     &YThe Rental Shack&w&W~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11131
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11175
+Name     &GThe Smuggler's Friend&w&W~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11127
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11176
+Name     &GGordo's Tools and Repair&w&W~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction west~
+ToRoom    11121
+#ENDEXIT
+
+Reset M 0 11053 1 11176
+#ENDROOM
+
+#ROOM
+Vnum     11177
+Name     &RCorellian Hotel&w&W~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11178
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11124
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11178
+Name     Registration Desk~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction west~
+ToRoom    11177
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11179
+Name     A Sleeping Room~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction west~
+ToRoom    11178
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11180
+Name     Potion World~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#ENDROOM
+
+#ROOM
+Vnum     11181
+Name     The Back Room~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11180
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11182
+Name     Secret Storage Area~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction south~
+ToRoom    11186
+#ENDEXIT
+
+#MUDPROG
+Progtype  entry_prog~
+Arglist   100~
+Comlist   mpecho The doorway closes softly...
 mpclosepassage 11186 0
 ~
-|
-S
-#11183
-A Booth~
-~
-0 1073741832 1 0 0 0 26144
-D1
-~
-~
-0 -1 11184
-S
-#11184
-The Bar~
-~
-0 1073741836 1 0 0 0 26144
-D1
-~
-~
-0 -1 11186
-D2
-~
-~
-0 -1 11185
-D3
-~
-~
-0 -1 11183
-S
-#11185
-&OThe Burning Deck&w&W~
-~
-0 1073741836 1 0 0 0 26144
-D0
-~
-~
-0 -1 11184
-D2
-~
-~
-0 -1 11128
-S
-#11186
-A Booth~
-~
-0 1073741832 1 0 0 0 26144
-D3
-~
-~
-0 -1 11184
-E
-statue han ~
-The statue of Han Solo was placed here as a commemorative to
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     11183
+Name     A Booth~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11184
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11184
+Name     The Bar~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11186
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11185
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11183
+#ENDEXIT
+
+Reset M 0 11056 1 11184
+  Reset E 1 11051 1 16
+  Reset G 1 11061 1
+  Reset G 1 11054 1
+  Reset G 1 11062 1
+  Reset G 1 11052 1
+#ENDROOM
+
+#ROOM
+Vnum     11185
+Name     &OThe Burning Deck&w~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction north~
+ToRoom    11184
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    11128
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11186
+Name     A Booth~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 26144
+#EXIT
+Direction west~
+ToRoom    11184
+#ENDEXIT
+
+#EXDESC
+ExDescKey    statue han ~
+ExDesc       The statue of Han Solo was placed here as a commemorative to
 the time he spent on Nar Shadda during his smuggling years.
 The statue has been engraved with a belt buckle on Han that
 bears the Smuggler's Symbol. 
 ~
-> custom_prog buckle~
-mpecho A small doorway opens in the backside of the booth. It looks big enough for a medium sized person to crawl through.
+#ENDEXDESC
+
+#MUDPROG
+Progtype  custom_prog~
+Arglist   buckle~
+Comlist   mpecho A small doorway opens in the backside of the booth. It looks big enough for a medium sized person to crawl through.
 mpopenpassage 11186 11182 0
 ~
-|
-S
-#11187
-A Dark Alleyway~
-~
-0 1073741825 1 0 0 0 26144
-D1
-~
-~
-0 -1 11188
-S
-#11188
-A Dark Alleyway~
-~
-0 1073741825 1 0 0 0 26144
-D1
-~
-~
-0 -1 11145
-D3
-~
-~
-0 -1 11187
-S
-#11189
-Customs Authority~
-~
-0 1073741824 1 0 0 0 26144
-D9
-~
-~
-0 -1 11190
-S
-#11190
-Entrance to the Corellian Sector~
-~
-0 1073741828 1 0 0 0 26144
-D6
-~
-~
-0 -1 11189
-D9
-~
-~
-0 -1 11249
-S
-#11191
-Duros Sector Landing Pad~
-~
-0 1073741828 1 0 0 0 26144
-S
-#11248
-Duros Sector End~
-~
-0 1073741828 1 0 0 0 26144
-D8
-~
-~
-0 -1 11249
-S
-#11249
-Central Drop-Tube~
-The central drop tube is the most common connection between the
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     11187
+Name     A Dark Alleyway~
+Sector   city~
+Flags    dark prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11188
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11188
+Name     A Dark Alleyway~
+Sector   city~
+Flags    dark prototype~
+Stats    0 0 26144
+#EXIT
+Direction east~
+ToRoom    11145
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    11187
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11189
+Name     Customs Authority~
+Sector   city~
+Flags    prototype~
+Stats    0 0 26144
+#EXIT
+Direction southwest~
+ToRoom    11190
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11190
+Name     Entrance to the Corellian Sector~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#EXIT
+Direction northeast~
+ToRoom    11189
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    11249
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11191
+Name     Duros Sector Landing Pad~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#ENDROOM
+
+#ROOM
+Vnum     11248
+Name     Duros Sector End~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+#EXIT
+Direction southeast~
+ToRoom    11249
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     11249
+Name     Central Drop-Tube~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 26144
+Desc     The central drop tube is the most common connection between the
 three sectors of Nar Shadda. The drop tube is voice activated
 so just say the sector you wish to go you. There is a list on
 the wall for those who don't know what the sector names are.
 ~
-0 1073741828 1 0 0 0 26144
-E
-list~
-Nar Shadda Sectors
+#EXDESC
+ExDescKey    list~
+ExDesc       Nar Shadda Sectors
 ----------------------------------
 *Corellian Sector
 *Hutt Sector
 *Duros Sector
 ~
-> speech_prog p Duros~
-mpecho &CAn electronic voice says:&W The Duros sector is currently being renovated and is not accessible to the public.
+#ENDEXDESC
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Duros~
+Comlist   mpecho &CAn electronic voice says:&W The Duros sector is currently being renovated and is not accessible to the public.
 ~
-> speech_prog p Corellian~
-mpechoat $n As you say the word the floor falls out beneath you as your transported to the  appropraite sector of Nar Shadda.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Corellian~
+Comlist   mpechoat $n As you say the word the floor falls out beneath you as your transported to the  appropraite sector of Nar Shadda.
 mptransfer $n 11190
 mpsleep 3
 mpat 11190 mpforce $n l
 ~
-> speech_prog p Hutt~
-mpecho &CAn electronic voice says:&W The Hutt sector is currently being renovated and is not accessible to the public.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Hutt~
+Comlist   mpecho &CAn electronic voice says:&W The Hutt sector is currently being renovated and is not accessible to the public.
 ~
-|
-S
-#11250
-Floating in a void~
-~
-0 4 1 0 0 0 26144
-S
-#0
+#ENDPROG
 
+#ENDROOM
 
-#RESETS
-M 1 11051 1 11250
-M 1 11250 1 11250
-O 1 11250 1 11250
-O 1 11051 1 11250
-M 1 11052 2 11119
-E 1 50 1 16
-M 1 11052 2 11119
-E 1 50 1 16
-M 1 11053 1 11176
-M 1 11055 1 11171
-G 1 296 1
-G 1 297 1
-G 1 146 1
-G 1 143 1
-G 1 147 1
-G 1 148 1
-M 1 11056 1 11184
-E 1 50 1 16
-G 1 9006 1
-G 1 4916 1
-G 1 1146 1
-G 1 11052 1
-S
+#ROOM
+Vnum     11250
+Name     Floating in a void~
+Sector   city~
+Flags    nomob~
+Stats    0 0 26144
+Reset M 0 11051 1 11250
+Reset M 0 11250 1 11250
+Reset O 0 11250 1 11250
+Reset O 0 11051 1 11250
+#ENDROOM
 
-
-#SHOPS
- 11055    0  0  0  0  0   150  90         0 23    ; Hollo
- 11056    0  0  0  0  0   120  90         0 23    ; A bartender
-0
-
-
-#REPAIRS
- 11053    9  0  0         110   1         0 23    ; Gordo
-0
-
-
-#SPECIALS
-M  11052 spec_customs_weapons
-S
-
-
-#$
+#ENDAREA

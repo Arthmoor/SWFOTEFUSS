@@ -49,12 +49,12 @@ bool autofly( SHIP_DATA * ship );
  * Tell snoop - modified to set tell_snoop to commfreq, then show all 
  *  incoming/outgoing whatnot on tell
 */
-void do_tellsnoop( CHAR_DATA * ch, char *argument )
+void do_tellsnoop( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
    char arg[MAX_INPUT_LENGTH];
    int schance;
-   int i = 0;
+   unsigned int i = 0;
 
    argument = one_argument( argument, arg );
 
@@ -67,7 +67,7 @@ void do_tellsnoop( CHAR_DATA * ch, char *argument )
    if( !str_cmp( arg, "clear" ) || !str_cmp( arg, "self" ) )
    {
       send_to_char( "You turn your radio off.\r\n", ch );
-      ch->pcdata->tell_snoop = NULL;
+      STRFREE( ch->pcdata->tell_snoop );
       return;
    }
 
@@ -91,6 +91,8 @@ void do_tellsnoop( CHAR_DATA * ch, char *argument )
    if( number_percent(  ) < schance )
    {
       learn_from_success( ch, gsn_spy );
+      if( ch->pcdata->tell_snoop )
+         STRFREE( ch->pcdata->tell_snoop );
       ch->pcdata->tell_snoop = STRALLOC( arg );
       sprintf( buf, "You are now listening to all communications with %s.\r\n", ch->pcdata->tell_snoop );
       send_to_char( buf, ch );
@@ -586,12 +588,11 @@ char *acctname( CHAR_DATA * ch )
    return buf;
 }
 
-void do_inquire( CHAR_DATA * ch, char *argument )
+void do_inquire( CHAR_DATA * ch, const char *argument )
 {
    DESCRIPTOR_DATA *d;
    bool checkdata;
    OBJ_DATA *obj;
-   int x;
    long xpgain;
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_INPUT_LENGTH];
@@ -646,20 +647,18 @@ void do_inquire( CHAR_DATA * ch, char *argument )
 
    schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_inquire] );
 
-   x = number_percent(  );
-
    if( number_percent(  ) > schance * 2 )
    {
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
+      ch_printf( ch, "&z|&x^g Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Passcode: *********                                                   ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Invalid passcode.                                                     ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Invalid passcode.                                                     ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       learn_from_failure( ch, gsn_inquire );
@@ -668,16 +667,16 @@ void do_inquire( CHAR_DATA * ch, char *argument )
 
    ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-   ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+   ch_printf( ch, "&z|&x^g Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-   ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
+   ch_printf( ch, "&z|&x^g Login: %d                                                          ^x&z|\r\n",
               number_range( 11111, 99999 ) );
-   ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+   ch_printf( ch, "&z|&x^g Passcode: *********                                                   ^x&z|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-   ch_printf( ch, "&z|^g&x Login accepted...retrieving account data, stand by.                   ^x&z|\r\n" );
+   ch_printf( ch, "&z|&x^g Login accepted...retrieving account data, stand by.                   ^x&z|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-   ch_printf( ch, "&z|^g&x _______  Account  _____________________________________ Savings _____ &z^x|\r\n" );
+   ch_printf( ch, "&z|&x^g _______  Account  _____________________________________ Savings _____ &z^x|\r\n" );
    for( d = first_descriptor; d; d = d->next )
    {
       if( !d->character )
@@ -686,7 +685,7 @@ void do_inquire( CHAR_DATA * ch, char *argument )
          continue;
       if( IS_IMMORTAL( d->character ) )
          continue;
-      ch_printf( ch, "&z|^g&x     # %s                                  %-9.9d      ^x&z|\r\n", acctname( d->character ),
+      ch_printf( ch, "&z|&x^g     # %s                                  %-9.9d      ^x&z|\r\n", acctname( d->character ),
                  d->character->pcdata->bank );
    }
    ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
@@ -701,7 +700,7 @@ void do_inquire( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_makecommsystem( CHAR_DATA * ch, char *argument )
+void do_makecommsystem( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -794,7 +793,7 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -906,7 +905,7 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_makedatapad( CHAR_DATA * ch, char *argument )
+void do_makedatapad( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -1010,7 +1009,7 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1129,7 +1128,7 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_codecrack( CHAR_DATA * ch, char *argument )
+void do_codecrack( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    CHAR_DATA *victim;
@@ -1202,7 +1201,7 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1235,15 +1234,15 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
    if( x > schance * 2 || !checkdata || ( !ship ) )
    {
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-      ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", ship->name );
-      ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-      ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-      ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O Terminal startup&W^O: %-30.30s &B^x]&W^x\r\n", ship->name );
+      ch_printf( ch, "&B[&r^O Login           &W^O: %-20.20s           &B^x]&W^x\r\n", ch->name );
+      ch_printf( ch, "&B[&r^O Access Code     &W^O: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
+      ch_printf( ch, "&B[&r^O Accessing Core  &W^O: Stand by                       &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O &rCore Access     &W: Denied                         &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O Core Access     &W^O: Denied                         &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
       learn_from_failure( ch, gsn_codecrack );
       if( ship->alarm == 1 )
@@ -1271,16 +1270,16 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
          pssword = ship->password;
 
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-      ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", ship->name );
-      ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-      ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-      ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O Terminal startup&W^O: %-30.30s &B^x]&W^x\r\n", ship->name );
+      ch_printf( ch, "&B[&r^O Login           &W^O: %-20.20s           &B^x]&W^x\r\n", ch->name );
+      ch_printf( ch, "&B[&r^O Access Code     &W^O: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
+      ch_printf( ch, "&B[&r^O Accessing Core  &W^O: Stand by                       &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O &rCore Access     &W: Granted                        &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O &rShip Password   &W: %-7d                        &B^x]&W^x\r\n", pssword );
+      ch_printf( ch, "&B[&r^O Core Access     &W^O: Granted                        &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O Ship Password   &W^O: %-7d                        &B^x]&W^x\r\n", pssword );
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
       //xpgain = UMIN( obj->cost*10 ,( exp_level(ch->skill_level[SLICER_ABILITY]+1) - exp_level(ch->skill_level[SLICER_ABILITY]) ) );
       xpgain = 3000;
@@ -1293,13 +1292,13 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_disableship( CHAR_DATA * ch, char *argument )
+void do_disableship( CHAR_DATA * ch, const char *argument )
 {
 
    SHIP_DATA *ship1;
    SHIP_DATA *ship2;
    SHIP_DATA *ship;
-   int schance, x;
+   int schance;
    bool checkcomm, checkdata;
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1355,7 +1354,7 @@ void do_disableship( CHAR_DATA * ch, char *argument )
             return;
          }
 
-         if( ship2->class == 3 )
+         if( ship2->sclass == 3 )
          {
             send_to_char( "That ship has too great of security to disable it.\r\n", ch );
             return;
@@ -1442,7 +1441,7 @@ void do_disableship( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg1, ch->dest_buf );
+         strcpy( arg1, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1464,20 +1463,19 @@ void do_disableship( CHAR_DATA * ch, char *argument )
    schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_disable] );
 
    ship = get_ship( arg1 );
-   x = number_percent(  );
 
    if( number_percent(  ) > schance * 2 || ( !checkdata ) || ( !checkcomm ) || ( !ship ) )
    {
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-      ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", ship->name );
-      ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-      ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-      ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O Terminal startup&W^O: %-30.30s &B^x]&W^x\r\n", ship->name );
+      ch_printf( ch, "&B[&r^O Login           &W^O: %-20.20s           &B^x]&W^x\r\n", ch->name );
+      ch_printf( ch, "&B[&r^O Access Code     &W^O: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
+      ch_printf( ch, "&B[&r^O Accessing Core  &W^O: Stand by                       &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O &rCore Access     &W: Denied                         &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O Core Access     &W^O: Denied                         &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
       learn_from_failure( ch, gsn_disable );
       return;
@@ -1488,15 +1486,15 @@ void do_disableship( CHAR_DATA * ch, char *argument )
    if( IS_SET( ship->flags, SHIP_NOSLICER ) )   // &&  ch->pcdata->in_room != room)
    {
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-      ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", ship->name );
-      ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-      ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-      ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O Terminal startup&W^O: %-30.30s &B^x]&W^x\r\n", ship->name );
+      ch_printf( ch, "&B[&r^O Login           &W^O: %-20.20s           &B^x]&W^x\r\n", ch->name );
+      ch_printf( ch, "&B[&r^O Access Code     &W^O: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
+      ch_printf( ch, "&B[&r^O Accessing Core  &W^O: Stand by                       &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O &rCore Access     &W: Denied - Login Disabled        &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O Core Access     &W^O: Denied - Login Disabled        &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
       learn_from_failure( ch, gsn_disable );
       return;
@@ -1525,16 +1523,16 @@ void do_disableship( CHAR_DATA * ch, char *argument )
    }
 
    ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-   ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", ship->name );
-   ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-   ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-   ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
+   ch_printf( ch, "&B[&r^O Terminal startup&W^O: %-30.30s &B^x]&W^x\r\n", ship->name );
+   ch_printf( ch, "&B[&r^O Login           &W^O: %-20.20s           &B^x]&W^x\r\n", ch->name );
+   ch_printf( ch, "&B[&r^O Access Code     &W^O: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
+   ch_printf( ch, "&B[&r^O Accessing Core  &W^O: Stand by                       &B^x]&W^x\r\n" );
    ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
    ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
    ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
    ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O &rCore Access     &W: Granted                        &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O &rShip %-8.8s   &W: Disabled                       &B^x]&W^x\r\n", disable );
+   ch_printf( ch, "&B[&r^O Core Access     &W^O: Granted                        &B^x]&W^x\r\n" );
+   ch_printf( ch, "&B[&r^O Ship %-8.8s   &W^O: Disabled                       &B^x]&W^x\r\n", disable );
    ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
    //xpgain = UMIN( obj->cost*10 ,( exp_level(ch->skill_level[SLICER_ABILITY]+1) - exp_level(ch->skill_level[SLICER_ABILITY]) ) );
    xpgain = 3000;
@@ -1546,7 +1544,7 @@ void do_disableship( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_assignpilot( CHAR_DATA * ch, char *argument )
+void do_assignpilot( CHAR_DATA * ch, const char *argument )
 {
 
    SHIP_DATA *ship1;
@@ -1610,7 +1608,7 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg1, ch->dest_buf );
+         strcpy( arg1, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1634,33 +1632,33 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
       return;
    if( number_percent(  ) > schance * 2 || ( !checkdata ) || ( !ship ) )
    {
-      ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-      ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", ship->name );
-      ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-      ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-      ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O &rCore Access     &W: Denied                         &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
+      ch_printf( ch, "&B|+-----+-----+-----+-----+-----+-----+-----+-----+-|&W\r\n" );
+      ch_printf( ch, "&B|&r^O Terminal startup&W^O: %-30.30s &B^x|&W^x\r\n", ship->name );
+      ch_printf( ch, "&B|&r^O Login           &W^O: %-20.20s           &B^x|&W^x\r\n", ch->name );
+      ch_printf( ch, "&B|&r^O Access Code     &W^O: %-10d                     &B^x|&W^x\r\n", number_range( 0, 999999 ) );
+      ch_printf( ch, "&B|&r^O Accessing Core  &W^O: Stand by                       &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|&r^O Core Access     &W^O: Denied                         &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|+-----+-----+-----+-----+-----+-----+-----+-----+-|&W\r\n" );
       learn_from_failure( ch, gsn_assignpilot );
       return;
    }
    if( IS_SET( ship->flags, SHIP_NOSLICER ) )
    {
-      ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-      ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", ship->name );
-      ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-      ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-      ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O &rCore Access     &W: Denied - Login Disabled        &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
+      ch_printf( ch, "&B|+-----+-----+-----+-----+-----+-----+-----+-----+-|&W\r\n" );
+      ch_printf( ch, "&B|&r^O Terminal startup&W^O: %-30.30s &B^x|&W^x\r\n", ship->name );
+      ch_printf( ch, "&B|&r^O Login           &W^O: %-20.20s           &B^x|&W^x\r\n", ch->name );
+      ch_printf( ch, "&B|&r^O Access Code     &W^O: %-10d                     &B^x|&W^x\r\n", number_range( 0, 999999 ) );
+      ch_printf( ch, "&B|&r^O Accessing Core  &W^O: Stand by                       &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|&r^O Core Access     &W^O: Denied - Login Disabled        &B^x|&W^x\r\n" );
+      ch_printf( ch, "&B|+-----+-----+-----+-----+-----+-----+-----+-----+-|&W\r\n" );
       learn_from_failure( ch, gsn_assignpilot );
       return;
    }
@@ -1668,19 +1666,19 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
    STRFREE( ship->pilot );
    ship->pilot = STRALLOC( arg1 );
 
-   ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-   ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", ship->name );
-   ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
+   ch_printf( ch, "&B|+-----+-----+-----+-----+-----+-----+-----+-----+-|&W\r\n" );
+   ch_printf( ch, "&B|&r^O Terminal startup&W^O: %-30.30s &B^x|&W^x\r\n", ship->name );
+   ch_printf( ch, "&B|&r^O Login           &W^O: %-20.20s           &B^x|&W^x\r\n", ch->name );
 
-   ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-   ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O &rCore Access     &W: Granted                        &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O &rShip Pilot Added&W: %-10.10s                     &B^x]&W^x\r\n", arg1 );
-   ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
+   ch_printf( ch, "&B|&r^O Access Code     &W^O: %-10d                     &B^x|&W^x\r\n", number_range( 0, 999999 ) );
+   ch_printf( ch, "&B|&r^O Accessing Core  &W^O: Stand by                       &B^x|&W^x\r\n" );
+   ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+   ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+   ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+   ch_printf( ch, "&B|^O                                                  &B^x|&W^x\r\n" );
+   ch_printf( ch, "&B|&r^O Core Access     &W^O: Granted                        &B^x|&W^x\r\n" );
+   ch_printf( ch, "&B|&r^O Ship Pilot Added&W^O: %-10.10s                     &B^x|&W^x\r\n", arg1 );
+   ch_printf( ch, "&B|+-----+-----+-----+-----+-----+-----+-----+-----+-|&W\r\n" );
    //xpgain = UMIN( obj->cost*10 ,( exp_level(ch->skill_level[SLICER_ABILITY]+1) - exp_level(ch->skill_level[SLICER_ABILITY]) ) );
    xpgain = 3000;
    learn_from_success( ch, gsn_assignpilot );
@@ -1691,7 +1689,7 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_slicebank( CHAR_DATA * ch, char *argument )
+void do_slicebank( CHAR_DATA * ch, const char *argument )
 {
    DESCRIPTOR_DATA *d;
    bool checkdata;
@@ -1766,8 +1764,8 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
          if( !ch->dest_buf_2 )
             return;
 
-         strcpy( arg, ch->dest_buf );
-         strcpy( arg2, ch->dest_buf_2 );
+         strcpy( arg, ( const char * )ch->dest_buf );
+         strcpy( arg2, ( const char * )ch->dest_buf_2 );
          DISPOSE( ch->dest_buf );
          DISPOSE( ch->dest_buf_2 );
          break;
@@ -1810,14 +1808,14 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
    {
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
+      ch_printf( ch, "&z|&x^g Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Passcode: *********                                                   ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Invalid passcode.                                                     ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Invalid passcode.                                                     ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       learn_from_failure( ch, gsn_slicebank );
@@ -1827,17 +1825,17 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
    {
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
+      ch_printf( ch, "&z|&x^g Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Passcode: *********                                                   ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Processing request, stand by.                                         ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Request DENIED. Account owner has been notified.                      ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Request DENIED. Account owner has been notified.                      ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
 
@@ -1849,16 +1847,16 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
    {
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
+      ch_printf( ch, "&z|&x^g Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Passcode: *********                                                   ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Account %-15.15s is not active.                                ^x&z|\r\n", arg2 );
+      ch_printf( ch, "&z|&x^g Account %-15.15s is not active.                                ^x&z|\r\n", arg2 );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       return;
@@ -1869,17 +1867,17 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
    {
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
+      ch_printf( ch, "&z|&x^g Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Passcode: *********                                                   ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Processing request, stand by.                                         ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-      ch_printf( ch, "&z|^g&x Request DENIED, transfer too high. Account owner has been notified.   ^x&z|\r\n" );
+      ch_printf( ch, "&z|&x^g Request DENIED, transfer too high. Account owner has been notified.   ^x&z|\r\n" );
       ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
       ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       send_to_char( "&R[&YBank: &WALERT&R] &WAn attempt was made on your bank account.\r\n", d->character );
@@ -1888,17 +1886,17 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
 
    ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-   ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+   ch_printf( ch, "&z|&x^g Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-   ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
+   ch_printf( ch, "&z|&x^g Login: %d                                                          ^x&z|\r\n",
               number_range( 11111, 99999 ) );
-   ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+   ch_printf( ch, "&z|&x^g Passcode: *********                                                   ^x&z|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
-   ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
-   ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\r\n" );
+   ch_printf( ch, "&z|&x^g Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
+   ch_printf( ch, "&z|&x^g Processing request, stand by.                                         ^x&z|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
-   ch_printf( ch, "&z|^g&x Request accepted. Credits transferred.                                ^x&z|\r\n" );
+   ch_printf( ch, "&z|&x^g Request accepted. Credits transferred.                                ^x&z|\r\n" );
    ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
    ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
 
@@ -1913,12 +1911,11 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_checkprints( CHAR_DATA * ch, char *argument )
+void do_checkprints( CHAR_DATA * ch, const char *argument )
 {
    bool checkdata;
    bool checkcomm;
    OBJ_DATA *obj;
-   int x;
    long xpgain;
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_INPUT_LENGTH];
@@ -2000,7 +1997,7 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -2040,20 +2037,19 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
       send_to_char( "Error: No Killer. Contact Immortals.\r\n", ch );
       return;
    }
-   x = number_percent(  );
 
    if( number_percent(  ) > schance * 2 )
    {
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-      ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", obj->name );
-      ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-      ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-      ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O ^OTerminal startup&W^O: %-30.30s &B^x]&W^x\r\n", obj->name );
+      ch_printf( ch, "&B[&r^O ^OLogin           &W^O: %-20.20s           &B^x]&W^x\r\n", ch->name );
+      ch_printf( ch, "&B[&r^O ^OAccess Code     &W^O: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
+      ch_printf( ch, "&B[&r^O ^OAccessing Core  &W^O: Stand by                       &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-      ch_printf( ch, "&B[^O &rCore Access     &W: Denied                         &B^x]&W^x\r\n" );
+      ch_printf( ch, "&B[&r^O ^OCore Access     &W^O: Denied                         &B^x]&W^x\r\n" );
       ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
       learn_from_failure( ch, gsn_checkprints );
       return;
@@ -2061,16 +2057,16 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
 
 
    ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
-   ch_printf( ch, "&B[^O &rTerminal startup&W: %-30.30s &B^x]&W^x\r\n", obj->name );
-   ch_printf( ch, "&B[^O &rLogin           &W: %-20.20s           &B^x]&W^x\r\n", ch->name );
-   ch_printf( ch, "&B[^O &rAccess Code     &W: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
-   ch_printf( ch, "&B[^O &rAccessing Core  &W: Stand by                       &B^x]&W^x\r\n" );
+   ch_printf( ch, "&B[&r^O ^OTerminal startup&W^O: %-30.30s &B^x]&W^x\r\n", obj->name );
+   ch_printf( ch, "&B[&r^O ^OLogin           &W^O: %-20.20s           &B^x]&W^x\r\n", ch->name );
+   ch_printf( ch, "&B[&r^O ^OAccess Code     &W^O: %-10d                     &B^x]&W^x\r\n", number_range( 0, 999999 ) );
+   ch_printf( ch, "&B[&r^O ^OAccessing Core  &W^O: Stand by                       &B^x]&W^x\r\n" );
    ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
    ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
    ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
    ch_printf( ch, "&B[^O                                                  &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O &rCore Access     &W: Granted                        &B^x]&W^x\r\n" );
-   ch_printf( ch, "&B[^O &rPrint match     &W: %-15.15s                &B^x]&W^x\r\n",
+   ch_printf( ch, "&B[&r^O ^OCore Access     &W^O: Granted                        &B^x]&W^x\r\n" );
+   ch_printf( ch, "&B[&r^O ^OPrint match     &W^O: %-15.15s                &B^x]&W^x\r\n",
               obj->killer ? obj->killer : "Error, Show imm" );
    ch_printf( ch, "&B[+-----+-----+-----+-----+-----+-----+-----+-----+-]&W\r\n" );
    //xpgain = UMIN( obj->cost*10 ,( exp_level(ch->skill_level[SLICER_ABILITY]+1) - exp_level(ch->skill_level[SLICER_ABILITY]) ) );

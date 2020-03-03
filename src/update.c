@@ -40,27 +40,27 @@ extern int ppl_in_arena;
 extern int ppl_challenged;
 
 /* from swskills.c */
-void add_reinforcements args( ( CHAR_DATA * ch ) );
+void add_reinforcements ( CHAR_DATA * ch );
 
 /*
  * Local functions.
  */
-int hit_gain args( ( CHAR_DATA * ch ) );
-int mana_gain args( ( CHAR_DATA * ch ) );
-int move_gain args( ( CHAR_DATA * ch ) );
-void gain_addiction args( ( CHAR_DATA * ch ) );
-void mobile_update args( ( void ) );
-void weather_update args( ( void ) );
-void update_taxes args( ( void ) );
-void char_update args( ( void ) );
-void obj_update args( ( void ) );
-void aggr_update args( ( void ) );
-void room_act_update args( ( void ) );
-void obj_act_update args( ( void ) );
-void char_check args( ( void ) );
-void drunk_randoms args( ( CHAR_DATA * ch ) );
-void halucinations args( ( CHAR_DATA * ch ) );
-void subtract_times args( ( struct timeval * etime, struct timeval * sttime ) );
+int hit_gain  ( CHAR_DATA * ch );
+int mana_gain  ( CHAR_DATA * ch );
+int move_gain  ( CHAR_DATA * ch );
+void gain_addiction  ( CHAR_DATA * ch );
+void mobile_update  ( void );
+void weather_update  ( void );
+void update_taxes  ( void );
+void char_update  ( void );
+void obj_update  ( void );
+void aggr_update  ( void );
+void room_act_update  ( void );
+void obj_act_update  ( void );
+void char_check  ( void );
+void drunk_randoms  ( CHAR_DATA * ch );
+void halucinations  ( CHAR_DATA * ch );
+void subtract_times  ( struct timeval * etime, struct timeval * sttime );
 
 /*
  * Global Variables
@@ -71,7 +71,7 @@ OBJ_DATA *gobj_prev;
 
 CHAR_DATA *timechar;
 
-char *corpse_descs[] = {
+const char *corpse_descs[] = {
    "The corpse of %s will soon be gone.",
    "The corpse of %s lies here.",
    "The corpse of %s lies here.",
@@ -79,7 +79,7 @@ char *corpse_descs[] = {
    "The corpse of %s lies here."
 };
 
-char *d_corpse_descs[] = {
+const char *d_corpse_descs[] = {
    "The shattered remains %s will soon be gone.",
    "The shattered remains %s are here.",
    "The shattered remains %s are here.",
@@ -751,7 +751,7 @@ int hit_gain( CHAR_DATA * ch )
          case POS_STUNNED:
             return get_curr_con( ch ) * 2;
          case POS_SLEEPING:
-            gain += get_curr_con( ch ) * 1.5;
+            gain += ( int )( get_curr_con( ch ) * 1.5 );
             break;
          case POS_RESTING:
             gain += get_curr_con( ch );
@@ -813,7 +813,7 @@ int mana_gain( CHAR_DATA * ch )
             gain += get_curr_int( ch ) * 3;
             break;
          case POS_RESTING:
-            gain += get_curr_int( ch ) * 1.5;
+            gain += ( int )( get_curr_int( ch ) * 1.5 );
             break;
       }
 
@@ -887,7 +887,6 @@ int move_gain( CHAR_DATA * ch )
 void gain_addiction( CHAR_DATA * ch )
 {
    short drug;
-   ch_ret retcode;
    AFFECT_DATA af;
 
    for( drug = 0; drug <= 9; drug++ )
@@ -948,7 +947,7 @@ void gain_addiction( CHAR_DATA * ch )
       {
          ch_printf( ch, "You feel like you are going to die. You NEED %s\r\n.", spice_table[drug] );
          worsen_mental_state( ch, 2 );
-         retcode = damage( ch, ch, 5, TYPE_UNDEFINED );
+         damage( ch, ch, 5, TYPE_UNDEFINED );
       }
       else if( ch->pcdata->addiction[drug] > ch->pcdata->drug_level[drug] + 100 )
       {
@@ -978,7 +977,6 @@ void gain_addiction( CHAR_DATA * ch )
       else if( ch->pcdata->addiction[drug] > 0 && ch->pcdata->drug_level[drug] <= 0 )
          ch->pcdata->addiction[drug]--;
    }
-
 }
 
 void gain_condition( CHAR_DATA * ch, int iCond, int value )
@@ -996,25 +994,27 @@ void gain_condition( CHAR_DATA * ch, int iCond, int value )
    {
       switch ( iCond )
       {
-         case COND_FULL:
-            if( ch->top_level <= LEVEL_AVATAR )
+        case COND_FULL:
+            if( ch->top_level <= LEVEL_IMMORTAL )
             {
                set_char_color( AT_HUNGRY, ch );
-               send_to_char( "You are STARVING!\r\n", ch );
+               send_to_char( "You starvation begins to DIMINISH your health!\n\r", ch );
                act( AT_HUNGRY, "$n is starved half to death!", ch, NULL, NULL, TO_ROOM );
                worsen_mental_state( ch, 1 );
-               retcode = damage( ch, ch, 5, TYPE_UNDEFINED );
+               ch->hit = (ch->hit - 5);
+               update_pos( ch );
             }
             break;
 
          case COND_THIRST:
-            if( ch->top_level <= LEVEL_AVATAR )
+            if( ch->top_level <= LEVEL_IMMORTAL )
             {
                set_char_color( AT_THIRSTY, ch );
-               send_to_char( "You are DYING of THIRST!\r\n", ch );
+               send_to_char( "You thirst begins to DIMINISH your health!\n\r", ch );
                act( AT_THIRSTY, "$n is dying of thirst!", ch, NULL, NULL, TO_ROOM );
                worsen_mental_state( ch, 2 );
-               retcode = damage( ch, ch, 5, TYPE_UNDEFINED );
+               ch->hit = (ch->hit - 5);
+               update_pos( ch );
             }
             break;
 
@@ -1897,7 +1897,7 @@ void char_update( void )
                   || time_info.day == 20 || time_info.day == 30 ) && time_info.hour == 1 )
          {
             char buf[MAX_STRING_LENGTH];
-            amount = ch->pcdata->bank * .02;
+            amount = ( int )( ch->pcdata->bank * .02 );
             ch->pcdata->bank += amount;
             sprintf( buf, "&B[&YBank Info&W: %s&B] &WYou made&W: &Y%ld&W interest this month.\r\n", ch->name, amount );
             send_to_char( buf, ch );
@@ -1948,7 +1948,7 @@ void obj_update( void )
    for( obj = last_object; obj; obj = gobj_prev )
    {
       CHAR_DATA *rch;
-      char *message;
+      const char *message;
 
       if( obj == first_object && obj->prev )
       {
@@ -2335,7 +2335,7 @@ void aggr_update( void )
     */
    while( ( apdtmp = mob_act_list ) != NULL )
    {
-      wch = mob_act_list->vo;
+      wch = (CHAR_DATA*)mob_act_list->vo;
       if( !char_died( wch ) && wch->mpactnum > 0 )
       {
          MPROG_ACT_LIST *tmp_act;
@@ -2372,7 +2372,7 @@ void aggr_update( void )
 
       for( ch = wch->in_room->first_person; ch; ch = ch_next )
       {
-         int count;
+         int count = 0;
 
          ch_next = ch->next_in_room;
 
@@ -2431,7 +2431,7 @@ void aggr_update( void )
 }
 
 /* From interp.c */
-bool check_social args( ( CHAR_DATA * ch, char *command, char *argument ) );
+bool check_social( CHAR_DATA * ch, const char *command, const char *argument );
 
 /*
  * drunk randoms	- Tricops
@@ -2478,7 +2478,7 @@ void halucinations( CHAR_DATA * ch )
 {
    if( ch->mental_state >= 30 && number_bits( 5 - ( ch->mental_state >= 50 ) - ( ch->mental_state >= 75 ) ) == 0 )
    {
-      char *t;
+      const char *t;
 
       switch ( number_range( 1, UMIN( 20, ( ch->mental_state + 5 ) / 5 ) ) )
       {
@@ -2718,7 +2718,7 @@ void update_handler( void )
 
    if( --pulse_point <= 0 )
    {
-      pulse_point = number_range( PULSE_TICK * 0.75, PULSE_TICK * 1.25 );
+      pulse_point = number_range( ( int )( PULSE_TICK * 0.75 ), ( int ) ( PULSE_TICK * 1.25 ) );
 
       auth_update(  );  /* Gorog */
       weather_update(  );
@@ -2740,6 +2740,7 @@ void update_handler( void )
        * although I dunno how it could lag too much, it was just a bunch
        * of comparisons.. 
        */
+      check_dns(  );
       check_pfiles( 0 );
       reboot_check( 0 );
    }
@@ -2846,7 +2847,7 @@ void remove_portal( OBJ_DATA * portal )
 
 void reboot_check( time_t reset )
 {
-   static char *tmsg[] = { "SYSTEM: Reboot in 10 seconds.",
+   static const char *tmsg[] = { "SYSTEM: Reboot in 10 seconds.",
       "SYSTEM: Reboot in 30 seconds.",
       "SYSTEM: Reboot in 1 minute.",
       "SYSTEM: Reboot in 2 minutes.",
@@ -3162,8 +3163,8 @@ void auction_update( void )
             act( AT_ACTION, "&wA courier arrives, and hands you $p.", auction->buyer, auction->item, NULL, TO_CHAR );
             obj_to_char( auction->item, auction->buyer );
 
-            pay = ( int )auction->bet * 0.9;
-            tax = ( int )auction->bet * 0.1;
+            pay = ( int )( auction->bet * 0.9 );
+            tax = ( int )( auction->bet * 0.1 );
             if( auction->seller->in_room->area )
                boost_economy( auction->seller->in_room->area, tax );
             auction->seller->gold += pay; /* give him the money, tax 10 % */
@@ -3183,7 +3184,7 @@ void auction_update( void )
             act( AT_ACTION, "&wA courier arrives, and returns $p to you.", auction->seller, auction->item, NULL, TO_CHAR );
 
             obj_to_char( auction->item, auction->seller );
-            tax = ( int )auction->item->cost * 0.05;
+            tax = ( int )( auction->item->cost * 0.05 );
             boost_economy( auction->seller->in_room->area, tax );
             sprintf( buf, "&wYou are charged an auction fee of &Y%d&w credits.\r\n", tax );
             send_to_char( buf, auction->seller );

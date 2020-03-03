@@ -1,109 +1,101 @@
-#AREA   {PROTO} Asteroid 3~
+#FUSSAREA
+#AREADATA
+Version      1
+Name         {PROTO} Asteroid 3~
+Author       Eleven~
+Ranges       0 0 0 0
+Economy      0 6250000
+#ENDAREADATA
 
-
-
-#AUTHOR Eleven~
-
-#RANGES
-0 0 0 0
-$
-
-#FLAGS
-0
-
-#ECONOMY 0 6250000
-
-#MOBILES
-#18236
-lomob~
-a newly created lomob~
-Some god abandoned a newly created lomob here.
+#MOBILE
+Vnum       18236
+Keywords   lomob~
+Short      a newly created lomob~
+Long       Some god abandoned a newly created lomob here.
 ~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#MOBILE
+Vnum       18240
+Keywords   himob~
+Short      a newly created himob~
+Long       Some god abandoned a newly created himob here.
 ~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#18240
-himob~
-a newly created himob~
-Some god abandoned a newly created himob here.
-~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#0
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
 
+#OBJECT
+Vnum     18236
+Keywords loobj~
+Type     trash~
+Short    a loobj~
+Long     A loobj is here.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
 
-#OBJECTS
-#18236
-loobj~
-a loobj~
-A loobj is here.~
-~
-13 0 0
-0 0 0 0
-1 0 0
-#18240
-hiobj~
-a hiobj~
-A hiobj is here.~
-~
-13 0 0
-0 0 0 0
-1 0 0
-#0
+#OBJECT
+Vnum     18240
+Keywords hiobj~
+Type     trash~
+Short    a hiobj~
+Long     A hiobj is here.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
 
+#ROOM
+Vnum     18236
+Name     1~
+Sector   city~
+Flags    nomob~
+Stats    0 0 840
+Reset M 0 18236 1 18236
+Reset O 0 18236 1 18236
+#ENDROOM
 
-#ROOMS
-#18236
-1~
-~
-0 4 1 0 0 0 840
-S
-#18237
-A huge crater~
-~
-0 52 1 2048 0 0 840
-S
-#18240
-0~
-~
-0 4 1 0 0 0 840
-S
-#0
+#ROOM
+Vnum     18237
+Name     A huge crater~
+Sector   city~
+Flags    nomob can_land can_fly~
+Flags2   airless~
+Stats    0 0 840
+#ENDROOM
 
+#ROOM
+Vnum     18240
+Name     0~
+Sector   city~
+Flags    nomob~
+Stats    0 0 840
+Reset M 0 18240 1 18240
+Reset O 0 18240 1 18240
+#ENDROOM
 
-#RESETS
-M 1 18236 1 18236
-O 1 18236 1 18236
-M 1 18240 1 18240
-O 1 18240 1 18240
-S
-
-
-#SHOPS
-0
-
-
-#REPAIRS
-0
-
-
-#SPECIALS
-S
-
-
-#$
+#ENDAREA

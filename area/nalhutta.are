@@ -1,1849 +1,2862 @@
-#AREA   Princeton - Nal Hutta~
+#FUSSAREA
+#AREADATA
+Version      1
+Name         Princeton - Nal Hutta~
+Author       Princeton~
+Ranges       0 36 0 36
+Economy      0 2581241
+ResetMsg     Smog burns yours insides~
+ResetFreq    10
+#ENDAREADATA
 
-
-
-#AUTHOR Princeton~
-
-#RANGES
-0 36 0 36
-$
-
-#RESETMSG Smog burns yours insides~
-
-#FLAGS
-0 10
-
-#ECONOMY 0 2581241
-
-#MOBILES
-#7801
-&BImmigration and Customs Agent~
-&BImmigration and Customs Agent~
-&BImmigration and Customs Agent
+#MOBILE
+Vnum       7801
+Keywords   &BImmigration and Customs Agent~
+Short      &BImmigration and Customs Agent~
+Long       &BImmigration and Customs Agent
 ~
-&B This customs agent has a spick and span uniform, he must have
+Desc       &B This customs agent has a spick and span uniform, he must have
 not ever seen any real action.  He looks quite tired so be vary
 very quite!
 ~
-67 0 0 Z
-7 0 82 1d10+70 0d4+2
-15 0
-4 3 1
-10 10 10 10 10 10 10
-0 0 0 0 0
-4 0 0 0 1 0 0
-1 1 0 0 0 0 0 2
-0 0 0 0 0 0 0 0
-> speech_prog 75~
-wake customs
+Race       Hutt~
+Position   sleeping~
+DefPos     stunned~
+Specfun    spec_customs_weapons~
+Gender     male~
+Actflags   npc sentinel stayarea~
+Stats1     0 7 0 82 15 0
+Stats2     1 10 70
+Stats3     0 4 2
+Stats4     0 0 0 1 1
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   hutt~
+Defenses   dodge~
+#MUDPROG
+Progtype  speech_prog~
+Arglist   75~
+Comlist   wake customs
 ~
-|
-#7802
-Weequay Guard~
-A weequay guard~
-A strong weequay guard
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       7802
+Keywords   Weequay Guard~
+Short      A weequay guard~
+Long       A strong weequay guard
 ~
+Race       Weequay~
+Position   aggressive~
+DefPos     aggressive~
+Specfun    spec_police_attack~
+Gender     male~
+Actflags   npc sentinel~
+Stats1     0 23 0 -132 0 0
+Stats2     4 10 230
+Stats3     2 4 2
+Stats4     0 0 0 4 4
+Attribs    23 13 15 10 11 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic wookiee twilek rodian mon_calamari noghri jawa verpine defel trandoshan hapan binary firrerreo clan shistavanen kubaz gand gotal falleen ithorian~
+Speaking   basic wookiee twilek rodian mon_calamari noghri jawa verpine defel trandoshan hapan binary firrerreo clan shistavanen kubaz gand gotal falleen ithorian~
+#ENDMOBILE
+
+#MOBILE
+Vnum       7803
+Keywords   XR71D~
+Short      XR71D~
+Long       A janitor droid
 ~
-3 0 0 Z
-23 0 -132 4d10+230 2d4+2
-0 0
-8 8 1
-23 13 15 10 11 10 10
-0 0 0 0 0
-45 0 0 0 1768847727 1768847727 0
-4 4 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7803
-XR71D~
-XR71D~
-A janitor droid
+Race       Droid~
+Position   aggressive~
+DefPos     aggressive~
+Specfun    spec_janitor~
+Gender     female~
+Actflags   npc scavenger practice scholar droid~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   hutt~
+#MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   say HEY, I JUST MOPPED THERE!
 ~
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       7804
+Keywords   &Rtraining remote~
+Short      &RTraining Remote~
+Long       &RA Training Remote
 ~
-68158469 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 2
-10 10 10 10 10 10 10
-0 0 0 0 0
-21 0 0 0 1 16 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-> all_greet_prog 100~
-say HEY, I JUST MOPPED THERE!
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel practice nocorpse~
+Stats1     0 25 0 -100 0 0
+Stats2     5 10 250
+Stats3     2 4 2
+Stats4     0 0 0 5 5
+Attribs    25 10 10 25 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#MOBILE
+Vnum       7805
+Keywords   Chef Sergio~
+Short      Chef Sergio~
+Long       Master Chef Sergio stands here.
 ~
-|
-#7804
-&Rtraining remote~
-&RTraining Remote~
-&RA Training Remote
-~
-~
-134218755 0 0 Z
-25 0 -100 5d10+250 2d4+2
-0 0
-8 8 0
-25 10 10 25 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-5 5 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7805
-Chef Sergio~
-Chef Sergio~
-Master Chef Sergio stands here.
-~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 17 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-> speech_prog filet 100~
-mpoload 7804
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic hutt~
+#MUDPROG
+Progtype  speech_prog~
+Arglist   filet 100~
+Comlist   mpoload 7804
 give filet $n
 ~
-> speech_prog menu 100~
-say I serve Filet of Bantha.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   menu 100~
+Comlist   say I serve Filet of Bantha.
 say and Iced Cafe
 ~
-> speech_prog cafe 100~
-mpoload 7805
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   cafe 100~
+Comlist   mpoload 7805
 give cafe $n
 ~
-|
-#7806
-Banker~
-&pA banker stands behind a counter.~
-&pA banker stands behind a counter.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       7806
+Keywords   Banker~
+Short      &pA banker stands behind a counter.~
+Long       &pA banker stands behind a counter.
 ~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   say Hello $n, what can I do for you today?
 ~
-3 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-> all_greet_prog 100~
-say Hello $n, what can I do for you today?
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       7807
+Keywords   Smuggler~
+Short      A smuggler~
+Long       A smuggler sits in the shadow.
 ~
-|
-#7807
-Smuggler~
-A smuggler~
-A smuggler sits in the shadow.
-~
-~
-3 0 0 Z
-36 0 10 7d10+360 3d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-4 0 0 0 1 16 0
-7 7 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-> all_greet_prog 100~
-say *pssss* c'meer
+Race       Hutt~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Stats1     0 36 0 10 0 0
+Stats2     7 10 360
+Stats3     3 4 2
+Stats4     0 0 0 7 7
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   hutt~
+#MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   say *pssss* c'meer
 say Can ya do me a fava'?
 ~
-> speech_prog yes 100~
-say I need ya to pick meh up sumpin at da Dirtie Huttt Dizco
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   yes 100~
+Comlist   say I need ya to pick meh up sumpin at da Dirtie Huttt Dizco
 say Just go to da bouncah an say 'Where are the human strippers?'
 ~
-> give_prog Private Package~
-Say Ahh this is what i needed to complete my shipment!
+#ENDPROG
+
+#MUDPROG
+Progtype  give_prog~
+Arglist   Private Package~
+Comlist   Say Ahh this is what i needed to complete my shipment!
 mpwithdraw 500
 give 500 credits $n
 mpadvance $n 4 2500
 mpat 101 drop package
 mpat 101 mppurge
 ~
-|
-#7808
-Bouncer~
-A bouncer~
-A strong bouncer is here
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       7808
+Keywords   Bouncer~
+Short      A bouncer~
+Long       A strong bouncer is here
 ~
-~
-3 0 0 Z
-36 0 -234 7d10+360 3d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-16 0 0 0 65538 65536 0
-7 7 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-> speech_prog Where are the human strippers~
-say Ah, follow me.
+Race       Shistavanen~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Stats1     0 36 0 -234 0 0
+Stats2     7 10 360
+Stats3     3 4 2
+Stats4     0 0 0 7 7
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     wookiee sullustan~
+Speaking   sullustan~
+#MUDPROG
+Progtype  speech_prog~
+Arglist   Where are the human strippers~
+Comlist   say Ah, follow me.
 mptransfer $n 7864
 mptransfer self 7864
 mpforce $n look
 say Take that package over there, it should be what you're looking for.
 w
 ~
-|
-#7809
-til~
-A t'landa~
-A t'landa til stripper
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       7809
+Keywords   til~
+Short      A t'landa~
+Long       A t'landa til stripper
 ~
+Race       Hutt~
+Position   aggressive~
+DefPos     aggressive~
+Gender     female~
+Actflags   npc sentinel~
+Stats1     0 4 0 90 0 0
+Stats2     0 10 40
+Stats3     0 4 2
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   hutt~
+#ENDMOBILE
+
+#MOBILE
+Vnum       7810
+Keywords   Innkeeper~
+Short      An Innkeeper~
+Long       An Innkeeper is here
 ~
-3 0 0 Z
-4 0 90 0d10+40 0d4+2
-0 0
-8 8 2
-10 10 10 10 10 10 10
-0 0 0 0 0
-4 0 0 0 1 16 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7810
-Innkeeper~
-An Innkeeper~
-An Innkeeper is here
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   say Care for a room?  Only 25 credits.
 ~
-~
-3 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-> all_greet_prog 100~
-say Care for a room?  Only 25 credits.
-~
-> bribe_prog 25 100~
-say Ahh here you go
+#ENDPROG
+
+#MUDPROG
+Progtype  bribe_prog~
+Arglist   25 100~
+Comlist   say Ahh here you go
 mptransfer $n 7848
 ~
-|
-#7811
-shop1~
-dealer~
-A weapons dealer
-~
-~
-3 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-4 0 0 0 1 0 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7812
-bar tender~
-A bar tender~
-A bar tender washes a glass
-~
-~
-3 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7813
-Nalba~
-Nalba~
-Nalba the Hutt
-~
-~
-3 0 0 Z
-13 0 67 2d10+130 1d4+2
-0 0
-8 8 0
-25 10 10 25 10 10 10
-0 0 0 0 0
-4 0 0 0 1 0 0
-2 2 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7814
-Hutt Citizen~
-A hutt citizen~
-A hutt citizen walks around.
-~
-~
-5 0 0 Z
-4 0 0 0d10+40 0d4+2
-3 0
-8 8 1
-10 10 10 10 10 10 10
-0 0 0 0 0
-4 0 0 0 1 0 0
-0 0 0 0 0 0 0 0
-128 0 0 0 0 0 0 0
-#7815
-EG150~
-EG150~
-EG150 stands here
-~
-~
-3 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 25 10 10 10
-0 0 0 0 0
-21 0 0 0 1 0 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7816
-Smith~
-BS18103~
-BS18103 the smithing droid
-~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7817
-EG128~
-EG128~
-EG128 a sales droid
-~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 25 10 10 10
-0 0 0 0 0
-21 0 0 0 1 0 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7818
-Trainer~
-A smuggler~
-A smuggling trainer sits here
-~
-~
-1049601 0 0 Z
-30 0 25 6d10+300 3d4+2
-0 0
-8 8 1
-24 24 24 24 24 20 10
-0 0 0 0 0
-0 0 0 0 3 1 0
-6 6 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7819
-hologram~
-A hologram~
-A hologram of Mara Jade
-~
-~
-1 0 0 Z
-25 0 -45 5d10+250 2d4+2
-0 0
-8 8 0
-24 16 19 21 10 16 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-5 5 0 0 0 0 0 2
-0 0 0 0 0 0 0 0
-> rand_prog 100~
-rpecho The hologram of Mara Jade flickers.
-~
-|
-#7820
-Wandering Twi'lek~
-Twi'lek~
-A wandering twi'lek looks around
-~
-~
-1 0 0 Z
-14 0 65 2d10+140 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-2 2 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#7900
-hi_mob~
-a newly created hi_mob~
-Some god abandoned a newly created hi_mob here.
-~
-~
-1073741825 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#0
+#ENDPROG
 
+#ENDMOBILE
 
-#OBJECTS
-#7801
-&BA dirty toilet~
-a &BA dirty toilet~
-&BA dirty toilet is here.~
+#MOBILE
+Vnum       7811
+Keywords   shop1~
+Short      dealer~
+Long       A weapons dealer
 ~
-25 0 0
-0 0 0 0
-1 0 0
-#7802
-Toilet~
-&BA nice toilet~
-&BA hutt-sized toilet is mounted to the floor.~
+Race       Hutt~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   hutt~
+ShopData   9 57 5 0 0 102 15 0 23
+#ENDMOBILE
+
+#MOBILE
+Vnum       7812
+Keywords   bar tender~
+Short      A bar tender~
+Long       A bar tender washes a glass
 ~
-12 0 0
-0 0 0 0
-1 0 0
-#7803
-&BA bath~
-&BA bath is here.~
-&BA bath is full of water.~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+ShopData   19 0 0 0 0 120 40 0 23
+#ENDMOBILE
+
+#MOBILE
+Vnum       7813
+Keywords   Nalba~
+Short      Nalba~
+Long       Nalba the Hutt
 ~
-25 0 0
-0 0 0 0
-1 0 0
-#7804
-Filet of Bantha~
-&rA Filet~
-&rA Filet of Bantha~
+Race       Hutt~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Stats1     0 13 0 67 0 0
+Stats2     2 10 130
+Stats3     1 4 2
+Stats4     0 0 0 2 2
+Attribs    25 10 10 25 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   hutt~
+ShopData   0 0 0 0 0 330 75 0 23
+#ENDMOBILE
+
+#MOBILE
+Vnum       7814
+Keywords   Hutt Citizen~
+Short      A hutt citizen~
+Long       A hutt citizen walks around.
 ~
-19 0 1
-0 2 2 0
-1 0 0
-#7805
-Iced Cafe~
-Iced Cafe~
-&CA glass of Iced Cafe.~
+Race       Hutt~
+Position   aggressive~
+DefPos     aggressive~
+Gender     male~
+Actflags   npc scavenger~
+Stats1     0 4 0 0 3 0
+Stats2     0 10 40
+Stats3     0 4 2
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   hutt~
+VIPFlags   nal_hutta~
+#ENDMOBILE
+
+#MOBILE
+Vnum       7815
+Keywords   EG150~
+Short      EG150~
+Long       EG150 stands here
 ~
-17 8192 1
-2 25 0 0
-1 2 0
-#7806
-Private Package~
-A package~
-A package marked &RPRIVATE&w~
+Race       Droid~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 25 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+ShopData   74 0 0 0 0 190 90 0 23
+#ENDMOBILE
+
+#MOBILE
+Vnum       7816
+Keywords   Smith~
+Short      BS18103~
+Long       BS18103 the smithing droid
 ~
-8 0 1
-0 0 0 0
-1 0 0
-#7807
-watch~
-A watch~
-A broken watch flashes &R12:00~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+RepairData 5 9 0 9 1 0 23
+#ENDMOBILE
+
+#MOBILE
+Vnum       7817
+Keywords   EG128~
+Short      EG128~
+Long       EG128 a sales droid
 ~
-18 8192 4097
-0 0 0 0
-2 0 0
-#7808
-speaker~
-A speaker~
-A speaker on the wall~
+Race       Droid~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 25 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+ShopData   5 9 15 0 0 20 1 0 23
+#ENDMOBILE
+
+#MOBILE
+Vnum       7818
+Keywords   Trainer~
+Short      A smuggler~
+Long       A smuggling trainer sits here
 ~
-12 0 0
-0 0 0 0
-1 0 0
-> speech_prog 'key please' 100~
-if clan($n) == Gladius Umbrae
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     male~
+Actflags   npc practice scholar~
+Stats1     0 30 0 25 0 0
+Stats2     6 10 300
+Stats3     3 4 2
+Stats4     0 0 0 6 6
+Attribs    24 24 24 24 24 20 10 0
+Saves      0 0 0 0 0
+Speaks     basic wookiee~
+Speaking   basic~
+#ENDMOBILE
+
+#MOBILE
+Vnum       7819
+Keywords   hologram~
+Short      A hologram~
+Long       A hologram of Mara Jade
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 25 0 -45 0 0
+Stats2     5 10 250
+Stats3     2 4 2
+Stats4     0 0 0 5 5
+Attribs    24 16 19 21 10 16 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Defenses   dodge~
+#MUDPROG
+Progtype  rand_prog~
+Arglist   100~
+Comlist   rpecho The hologram of Mara Jade flickers.
+~
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       7820
+Keywords   Wandering Twi'lek~
+Short      Twi'lek~
+Long       A wandering twi'lek looks around
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 14 0 65 0 0
+Stats2     2 10 140
+Stats3     1 4 2
+Stats4     0 0 0 2 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#MOBILE
+Vnum       7900
+Keywords   hi_mob~
+Short      a newly created hi_mob~
+Long       Some god abandoned a newly created hi_mob here.
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc prototype~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#OBJECT
+Vnum     7801
+Keywords &BA dirty toilet~
+Type     fountain~
+Short    a &BA dirty toilet~
+Long     &BA dirty toilet is here.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7802
+Keywords Toilet~
+Type     furniture~
+Short    &BA nice toilet~
+Long     &BA hutt-sized toilet is mounted to the floor.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7803
+Keywords &BA bath~
+Type     fountain~
+Short    &BA bath is here.~
+Long     &BA bath is full of water.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7804
+Keywords Filet of Bantha~
+Type     food~
+Short    &rA Filet~
+Long     &rA Filet of Bantha~
+WFlags   take~
+Values   0 2 2 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7805
+Keywords Iced Cafe~
+Type     drinkcon~
+Short    Iced Cafe~
+Long     &CA glass of Iced Cafe.~
+Flags    inventory~
+WFlags   take~
+Values   2 25 0 0 0 0
+Stats    1 2 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7806
+Keywords Private Package~
+Type     treasure~
+Short    A package~
+Long     A package marked &RPRIVATE&w~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7807
+Keywords watch~
+Type     key~
+Short    A watch~
+Long     A broken watch flashes &R12:00~
+Flags    inventory~
+WFlags   take wrist~
+Values   0 0 0 0 0 0
+Stats    2 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7808
+Keywords speaker~
+Type     furniture~
+Short    A speaker~
+Long     A speaker on the wall~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#MUDPROG
+Progtype  speech_prog~
+Arglist   'key please' 100~
+Comlist   if clan($n) == Gladius Umbrae
 mpoload watch
 else
 mpecho Sorry $n you are not a member of Gladius Umbrae, guards will be called in at once.
 endif
 ~
-|
-#7899
-Sabre~
-&R<===========&z::&Z[lightsabre&z::~
-&R<===========&z::&Z[lightsabre&z:: lies here~
-~
-13 0 0
-0 0 0 0
-1 0 0
-#7900
-hi_obj~
-a hi_obj~
-A hi_obj is here.~
-~
-13 1073741824 0
-0 0 0 0
-1 0 0
-#0
+#ENDPROG
 
+#ENDOBJECT
 
-#ROOMS
-#7801
-New Hutt Landing Pad~
-&YThis spaceport looked like it was once quite beautiful.  The
+#OBJECT
+Vnum     7809
+Keywords &b A Glass of Mantell's Best &W&w~
+Type     drinkcon~
+Short    &b A Glass of Mantell's Best &W&w~
+Long     &b A Glass of Mantell's Best is lying here.&W&w~
+WFlags   take hold~
+Values   10 10 1 0 0 0
+Stats    4 26 2 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7810
+Keywords credits credit~
+Type     money~
+Short    %d credits~
+Long     Some credits.~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7811
+Keywords blaster Blastech E11 rifle E-11~
+Type     weapon~
+Short    a Blastech E-11 blaster rifle~
+Long     A Blastech E-11 blaster rifle was left here.~
+WFlags   take wield~
+Values   0 8 4 6 2000 2000
+Stats    10 3250 750 0 0
+Affect       -1 -1 2 18 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7812
+Keywords A Force Pike~
+Type     weapon~
+Short    A Force Pike~
+Long     A force pike lies on the ground here, humming quietly.~
+WFlags   take wield~
+Values   0 5 10 11 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7813
+Keywords long vibro-blade~
+Type     weapon~
+Short    a long sharp vibro-blade~
+Long     A sharp looking blade is here.~
+Flags    inventory~
+WFlags   take wield~
+Values   12 15 35 2 100 110
+Stats    4 350 120 0 0
+Affect       -1 -1 -1 18 0
+Affect       -1 -1 3 18 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7814
+Keywords black poison powder~
+Type     trash~
+Short    black poisoning powder~
+Long     A small amount of black poisoning powder sits in a small container on the ground.~
+Flags    inventory~
+WFlags   take hold~
+Values   0 0 0 0 0 0
+Stats    1 5000 4800 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7815
+Keywords A small canteen~
+Type     drinkcon~
+Short    a small canteen~
+Long     A belt sized canteen was dropped here.~
+Flags    inventory~
+WFlags   take~
+Values   10 10 0 0 0 0
+Stats    1 10 1 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7816
+Keywords a needle and some thread~
+Type     thread~
+Short    a needle and some thread~
+Long     A needle and some thread was dropped here~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7817
+Keywords a small battery~
+Type     battery~
+Short    an advanced power cell~
+Long     An advanced power cell is here~
+Flags    inventory~
+WFlags   take hold~
+Values   5000 0 0 0 0 0
+Stats    1 20 2 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7818
+Keywords a toolkit~
+Type     toolkit~
+Short    a toolkit~
+Long     A toolkit was dropped here~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    3 10 1 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7819
+Keywords an oven~
+Type     oven~
+Short    an oven~
+Long     An oven was dropped here~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    5 25 2 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7820
+Keywords a lens~
+Type     lens~
+Short    a lens~
+Long     A lens was dropped here~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7821
+Keywords some chemicals~
+Type     chemical~
+Short    some chemicals~
+Long     Some chemicals were dropped here~
+WFlags   take~
+Values   100 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7822
+Keywords a piece of durasteel~
+Type     durasteel~
+Short    a piece of durasteel~
+Long     A piece of durasteel was dropped here~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7823
+Keywords a superconductor~
+Type     superconductor~
+Short    a superconductor~
+Long     A superconductor was dropped here~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7824
+Keywords a piece of duraplast~
+Type     duraplast~
+Short    a piece of duraplast~
+Long     A piece of duraplast was dropped here~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7825
+Keywords Medkit~
+Type     medpac~
+Short    a Medkit~
+Long     A Medkit is here.~
+Flags    inventory~
+WFlags   take hold~
+Values   10 10 10 0 0 0
+Stats    1 10 1 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7826
+Keywords some cheap fabric~
+Type     fabric~
+Short    some cheap fabric~
+Long     Some cheap fabric was left here~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7827
+Keywords worn looking wookiee bowcaster~
+Type     weapon~
+Short    a worn looking bowcaster~
+Long     A worn looking bowcaster sits here looking smugly lethal.~
+WFlags   take wield~
+Values   15 10 12 9 100 101
+Stats    6 4000 400 0 0
+Affect       -1 -1 2 19 0
+Affect       -1 -1 2 18 0
+#EXDESC
+ExDescKey    bowcaster~
+ExDesc       This piece of Wookiee machinery, while a bit dusty and certainly
+out of use for a while has the capability to quite lethal and
+that message, if any is written all over its blue durasteel and
+actual wood surfaces.
+~
+#ENDEXDESC
+
+#ENDOBJECT
+
+#OBJECT
+Vnum     7828
+Keywords SoroSuub QuickSnap 36T~
+Type     weapon~
+Short    SoroSuub QuickSnap 36T~
+Long     SoroSuub QuickSnap 36T~
+WFlags   take wield~
+Values   0 15 15 6 0 0
+Stats    12 3750 375 0 0
+Affect       -1 -1 2 18 0
+Affect       -1 -1 -5 18 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7829
+Keywords a mirror~
+Type     mirror~
+Short    a mirror~
+Long     A mirror is here.~
+Flags    inventory~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    1 5 1 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7830
+Keywords piece of silk~
+Type     fabric~
+Short    a piece of silk~
+Long     A piece of silk is here.~
+WFlags   take hold~
+Values   3 3 0 0 0 0
+Stats    1 6 0 0 1
+#ENDOBJECT
+
+#OBJECT
+Vnum     7831
+Keywords a piece of satin~
+Type     fabric~
+Short    a piece of satin~
+Long     A piece of satin is here.~
+WFlags   take hold~
+Values   4 4 0 0 0 0
+Stats    1 12 1 0 2
+#ENDOBJECT
+
+#OBJECT
+Vnum     7832
+Keywords piece of cotton~
+Type     fabric~
+Short    a piece of cotton~
+Long     A piece of cotton is here.~
+WFlags   take hold~
+Values   5 5 0 0 0 0
+Stats    1 20 2 0 4
+#ENDOBJECT
+
+#OBJECT
+Vnum     7833
+Keywords piece of leather~
+Type     fabric~
+Short    a piece of leather~
+Long     A piece of leather is here.~
+Flags    inventory~
+WFlags   take hold~
+Values   6 6 0 0 0 0
+Stats    1 30 3 0 8
+#ENDOBJECT
+
+#OBJECT
+Vnum     7834
+Keywords piece of canvas~
+Type     fabric~
+Short    a piece of canvas~
+Long     A piece of canvas is here.~
+WFlags   take hold~
+Values   7 7 0 0 0 0
+Stats    1 50 5 0 16
+#ENDOBJECT
+
+#OBJECT
+Vnum     7835
+Keywords piece of durasteel plating~
+Type     fabric~
+Short    a piece of durasteel plating~
+Long     A piece of durasteel plating is here.~
+WFlags   take hold~
+Values   10 10 0 0 0 0
+Stats    1 125 12 0 32
+#ENDOBJECT
+
+#OBJECT
+Vnum     7836
+Keywords corellian ale~
+Type     drinkcon~
+Short    a bottle of Corellian ale~
+Long     A bottle is here.~
+WFlags   take~
+Values   0 5 5 3 0 0
+Stats    1 32 3 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7837
+Keywords jawa brew~
+Type     drinkcon~
+Short    a pint of special Jawa brew~
+Long     A small bottle is here.~
+WFlags   take~
+Values   4 4 5 0 0 0
+Stats    1 17 1 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7838
+Keywords glass water~
+Type     drinkcon~
+Short    a tall glass of water~
+Long     A glass of water is here.~
+WFlags   take~
+Values   3 3 0 0 0 0
+Stats    1 1 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7899
+Keywords Sabre~
+Type     trash~
+Short    &R<===========&z::&Z[lightsabre&z::~
+Long     &R<===========&z::&Z[lightsabre&z:: lies here~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     7900
+Keywords hi_obj~
+Type     trash~
+Short    a hi_obj~
+Long     A hi_obj is here.~
+Flags    prototype~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#ROOM
+Vnum     7801
+Name     New Hutt Landing Pad~
+Sector   city~
+Flags    can_land can_fly nodropall~
+Flags2   shipyard~
+Stats    0 0 20568
+Desc     &YThis spaceport looked like it was once quite beautiful.  The
 floor is made of cracked marble and there were once decorative
 pillars that now lay in ruins on the perimeter of the landing
 pad.There are oversized muddy tracks head north out of the port.
 The air reeks of industrial waist and a thick &zgrey &Yfog hovers
 close to the ground.
 ~
-0 32816 1 4 0 0 20568
-D0
-~
-~
-0 -1 7802
-D6
-~
-~
-0 -1 7803
-S
-#7802
-Evocii Street~
-&Y Evocii Street was named after the original planet that the
+#EXIT
+Direction north~
+ToRoom    7802
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7803
+#ENDEXIT
+
+Reset M 0 7814 9 7801
+#ENDROOM
+
+#ROOM
+Vnum     7802
+Name     Evocii Street~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y Evocii Street was named after the original planet that the
 hutt species cane from.  Hutts were never a very clean species
 and Evocii Street looks nearly as bad as the planet which it
 was named after.
 ~
-0 1073741824 1 0 0 0 20568
-D0
-~
-~
-0 -1 7804
-D1
-~
-~
-0 -1 7803
-D2
-~
-~
-0 -1 7801
-S
-#7803
-Galactic Immigration and Customs Office~
-&Y This customs office has expensive looking scanner equipment
+#EXIT
+Direction north~
+ToRoom    7804
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    7803
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7801
+#ENDEXIT
+
+Reset M 0 7820 1 7802
+#ENDROOM
+
+#ROOM
+Vnum     7803
+Name     Galactic Immigration and Customs Office~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y This customs office has expensive looking scanner equipment
 however it seems to be scavenged several years ago.The only
 thing that is in somewhat good condition is a reclining chair
 off in the corner.  In the center of the office is a dusty crate
 marked &RCONTRABAND&Y unfortunately for the smuggler passing
 through, it is empty.
 ~
-0 1073741824 1 0 0 0 20568
-D3
-~
-~
-0 -1 7802
-D7
-~
-~
-0 -1 7804
-D9
-~
-~
-0 -1 7801
-S
-#7804
-Palace Drive and Evocii Street~
-&Y Durga's Palace lies due west of this location.  The building
+#EXIT
+Direction west~
+ToRoom    7802
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7804
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7801
+#ENDEXIT
+
+Reset M 0 7801 2 7803
+  Reset E 1 7811 1 16
+Reset M 0 7814 9 7803
+Reset M 0 7814 9 7803
+Reset M 0 7814 9 7803
+#ENDROOM
+
+#ROOM
+Vnum     7804
+Name     Palace Drive and Evocii Street~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 20568
+Desc     &Y Durga's Palace lies due west of this location.  The building
 rises vertically nearly 100 meters and is 40 or so meters in
 width.The walls were &wwhite-washed &Yat one point but the &Ob&zr&Oo&zw&On&zi&Os&zh&O-&zg&Or&ze&Oy&Y
 air has stained the building.  To the south-east is a ram shackled
 customs office and Evocii Street runs north and south.
 ~
-0 1073741828 1 0 0 0 20568
-D0
-~
-~
-0 -1 7806
-D2
-~
-~
-0 -1 7802
-D3
-~
-~
-0 -1 7805
-D8
-~
-~
-0 -1 7803
-S
-#7805
-Extravagant Hallway~
-&Y This is the entrance to Durga's palace. There are the two
+#EXIT
+Direction north~
+ToRoom    7806
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7802
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7805
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7803
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7805
+Name     Extravagant Hallway~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 20568
+Desc     &Y This is the entrance to Durga's palace. There are the two
 of the ugliest weequay guards in the galaxy keeping out the
 peasants.All you can see past them is a extremely large room
 and a large &Ogold&Y disk.
 ~
-0 1073741836 1 0 0 0 20568
-D1
-~
-~
-0 -1 7804
-D3
-~
-~
-0 -1 7816
-S
-#7806
-Evocii Street and Garro Street~
-&Y Evocii Street and Garro Street intersect here.  Both are in
+#EXIT
+Direction east~
+ToRoom    7804
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7816
+#ENDEXIT
+
+Reset M 0 7802 2 7805
+  Reset E 1 7812 1 16
+Reset M 0 7802 2 7805
+  Reset E 1 7812 1 16
+  Reset G 1 7810 1
+#ENDROOM
+
+#ROOM
+Vnum     7806
+Name     Evocii Street and Garro Street~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y Evocii Street and Garro Street intersect here.  Both are in
 horrible condition and could easily be deemed the worst road
 in the Galaxy.
 ~
-0 1073741824 1 0 0 0 20568
-D1
-~
-~
-0 -1 7807
-D2
-~
-~
-0 -1 7804
-S
-#7807
-Garro Street~
-&Y Garro Street is loaded with garbage and filth.The gutters
+#EXIT
+Direction east~
+ToRoom    7807
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7804
+#ENDEXIT
+
+Reset M 0 7814 9 7806
+#ENDROOM
+
+#ROOM
+Vnum     7807
+Name     Garro Street~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y Garro Street is loaded with garbage and filth.The gutters
 on the side of the road are clogged with wamprat corpses and
 other random rubbish.  The street is also full of foot traffic
 making any land speeder unable to move through them.
 ~
-0 1073741824 1 0 0 0 20568
-D1
-~
-~
-0 -1 7808
-D3
-~
-~
-0 -1 7806
-S
-#7808
-Garro Street and Naj Circle~
-&Y This is the intersection between Naj Circle and Garro Street.To
+#EXIT
+Direction east~
+ToRoom    7808
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7806
+#ENDEXIT
+
+Reset M 0 7814 9 7807
+Reset M 0 7814 9 7807
+#ENDROOM
+
+#ROOM
+Vnum     7808
+Name     Garro Street and Naj Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y This is the intersection between Naj Circle and Garro Street.To
 the south funky music can be heard.      There is a sign on
 the building which reads &RADULTS ONLY!!&Y 
 ~
-0 1073741824 1 0 0 0 20568
-D2
-&RADULTS ONLY!!!&W
+#EXIT
+Direction south~
+ToRoom    7815
+Desc      &RADULTS ONLY!!!&W
 ~
-&RADULTS ONLY!!&W~
-1 -1 7815
-D3
-~
-~
-0 -1 7807
-D6
-~
-~
-0 -1 7809
-S
-#7809
-Naj Circle~
-&Y Naj Circle is a typical Nal Hutta street.  It is just as dirty
+Keywords  &RADULTS ONLY!!&W~
+Flags     isdoor~
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7807
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7809
+#ENDEXIT
+
+Reset D 0 7808 2 0
+#ENDROOM
+
+#ROOM
+Vnum     7809
+Name     Naj Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y Naj Circle is a typical Nal Hutta street.  It is just as dirty
 as all the others.  What a gem of a planet.
 ~
-0 1073741824 1 0 0 0 20568
-D0
-~
-~
-0 -1 7810
-D1
-~
-~
-0 -1 7813
-D3
-~
-~
-0 -1 7870
-D9
-~
-~
-0 -1 7808
-S
-#7810
-Naj Circle~
-&Y Naj Circle is a typical Nal Hutta street.  It is just as dirty
+#EXIT
+Direction north~
+ToRoom    7810
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    7813
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7870
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7808
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7810
+Name     Naj Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y Naj Circle is a typical Nal Hutta street.  It is just as dirty
 as all the others.  What a gem of a planet.
 ~
-0 1073741824 1 0 0 0 20568
-D1
-~
-~
-0 -1 7837
-D2
-~
-~
-0 -1 7809
-D7
-~
-~
-0 -1 7811
-S
-#7811
-Naj Circle~
-&Y Naj Circle is a typical Nal Hutta street.  It is just as dirty
+#EXIT
+Direction east~
+ToRoom    7837
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7809
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7811
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7811
+Name     Naj Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y Naj Circle is a typical Nal Hutta street.  It is just as dirty
 as all the others.  What a gem of a planet.
 ~
-0 1073741824 1 0 0 0 20568
-D2
+#EXIT
+Direction south~
+ToRoom    7824
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7812
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7810
+#ENDEXIT
+
+Reset M 0 7814 9 7811
+#ENDROOM
+
+#ROOM
+Vnum     7812
+Name     Naj Circle~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y This is where Naj Circle comes to a dead end.
 ~
+#EXIT
+Direction east~
+ToRoom    7811
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    7825
+Desc      Grate
 ~
-0 -1 7824
-D3
+Flags     isdoor closed hidden~
+#ENDEXIT
+
+Reset D 0 7812 5 1
+#ENDROOM
+
+#ROOM
+Vnum     7813
+Name     Blasters 'R' Us~
+Sector   city~
+Flags    nomob indoors~
+Stats    0 0 20568
+Desc     &Y There is a dirty hutt selling weaposn here.  Maybe he has a good deal.
 ~
-~
-0 -1 7812
-D8
-~
-~
-0 -1 7810
-S
-#7812
-Naj Circle~
-&Y This is where Naj Circle comes to a dead end.
-~
-0 1073741824 1 0 0 0 20568
-D1
-~
-~
-0 -1 7811
-D5
-Grate
-~
-~
-2051 -1 7825
-S
-#7813
-Blasters 'R' Us~
-&Y There is a dirty hutt selling weaposn here.  Maybe he has a good deal.
-~
-0 12 1 0 0 0 20568
-D3
-~
-~
-0 -1 7809
-S
-#7814
-Fabric Storage~
-&Y This is where Nalba stores all his fabrics.  He uses EG150
+#EXIT
+Direction west~
+ToRoom    7809
+#ENDEXIT
+
+Reset M 0 7811 1 7813
+  Reset G 1 7827 1
+  Reset G 1 7828 1
+  Reset G 1 7813 1
+#ENDROOM
+
+#ROOM
+Vnum     7814
+Name     Fabric Storage~
+Sector   city~
+Flags    indoors~
+Stats    0 0 20568
+Desc     &Y This is where Nalba stores all his fabrics.  He uses EG150
 a shopkeeper droid to keep everything organised. Some of which
 are for sale.
 ~
-0 8 1 0 0 0 20568
-D1
-~
-~
-0 -1 7824
-S
-#7815
-Dirty Hutt Disco~
-&Y This room is HOPPING!  Music is playing and there is a somewhat
+#EXIT
+Direction east~
+ToRoom    7824
+#ENDEXIT
+
+Reset M 0 7815 1 7814
+  Reset G 1 7826 1
+  Reset G 1 7835 1
+  Reset G 1 7834 1
+  Reset G 1 7833 1
+  Reset G 1 7832 1
+  Reset G 1 7831 1
+  Reset G 1 7830 1
+#ENDROOM
+
+#ROOM
+Vnum     7815
+Name     Dirty Hutt Disco~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This room is HOPPING!  Music is playing and there is a somewhat
 large stage to the south. In this room you see a strong Shistavanen
 bouncer standing in the shadows of the disco.Strangely this
 room is filled with the males of every species. 
 ~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7808
-D2
-~
-~
-0 -1 7840
-S
-#7816
-Palace Foyer~
-&Y The huge room takes up nearly the entire ground floor of Durga's
+#EXIT
+Direction north~
+ToRoom    7808
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7840
+#ENDEXIT
+
+Reset M 0 7808 1 7815
+Reset M 0 7814 9 7815
+  Reset G 1 7815 1
+#ENDROOM
+
+#ROOM
+Vnum     7816
+Name     Palace Foyer~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y The huge room takes up nearly the entire ground floor of Durga's
 palace.There must be a janitor droid because there is no dirt
 or grime on the &Wwhite&Y marble floor.  
 ~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7817
-D1
-~
-~
-0 -1 7805
-D2
-~
-~
-0 -1 7818
-D3
-~
-~
-0 -1 7820
-D7
-~
-~
-0 -1 7821
-D9
-~
-~
-0 -1 7819
-S
-#7817
-Palace Foyer~
-&Y The huge room takes up nearly the entire ground floor of Durga's
+#EXIT
+Direction north~
+ToRoom    7817
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    7805
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7818
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7820
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7821
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7819
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7817
+Name     Palace Foyer~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y The huge room takes up nearly the entire ground floor of Durga's
 palace.There must be a janitor droid because there is no dirt
 or grime on the &Wwhite&Y marble floor.  
 ~
-0 1073741832 1 0 0 0 20568
-D2
-~
-~
-0 -1 7816
-D3
-~
-~
-0 -1 7821
-D9
-~
-~
-0 -1 7820
-S
-#7818
-Palace Foyer~
-&Y The huge room takes up nearly the entire ground floor of Durga's
+#EXIT
+Direction south~
+ToRoom    7816
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7821
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7820
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7818
+Name     Palace Foyer~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y The huge room takes up nearly the entire ground floor of Durga's
 palace.There must be a janitor droid because there is no dirt
 or grime on the &Wwhite&Y marble floor.  
 ~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7816
-D3
-~
-~
-0 -1 7819
-D7
-~
-~
-0 -1 7820
-S
-#7819
-Palace Foyer~
-&Y The huge room takes up nearly the entire ground floor of Durga's
+#EXIT
+Direction north~
+ToRoom    7816
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7819
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7820
+#ENDEXIT
+
+Reset M 0 7803 1 7818
+#ENDROOM
+
+#ROOM
+Vnum     7819
+Name     Palace Foyer~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y The huge room takes up nearly the entire ground floor of Durga's
 palace.There must be a janitor droid because there is no dirt
 or grime on the &Wwhite&Y marble floor.  
 ~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7820
-D1
-~
-~
-0 -1 7818
-D6
-~
-~
-0 -1 7816
-D7
-~
-~
-0 -1 7822
-S
-#7820
-Palace Foyer~
-&Y This is the center of the foyer.  There is a large&O Golden&Y
+#EXIT
+Direction north~
+ToRoom    7820
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    7818
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7816
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7822
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7820
+Name     Palace Foyer~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This is the center of the foyer.  There is a large&O Golden&Y
 crest inlayed in the marble.  This crest is an overlarge version
 of an Old Republic Credit.  There are many aliens admiring the
 cleanliness of this palace being on the scum pit of Nal Hutta.
 ~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7821
-D1
-~
-~
-0 -1 7816
-D2
-~
-~
-0 -1 7819
-D3
-~
-~
-0 -1 7822
-D6
-~
-~
-0 -1 7817
-D8
-~
-~
-0 -1 7818
-S
-#7821
-Palace Foyer~
-&Y The huge room takes up nearly the entire ground floor of Durga's
+#EXIT
+Direction north~
+ToRoom    7821
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    7816
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7819
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7822
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7817
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7818
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7821
+Name     Palace Foyer~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y The huge room takes up nearly the entire ground floor of Durga's
 palace.There must be a janitor droid because there is no dirt
 or grime on the &Wwhite&Y marble floor.  
 ~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-0 -1 7817
-D2
-~
-~
-0 -1 7820
-D8
-~
-~
-0 -1 7816
-D9
-~
-~
-0 -1 7822
-S
-#7822
-Before the Turbolift~
-&Y This room has &Rred&Y carpeting and a brass rail which runs
+#EXIT
+Direction east~
+ToRoom    7817
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7820
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7816
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7822
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7822
+Name     Before the Turbolift~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 20568
+Desc     &Y This room has &Rred&Y carpeting and a brass rail which runs
 on both walls running to a  turbolift. The walls are wide and
 tall and can fit even the two largest hutts walking side by
 side.
 ~
-0 1073741836 1 0 0 0 20568
-D1
-~
-~
-0 -1 7820
-D3
-~
-~
-0 -1 7823
-D6
-~
-~
-0 -1 7821
-D8
-~
-~
-0 -1 7819
-S
-#7823
-Turbolift~
-&Y This is a very ornate lift for being on Nal Hutta.  There
+#EXIT
+Direction east~
+ToRoom    7820
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7823
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7821
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7819
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7823
+Name     Turbolift~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 20568
+Desc     &Y This is a very ornate lift for being on Nal Hutta.  There
 is a monitor on wall next to the sliding doors. The Monitor
 reads &W"Voice Activated Turbolift V.1.2.1- Please say 'list'
 to display floor list."&Y 
 ~
-0 1073741836 1 0 0 0 20568
-> speech_prog list~
-mpecho Please Chose A Floor From The Following
+#MUDPROG
+Progtype  speech_prog~
+Arglist   list~
+Comlist   mpecho Please Chose A Floor From The Following
 mpecho 1st - Main Floor
 mpecho 2nd - Services 
 mpecho 3rd - Rooms
 mpecho 4th - Penthouse
 mpecho 5th - Personal Hanger Bay
 ~
-> speech_prog 1~
-mpecho ZZZOOOOOMMMMMMMMMM *Ding*
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   1~
+Comlist   mpecho ZZZOOOOOMMMMMMMMMM *Ding*
 mptransfer all 7822
 ~
-> speech_prog 2~
-mpecho ZZZOOOOOMMMMMMMMMM *Ding*
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   2~
+Comlist   mpecho ZZZOOOOOMMMMMMMMMM *Ding*
 mptransfer all 7841
 ~
-> speech_prog 3~
-mpecho ZZZOOOOOMMMMMMMMMM *Ding*
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   3~
+Comlist   mpecho ZZZOOOOOMMMMMMMMMM *Ding*
 mptransfer all 7849
 ~
-> speech_prog 4~
-mpecho ZZZOOOOOMMMMMMMMMM *Ding*
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   4~
+Comlist   mpecho ZZZOOOOOMMMMMMMMMM *Ding*
 mptransfer all 7857
 ~
-> speech_prog 5~
-mpecho ZZZOOOOOMMMMMMMMMM *Ding*
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   5~
+Comlist   mpecho ZZZOOOOOMMMMMMMMMM *Ding*
 mptransfer all 7865
 ~
-|
-S
-#7824
-Shop 'Till You Drop~
-&Y This shop has trash all over the floor.Mud is on the counters
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     7824
+Name     Shop 'Till You Drop~
+Sector   city~
+Flags    indoors~
+Stats    0 0 20568
+Desc     &Y This shop has trash all over the floor.Mud is on the counters
 and the goods for sale are a tad dusty, but look still good.
 ~
-0 8 1 0 0 0 20568
-D0
-~
-~
-0 -1 7811
-D3
-~
-~
-0 -1 7814
-S
-#7825
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-0 -1 7827
-D4
-~
-~
-3 -1 7812
-S
-#7826
-Sewer Pipe~
-~
-0 1073741824 1 0 0 0 20568
-D3
-~
-~
-0 -1 7825
-S
-#7827
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D3
-~
-~
-0 -1 7825
-D5
-~
-~
-8388611 7807 7828
-S
-#7828
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-0 -1 7829
-D4
-~
-~
-8388611 7807 7827
-S
-#7829
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-0 -1 7830
-D3
-~
-~
-0 -1 7828
-S
-#7830
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D3
-~
-~
-0 -1 7829
-D6
-~
-~
-0 -1 7831
-D8
-~
-~
-0 -1 7834
-S
-#7831
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7868
-D6
-~
-~
-0 -1 7832
-D9
-~
-~
-0 -1 7830
-S
-#7832
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7869
-D2
-~
-~
-0 -1 7871
-D6
-~
-~
-0 -1 7833
-D9
-~
-~
-0 -1 7831
-S
-#7833
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D2
-~
-~
-0 -1 7838
-D9
-~
-~
-0 -1 7832
-S
-#7834
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D2
-~
-~
-0 -1 7839
-D7
-~
-~
-0 -1 7830
-D8
-~
-~
-0 -1 7835
-S
-#7835
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7871
-D2
-~
-~
-0 -1 7872
-D7
-~
-~
-0 -1 7834
-D8
-~
-~
-0 -1 7836
-S
-#7836
-Sewer Pipe~
-~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7838
-D7
-~
-~
-0 -1 7835
-S
-#7837
-Tavern~
-&B Pull up a seat and order a cold one.
-~
-0 12 1 0 0 0 20568
-D3
-~
-~
-0 -1 7810
-S
-#7838
-Open Area~
-~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7833
-D1
-~
-~
-0 -1 7875
-D2
-~
-~
-0 -1 7836
-D3
-~
-~
-0 -1 7871
-S
-#7839
-Supply Depot~
-~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7834
-S
-#7840
-The Stage~
-&Y Mirrors line the southern wall of this stage and thre is a
+#EXIT
+Direction north~
+ToRoom    7811
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7814
+#ENDEXIT
+
+Reset M 0 7813 1 7824
+  Reset G 1 7829 1
+  Reset G 1 7823 1
+  Reset G 1 7822 1
+  Reset G 1 7824 1
+  Reset G 1 7819 1
+  Reset G 1 7821 1
+  Reset G 1 7820 1
+  Reset G 1 7818 1
+  Reset G 1 7816 1
+  Reset G 1 7817 1
+#ENDROOM
+
+#ROOM
+Vnum     7825
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction east~
+ToRoom    7827
+#ENDEXIT
+
+#EXIT
+Direction up~
+ToRoom    7812
+Flags     isdoor closed~
+#ENDEXIT
+
+Reset D 0 7825 4 1
+#ENDROOM
+
+#ROOM
+Vnum     7826
+Name     Sewer Pipe~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+#EXIT
+Direction west~
+ToRoom    7825
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7827
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction west~
+ToRoom    7825
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    7828
+Key       7807
+Flags     isdoor closed bashproof~
+#ENDEXIT
+
+Reset D 0 7827 5 1
+#ENDROOM
+
+#ROOM
+Vnum     7828
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction east~
+ToRoom    7829
+#ENDEXIT
+
+#EXIT
+Direction up~
+ToRoom    7827
+Key       7807
+Flags     isdoor closed bashproof~
+#ENDEXIT
+
+Reset D 0 7828 4 1
+#ENDROOM
+
+#ROOM
+Vnum     7829
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction east~
+ToRoom    7830
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7828
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7830
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction west~
+ToRoom    7829
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7831
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7834
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7831
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction north~
+ToRoom    7868
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7832
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7830
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7832
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction north~
+ToRoom    7869
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7871
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7833
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7831
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7833
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction south~
+ToRoom    7838
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7832
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7834
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction south~
+ToRoom    7839
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7830
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7835
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7835
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction north~
+ToRoom    7871
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7872
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7834
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7836
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7836
+Name     Sewer Pipe~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction north~
+ToRoom    7838
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7835
+#ENDEXIT
+
+Reset M 0 7818 1 7836
+#ENDROOM
+
+#ROOM
+Vnum     7837
+Name     Tavern~
+Sector   city~
+Flags    nomob indoors~
+Stats    0 0 20568
+Desc     &B Pull up a seat and order a cold one.
+~
+#EXIT
+Direction west~
+ToRoom    7810
+#ENDEXIT
+
+Reset M 0 7812 1 7837
+  Reset G 1 7809 1
+  Reset G 1 7836 1
+  Reset G 1 7805 1
+  Reset G 1 7838 1
+Reset O 0 7837 1 7837
+Reset O 0 7809 1 7837
+#ENDROOM
+
+#ROOM
+Vnum     7838
+Name     Open Area~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction north~
+ToRoom    7833
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    7875
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    7836
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7871
+#ENDEXIT
+
+Reset M 0 7817 1 7838
+  Reset G 1 7825 1
+  Reset G 1 7814 1
+Reset O 0 7808 1 7838
+#ENDROOM
+
+#ROOM
+Vnum     7839
+Name     Supply Depot~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction north~
+ToRoom    7834
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7840
+Name     The Stage~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 20568
+Desc     &Y Mirrors line the southern wall of this stage and thre is a
 solid durabrass pole which is often used by the sexiest female
 t'landa tils in the galaxy.  There are males which line the
 stage with credits in their hands, hoping to get some action.
 ~
-0 1073741836 1 0 0 0 20568
-D0
-~
-~
-0 -1 7815
-S
-#7841
-Service Level~
-&Y This is the entry to the services level.  There is the personal
+#EXIT
+Direction north~
+ToRoom    7815
+#ENDEXIT
+
+Reset M 0 7809 1 7840
+  Reset G 1 7810 1
+  Reset G 1 7810 1
+#ENDROOM
+
+#ROOM
+Vnum     7841
+Name     Service Level~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This is the entry to the services level.  There is the personal
 bathhouse, mud pit and bank for Durga and his guests.There is
 a trail of mud coming from the pit trailing on the carpet but
 other then that this room is quite nice especially for being
 on Nal Hutta.
 ~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-0 -1 7843
-D3
-~
-~
-0 -1 7823
-D6
-~
-~
-0 -1 7842
-D8
-~
-~
-0 -1 7844
-S
-#7842
-Swamp~
-&Y This swamp is a Hutt's dream.  The mud is quite thick and
+#EXIT
+Direction east~
+ToRoom    7843
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7823
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7842
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7844
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7842
+Name     Swamp~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 20568
+Desc     &Y This swamp is a Hutt's dream.  The mud is quite thick and
 there is a stench of rotting organic waste.  It might be a good
 place to take a nice mudbath.There is however a strange breeze
 of air comeing from the east.
 ~
-0 1073741836 1 0 0 0 20568
-D1
-~
-~
-2048 -1 7845
-D9
-~
-~
-0 -1 7841
-S
-#7843
-Bathhouse~
-&Y This bathouse has water and mud splashed on the floor.  Hutts
+#EXIT
+Direction east~
+ToRoom    7845
+Flags     hidden~
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7841
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7843
+Name     Bathhouse~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This bathouse has water and mud splashed on the floor.  Hutts
 use it to clean up after they roll around in the swamp.   Over
 to the south an expensive painting drips with water.
 ~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-3 -1 7846
-D3
-~
-~
-0 -1 7841
-S
-#7844
-Durga's Personal Bank~
-&Y Durga often needs his money taken out to the laundry.  He
+#EXIT
+Direction east~
+ToRoom    7846
+Flags     isdoor closed~
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7841
+#ENDEXIT
+
+Reset O 0 7801 1 7843
+Reset D 0 7843 1 1
+#ENDROOM
+
+#ROOM
+Vnum     7844
+Name     Durga's Personal Bank~
+Sector   city~
+Flags    bank prototype~
+Stats    0 0 20568
+Desc     &Y Durga often needs his money taken out to the laundry.  He
 had this palace installed with a bank for his personal use but
 he also allows guests utilize its services.  
 ~
-0 1073742080 1 0 0 0 20568
-D1
+#EXIT
+Direction east~
+ToRoom    7847
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7841
+#ENDEXIT
+
+Reset M 0 7806 1 7844
+#ENDROOM
+
+#ROOM
+Vnum     7845
+Name     Spicers Hideout~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 2
+Desc     &z Wait?! What is this place?  
 ~
-~
-0 -1 7847
-D7
-~
-~
-0 -1 7841
-S
-#7845
-Spicers Hideout~
-&z Wait?! What is this place?  
-~
-0 1073741836 1 0 0 0 2
-D3
-~
-~
-0 -1 7842
-S
-#7846
-Bathhouse Control Room~
-&Y The bathhouse control room is full of switches, levers and
+#EXIT
+Direction west~
+ToRoom    7842
+#ENDEXIT
+
+Reset M 0 7807 1 7845
+#ENDROOM
+
+#ROOM
+Vnum     7846
+Name     Bathhouse Control Room~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y The bathhouse control room is full of switches, levers and
 gauges.  They monitor water pressure, temperature and amount
 of clean water in reserve. This room also controls the swamp
 room.  Please do not touch anything.
 ~
-0 1073741832 1 0 0 0 20568
-D3
-~
-~
-3 -1 7843
-S
-#7847
-Bank Vault~
-&Y Durga stores his credits in this thick durasteel vault.  The
+#EXIT
+Direction west~
+ToRoom    7843
+Flags     isdoor closed~
+#ENDEXIT
+
+Reset D 0 7846 3 1
+#ENDROOM
+
+#ROOM
+Vnum     7847
+Name     Bank Vault~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y Durga stores his credits in this thick durasteel vault.  The
 credits are kept in a secure locker to prevent stealing.One
 thing hutts love is money and they will do anything to prevent
 its theft.
 ~
-0 1073741832 1 0 0 0 20568
-D3
-~
-~
-0 -1 7844
-S
-#7848
-Hostel~
-~
-0 1082164236 1 0 0 0 20568
-D1
-~
-~
-0 -1 7870
-S
-#7849
-Hallway Intersection~
-&Y This hallway has a fork that leads east, northeast and southeast.
+#EXIT
+Direction west~
+ToRoom    7844
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7848
+Name     Hostel~
+Sector   city~
+Flags    nomob indoors safe nodropall hotel prototype~
+Stats    0 0 20568
+#EXIT
+Direction east~
+ToRoom    7870
+#ENDEXIT
+
+Reset O 0 7801 1 7848
+#ENDROOM
+
+#ROOM
+Vnum     7849
+Name     Hallway Intersection~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y This hallway has a fork that leads east, northeast and southeast.
 Each branch of the hallway goes to a different utility room.
 Find out where each wing goes.
 ~
-0 1073741824 1 0 0 0 20568
-D1
-~
-~
-0 -1 7852
-D3
-~
-~
-0 -1 7823
-D6
-~
-~
-0 -1 7850
-D8
-~
-~
-0 -1 7854
-S
-#7850
-North-East Hallway~
-&Y This hallway leads to a workshop used by Durga to craft weapons
+#EXIT
+Direction east~
+ToRoom    7852
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7823
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7850
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7854
+#ENDEXIT
+
+Reset M 0 7804 3 7849
+#ENDROOM
+
+#ROOM
+Vnum     7850
+Name     North-East Hallway~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This hallway leads to a workshop used by Durga to craft weapons
 and armor and whatnot.  There is an extremely LOUD noise coming
 from the east.
 ~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-8389665 7801 7851
-D9
-~
-~
-0 -1 7849
-S
-#7851
-Workshop~
-&Y This room has tools needed to craft equipment needed by nearly
+#EXIT
+Direction east~
+ToRoom    7851
+Key       7801
+Flags     isdoor pickproof nopassdoor bashproof~
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7849
+#ENDEXIT
+
+Reset M 0 7804 3 7850
+Reset D 0 7850 1 0
+#ENDROOM
+
+#ROOM
+Vnum     7851
+Name     Workshop~
+Sector   city~
+Flags    indoors factory prototype~
+Stats    0 0 20568
+Desc     &Y This room has tools needed to craft equipment needed by nearly
 every profession.  Crates of weapons, armor, ship modifications
 and  datapads scattered around the room.
 ~
-0 1140850696 1 0 0 0 20568
-D3
-~
-~
-1 7801 7850
-S
-#7852
-Eastern Hallway~
-&Y There is a lot of &zgray&Y smoke coming from the east.  It
+#EXIT
+Direction west~
+ToRoom    7850
+Key       7801
+Flags     isdoor~
+#ENDEXIT
+
+Reset D 0 7851 3 0
+#ENDROOM
+
+#ROOM
+Vnum     7852
+Name     Eastern Hallway~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y There is a lot of &zgray&Y smoke coming from the east.  It
 seems that spice can be refined in that smokey room.
 ~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-0 -1 7853
-D3
-~
-~
-0 -1 7849
-S
-#7853
-Refinery~
-&z This room is thick with smoke.  There are wooden shelves with
+#EXIT
+Direction east~
+ToRoom    7853
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7849
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7853
+Name     Refinery~
+Sector   city~
+Flags    indoors refinery prototype~
+Stats    0 0 20568
+Desc     &z This room is thick with smoke.  There are wooden shelves with
 beakers and burners and other tools needed to refine 
 ~
-0 1107296264 1 0 0 0 20568
-D3
-~
-~
-0 -1 7852
-S
-#7854
-South-East Hallway~
-&Y This hallway leads to a sparring facility.  Head east for
+#EXIT
+Direction west~
+ToRoom    7852
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7854
+Name     South-East Hallway~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This hallway leads to a sparring facility.  Head east for
 a challenge.  
 ~
-0 1073741832 1 0 0 0 20568
-D1
-~
-~
-0 -1 7855
-D7
-~
-~
-0 -1 7849
-S
-#7855
-Sparring Facility~
-&Y There is a training remote in here however it is quite strong
+#EXIT
+Direction east~
+ToRoom    7855
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7849
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7855
+Name     Sparring Facility~
+Sector   city~
+Flags    indoors~
+Stats    0 0 20568
+Desc     &Y There is a training remote in here however it is quite strong
 so &RBEWARE 
 ~
-0 8 1 0 0 0 20568
-D3
+#EXIT
+Direction west~
+ToRoom    7854
+#ENDEXIT
+
+Reset M 0 7804 3 7855
+#ENDROOM
+
+#ROOM
+Vnum     7856
+Name     Champagne Room~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 20568
+Desc     This room is lined with shabby beds.  The floor is quite sticky.... GROSS!
 ~
-~
-0 -1 7854
-S
-#7856
-Champagne Room~
-This room is lined with shabby beds.  The floor is quite sticky.... GROSS!
-~
-0 1073741828 1 0 0 0 20568
-D7
-~
-~
-0 -1 7840
-S
-#7857
-Penthouse Entrance~
-&Y This hallway is lined with &Rred&Y carpet, the walls hang
+#EXIT
+Direction northwest~
+ToRoom    7840
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7857
+Name     Penthouse Entrance~
+Sector   inside~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This hallway is lined with &Rred&Y carpet, the walls hang
 expensive art from planets across the galaxy and there is fancy
 carved wood around the door.Durga occupies this penthouse whenever
 he is staying in his palace.
 ~
-0 1073741832 0 0 0 0 20568
-D1
-~
-~
-0 -1 7858
-D3
-~
-~
-0 -1 7823
-S
-#7858
-&wA Large Penthouse with a sign reading "GO AWAY"~
-~
-0 1083179008 1 0 0 0 20568
-D2
-~
-~
-0 -1 7862
-D3
-~
-~
-0 -1 7857
-D6
-~
-~
-0 -1 7859
-D7
-~
-~
-0 -1 7863
-D8
-~
-~
-0 -1 7860
-D9
-~
-~
-0 -1 7861
-S
-#7859
-Bathroom~
-&Y This bathroom is fit for a king.  The toilet, basin and bath
+#EXIT
+Direction east~
+ToRoom    7858
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7823
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7858
+Name     &wA Large Penthouse with a sign reading "GO AWAY"~
+Sector   city~
+Flags    plr_home hotel prototype~
+Stats    0 0 20568
+#EXIT
+Direction south~
+ToRoom    7862
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7857
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    7859
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    7863
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    7860
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    7861
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7859
+Name     Bathroom~
+Sector   city~
+Flags    hotel prototype~
+Stats    0 0 20568
+Desc     &Y This bathroom is fit for a king.  The toilet, basin and bath
 are hutt-sized but even a jawa would feel nice in here.There
 is a window on the north wall but it is smoked glass so nobody
 can see in.  Just don't forget to flush!
 ~
-0 1082130432 1 0 0 0 20568
-D9
-~
-~
-0 -1 7858
-S
-#7860
-Personal Bacta Tank~
-&C This bacta tank is large enough to hold a hutt but due to
+#EXIT
+Direction southwest~
+ToRoom    7858
+#ENDEXIT
+
+Reset O 0 7802 1 7859
+Reset O 0 7803 1 7859
+#ENDROOM
+
+#ROOM
+Vnum     7860
+Name     Personal Bacta Tank~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 1
+Desc     &C This bacta tank is large enough to hold a hutt but due to
 the oxygen requirement only one person can be in here at a time.
 Even if more then one could be in at a time, the two could not
 communicate.
 ~
-0 1073741832 1 0 0 0 1
-D7
-~
-~
-0 -1 7858
-> rand_prog 100~
-mpecho &cThe bacta bubbles around you.
+#EXIT
+Direction northwest~
+ToRoom    7858
+#ENDEXIT
+
+#MUDPROG
+Progtype  rand_prog~
+Arglist   100~
+Comlist   mpecho &cThe bacta bubbles around you.
 mprestore $n 35
 ~
-|
-S
-#7861
-Entertainment Room~
-&Y This room is filled with the latest and greatest entertainment
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     7861
+Name     Entertainment Room~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This room is filled with the latest and greatest entertainment
 equipment.With the receiver tuned to the right frequency one
 could even pick up signals coming from Imperial City.  A HUGE
 sofa lies on the south wall.
 ~
-0 1073741832 1 0 0 0 20568
-D6
-~
-~
-0 -1 7858
-S
-#7862
-Kitchen~
-&Y This kitchen has is quite clean and there is a chef who is
+#EXIT
+Direction northeast~
+ToRoom    7858
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7862
+Name     Kitchen~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+Desc     &Y This kitchen has is quite clean and there is a chef who is
 waiting to cook his specialty, Filet of Bantha.Feel free to
 ask the chef for a menu.
 ~
-0 1073741832 1 0 0 0 20568
-D0
-~
-~
-0 -1 7858
-S
-#7863
-Master Bedroom~
-&Y This room has a lush fore poster bed.  A window lies on the
+#EXIT
+Direction north~
+ToRoom    7858
+#ENDEXIT
+
+Reset M 0 7805 1 7862
+  Reset G 1 7805 1
+#ENDROOM
+
+#ROOM
+Vnum     7863
+Name     Master Bedroom~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y This room has a lush fore poster bed.  A window lies on the
 northern wall over looking the spaceport.
 ~
-0 1073741824 1 0 0 0 20568
-D8
-~
-~
-0 -1 7858
-S
-#7864
-A Back Room~
-~
-0 1073741836 1 0 0 0 20568
-D3
-~
-~
-0 -1 7815
-S
-#7865
-Hallway to Durga's Hanger~
-&Y This hallway has a duraglass roof and heads east to Durga's
+#EXIT
+Direction southeast~
+ToRoom    7858
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7864
+Name     A Back Room~
+Sector   city~
+Flags    nomob indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction west~
+ToRoom    7815
+#ENDEXIT
+
+Reset O 0 7806 1 7864
+#ENDROOM
+
+#ROOM
+Vnum     7865
+Name     Hallway to Durga's Hanger~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y This hallway has a duraglass roof and heads east to Durga's
 hanger.  Guests are not normally allowed to use this hanger
 however now that he is on hiatus to Yavin guests use this frequently.
 
 ~
-0 1073741824 1 0 0 0 20568
-D1
-~
-~
-0 -1 7866
-D3
-~
-~
-0 -1 7823
-S
-#7866
-Before the Hanger~
-&Y The wind blows quite hard as the cover of duraglass is no
+#EXIT
+Direction east~
+ToRoom    7866
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7823
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7866
+Name     Before the Hanger~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+Desc     &Y The wind blows quite hard as the cover of duraglass is no
 longer overhead. The hanger is one room to the east.  Hopefully
 no guards will be posted since Druga is gone.
 ~
-0 1073741824 1 0 0 0 20568
-D1
-~
-~
-0 -1 7867
-D3
-~
-~
-0 -1 7865
-S
-#7867
-Durga's Personal Hanger~
-&Y Durga uses this landing pad to smuggle his goods off Nal Hutta
+#EXIT
+Direction east~
+ToRoom    7867
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    7865
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7867
+Name     Durga's Personal Hanger~
+Sector   city~
+Flags    can_land can_fly prototype~
+Stats    0 0 20568
+Desc     &Y Durga uses this landing pad to smuggle his goods off Nal Hutta
 with out the local folk getting too nosy.There is a guard station
 but it has long been deserted.
 ~
-0 1073741872 1 0 0 0 20568
-D3
-~
-~
-0 -1 7866
-S
-#7868
-Smithy~
-~
-0 1073741832 1 0 0 0 20568
-D2
-~
-~
-0 -1 7831
-S
-#7869
-Dormitory~
-~
-0 1082131464 1 0 0 0 20568
-D2
-~
-~
-0 -1 7832
-S
-#7870
-Nal Hutta Hotel~
-&B This hotel must have been made from the parts that Durga didn't
+#EXIT
+Direction west~
+ToRoom    7866
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7868
+Name     Smithy~
+Sector   city~
+Flags    indoors prototype~
+Stats    0 0 20568
+#EXIT
+Direction south~
+ToRoom    7831
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7869
+Name     Dormitory~
+Sector   city~
+Flags    indoors safe hotel prototype~
+Stats    0 0 20568
+#EXIT
+Direction south~
+ToRoom    7832
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     7870
+Name     Nal Hutta Hotel~
+Sector   city~
+Flags    indoors safe nodropall~
+Stats    0 0 20568
+Desc     &B This hotel must have been made from the parts that Durga didn't
 want. There is nothing that is made of quality materials and
 the architect could not have been any smarter then a Gamorrean.
 But you can get a room if you talk to the innkeeper.  
 ~
-0 33800 1 0 0 0 20568
-D1
-~
-~
-0 -1 7809
-D3
-~
-~
-0 -1 7879
-S
-#7871
-Den~
-~
-0 1073741824 1 0 0 0 20568
-D0
-~
-~
-0 -1 7832
-D1
-~
-~
-0 -1 7838
-D2
-~
-~
-0 -1 7835
-S
-#7872
-Workshop~
-~
-0 1174405128 1 0 0 0 20568
-D0
-~
-~
-0 -1 7835
-S
-#7875
-Sparring Facility~
-~
-0 1073741824 1 0 0 0 20568
-D3
-~
-~
-0 -1 7838
-S
-#7878
-Floating in a void~
-~
-0 1073741828 1 0 0 0 20568
-S
-#7879
-The Galactic Mail Center~
-~
-0 1073741824 1 0 0 0 20568
-D1
-~
-~
-0 -1 7870
-S
-#7880
-Turbolift~
-~
-0 1073741828 1 0 0 0 20568
-S
-#7899
-Interrogation Chambers~
-~
-0 1073741828 1 0 0 0 20568
-S
-#7900
-Floating in a void~
-~
-0 4 1 0 0 0 20568
-S
-#0
+#EXIT
+Direction east~
+ToRoom    7809
+#ENDEXIT
 
+#EXIT
+Direction west~
+ToRoom    7879
+#ENDEXIT
 
-#RESETS
-M 1 7814 9 7801
-M 1 7820 1 7802
-M 1 7801 2 7803
-E 1 50 1 16
-M 1 7814 9 7803
-M 1 7814 9 7803
-M 1 7814 9 7803
-M 1 7802 2 7805
-E 1 74 1 16
-M 1 7802 2 7805
-E 1 74 1 16
-G 1 3 1
-M 1 7814 9 7806
-M 1 7814 9 7807
-M 1 7814 9 7807
-D 0 7808 2 0
-M 1 7814 9 7811
-D 0 7812 5 1
-M 1 7811 1 7813
-G 1 284 1
-G 1 1070 1
-G 1 59 1
-M 1 7815 1 7814
-G 1 137 1
-G 1 766 1
-G 1 765 1
-G 1 764 1
-G 1 763 1
-G 1 762 1
-G 1 761 1
-M 1 7808 1 7815
-M 1 7814 9 7815
-G 1 134 1
-M 1 7803 1 7818
-M 1 7813 1 7824
-G 1 1142 1
-G 1 147 1
-G 1 146 1
-G 1 148 1
-G 1 142 1
-G 1 145 1
-G 1 143 1
-G 1 141 1
-G 1 136 1
-G 1 139 1
-D 0 7825 4 1
-D 0 7827 5 1
-D 0 7828 4 1
-M 1 7818 1 7836
-M 1 7812 1 7837
-G 1 9009 1
-G 1 7508 1
-G 1 7805 1
-G 1 7510 1
-O 1 7509 1 7837
-O 1 9009 1 7837
-M 1 7817 1 7838
-G 1 150 1
-G 1 33 1
-O 1 7808 1 7838
-M 1 7809 1 7840
-G 1 3 1
-G 1 3 1
-O 1 7801 1 7843
-D 0 7843 1 1
-M 1 7806 1 7844
-M 1 7807 1 7845
-D 0 7846 3 1
-O 1 7801 1 7848
-M 1 7804 3 7849
-M 1 7804 3 7850
-D 0 7850 1 0
-D 0 7851 3 0
-M 1 7804 3 7855
-O 1 7802 1 7859
-O 1 7803 1 7859
-M 1 7805 1 7862
-G 1 7805 1
-O 1 7806 1 7864
-M 1 7810 1 7870
-M 1 7819 1 7872
-M 1 7816 1 7872
-M 1 7801 2 7900
-E 1 74 1 16
-G 1 74 1
-O 1 38 1 7879
-S
+Reset M 0 7810 1 7870
+#ENDROOM
 
+#ROOM
+Vnum     7871
+Name     Den~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+#EXIT
+Direction north~
+ToRoom    7832
+#ENDEXIT
 
-#SHOPS
- 7811    9 57  5  0  0   102  15         0 23    ; dealer
- 7812   19  0  0  0  0   120  40         0 23    ; A bar tender
- 7813    0  0  0  0  0   330  75         0 23    ; Nalba
- 7815   74  0  0  0  0   190  90         0 23    ; EG150
- 7817    5  9 15  0  0    20   1         0 23    ; EG128
-0
+#EXIT
+Direction east~
+ToRoom    7838
+#ENDEXIT
 
+#EXIT
+Direction south~
+ToRoom    7835
+#ENDEXIT
 
-#REPAIRS
- 7816    5  9  0           9   1         0 23    ; BS18103
-0
+#ENDROOM
 
+#ROOM
+Vnum     7872
+Name     Workshop~
+Sector   city~
+Flags    indoors refinery factory prototype~
+Stats    0 0 20568
+#EXIT
+Direction north~
+ToRoom    7835
+#ENDEXIT
 
-#SPECIALS
-M  7801 spec_customs_weapons
-M  7802 spec_police_attack
-M  7803 spec_janitor
-S
+Reset M 0 7819 1 7872
+Reset M 0 7816 1 7872
+#ENDROOM
 
+#ROOM
+Vnum     7875
+Name     Sparring Facility~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+#EXIT
+Direction west~
+ToRoom    7838
+#ENDEXIT
 
-#$
+#ENDROOM
+
+#ROOM
+Vnum     7878
+Name     Floating in a void~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 20568
+#ENDROOM
+
+#ROOM
+Vnum     7879
+Name     The Galactic Mail Center~
+Sector   city~
+Flags    prototype~
+Stats    0 0 20568
+#EXIT
+Direction east~
+ToRoom    7870
+#ENDEXIT
+
+Reset O 0 38 1 7879
+#ENDROOM
+
+#ROOM
+Vnum     7880
+Name     Turbolift~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 20568
+#ENDROOM
+
+#ROOM
+Vnum     7899
+Name     Interrogation Chambers~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 20568
+#ENDROOM
+
+#ROOM
+Vnum     7900
+Name     Floating in a void~
+Sector   city~
+Flags    nomob~
+Stats    0 0 20568
+Reset M 0 7801 2 7900
+  Reset E 1 7812 1 16
+  Reset G 1 7812 1
+#ENDROOM
+
+#ENDAREA

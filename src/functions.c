@@ -181,7 +181,7 @@ char *rembg( const char *src )
    return ret;
 }
 
-char *htmlcolor( const char *src )
+const char *htmlcolor( const char *src )
 {
    static char arg[MAX_STRING_LENGTH];
    char *newarg;
@@ -246,8 +246,8 @@ char *chrmax( char *src, int length )
 int strlen_color( char *argument )
 {
    char *str;
-   int i, length;
-
+   int length;
+   unsigned int i;
    str = argument;
    if( argument == NULL )
       return 0;

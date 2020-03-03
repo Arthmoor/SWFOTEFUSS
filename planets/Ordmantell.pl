@@ -6,6 +6,7 @@ Y            -1200
 Z            3200
 Sector       0
 Type    	   0
+BaseValue    0
 PopSupport   -100
 Starsystem   Ord Mantell~
 GovernedBy   Neutral~

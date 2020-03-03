@@ -53,7 +53,7 @@ struct ship_prototypes_struct
    char *clan;
    int num_rooms;
    int cost;
-   int class;
+   int sclass;
    int tractor;
    int primaryType;
    int secondaryType;
@@ -100,12 +100,12 @@ struct prototype_room
 PROTO_ROOM *first_prototype_room;
 PROTO_ROOM *last_prototype_room;
 
-void instaroom( AREA_DATA * pArea, ROOM_INDEX_DATA * pRoom, bool dodoors );
+void instaroom( CHAR_DATA *ch, ROOM_INDEX_DATA * pRoom, bool dodoors );
 void shiplist( CHAR_DATA * ch );
-char *primary_beam_name_proto( int shiptype );
-char *secondary_beam_name_proto( int shiptype );
+const char *primary_beam_name_proto( int shiptype );
+const char *secondary_beam_name_proto( int shiptype );
 
-void do_buymobship( CHAR_DATA * ch, char *argument )
+void do_buymobship( CHAR_DATA * ch, const char *argument )
 {
    int x, size, ship_type, vnum, count, caps;
    SHIP_DATA *ship;
@@ -116,14 +116,13 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
    bool found_proto = FALSE;
    AREA_DATA *tarea;
    CLAN_DATA *clan;
-   CLAN_DATA *mainclan;
    SPACE_DATA *ssystem;
    PLANET_DATA *planet;
    bool fsys, fplan, fcap;
 
    argument = one_argument( argument, arg );
 
-   if( !arg || !argument )
+   if( (arg[0] != '\0') && (argument[0] == '\0') )
    {
       send_to_char( "Usage: buymobship <ship type> <starsystem to be sent to>\r\n", ch );
       return;
@@ -139,7 +138,6 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
       return;
    }
    clan = ch->pcdata->clan;
-   mainclan = ch->pcdata->clan->mainclan ? ch->pcdata->clan->mainclan : clan;
 
    if( ( ch->pcdata->bestowments
          && is_name( "clanbuyship", ch->pcdata->bestowments ) ) || !str_cmp( ch->name, clan->leader ) )
@@ -150,7 +148,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( arg == NULL || !arg || arg[0] == '\0' )
+   if( arg[0] == '\0' )
    {
       send_to_char( "\r\n&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w                               Available ships                               &W|\r\n", ch );
@@ -166,16 +164,16 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
             continue;
          if( ch->pcdata->clan && str_cmp( ship_prototypes[x].clan, ch->pcdata->clan->name ) )
             continue;
-         if( ship_prototypes[x].class != 0 && ship_prototypes[x].class != 1 && ship_prototypes[x].class != 2 )
+         if( ship_prototypes[x].sclass != 0 && ship_prototypes[x].sclass != 1 && ship_prototypes[x].sclass != 2 )
             continue;
 
          ch_printf( ch, "&W|&w %s%-39.39s&W Type:  &w%-13.13s &WCost:&w %8d &W|\r\n",
                     !str_cmp( ship_prototypes[x].clan, "The Empire" ) ? "&R" :
                     !str_cmp( ship_prototypes[x].clan, "The New Republic" ) ? "&G" : "&w",
                     ship_prototypes[x].name,
-                    ship_prototypes[x].class == 0 ? "Fighter" :
-                    ship_prototypes[x].class == 1 ? "Bomber" :
-                    ship_prototypes[x].class == 2 ? "Midtarget" : "Spacecraft", ship_prototypes[x].cost );
+                    ship_prototypes[x].sclass == 0 ? "Fighter" :
+                    ship_prototypes[x].sclass == 1 ? "Bomber" :
+                    ship_prototypes[x].sclass == 2 ? "Midtarget" : "Spacecraft", ship_prototypes[x].cost );
       }
 
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
@@ -209,16 +207,16 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
             continue;
          if( ch->pcdata->clan && str_cmp( ship_prototypes[x].clan, ch->pcdata->clan->name ) )
             continue;
-         if( ship_prototypes[x].class != 0 && ship_prototypes[x].class != 1 && ship_prototypes[x].class != 2 )
+         if( ship_prototypes[x].sclass != 0 && ship_prototypes[x].sclass != 1 && ship_prototypes[x].sclass != 2 )
             continue;
 
          ch_printf( ch, "&W|&w %s%-39.39s&W Type:  &w%-13.13s &WCost:&w %8d &W|\r\n",
                     !str_cmp( ship_prototypes[x].clan, "The Empire" ) ? "&R" :
                     !str_cmp( ship_prototypes[x].clan, "The New Republic" ) ? "&G" : "&w",
                     ship_prototypes[x].name,
-                    ship_prototypes[x].class == 0 ? "Fighter" :
-                    ship_prototypes[x].class == 1 ? "Bomber" :
-                    ship_prototypes[x].class == 2 ? "Midtarget" : "Spacecraft", ship_prototypes[x].cost );
+                    ship_prototypes[x].sclass == 0 ? "Fighter" :
+                    ship_prototypes[x].sclass == 1 ? "Bomber" :
+                    ship_prototypes[x].sclass == 2 ? "Midtarget" : "Spacecraft", ship_prototypes[x].cost );
       }
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w               Refer to 'shiplist' for a complete ship listing               &W|\r\n", ch );
@@ -234,7 +232,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
       send_to_char( "Your organization may only purchase its own ship models.\r\n", ch );
       return;
    }
-   if( ship_prototypes[x].class != 0 && ship_prototypes[x].class != 1 && ship_prototypes[x].class != 2 )
+   if( ship_prototypes[x].sclass != 0 && ship_prototypes[x].sclass != 1 && ship_prototypes[x].sclass != 2 )
    {
       send_to_char( "You may only purchase fighters, bombers, or midtargets for mobile ships.\r\n", ch );
       return;
@@ -294,7 +292,6 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
       return;
    }
    clan = ch->pcdata->clan;
-   mainclan = ch->pcdata->clan->mainclan ? ch->pcdata->clan->mainclan : clan;
 
    if( ( ch->pcdata->bestowments
          && is_name( "clanbuyship", ch->pcdata->bestowments ) ) || !str_cmp( ch->name, clan->leader ) )
@@ -334,7 +331,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
    {
       if( sship->type == MOB_SHIP )
          count++;
-      if( sship->class >= SHIP_CRUISER )
+      if( sship->sclass >= SHIP_CRUISER )
       {
          fcap = TRUE;
          caps++;
@@ -360,13 +357,15 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   ch->pcdata->clan->funds -= ship_prototypes[ship_type].cost * 1.3;
+   ch->pcdata->clan->funds -= ( long )ship_prototypes[ship_type].cost * 1.3;
 
    ch_printf( ch, "It costs %d to build the ship and %d to train a pilot.\r\n",
               ship_prototypes[ship_type].cost, ship_prototypes[ship_type].cost / 3 );
    ch_printf( ch, "%s is quickly dispatched to the %s system.\r\n", shipname, ssystem->name );
 
    ship = make_prototype_ship( ship_type, vnum, ch, shipname );
+   if( ship->owner )
+      STRFREE( ship->owner );
    ship->owner = STRALLOC( ch->pcdata->clan->name );
    save_ship( ship );
    write_ship_list(  );
@@ -388,7 +387,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_orderclanship( CHAR_DATA * ch, char *argument )
+void do_orderclanship( CHAR_DATA * ch, const char *argument )
 {
    int x, size, ship_type, vnum;
    SHIP_DATA *ship;
@@ -396,7 +395,7 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
    bool found_proto = FALSE;
    AREA_DATA *tarea;
    CLAN_DATA *clan;
-   CLAN_DATA *mainclan;
+   char argbuf[MSL];
 
    if( IS_NPC( ch ) || !ch->pcdata )
    {
@@ -410,7 +409,6 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
    }
 
    clan = ch->pcdata->clan;
-   mainclan = ch->pcdata->clan->mainclan ? ch->pcdata->clan->mainclan : clan;
 
    if( ( ch->pcdata->bestowments
          && is_name( "clanbuyship", ch->pcdata->bestowments ) ) || !str_cmp( ch->name, clan->leader ) )
@@ -446,18 +444,18 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
                     !str_cmp( ship_prototypes[x].clan, "The Empire" ) ? "&R" :
                     !str_cmp( ship_prototypes[x].clan, "The New Republic" ) ? "&G" : "&w",
                     ship_prototypes[x].name,
-                    ship_prototypes[x].class == SHIP_FIGHTER ? "Starfighter" :
-                    ship_prototypes[x].class == SHIP_BOMBER ? "Bomber" :
-                    ship_prototypes[x].class == SHIP_SHUTTLE ? "Shuttle" :
-                    ship_prototypes[x].class == SHIP_FREIGHTER ? "Freighter" :
-                    ship_prototypes[x].class == SHIP_FRIGATE ? "Frigate" :
-                    ship_prototypes[x].class == SHIP_TT ? "Troop Transport" :
-                    ship_prototypes[x].class == SHIP_CORVETTE ? "Corvette" :
-                    ship_prototypes[x].class == SHIP_CRUISER ? "Cruiser" :
-                    ship_prototypes[x].class == SHIP_DREADNAUGHT ? "Dreadnaught" :
-                    ship_prototypes[x].class == SHIP_DESTROYER ? "Star Destroyer" :
-                    ship_prototypes[x].class == SHIP_SPACE_STATION ? "Space Station" :
-                    ship_prototypes[x].class == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship_prototypes[x].cost );
+                    ship_prototypes[x].sclass == SHIP_FIGHTER ? "Starfighter" :
+                    ship_prototypes[x].sclass == SHIP_BOMBER ? "Bomber" :
+                    ship_prototypes[x].sclass == SHIP_SHUTTLE ? "Shuttle" :
+                    ship_prototypes[x].sclass == SHIP_FREIGHTER ? "Freighter" :
+                    ship_prototypes[x].sclass == SHIP_FRIGATE ? "Frigate" :
+                    ship_prototypes[x].sclass == SHIP_TT ? "Troop Transport" :
+                    ship_prototypes[x].sclass == SHIP_CORVETTE ? "Corvette" :
+                    ship_prototypes[x].sclass == SHIP_CRUISER ? "Cruiser" :
+                    ship_prototypes[x].sclass == SHIP_DREADNAUGHT ? "Dreadnaught" :
+                    ship_prototypes[x].sclass == SHIP_DESTROYER ? "Star Destroyer" :
+                    ship_prototypes[x].sclass == SHIP_SPACE_STATION ? "Space Station" :
+                    ship_prototypes[x].sclass == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship_prototypes[x].cost );
       }
 
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
@@ -496,18 +494,18 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
                     !str_cmp( ship_prototypes[x].clan, "The Empire" ) ? "&R" :
                     !str_cmp( ship_prototypes[x].clan, "The New Republic" ) ? "&G" : "&w",
                     ship_prototypes[x].name,
-                    ship_prototypes[x].class == SHIP_FIGHTER ? "Starfighter" :
-                    ship_prototypes[x].class == SHIP_BOMBER ? "Bomber" :
-                    ship_prototypes[x].class == SHIP_SHUTTLE ? "Shuttle" :
-                    ship_prototypes[x].class == SHIP_FREIGHTER ? "Freighter" :
-                    ship_prototypes[x].class == SHIP_FRIGATE ? "Frigate" :
-                    ship_prototypes[x].class == SHIP_TT ? "Troop Transport" :
-                    ship_prototypes[x].class == SHIP_CORVETTE ? "Corvette" :
-                    ship_prototypes[x].class == SHIP_CRUISER ? "Cruiser" :
-                    ship_prototypes[x].class == SHIP_DREADNAUGHT ? "Dreadnaught" :
-                    ship_prototypes[x].class == SHIP_DESTROYER ? "Star Destroyer" :
-                    ship_prototypes[x].class == SHIP_SPACE_STATION ? "Space Station" :
-                    ship_prototypes[x].class == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship_prototypes[x].cost );
+                    ship_prototypes[x].sclass == SHIP_FIGHTER ? "Starfighter" :
+                    ship_prototypes[x].sclass == SHIP_BOMBER ? "Bomber" :
+                    ship_prototypes[x].sclass == SHIP_SHUTTLE ? "Shuttle" :
+                    ship_prototypes[x].sclass == SHIP_FREIGHTER ? "Freighter" :
+                    ship_prototypes[x].sclass == SHIP_FRIGATE ? "Frigate" :
+                    ship_prototypes[x].sclass == SHIP_TT ? "Troop Transport" :
+                    ship_prototypes[x].sclass == SHIP_CORVETTE ? "Corvette" :
+                    ship_prototypes[x].sclass == SHIP_CRUISER ? "Cruiser" :
+                    ship_prototypes[x].sclass == SHIP_DREADNAUGHT ? "Dreadnaught" :
+                    ship_prototypes[x].sclass == SHIP_DESTROYER ? "Star Destroyer" :
+                    ship_prototypes[x].sclass == SHIP_SPACE_STATION ? "Space Station" :
+                    ship_prototypes[x].sclass == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship_prototypes[x].cost );
       }
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w               Refer to 'shiplist' for a complete ship listing               &W|\r\n", ch );
@@ -534,11 +532,13 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
       bug( "Ship area is low on vnums.", 0 );
       return;
    }
-   argument[0] = UPPER( argument[0] );
-   sprintf( argument, "%s (%s)", argument, ship_prototypes[ship_type].sname );
+   snprintf( argbuf, MSL, "%s", argument );  
+   argbuf[0] = UPPER( argbuf[0] );
+   sprintf( argbuf, "%s (%s)", argbuf, ship_prototypes[ship_type].sname );
+
    for( ship = first_ship; ship; ship = ship->next )
    {
-      if( !str_cmp( ship->name, argument ) )
+      if( !str_cmp( ship->name, argbuf ) )
       {
          send_to_char( "That ship name is already in use. Choose another.\r\n", ch );
          return;
@@ -552,7 +552,7 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
    for( tarea = first_area; tarea; tarea = tarea->next )
       if( !str_cmp( SHIP_AREA, tarea->filename ) )
          break;
-   if( make_prototype_rooms( ship_type, vnum, tarea, argument ) == -1 )
+   if( make_prototype_rooms( ship_type, vnum, tarea, argbuf ) == -1 )
    {
       send_to_char( "There was a problem with your ship: unable to create a room. Notify an administrator.\r\n", ch );
       bug( "Ship area unable to make_room.", 0 );
@@ -563,14 +563,14 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
 
    send_to_char( "&wA shipyard salesman enters some information into a datapad.\r\n", ch );
    send_to_char( "&R&CThe salesman says:&R&W You're all set. Thanks.\r\n", ch );
-   ship = make_prototype_ship( ship_type, vnum, ch, argument );
+   ship = make_prototype_ship( ship_type, vnum, ch, argbuf );
    ship->owner = ch->pcdata->clan->name;
    save_ship( ship );
    write_ship_list(  );
    return;
 }
 
-void do_ordership( CHAR_DATA * ch, char *argument )
+void do_ordership( CHAR_DATA * ch, const char *argument )
 {
    int x, size, ship_type, vnum, count;
    SHIP_DATA *ship;
@@ -580,6 +580,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
    BMARKET_DATA *marketship;
    char *bmshipname;
    int bmshipcost;
+   char argbuf[MSL];
 
    count = 0;
    if( !IS_SET( ch->in_room->room_flags2, ROOM_SHIPYARD ) && !IS_SET( ch->in_room->room_flags2, ROOM_BLACKMARKET ) )
@@ -608,18 +609,18 @@ void do_ordership( CHAR_DATA * ch, char *argument )
                        !str_cmp( ship_prototypes[x].clan, "The Empire" ) ? "&R" :
                        !str_cmp( ship_prototypes[x].clan, "The New Republic" ) ? "&G" : "&w",
                        ship_prototypes[x].name,
-                       ship_prototypes[x].class == SHIP_FIGHTER ? "Starfighter" :
-                       ship_prototypes[x].class == SHIP_BOMBER ? "Bomber" :
-                       ship_prototypes[x].class == SHIP_SHUTTLE ? "Shuttle" :
-                       ship_prototypes[x].class == SHIP_FREIGHTER ? "Freighter" :
-                       ship_prototypes[x].class == SHIP_FRIGATE ? "Frigate" :
-                       ship_prototypes[x].class == SHIP_TT ? "Troop Transport" :
-                       ship_prototypes[x].class == SHIP_CORVETTE ? "Corvette" :
-                       ship_prototypes[x].class == SHIP_CRUISER ? "Cruiser" :
-                       ship_prototypes[x].class == SHIP_DREADNAUGHT ? "Dreadnaught" :
-                       ship_prototypes[x].class == SHIP_DESTROYER ? "Star Destroyer" :
-                       ship_prototypes[x].class == SHIP_SPACE_STATION ? "Space Station" :
-                       ship_prototypes[x].class == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship_prototypes[x].cost );
+                       ship_prototypes[x].sclass == SHIP_FIGHTER ? "Starfighter" :
+                       ship_prototypes[x].sclass == SHIP_BOMBER ? "Bomber" :
+                       ship_prototypes[x].sclass == SHIP_SHUTTLE ? "Shuttle" :
+                       ship_prototypes[x].sclass == SHIP_FREIGHTER ? "Freighter" :
+                       ship_prototypes[x].sclass == SHIP_FRIGATE ? "Frigate" :
+                       ship_prototypes[x].sclass == SHIP_TT ? "Troop Transport" :
+                       ship_prototypes[x].sclass == SHIP_CORVETTE ? "Corvette" :
+                       ship_prototypes[x].sclass == SHIP_CRUISER ? "Cruiser" :
+                       ship_prototypes[x].sclass == SHIP_DREADNAUGHT ? "Dreadnaught" :
+                       ship_prototypes[x].sclass == SHIP_DESTROYER ? "Star Destroyer" :
+                       ship_prototypes[x].sclass == SHIP_SPACE_STATION ? "Space Station" :
+                       ship_prototypes[x].sclass == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship_prototypes[x].cost );
 
          }
          send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
@@ -705,18 +706,18 @@ void do_ordership( CHAR_DATA * ch, char *argument )
                        !str_cmp( ship_prototypes[x].clan, "The Empire" ) ? "&R" :
                        !str_cmp( ship_prototypes[x].clan, "The New Republic" ) ? "&G" : "&w",
                        ship_prototypes[x].name,
-                       ship_prototypes[x].class == SHIP_FIGHTER ? "Starfighter" :
-                       ship_prototypes[x].class == SHIP_BOMBER ? "Bomber" :
-                       ship_prototypes[x].class == SHIP_SHUTTLE ? "Shuttle" :
-                       ship_prototypes[x].class == SHIP_FREIGHTER ? "Freighter" :
-                       ship_prototypes[x].class == SHIP_FRIGATE ? "Frigate" :
-                       ship_prototypes[x].class == SHIP_TT ? "Troop Transport" :
-                       ship_prototypes[x].class == SHIP_CORVETTE ? "Corvette" :
-                       ship_prototypes[x].class == SHIP_CRUISER ? "Cruiser" :
-                       ship_prototypes[x].class == SHIP_DREADNAUGHT ? "Dreadnaught" :
-                       ship_prototypes[x].class == SHIP_DESTROYER ? "Star Destroyer" :
-                       ship_prototypes[x].class == SHIP_SPACE_STATION ? "Space Station" :
-                       ship_prototypes[x].class == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship_prototypes[x].cost );
+                       ship_prototypes[x].sclass == SHIP_FIGHTER ? "Starfighter" :
+                       ship_prototypes[x].sclass == SHIP_BOMBER ? "Bomber" :
+                       ship_prototypes[x].sclass == SHIP_SHUTTLE ? "Shuttle" :
+                       ship_prototypes[x].sclass == SHIP_FREIGHTER ? "Freighter" :
+                       ship_prototypes[x].sclass == SHIP_FRIGATE ? "Frigate" :
+                       ship_prototypes[x].sclass == SHIP_TT ? "Troop Transport" :
+                       ship_prototypes[x].sclass == SHIP_CORVETTE ? "Corvette" :
+                       ship_prototypes[x].sclass == SHIP_CRUISER ? "Cruiser" :
+                       ship_prototypes[x].sclass == SHIP_DREADNAUGHT ? "Dreadnaught" :
+                       ship_prototypes[x].sclass == SHIP_DESTROYER ? "Star Destroyer" :
+                       ship_prototypes[x].sclass == SHIP_SPACE_STATION ? "Space Station" :
+                       ship_prototypes[x].sclass == LAND_VEHICLE ? "Land vehicle" : "Unknown", ship_prototypes[x].cost );
 
          }
          send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
@@ -735,11 +736,11 @@ void do_ordership( CHAR_DATA * ch, char *argument )
                {
                   bmshipname = ship_prototypes[x].name;
                   if( marketship->quantity == 1 )
-                     bmshipcost = ship_prototypes[x].cost * 2.5;
+                     bmshipcost = ( int )( ship_prototypes[x].cost * 2.5 );
                   else if( marketship->quantity == 2 )
                      bmshipcost = ship_prototypes[x].cost * 2;
                   else
-                     bmshipcost = ship_prototypes[x].cost * 1.5;
+                     bmshipcost = ( int )( ship_prototypes[x].cost * 1.5 );
                }
             }
             ch_printf( ch, "&W|&z %-35.35s&W |&z Quantity: %d&W |&z Cost: %-8d&W |\r\n", bmshipname, marketship->quantity,
@@ -759,7 +760,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
       send_to_char( "What do you want to name your ship?\r\n", ch );
       return;
    }
-   if( ship_prototypes[ship_type].class == 3 && !IS_IMMORTAL( ch ) )
+   if( ship_prototypes[ship_type].sclass == 3 && !IS_IMMORTAL( ch ) )
    {
       send_to_char( "At the moment, capital ships may only be purchased by clans.\r\n", ch );
       return;
@@ -790,15 +791,13 @@ void do_ordership( CHAR_DATA * ch, char *argument )
       bug( "Ship Shop area is low on vnums.", 0 );
       return;
    }
+   snprintf( argbuf, MSL, "%s", argument );
+   argbuf[0] = UPPER( argbuf[0] );
 
-   argument[0] = UPPER( argument[0] );
-
-   strcpy( log_buf, ship_prototypes[ship_type].sname );
-//    sprintf(argument,"%s (%s)",argument, ship_prototypes[ship_type].sname);
+   sprintf(argbuf,"%s (%s)",argbuf, ship_prototypes[ship_type].sname);
    for( ship = first_ship; ship; ship = ship->next )
    {
-//        if(!str_cmp(ship->name,argument))
-      if( !str_cmp( ship->name, log_buf ) )
+      if( !str_cmp( ship->name, argbuf ) )
       {
          send_to_char( "&CThat ship name is already in use. Choose another.\r\n", ch );
          return;
@@ -821,7 +820,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
       }
    }
 
-   if( !str_cmp( argument, "&" ) )
+   if( !str_cmp( argbuf, "&" ) )
    {
       send_to_char( "No color codes in ship names.\r\n", ch );
       return;
@@ -830,7 +829,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
    for( tarea = first_area; tarea; tarea = tarea->next )
       if( !str_cmp( SHIP_AREA, tarea->filename ) )
          break;
-   if( make_prototype_rooms( ship_type, vnum, tarea, argument ) == -1 )
+   if( make_prototype_rooms( ship_type, vnum, tarea, argbuf ) == -1 )
    {
       send_to_char( "There was a problem with your ship: unable to create a room. Notify an administrator.\r\n", ch );
       bug( "Ship Shop unable to make_room.", 0 );
@@ -859,7 +858,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
       send_to_char( "A smuggler gives a grin and shows you to the ship.\r\n", ch );
       send_to_char( "&R&CA smuggler says:&R&W There ya go, she's all yours.\r\n", ch );
    }
-   ship = make_prototype_ship( ship_type, vnum, ch, argument );
+   ship = make_prototype_ship( ship_type, vnum, ch, argbuf );
    return;
 }
 
@@ -867,7 +866,6 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
 {
    SHIP_DATA *ship;
    PROTO_ROOM *proom;
-   ROOM_INDEX_DATA *room;
    char sp_filename[MAX_STRING_LENGTH];
 
    CREATE( ship, SHIP_DATA, 1 );
@@ -886,7 +884,7 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
       the right starsystem by Keberus, thanks Guido */ 
    if( ch->in_room->area && ch->in_room->area->planet )
    {
-      if( ship_prototypes[ship_type].class >= SHIP_CRUISER &&  ch->in_room->area->planet->starsystem )
+      if( ship_prototypes[ship_type].sclass >= SHIP_CRUISER &&  ch->in_room->area->planet->starsystem )
          ship->home = STRALLOC( ch->in_room->area->planet->starsystem->name );
       else
          ship->home = STRALLOC( ch->in_room->area->planet->name );
@@ -895,7 +893,7 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
       ship->home = STRALLOC( "" );
    ship->pbeacon = STRALLOC( "" );
    ship->type = PLAYER_SHIP;
-   ship->class = ship_prototypes[ship_type].class;
+   ship->sclass = ship_prototypes[ship_type].sclass;
    ship->cost = ship_prototypes[ship_type].cost;
    ship->starsystem = NULL;
    ship->in_room = NULL;
@@ -937,7 +935,6 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
    {
       if( proom->what_prototype == ship_type )
       {
-         room = get_room_index( proom->room_num + vnum - 1 );
          switch ( proom->room_type )
          {
             case SP_COCKPIT:
@@ -1037,6 +1034,8 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
    //MARKER
    ship->shipyard = ch->in_room->vnum;
    resetship( ship );
+   if( ship->owner )
+      STRFREE( ship->owner );
    ship->owner = STRALLOC( ch->name );
    save_ship( ship );
    write_ship_list(  );
@@ -1094,7 +1093,7 @@ int make_prototype_rooms( int ship_type, int vnum, AREA_DATA * tarea, char *Snam
          if( newroom->description )
             STRFREE( newroom->description );
          newroom->description = STRALLOC( strrep( newdesc, "$SN$", Sname ) );
-         arg = STRALLOC( proom->flags );
+         arg = proom->flags;
          newroom->tunnel = proom->tunnel;
          while( arg[0] != '\0' )
          {
@@ -1106,7 +1105,7 @@ int make_prototype_rooms( int ship_type, int vnum, AREA_DATA * tarea, char *Snam
          {
             if( proom->reset[y] != NULL && proom->reset[y][0] != '\0' )
             {
-               rarg = STRALLOC( proom->reset[y] );
+               rarg = proom->reset[y];
                rarg = one_argument( rarg, rtype );
                rvnum = atoi( rarg );
                switch ( UPPER( rtype[0] ) )
@@ -1128,7 +1127,7 @@ int make_prototype_rooms( int ship_type, int vnum, AREA_DATA * tarea, char *Snam
                }
             }
          }
-         instaroom( tarea, newroom, TRUE );
+         instaroom( NULL, newroom, TRUE );
       }
    }
    for( proom = first_prototype_room; proom; proom = proom->next )
@@ -1292,7 +1291,7 @@ void save_prototype( int prototype )
    fprintf( fpout, "Sname          %s~\n", ship_prototypes[prototype].sname );
    fprintf( fpout, "NumRooms       %d\n", ship_prototypes[prototype].num_rooms );
    fprintf( fpout, "Cost           %d\n", ship_prototypes[prototype].cost );
-   fprintf( fpout, "Class          %d\n", ship_prototypes[prototype].class );
+   fprintf( fpout, "Class          %d\n", ship_prototypes[prototype].sclass );
    fprintf( fpout, "Tractor        %d\n", ship_prototypes[prototype].tractor );
    fprintf( fpout, "primaryType         %d\n", ship_prototypes[prototype].primaryType );
    fprintf( fpout, "secondaryType		 %d\n", ship_prototypes[prototype].secondaryType );
@@ -1376,7 +1375,7 @@ void write_all_prototypes(  )
 bool load_prototype_header( FILE * fp, int prototype )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool done = FALSE;
    bool fMatch;
    while( !done )
@@ -1387,7 +1386,7 @@ bool load_prototype_header( FILE * fp, int prototype )
       {
          case 'C':
             KEY( "Cost", ship_prototypes[prototype].cost, fread_number( fp ) );
-            KEY( "Class", ship_prototypes[prototype].class, fread_number( fp ) );
+            KEY( "Class", ship_prototypes[prototype].sclass, fread_number( fp ) );
             KEY( "Chaff", ship_prototypes[prototype].chaff, fread_number( fp ) );
             KEY( "Clan", ship_prototypes[prototype].clan, fread_string( fp ) );
          case 'E':
@@ -1439,7 +1438,7 @@ bool fread_prototype_room( FILE * fp, int prototype )
 {
    PROTO_ROOM *proom;
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool done = FALSE;
    bool fMatch;
    CREATE( proom, PROTO_ROOM, 1 );
@@ -1558,11 +1557,10 @@ bool load_prototype_rooms( FILE * fp, int prototype )
    return TRUE;
 }
 
-int load_prototype( char *prototypefile, int prototype )
+int load_prototype( const char *prototypefile, int prototype )
 {
    char filename[256];
    FILE *fp;
-   bool found = FALSE;
    int stage = -1;
    bool ok = TRUE;
    char letter;
@@ -1572,7 +1570,6 @@ int load_prototype( char *prototypefile, int prototype )
 
    if( ( fp = fopen( filename, "r" ) ) != NULL )
    {
-      found = TRUE;
       prototype++;
       while( ok )
       {
@@ -1627,7 +1624,7 @@ int load_prototype( char *prototypefile, int prototype )
 void load_ship_prototypes(  )
 {
    FILE *fpList;
-   char *filename;
+   const char *filename;
    char prototypeslist[256];
    int prototype;
    first_prototype_room = NULL;
@@ -1648,7 +1645,6 @@ void load_ship_prototypes(  )
       if( filename[0] == '$' )
          break;
 
-
       prototype = load_prototype( filename, prototype );
    }
    fclose( fpList );
@@ -1658,12 +1654,12 @@ void load_ship_prototypes(  )
    return;
 }
 
-void do_makeprototypeship( CHAR_DATA * ch, char *argument )
+void do_makeprototypeship( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    int prototype;
    int cost;
-   int count;
+   int count = 0;
    char ship_name[MAX_STRING_LENGTH];
    char name[MAX_STRING_LENGTH];
    char sname[MAX_STRING_LENGTH];
@@ -1680,7 +1676,7 @@ void do_makeprototypeship( CHAR_DATA * ch, char *argument )
    argument = one_argument( argument, scost );
    argument = one_argument( argument, sname );
    strcpy( name, argument );
-   if( !ship_name || ship_name[0] == '\0' )
+   if( ship_name[0] == '\0' )
    {
       send_to_char( "You must specify a valid ship name.\r\n", ch );
       send_to_char( "USAGE: makeprototypeship <ship name> <cost> <short name> <long name>\r\n", ch );
@@ -1693,7 +1689,7 @@ void do_makeprototypeship( CHAR_DATA * ch, char *argument )
       send_to_char( "USAGE: makeprototypeship <ship name> <cost> <short name> <long name>\r\n", ch );
       return;
    }
-   if( !sname || sname[0] == '\0' )
+   if( sname[0] == '\0' )
    {
       send_to_char( "You must specify a short name for the ship.\r\n", ch );
       send_to_char( "USAGE: makeprototypeship <ship name> <cost> <short name> <long name>\r\n", ch );
@@ -1702,13 +1698,13 @@ void do_makeprototypeship( CHAR_DATA * ch, char *argument )
    len = strlen( sname );
    for( x = 0; x < len; x++ )
       sname[x] = UPPER( sname[x] );
-   if( !name || name[0] == '\0' )
+   if( name[0] == '\0' )
    {
       send_to_char( "You must specify a long name for the ship.\r\n", ch );
       send_to_char( "USAGE: makeprototypeship <ship name> <cost> <short name> <long name>\r\n", ch );
       return;
    }
-   if( !scost || scost[0] == '\0' )
+   if( scost[0] == '\0' )
    {
       send_to_char( "You must specify a cost for the ship.\r\n", ch );
       send_to_char( "USAGE: makeprototypeship <ship name> <cost> <short name> <long name>\r\n", ch );
@@ -1744,7 +1740,7 @@ void do_makeprototypeship( CHAR_DATA * ch, char *argument )
    sprintf( buf, "%s: '%s'", sname, name );
    ship_prototypes[prototype].name = STRALLOC( buf );
    ship_prototypes[prototype].sname = STRALLOC( sname );
-   ship_prototypes[prototype].class = ship->class;
+   ship_prototypes[prototype].sclass = ship->sclass;
    ship_prototypes[prototype].num_rooms = ship->lastroom - ship->firstroom + 1;
    if( ship->turret1 != 0 )
       count++;
@@ -1856,7 +1852,7 @@ void do_makeprototypeship( CHAR_DATA * ch, char *argument )
 
 char pbname[MAX_STRING_LENGTH];
 
-char *primary_beam_name_proto( int shiptype )
+const char *primary_beam_name_proto( int shiptype )
 {
    if( ship_prototypes[shiptype].primaryCount != 0 )
    {
@@ -1919,7 +1915,7 @@ char *primary_beam_name_proto( int shiptype )
    else
       return "None.";
 }
-char *secondary_beam_name_proto( int shiptype )
+const char *secondary_beam_name_proto( int shiptype )
 {
    if( ship_prototypes[shiptype].secondaryCount != 0 )
    {
@@ -1983,7 +1979,7 @@ char *secondary_beam_name_proto( int shiptype )
    else
       return "None.";
 }
-void do_shipstat( CHAR_DATA * ch, char *argument )
+void do_shipstat( CHAR_DATA * ch, const char *argument )
 {
    int shiptype;
    char buf1[MAX_STRING_LENGTH];
@@ -2076,7 +2072,7 @@ void do_shipstat( CHAR_DATA * ch, char *argument )
 void load_market_list(  )
 {
    FILE *fpList;
-   char *filename;
+   const char *filename;
    char list[256];
    BMARKET_DATA *marketship;
    int quantity;
@@ -2134,7 +2130,6 @@ void save_market_list(  )
 void add_market_ship( SHIP_DATA * ship )
 {
    BMARKET_DATA *marketship;
-   bool found;
 
    if( !ship )
       return;
@@ -2143,15 +2138,12 @@ void add_market_ship( SHIP_DATA * ship )
    {
       if( !str_cmp( marketship->filename, ship->protoname ) )
       {
-         //Debugging  bug("Found, adding quantity", 0);
-         found = TRUE;
          marketship->quantity++;
          return;
       }
    }
 
 
-   //Debugging  bug("Not found, adding to .lst", 0);
    CREATE( marketship, BMARKET_DATA, 1 );
    LINK( marketship, first_market_ship, last_market_ship, next, prev );
 
@@ -2349,7 +2341,7 @@ void make_random_marketlist(  )
    save_market_list(  );
 }
 
-void do_generate_market( CHAR_DATA * ch, char *argument )
+void do_generate_market( CHAR_DATA * ch, const char *argument )
 {
    BMARKET_DATA *marketship;
 
@@ -2386,7 +2378,7 @@ void do_generate_market( CHAR_DATA * ch, char *argument )
 
 
 
-void do_installmodule( CHAR_DATA * ch, char *argument )
+void do_installmodule( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    MODULE_DATA *mod;
@@ -2554,7 +2546,7 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -2649,7 +2641,7 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_shiplist( CHAR_DATA * ch, char *argument )
+void do_shiplist( CHAR_DATA * ch, const char *argument )
 {
    int x;
 
@@ -2665,18 +2657,18 @@ void do_shiplist( CHAR_DATA * ch, char *argument )
                  !str_cmp( ship_prototypes[x].clan, "The Empire" ) ? "&RImperial" :
                  !str_cmp( ship_prototypes[x].clan, "The New Republic" ) ? "&GRepublic" :
                  "&wCivilian",
-                 ship_prototypes[x].class == SHIP_FIGHTER ? "Starfighter" :
-                 ship_prototypes[x].class == SHIP_BOMBER ? "Bomber" :
-                 ship_prototypes[x].class == SHIP_SHUTTLE ? "Shuttle" :
-                 ship_prototypes[x].class == SHIP_FREIGHTER ? "Freighter" :
-                 ship_prototypes[x].class == SHIP_FRIGATE ? "Frigate" :
-                 ship_prototypes[x].class == SHIP_TT ? "Troop Transport" :
-                 ship_prototypes[x].class == SHIP_CORVETTE ? "Corvette" :
-                 ship_prototypes[x].class == SHIP_CRUISER ? "Cruiser" :
-                 ship_prototypes[x].class == SHIP_DREADNAUGHT ? "Dreadnaught" :
-                 ship_prototypes[x].class == SHIP_DESTROYER ? "Star Destroyer" :
-                 ship_prototypes[x].class == SHIP_SPACE_STATION ? "Space Station" :
-                 ship_prototypes[x].class == LAND_VEHICLE ? "Land vehicle" : "Unknown" );
+                 ship_prototypes[x].sclass == SHIP_FIGHTER ? "Starfighter" :
+                 ship_prototypes[x].sclass == SHIP_BOMBER ? "Bomber" :
+                 ship_prototypes[x].sclass == SHIP_SHUTTLE ? "Shuttle" :
+                 ship_prototypes[x].sclass == SHIP_FREIGHTER ? "Freighter" :
+                 ship_prototypes[x].sclass == SHIP_FRIGATE ? "Frigate" :
+                 ship_prototypes[x].sclass == SHIP_TT ? "Troop Transport" :
+                 ship_prototypes[x].sclass == SHIP_CORVETTE ? "Corvette" :
+                 ship_prototypes[x].sclass == SHIP_CRUISER ? "Cruiser" :
+                 ship_prototypes[x].sclass == SHIP_DREADNAUGHT ? "Dreadnaught" :
+                 ship_prototypes[x].sclass == SHIP_DESTROYER ? "Star Destroyer" :
+                 ship_prototypes[x].sclass == SHIP_SPACE_STATION ? "Space Station" :
+                 ship_prototypes[x].sclass == LAND_VEHICLE ? "Land vehicle" : "Unknown" );
 
 
    send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );

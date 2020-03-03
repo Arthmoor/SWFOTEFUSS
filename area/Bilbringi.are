@@ -1,166 +1,177 @@
-#AREA   Bilbringi~
+#FUSSAREA
+#AREADATA
+Version      1
+Name         Bilbringi~
+Author       Xenox~
+Ranges       0 0 0 0
+Economy      0 6250000
+#ENDAREADATA
 
-
-
-#AUTHOR Xenox~
-
-#RANGES
-0 0 0 0
-$
-
-#FLAGS
-0
-
-#ECONOMY 0 6250000
-
-#MOBILES
-#10901
-low_mob~
-a newly created low_mob~
-Some god abandoned a newly created low_mob here.
+#MOBILE
+Vnum       10901
+Keywords   low_mob~
+Short      a newly created low_mob~
+Long       Some god abandoned a newly created low_mob here.
 ~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#11000
-hi_mob~
-a newly created hi_mob~
-Some god abandoned a newly created hi_mob here.
-~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#0
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
 
-
-#OBJECTS
-#10901
-low_obj~
-a low_obj~
-A low_obj is here.~
+#MOBILE
+Vnum       11000
+Keywords   hi_mob~
+Short      a newly created hi_mob~
+Long       Some god abandoned a newly created hi_mob here.
 ~
-13 0 0
-0 0 0 0
-1 0 0
-#11000
-hi_obj~
-a hi_obj~
-A hi_obj is here.~
-~
-13 0 0
-0 0 0 0
-1 0 0
-#0
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
 
+#OBJECT
+Vnum     10901
+Keywords low_obj~
+Type     trash~
+Short    a low_obj~
+Long     A low_obj is here.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
 
-#ROOMS
-#10901
-Bilbringi Shipyard Main Landing Pad~
-The main landing pad of the great Bilbringi Shipyards. Out of
+#OBJECT
+Vnum     11000
+Keywords hi_obj~
+Type     trash~
+Short    a hi_obj~
+Long     A hi_obj is here.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#ROOM
+Vnum     10901
+Name     Bilbringi Shipyard Main Landing Pad~
+Sector   city~
+Flags    indoors~
+Stats    0 0 10064
+Desc     The main landing pad of the great Bilbringi Shipyards. Out of
 the magcon field you can see one of the heavily fortified shipyards
 constructing an Imperial Star Destroyer.All around you technicians
 and Bilbringi authorities wander around doing one duty or another.
 ~
-0 8 1 0 0 0 10064
-D1
-~
-~
-0 -1 10902
-D2
-~
-~
-0 -1 10903
-S
-#10902
-Bilbringi Bus Stop~
-This is Bilbringi's inter-planetary bus stop. This is the spot
+#EXIT
+Direction east~
+ToRoom    10902
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    10903
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     10902
+Name     Bilbringi Bus Stop~
+Sector   city~
+Flags    indoors~
+Stats    0 0 10064
+Desc     This is Bilbringi's inter-planetary bus stop. This is the spot
 that the interplanetary transportation shuttles come to bring
 passengers to other planets.Through the MagCon field you can
 see one of the heavily fortified shipyards constructing an Imperial
 Star Destroyer.
 ~
-0 8 1 0 0 0 10064
-D3
-~
-~
-0 -1 10901
-S
-#10903
-Main Street~
-This is the mainstreet of the Bilbringi Shipyards Asteroid. It
+#EXIT
+Direction west~
+ToRoom    10901
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     10903
+Name     Main Street~
+Sector   underground~
+Flags    prototype~
+Stats    0 0 10064
+Desc     This is the mainstreet of the Bilbringi Shipyards Asteroid. It
 is a heavily crowded street inside the confines of the Asteroid
 that runs the length from the Headquarters to the Spaceport.
 ~
-0 1073741824 13 0 0 0 10064
-D0
-~
-~
-0 -1 10901
-D2
-~
-~
-0 -1 10904
-S
-#10904
-Main Street~
-~
-0 1073741824 1 0
-D0
-~
-~
-0 -1 10903
-D2
-~
-~
-0 -1 10905
-S
-#10905
-Floating in a void~
-~
-0 1073741824 1 0
-D0
-~
-~
-0 -1 10904
-S
-#11000
-Floating in a void~
-~
-0 4 1 0 0 0 10064
-S
-#0
+#EXIT
+Direction north~
+ToRoom    10901
+#ENDEXIT
 
+#EXIT
+Direction south~
+ToRoom    10904
+#ENDEXIT
 
-#RESETS
-O 1 10901 1 11000
-O 1 11000 1 11000
-S
+#ENDROOM
 
+#ROOM
+Vnum     10904
+Name     Main Street~
+Sector   city~
+Flags    prototype~
+Stats    0 0 10064
+#EXIT
+Direction north~
+ToRoom    10903
+#ENDEXIT
 
-#SHOPS
-0
+#EXIT
+Direction south~
+ToRoom    10905
+#ENDEXIT
 
+#ENDROOM
 
-#REPAIRS
-0
+#ROOM
+Vnum     10905
+Name     Floating in a void~
+Sector   city~
+Flags    prototype~
+Stats    0 0 10064
+#EXIT
+Direction north~
+ToRoom    10904
+#ENDEXIT
 
+#ENDROOM
 
-#SPECIALS
-S
+#ROOM
+Vnum     11000
+Name     Floating in a void~
+Sector   city~
+Flags    nomob~
+Stats    0 0 10064
+Reset O 0 10901 1 11000
+Reset O 0 11000 1 11000
+#ENDROOM
 
-
-#$
+#ENDAREA

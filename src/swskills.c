@@ -33,16 +33,16 @@ Michael Seifert, and Sebastian Hammer.
 #include <time.h>
 #include "mud.h"
 
-void add_reinforcements args( ( CHAR_DATA * ch ) );
-ch_ret one_hit args( ( CHAR_DATA * ch, CHAR_DATA * victim, int dt ) );
+void add_reinforcements( CHAR_DATA * ch );
+ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt );
 int xp_compute( CHAR_DATA * ch, CHAR_DATA * victim );
 ROOM_INDEX_DATA *generate_exit( ROOM_INDEX_DATA * in_room, EXIT_DATA ** pexit );
 int ris_save( CHAR_DATA * ch, int schance, int ris );
-void explode_emissile args( ( CHAR_DATA * ch, ROOM_INDEX_DATA * proom, int mindam, int maxdam, bool incendiary ) );
-CHAR_DATA *get_char_room_mp( CHAR_DATA * ch, char *argument );
+void explode_emissile( CHAR_DATA * ch, ROOM_INDEX_DATA * proom, int mindam, int maxdam, bool incendiary );
+CHAR_DATA *get_char_room_mp( CHAR_DATA * ch, const char *argument );
 
 /* from shops.c */
-CHAR_DATA *find_keeper args( ( CHAR_DATA * ch ) );
+CHAR_DATA *find_keeper( CHAR_DATA * ch );
 
 extern int top_affect;
 
@@ -53,7 +53,7 @@ const char *sector_name[SECT_MAX] = {
    "swamp", "wetlands", "brush", "steppe", "farmland", "volcanic"
 };
 
-void do_makeblade( CHAR_DATA * ch, char *argument )
+void do_makeblade( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -142,7 +142,7 @@ void do_makeblade( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -268,7 +268,7 @@ void do_makeblade( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makeblade );
 }
 
-void do_makeblaster( CHAR_DATA * ch, char *argument )
+void do_makeblaster( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -373,7 +373,7 @@ void do_makeblaster( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -534,7 +534,7 @@ void do_makeblaster( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makeblaster );
 }
 
-void do_makelightsaber( CHAR_DATA * ch, char *argument )
+void do_makelightsaber( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -666,7 +666,7 @@ void do_makelightsaber( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -852,7 +852,7 @@ void do_makelightsaber( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_makespice( CHAR_DATA * ch, char *argument )
+void do_makespice( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -907,7 +907,7 @@ void do_makespice( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -966,7 +966,7 @@ void do_makespice( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_makegrenade( CHAR_DATA * ch, char *argument )
+void do_makegrenade( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -1060,7 +1060,7 @@ void do_makegrenade( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1178,7 +1178,7 @@ void do_makegrenade( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makegrenade );
 }
 
-void do_makelandmine( CHAR_DATA * ch, char *argument )
+void do_makelandmine( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -1272,7 +1272,7 @@ void do_makelandmine( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1389,7 +1389,8 @@ void do_makelandmine( CHAR_DATA * ch, char *argument )
    }
    learn_from_success( ch, gsn_makelandmine );
 }
-void do_makelight( CHAR_DATA * ch, char *argument )
+
+void do_makelight( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -1482,7 +1483,7 @@ void do_makelight( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1597,7 +1598,7 @@ void do_makelight( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makelight );
 }
 
-void do_makejewelry( CHAR_DATA * ch, char *argument )
+void do_makejewelry( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1710,9 +1711,9 @@ void do_makejewelry( CHAR_DATA * ch, char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ch->dest_buf_2 );
+         strcpy( arg2, ( const char * )ch->dest_buf_2 );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -1865,7 +1866,7 @@ void do_makejewelry( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_makearmor( CHAR_DATA * ch, char *argument )
+void do_makearmor( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1963,9 +1964,9 @@ void do_makearmor( CHAR_DATA * ch, char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ch->dest_buf_2 );
+         strcpy( arg2, ( const char * )ch->dest_buf_2 );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -2050,7 +2051,7 @@ void do_makearmor( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_makecomlink( CHAR_DATA * ch, char *argument )
+void do_makecomlink( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2139,14 +2140,15 @@ void do_makecomlink( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ch->dest_buf_2 );
+         strcpy( arg2, ( const char * )ch->dest_buf_2 );
          DISPOSE( ch->dest_buf_2 );
          break;
 
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
+         DISPOSE( ch->dest_buf_2 );
          ch->substate = SUB_NONE;
          send_to_char( "&RYou are interupted and fail to finish your work.\r\n", ch );
          return;
@@ -2255,7 +2257,7 @@ void do_makecomlink( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_makeshield( CHAR_DATA * ch, char *argument )
+void do_makeshield( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -2348,7 +2350,7 @@ void do_makeshield( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -2469,7 +2471,7 @@ void do_makeshield( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_makecontainer( CHAR_DATA * ch, char *argument )
+void do_makecontainer( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2567,9 +2569,9 @@ void do_makecontainer( CHAR_DATA * ch, char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ch->dest_buf_2 );
+         strcpy( arg2, ( const char * )ch->dest_buf_2 );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -2657,12 +2659,12 @@ void do_makecontainer( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makecontainer );
 }
 
-void do_gemcutting( CHAR_DATA * ch, char *argument )
+void do_gemcutting( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "&RSorry, this skill isn't finished yet :(\r\n", ch );
 }
 
-void do_reinforcements( CHAR_DATA * ch, char *argument )
+void do_reinforcements( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance, credits;
@@ -2709,7 +2711,7 @@ void do_reinforcements( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -2740,7 +2742,7 @@ void do_reinforcements( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_postguard( CHAR_DATA * ch, char *argument )
+void do_postguard( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance, credits;
@@ -2787,7 +2789,7 @@ void do_postguard( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -2853,7 +2855,8 @@ void add_reinforcements( CHAR_DATA * ch )
             mob[mob_cnt]->skill_level[ability] = mob[mob_cnt]->top_level;
          mob[mob_cnt]->hit = mob[mob_cnt]->top_level * 15;
          mob[mob_cnt]->max_hit = mob[mob_cnt]->hit;
-         mob[mob_cnt]->armor = 100 - mob[mob_cnt]->top_level * 2.5;
+         mob[mob_cnt]->armor = ( int )( 100 - mob[mob_cnt]->top_level * 2.5 );
+
          mob[mob_cnt]->damroll = mob[mob_cnt]->top_level / 5;
          mob[mob_cnt]->hitroll = mob[mob_cnt]->top_level / 5;
          if( ( pObjIndex = get_obj_index( OBJ_VNUM_BLASTECH_E11 ) ) != NULL )
@@ -2893,7 +2896,7 @@ void add_reinforcements( CHAR_DATA * ch )
          mob->skill_level[ability] = mob->top_level;
       mob->hit = mob->top_level * 15;
       mob->max_hit = mob->hit;
-      mob->armor = 100 - mob->top_level * 2.5;
+      mob->armor = ( int )( 100 - mob->top_level * 2.5 );
       mob->damroll = mob->top_level / 5;
       mob->hitroll = mob->top_level / 5;
       if( ( pObjIndex = get_obj_index( OBJ_VNUM_BLASTECH_E11 ) ) != NULL )
@@ -2914,7 +2917,7 @@ void add_reinforcements( CHAR_DATA * ch )
    }
 }
 
-void do_torture( CHAR_DATA * ch, char *argument )
+void do_torture( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -2974,8 +2977,7 @@ void do_torture( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   ch->alignment = ch->alignment -= 100;
-   ch->alignment = URANGE( -1000, ch->alignment, 1000 );
+   ch->alignment = URANGE( -1000, ( ch->alignment - 100 ), 1000 );
 
    WAIT_STATE( ch, skill_table[gsn_torture]->beats );
 
@@ -3026,8 +3028,9 @@ void do_torture( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_disguise( CHAR_DATA * ch, char *argument )
+void do_disguise( CHAR_DATA * ch, const char *argument )
 {
+   char arg[MIL];
    int schance;
 
    if( IS_NPC( ch ) )
@@ -3061,22 +3064,24 @@ void do_disguise( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( strlen( argument ) > 40 )
-      argument[40] = '\0';
+   snprintf( arg, MIL, "%s", argument );
+   if( strlen( arg ) > 40 )
+      arg[40] = '\0';
 
    learn_from_success( ch, gsn_disguise );
 
-   smash_tilde( argument );
+   smash_tilde( arg );
 
    STRFREE( ch->pcdata->disguise );
-   ch->pcdata->disguise = STRALLOC( argument );
+   ch->pcdata->disguise = STRALLOC( arg );
    send_to_char( "Ok.\r\n", ch );
 }
 
 
-void do_deception( CHAR_DATA * ch, char *argument )
+void do_deception( CHAR_DATA * ch, const char *argument )
 {
    int schance;
+   char arg[MIL];
 
    if( IS_NPC( ch ) )
       return;
@@ -3108,21 +3113,22 @@ void do_deception( CHAR_DATA * ch, char *argument )
       send_to_char( "You fail to deceive others.\r\n", ch );
       return;
    }
+   snprintf( arg, MIL, "%s", argument );
 
-   if( strlen( argument ) > 40 )
-      argument[40] = '\0';
+   if( strlen( arg ) > 40 )
+      arg[40] = '\0';
 
    learn_from_success( ch, gsn_deception );
 
-   smash_tilde( argument );
+   smash_tilde( arg );
 
    STRFREE( ch->pcdata->disguise );
-   ch->pcdata->disguise = STRALLOC( argument );
+   ch->pcdata->disguise = STRALLOC( arg );
 
    send_to_char( "Ok.\r\n", ch );
 }
 
-void do_mine( CHAR_DATA * ch, char *argument )
+void do_mine( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -3219,7 +3225,7 @@ void do_mine( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_first_aid( CHAR_DATA * ch, char *argument )
+void do_first_aid( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *medpac;
    CHAR_DATA *victim;
@@ -3293,7 +3299,7 @@ void do_first_aid( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_first_aid );
 }
 
-void do_snipe( CHAR_DATA * ch, char *argument )
+void do_snipe( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *wield;
    char arg[MAX_INPUT_LENGTH];
@@ -3307,6 +3313,7 @@ void do_snipe( CHAR_DATA * ch, char *argument )
    int schance;
    char buf[MAX_STRING_LENGTH];
    bool pfound = FALSE;
+   int tempnum = 0; /* Used to hold ch->tempnum when out of room during sniping */
 
    if( IS_SET( ch->in_room->room_flags, ROOM_SAFE ) )
    {
@@ -3393,8 +3400,6 @@ void do_snipe( CHAR_DATA * ch, char *argument )
    if( !pfound )
    {
       ch_printf( ch, "You don't see that person to the %s!\r\n", dir_name[dir] );
-      char_from_room( ch );
-      char_to_room( ch, was_in_room );
       return;
    }
 
@@ -3460,18 +3465,26 @@ void do_snipe( CHAR_DATA * ch, char *argument )
          break;
    }
 
-   char_from_room( ch );
-   char_to_room( ch, victim->in_room );
 
    if( number_percent(  ) < schance )
    {
+      sprintf( buf, "$n fires a blaster shot to the %s.", dir_name[get_door(arg)] );
+      act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
+
+      char_from_room( ch );
+      char_to_room( ch, victim->in_room );
+
       sprintf( buf, "A blaster shot fires at you from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, victim, NULL, ch, TO_CHAR );
       act( AT_ACTION, "You fire at $N.", ch, NULL, victim, TO_CHAR );
       sprintf( buf, "A blaster shot fires at $N from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_NOTVICT );
 
+      /* Fix to prevent automatic looting of corpses with snipe */
+      tempnum = ch->tempnum;
+      ch->tempnum = INT_MIN;
       one_hit( ch, victim, TYPE_UNDEFINED );
+      ch->tempnum = tempnum;
 
       if( char_died( ch ) )
          return;
@@ -3482,6 +3495,12 @@ void do_snipe( CHAR_DATA * ch, char *argument )
    }
    else
    {
+      sprintf( buf, "$n fires a blaster shot to the %s.", dir_name[get_door(arg)] );
+      act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
+
+      char_from_room( ch );
+      char_to_room( ch, victim->in_room );
+
       act( AT_ACTION, "You fire at $N but don't even come close.", ch, NULL, victim, TO_CHAR );
       sprintf( buf, "A blaster shot fired from the %s barely misses you.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_ROOM );
@@ -3514,12 +3533,11 @@ void do_snipe( CHAR_DATA * ch, char *argument )
       start_hunting( victim, ch );
 
    }
-
 }
 
 /* syntax throw <obj> [direction] [target] */
 
-void do_throw( CHAR_DATA * ch, char *argument )
+void do_throw( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    OBJ_DATA *tmpobj;
@@ -3688,6 +3706,12 @@ void do_throw( CHAR_DATA * ch, char *argument )
          sprintf( buf, "Someone throws %s at you from the %s.", obj->short_descr, dir_name[dir] );
          act( AT_ACTION, buf, victim, NULL, ch, TO_CHAR );
          act( AT_ACTION, "You throw $p at $N.", ch, obj, victim, TO_CHAR );
+         char_from_room( ch );
+         char_to_room( ch, was_in_room );
+         sprintf( buf, "$n throws %s to the %s.", obj->short_descr, dir_name[get_dir(arg2)] );
+         act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
+         char_from_room( ch );
+         char_to_room( ch, to_room );
          sprintf( buf, "%s is thrown at $N from the %s.", obj->short_descr, dir_name[dir] );
          act( AT_ACTION, buf, ch, NULL, victim, TO_NOTVICT );
 
@@ -3695,10 +3719,15 @@ void do_throw( CHAR_DATA * ch, char *argument )
       }
       else
       {
-         ch_printf( ch, "You throw %s %s.\r\n", obj->short_descr, dir_name[get_dir( arg2 )] );
-         sprintf( buf, "%s is thrown from the %s.", obj->short_descr, dir_name[dir] );
-         act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
-
+          ch_printf( ch, "You throw %s %s.\r\n", obj->short_descr, dir_name[get_dir( arg2 )] );
+          char_from_room( ch );
+          char_to_room( ch, was_in_room );
+          sprintf( buf, "$n throws %s to the %s.", obj->short_descr, dir_name[get_dir(arg2)] );
+          act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
+          char_from_room( ch );
+          char_to_room( ch, to_room );
+          sprintf( buf, "%s is thrown from the %s.", obj->short_descr, dir_name[dir] );
+          act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
       }
    }
    else if( ( victim = get_char_room( ch, arg2 ) ) != NULL )
@@ -3814,7 +3843,7 @@ void do_throw( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_beg( CHAR_DATA * ch, char *argument )
+void do_beg( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
@@ -3947,12 +3976,12 @@ void do_beg( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_pickshiplock( CHAR_DATA * ch, char *argument )
+void do_pickshiplock( CHAR_DATA * ch, const char *argument )
 {
    do_pick( ch, argument );
 }
 
-void do_hijack( CHAR_DATA * ch, char *argument )
+void do_hijack( CHAR_DATA * ch, const char *argument )
 {
    int schance;
    int x;
@@ -3968,7 +3997,7 @@ void do_hijack( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class > SHIP_SPACE_STATION )
+   if( ship->sclass > SHIP_SPACE_STATION )
    {
       send_to_char( "&RThis isn't a spacecraft!\r\n", ch );
       return;
@@ -3986,7 +4015,7 @@ void do_hijack( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   if( ship->class == SHIP_SPACE_STATION )
+   if( ship->sclass == SHIP_SPACE_STATION )
    {
       send_to_char( "You can't do that here.\r\n", ch );
       return;
@@ -4071,7 +4100,7 @@ void do_hijack( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_special_forces( CHAR_DATA * ch, char *argument )
+void do_special_forces( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance, credits;
@@ -4118,7 +4147,7 @@ void do_special_forces( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -4150,7 +4179,7 @@ void do_special_forces( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_elite_guard( CHAR_DATA * ch, char *argument )
+void do_elite_guard( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance, credits;
@@ -4197,7 +4226,7 @@ void do_elite_guard( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -4229,7 +4258,7 @@ void do_elite_guard( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_add_patrol( CHAR_DATA * ch, char *argument )
+void do_add_patrol( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance, credits;
@@ -4276,7 +4305,7 @@ void do_add_patrol( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -4308,7 +4337,7 @@ void do_add_patrol( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_jail( CHAR_DATA * ch, char *argument )
+void do_jail( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim = NULL;
    CLAN_DATA *clan = NULL;
@@ -4402,7 +4431,7 @@ void do_jail( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_smalltalk( CHAR_DATA * ch, char *argument )
+void do_smalltalk( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
@@ -4530,7 +4559,7 @@ void do_smalltalk( CHAR_DATA * ch, char *argument )
       planet->pop_support = 100;
 }
 
-void do_propeganda( CHAR_DATA * ch, char *argument )
+void do_propeganda( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
@@ -4660,13 +4689,13 @@ void do_propeganda( CHAR_DATA * ch, char *argument )
    save_planet( planet );
 }
 
-void do_bribe( CHAR_DATA * ch, char *argument )
+void do_bribe( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
    PLANET_DATA *planet;
    CLAN_DATA *clan;
-   int percent, amount;
+   int percent = 0, amount;
 
    if( IS_NPC( ch ) || !ch->pcdata || !ch->pcdata->clan || !ch->in_room->area || !ch->in_room->area->planet )
    {
@@ -4780,7 +4809,7 @@ void do_bribe( CHAR_DATA * ch, char *argument )
 
    if( clan == planet->governed_by )
    {
-      planet->pop_support += URANGE( 0.1, amount / 1000, 2 );
+      planet->pop_support += URANGE( 1, amount / 1000, 2 ); // (int)0.1 would have been pointless
       send_to_char( "Popular support for your organization increases slightly.\r\n", ch );
 
       amount =
@@ -4797,7 +4826,7 @@ void do_bribe( CHAR_DATA * ch, char *argument )
       planet->pop_support = 100;
 }
 
-void do_seduce( CHAR_DATA * ch, char *argument )
+void do_seduce( CHAR_DATA * ch, const char *argument )
 {
    AFFECT_DATA af;
    int schance;
@@ -4873,7 +4902,7 @@ void do_seduce( CHAR_DATA * ch, char *argument )
       }
    }
    af.type = gsn_seduce;
-   af.duration = ( number_fuzzy( ( level + 1 ) / 3 ) + 1 ) * DUR_CONV;
+   af.duration = ( int )( ( number_fuzzy( ( level + 1 ) / 3 ) + 1 ) * DUR_CONV );
    af.location = 0;
    af.modifier = 0;
    af.bitvector = AFF_CHARM;
@@ -4891,7 +4920,7 @@ void do_seduce( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_mass_propeganda( CHAR_DATA * ch, char *argument )
+void do_mass_propeganda( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    CHAR_DATA *rch;
@@ -4992,11 +5021,11 @@ void do_mass_propeganda( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_gather_intelligence( CHAR_DATA * ch, char *argument )
+void do_gather_intelligence( CHAR_DATA * ch, const char *argument )
 {
 }
 
-void do_repair( CHAR_DATA * ch, char *argument )
+void do_repair( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj, *cobj;
    char arg[MAX_STRING_LENGTH];
@@ -5076,7 +5105,7 @@ void do_repair( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -5134,7 +5163,7 @@ void do_repair( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_repair );
 }
 
-void do_makeduallightsaber( CHAR_DATA * ch, char *argument )
+void do_makeduallightsaber( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -5266,7 +5295,7 @@ void do_makeduallightsaber( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -5451,7 +5480,7 @@ void do_makeduallightsaber( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makeduallightsaber );
 }
 
-void do_makepike( CHAR_DATA * ch, char *argument )
+void do_makepike( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -5539,7 +5568,7 @@ void do_makepike( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -5656,7 +5685,7 @@ void do_makepike( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makepike );
 }
 
-void do_makebug( CHAR_DATA * ch, char *argument )
+void do_makebug( CHAR_DATA * ch, const char *argument )
 {
    int level, schance;
    bool checktool, checkbatt, checkcirc;
@@ -5810,7 +5839,7 @@ void do_makebug( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makebug );
 }
 
-void do_makebeacon( CHAR_DATA * ch, char *argument )
+void do_makebeacon( CHAR_DATA * ch, const char *argument )
 {
    int level, schance;
    bool checktool, checkbatt, checkcirc;
@@ -5964,7 +5993,7 @@ void do_makebeacon( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_makebeacon );
 }
 
-void do_plantbeacon( CHAR_DATA * ch, char *argument )
+void do_plantbeacon( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    OBJ_DATA *obj;
@@ -6032,7 +6061,7 @@ void do_plantbeacon( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_showbeacons( CHAR_DATA * ch, char *argument )
+void do_showbeacons( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    SHIP_DATA *ship2;
@@ -6094,7 +6123,7 @@ void do_showbeacons( CHAR_DATA * ch, char *argument )
             }
          }
 
-         ch_printf( ch, "^g&xACTIVE^x&z: &w%-15.15s&z Location:&w %s &z(&w%s&z)&w\r\n", ship->name,
+         ch_printf( ch, "&x^gACTIVE^x&z: &w%-15.15s&z Location:&w %s &z(&w%s&z)&w\r\n", ship->name,
                     ( ship->in_room && ship->in_room->area->planet ) ?
                     ship->in_room->area->planet->name :
                     ( ship->in_room && !ship->in_room->area->planet ) ?
@@ -6113,7 +6142,7 @@ void do_showbeacons( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_showbeacons );
 }
 
-void do_checkbeacons( CHAR_DATA * ch, char *argument )
+void do_checkbeacons( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char arg[MAX_STRING_LENGTH];
@@ -6156,7 +6185,7 @@ void do_checkbeacons( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;
@@ -6195,7 +6224,7 @@ void do_checkbeacons( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_nullifybeacons( CHAR_DATA * ch, char *argument )
+void do_nullifybeacons( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char arg[MAX_STRING_LENGTH];
@@ -6238,7 +6267,7 @@ void do_nullifybeacons( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, ( const char * )ch->dest_buf );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;
@@ -6274,7 +6303,7 @@ void do_nullifybeacons( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_makebinders( CHAR_DATA * ch, char *argument )
+void do_makebinders( CHAR_DATA * ch, const char *argument )
 {
    int level, schance;
    bool checktool, checkoven, checkdura;
@@ -6422,7 +6451,7 @@ void do_makebinders( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_setinfrared( CHAR_DATA * ch, char *argument )
+void do_setinfrared( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
 
@@ -6456,7 +6485,7 @@ void do_setinfrared( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_battle_command( CHAR_DATA * ch, char *argument )
+void do_battle_command( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *gch;
    AFFECT_DATA af;
@@ -6491,7 +6520,7 @@ void do_battle_command( CHAR_DATA * ch, char *argument )
             send_to_char( "&GYou take command of the group, you feel more confident and stronger in battle.\r\n", ch );
 
          af.type = gsn_battle_command;
-         af.duration = ( number_fuzzy( ( ch->pcdata->learned[gsn_battle_command] + 1 ) / 3 ) + 1 ) * DUR_CONV;
+         af.duration = ( int )( ( number_fuzzy( ( ch->pcdata->learned[gsn_battle_command] + 1 ) / 3 ) + 1 ) * DUR_CONV );
          af.location = APPLY_AC;
          af.modifier = -( ch->pcdata->learned[gsn_battle_command] / 2 );
          af.bitvector = 0;

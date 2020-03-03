@@ -38,34 +38,34 @@ int top_herb;
 SKILLTYPE *skill_table[MAX_SKILL];
 SKILLTYPE *herb_table[MAX_HERB];
 
-char *const skill_tname[] = { "unknown", "Spell", "Skill", "Weapon", "Tongue", "Herb" };
+const char *const skill_tname[] = { "unknown", "Spell", "Skill", "Weapon", "Tongue", "Herb" };
 
-SPELL_FUN *spell_function( char *name )
+SPELL_FUN *spell_function( const char *name )
 {
    void *funHandle;
    const char *error;
 
    funHandle = dlsym( sysdata.dlHandle, name );
-   if( ( error = dlerror() ) != NULL )
+   if( ( error = dlerror(  ) ) != NULL )
    {
-	bug( "Error locating %s in symbol table. %s", name, error );
+      bug( "Error locating %s in symbol table. %s", name, error );
       return spell_notfound;
    }
-   return (SPELL_FUN*)funHandle;
+   return ( SPELL_FUN * ) funHandle;
 }
 
-DO_FUN *skill_function( char *name )
+DO_FUN *skill_function( const char *name )
 {
    void *funHandle;
    const char *error;
 
    funHandle = dlsym( sysdata.dlHandle, name );
-   if( ( error = dlerror() ) != NULL )
+   if( ( error = dlerror(  ) ) != NULL )
    {
-	bug( "Error locating %s in symbol table. %s", name, error );
-	return skill_notfound;
+      bug( "Error locating %s in symbol table. %s", name, error );
+      return skill_notfound;
    }
-   return (DO_FUN*)funHandle;
+   return ( DO_FUN * ) funHandle;
 }
 
 /*
@@ -171,7 +171,7 @@ void fwrite_skill( FILE * fpout, SKILLTYPE * skill )
       fprintf( fpout, "Components   %s~\n", skill->components );
    if( skill->teachers && skill->teachers[0] != '\0' )
       fprintf( fpout, "Teachers     %s~\n", skill->teachers );
-   for( aff = skill->affects; aff; aff = aff->next )
+   for( aff = skill->first_affect; aff; aff = aff->next )
       fprintf( fpout, "Affect       '%s' %d '%s' %d\n", aff->duration, aff->location, aff->modifier, aff->bitvector );
    if( skill->alignment )
       fprintf( fpout, "Alignment   %d\n", skill->alignment );
@@ -287,7 +287,7 @@ void save_socials(  )
    fclose( fpout );
 }
 
-int get_skill( char *skilltype )
+int get_skill( const char *skilltype )
 {
    if( !str_cmp( skilltype, "Spell" ) )
       return SKILL_SPELL;
@@ -329,10 +329,12 @@ void save_commands(  )
          }
          fprintf( fpout, "#COMMAND\n" );
          fprintf( fpout, "Name        %s~\n", command->name );
-         fprintf( fpout, "Code        %s\n", command->fun_name?command->fun_name:"" ); // Modded to use new field - Trax
+         fprintf( fpout, "Code        %s\n", command->fun_name ? command->fun_name : "" );   // Modded to use new field - Trax
          fprintf( fpout, "Position    %d\n", command->position );
          fprintf( fpout, "Level       %d\n", command->level );
          fprintf( fpout, "Log         %d\n", command->log );
+         if( command->flags )
+             fprintf( fpout, "Flags       %s~\n", flag_string( command->flags, cmd_flags ) );
          fprintf( fpout, "End\n\n" );
       }
    }
@@ -343,7 +345,7 @@ void save_commands(  )
 SKILLTYPE *fread_skill( FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
    SKILLTYPE *skill;
 
@@ -374,32 +376,31 @@ SKILLTYPE *fread_skill( FILE * fp )
                aff->location = fread_number( fp );
                aff->modifier = str_dup( fread_word( fp ) );
                aff->bitvector = fread_number( fp );
-               aff->next = skill->affects;
-               skill->affects = aff;
+               LINK( aff, skill->first_affect, skill->last_affect, next, prev );
                fMatch = TRUE;
                break;
             }
             break;
 
          case 'C':
-            if ( !str_cmp( word, "Code" ) )
+            if( !str_cmp( word, "Code" ) )
             {
                SPELL_FUN *spellfun;
                DO_FUN *dofun;
                char *w = fread_word( fp );
 
                fMatch = TRUE;
-               if( !str_prefix( "do_", w ) && ( dofun = skill_function(w) ) != skill_notfound )
+               if( !str_prefix( "do_", w ) && ( dofun = skill_function( w ) ) != skill_notfound )
                {
                   skill->skill_fun = dofun;
                   skill->spell_fun = NULL;
-                  skill->skill_fun_name = str_dup(w);
+                  skill->skill_fun_name = str_dup( w );
                }
-               else if( str_prefix( "do_", w ) && ( spellfun = spell_function(w) ) != spell_notfound )
+               else if( str_prefix( "do_", w ) && ( spellfun = spell_function( w ) ) != spell_notfound )
                {
                   skill->spell_fun = spellfun;
                   skill->skill_fun = NULL;
-                  skill->spell_fun_name = str_dup(w);
+                  skill->spell_fun_name = str_dup( w );
                }
                else
                {
@@ -607,7 +608,7 @@ void load_herb_table(  )
 void fread_social( FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
    SOCIALTYPE *social;
 
@@ -680,7 +681,6 @@ void load_socials(  )
 
    if( ( fp = fopen( SOCIAL_FILE, "r" ) ) != NULL )
    {
-      top_sn = 0;
       for( ;; )
       {
          char letter;
@@ -725,7 +725,7 @@ void load_socials(  )
 void fread_command( FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
    CMDTYPE *command;
 
@@ -743,41 +743,63 @@ void fread_command( FILE * fp )
             fread_to_eol( fp );
             break;
 
-	case 'C':
-	    KEY( "Code",	command->fun_name, str_dup( fread_word( fp ) ) );
-	    break;
+         case 'C':
+            KEY( "Code", command->fun_name, str_dup( fread_word( fp ) ) );
+            break;
 
-	case 'E':
-	    if ( !str_cmp( word, "End" ) )
-	    {
-		if( !command->name )
-		{
-		   bug( "%s", "Fread_command: Name not found" );
-		   free_command( command );
-		   return;
-		}
-		if( !command->fun_name )
-		{
-		   bug( "fread_command: No function name supplied for %s", command->name );
-		   free_command( command );
-		   return;
-		}
-		/*
-	 	 * Mods by Trax
-		 * Fread in code into char* and try linkage here then
-		 * deal in the "usual" way I suppose..
-		 */
-	      command->do_fun = skill_function( command->fun_name );
-		if( command->do_fun == skill_notfound )
-		{
-		   bug( "Fread_command: Function %s not found for %s", command->fun_name, command->name );
-		   free_command( command );
-		   return;
-		}
-		add_command( command );
-		return;
-	    }
-	    break;
+         case 'E':
+            if( !str_cmp( word, "End" ) )
+            {
+               if( !command->name )
+               {
+                  bug( "%s", "Fread_command: Name not found" );
+                  free_command( command );
+                  return;
+               }
+               if( !command->fun_name )
+               {
+                  bug( "fread_command: No function name supplied for %s", command->name );
+                  free_command( command );
+                  return;
+               }
+               /*
+                * Mods by Trax
+                * Fread in code into char* and try linkage here then
+                * deal in the "usual" way I suppose..
+                */
+               command->do_fun = skill_function( command->fun_name );
+               if( command->do_fun == skill_notfound )
+               {
+                  bug( "Fread_command: Function %s not found for %s", command->fun_name, command->name );
+                  free_command( command );
+                  return;
+               }
+               add_command( command );
+               return;
+            }
+            break;
+           case 'F':
+               if( !str_cmp( word, "flags" ) )
+               {
+                   char *cmdflags = NULL;
+                   char flag[MIL];
+                   int value;
+
+                   cmdflags = fread_flagstring( fp );
+
+                   while( cmdflags[0] != '\0' )
+                   {
+                       cmdflags = one_argument( cmdflags, flag );
+                       value = get_cmdflag( flag );
+                       if( value < 0 || value > 31 )
+                           bug( "Unknown command flag: %s\r\n", flag );
+                       else
+                           TOGGLE_BIT( command->flags, 1 << value );
+                   }
+                   fMatch = TRUE;
+                   break;
+               }
+               break;
 
          case 'L':
             KEY( "Level", command->level, fread_number( fp ) );
@@ -807,7 +829,6 @@ void load_commands(  )
 
    if( ( fp = fopen( COMMAND_FILE, "r" ) ) != NULL )
    {
-      top_sn = 0;
       for( ;; )
       {
          char letter;

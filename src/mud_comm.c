@@ -31,10 +31,10 @@ Michael Seifert, and Sebastian Hammer.
 #include "mud.h"
 
 ch_ret simple_damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt );
-CHAR_DATA *get_char_room_mp args( ( CHAR_DATA * ch, char *argument ) );
-void transfer_char( CHAR_DATA *ch, CHAR_DATA *victim, ROOM_INDEX_DATA *location );
+CHAR_DATA *get_char_room_mp( CHAR_DATA * ch, const char *argument );
+void transfer_char( CHAR_DATA * ch, CHAR_DATA * victim, ROOM_INDEX_DATA * location );
 
-char *mprog_type_to_name( int type )
+const char *mprog_type_to_name( int type )
 {
    switch ( type )
    {
@@ -109,7 +109,7 @@ char *mprog_type_to_name( int type )
  * enough to identify the mob and give its basic condition.  It does however,
  * show the MUDprograms which are set.
  */
-void do_mpstat( CHAR_DATA * ch, char *argument )
+void do_mpstat( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    MPROG_DATA *mprg;
@@ -158,12 +158,12 @@ void do_mpstat( CHAR_DATA * ch, char *argument )
 
    for( mprg = victim->pIndexData->mudprogs; mprg; mprg = mprg->next )
       ch_printf( ch, "%s>%s %s\r\n%s\r\n", ( mprg->fileprog ? "(FILEPROG) " : "" ),
-         mprog_type_to_name( mprg->type ), mprg->arglist, mprg->comlist );
+                 mprog_type_to_name( mprg->type ), mprg->arglist, mprg->comlist );
    return;
 }
 
 /* Opstat - Scryn 8/12*/
-void do_opstat( CHAR_DATA * ch, char *argument )
+void do_opstat( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    MPROG_DATA *mprg;
@@ -201,7 +201,7 @@ void do_opstat( CHAR_DATA * ch, char *argument )
 }
 
 /* Rpstat - Scryn 8/12 */
-void do_rpstat( CHAR_DATA * ch, char *argument )
+void do_rpstat( CHAR_DATA * ch, const char *argument )
 {
    MPROG_DATA *mprg;
 
@@ -219,7 +219,7 @@ void do_rpstat( CHAR_DATA * ch, char *argument )
 }
 
 /* Prints the argument to all the rooms around the mobile */
-void do_mpasound( CHAR_DATA * ch, char *argument )
+void do_mpasound( CHAR_DATA * ch, const char *argument )
 {
    ROOM_INDEX_DATA *was_in_room;
    EXIT_DATA *pexit;
@@ -266,7 +266,7 @@ void do_mpasound( CHAR_DATA * ch, char *argument )
 
 /* lets the mobile kill any player or mobile without murder*/
 
-void do_mpkill( CHAR_DATA * ch, char *argument )
+void do_mpkill( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -327,7 +327,7 @@ void do_mpkill( CHAR_DATA * ch, char *argument )
    it can also destroy a worn object and it can destroy
    items using all.xxxxx or just plain all of them */
 
-void do_mpjunk( CHAR_DATA * ch, char *argument )
+void do_mpjunk( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -383,10 +383,10 @@ void do_mpjunk( CHAR_DATA * ch, char *argument )
  * This function examines a text string to see if the first "word" is a
  * color indicator (e.g. _red, _whi_, _blu).  -  Gorog
  */
-int get_color( char *argument )  /* get color code from command string */
+int get_color( const char *argument )  /* get color code from command string */
 {
    char color[MAX_INPUT_LENGTH];
-   char *cptr;
+   const char *cptr;
    static char const *color_list = "_bla_red_dgr_bro_dbl_pur_cya_cha_dch_ora_gre_yel_blu_pin_lbl_whi";
    static char const *blink_list = "*bla*red*dgr*bro*dbl*pur*cya*cha*dch*ora*gre*yel*blu*pin*lbl*whi";
 
@@ -403,7 +403,7 @@ int get_color( char *argument )  /* get color code from command string */
 
 /* prints the message to everyone in the room other than the mob and victim */
 
-void do_mpechoaround( CHAR_DATA * ch, char *argument )
+void do_mpechoaround( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -441,6 +441,10 @@ void do_mpechoaround( CHAR_DATA * ch, char *argument )
    else
       argument = one_argument( argument, arg );
 
+   /*
+    * DONT_UPPER prevents argument[0] from being captilized. --Shaddai
+    */
+   DONT_UPPER = TRUE;
    if( ( color = get_color( argument ) ) )
    {
       argument = one_argument( argument, arg );
@@ -448,14 +452,14 @@ void do_mpechoaround( CHAR_DATA * ch, char *argument )
    }
    else
       act( AT_ACTION, argument, ch, NULL, victim, TO_NOTVICT );
-
+   DONT_UPPER = FALSE;
    ch->act = actflags;
 }
 
 
 /* prints message only to victim */
 
-void do_mpechoat( CHAR_DATA * ch, char *argument )
+void do_mpechoat( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -487,6 +491,7 @@ void do_mpechoat( CHAR_DATA * ch, char *argument )
 
    actflags = ch->act;
    REMOVE_BIT( ch->act, ACT_SECRETIVE );
+   DONT_UPPER = TRUE;
 
    if( ( color = get_color( argument ) ) )
    {
@@ -495,14 +500,14 @@ void do_mpechoat( CHAR_DATA * ch, char *argument )
    }
    else
       act( AT_ACTION, argument, ch, NULL, victim, TO_VICT );
-
+   DONT_UPPER = FALSE;
    ch->act = actflags;
 }
 
 
 /* prints message to room at large. */
 
-void do_mpecho( CHAR_DATA * ch, char *argument )
+void do_mpecho( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    short color;
@@ -526,6 +531,7 @@ void do_mpecho( CHAR_DATA * ch, char *argument )
    actflags = ch->act;
    REMOVE_BIT( ch->act, ACT_SECRETIVE );
 
+   DONT_UPPER = TRUE;
    if( ( color = get_color( argument ) ) )
    {
       argument = one_argument( argument, arg1 );
@@ -533,7 +539,7 @@ void do_mpecho( CHAR_DATA * ch, char *argument )
    }
    else
       act( AT_ACTION, argument, ch, NULL, NULL, TO_ROOM );
-
+   DONT_UPPER = FALSE;
    ch->act = actflags;
 }
 
@@ -542,7 +548,7 @@ void do_mpecho( CHAR_DATA * ch, char *argument )
 are loaded into inventory.  you can specify a level with
 the load object portion as well. */
 
-void do_mpmload( CHAR_DATA * ch, char *argument )
+void do_mpmload( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    MOB_INDEX_DATA *pMobIndex;
@@ -576,7 +582,7 @@ void do_mpmload( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_mpoload( CHAR_DATA * ch, char *argument )
+void do_mpoload( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -654,7 +660,7 @@ void do_mpoload( CHAR_DATA * ch, char *argument )
    itself, but this had best be the last command in the MUDprogram
    otherwise ugly stuff will happen */
 
-void do_mppurge( CHAR_DATA * ch, char *argument )
+void do_mppurge( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -693,7 +699,10 @@ void do_mppurge( CHAR_DATA * ch, char *argument )
    if( ( victim = get_char_room( ch, arg ) ) == NULL )
    {
       if( ( obj = get_obj_here( ch, arg ) ) != NULL )
+      {
+         separate_obj( obj );
          extract_obj( obj );
+      }
       else
          progbug( "Mppurge - Bad argument", ch );
       return;
@@ -722,7 +731,7 @@ void do_mppurge( CHAR_DATA * ch, char *argument )
 }
 
 /* Allow mobiles to go wizinvis with programs -- SB */
-void do_mpinvis( CHAR_DATA * ch, char *argument )
+void do_mpinvis( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    short level;
@@ -737,7 +746,7 @@ void do_mpinvis( CHAR_DATA * ch, char *argument )
    }
 
    argument = one_argument( argument, arg );
-   if( arg && arg[0] != '\0' )
+   if( arg[0] != '\0' )
    {
       if( !is_number( arg ) )
       {
@@ -776,7 +785,7 @@ void do_mpinvis( CHAR_DATA * ch, char *argument )
 
 /* lets the mobile goto any location it wishes that is not private */
 
-void do_mpgoto( CHAR_DATA * ch, char *argument )
+void do_mpgoto( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    ROOM_INDEX_DATA *location;
@@ -814,7 +823,7 @@ void do_mpgoto( CHAR_DATA * ch, char *argument )
 
 /* lets the mobile do a command at another location. Very useful */
 
-void do_mpat( CHAR_DATA * ch, char *argument )
+void do_mpat( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    ROOM_INDEX_DATA *location;
@@ -865,12 +874,12 @@ void do_mpat( CHAR_DATA * ch, char *argument )
 }
 
 /* allow a mobile to advance a player's level... very dangerous */
-void do_mpadvance( CHAR_DATA * ch, char *argument )
+void do_mpadvance( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_STRING_LENGTH];
    char arg2[MAX_STRING_LENGTH];
    CHAR_DATA *victim;
-   int xpgain, class;
+   int xpgain, pclass;
    if( IS_AFFECTED( ch, AFF_CHARM ) )
       return;
 
@@ -895,11 +904,11 @@ void do_mpadvance( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   class = atoi( arg2 );
+   pclass = atoi( arg2 );
 
    xpgain = atoi( argument );
 
-   gain_exp( victim, xpgain, class );
+   gain_exp( victim, xpgain, pclass );
 
    return;
 }
@@ -908,7 +917,7 @@ void do_mpadvance( CHAR_DATA * ch, char *argument )
    everyone in the current room to the specified location 
    the area argument transfers everyone in the current area to the
    specified location */
-void do_mptransfer( CHAR_DATA * ch, char *argument )
+void do_mptransfer( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
    ROOM_INDEX_DATA *location;
@@ -965,7 +974,7 @@ void do_mptransfer( CHAR_DATA * ch, char *argument )
    {
       for( d = first_descriptor; d; d = d->next )
       {
-         if( !d->character || ( d->connected != CON_PLAYING &&  d->connected != CON_EDITING )
+         if( !d->character || ( d->connected != CON_PLAYING && d->connected != CON_EDITING )
              || ch->in_room->area != d->character->in_room->area )
             continue;
 
@@ -989,7 +998,7 @@ void do_mptransfer( CHAR_DATA * ch, char *argument )
 /* lets the mobile force someone to do something.  must be mortal level
    and the all argument only affects those in the room with the mobile */
 
-void do_mpforce( CHAR_DATA * ch, char *argument )
+void do_mpforce( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
 
@@ -1058,7 +1067,7 @@ void do_mpforce( CHAR_DATA * ch, char *argument )
  * syntax:  mppractice victim spell_name max%
  *
  */
-void do_mp_practice( CHAR_DATA * ch, char *argument )
+void do_mp_practice( CHAR_DATA * ch, const char *argument )
 {
 
    if( IS_AFFECTED( ch, AFF_CHARM ) )
@@ -1069,7 +1078,7 @@ void do_mp_practice( CHAR_DATA * ch, char *argument )
 /*
  * syntax: mpslay (character)
  */
-void do_mp_slay( CHAR_DATA * ch, char *argument )
+void do_mp_slay( CHAR_DATA * ch, const char *argument )
 {
 
    if( IS_AFFECTED( ch, AFF_CHARM ) )
@@ -1081,7 +1090,7 @@ void do_mp_slay( CHAR_DATA * ch, char *argument )
 /*
  * syntax: mpdamage (character) (#hps)
  */
-void do_mp_damage( CHAR_DATA * ch, char *argument )
+void do_mp_damage( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1159,7 +1168,7 @@ void do_mp_damage( CHAR_DATA * ch, char *argument )
 /*
  * syntax: mprestore (character) (#hps)                Gorog
  */
-void do_mp_restore( CHAR_DATA * ch, char *argument )
+void do_mp_restore( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1210,7 +1219,7 @@ void do_mp_restore( CHAR_DATA * ch, char *argument )
    victim->hit = ( hp > 32000 || hp < 0 || hp > victim->max_hit ) ? victim->max_hit : hp;
 }
 
-void do_mpgain( CHAR_DATA * ch, char *argument )
+void do_mpgain( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1290,7 +1299,7 @@ void do_mpgain( CHAR_DATA * ch, char *argument )
  *
  *  won't mess with existing exits
  */
-void do_mp_open_passage( CHAR_DATA * ch, char *argument )
+void do_mp_open_passage( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1388,7 +1397,7 @@ void do_mp_open_passage( CHAR_DATA * ch, char *argument )
  *
  * the exit must have EX_PASSAGE set
  */
-void do_mp_close_passage( CHAR_DATA * ch, char *argument )
+void do_mp_close_passage( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1473,7 +1482,7 @@ void do_mp_close_passage( CHAR_DATA * ch, char *argument )
 /*
  * Does nothing.  Used for scripts.
  */
-void do_mpnothing( CHAR_DATA * ch, char *argument )
+void do_mpnothing( CHAR_DATA * ch, const char *argument )
 {
    if( IS_AFFECTED( ch, AFF_CHARM ) )
       return;
@@ -1492,7 +1501,7 @@ void do_mpnothing( CHAR_DATA * ch, char *argument )
  *    with room sleep_progs
  *
  */
-void do_mpdream( CHAR_DATA * ch, char *argument )
+void do_mpdream( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_STRING_LENGTH];
    CHAR_DATA *vict;
@@ -1522,7 +1531,7 @@ void do_mpdream( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_mpapply( CHAR_DATA * ch, char *argument )
+void do_mpapply( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
 
@@ -1567,7 +1576,7 @@ void do_mpapply( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_mpapplyb( CHAR_DATA * ch, char *argument )
+void do_mpapplyb( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
 
@@ -1643,7 +1652,7 @@ void do_mpapplyb( CHAR_DATA * ch, char *argument )
 /*
  * Deposit some gold into the current area's economy		-Thoric
  */
-void do_mp_deposit( CHAR_DATA * ch, char *argument )
+void do_mp_deposit( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_STRING_LENGTH];
    int gold;
@@ -1676,7 +1685,7 @@ void do_mp_deposit( CHAR_DATA * ch, char *argument )
 /*
  * Withdraw some gold from the current area's economy		-Thoric
  */
-void do_mp_withdraw( CHAR_DATA * ch, char *argument )
+void do_mp_withdraw( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_STRING_LENGTH];
    int gold;
@@ -1706,7 +1715,7 @@ void do_mp_withdraw( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_mppkset( CHAR_DATA * ch, char *argument )
+void do_mppkset( CHAR_DATA * ch, const char *argument )
 {
 
    if( IS_AFFECTED( ch, AFF_CHARM ) )
@@ -1729,10 +1738,6 @@ ch_ret simple_damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
    short dameq;
    bool npcvict;
    OBJ_DATA *damobj;
-   ch_ret retcode;
-
-
-   retcode = rNONE;
 
    if( !ch )
    {
@@ -1921,7 +1926,7 @@ ch_ret simple_damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
    return rNONE;
 }
 
-CHAR_DATA *get_char_room_mp( CHAR_DATA * ch, char *argument )
+CHAR_DATA *get_char_room_mp( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *rch;

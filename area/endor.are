@@ -1,78 +1,93 @@
-#AREA   Endor~
+#FUSSAREA
+#AREADATA
+Version      1
+Name         Endor~
+Author       Trelar & Keberus~
+Ranges       0 36 0 36
+Economy      0 3200158
+ResetMsg     &r You hear the growl from the gorax deep within the forest.&w~
+#ENDAREADATA
 
-
-
-#AUTHOR Trelar & Keberus~
-
-#RANGES
-0 36 0 36
-$
-
-#RESETMSG &r You hear the growl from the gorax deep within the forest.&w~
-
-#FLAGS
-0
-
-#ECONOMY 0 3200158
-
-#MOBILES
-#4550
-low_mob~
-a newly created low_mob~
-Some god abandoned a newly created low_mob here.
+#MOBILE
+Vnum       4550
+Keywords   low_mob~
+Short      a newly created low_mob~
+Long       Some god abandoned a newly created low_mob here.
 ~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4551
+Keywords   An Ewok Cook~
+Short      An Ewok Cook~
+Long       An Ewok stands here, tending the spit and singing triumphantly.
 ~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#4551
-An Ewok Cook~
-An Ewok Cook~
-An Ewok stands here, tending the spit and singing triumphantly.
-~
-~
-1048579 0 0 Z
-10 0 75 2d10+100 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-10 0 0 0 128 128 0
-2 2 0 0 0 0 0 0
-32 0 0 0 0 0 0 0
-> all_greet_prog 10~
-~
-> all_greet_prog 100~
-mpecho The ewok turns and looks at you, smiling.
+Race       Ewok~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel scholar~
+Stats1     0 10 0 75 0 0
+Stats2     2 10 100
+Stats3     1 4 2
+Stats4     0 0 0 2 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     gamorrean~
+Speaking   gamorrean~
+VIPFlags   endor~
+#MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   mpecho The ewok turns and looks at you, smiling.
 mpsleep 5
 say Yub yub! Making food for the family, I am. Teek is tasty. Take some!
 mpsleep 10
 mpecho The ewok continues tending the spit.
 ~
-|
-#4552
-SC Compound Guard~
-A Compound Guard~
-A Compound Guard is here checking people over.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4552
+Keywords   SC Compound Guard~
+Short      A Compound Guard~
+Long       A Compound Guard is here checking people over.
 ~
-~
-11 0 0 Z
-30 0 100 6d10+300 3d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 3
-6 2 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> greet_prog 100~
-, checks you over.
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Specfun    spec_customs_weapons~
+Gender     neuter~
+Actflags   npc sentinel noflee~
+Stats1     0 30 0 100 0 0
+Stats2     6 10 300
+Stats3     3 4 2
+Stats4     0 0 3 6 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+#MUDPROG
+Progtype  greet_prog~
+Arglist   100~
+Comlist   , checks you over.
 if clan($n) == The New Republic
 salute $n
 mpecho The Guard has granted you access.
@@ -84,28 +99,44 @@ say What are you doing in here?
 mpkill $n
 endif
 ~
-> act_prog p leaves~
-close n
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p leaves~
+Comlist   close n
 lock n
 ~
-|
-#4553
-SC Compound Guard~
-A Compound Guard~
-A Compound Guard is posted here.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4553
+Keywords   SC Compound Guard~
+Short      A Compound Guard~
+Long       A Compound Guard is posted here.
 ~
-~
-11 0 0 Z
-30 0 100 6d10+300 3d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 3
-0 0 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> speech_prog p Control Room~
-mpecho A Compound Guard calls to the Control Room to check your
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Specfun    spec_customs_weapons~
+Gender     neuter~
+Actflags   npc sentinel noflee~
+Stats1     0 30 0 100 0 0
+Stats2     6 10 300
+Stats3     3 4 2
+Stats4     0 0 3 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Control Room~
+Comlist   mpecho A Compound Guard calls to the Control Room to check your
 clearance.
 if clan($n) == The New Republic
 salute $n
@@ -116,47 +147,83 @@ say Hey! Your not allowed to be in here.
 murder $n
 endif
 ~
-> act_prog p leaves~
-close e
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p leaves~
+Comlist   close e
 lock e
 ~
-> act_prog p floats~
-close e
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p floats~
+Comlist   close e
 lock e
 ~
-> act_prog p nods~
-un s
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p nods~
+Comlist   un s
 open s
 ~
-> act_prog p leaves~
-close s
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p leaves~
+Comlist   close s
 lock s
 ~
-> act_prog p floats~
-close s
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p floats~
+Comlist   close s
 lock s
 ~
-|
-#4554
-E Compound Guard~
-A Compound Guard~
-A Compound Guard is posted here.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4554
+Keywords   E Compound Guard~
+Short      A Compound Guard~
+Long       A Compound Guard is posted here.
 ~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Specfun    spec_customs_weapons~
+Gender     neuter~
+Actflags   npc sentinel noflee~
+Stats1     0 30 0 100 0 0
+Stats2     6 10 300
+Stats3     3 4 2
+Stats4     0 0 3 0 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+#MUDPROG
+Progtype  rand_prog~
+Arglist   95~
+Comlist   mpat 4598 give all droid
 ~
-11 0 0 Z
-30 0 100 6d10+300 3d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 3
-0 2 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> rand_prog 95~
-mpat 4598 give all droid
-~
-> greet_prog 100~
-, checks you over.
+#ENDPROG
+
+#MUDPROG
+Progtype  greet_prog~
+Arglist   100~
+Comlist   , checks you over.
 if clan($n) == The New Republic
 salute $n
 mpecho The Guard has granted you access.
@@ -168,24 +235,36 @@ say What are you doing in here?
 mpkill $n
 endif
 ~
-|
-#4555
-E compound guard~
-A Compound Guard~
-A Compound Guard is posted here.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4555
+Keywords   E compound guard~
+Short      A Compound Guard~
+Long       A Compound Guard is posted here.
 ~
-~
-11 0 0 Z
-30 0 100 6d10+300 3d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 3
-0 2 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> greet_prog 100~
-, checks you over.
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Specfun    spec_customs_weapons~
+Gender     neuter~
+Actflags   npc sentinel noflee~
+Stats1     0 30 0 100 0 0
+Stats2     6 10 300
+Stats3     3 4 2
+Stats4     0 0 3 0 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+#MUDPROG
+Progtype  greet_prog~
+Arglist   100~
+Comlist   , checks you over.
 if clan($n) == The New Republic
 salute $n
 mpecho The Guard has granted you access.
@@ -197,101 +276,159 @@ say What are you doing in here?
 mpkill $n
 endif
 ~
-|
-#4556
-A Compound Guard~
-A Compound Guard~
-A Compound Guard is posted here.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4556
+Keywords   A Compound Guard~
+Short      A Compound Guard~
+Long       A Compound Guard is posted here.
 ~
-~
-11 0 0 Z
-25 0 37 5d10+250 2d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 3
-5 5 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> act_prog p nods~
-un w
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Specfun    spec_customs_weapons~
+Gender     neuter~
+Actflags   npc sentinel noflee~
+Stats1     0 25 0 37 0 0
+Stats2     5 10 250
+Stats3     2 4 2
+Stats4     0 0 3 5 5
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+#MUDPROG
+Progtype  act_prog~
+Arglist   p nods~
+Comlist   un w
 open w
 ~
-> act_prog p leaves~
-close w
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p leaves~
+Comlist   close w
 lock w
 ~
-> act_prog floats~
-close w
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   floats~
+Comlist   close w
 lock w
 ~
-|
-#4557
-Weapons Droid~
-A Weapons Droid~
-A Weapons Droid is here attending to the shop.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4557
+Keywords   Weapons Droid~
+Short      A Weapons Droid~
+Long       A Weapons Droid is here attending to the shop.
 ~
-~
-67108875 0 0 Z
-28 0 100 5d10+280 2d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-21 0 0 0 131089 16 0
-5 1 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> all_greet_prog 100~
-if ispc($n)
+Race       Droid~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel noflee droid~
+Stats1     0 28 0 100 0 0
+Stats2     5 10 280
+Stats3     2 4 2
+Stats4     0 0 0 5 1
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic hutt binary~
+Speaking   hutt~
+Attacks    bite punch kick~
+Defenses   dodge~
+ShopData   9 0 0 0 0 120 110 0 23
+#MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   if ispc($n)
 if otypecarry(5) < 1
 say I am sorry but there are no weapons for sale at this moment.
 endif
 endif
 ~
-|
-#4558
-Cmmdr's Secertary~
-A Secertary~
-A Secretary sits behind the desk going over some papers.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4558
+Keywords   Cmmdr's Secertary~
+Short      A Secertary~
+Long       A Secretary sits behind the desk going over some papers.
 ~
-~
-11 0 0 Z
-20 0 100 4d10+200 2d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-4 4 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> speech_prog p appointment~
-say I'll check with the Commander and see if he is busy.
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel noflee~
+Stats1     0 20 0 100 0 0
+Stats2     4 10 200
+Stats3     2 4 2
+Stats4     0 0 0 4 4
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p appointment~
+Comlist   say I'll check with the Commander and see if he is busy.
 mpecho The Secertary makes a call on her desk comlink.
 say The commander is available to see you now. You may go in.
 ~
-|
-#4559
-Compound Commander~
-The Compound Commander~
-The Compound Commander sits behind his desk here.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4559
+Keywords   Compound Commander~
+Short      The Compound Commander~
+Long       The Compound Commander sits behind his desk here.
 ~
-~
-75 0 0 Z
-27 0 100 5d10+270 2d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 3
-5 5 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> greet_prog 100~
-mpecho The Commander looks up from his paperwork.
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel noflee stayarea~
+Stats1     0 27 0 100 0 0
+Stats2     5 10 270
+Stats3     2 4 2
+Stats4     0 0 3 5 5
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+#MUDPROG
+Progtype  greet_prog~
+Arglist   100~
+Comlist   mpecho The Commander looks up from his paperwork.
 say Hello $n, What can I do for you?
 mpecho You hesitate and the commander starts going over his paperwork again.
 ~
-> speech_prog p Yes~
-if ispc($n)
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Yes~
+Comlist   if ispc($n)
 if otypecarry(paper) ==1
 say Great, Would you give this document to the Compound Controller?
 give document $n
@@ -302,16 +439,28 @@ say Someone must have already taken it, Thanks anyways.
 endif
 endif
 ~
-> speech_prog p No~
-say Ok
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p No~
+Comlist   say Ok
 , pauses for a moment.
 say Was there something you needed? 
 ~
-> act_prog p looks~
-say Would you do me a favor?
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p looks~
+Comlist   say Would you do me a favor?
 ~
-> speech_prog p keycard~
-if clan($n) == The New Republic
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p keycard~
+Comlist   if clan($n) == The New Republic
 say Heres the key for the detention cells.
 give detention $n
 else say What are you doing in here.
@@ -321,24 +470,35 @@ mpmload 4554
 force 4554 murder $n
 endif
 ~
-|
-#4560
-Compound Controller~
-The Compound Controller~
-A Compound Controller stands here watching the monitors.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4560
+Keywords   Compound Controller~
+Short      The Compound Controller~
+Long       A Compound Controller stands here watching the monitors.
 ~
-~
-11 0 0 Z
-27 0 100 5d10+270 2d4+2
-1000 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 3
-5 5 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-> act_prog p gives~
-if ovnumcarry(4559) ==1
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel noflee~
+Stats1     0 27 0 100 1000 0
+Stats2     5 10 270
+Stats3     2 4 2
+Stats4     0 0 3 5 5
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+#MUDPROG
+Progtype  act_prog~
+Arglist   p gives~
+Comlist   if ovnumcarry(4559) ==1
 mpadvance $n 5 1000
 say Thank you.
 mpecho A Controller quickly examines the document and destroys it.
@@ -351,162 +511,266 @@ mpat 4900 drop all
 mpat 4900 mppurge
 endif
 ~
-|
-#4561
-Scared~
-a newly created Scared~
-Some god abandoned a newly created Scared here.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4561
+Keywords   Scared~
+Short      a newly created Scared~
+Long       Some god abandoned a newly created Scared here.
 ~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4562
+Keywords   Svenn the Rodian~
+Short      Svenn~
+Long       A rodian is here lurking in the shadows.
 ~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#4564
-Ewok Sparring Partner~
-An Ewok Sparring Partner~
-An Ewok Sparring Partner stands here awaiting your first move.
+Race       Rodian~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 30 0 25 0 0
+Stats2     6 10 300
+Stats3     3 4 2
+Stats4     0 0 10 6 6
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic rodian~
+Speaking   rodian~
+#MUDPROG
+Progtype  death_prog~
+Arglist   100~
+Comlist   mpoload 9013
 ~
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4564
+Keywords   Ewok Sparring Partner~
+Short      An Ewok Sparring Partner~
+Long       An Ewok Sparring Partner stands here awaiting your first move.
 ~
-33554499 0 -1000 Z
-10 0 75 2d10+100 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-10 0 0 0 129 128 0
-2 2 0 0 0 0 48 0
-0 0 0 0 0 0 0 0
-#4565
-level2 Ewok~
-An Ewok Sparring Partner~
-An Ewok Sparring Partner stands here awaiting your first move.
+Race       Ewok~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea nokill~
+Stats1     -1000 10 0 75 0 0
+Stats2     2 10 100
+Stats3     1 4 2
+Stats4     0 0 0 2 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic gamorrean~
+Speaking   gamorrean~
+Attacks    punch kick~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4565
+Keywords   level2 Ewok~
+Short      An Ewok Sparring Partner~
+Long       An Ewok Sparring Partner stands here awaiting your first move.
 ~
+Race       Ewok~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea nokill~
+Stats1     1000 15 0 62 0 0
+Stats2     3 10 150
+Stats3     1 4 2
+Stats4     0 0 0 3 3
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic gamorrean~
+Speaking   gamorrean~
+Attacks    punch kick~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4566
+Keywords   level3 Ewok~
+Short      a newly created level3 Ewok~
+Long       Some god abandoned a newly created level3 Ewok here.
 ~
-33554499 0 1000 Z
-15 0 62 3d10+150 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-10 0 0 0 129 128 0
-3 3 0 0 0 0 48 0
-0 0 0 0 0 0 0 0
-#4566
-level3 Ewok~
-a newly created level3 Ewok~
-Some god abandoned a newly created level3 Ewok here.
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4567
+Keywords   level3 Ewok~
+Short      An Ewok Sparring Partner~
+Long       An Ewok Sparring Partner stands here awaiting your first move.
 ~
+Race       Ewok~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea nokill~
+Stats1     -1000 20 0 50 0 0
+Stats2     4 10 200
+Stats3     2 4 2
+Stats4     0 0 0 4 4
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic gamorrean~
+Speaking   gamorrean~
+Attacks    punch kick~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4568
+Keywords   level4 Ewok~
+Short      An Ewok Sparring Partner~
+Long       An Ewok Sparring Partner stands here awaiting your first move.
 ~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#4567
-level3 Ewok~
-An Ewok Sparring Partner~
-An Ewok Sparring Partner stands here awaiting your first move.
+Race       Ewok~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea nokill~
+Stats1     1000 25 0 37 0 0
+Stats2     5 10 250
+Stats3     2 4 2
+Stats4     0 0 0 5 5
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic gamorrean~
+Speaking   gamorrean~
+Attacks    punch kick~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4569
+Keywords   A Food Service Droid~
+Short      A Food Service Droid~
+Long       A Food Service Droid stands here helping customers.
 ~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel noflee droid~
+Stats1     0 12 0 70 0 0
+Stats2     2 10 120
+Stats3     1 4 2
+Stats4     0 0 2 2 2
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Attacks    bite punch kick~
+Defenses   dodge~
+ShopData   0 0 0 0 0 100 90 0 23
+#ENDMOBILE
+
+#MOBILE
+Vnum       4570
+Keywords   Ewok Champion~
+Short      An Ewok Champion~
+Long       An Ewok Champion paces around here, eyeing you suspiciously.
 ~
-33554499 0 -1000 Z
-20 0 50 4d10+200 2d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-10 0 0 0 129 128 0
-4 4 0 0 0 0 48 0
-0 0 0 0 0 0 0 0
-#4568
-level4 Ewok~
-An Ewok Sparring Partner~
-An Ewok Sparring Partner stands here awaiting your first move.
+Race       Ewok~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel noflee stayarea nocorpse~
+Stats1     -1000 30 0 25 0 0
+Stats2     6 10 300
+Stats3     3 4 2
+Stats4     0 0 0 6 6
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic gamorrean~
+Speaking   gamorrean~
+VIPFlags   endor~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4571
+Keywords   A wise old ewok~
+Short      A Wise Ewok~
+Long       A Wise Old Ewok stands here contemplating something.
 ~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea nokill~
+Stats1     1000 36 0 10 0 0
+Stats2     7 10 360
+Stats3     3 4 2
+Stats4     0 0 10 7 7
+Attribs    20 20 20 20 20 20 20 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+VIPFlags   endor p11~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4572
+Keywords   Detention Level Guard~
+Short      A Jail Guard~
+Long       A Jail Guard sits behind the desk here.
 ~
-33554499 0 1000 Z
-25 0 37 5d10+250 2d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-10 0 0 0 129 128 0
-5 5 0 0 0 0 48 0
-0 0 0 0 0 0 0 0
-#4569
-A Food Service Droid~
-A Food Service Droid~
-A Food Service Droid stands here helping customers.
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel stayarea~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   say Hello, I need your keycard to scan for clearance, please.
 ~
-~
-67108875 0 0 Z
-12 0 70 2d10+120 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 2
-2 2 0 0 0 0 49 2
-0 0 0 0 0 0 0 0
-#4570
-Ewok Champion~
-An Ewok Champion~
-An Ewok Champion paces around here, eyeing you suspiciously.
-~
-~
-134217803 0 -1000 Z
-30 0 25 6d10+300 3d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-10 0 0 0 129 128 0
-6 6 0 0 0 0 0 0
-32 0 0 0 0 0 0 0
-#4571
-A wise old ewok~
-A Wise Ewok~
-A Wise Old Ewok stands here contemplating something.
-~
-~
-33554499 0 1000 Z
-36 0 10 7d10+360 3d4+2
-0 0
-8 8 0
-20 20 20 20 20 20 20
-0 0 0 0 0
-0 0 0 0 1 1 10
-7 7 0 0 0 0 0 0
-2080 0 0 0 0 0 0 0
-#4572
-Detention Level Guard~
-A Jail Guard~
-A Jail Guard sits behind the desk here.
-~
-~
-67 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-> all_greet_prog 100~
-say Hello, I need your keycard to scan for clearance, please.
-~
-> act_prog p gives~
-if ovnuminv(4564) ==1
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p gives~
+Comlist   if ovnuminv(4564) ==1
 mpecho The Jail Guard scans $O for clearance.
 say Mr. $n you are cleared for entrance.
 give $o $n
@@ -519,49 +783,74 @@ say I am sorry but your not cleared for entrance.
 give $o $n
 endif
 ~
-|
-#4573
-A captured stormtrooper~
-A captured stormtrooper~
-A captured stormtrooper is moping here.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4573
+Keywords   A captured stormtrooper~
+Short      A captured stormtrooper~
+Long       A captured stormtrooper is moping here.
 ~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Affected   detect_hidden truesight~
+Stats1     0 25 0 37 0 0
+Stats2     5 10 250
+Stats3     2 4 2
+Stats4     0 0 0 5 5
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4574
+Keywords   A Troubled Ewok~
+Short      A Troubled Ewok~
+Long       A Troubled Ewok sits here staring off into space.
 ~
-1 4194336 0 Z
-25 0 37 5d10+250 2d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-5 5 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#4574
-A Troubled Ewok~
-A Troubled Ewok~
-A Troubled Ewok sits here staring off into space.
-~
-~
-3 4194304 0 Z
-10 0 75 2d10+100 1d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-> speech_prog p why~
-say I have lost my favorite Head Garmet. I was out walking around the
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel~
+Affected   truesight~
+Stats1     0 10 0 75 0 0
+Stats2     2 10 100
+Stats3     1 4 2
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p why~
+Comlist   say I have lost my favorite Head Garmet. I was out walking around the
 say village and when I got home I noticed it was gone.
 say If you would find it for me I will teach you everything I know.
 ~
-> speech_prog p why?~
-say I have lost my favorite Head Garmet. I was out walking around the
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p why?~
+Comlist   say I have lost my favorite Head Garmet. I was out walking around the
 say village and when I got home I noticed it was gone.
 say If you would find it for me I will teach you everything I know.
 ~
-> act_prog gives~
-if ispc($n)
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   gives~
+Comlist   if ispc($n)
 if ovnuminv(4553) ==1
 say Thank you for finding my favorite hat.
 mpecho A troubled Ewok teaches you many things about politics.
@@ -576,220 +865,332 @@ mpat 101 mppurge
 endif
 endif
 ~
-> all_greet_prog 100~
-sigh
+#ENDPROG
+
+#MUDPROG
+Progtype  all_greet_prog~
+Arglist   100~
+Comlist   sigh
 mutter
 say Hello.
 say I would help you but I just can't do anything anymore.
 ~
-|
-#4575
-a big gorax~
-A big Gorax.~
-A big, ugly Gorax stands before you.
+#ENDPROG
+
+#ENDMOBILE
+
+#MOBILE
+Vnum       4575
+Keywords   a big gorax~
+Short      A big Gorax.~
+Long       A big, ugly Gorax stands before you.
 ~
-A big furry Gorax stands here before you. The Gorax is approximately
+Desc       A big furry Gorax stands here before you. The Gorax is approximately
 30 feet tall. The beast has a protruding lower jaw and very
 large teeth. Gorax are only known to feed off of ewoks and are
 not known to be aggressive towards any other species. You should
 not want to agitate this beast!
 ~
-75 4194304 -1000 Z
-36 0 -300 10d25+200 15d25+30
-0 0
-8 8 0
-25 3 3 13 10 1 10
-0 0 0 0 0
-1 0 0 0 3 2 10
-85 65 786432 8 0 32 35 0
-0 0 0 0 0 0 0 0
-#4576
-A small teek.~
-A small teek.~
-A small, curious teek scurries about.
+Race       Wookiee~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc sentinel noflee stayarea~
+Affected   truesight~
+Stats1     -1000 36 0 -300 0 0
+Stats2     10 25 200
+Stats3     15 25 30
+Stats4     0 0 10 85 65
+Attribs    25 3 3 13 10 1 10 0
+Saves      0 0 0 0 0
+Speaks     basic wookiee~
+Speaking   wookiee~
+Bodyparts  claws fangs~
+Resist     energy~
+Suscept    pierce~
+Attacks    bite claws kick~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4576
+Keywords   A small teek.~
+Short      A small teek.~
+Long       A small, curious teek scurries about.
 ~
+Race       Ewok~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc scavenger wimpy~
+Stats1     0 5 0 87 0 0
+Stats2     1 10 50
+Stats3     0 4 2
+Stats4     0 0 2 1 1
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic gamorrean~
+Speaking   gamorrean~
+Bodyparts  claws~
+Attacks    bite claws punch~
+#ENDMOBILE
+
+#MOBILE
+Vnum       4899
+Keywords   Cerberus~
+Short      Cerberus~
+Long       Cerberus is sitting here wagging his tail.
 ~
-133 0 0 Z
-5 0 87 1d10+50 0d4+2
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-10 0 0 0 129 128 2
-1 1 262144 0 0 0 19 0
-0 0 0 0 0 0 0 0
-#4899
-Cerberus~
-Cerberus~
-Cerberus is sitting here wagging his tail.
-~
-You gaze at at 15 foot tall completely black 3 headed dog.Ceberus
+Desc       You gaze at at 15 foot tall completely black 3 headed dog.Ceberus
 has red beady eyes on all of his heads. He looks like the dog
 from hell!
 ~
-34380103 8320 0 Z
-36 0 10 100d100+1000 100d100+1000
-0 0
-8 8 1
-25 25 25 25 25 25 10
-0 0 0 0 0
-0 0 0 0 1 1 20
-7 2 0 0 5523 0 39 3
-0 0 0 0 0 0 0 0
-#4900
-hi_obj~
-a newly created hi_obj~
-Some god abandoned a newly created hi_obj here.
-~
-~
-1 0 0 Z
-1 0 0 0d0+0 0d0+0
-0 0
-8 8 0
-10 10 10 10 10 10 10
-0 0 0 0 0
-0 0 0 0 1 1 0
-0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0
-#0
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     male~
+Actflags   npc sentinel scavenger stayarea pet immortal deadly guardian mountable mounted nokill~
+Affected   sanctuary protect~
+Stats1     0 36 0 10 0 0
+Stats2     100 100 1000
+Stats3     100 100 1000
+Stats4     0 0 20 7 2
+Attribs    25 25 25 25 25 25 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+Immune     fire cold blunt acid poison sleep hold~
+Attacks    bite claws tail kick~
+Defenses   parry dodge~
+#ENDMOBILE
 
+#MOBILE
+Vnum       4900
+Keywords   hi_obj~
+Short      a newly created hi_obj~
+Long       Some god abandoned a newly created hi_obj here.
+~
+Race       Human~
+Position   aggressive~
+DefPos     aggressive~
+Gender     neuter~
+Actflags   npc~
+Stats1     0 1 0 0 0 0
+Stats2     0 0 0
+Stats3     0 0 0
+Stats4     0 0 0 0 0
+Attribs    10 10 10 10 10 10 10 0
+Saves      0 0 0 0 0
+Speaks     basic~
+Speaking   basic~
+#ENDMOBILE
 
-#OBJECTS
-#4550
-low_obj~
-a low_obj~
-A low_obj is here.~
-~
-13 0 0
-0 0 0 0
-1 0 0
-#4551
-A Greasy Hunk of Meat~
-A Greasy Hunk of Meat~
-A greasy hunk of meat lies on the floor, it seems to have fallen off the spit.~
-~
-19 0 1
-40 20 0 0
-1 0 0
-#4552
-Decaying Log~
-A Decaying Log~
-A dead log sits here, rotted and decaying.~
-~
-15 4096 0
-20000 0 0 0
-2000 0 0
-E
-Decaying Log~
-This log seems to be a piece of torn apart tree, most likely done by the
+#OBJECT
+Vnum     4550
+Keywords blaster Blastech E11 rifle E-11~
+Type     weapon~
+Short    a Blastech E-11 blaster rifle~
+Long     A Blastech E-11 blaster rifle was left here.~
+WFlags   take wield~
+Values   0 8 4 6 2000 2000
+Stats    10 3250 750 0 0
+Affect       -1 -1 2 18 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4551
+Keywords A Greasy Hunk of Meat~
+Type     food~
+Short    A Greasy Hunk of Meat~
+Long     A greasy hunk of meat lies on the floor, it seems to have fallen off the spit.~
+WFlags   take~
+Values   40 20 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4552
+Keywords Decaying Log~
+Type     container~
+Short    A Decaying Log~
+Long     A dead log sits here, rotted and decaying.~
+Flags    noremove~
+Values   20000 0 0 0 0 0
+Stats    2000 0 0 0 0
+#EXDESC
+ExDescKey    Decaying Log~
+ExDesc       This log seems to be a piece of torn apart tree, most likely done by the
 ewoks or some other wild animal. Rotted and dead, it has a hole inside,
 and you catch a glimpse of orange peeking out of the left side.
 ~
-#4553
-Tattered ewok head garment~
-An Ewok Head Garment~
-A slightly tattered ewok head garment sits here.~
-~
-9 0 17
-14 14 0 0
-1 0 0
-#4556
-A Control Room Keycard~
-A Control Room Keycard~
-A Control Room Keycard lies here.~
-~
-13 0 16385
-0 0 0 0
-3 35 3
-#4559
-An Important Document~
-An Important Document~
-An Important Document lies here on the ground.~
-~
-47 0 16385
-0 0 0 0
-1 0 0
-#4560
-&c A &r Red-Bladed &z Lightsaber~
-&c A &r Red-Bladed &z Lightsaber~
-&c A &r Red-Bladed &z Lightsaber &W was carefully placed here~
-The lightsaber hums with a soft glow.~
-5 16 8192
-1000 400 400 3 3000 3000
-6 1000000 100000
-A
-13 200
-#4561
-An Immortal-Sized bag~
-&B An Immortal-Sized Bag ~
-&B An Immortal-Sized Bag &w was left here~
-~
-15 0 16392
-50000 0 0 0
-1 0 0
-#4562
-&b A Small Blue Key~
-&b A Small Blue Key~
-&b A Small Blue Key &w is lying here.~
-~
-18 0 16385
-0 0 0 0
-1 0 0
-#4563
-&z A Pair of Black Wrap-Around Sunglasses~
-&z A Pair of Black Wrap-Around Sunglasses~
-&z A Pair of Black Wrap-Around Sunglasses &w lie discarded here.~
-~
-9 0 131072
-0 0 0 0
-1 0 0
-#4564
-short A Detention Level Keycard~
-A Detention Level Keycard~
-A Detention Level Keycard is here.~
-~
-18 0 1
-0 0 0 0
-2 100 10
-#4565
-A small treasure chest~
-&OA Small Treasure Chest~
-A Small Treausre Chest sits on the floor here.~
-~
-15 0 0
-8 0 0 16
-200 0 0
-#4566
-&c A &B Blue Dual-Bladed &z Lightsaber&w~
-&c A &B Blue Dual-Bladed &z Lightsaber&w~
-&c A &B Blue Dual-Bladed &z Lightsaber&w was discarded here.~
-The lightsaber hums twice as it ignites on both ends~
-5 0 8193
-1000 2000 2000 12 3000 3000
-6 0 0
-#4567
-A Quest Coin~
-A Quest Coin~
-A Quest Coin has been cleverly misplaced here.~
-~
-8 0 16385
-0 0 0 0
-2 0 0
-#4900
-hi_obj~
-a hi_obj~
-A hi_obj is here.~
-~
-13 0 0
-0 0 0 0
-1 0 0
-#0
+#ENDEXDESC
 
+#ENDOBJECT
 
-#ROOMS
-#4550
-Landing Pad B~
-This is a small landing pad on top of a compound used by the Empire as their
+#OBJECT
+Vnum     4553
+Keywords Tattered ewok head garment~
+Type     armor~
+Short    An Ewok Head Garment~
+Long     A slightly tattered ewok head garment sits here.~
+WFlags   take head~
+Values   14 14 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4554
+Keywords A small packaged ration~
+Type     food~
+Short    a small packaged ration~
+Long     A packaged ration is here, waiting to be eaten.~
+Flags    inventory~
+WFlags   take~
+Values   20 20 0 0 0 0
+Stats    2 5 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4555
+Keywords A small canteen~
+Type     drinkcon~
+Short    a small canteen~
+Long     A belt sized canteen was dropped here.~
+Flags    inventory~
+WFlags   take~
+Values   10 10 0 0 0 0
+Stats    1 10 1 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4556
+Keywords A Control Room Keycard~
+Type     trash~
+Short    A Control Room Keycard~
+Long     A Control Room Keycard lies here.~
+WFlags   take hold~
+Values   0 0 0 0 0 0
+Stats    3 35 3 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4559
+Keywords An Important Document~
+Type     paper~
+Short    An Important Document~
+Long     An Important Document lies here on the ground.~
+WFlags   take hold~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4560
+Keywords &c A &r Red-Bladed &z Lightsaber~
+Type     weapon~
+Short    &c A &r Red-Bladed &z Lightsaber~
+Long     &c A &r Red-Bladed &z Lightsaber &W was carefully placed here~
+Action   The lightsaber hums with a soft glow.~
+Flags    contraband~
+WFlags   wield~
+Values   1000 400 400 3 3000 3000
+Stats    6 1000000 100000 0 0
+Affect       -1 -1 200 13 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4561
+Keywords An Immortal-Sized bag~
+Type     container~
+Short    &B An Immortal-Sized Bag ~
+Long     &B An Immortal-Sized Bag &w was left here~
+WFlags   body hold~
+Values   50000 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4562
+Keywords &b A Small Blue Key~
+Type     key~
+Short    &b A Small Blue Key~
+Long     &b A Small Blue Key &w is lying here.~
+WFlags   take hold~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4563
+Keywords &z A Pair of Black Wrap-Around Sunglasses~
+Type     armor~
+Short    &z A Pair of Black Wrap-Around Sunglasses~
+Long     &z A Pair of Black Wrap-Around Sunglasses &w lie discarded here.~
+WFlags   eyes~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4564
+Keywords short A Detention Level Keycard~
+Type     key~
+Short    A Detention Level Keycard~
+Long     A Detention Level Keycard is here.~
+WFlags   take~
+Values   0 0 0 0 0 0
+Stats    2 100 10 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4565
+Keywords A small treasure chest~
+Type     container~
+Short    &OA Small Treasure Chest~
+Long     A Small Treausre Chest sits on the floor here.~
+Values   8 0 0 16 0 0
+Stats    200 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4566
+Keywords &c A &B Blue Dual-Bladed &z Lightsaber&w~
+Type     weapon~
+Short    &c A &B Blue Dual-Bladed &z Lightsaber&w~
+Long     &c A &B Blue Dual-Bladed &z Lightsaber&w was discarded here.~
+Action   The lightsaber hums twice as it ignites on both ends~
+WFlags   take wield~
+Values   1000 2000 2000 12 3000 3000
+Stats    6 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4567
+Keywords A Quest Coin~
+Type     treasure~
+Short    A Quest Coin~
+Long     A Quest Coin has been cleverly misplaced here.~
+WFlags   take hold~
+Values   0 0 0 0 0 0
+Stats    2 0 0 0 0
+#ENDOBJECT
+
+#OBJECT
+Vnum     4900
+Keywords hi_obj~
+Type     trash~
+Short    a hi_obj~
+Long     A hi_obj is here.~
+Values   0 0 0 0 0 0
+Stats    1 0 0 0 0
+#ENDOBJECT
+
+#ROOM
+Vnum     4550
+Name     Landing Pad B~
+Sector   city~
+Flags    nomob can_land can_fly nodropall~
+Stats    0 0 3720
+Desc     This is a small landing pad on top of a compound used by the Empire as their
 base. It is one of many of the several buildings built here by the Empire.
 The Empire was defeated here by the Rebellion during the Battle of Endor
 and the compound is now being used by the Rebellion.  A few ships are
@@ -799,80 +1200,100 @@ people and ewoks can be spotted on the ground. Above the trees, the
 remains of several large shield generators can be seen. Some stairs lead
 down to the side of the compound. Landing Pad A is west from here.
 ~
-0 32820 1 0 0 0 3720
-D3
-~
-~
-0 -1 4563
-D5
-~
-~
-0 -1 4551
-S
-#4551
-Next to a Small Compound~
-Trees which stand many meters high block out most of the clear blue sky.
+#EXIT
+Direction west~
+ToRoom    4563
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    4551
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4551
+Name     Next to a Small Compound~
+Sector   city~
+Stats    0 0 3720
+Desc     Trees which stand many meters high block out most of the clear blue sky.
 Brush and trees are all around this dark grey building. Several rebels and
 ewoks wander about, still repairing from the Battle of Endor. Some stairs
 are built onto the side of the building, leading up to Landing Pad B. The
 entrance to the compound is around the corner to the south.
 ~
-0 0 1 0 0 0 3720
-D2
-~
-~
-0 -1 4552
-D4
-~
-~
-0 -1 4550
-S
-#4552
-Dirt Path Near a Small Compound~
-Trees which stand many meters high block out most of the clear blue sky.
+#EXIT
+Direction south~
+ToRoom    4552
+#ENDEXIT
+
+#EXIT
+Direction up~
+ToRoom    4550
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4552
+Name     Dirt Path Near a Small Compound~
+Sector   city~
+Stats    0 0 3720
+Desc     Trees which stand many meters high block out most of the clear blue sky.
 Brush and trees are all around this dark grey building. Several rebels and
 ewoks wander about, still repairing from the Battle of Endor.  North of
 here are a set of stairs which lead up to the roof of the compound. Around
 the corner is the entrance to the building.
 ~
-0 0 1 0 0 0 3720
-D0
-~
-~
-0 -1 4551
-D3
-~
-~
-0 -1 4553
-S
-#4553
-Path to a Small Compound~
-Trees which stand many meters high block out most of the clear blue sky.
+#EXIT
+Direction north~
+ToRoom    4551
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4553
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4553
+Name     Path to a Small Compound~
+Sector   city~
+Stats    0 0 3720
+Desc     Trees which stand many meters high block out most of the clear blue sky.
 Brush and trees are all around this dark grey building. Several rebels and
 ewoks wander about, still repairing from the Battle of Endor.  A wornout
 dirt path leads eastward around the building, ultimately heading to the
 roof where the landing pad is located. Another path leads southward while
 the compound door is to the north.
 ~
-0 0 1 0 0 0 3720
-D0
-~
-~
-0 -1 4557
-D1
-~
-~
-0 -1 4552
-D2
-~
-~
-0 -1 4567
-D3
-~
-~
-0 -1 4554
-> entry_prog 100~
-if mobinroom(4573)
+#EXIT
+Direction north~
+ToRoom    4557
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4552
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4567
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4554
+#ENDEXIT
+
+#MUDPROG
+Progtype  entry_prog~
+Arglist   100~
+Comlist   if mobinroom(4573)
 if ispc($n)
 mpadvance $n 4 2500
 mpforce captured say This is for breaking me out.
@@ -883,47 +1304,63 @@ mppurge
 endif
 endif
 ~
-|
-S
-#4554
-Dirt Path Near a Small Compound~
-Trees which stand many meters high block out most of the clear blue sky.
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     4554
+Name     Dirt Path Near a Small Compound~
+Sector   city~
+Stats    0 0 3720
+Desc     Trees which stand many meters high block out most of the clear blue sky.
 Brush and trees are all around this dark grey building. Several rebels and
 ewoks wander about, still repairing from the Battle of Endor. North of
 here are a set of stairs which lead up to the roof of the compound. Around
 the corner is the entrance to the building.
 ~
-0 0 1 0 0 0 3720
-D0
-~
-~
-0 -1 4555
-D1
-~
-~
-0 -1 4553
-S
-#4555
-Next to a Small Compound~
-Trees which stand many meters high block out most of the clear blue sky.
+#EXIT
+Direction north~
+ToRoom    4555
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4553
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4555
+Name     Next to a Small Compound~
+Sector   city~
+Stats    0 0 3720
+Desc     Trees which stand many meters high block out most of the clear blue sky.
 Brush and trees are all around this dark grey building. Several rebels and
 ewoks wander about, still repairing from the Battle of Endor. Some stairs
 are built onto the side of the building, leading up to Landing Pad A. The
 entrance to the compound is around the corner to the south.  
 ~
-0 0 1 0 0 0 3720
-D2
-~
-~
-0 -1 4554
-D4
-~
-~
-0 -1 4556
-S
-#4556
-Landing Pad A~
-This is a small landing pad on top of a compoud used by the Empire as their
+#EXIT
+Direction south~
+ToRoom    4554
+#ENDEXIT
+
+#EXIT
+Direction up~
+ToRoom    4556
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4556
+Name     Landing Pad A~
+Sector   city~
+Flags    can_land can_fly nodropall~
+Stats    0 0 3720
+Desc     This is a small landing pad on top of a compoud used by the Empire as their
 base. It is one of many of the several buildings built here by the Empire.
 The Empire was defeated here by the Rebellion during the Battle of Endor
 and the compoud is now being used by the Rebellion.   A few ships are
@@ -933,1234 +1370,1758 @@ few people and ewoks can be spotted on the ground.  Above the trees, the
 remains of several large shield generators can be seen. Some stairs lead
 down to the side of the compoud. Landing Pad B is east from here.
 ~
-0 32816 1 0 0 0 3720
-D1
-~
-~
-0 -1 4563
-D3
-~
-~
-0 -1 4655
-D5
-~
-~
-0 -1 4555
-S
-#4557
-Entrance to A Small Compound~
-You stand in the entranceway to the compound. To the north is the secuirty
+#EXIT
+Direction east~
+ToRoom    4563
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4655
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    4555
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4557
+Name     Entrance to A Small Compound~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You stand in the entranceway to the compound. To the north is the secuirty
 checkpoint. You must pass through the checkpoint to gain access to the
 rest of the compound.
 ~
-0 8 1 0 0 0 3720
-D0
-~
-~
-0 -1 4558
-D2
-~
-~
-0 -1 4553
-S
-#4558
-Security Checkpoint~
-You stand in the security checkpoint at the main entrance of the compound.
+#EXIT
+Direction north~
+ToRoom    4558
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4553
+#ENDEXIT
+
+Reset M 0 4554 1 4557
+  Reset E 1 4550 1 16
+Reset M 0 4555 1 4557
+  Reset E 1 4550 1 16
+#ENDROOM
+
+#ROOM
+Vnum     4558
+Name     Security Checkpoint~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You stand in the security checkpoint at the main entrance of the compound.
 There is a long line of people here waiting to be checked in so it would
 be best to get a spot quickly.
 ~
-0 8 1 0 0 0 3720
-D0
-~
-~
-7 4556 4559
-D2
-~
-~
-0 -1 4557
-S
-#4559
-Hallway Intersecion~
-You are in the intersection of the main hallway and the one that leads to
+#EXIT
+Direction north~
+ToRoom    4559
+Key       4556
+Flags     isdoor closed locked~
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4557
+#ENDEXIT
+
+Reset M 0 4552 1 4558
+  Reset G 1 4556 1
+  Reset E 1 4550 1 16
+Reset D 0 4558 0 2
+#ENDROOM
+
+#ROOM
+Vnum     4559
+Name     Hallway Intersecion~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You are in the intersection of the main hallway and the one that leads to
 the Compound Control Room. If you wish to go the control room ask the
 guard, if you need to leave just give him a simple nod.
 ~
-0 8 1 0 0 0 3720
-D0
-~
-~
-0 -1 4596
-D1
-~
-~
-7 4556 4560
-D2
-~
-~
-7 4556 4558
-S
-#4560
-Hallway to Control Room~
-You are in the hallway that leads to the Compound Control Room. The walls
+#EXIT
+Direction north~
+ToRoom    4596
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4560
+Key       4556
+Flags     isdoor closed locked~
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4558
+Key       4556
+Flags     isdoor closed locked~
+#ENDEXIT
+
+Reset M 0 4553 1 4559
+  Reset G 1 4556 1
+  Reset E 1 4550 1 16
+Reset D 0 4559 1 2
+Reset D 0 4559 2 2
+#ENDROOM
+
+#ROOM
+Vnum     4560
+Name     Hallway to Control Room~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You are in the hallway that leads to the Compound Control Room. The walls
 are a dark grey color. There is a single light mounted every 30 feet. If
 you need to exit this hallway just give the guard a simple
 nod.
 ~
-0 8 1 0 0 0 3720
-D1
-~
-~
-0 -1 4561
-D3
-~
-~
-7 4556 4559
-S
-#4561
-Hallway to Control Room~
-You are in the hallway that leads to the Compound Control Room. The walls
+#EXIT
+Direction east~
+ToRoom    4561
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4559
+Key       4556
+Flags     isdoor closed locked~
+#ENDEXIT
+
+Reset M 0 4556 1 4560
+  Reset G 1 4556 1
+  Reset E 1 4550 1 16
+Reset D 0 4560 3 2
+#ENDROOM
+
+#ROOM
+Vnum     4561
+Name     Hallway to Control Room~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You are in the hallway that leads to the Compound Control Room. The walls
 are a dark grey color. There is a single light mounted every 30 feet. 
 ~
-0 8 1 0 0 0 3720
-D1
-~
-~
-0 -1 4562
-D3
-~
-~
-0 -1 4560
-S
-#4562
-Control Room~
-You have reached the control room of the compound. The walls are lined with
+#EXIT
+Direction east~
+ToRoom    4562
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4560
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4562
+Name     Control Room~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You have reached the control room of the compound. The walls are lined with
 monitor displaying security camera images and technical readouts of the
 compound. 
 ~
-0 8 1 0 0 0 3720
-D3
-~
-~
-0 -1 4561
-S
-#4563
-A Small Walkway~
-You are on the small walkway between the two landing pads. Landing Pad A is
+#EXIT
+Direction west~
+ToRoom    4561
+#ENDEXIT
+
+Reset M 0 4560 1 4562
+  Reset E 1 4550 1 16
+#ENDROOM
+
+#ROOM
+Vnum     4563
+Name     A Small Walkway~
+Sector   city~
+Stats    0 0 3720
+Desc     You are on the small walkway between the two landing pads. Landing Pad A is
 to the west while Landing Pad B is to the east. The walkway is very
 dangerous and high off the ground so watch your
 step.
 ~
-0 0 1 0 0 0 3720
-D1
-~
-~
-0 -1 4550
-D3
-~
-~
-0 -1 4556
-S
-#4564
-Secret Forest Path~
-A small path leads between the trees here. The path is so old that
+#EXIT
+Direction east~
+ToRoom    4550
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4556
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4564
+Name     Secret Forest Path~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     A small path leads between the trees here. The path is so old that
 vegetation has begun to cover it. There are sounds of repulsorlifts
 powering up in the distance.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4565
-D3
-~
-~
-0 -1 4572
-S
-#4565
-A Small Path~
-A small path leads between the trees. The path hasnt been traveled in such
+#EXIT
+Direction east~
+ToRoom    4565
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4572
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4565
+Name     A Small Path~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     A small path leads between the trees. The path hasnt been traveled in such
 a long time that vegetation has begun to grow over it. Repulsorlifts are
 heard powering up in the distance.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-7 4562 4619
-D3
-~
-~
-0 -1 4564
-S
-#4566
-Compound Cafeteria~
-You have entered the Compound's one and only cafeteria. The cafeteria is
+#EXIT
+Direction east~
+ToRoom    4619
+Key       4562
+Flags     isdoor closed locked~
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4564
+#ENDEXIT
+
+Reset D 0 4565 1 2
+#ENDROOM
+
+#ROOM
+Vnum     4566
+Name     Compound Cafeteria~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You have entered the Compound's one and only cafeteria. The cafeteria is
 large enough to accomadate at least three legions of troops at the same
 time. There are many stains on the wall that serves as constant reminders
 of the many food fights that have taken place here.
 ~
-0 8 1 0 0 0 3720
-D7
-~
-~
-0 -1 4600
-S
-#4567
-Dirt Path~
-You are following a dirt path. Huge trees block your path to the East and
+#EXIT
+Direction northwest~
+ToRoom    4600
+#ENDEXIT
+
+Reset M 0 4569 1 4566
+  Reset G 1 4555 1
+  Reset G 1 4554 1
+#ENDROOM
+
+#ROOM
+Vnum     4567
+Name     Dirt Path~
+Sector   forest~
+Stats    0 0 3720
+Desc     You are following a dirt path. Huge trees block your path to the East and
 West. You start to feel an acute sense of claustrophobia. You feel you
 should move onwards. 
 ~
-0 0 3 0 0 0 3720
-D0
-~
-~
-0 -1 4553
-D2
-~
-~
-0 -1 4568
-S
-#4568
-Dirt Path~
-You are following a dirt path. You see no direct path to the East and West
+#EXIT
+Direction north~
+ToRoom    4553
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4568
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4568
+Name     Dirt Path~
+Sector   forest~
+Stats    0 0 3720
+Desc     You are following a dirt path. You see no direct path to the East and West
 of you. You start to feel a bit more claustrophobic. You feel you should
 move onwards. 
 ~
-0 0 3 0 0 0 3720
-D0
-~
-~
-0 -1 4567
-D2
-~
-~
-0 -1 4569
-S
-#4569
-Path in the Forest~
-You stand in the middle of a tall forest. You start to feel scared for you
+#EXIT
+Direction north~
+ToRoom    4567
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4569
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4569
+Name     Path in the Forest~
+Sector   forest~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. You start to feel scared for you
 never know what could be wandering behind those swaying trees. You do not
 want to stop for very long. 
 ~
-0 0 3 0 0 0 3720
-D0
-~
-~
-0 -1 4568
-D8
-~
-~
-0 -1 4570
-S
-#4570
-Path in the Forest~
-You stand in the middle of a tall forest. You feel somewhat scared for you
+#EXIT
+Direction north~
+ToRoom    4568
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4570
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4570
+Name     Path in the Forest~
+Sector   forest~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. You feel somewhat scared for you
 cannot see well in these dimly lit areas. You do not want to stop for very
 long. You continue your journey along the poorly made path.
 ~
-0 0 3 0 0 0 3720
-D7
-~
-~
-0 -1 4569
-D8
-~
-~
-0 -1 4571
-S
-#4571
-Path in the Forest~
-You stand in the middle of a tall forest. Feeling somewhat scared
+#EXIT
+Direction northwest~
+ToRoom    4569
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4571
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4571
+Name     Path in the Forest~
+Sector   forest~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Feeling somewhat scared
 because it is hard for anyone or anything to see in these dimly
 lit areas.You do not want to stop for very long. You continue
 your journey along the poorly made path.
 ~
-0 0 3 0 0 0 3720
-D1
-~
-~
-0 -1 4572
-D7
-~
-~
-0 -1 4570
-S
-#4572
-Path in the Forest~
-Tall trees surround the area. The trees block out most of the sunlight
+#EXIT
+Direction east~
+ToRoom    4572
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4570
+#ENDEXIT
+
+Reset M 0 4575 1 4571
+#ENDROOM
+
+#ROOM
+Vnum     4572
+Name     Path in the Forest~
+Sector   forest~
+Stats    0 0 3720
+Desc     Tall trees surround the area. The trees block out most of the sunlight
 causing visibility to be poor. Shadows cross over the branches to the east.
 It would be wise to continue along the poorly made path.
 ~
-0 0 3 0 0 0 3720
-D3
-~
-~
-0 -1 4571
-D8
-~
-~
-0 -1 4573
-E
-branches~
-The &w&Wbranches&w are broken in a strange way that possibly animals or
+#EXIT
+Direction west~
+ToRoom    4571
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4573
+#ENDEXIT
+
+#EXDESC
+ExDescKey    branches~
+ExDesc       The &w&Wbranches&w are broken in a strange way that possibly animals or
 people have made a path in that direction. Futher examination reveals that
 behind the &w&Wbranches&w and hidden in a shadow is a hidden path.
 ~
-> custom_prog branches~
-mptransfer $n 4564
+#ENDEXDESC
+
+#MUDPROG
+Progtype  custom_prog~
+Arglist   branches~
+Comlist   mptransfer $n 4564
 ~
-> speech_prog branches~
-mptransfer $n 4564
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   branches~
+Comlist   mptransfer $n 4564
 ~
-|
-S
-#4573
-Path in the Forest~
-You stand in the middle of a tall forest. You feel somewhat scared for you
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     4573
+Name     Path in the Forest~
+Sector   forest~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. You feel somewhat scared for you
 cannot see well in these dimly lit areas. You do not want to stop for very
 long. You continue your journey along the poorly made path.
 ~
-0 4 3 0 0 0 3720
-D2
-~
-~
-0 -1 4641
-D7
-~
-~
-0 -1 4572
-S
-#4574
-Path in the Forest~
-You stand in the middle of a tall forest. You feel somewhat scared for you
+#EXIT
+Direction south~
+ToRoom    4641
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4572
+#ENDEXIT
+
+Reset M 0 4562 1 4573
+#ENDROOM
+
+#ROOM
+Vnum     4574
+Name     Path in the Forest~
+Sector   forest~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. You feel somewhat scared for you
 cannot see well in these dimly lit areas. You do not want to stop for very
 long. You continue your journey along the poorly made path.
 ~
-0 0 3 0 0 0 3720
-D1
-~
-~
-0 -1 4641
-D2
-~
-~
-0 -1 4575
-S
-#4575
-Path in the Forest~
-You stand in the middle of a tall forest. You feel somewhat scared for you
+#EXIT
+Direction east~
+ToRoom    4641
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4575
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4575
+Name     Path in the Forest~
+Sector   forest~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. You feel somewhat scared for you
 cannot see well in these dimly lit areas. You do not want to stop for very
 long. You continue your journey along the poorly made path.
 ~
-0 0 3 0 0 0 3720
-D0
-~
-~
-0 -1 4574
-D1
-~
-~
-0 -1 4576
-S
-#4576
-Path in the Forest~
-You stand in the middle of a tall forest. You feel somewhat scared for you
+#EXIT
+Direction north~
+ToRoom    4574
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4576
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4576
+Name     Path in the Forest~
+Sector   forest~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. You feel somewhat scared for you
 cannot see well in these dimly lit areas. You see a bit of a clearing and
 a very dim glow coming from the east. You continue your journey along the 
 poorly made path to pursue the light.
 ~
-0 0 3 0 0 0 3720
-D1
-~
-~
-0 -1 4577
-D3
-~
-~
-0 -1 4575
-S
-#4577
-Approaching A Large Village~
-Making your way through bushes and brambles, you come upon a large
+#EXIT
+Direction east~
+ToRoom    4577
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4575
+#ENDEXIT
+
+Reset M 0 4576 1 4576
+#ENDROOM
+
+#ROOM
+Vnum     4577
+Name     Approaching A Large Village~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     Making your way through bushes and brambles, you come upon a large
 tree-based village, created entirely without the use of metals or other
 techologically  advanced assistance. Small furry creatures wander about,
 it seems as though they are repairing damages done to the village, and
 doing quite an expert job at  that. The path continues east and southwest.
 ~
-0 4 1 0 0 0 3720
-D3
-~
-~
-0 -1 4576
-D8
-~
-~
-0 -1 4578
-S
-#4578
-Under a Large Tree~
-A large twisted tree juts into the sky and becomes barely visible, a small
+#EXIT
+Direction west~
+ToRoom    4576
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4578
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4578
+Name     Under a Large Tree~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     A large twisted tree juts into the sky and becomes barely visible, a small
 rope ladder is hanging down the side of it. The ground seems to be fairly
 well used here. The path continues to the northwest and east, also up this
 tree on the rope ladder.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4579
-D4
-~
-~
-0 -1 4581
-D7
-~
-~
-0 -1 4577
-S
-#4579
-Path Under the Ewok Village~
-This path shows the wear of shuffled feet of many generations. Underfoot
+#EXIT
+Direction east~
+ToRoom    4579
+#ENDEXIT
+
+#EXIT
+Direction up~
+ToRoom    4581
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4577
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4579
+Name     Path Under the Ewok Village~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     This path shows the wear of shuffled feet of many generations. Underfoot
 you see  where the ground has been stomped to nonuse by all of the flora
 of this planet. Smaller trees arc above you in a beautiful decorative
 fashion, and the larger trees tower into the sky at a distance. The path
 continues west and northeast. 
 ~
-0 4 1 0 0 0 3720
-D3
-~
-~
-0 -1 4578
-D6
-~
-~
-0 -1 4580
-S
-#4580
-Under the Trees~
-Another Large Tree seemingly shoots into the sky here, a rather tattered
+#EXIT
+Direction west~
+ToRoom    4578
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4580
+#ENDEXIT
+
+Reset O 0 4552 1 4579
+  Reset P 0 4553 1 4552
+  Reset P 1 4562 1 4552
+#ENDROOM
+
+#ROOM
+Vnum     4580
+Name     Under the Trees~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     Another Large Tree seemingly shoots into the sky here, a rather tattered
 ladder also falling to the ground from it. Perhaps it may be a little
 dangerous to climb. The path ends here, you may return southwest or go
 upwards.
 ~
-0 4 1 0 0 0 3720
-D4
-~
-~
-128 -1 4595
-D9
-~
-~
-0 -1 4579
-S
-#4581
-Climbing up a Large Tree~
-While climbing the tree you only have two directions Up or Down. You notice
+#EXIT
+Direction up~
+ToRoom    4595
+Flags     climb~
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4579
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4581
+Name     Climbing up a Large Tree~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     While climbing the tree you only have two directions Up or Down. You notice
 how the rope ladder dangles from the tree so freely. 
 ~
-0 4 1 0 0 0 3720
-D4
-~
-~
-0 -1 4582
-D5
-~
-~
-0 -1 4578
-S
-#4582
-Reaching the Ewok Village~
-You come close to the top of the tree and can hear the Ewoks from above.
+#EXIT
+Direction up~
+ToRoom    4582
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    4578
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4582
+Name     Reaching the Ewok Village~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You come close to the top of the tree and can hear the Ewoks from above.
 You want to hurry up and get to the top of the tree to see what the fuss
 is all about. 
 ~
-0 4 1 0 0 0 3720
-D4
-~
-~
-0 -1 4583
-D5
-~
-~
-0 -1 4581
-S
-#4583
-The Ewok Endpoint~
-You step onto a large outcropping of wooden planks supported by logs,
+#EXIT
+Direction up~
+ToRoom    4583
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    4581
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4583
+Name     The Ewok Endpoint~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You step onto a large outcropping of wooden planks supported by logs,
 stepping gingerly at first to test your weight, then stepping comfortably
 after you've made sure it is of sound creation. The outcropping wraps
 around the northeast and northwest, while you can go inside the hollowed
 out tree to the north. 
 ~
-0 4 1 0 0 0 3720
-D0
-~
-~
-0 -1 4584
-D5
-~
-~
-0 -1 4582
-D6
-~
-~
-0 -1 4585
-D7
-~
-~
-0 -1 4587
-D8
-~
-~
-0 -1 4612
-S
-#4584
-A Small Ewok Guardpost~
-This room seems quite comfortably done in comparison to the normal ewok
+#EXIT
+Direction north~
+ToRoom    4584
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    4582
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4585
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4587
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4612
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4584
+Name     A Small Ewok Guardpost~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     This room seems quite comfortably done in comparison to the normal ewok
 tradition. It seems to have been a guard room morphed into a lounge of
 some  sort. Perhaps the guards weren't used to seeing much trouble this
 high up in the trees. A rack of rudimentary spears and slings lies in the
 corner.
 ~
-0 4 1 0 0 0 3720
-D2
-~
-~
-0 -1 4583
-S
-#4585
-Planks~
-You follow along these planks as they seem to lead to another village. You
+#EXIT
+Direction south~
+ToRoom    4583
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4585
+Name     Planks~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You follow along these planks as they seem to lead to another village. You
 are curious to see exactly where these huge boards lead to.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4588
-D7
-~
-~
-0 -1 4586
-D9
-~
-~
-0 -1 4583
-S
-#4586
-Planks~
-You follow along these planks as they seem to lead to another village. You
+#EXIT
+Direction east~
+ToRoom    4588
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4586
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4583
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4586
+Name     Planks~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You follow along these planks as they seem to lead to another village. You
 are curious to see exactly where these huge boards lead to.
 ~
-0 4 1 0 0 0 3720
-D0
-~
-~
-0 -1 4629
-D8
-~
-~
-0 -1 4585
-D9
-~
-~
-0 -1 4587
-S
-#4587
-Planks~
-You follow along these planks as they seem to lead to another village. You
+#EXIT
+Direction north~
+ToRoom    4629
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4585
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4587
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4587
+Name     Planks~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You follow along these planks as they seem to lead to another village. You
 are curious to see exactly where these huge boards lead to.
 ~
-0 4 1 0 0 0 3720
-D6
-~
-~
-0 -1 4586
-D8
-~
-~
-0 -1 4583
-S
-#4588
-A Sturdy Rope Bridge~
-You are now on a sturdy rope bridge. You are suprised in how well this
+#EXIT
+Direction northeast~
+ToRoom    4586
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4583
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4588
+Name     A Sturdy Rope Bridge~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You are now on a sturdy rope bridge. You are suprised in how well this
 bridge has been maintained. You are also suprised about how little the
 bridge wobbles.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4589
-D3
-~
-~
-0 -1 4585
-S
-#4589
-Planks~
-You follow along these planks as they seem to lead to another village. You
+#EXIT
+Direction east~
+ToRoom    4589
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4585
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4589
+Name     Planks~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You follow along these planks as they seem to lead to another village. You
 are curious to see exactly where these huge boards lead to. You follow
 along these planks as they seem to lead to another village. To the West
 you notice a bridge in the distance, and to the southeast you can see a
 small Ewok home.
 ~
-0 4 1 0 0 0 3720
-D3
-~
-~
-0 -1 4588
-D6
-~
-~
-0 -1 4593
-D8
-~
-~
-0 -1 4590
-S
-#4590
-A Small Ewok House~
-Walking up to this small ewok construction, you notice a hole in the roof,
+#EXIT
+Direction west~
+ToRoom    4588
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4593
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4590
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4590
+Name     A Small Ewok House~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     Walking up to this small ewok construction, you notice a hole in the roof,
 with smoke billowing out of it. An aroma of roasting meat wafts out from
 the room, perhaps you should take a peek inside. 
 ~
-0 4 1 0 0 0 3720
-D0
-~
-~
-0 -1 4591
-D5
-~
-~
-0 -1 4594
-D6
-~
-~
-0 -1 4592
-D7
-~
-~
-0 -1 4589
-S
-#4591
-Inside The Ewok Home~
-The smell of roasting meat bombards your senses, and as you look around to
+#EXIT
+Direction north~
+ToRoom    4591
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    4594
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4592
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4589
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4591
+Name     Inside The Ewok Home~
+Sector   city~
+Flags    hotel~
+Stats    0 0 3720
+Desc     The smell of roasting meat bombards your senses, and as you look around to
 find the source of this you see a large hunk of meat on a spit. What sort
 of meat,  you can't be sure, although it certainly does smell good. This
 house is rather small and unfurnished, a few small hammock-like beds are
 strapped to the far side of the wall.
 ~
-0 8388608 1 0 0 0 3720
-D2
-~
-~
-0 -1 4590
-S
-#4592
-Planks~
-You follow along these planks as they seem to lead to another village. You
+#EXIT
+Direction south~
+ToRoom    4590
+#ENDEXIT
+
+Reset M 0 4551 1 4591
+Reset O 0 4551 1 4591
+#ENDROOM
+
+#ROOM
+Vnum     4592
+Name     Planks~
+Sector   city~
+Stats    0 0 3720
+Desc     You follow along these planks as they seem to lead to another village. You
 are curious to see exactly where these huge boards lead to.
 ~
-0 0 1 0 0 0 3720
-D7
-~
-~
-0 -1 4593
-D9
-~
-~
-0 -1 4590
-S
-#4593
-Planks~
-You follow along these planks as they seem to lead to another village. You
+#EXIT
+Direction northwest~
+ToRoom    4593
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4590
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4593
+Name     Planks~
+Sector   city~
+Stats    0 0 3720
+Desc     You follow along these planks as they seem to lead to another village. You
 are curious to see exactly where these huge boards lead to.
 ~
-0 0 1 0 0 0 3720
-D8
-~
-~
-0 -1 4592
-D9
-~
-~
-0 -1 4589
-S
-#4594
-Rope Ladder~
-You notice how the ladder you are climbing is just dangling from the tree.
+#EXIT
+Direction southeast~
+ToRoom    4592
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4589
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4594
+Name     Rope Ladder~
+Sector   city~
+Stats    0 0 3720
+Desc     You notice how the ladder you are climbing is just dangling from the tree.
 You feel a bit unconfortable about climbing it now but you want to
 continue. The Ewoks from above are getting louder.
 ~
-0 0 1 0 0 0 3720
-D4
-~
-~
-0 -1 4590
-D5
-~
-~
-0 -1 4595
-S
-#4595
-Tattered Rope Ladder~
-As you are climbing you notice that the tree has many rotted areas. You see
+#EXIT
+Direction up~
+ToRoom    4590
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    4595
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4595
+Name     Tattered Rope Ladder~
+Sector   city~
+Stats    0 0 3720
+Desc     As you are climbing you notice that the tree has many rotted areas. You see
 that it is one of the oldest trees in the whole forest. You can hear the
 tongue of the Ewoks from above.
 ~
-0 0 1 0 0 0 3720
-D4
-~
-~
-128 -1 4594
-D5
-~
-~
-0 -1 4580
-S
-#4596
-A Turbolift~
-You stand in the compound's only turbolift. LIke the rest of the compound
+#EXIT
+Direction up~
+ToRoom    4594
+Flags     climb~
+#ENDEXIT
+
+#EXIT
+Direction down~
+ToRoom    4580
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4596
+Name     A Turbolift~
+Sector   city~
+Flags    nomob indoors~
+Stats    0 0 3720
+Desc     You stand in the compound's only turbolift. LIke the rest of the compound
 the walls are grey. There is a small single light mounted to the ceiling
 of the turbocar. The car only travels between the compounds two main
 floors. The turbolift is voice activated so just say the level you need to
 go to. There is a small list of levels mounted on the wall here.
 ~
-0 12 1 0 0 0 3720
-E
-list~
-Turbolift Floors:
+#EXDESC
+ExDescKey    list~
+ExDesc       Turbolift Floors:
 1: Main Floor
 2: Services and Administration Floor
 3: Residential Floor
 -1: Detention Level
 ~
-> speech_prog p 1~
-mpecho The turbolift doors slide close.
+#ENDEXDESC
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p 1~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift slowly goes to the Main Floor.
 mpecho You hear a ding and the doors slide open.
 mpecho You step out quickly before the doors reclose.
 mptransfer $n 4559
 ~
-> speech_prog p 2~
-mpecho The turbolift doors slide close.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p 2~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift slowly goes to the Services and Administration
 Level.
 mpecho You hear a ding and the doors slide open.
 mpecho You step out quickly before the doors reclose.
 mptransfer $n 4600
 ~
-> speech_prog p 3~
-mpecho The turbolift doors slide close.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p 3~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift slowly goes to the Residential Level.
 mpecho You hear a ding and the doors slide open.
 mpecho You step out quickly before the doors reclose.
 mptransfer $n 4602
 ~
-> speech_prog p Main~
-mpecho The turbolift doors slide close.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Main~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift slowly goes to the Main Floor.
 mpecho You hear a ding and the doors slide open.
 mpecho You step out quickly before the doors reclose.
 mptransfer $n 4559
 ~
-> speech_prog p Services~
-mpecho The turbolift doors slide close.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Services~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift slowly goes to the Services and Administraion
 Level.
 mpecho You hear a ding and the doors slide open.
 mpecho You step out quickly before the doors reclose.
 mptransfer $n 4600
 ~
-> speech_prog p Residential~
-mpecho The turbolift doors slide close.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Residential~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift slowly goes to the Residential Level.
 mpecho You hear a ding and the doors slide open.
 mpecho You step out quickly before the doors reclose.
 mptransfer $n 4602
 ~
-> speech_prog p -1~
-mpecho The turbolift doors slide close.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p -1~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift slowly decends to the Detention Level.
 mpecho You hear a ding and the doors slide open.
 mpecho You step out quickly before the doors reclose.
 mptransfer $n 4628
 ~
-> speech_prog p Detention~
-mpecho The turbolift doors slide close.
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p Detention~
+Comlist   mpecho The turbolift doors slide close.
 mpecho The turbolift slowly decends to the Detention Level.
 mpecho You hear a ding and the doors slide open.
 mpecho You step out quickly before the doors reclose.
 mptransfer $n 4628
 ~
-> entry_prog 100~
-if mobinroom(4573) == 1
+#ENDPROG
+
+#MUDPROG
+Progtype  entry_prog~
+Arglist   100~
+Comlist   if mobinroom(4573) == 1
 ifisnpc
 mpecho A captured stormtrooper rides the turbolift up.
 mptransfer captured 4559
 endif
 ~
-|
-S
-#4597
-Compound Commander's Office~
-You sit in the waiting room just outside of the Compound Commander's
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     4597
+Name     Compound Commander's Office~
+Sector   city~
+Flags    nomob indoors~
+Stats    0 0 3720
+Desc     You sit in the waiting room just outside of the Compound Commander's
 Officer. There are many people coming into and going out of the office. It
 would be wise to talk to the secertary about an
 appointment.
 ~
-0 12 1 0 0 0 3720
-D1
-~
-~
-0 -1 4600
-D3
-~
-~
-0 -1 4601
-S
-#4598
-Compound Weapons Depot~
-You enter a small room seperated in half by a bulletproof grate. There is a
+#EXIT
+Direction east~
+ToRoom    4600
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4601
+#ENDEXIT
+
+Reset M 0 4558 1 4597
+  Reset E 1 4550 1 16
+#ENDROOM
+
+#ROOM
+Vnum     4598
+Name     Compound Weapons Depot~
+Sector   city~
+Flags    nomob indoors~
+Stats    0 0 3720
+Desc     You enter a small room seperated in half by a bulletproof grate. There is a
 small area cut out of the grate for transactions to be made. This is where
 weapons confiscated from the general public are sold.
 ~
-0 12 1 0 0 0 3720
-D3
-~
-~
-0 -1 4600
-S
-#4599
-ATM Terminal~
-There is a small ATM terminal mounted to the wall here. There is no extra
+#EXIT
+Direction west~
+ToRoom    4600
+#ENDEXIT
+
+Reset M 0 4557 1 4598
+#ENDROOM
+
+#ROOM
+Vnum     4599
+Name     ATM Terminal~
+Sector   city~
+Flags    nomob indoors bank~
+Stats    0 0 3720
+Desc     There is a small ATM terminal mounted to the wall here. There is no extra
 charge for using this terminal.
  
 If you are unsure how to use this terminal type help bank.
 ~
-0 268 1 0 0 0 3720
-D0
-~
-~
-0 -1 4600
-S
-#4600
-Services and Administration Foyer~
-You stand in the second floor's foyer. Here the walls are decorated with
+#EXIT
+Direction north~
+ToRoom    4600
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4600
+Name     Services and Administration Foyer~
+Sector   city~
+Flags    nomob indoors~
+Stats    0 0 3720
+Desc     You stand in the second floor's foyer. Here the walls are decorated with
 bright tapestries and paintings. Bright chandeliers hanging from the
 ceiling illuminate the room. To the north is the turbolift, south is the
 Compound's ATM Terminal, east is the Weapon's Depot and to the west is the
 Compound Commander's Office . 
 ~
-0 12 1 0 0 0 3720
-D0
-~
-~
-0 -1 4596
-D1
-~
-~
-0 -1 4598
-D2
-~
-~
-0 -1 4599
-D3
-~
-~
-0 -1 4597
-D8
-~
-~
-0 -1 4566
-S
-#4601
-Commander's Office~
-You are in the office of the compound commander. The office's walls are
+#EXIT
+Direction north~
+ToRoom    4596
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4598
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4599
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4597
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4566
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4601
+Name     Commander's Office~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You are in the office of the compound commander. The office's walls are
 decorated with various paintings from around the galaxy. There is a solid
 wood desk sitting in the middle of the room. On it there are piles after
 piles of papers.
 ~
-0 8 1 0 0 0 3720
-D1
-~
-~
-0 -1 4597
-S
-#4602
-Residential Level Foyer~
-You have reached the third floor of the compound. This floor is mainly
+#EXIT
+Direction east~
+ToRoom    4597
+#ENDEXIT
+
+Reset M 0 4559 1 4601
+  Reset G 1 4559 1
+  Reset G 1 4564 1
+  Reset E 1 4550 1 16
+#ENDROOM
+
+#ROOM
+Vnum     4602
+Name     Residential Level Foyer~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     You have reached the third floor of the compound. This floor is mainly
 reserved for the barracks and apartments in which the soldiers stay. There
 are empty apartments to the west of here.
 ~
-0 8 1 0 0 0 3720
-D0
-~
-~
-0 -1 4596
-D3
-~
-~
-0 -1 4603
-S
-#4603
-A Hallway~
-This is the hallway that runs through the barracks level. The walls here
+#EXIT
+Direction north~
+ToRoom    4596
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4603
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4603
+Name     A Hallway~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     This is the hallway that runs through the barracks level. The walls here
 are dark grey. There is a light mounted every 30 feet along this hallway.
 Off to the north and south are apartments that available for rent.
 ~
-0 8 1 0 0 0 3720
-D0
-~
-~
-0 -1 4606
-D1
-~
-~
-0 -1 4602
-D2
-~
-~
-0 -1 4607
-D3
-~
-~
-0 -1 4604
-S
-#4604
-A Hallway~
-This is the hallway that runs through the barracks level. The walls here
+#EXIT
+Direction north~
+ToRoom    4606
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4602
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4607
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4604
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4604
+Name     A Hallway~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     This is the hallway that runs through the barracks level. The walls here
 are d ark grey. There is a light mounted every 30 feet along this hallway.
 Off to the  north and south are apartments that available for rent.
 ~
-0 8 1 0 0 0 3720
-D0
-~
-~
-0 -1 4608
-D1
-~
-~
-0 -1 4603
-D2
-~
-~
-0 -1 4609
-D3
-~
-~
-0 -1 4605
-S
-#4605
-A Hallway~
-This is the hallway that runs through the barracks level. The walls here
+#EXIT
+Direction north~
+ToRoom    4608
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4603
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4609
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4605
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4605
+Name     A Hallway~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     This is the hallway that runs through the barracks level. The walls here
 are d ark grey. There is a light mounted every 30 feet along this hallway.
 Off to the  north and south are apartments that available for rent.
 ~
-0 8 1 0 0 0 3720
-D0
-~
-~
-0 -1 4610
-D1
-~
-~
-0 -1 4604
-D2
-~
-~
-3 -1 4611
-S
-#4606
-An Empty Apartment~
-You have walked into an apartment that is available. There is a small bed
+#EXIT
+Direction north~
+ToRoom    4610
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4604
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4611
+Flags     isdoor closed~
+#ENDEXIT
+
+Reset D 0 4605 2 1
+#ENDROOM
+
+#ROOM
+Vnum     4606
+Name     An Empty Apartment~
+Sector   city~
+Flags    nomob indoors empty_home hotel factory~
+Stats    0 0 3720
+Desc     You have walked into an apartment that is available. There is a small bed
 and a chest of drawers alongside one wall. Other than that there is no
 furniture. The apartment appears to be kept well maintained.
 ~
-0 77594636 1 0 0 0 3720
-D2
-~
-~
-0 -1 4603
-S
-#4607
-An Empty Apartment~
-You have walked into an apartment that is available. There is a small bed
+#EXIT
+Direction south~
+ToRoom    4603
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4607
+Name     An Empty Apartment~
+Sector   city~
+Flags    nomob indoors empty_home hotel factory~
+Stats    0 0 3720
+Desc     You have walked into an apartment that is available. There is a small bed
 and a chest of drawers alongside one wall. Other than that there is no
 furniture. The apartment appears to be kept well maintained.
 ~
-0 77594636 1 0 0 0 3720
-D0
-~
-~
-0 -1 4603
-S
-#4608
-An Empty Apartment~
-You have walked into an apartment that is available. There is a small bed
+#EXIT
+Direction north~
+ToRoom    4603
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4608
+Name     An Empty Apartment~
+Sector   city~
+Flags    nomob indoors empty_home hotel factory~
+Stats    0 0 3720
+Desc     You have walked into an apartment that is available. There is a small bed
 and a chest of drawers alongside one wall. Other than that there is no
 furniture. The apartment appears to be kept well maintained.
 ~
-0 77594636 1 0 0 0 3720
-D2
-~
-~
-0 -1 4604
-S
-#4609
-An Empty Apartment~
-You have walked into an apartment that is available. There is a small bed
+#EXIT
+Direction south~
+ToRoom    4604
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4609
+Name     An Empty Apartment~
+Sector   city~
+Flags    nomob indoors empty_home hotel factory~
+Stats    0 0 3720
+Desc     You have walked into an apartment that is available. There is a small bed
 and a chest of drawers alongside one wall. Other than that there is no
 furniture. The apartment appears to be kept well maintained.
 ~
-0 77594636 1 0 0 0 3720
-D0
-~
-~
-0 -1 4604
-S
-#4610
-An Empty Apartment~
-You have walked into an apartment that is available. There is a small bed
+#EXIT
+Direction north~
+ToRoom    4604
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4610
+Name     An Empty Apartment~
+Sector   city~
+Flags    nomob indoors empty_home hotel factory~
+Stats    0 0 3720
+Desc     You have walked into an apartment that is available. There is a small bed
 and a chest of drawers alongside one wall. Other than that there is no
 furniture. The apartment appears to be kept well maintained.
 ~
-0 77594636 1 0 0 0 3720
-D2
-~
-~
-0 -1 4605
-S
-#4611
-An Empty Apartment~
-You have entered the stateroom fo the compound commander. The
+#EXIT
+Direction south~
+ToRoom    4605
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4611
+Name     An Empty Apartment~
+Sector   city~
+Flags    nomob indoors empty_home hotel factory~
+Stats    0 0 3720
+Desc     You have entered the stateroom fo the compound commander. The
 room is decorated sparring since the only thing he does here
 is sleep. There is but a small cot along one wall. On the wall
 opposite there is a rack of neatly pressed uniforms hanging.
 ~
-0 77594636 1 0 0 0 3720
-D0
-~
-~
-4 -1 4605
-S
-#4612
-Entrance To An Ewok Combat Training Facility~
-As you stand at the entrance to the training facility you shudder to think
+#EXIT
+Direction north~
+ToRoom    4605
+Flags     locked~
+#ENDEXIT
+
+Reset O 0 4565 1 4611
+#ENDROOM
+
+#ROOM
+Vnum     4612
+Name     Entrance To An Ewok Combat Training Facility~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     As you stand at the entrance to the training facility you shudder to think
 about what lies ahead. You can already see &r bloody handprints &w on the
 walls. You wonder if you will be able to even survive the journey into and
 out of this place.
 ~
-0 4 1 0 0 0 3720
-D0
-~
-~
-0 -1 4613
-D7
-~
-~
-0 -1 4583
-E
-bloody handprints~
-Looking at a small handprint of blood you realize that it must have been
+#EXIT
+Direction north~
+ToRoom    4613
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4583
+#ENDEXIT
+
+#EXDESC
+ExDescKey    bloody handprints~
+ExDesc       Looking at a small handprint of blood you realize that it must have been
 made by an Ewok. The handprint is somewhat faded so you realize it has
 been there for quite a while. 
 ~
-E
-bloody handprints ~
-Looking at the handprint made of blood makes you realize that it must have
+#ENDEXDESC
+
+#EXDESC
+ExDescKey    bloody handprints ~
+ExDesc       Looking at the handprint made of blood makes you realize that it must have
 been made by an Ewok.  
 ~
-E
-bloody handprints~
-~
-S
-#4613
-&R Ewok Combat Training Facility Level 1 &W~
-You are inside of the combat training facility. You see many &r dark red
+#ENDEXDESC
+
+#EXDESC
+ExDescKey    bloody handprints~
+#ENDEXDESC
+
+#ENDROOM
+
+#ROOM
+Vnum     4613
+Name     &R Ewok Combat Training Facility Level 1 &W~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You are inside of the combat training facility. You see many &r dark red
 bloodstains &w on the walls. You see the skeletons of the dead lying on
 the ground. You think to yourself that this looks more like a graveyard
 than a training facility.
 ~
-0 4 1 0 0 0 3720
-D2
-~
-~
-0 -1 4612
-D3
-~
-~
-0 -1 4614
-E
-bloodstains~
-Looking at the bloodstains you see how they are permanent and will never be
+#EXIT
+Direction south~
+ToRoom    4612
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4614
+#ENDEXIT
+
+Reset M 0 4564 3 4613
+Reset M 0 4564 3 4613
+Reset M 0 4564 3 4613
+#EXDESC
+ExDescKey    bloodstains~
+ExDesc       Looking at the bloodstains you see how they are permanent and will never be
 removed. The bloodstains are on all four sides of the room.  
 ~
-S
-#4614
-&R Ewok Combat Training Facility Level 2 &W~
-You are inside of the combat training facility. You see many &r dark red
+#ENDEXDESC
+
+#ENDROOM
+
+#ROOM
+Vnum     4614
+Name     &R Ewok Combat Training Facility Level 2 &W~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You are inside of the combat training facility. You see many &r dark red
 bloodstains &w on the walls. You see the skeletons of the dead lying on
 the ground. You think to yourself that this looks more like a graveyard
 than a training facility.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4613
-D3
-~
-~
-0 -1 4615
-E
-bloodstains~
-Looking at the bloodstains you see how they are permanent and will never be
+#EXIT
+Direction east~
+ToRoom    4613
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4615
+#ENDEXIT
+
+Reset M 0 4565 3 4614
+Reset M 0 4565 3 4614
+Reset M 0 4565 3 4614
+#EXDESC
+ExDescKey    bloodstains~
+ExDesc       Looking at the bloodstains you see how they are permanent and will never be
 removed. The bloodstains are on all four sides of the room.
 ~
-S
-#4615
-&R Ewok Combat Training Facility Level 3 &W~
-You are inside of the combat training facility. You see many &r dark red
+#ENDEXDESC
+
+#ENDROOM
+
+#ROOM
+Vnum     4615
+Name     &R Ewok Combat Training Facility Level 3 &W~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You are inside of the combat training facility. You see many &r dark red
 bloodstains &w on the walls. You see the skeletons of the dead lying on
 the ground. You think to yourself that this looks more like a graveyard
 than a training facility.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4614
-D3
-~
-~
-0 -1 4616
-E
-bloodstains~
-Looking at the bloodstains you see how they are permanent and will never be
+#EXIT
+Direction east~
+ToRoom    4614
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4616
+#ENDEXIT
+
+Reset M 0 4567 3 4615
+Reset M 0 4567 3 4615
+Reset M 0 4567 3 4615
+#EXDESC
+ExDescKey    bloodstains~
+ExDesc       Looking at the bloodstains you see how they are permanent and will never be
 removed. The bloodstains are on all four sides of the room.
 ~
-S
-#4616
-&R Ewok Combat Training Facility Level 4 &W~
-You are inside of the combat training facility. You see many &r dark red
+#ENDEXDESC
+
+#ENDROOM
+
+#ROOM
+Vnum     4616
+Name     &R Ewok Combat Training Facility Level 4 &W~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You are inside of the combat training facility. You see many &r dark red
 bloodstains &w on the walls. You see the skeletons of the dead lying on
 the ground. You think to yourself that this looks more like a graveyard
 than a training facility.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4615
-D3
-~
-~
-0 -1 4617
-E
-bloodstains~
-Looking at the bloodstains you see how they are permanent and will never be
+#EXIT
+Direction east~
+ToRoom    4615
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4617
+#ENDEXIT
+
+Reset M 0 4568 3 4616
+Reset M 0 4568 3 4616
+Reset M 0 4568 3 4616
+#EXDESC
+ExDescKey    bloodstains~
+ExDesc       Looking at the bloodstains you see how they are permanent and will never be
 removed. The bloodstains are on all four sides of the room.
 ~
-S
-#4617
-&R Ewok Combat Training Facility Level 5 &W~
-You are inside of the combat training facility. You see many &r dark red
+#ENDEXDESC
+
+#ENDROOM
+
+#ROOM
+Vnum     4617
+Name     &R Ewok Combat Training Facility Level 5 &W~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You are inside of the combat training facility. You see many &r dark red
 bloodstains &w on the walls. You see the skeletons of the dead lying on
 the ground. You think to yourself that this looks more like a graveyard
 than a training facility.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4616
-D3
-~
-~
-0 -1 4618
-E
-bloodstains~
-Looking at the bloodstains you see how they are permanent and will never be
+#EXIT
+Direction east~
+ToRoom    4616
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4618
+#ENDEXIT
+
+Reset M 0 4570 3 4617
+Reset M 0 4570 3 4617
+Reset M 0 4570 3 4617
+#EXDESC
+ExDescKey    bloodstains~
+ExDesc       Looking at the bloodstains you see how they are permanent and will never be
 removed. The bloodstains are on all four sides of the room.
 ~
-S
-#4618
-&R Ewok Combat Training Facility Level 6 &W~
-You are inside of the combat training facility. You see many &r dark red
+#ENDEXDESC
+
+#ENDROOM
+
+#ROOM
+Vnum     4618
+Name     &R Ewok Combat Training Facility Level 6 &W~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+Desc     You are inside of the combat training facility. You see many &r dark red
 bloodstains &w on the walls. You see the skeletons of the dead lying on
 the ground. You think to yourself that this looks more like a graveyard
 than a training facility.
 ~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4617
-E
-bloodstains~
-Looking at the bloodstains you see how they are permanent and will never be
+#EXIT
+Direction east~
+ToRoom    4617
+#ENDEXIT
+
+Reset M 0 4571 1 4618
+#EXDESC
+ExDescKey    bloodstains~
+ExDesc       Looking at the bloodstains you see how they are permanent and will never be
 removed. The bloodstains are on all four sides of the room.
 ~
-S
-#4619
-A Small Path~
-The small path going between the trees here starts to get wider. There are
+#ENDEXDESC
+
+#ENDROOM
+
+#ROOM
+Vnum     4619
+Name     A Small Path~
+Sector   city~
+Stats    0 0 3720
+Desc     The small path going between the trees here starts to get wider. There are
 less trees surrounding the area here. The path starts to take on the form
 of a clearing.
 ~
-0 0 1 0 0 0 3720
-D3
-~
-~
-1 4562 4565
-D7
-~
-~
-0 -1 4620
-S
-#4620
-Secret Landing Pad~
-There is a big clearing here. The clearing is wide enough to land two or
+#EXIT
+Direction west~
+ToRoom    4565
+Key       4562
+Flags     isdoor~
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4620
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4620
+Name     Secret Landing Pad~
+Sector   city~
+Flags    nomob can_land can_fly nodropall~
+Flags2   hiddenpad~
+Stats    0 0 3720
+Desc     There is a big clearing here. The clearing is wide enough to land two or
 three smaller shuttles here or maybe just one big one. The trees
 surrounding the area cover this clearing so it can't be seen from the
 sky.
 ~
-0 32820 1 1024 0 0 3720
-D8
-~
-~
-0 -1 4619
-S
-#4621
-Detention Control Center~
-The center is surrounded by 3 massive walls and the only open exit is to
+#EXIT
+Direction southeast~
+ToRoom    4619
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4621
+Name     Detention Control Center~
+Sector   city~
+Stats    0 0 3720
+Desc     The center is surrounded by 3 massive walls and the only open exit is to
 the south. To the north you see the door that leads to the detention
 cells.  The controls are located on the guard's desk in the center of the
 room. The desk is made of durasteel and only has enough room for a single
 person.
 ~
-0 0 1 0 0 0 3720
-D2
-~
-~
-0 -1 4628
-S
-#4622
-A Jail Cell~
-Looking around you notice that the cell is actually quite clean. You
+#EXIT
+Direction south~
+ToRoom    4628
+#ENDEXIT
+
+Reset M 0 4572 1 4621
+#ENDROOM
+
+#ROOM
+Vnum     4622
+Name     A Jail Cell~
+Sector   city~
+Flags    indoors nodropall hotel~
+Stats    0 0 3720
+Desc     Looking around you notice that the cell is actually quite clean. You
 realize that this jail has not been used much. In the right corner you see
 a small water fountain. In the left corner you see a porcelain toilet.
 ~
-0 8421384 1 0 0 0 3720
-D1
-~
-~
-7 4564 4626
-> entry_prog 100~
-if clan($n) == The New Republic
+#EXIT
+Direction east~
+ToRoom    4626
+Key       4564
+Flags     isdoor closed locked~
+#ENDEXIT
+
+Reset M 0 4573 1 4622
+Reset D 0 4622 1 2
+#MUDPROG
+Progtype  entry_prog~
+Arglist   100~
+Comlist   if clan($n) == The New Republic
 mpforce captured say Ohh...its you!!
 mpforce captured point $n
 else
@@ -2169,8 +3130,12 @@ mpforce captured ,hesitates for a moment.
 mpforce captured say Would you like to hear about how I got to be here?
 endif
 ~
-> act_prog p shakes~
-if clan($n) == The New Republic
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p shakes~
+Comlist   if clan($n) == The New Republic
 mpforce captured say I want nothing to do with you, Rebel.
 else
 mpforce captured say That's ok. Jail isn't that bad. You
@@ -2179,8 +3144,12 @@ mpforce captured , turns and goes to the corner.
 mpecho &w where he sits.
 endif
 ~
-> speech_prog p yes~
-if ispc($n)
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p yes~
+Comlist   if ispc($n)
 if clan($n) == The New Republic
 mpforce captured say I am not talking to you!
 else
@@ -2205,8 +3174,12 @@ mpforce captured whisper $n You don't have to speak just shake or nod your head.
 endif
 endif
 ~
-> speech_prog p no~
-if ispc($n)
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   p no~
+Comlist   if ispc($n)
 if clan($n) == The New Republic
 mpforce captured frown
 mpforce captured say I hate Rebels!
@@ -2220,8 +3193,12 @@ then.
 endif
 endif
 ~
-> act_prog p nods~
-ifclan($n) != The New Republic
+#ENDPROG
+
+#MUDPROG
+Progtype  act_prog~
+Arglist   p nods~
+Comlist   ifclan($n) != The New Republic
 mpforce captured cheer
 mpforce captured say Oh...Thank the heavens
 mpforce captured say If you could get me out of here I would be ever so
@@ -2230,690 +3207,825 @@ mpforce captured cheer
 mpforce captured follow $n
 mpforce $n group captured
 ~
-|
-S
-#4623
-A Jail Cell~
-Looking around you notice that the cell is actually quite clean. You
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     4623
+Name     A Jail Cell~
+Sector   city~
+Flags    nomob indoors nodropall silence hotel~
+Stats    0 0 3720
+Desc     Looking around you notice that the cell is actually quite clean. You
 realize that this jail has not been used much. In the right corner you see
 a small water fountain. In the left corner you see a porcelain toilet.
 ~
-0 8486924 1 0 0 0 3720
-D3
-~
-~
-39 4564 4626
-S
-#4624
-A Jail Cell~
-Looking around you notice that the cell is actually quite clean. You
+#EXIT
+Direction west~
+ToRoom    4626
+Key       4564
+Flags     isdoor closed locked pickproof~
+#ENDEXIT
+
+Reset D 0 4623 3 2
+#ENDROOM
+
+#ROOM
+Vnum     4624
+Name     A Jail Cell~
+Sector   city~
+Flags    nomob indoors nodropall silence hotel~
+Stats    0 0 3720
+Desc     Looking around you notice that the cell is actually quite clean. You
 realize that this jail has not been used much. In the right corner you see
 a small water fountain. In the left corner you see a porcelain toilet.
 ~
-0 8486924 1 0 0 0 3720
-D1
-~
-~
-33 4564 4627
-S
-#4625
-A Jail Cell~
-Looking around you notice that the cell is actually quite clean. You
+#EXIT
+Direction east~
+ToRoom    4627
+Key       4564
+Flags     isdoor pickproof~
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4625
+Name     A Jail Cell~
+Sector   city~
+Flags    nomob indoors nodropall silence hotel~
+Stats    0 0 3720
+Desc     Looking around you notice that the cell is actually quite clean. You
 realize that this jail has not been used much. In the right corner you see
 a small water fountain. In the left corner you see a porcelain toilet.
 ~
-0 8486924 1 0 0 0 3720
-D3
-~
-~
-33 4564 4627
-S
-#4626
-Detention Level Corridor~
-The walls of the corridor are dark and grey. Lights are mounted every 30
+#EXIT
+Direction west~
+ToRoom    4627
+Key       4564
+Flags     isdoor pickproof~
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4626
+Name     Detention Level Corridor~
+Sector   city~
+Flags    indoors~
+Stats    0 0 3720
+Desc     The walls of the corridor are dark and grey. Lights are mounted every 30
 feet. You see detention cells to the East and West. It is cold and damp
 down here.
 ~
-0 8 1 0 0 0 3720
-D0
-~
-~
-0 -1 4627
-D1
-~
-~
-7 4564 4623
-D2
-~
-~
-0 -1 4621
-D3
-~
-~
-7 4564 4622
-S
-#4627
-Detention Level Corridor~
-The walls of the corridor are dark and grey. Lights are mounted every 30
+#EXIT
+Direction north~
+ToRoom    4627
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4623
+Key       4564
+Flags     isdoor closed locked~
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4621
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4622
+Key       4564
+Flags     isdoor closed locked~
+#ENDEXIT
+
+Reset D 0 4626 1 2
+Reset D 0 4626 3 2
+#ENDROOM
+
+#ROOM
+Vnum     4627
+Name     Detention Level Corridor~
+Sector   city~
+Stats    0 0 3720
+Desc     The walls of the corridor are dark and grey. Lights are mounted every 30
 feet. You see detention cells to the East and West. It is cold and damp
 down here.
 ~
-0 0 1 0 0 0 3720
-D1
-~
-~
-8388641 4564 4625
-D2
-~
-~
-0 -1 4626
-D3
-~
-~
-8388641 4564 4624
-S
-#4628
-Detention Level Foyer~
-Standing in the Detention Level Foyer you see there is only one passage to
+#EXIT
+Direction east~
+ToRoom    4625
+Key       4564
+Flags     isdoor pickproof bashproof~
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4626
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4624
+Key       4564
+Flags     isdoor pickproof bashproof~
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4628
+Name     Detention Level Foyer~
+Sector   city~
+Stats    0 0 3720
+Desc     Standing in the Detention Level Foyer you see there is only one passage to
 the north. The only way to leave is south to the turbolift. Please make
 sure you have your access card ready for the guard. If you do not have a
 Detention Level Keycard then you should hurry up and go to the commander
 to get one.
 ~
-0 0 1 0 0 0 3720
-D0
-~
-~
-0 -1 4621
-D2
-~
-~
-0 -1 4596
-S
-#4629
-A Rope Bridge~
-You are now on a rope bridge. Up ahead a small ewok house comes into view.
+#EXIT
+Direction north~
+ToRoom    4621
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4596
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4629
+Name     A Rope Bridge~
+Sector   city~
+Stats    0 0 3720
+Desc     You are now on a rope bridge. Up ahead a small ewok house comes into view.
 This bridge looks like it has been poorly made but suprisingly it holds
 rather well. A glance downward reveals that this bridge is located a good
 distance up from the ground.
 ~
-0 0 1 0 0 0 3720
-D0
-~
-~
-0 -1 4630
-D2
-~
-~
-0 -1 4586
-S
-#4630
-A Small Ewok House~
-You have entered the home of one of the local residents. The home is small
+#EXIT
+Direction north~
+ToRoom    4630
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4586
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4630
+Name     A Small Ewok House~
+Sector   city~
+Stats    0 0 3720
+Desc     You have entered the home of one of the local residents. The home is small
 but well furnished. There is a small cot on the east wall. On the wall
 opposite the cot there are shelves full of tools. The floor is covered
 with dust showing no signs that the little Ewok has moved for a long time.
 ~
-0 0 1 0 0 0 3720
-D2
-~
-~
-0 -1 4629
-S
-#4631
-Path in the Forest~
-You stand in the middle of a tall forest. You feel somewhat
+#EXIT
+Direction south~
+ToRoom    4629
+#ENDEXIT
+
+Reset M 0 4574 1 4630
+#ENDROOM
+
+#ROOM
+Vnum     4631
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. You feel somewhat
 scared for you cannot see well in these dimly lit areas. You
 do not want to stop for very long. You continue your journey
 along the poorly made path.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4573
-D1
-~
-~
-0 -1 4632
-D2
-~
-~
-0 -1 4631
-D3
-~
-~
-0 -1 4631
-D6
-~
-~
-0 -1 4631
-D7
-~
-~
-0 -1 4631
-D8
-~
-~
-0 -1 4631
-D9
-~
-~
-0 -1 4631
-S
-#4632
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4573
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4631
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4631
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4631
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4631
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4631
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4631
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4632
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4632
-D1
-~
-~
-0 -1 4632
-D2
-~
-~
-0 -1 4632
-D3
-~
-~
-0 -1 4632
-D6
-~
-~
-0 -1 4632
-D7
-~
-~
-0 -1 4632
-D8
-~
-~
-0 -1 4634
-D9
-~
-~
-0 -1 4632
-S
-#4633
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4634
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4632
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4633
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4631
-D1
-~
-~
-0 -1 4633
-D2
-~
-~
-0 -1 4633
-D3
-~
-~
-0 -1 4633
-D6
-~
-~
-0 -1 4633
-D7
-~
-~
-0 -1 4633
-D8
-~
-~
-0 -1 4633
-D9
-~
-~
-0 -1 4633
-S
-#4634
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4631
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4633
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4633
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4633
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4633
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4633
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4633
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4633
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4634
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4634
-D1
-~
-~
-0 -1 4634
-D2
-~
-~
-0 -1 4635
-D3
-~
-~
-0 -1 4634
-D6
-~
-~
-0 -1 4634
-D7
-~
-~
-0 -1 4632
-D8
-~
-~
-0 -1 4634
-D9
-~
-~
-0 -1 4634
-S
-#4635
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4634
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4634
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4635
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4634
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4634
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4634
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4634
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4635
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4635
-D1
-~
-~
-0 -1 4636
-D2
-~
-~
-0 -1 4635
-D3
-~
-~
-0 -1 4635
-D6
-~
-~
-0 -1 4635
-D7
-~
-~
-0 -1 4635
-D8
-~
-~
-0 -1 4635
-D9
-~
-~
-0 -1 4635
-S
-#4636
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4635
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4636
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4635
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4635
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4635
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4635
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4635
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4635
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4636
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4636
-D1
-~
-~
-0 -1 4636
-D2
-~
-~
-0 -1 4636
-D3
-~
-~
-0 -1 4635
-D6
-~
-~
-0 -1 4636
-D7
-~
-~
-0 -1 4636
-D8
-~
-~
-0 -1 4637
-D9
-~
-~
-0 -1 4636
-S
-#4637
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4636
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4636
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4636
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4635
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4636
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4636
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4637
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4636
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4637
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4637
-D1
-~
-~
-0 -1 4637
-D2
-~
-~
-0 -1 4637
-D3
-~
-~
-0 -1 4638
-D6
-~
-~
-0 -1 4637
-D7
-~
-~
-0 -1 4636
-D8
-~
-~
-0 -1 4637
-D9
-~
-~
-0 -1 4637
-S
-#4638
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4637
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4637
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4637
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4638
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4637
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4636
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4637
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4637
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4638
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4638
-D1
-~
-~
-0 -1 4637
-D2
-~
-~
-0 -1 4638
-D3
-~
-~
-0 -1 4638
-D6
-~
-~
-0 -1 4638
-D7
-~
-~
-0 -1 4639
-D8
-~
-~
-0 -1 4638
-D9
-~
-~
-0 -1 4638
-S
-#4639
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4638
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4637
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4638
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4638
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4638
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4639
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4638
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4638
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4639
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4640
-D1
-~
-~
-0 -1 4639
-D2
-~
-~
-0 -1 4639
-D3
-~
-~
-0 -1 4639
-D6
-~
-~
-0 -1 4639
-D7
-~
-~
-0 -1 4639
-D8
-~
-~
-0 -1 4638
-D9
-~
-~
-0 -1 4639
-S
-#4640
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4640
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4639
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4639
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4639
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4639
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4639
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4638
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4639
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4640
+Name     Path in the Forest~
+Sector   city~
+Flags    dark~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1 1 0 0 0 3720
-D0
-~
-~
-0 -1 4631
-D1
-~
-~
-0 -1 4632
-D2
-~
-~
-0 -1 4639
-D3
-~
-~
-0 -1 4641
-D6
-~
-~
-0 -1 4640
-D7
-~
-~
-0 -1 4640
-D8
-~
-~
-0 -1 4640
-D9
-~
-~
-0 -1 4640
-S
-#4641
-Path in the Forest~
-You stand in the middle of a tall forest. Surrounding the area
+#EXIT
+Direction north~
+ToRoom    4631
+#ENDEXIT
+
+#EXIT
+Direction east~
+ToRoom    4632
+#ENDEXIT
+
+#EXIT
+Direction south~
+ToRoom    4639
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4641
+#ENDEXIT
+
+#EXIT
+Direction northeast~
+ToRoom    4640
+#ENDEXIT
+
+#EXIT
+Direction northwest~
+ToRoom    4640
+#ENDEXIT
+
+#EXIT
+Direction southeast~
+ToRoom    4640
+#ENDEXIT
+
+#EXIT
+Direction southwest~
+ToRoom    4640
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4641
+Name     Path in the Forest~
+Sector   city~
+Flags    dark prototype~
+Stats    0 0 3720
+Desc     You stand in the middle of a tall forest. Surrounding the area
 are very tall trees that seem to reach up to the sky. There
 are mixed sounds coming from different areas and behind trees.
 ~
-0 1073741825 1 0 0 0 3720
-D0
+#EXIT
+Direction north~
+ToRoom    4573
+#ENDEXIT
+
+#EXIT
+Direction west~
+ToRoom    4574
+#ENDEXIT
+
+#ENDROOM
+
+#ROOM
+Vnum     4655
+Name     The Galactic Mail Center~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+#EXIT
+Direction east~
+ToRoom    4556
+#ENDEXIT
+
+Reset O 0 38 1 4655
+#ENDROOM
+
+#ROOM
+Vnum     4656
+Name     Floating in a void~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+#MUDPROG
+Progtype  speech_prog~
+Arglist   good~
+Comlist   mpforce keberus quit
 ~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   good2~
+Comlist   mpforce keberus goto tikara
 ~
-0 -1 4573
-D3
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   bye~
+Comlist   mpat keberus mpadvance keberus force 0
 ~
+#ENDPROG
+
+#MUDPROG
+Progtype  speech_prog~
+Arglist   haha~
+Comlist   mpat keberus mpadvance keberus all 0
 ~
-0 -1 4574
-S
-#4655
-The Galactic Mail Center~
-~
-0 4 1 0 0 0 3720
-D1
-~
-~
-0 -1 4556
-S
-#4656
-Floating in a void~
-~
-0 4 1 0 0 0 3720
-> speech_prog good~
-mpforce keberus quit
-~
-> speech_prog good2~
-mpforce keberus goto tikara
-~
-> speech_prog bye~
-mpat keberus mpadvance keberus force 0
-~
-> speech_prog haha~
-mpat keberus mpadvance keberus all 0
-~
-|
-S
-#4657
-Floating in a void~
-~
-0 4 1 0 0 0 3720
-S
-#4673
-Floating in a void~
-~
-0 1073741828 1 0 0 0 3720
-S
-#4899
-Floating in a void~
-~
-0 1073741828 1 0 0 0 3720
-S
-#4900
-&B The Simulator &GGame Room~
-You are in the play room of the imms....here are all kinds of
+#ENDPROG
+
+#ENDROOM
+
+#ROOM
+Vnum     4657
+Name     Floating in a void~
+Sector   city~
+Flags    nomob~
+Stats    0 0 3720
+#ENDROOM
+
+#ROOM
+Vnum     4673
+Name     Floating in a void~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 3720
+#ENDROOM
+
+#ROOM
+Vnum     4899
+Name     Floating in a void~
+Sector   city~
+Flags    nomob prototype~
+Stats    0 0 3720
+#ENDROOM
+
+#ROOM
+Vnum     4900
+Name     &B The Simulator &GGame Room~
+Sector   city~
+Flags    nomob indoors nomagic safe nodropall~
+Stats    0 0 3720
+Desc     You are in the play room of the imms....here are all kinds of
 sims just waiting for you to jump in....and they are all FREE!!!
 ~
-0 33932 1 0 0 0 3720
-S
-#0
+#ENDROOM
 
-
-#RESETS
-M 1 4569 1 4566
-G 1 134 1
-G 1 133 1
-M 1 4551 1 4591
-O 1 4551 1 4591
-M 1 4557 1 4598
-M 1 4564 3 4613
-M 1 4564 3 4613
-M 1 4564 3 4613
-M 1 4565 3 4614
-M 1 4565 3 4614
-M 1 4565 3 4614
-M 1 4567 3 4615
-M 1 4567 3 4615
-M 1 4567 3 4615
-M 1 4568 3 4616
-M 1 4568 3 4616
-M 1 4568 3 4616
-M 1 4570 3 4617
-M 1 4570 3 4617
-M 1 4570 3 4617
-D 0 4565 1 2
-M 1 4572 1 4621
-D 0 4626 1 2
-D 0 4626 3 2
-D 0 4623 3 2
-M 1 4573 1 4622
-D 0 4622 1 2
-M 1 4574 1 4630
-M 1 4571 1 4618
-O 1 4565 1 4611
-M 1 4575 1 4571
-M 1 4576 1 4576
-M 1 9006 1 4573
-M 1 4554 1 4557
-E 1 50 1 16
-M 1 4555 1 4557
-E 1 50 1 16
-M 1 4552 1 4558
-G 1 4556 1
-E 1 50 1 16
-D 0 4558 0 2
-M 1 4553 1 4559
-G 1 4556 1
-E 1 50 1 16
-D 0 4559 1 2
-D 0 4559 2 2
-M 1 4556 1 4560
-G 1 4556 1
-E 1 50 1 16
-D 0 4560 3 2
-M 1 4560 1 4562
-E 1 50 1 16
-M 1 4558 1 4597
-E 1 50 1 16
-M 1 4559 1 4601
-G 1 4559 1
-G 1 4564 1
-E 1 50 1 16
-D 0 4605 2 1
-O 1 4552 1 4579
-P 0 4553 1 0
-P 1 4562 1 0
-O 1 38 1 4655
-S
-
-
-#SHOPS
- 4557    9  0  0  0  0   120 110         0 23    ; A Weapons Droid
- 4569    0  0  0  0  0   100  90         0 23    ; A Food Service Droid
-0
-
-
-#REPAIRS
-0
-
-
-#SPECIALS
-M  4552 spec_customs_weapons
-M  4553 spec_customs_weapons
-M  4554 spec_customs_weapons
-M  4555 spec_customs_weapons
-M  4556 spec_customs_weapons
-S
-
-
-#$
+#ENDAREA

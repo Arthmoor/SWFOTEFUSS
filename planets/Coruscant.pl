@@ -6,7 +6,8 @@ Y            -987
 Z            1562
 Sector       0
 Type    	   0
-PopSupport   99
+BaseValue    0
+PopSupport   97
 Starsystem   Coruscant~
 GovernedBy   The Empire~
 Area         coruscant.are~

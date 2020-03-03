@@ -42,23 +42,22 @@ CLAN_DATA *last_clan;
 SENATE_DATA *first_senator;
 SENATE_DATA *last_senator;
 
-PLANET_DATA *first_planet;
-PLANET_DATA *last_planet;
+extern PLANET_DATA *first_planet;
+extern PLANET_DATA *last_planet;
 
 GUARD_DATA *first_guard;
 GUARD_DATA *last_guard;
 
 /* local routines */
-void fread_clan args( ( CLAN_DATA * clan, FILE * fp ) );
-bool load_clan_file args( ( char *clanfile ) );
-void write_clan_list args( ( void ) );
-bool load_planet_file args( ( char *planetfile ) );
-
+void fread_clan( CLAN_DATA * clan, FILE * fp );
+bool load_clan_file( const char *clanfile );
+void write_clan_list( void );
+bool load_planet_file( char *planetfile );
 
 /*
  * Get pointer to clan structure from clan name.
  */
-CLAN_DATA *get_clan( char *name )
+CLAN_DATA *get_clan( const char *name )
 {
    CLAN_DATA *clan;
 
@@ -83,7 +82,7 @@ void free_clan( CLAN_DATA * clan )
    DISPOSE( clan );
 }
 
-void do_remclan( CHAR_DATA * ch, char *argument )
+void do_remclan( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
 
@@ -191,7 +190,7 @@ void save_clan( CLAN_DATA * clan )
 void fread_clan( CLAN_DATA * clan, FILE * fp )
 {
    char buf[MAX_STRING_LENGTH];
-   char *word;
+   const char *word;
    bool fMatch;
 
    for( ;; )
@@ -304,7 +303,7 @@ void fread_clan( CLAN_DATA * clan, FILE * fp )
  * Load a clan file
  */
 
-bool load_clan_file( char *clanfile )
+bool load_clan_file( const char *clanfile )
 {
    char filename[256];
    CLAN_DATA *clan;
@@ -440,7 +439,7 @@ bool load_clan_file( char *clanfile )
 void load_clans(  )
 {
    FILE *fpList;
-   char *filename;
+   const char *filename;
    char clanlist[256];
    char buf[MAX_STRING_LENGTH];
    CLAN_DATA *clan;
@@ -491,13 +490,13 @@ void load_clans(  )
    return;
 }
 
-void do_make( CHAR_DATA * ch, char *argument )
+void do_make( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "Huh?\r\n", ch );
    return;
 }
 
-void do_induct( CHAR_DATA * ch, char *argument )
+void do_induct( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -602,7 +601,7 @@ bool can_outcast( CLAN_DATA *clan, CHAR_DATA *ch, CHAR_DATA *victim )
    return TRUE;
 }
 
-void do_outcast( CHAR_DATA * ch, char *argument )
+void do_outcast( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -713,7 +712,7 @@ void do_outcast( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_setclan( CHAR_DATA * ch, char *argument )
+void do_setclan( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1005,7 +1004,7 @@ void do_setclan( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_showclan( CHAR_DATA * ch, char *argument )
+void do_showclan( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
 
@@ -1045,7 +1044,7 @@ void do_showclan( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_buytroops( CHAR_DATA * ch, char *argument )
+void do_buytroops( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
    int num, cost;
@@ -1090,7 +1089,7 @@ void do_buytroops( CHAR_DATA * ch, char *argument )
    save_clan( clan );
 }
 
-void do_makeclan( CHAR_DATA * ch, char *argument )
+void do_makeclan( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
 
@@ -1130,7 +1129,7 @@ void do_makeclan( CHAR_DATA * ch, char *argument )
    send_to_char( "Done. Shortname set to temp. Be sure to reset this.", ch );
 }
 
-void do_gatherclans( CHAR_DATA * ch, char *argument )
+void do_gatherclans( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
    PLANET_DATA *planet;
@@ -1153,7 +1152,7 @@ void do_gatherclans( CHAR_DATA * ch, char *argument )
       for( planet = first_planet; planet; planet = planet->next )
          if( clan == planet->governed_by )
          {
-            support += planet->pop_support;
+            support += ( int )planet->pop_support;
             pCount++;
             revenue += get_taxes( planet );
          }
@@ -1208,15 +1207,15 @@ void do_gatherclans( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_orders( CHAR_DATA * ch, char *argument )
+void do_orders( CHAR_DATA * ch, const char *argument )
 {
 }
 
-void do_guilds( CHAR_DATA * ch, char *argument )
+void do_guilds( CHAR_DATA * ch, const char *argument )
 {
 }
 
-void do_shove( CHAR_DATA * ch, char *argument )
+void do_shove( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
    char arg[MAX_INPUT_LENGTH];
@@ -1374,7 +1373,7 @@ void do_shove( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_drag( CHAR_DATA * ch, char *argument )
+void do_drag( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1481,7 +1480,7 @@ void do_drag( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_enlist( CHAR_DATA * ch, char *argument )
+void do_enlist( CHAR_DATA * ch, const char *argument )
 {
 
    CLAN_DATA *clan;
@@ -1529,7 +1528,7 @@ void do_enlist( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_resign( CHAR_DATA * ch, char *argument )
+void do_resign( CHAR_DATA * ch, const char *argument )
 {
 
    CLAN_DATA *clan;
@@ -1610,7 +1609,7 @@ void do_resign( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_clan_withdraw( CHAR_DATA * ch, char *argument )
+void do_clan_withdraw( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
    long amount;
@@ -1662,11 +1661,11 @@ void do_clan_withdraw( CHAR_DATA * ch, char *argument )
 
    clan->funds -= amount;
    ch->gold += amount;
-   save_clan( clan );
+   save_char_obj( ch );
 
 }
 
-void do_clanbuytroops( CHAR_DATA * ch, char *argument )
+void do_clanbuytroops( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
    long amount;
@@ -1717,7 +1716,7 @@ void do_clanbuytroops( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_clan_donate( CHAR_DATA * ch, char *argument )
+void do_clan_donate( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
    long amount;
@@ -1760,17 +1759,17 @@ void do_clan_donate( CHAR_DATA * ch, char *argument )
 
    clan->funds += amount;
    ch->gold -= amount;
-   save_clan( clan );
+   save_char_obj( ch );
 
 }
 
-void do_newclan( CHAR_DATA * ch, char *argument )
+void do_newclan( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "This command is being recycled to conserve thought.\r\n", ch );
    return;
 }
 
-void do_appoint( CHAR_DATA * ch, char *argument )
+void do_appoint( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_STRING_LENGTH];
 
@@ -1827,7 +1826,7 @@ void do_appoint( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_demote( CHAR_DATA * ch, char *argument )
+void do_demote( CHAR_DATA * ch, const char *argument )
 {
 
    if( IS_NPC( ch ) || !ch->pcdata )
@@ -1874,7 +1873,7 @@ void do_demote( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_war( CHAR_DATA * ch, char *argument )
+void do_war( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *wclan;
    CLAN_DATA *clan;
@@ -1965,7 +1964,7 @@ void do_war( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_checkwar( CHAR_DATA * ch, char *argument )
+void do_checkwar( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
    CLAN_DATA *clan2;
@@ -2026,7 +2025,7 @@ void do_checkwar( CHAR_DATA * ch, char *argument )
    send_to_char( buf2, ch );
    send_to_char( "\r\n", ch );
 }
-void do_empower( CHAR_DATA * ch, char *argument )
+void do_empower( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2235,7 +2234,7 @@ void load_senate(  )
 */
 }
 
-void do_senate( CHAR_DATA * ch, char *argument )
+void do_senate( CHAR_DATA * ch, const char *argument )
 {
 /*
     GOV_DATA *gov;
@@ -2259,7 +2258,7 @@ void do_senate( CHAR_DATA * ch, char *argument )
 */
 }
 
-void do_addsenator( CHAR_DATA * ch, char *argument )
+void do_addsenator( CHAR_DATA * ch, const char *argument )
 {
 /*
     GOVE_DATA *gov;
@@ -2277,7 +2276,7 @@ void do_addsenator( CHAR_DATA * ch, char *argument )
 */
 }
 
-void do_remsenator( CHAR_DATA * ch, char *argument )
+void do_remsenator( CHAR_DATA * ch, const char *argument )
 {
 /*
 	UNLINK( bounty, first_bounty, last_bounty, next, prev );
@@ -2300,7 +2299,7 @@ void do_remsenator( CHAR_DATA * ch, char *argument )
 */
 
 /* Outlaw System by Tawnos */
-void do_outlaw( CHAR_DATA * ch, char *argument )
+void do_outlaw( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int value;
@@ -2362,7 +2361,7 @@ void do_outlaw( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_unoutlaw( CHAR_DATA * ch, char *argument )
+void do_unoutlaw( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int value;
@@ -2428,7 +2427,7 @@ void do_unoutlaw( CHAR_DATA * ch, char *argument )
 }
 
 /* Clanstat by Tawnos. More RP */
-void do_clanstat( CHAR_DATA * ch, char *argument )
+void do_clanstat( CHAR_DATA * ch, const char *argument )
 {
    PLANET_DATA *planet;
    CLAN_DATA *clan;
@@ -2452,7 +2451,7 @@ void do_clanstat( CHAR_DATA * ch, char *argument )
    for( planet = first_planet; planet; planet = planet->next )
       if( clan == planet->governed_by )
       {
-         support += planet->pop_support;
+         support += ( int )planet->pop_support;
          pCount++;
          revenue += get_taxes( planet );
       }
@@ -2506,7 +2505,7 @@ void do_clanstat( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_setwage( CHAR_DATA * ch, char *argument )
+void do_setwage( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2608,7 +2607,7 @@ void do_setwage( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_clans( CHAR_DATA * ch, char *argument )
+void do_clans( CHAR_DATA * ch, const char *argument )
 {
    CLAN_DATA *clan;
    PLANET_DATA *planet;
@@ -2631,10 +2630,11 @@ void do_clans( CHAR_DATA * ch, char *argument )
       for( planet = first_planet; planet; planet = planet->next )
          if( clan == planet->governed_by )
          {
-            support += planet->pop_support;
+            support += ( int )planet->pop_support;
             pCount++;
             revenue += get_taxes( planet );
          }
+
 
       if( pCount > 1 )
          support /= pCount;
@@ -2691,10 +2691,10 @@ void do_clans( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_members( CHAR_DATA * ch, char *argument )
+void do_members( CHAR_DATA * ch, const char *argument )
 {
    FILE *fpList;
-   char *buf;
+   const char *buf;
    char thebuf[MAX_STRING_LENGTH];
    char list[MAX_STRING_LENGTH];
    char color[MAX_STRING_LENGTH];
@@ -2798,7 +2798,7 @@ void remove_member( char *name, char *shortname )
 {
    FILE *fpList;
    FILE *fpNew;
-   char *buf;
+   const char *buf;
    char list[MAX_STRING_LENGTH];
    char temp[MAX_STRING_LENGTH];
 

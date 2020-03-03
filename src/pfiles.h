@@ -41,7 +41,7 @@ extern struct tm *new_pfile_time;
 extern time_t new_pfile_time_t;
 extern short num_pfiles;
 
-void check_pfiles args( ( time_t reset ) );
-void init_pfile_scan_time args( ( void ) );
+void check_pfiles( time_t reset );
+void init_pfile_scan_time( void );
 
 DECLARE_DO_FUN( do_pfiles );

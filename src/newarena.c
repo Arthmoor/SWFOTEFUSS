@@ -92,10 +92,10 @@ int arena_pot;
 int bet_pot;
 int barena = 0;
 
-extern int parsebet( const int currentbet, char *s );
-extern int advatoi( char *s );
+int parsebet( const int currentbet, const char *s );
+int advatoi( const char *s );
 
-void do_bet( CHAR_DATA * ch, char *argument )
+void do_bet( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_INPUT_LENGTH];
@@ -168,7 +168,7 @@ void do_bet( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_arena( CHAR_DATA * ch, char *argument )
+void do_arena( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
    ROOM_INDEX_DATA *location;
@@ -225,7 +225,7 @@ void do_arena( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_chaos( CHAR_DATA * ch, char *argument )
+void do_chaos( CHAR_DATA * ch, const char *argument )
 {
    char lolimit[MAX_INPUT_LENGTH];
    char hilimit[MAX_INPUT_LENGTH], start_delay[MAX_INPUT_LENGTH];
@@ -588,7 +588,7 @@ void sportschan( char *argument )
    }
 }
 
-void do_awho( CHAR_DATA * ch, char *argument )
+void do_awho( CHAR_DATA * ch, const char *argument )
 {
    DESCRIPTOR_DATA *d;
    CHAR_DATA *tch;
@@ -628,7 +628,7 @@ void do_awho( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_ahall( CHAR_DATA * ch, char *argument )
+void do_ahall( CHAR_DATA * ch, const char *argument )
 {
    char site[MAX_INPUT_LENGTH], format[MAX_INPUT_LENGTH], *timestr;
    char format2[MAX_INPUT_LENGTH];
@@ -748,7 +748,7 @@ void find_bet_winners( CHAR_DATA * winner )
       }
    }
 }
-void do_challenge( CHAR_DATA * ch, char *argument )
+void do_challenge( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    char buf[MAX_INPUT_LENGTH];
@@ -822,7 +822,7 @@ void do_challenge( CHAR_DATA * ch, char *argument )
    victim->challenged = ch;
 }
 
-void do_aaccept( CHAR_DATA * ch, char *argument )
+void do_aaccept( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
    ROOM_INDEX_DATA *location;
@@ -870,7 +870,7 @@ void do_aaccept( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_adecline( CHAR_DATA * ch, char *argument )
+void do_adecline( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
 

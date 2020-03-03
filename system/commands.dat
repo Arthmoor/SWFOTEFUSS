@@ -991,19 +991,19 @@ Log         0
 End
 
 #COMMAND
-Name        droptroops~
-Code        do_droptroops
-Position    0
-Level       0
-Log         0
-End
-
-#COMMAND
 Name        describe~
 Code        do_describe
 Position    0
 Level       1
 Log         1
+End
+
+#COMMAND
+Name        droptroops~
+Code        do_droptroops
+Position    0
+Level       1
+Log         0
 End
 
 #COMMAND
@@ -1107,6 +1107,14 @@ Name        email~
 Code        do_email
 Position    0
 Level       1
+Log         0
+End
+
+#COMMAND
+Name        exempt~
+Code        do_exempt
+Position    0
+Level       36
 Log         0
 End
 
@@ -1511,27 +1519,11 @@ Log         1
 End
 
 #COMMAND
-Name        instazone~
-Code        do_instazone
-Position    0
-Level       32
-Log         3
-End
-
-#COMMAND
 Name        invis~
 Code        do_invis
 Position    0
 Level       31
 Log         0
-End
-
-#COMMAND
-Name        instaroom~
-Code        do_instaroom
-Position    0
-Level       32
-Log         3
 End
 
 #COMMAND
@@ -1564,6 +1556,22 @@ Code        do_introduce
 Position    0
 Level       1
 Log         1
+End
+
+#COMMAND
+Name        instaroom~
+Code        do_instaroom
+Position    0
+Level       32
+Log         0
+End
+
+#COMMAND
+Name        instazone~
+Code        do_instazone
+Position    0
+Level       32
+Log         0
 End
 
 #COMMAND
@@ -1748,6 +1756,7 @@ Code        do_mpecho
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1756,6 +1765,7 @@ Code        do_mpechoat
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1764,6 +1774,7 @@ Code        do_mpechoat
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1772,6 +1783,7 @@ Code        do_mpat
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1780,6 +1792,7 @@ Code        do_mpforce
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1788,6 +1801,7 @@ Code        do_mpechoaround
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1796,6 +1810,7 @@ Code        do_mpechoaround
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1804,6 +1819,7 @@ Code        do_mpasound
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1812,6 +1828,7 @@ Code        do_mpoload
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1820,6 +1837,7 @@ Code        do_mpjunk
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1828,6 +1846,7 @@ Code        do_mpgoto
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1836,6 +1855,7 @@ Code        do_mp_damage
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1844,6 +1864,7 @@ Code        do_mp_deposit
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1852,6 +1873,7 @@ Code        do_mp_restore
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1860,6 +1882,7 @@ Code        do_mpkill
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1868,6 +1891,7 @@ Code        do_mptransfer
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1876,6 +1900,7 @@ Code        do_mpmload
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1884,6 +1909,7 @@ Code        do_mpnothing
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1892,6 +1918,7 @@ Code        do_mppurge
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1900,6 +1927,7 @@ Code        do_mpinvis
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1908,6 +1936,7 @@ Code        do_mpadvance
 Position    0
 Level       0
 Log         1
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1916,6 +1945,7 @@ Code        do_mpapply
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1924,6 +1954,7 @@ Code        do_mpapplyb
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1932,6 +1963,7 @@ Code        do_mppkset
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1940,6 +1972,7 @@ Code        do_mp_close_passage
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1948,6 +1981,7 @@ Code        do_mp_open_passage
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1956,6 +1990,7 @@ Code        do_mpdream
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1964,6 +1999,7 @@ Code        do_mp_slay
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1972,6 +2008,7 @@ Code        do_mp_practice
 Position    0
 Level       0
 Log         0
+Flags       mudprog~
 End
 
 #COMMAND
@@ -1980,6 +2017,7 @@ Code        do_mp_withdraw
 Position    0
 Level       0
 Log         1
+Flags       mudprog~
 End
 
 #COMMAND
@@ -3143,6 +3181,14 @@ Log         1
 End
 
 #COMMAND
+Name        setmssp~
+Code        do_setmssp
+Position    100
+Level       33
+Log         1
+End
+
+#COMMAND
 Name        setstarsystem~
 Code        do_setstarsystem
 Position    0
@@ -3595,6 +3641,14 @@ Name        setrank~
 Code        do_setrank
 Position    0
 Level       1
+Log         0
+End
+
+#COMMAND
+Name        setforcer~
+Code        do_setforcer
+Position    0
+Level       36
 Log         0
 End
 

@@ -27,6 +27,7 @@ Michael Seifert, and Sebastian Hammer.
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <ctype.h>
 #include <errno.h>
 #include <stdio.h>
@@ -36,8 +37,9 @@ Michael Seifert, and Sebastian Hammer.
 #include <signal.h>
 #include <stdarg.h>
 #include "mud.h"
-#include "sha256.h"
 #include "mccp.h"
+#include "mssp.h"
+#include "sha256.h"
 
 /*
  * Socket and TCP/IP stuff.
@@ -52,19 +54,19 @@ Michael Seifert, and Sebastian Hammer.
 #include <netdb.h>
 
 #define MAX_NEST	100
-static OBJ_DATA *rgObjNest[MAX_NEST];
 
-const char echo_off_str[] = { IAC, WILL, TELOPT_ECHO, '\0' };
-const char echo_on_str[] = { IAC, WONT, TELOPT_ECHO, '\0' };
-const char go_ahead_str[] = { IAC, GA, '\0' };
+const unsigned char echo_off_str[] = { IAC, WILL, TELOPT_ECHO, '\0' };
+const unsigned char echo_on_str[] = { IAC, WONT, TELOPT_ECHO, '\0' };
+const unsigned char go_ahead_str[] = { IAC, GA, '\0' };
 
-void save_sysdata args( ( SYSTEM_DATA sys ) );
+void save_sysdata( SYSTEM_DATA sys );
+
 /*  from act_info?  */
 void show_condition( CHAR_DATA * ch, CHAR_DATA * victim );
 void generate_com_freq( CHAR_DATA * ch );
 
 // planets.c
-void write_planet_list args( ( void ) );
+void write_planet_list( void );
 
 /*
  * Global variables.
@@ -98,7 +100,7 @@ void game_loop( void );
 int init_socket( int mudport );
 void new_descriptor( int new_desc );
 bool read_from_descriptor( DESCRIPTOR_DATA * d );
-bool write_to_descriptor( DESCRIPTOR_DATA * d, char *txt, int length );
+bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
 
 /*
  * Other local functions (OS-independent).
@@ -131,7 +133,7 @@ int main( int argc, char **argv )
 #if defined(MALLOC_DEBUG)
    malloc_debug( 2 );
 #endif
-
+   DONT_UPPER = FALSE;
    num_descriptors = 0;
    first_descriptor = NULL;
    last_descriptor = NULL;
@@ -189,7 +191,7 @@ int main( int argc, char **argv )
    /*
     * Get the port number.
     */
-   port = 4000;
+   port = 1545;
    if( argc > 1 )
    {
       if( !is_number( argv[1] ) )
@@ -268,6 +270,8 @@ void init_descriptor( DESCRIPTOR_DATA * dnew, int desc )
    dnew->newstate = 0;
    dnew->prevcolor = 0x07;
    dnew->can_compress = FALSE;
+   dnew->ifd = -1; /* Descriptor pipes, used for DNS resolution and such */
+   dnew->ipid = -1;
    CREATE( dnew->mccp, MCCP, 1 );
    CREATE( dnew->outbuf, char, dnew->outsize );
 }
@@ -276,13 +280,10 @@ int init_socket( int mudport )
 {
    char hostname[64];
    struct sockaddr_in sa;
-   struct hostent *hp;
-   struct servent *sp;
    int x = 1;
    int fd;
 
    gethostname( hostname, sizeof( hostname ) );
-
 
    if( ( fd = socket( AF_INET, SOCK_STREAM, 0 ) ) < 0 )
    {
@@ -313,8 +314,8 @@ int init_socket( int mudport )
    }
 #endif
 
-   hp = gethostbyname( hostname );
-   sp = getservbyname( "service", "mud" );
+   gethostbyname( hostname );
+   getservbyname( "service", "mud" );
    memset( &sa, '\0', sizeof( sa ) );
    sa.sin_family = AF_INET;   /* hp->h_addrtype; */
    sa.sin_port = htons( mudport );
@@ -417,6 +418,11 @@ void accept_new( int ctrl )
       FD_SET( d->descriptor, &in_set );
       FD_SET( d->descriptor, &out_set );
       FD_SET( d->descriptor, &exc_set );
+      if( d->ifd != -1 && d->ipid != -1 )
+      {
+         maxdesc = UMAX( maxdesc, d->ifd );
+         FD_SET( d->ifd, &in_set );
+      }
       if( d == last_descriptor )
          break;
    }
@@ -513,6 +519,10 @@ void game_loop( void )
                   continue;
                }
             }
+
+            /* check for input from the dns */
+            if( ( d->connected == CON_PLAYING || d->character != NULL ) && d->ifd != -1 && FD_ISSET( d->ifd, &in_set ) )
+               process_dns( d );
 
             if( d->character && d->character->wait > 0 )
             {
@@ -653,8 +663,6 @@ void new_descriptor( int new_desc )
    char buf[MAX_STRING_LENGTH];
    DESCRIPTOR_DATA *dnew;
    BAN_DATA *pban;
-   struct hostent *from;
-   char *hostname;
    struct sockaddr_in sock;
    int desc;
    socklen_t size;
@@ -697,31 +705,30 @@ void new_descriptor( int new_desc )
    CREATE( dnew, DESCRIPTOR_DATA, 1 );
    init_descriptor( dnew, desc );
    dnew->port = ntohs( sock.sin_port );
-   strcpy( buf, inet_ntoa( sock.sin_addr ) );
+   mudstrlcpy( log_buf, inet_ntoa( sock.sin_addr ), MAX_STRING_LENGTH );
+   dnew->host = STRALLOC( log_buf );
+   if( !sysdata.NO_NAME_RESOLVING )
+   {
+      mudstrlcpy( buf, in_dns_cache( log_buf ), MAX_STRING_LENGTH );
 
-   sprintf( log_buf, "Sock.sinaddr:  %s, port %d.", buf, dnew->port );
-   log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
-
-   dnew->host = STRALLOC( buf );
-
-   from = gethostbyaddr( ( char * )&sock.sin_addr, sizeof( sock.sin_addr ), AF_INET );
-   hostname = STRALLOC( ( char * )( from ? from->h_name : "" ) );
+      if( buf[0] == '\0' )
+         resolve_dns( dnew, sock.sin_addr.s_addr );
+      else
+      {
+         STRFREE( dnew->host );
+         dnew->host = STRALLOC( buf );
+      }
+   }
 
    for( pban = first_ban; pban; pban = pban->next )
    {
-      if( ( !str_prefix( pban->name, dnew->host ) || !str_suffix( pban->name, hostname ) ) && pban->level >= LEVEL_SUPREME )
+      if( ( !str_prefix( pban->name, dnew->host ) || !str_suffix( pban->name, dnew->host ) ) && pban->level >= LEVEL_SUPREME )
       {
          write_to_descriptor( dnew, "Your site has been banned from this Mud.\r\n", 0 );
          free_desc( dnew );
          set_alarm( 0 );
          return;
       }
-   }
-
-   if( !sysdata.NO_NAME_RESOLVING )
-   {
-      STRFREE( dnew->host );
-      dnew->host = STRALLOC( ( char * )( from ? from->h_name : buf ) );
    }
 
    /*
@@ -742,7 +749,7 @@ void new_descriptor( int new_desc )
    /*
     * MCCP Compression 
     */
-   write_to_buffer( dnew, will_compress2_str, 0 );
+   write_to_buffer( dnew, (const char *)will_compress2_str, 0 );
 
    /*
     * Send the greeting. Forces new color function - Tawnos
@@ -773,9 +780,20 @@ void new_descriptor( int new_desc )
    return;
 }
 
-/*  From Erwin  */
 
-void log_printf( char *fmt, ... )
+void log_printf_plus( short log_type, short level, const char *fmt, ... )
+{
+   char buf[MSL * 2];
+   va_list args;
+
+   va_start( args, fmt );
+   vsnprintf( buf, MSL * 2, fmt, args );
+   va_end( args );
+
+   log_string_plus( buf, log_type, level );
+}
+
+void log_printf( const char *fmt, ... )
 {
    char buf[MAX_STRING_LENGTH * 2];
    va_list args;
@@ -789,6 +807,7 @@ void log_printf( char *fmt, ... )
 
 void free_desc( DESCRIPTOR_DATA * d )
 {
+   compressEnd( d );
    close( d->descriptor );
    if( d->host )
       STRFREE( d->host );
@@ -796,7 +815,6 @@ void free_desc( DESCRIPTOR_DATA * d )
       DISPOSE( d->outbuf );
    if( d->pagebuf )
       DISPOSE( d->pagebuf );
-   compressEnd( d );
    DISPOSE( d->mccp );
    DISPOSE( d );
    --num_descriptors;
@@ -808,6 +826,16 @@ void close_socket( DESCRIPTOR_DATA * dclose, bool force )
    CHAR_DATA *ch;
    DESCRIPTOR_DATA *d;
    bool DoNotUnlink = FALSE;
+
+   if( dclose->ipid != -1 )
+   {
+      int status;
+
+      kill( dclose->ipid, SIGKILL );
+      waitpid( dclose->ipid, &status, 0 );
+   }
+   if( dclose->ifd != -1 )
+      close( dclose->ifd );
 
    /*
     * flush outbuf 
@@ -936,7 +964,7 @@ void close_socket( DESCRIPTOR_DATA * dclose, bool force )
 
 bool read_from_descriptor( DESCRIPTOR_DATA * d )
 {
-   int iStart;
+   unsigned int iStart;
 
    /*
     * Hold horses if pending command already. 
@@ -1149,7 +1177,7 @@ bool flush_buffer( DESCRIPTOR_DATA * d, bool fPrompt )
       if( IS_SET( ch->act, PLR_PROMPT ) )
          display_prompt( d );
       if( IS_SET( ch->act, PLR_TELNET_GA ) )
-         write_to_buffer( d, go_ahead_str, 0 );
+         write_to_buffer( d, (const char *)go_ahead_str, 0 );
    }
 
    /*
@@ -1199,7 +1227,7 @@ bool flush_buffer( DESCRIPTOR_DATA * d, bool fPrompt )
 /*
  * Append onto an output buffer.
  */
-void write_to_buffer( DESCRIPTOR_DATA * d, const char *txt, int length )
+void write_to_buffer( DESCRIPTOR_DATA * d, const char *txt, size_t length )
 {
    if( !d )
    {
@@ -1271,7 +1299,7 @@ void write_to_buffer( DESCRIPTOR_DATA * d, const char *txt, int length )
  * Updated to run with the block checks by Orion... if it doesn't work, blame
  * him.;P -Orion
  */
-bool write_to_descriptor( DESCRIPTOR_DATA * d, char *txt, int length )
+bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length )
 {
    int iStart = 0;
    int nWrite = 0;
@@ -1377,7 +1405,7 @@ bool write_to_descriptor( DESCRIPTOR_DATA * d, char *txt, int length )
  * Added block checking to prevent random booting of the descriptor. Thanks go
  * out to Rustry for his suggestions. -Orion
  */
-bool write_to_descriptor_old( int desc, char *txt, int length )
+bool write_to_descriptor_old( int desc, const char *txt, int length )
 {
    int iStart = 0;
    int nWrite = 0;
@@ -1436,511 +1464,539 @@ void show_title( DESCRIPTOR_DATA * d )
    d->connected = CON_PRESS_ENTER;
 }
 
-/*
- * Deal with sockets that haven't logged in yet.
- */
-void nanny( DESCRIPTOR_DATA * d, char *argument )
+void nanny_get_name( DESCRIPTOR_DATA *d, char *argument )
 {
    char buf[MAX_STRING_LENGTH];
-   char arg[MAX_STRING_LENGTH];
-   char buf2[MAX_STRING_LENGTH];
-   char buf3[MAX_STRING_LENGTH];
-   CHAR_DATA *ch;
-
-   char *pwdnew;
-   int iRace, iClass, iDroid;
+   CHAR_DATA *ch = d->character;
    BAN_DATA *pban;
    bool fOld, chk;
-   int col = 0;
-   while( isspace( *argument ) )
-      argument++;
 
+   if( argument[0] == '\0' )
+   {
+      close_socket( d, FALSE );
+      return;
+   }
+
+   argument[0] = UPPER( argument[0] );
+
+   if( !str_cmp( argument, "MSSP-REQUEST" ) )
+   {
+      send_mssp_data( d );
+      //Uncomment below if you want to know when an MSSP request occurs
+      //log_printf( "IP: %s requested MSSP data!", d->host );
+      close_socket( d, FALSE );
+      return;
+   }
+
+   if( !check_parse_name( argument ) )
+   {
+      write_to_buffer( d, "Illegal name, try another.\r\nName: ", 0 );
+      return;
+   }
+
+   if( !str_cmp( argument, "New" ) )
+   {
+      if( d->newstate == 0 )
+      {
+         /*
+          * New player 
+          * Don't allow new players if DENY_NEW_PLAYERS is true 
+          */
+         if( sysdata.DENY_NEW_PLAYERS == TRUE )
+         {
+            sprintf( buf, "The mud is currently preparing for a reboot.\r\n" );
+            write_to_buffer( d, buf, 0 );
+            sprintf( buf, "New players are not accepted during this time.\r\n" );
+            write_to_buffer( d, buf, 0 );
+            sprintf( buf, "Please try again in a few minutes.\r\n" );
+            write_to_buffer( d, buf, 0 );
+            close_socket( d, FALSE );
+         }
+         sprintf( buf, "\r\nChoosing a name is one of the most important parts of this game...\r\n"
+            "Make sure to pick a name appropriate to the character you are going\r\n"
+            "to role play, and be sure that it suits our theme.\r\n"
+            "If the name you select is not acceptable, you will be asked to choose\r\n"
+            "another one.\r\n\r\nPlease choose a name for your character: " );
+         write_to_buffer( d, buf, 0 );
+         d->newstate++;
+         d->connected = CON_GET_NAME;
+         return;
+      }
+      else
+      {
+         send_to_desc_color( "Illegal name, try another.\r\nName: ", d );
+         return;
+      }
+   }
+
+   if( check_playing( d, argument, FALSE ) == BERR )
+   {
+      write_to_buffer( d, "Name: ", 0 );
+      return;
+   }
+
+   fOld = load_char_obj( d, argument, TRUE, FALSE );
+   if( !d->character )
+   {
+      sprintf( log_buf, "Bad player file %s@%s.", argument, d->host );
+      log_string( log_buf );
+      write_to_buffer( d, "Your playerfile is corrupt...Please notify fote@enigma.dune.net.\r\n", 0 );
+      close_socket( d, FALSE );
+      return;
+   }
    ch = d->character;
 
-   switch ( d->connected )
+   for( pban = first_ban; pban; pban = pban->next )
    {
-
-      default:
-         bug( "Nanny: bad d->connected %d.", d->connected );
-         close_socket( d, TRUE );
+      if( ( !str_prefix( pban->name, d->host )
+         || !str_suffix( pban->name, d->host ) ) && pban->level >= ch->top_level )
+      {
+         write_to_buffer( d, "Your site has been banned from this Mud.\r\n", 0 );
+         close_socket( d, FALSE );
          return;
+      }
+   }
+   if( IS_SET( ch->act, PLR_DENY ) )
+   {
+      sprintf( log_buf, "Denying access to %s@%s.", argument, d->host );
+      log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
+      if( d->newstate != 0 )
+      {
+         write_to_buffer( d, "That name is already taken.  Please choose another: ", 0 );
+         d->connected = CON_GET_NAME;
+         return;
+      }
+      write_to_buffer( d, "You are denied access.\r\n", 0 );
+      close_socket( d, FALSE );
+      return;
+   }
 
-      case CON_GET_NAME:
-         if( argument[0] == '\0' )
-         {
-            close_socket( d, FALSE );
-            return;
-         }
+   chk = check_reconnect( d, argument, FALSE );
+   if( chk == BERR )
+      return;
 
-         argument[0] = UPPER( argument[0] );
-         if( !check_parse_name( argument ) )
-         {
-            write_to_buffer( d, "Illegal name, try another.\r\nName: ", 0 );
-            return;
-         }
+   if( chk )
+   {
+      fOld = TRUE;
+   }
+   else
+   {
+      if( wizlock && !IS_IMMORTAL( ch ) )
+      {
+         write_to_buffer( d, "The game is wizlocked.  Only immortals can connect now.\r\n", 0 );
+         write_to_buffer( d, "Please try back later.\r\n", 0 );
+         close_socket( d, FALSE );
+         return;
+      }
+   }
 
-         if( !str_cmp( argument, "New" ) )
-         {
-            if( d->newstate == 0 )
-            {
-               /*
-                * New player 
-                */
-               /*
-                * Don't allow new players if DENY_NEW_PLAYERS is true 
-                */
-               if( sysdata.DENY_NEW_PLAYERS == TRUE )
-               {
-                  sprintf( buf, "The mud is currently preparing for a reboot.\r\n" );
-                  write_to_buffer( d, buf, 0 );
-                  sprintf( buf, "New players are not accepted during this time.\r\n" );
-                  write_to_buffer( d, buf, 0 );
-                  sprintf( buf, "Please try again in a few minutes.\r\n" );
-                  write_to_buffer( d, buf, 0 );
-                  close_socket( d, FALSE );
-               }
-               sprintf( buf, "\r\nChoosing a name is one of the most important parts of this game...\r\n"
-                        "Make sure to pick a name appropriate to the character you are going\r\n"
-                        "to role play, and be sure that it suits our theme.\r\n"
-                        "If the name you select is not acceptable, you will be asked to choose\r\n"
-                        "another one.\r\n\r\nPlease choose a name for your character: " );
-               write_to_buffer( d, buf, 0 );
-               d->newstate++;
-               d->connected = CON_GET_NAME;
-               return;
-            }
-            else
-            {
-               send_to_desc_color( "Illegal name, try another.\r\nName: ", d );
-               return;
-            }
-         }
+   if( fOld )
+   {
+      if( d->newstate != 0 )
+      {
+         write_to_buffer( d, "That name is already taken.  Please choose another: ", 0 );
+         d->connected = CON_GET_NAME;
+         return;
+      }
+      /*
+       * Old player 
+       */
+      write_to_buffer( d, "Password: ", 0 );
+      write_to_buffer( d, (const char *)echo_off_str, 0 );
+      d->connected = CON_GET_OLD_PASSWORD;
+      return;
+   }
+   else
+   {
+      SET_BIT( ch->act, PLR_ANSI );
+      send_to_desc_color( "\r\n&zI don't recognize your name, you must be new here.\r\n\r\n", d );
+      sprintf( buf, "Did I get that right, &W%s &z(&WY&z/&WN&z)? &w", argument );
+      send_to_desc_color( buf, d );
+      d->connected = CON_CONFIRM_NEW_NAME;
+      return;
+   }
+}
 
-         if( check_playing( d, argument, FALSE ) == BERR )
-         {
-            write_to_buffer( d, "Name: ", 0 );
-            return;
-         }
+void nanny_get_old_password( DESCRIPTOR_DATA * d, char *argument )
+{
+   char buf[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   bool chk;
 
-         fOld = load_char_obj( d, argument, TRUE, FALSE );
-         if( !d->character )
-         {
-            sprintf( log_buf, "Bad player file %s@%s.", argument, d->host );
-            log_string( log_buf );
-            write_to_buffer( d, "Your playerfile is corrupt...Please notify fote@enigma.dune.net.\r\n", 0 );
-            close_socket( d, FALSE );
-            return;
-         }
-         ch = d->character;
+   write_to_buffer( d, "\r\n", 2 );
 
-         for( pban = first_ban; pban; pban = pban->next )
-         {
-            if( ( !str_prefix( pban->name, d->host )
-                  || !str_suffix( pban->name, d->host ) ) && pban->level >= ch->top_level )
-            {
-               write_to_buffer( d, "Your site has been banned from this Mud.\r\n", 0 );
-               close_socket( d, FALSE );
-               return;
-            }
-         }
-         if( IS_SET( ch->act, PLR_DENY ) )
-         {
-            sprintf( log_buf, "Denying access to %s@%s.", argument, d->host );
-            log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
-            if( d->newstate != 0 )
-            {
-               write_to_buffer( d, "That name is already taken.  Please choose another: ", 0 );
-               d->connected = CON_GET_NAME;
-               return;
-            }
-            write_to_buffer( d, "You are denied access.\r\n", 0 );
-            close_socket( d, FALSE );
-            return;
-         }
+   if( strcmp( sha256_crypt( argument ), ch->pcdata->pwd ) )
+   {
+      write_to_buffer( d, "Wrong password.\r\n", 0 );
+      /*
+       * clear descriptor pointer to get rid of bug message in log 
+       */
+      d->character->desc = NULL;
+      sprintf( buf, "%s@%s: Invalid password.", ch->name, d->host );
+      log_string( buf );
+      close_socket( d, FALSE );
+      return;
+   }
 
-         chk = check_reconnect( d, argument, FALSE );
-         if( chk == BERR )
-            return;
+   write_to_buffer( d, (const char *)echo_on_str, 0 );
 
-         if( chk )
-         {
-            fOld = TRUE;
-         }
-         else
-         {
-            if( wizlock && !IS_IMMORTAL( ch ) )
-            {
-               write_to_buffer( d, "The game is wizlocked.  Only immortals can connect now.\r\n", 0 );
-               write_to_buffer( d, "Please try back later.\r\n", 0 );
-               close_socket( d, FALSE );
-               return;
-            }
-         }
+   if( check_playing( d, ch->name, TRUE ) )
+      return;
 
-         if( fOld )
-         {
-            if( d->newstate != 0 )
-            {
-               write_to_buffer( d, "That name is already taken.  Please choose another: ", 0 );
-               d->connected = CON_GET_NAME;
-               return;
-            }
-            /*
-             * Old player 
-             */
-            write_to_buffer( d, "Password: ", 0 );
-            write_to_buffer( d, echo_off_str, 0 );
-            d->connected = CON_GET_OLD_PASSWORD;
-            return;
-         }
-         else
-         {
-            SET_BIT( ch->act, PLR_ANSI );
-            send_to_desc_color( "\r\n&zI don't recognize your name, you must be new here.\r\n\r\n", d );
-            sprintf( buf, "Did I get that right, &W%s &z(&WY&z/&WN&z)? &w", argument );
-            send_to_desc_color( buf, d );
-            d->connected = CON_CONFIRM_NEW_NAME;
-            return;
-         }
+   chk = check_reconnect( d, ch->name, TRUE );
+   if( chk == BERR )
+   {
+      if( d->character && d->character->desc )
+         d->character->desc = NULL;
+      close_socket( d, FALSE );
+      return;
+   }
+   if( chk == TRUE )
+      return;
+
+   if( check_multi( d, ch->name ) )
+   {
+      close_socket( d, FALSE );
+      return;
+   }
+
+   strcpy( buf, ch->name );
+   d->character->desc = NULL;
+   free_char( d->character );
+   load_char_obj( d, buf, FALSE, FALSE );
+   ch = d->character;
+   log_printf_plus( LOG_COMM, UMAX( sysdata.log_level, ch->top_level ), "%s (%s) has connected.", ch->name, d->host );
+   show_title( d );
+   if( ch->pcdata->area )
+      do_loadarea( ch, "" );
+
+   if( ch->max_mana != ( ch->force_control + ch->force_sense + ch->force_alter ) * 3 * ch->force_level_status )
+      ch->max_mana = ( ch->force_control + ch->force_sense + ch->force_alter ) * 3 * ch->force_level_status;
+   ch->mana = ch->max_mana;
+   if( ch->force_identified == 1 && ch->force_level_status == FORCE_MASTER )
+   {
+      int ft;
+      FORCE_SKILL *skill;
+      if( ch->force_skill[FORCE_SKILL_PARRY] < 50 )
+         ch->force_skill[FORCE_SKILL_PARRY] = 50;
+      ft = ch->force_type;
+      for( skill = first_force_skill; skill; skill = skill->next )
+         if( ( skill->type == ft || skill->type == FORCE_GENERAL ) && ch->force_skill[skill->index] < 50
+            && ( strcmp( skill->name, "master" ) && strcmp( skill->name, "student" )
+               && strcmp( skill->name, "promote" ) && strcmp( skill->name, "instruct" ) ) )
+            ch->force_skill[skill->index] = 50;
+   }
+}
+
+void nanny_confirm_new_name( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+
+   switch ( *argument )
+   {
+      case 'y':
+      case 'Y':
+         sprintf( buf, "\r\n&zMake sure to use a password that won't be easily guessed by someone else."
+                        "\r\nPick a good password for %s: &w%s", ch->name, (const char *)echo_off_str );
+         send_to_desc_color( buf, d );
+         d->connected = CON_GET_NEW_PASSWORD;
          break;
 
-      case CON_GET_OLD_PASSWORD:
-         write_to_buffer( d, "\r\n", 2 );
-
-         if( strcmp( sha256_crypt( argument ), ch->pcdata->pwd ) )
-         {
-            write_to_buffer( d, "Wrong password.\r\n", 0 );
-            /*
-             * clear descriptor pointer to get rid of bug message in log 
-             */
-            d->character->desc = NULL;
-            sprintf( buf, "%s@%s: Invalid password.", ch->name, d->host );
-            log_string( buf );
-            close_socket( d, FALSE );
-            return;
-         }
-
-         write_to_buffer( d, echo_on_str, 0 );
-
-         if( check_playing( d, ch->name, TRUE ) )
-            return;
-
-         chk = check_reconnect( d, ch->name, TRUE );
-         if( chk == BERR )
-         {
-            if( d->character && d->character->desc )
-               d->character->desc = NULL;
-            close_socket( d, FALSE );
-            return;
-         }
-         if( chk == TRUE )
-            return;
-
-         if( check_multi( d, ch->name ) )
-         {
-            close_socket( d, FALSE );
-            return;
-         }
-
-         strcpy( buf, ch->name );
+      case 'n':
+      case 'N':
+         send_to_desc_color( "&zOk, what is it, then? &w", d );
+         /*
+          * clear descriptor pointer to get rid of bug message in log 
+          */
          d->character->desc = NULL;
          free_char( d->character );
-         fOld = load_char_obj( d, buf, FALSE, FALSE );
-         ch = d->character;
-         sprintf( log_buf, "%s (%s) has connected.", ch->name, d->host );
-         if( ch->top_level < LEVEL_DEMI )
-         {
-            log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
-         }
-         else
-            log_string_plus( log_buf, LOG_COMM, ch->top_level );
-         show_title( d );
-         if( ch->pcdata->area )
-            do_loadarea( ch, "" );
-
-         if( ch->max_mana != ( ch->force_control + ch->force_sense + ch->force_alter ) * 3 * ch->force_level_status )
-            ch->max_mana = ( ch->force_control + ch->force_sense + ch->force_alter ) * 3 * ch->force_level_status;
-         ch->mana = ch->max_mana;
-         if( ch->force_identified == 1 && ch->force_level_status == FORCE_MASTER )
-         {
-            int ft;
-            FORCE_SKILL *skill;
-            if( ch->force_skill[FORCE_SKILL_PARRY] < 50 )
-               ch->force_skill[FORCE_SKILL_PARRY] = 50;
-            ft = ch->force_type;
-            for( skill = first_force_skill; skill; skill = skill->next )
-               if( ( skill->type == ft || skill->type == FORCE_GENERAL ) && ch->force_skill[skill->index] < 50
-                   && ( strcmp( skill->name, "master" ) && strcmp( skill->name, "student" )
-                        && strcmp( skill->name, "promote" ) && strcmp( skill->name, "instruct" ) ) )
-                  ch->force_skill[skill->index] = 50;
-         }
-
-
+         d->character = NULL;
+         d->connected = CON_GET_NAME;
          break;
 
-      case CON_CONFIRM_NEW_NAME:
-         switch ( *argument )
+      default:
+         send_to_desc_color( "&zPlease type &WYes&z or &WNo&z. &w", d );
+         break;
+   }
+}
+
+void nanny_get_new_password( DESCRIPTOR_DATA * d, const char *argument )
+{
+   CHAR_DATA *ch = d->character;
+   char *pwdnew;
+
+   write_to_buffer( d, "\r\n", 2 );
+
+   if( strlen( argument ) < 5 )
+   {
+      send_to_desc_color( "&zPassword must be at least five characters long.\r\nPassword: &w", d );
+      return;
+   }
+
+   if( argument[0] == '!' )
+   {
+      write_to_buffer( d, "Password cannot begin with the '!' character.\r\nPassword: ", 0 );
+      return;
+   }
+
+   pwdnew = sha256_crypt( argument );
+
+   DISPOSE( ch->pcdata->pwd );
+   ch->pcdata->pwd = str_dup( pwdnew );
+   send_to_desc_color( "\r\n&zPlease retype the password to confirm: &w", d );
+   d->connected = CON_CONFIRM_NEW_PASSWORD;
+}
+
+void nanny_confirm_new_password( DESCRIPTOR_DATA * d, const char *argument )
+{
+   CHAR_DATA *ch = d->character;
+
+   write_to_buffer( d, "\r\n", 2 );
+   
+   if( strcmp( sha256_crypt( argument ), ch->pcdata->pwd ) )
+   {
+      send_to_desc_color( "&zPasswords don't match.\r\nRetype password: &w", d );
+      d->connected = CON_GET_NEW_PASSWORD;
+      return;
+   }
+
+   write_to_buffer( d, (const char *)echo_on_str, 0 );
+   send_to_desc_color( "\r\n&zWhat is your sex (&WM&z/&WF&z/&WN&z)? &w", d );
+   d->connected = CON_GET_NEW_SEX;
+}
+
+void nanny_get_new_sex( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   int iRace, col = 0;
+
+   switch ( argument[0] )
+   {
+      case 'm':
+      case 'M':
+         ch->sex = SEX_MALE;
+         break;
+      case 'f':
+      case 'F':
+         ch->sex = SEX_FEMALE;
+         break;
+      case 'n':
+      case 'N':
+         ch->sex = SEX_NEUTRAL;
+         break;
+      default:
+         send_to_desc_color( "&zThat's not a sex.\r\nWhat is your sex?&w ", d );
+         return;
+   }
+   send_to_desc_color( "\r\n&zYou may choose from the following races, or type &Whelp [race]&z to learn more.\r\n", d );
+   send_to_desc_color( "Keep in mind that you must ROLEPLAY the race you select. If you choose a\r\n", d );
+   send_to_desc_color( "droid, you must RP your character accordingly. If you choose noghri, you\r\n", d );
+   send_to_desc_color( "must roleplay your character as the race is expected. This applies to all\r\n", d );
+   send_to_desc_color( "races, and if you are unsure about how to RP a race, refer to the helpfile.\r\n", d );
+   send_to_desc_color( "If you are still unsure, do not pick that race.\r\n\r\n", d );
+   buf[0] = '\0';
+   col = 0;
+   for( iRace = 0; iRace < MAX_RACE; iRace++ )
+   {
+      if( race_table[iRace].race_name && race_table[iRace].race_name[0] != '\0' )
+      {
+         if( iRace >= 0 )
          {
-            case 'y':
-            case 'Y':
-               sprintf( buf, "\r\n&zMake sure to use a password that won't be easily guessed by someone else."
-                        "\r\nPick a good password for %s: &w%s", ch->name, echo_off_str );
+            sprintf( buf2, "&R[&z%-15.15s&R]&w  ", race_table[iRace].race_name );
+            strcat( buf, buf2 );
+            if( ++col % 4 == 0 )
+            {
+               strcat( buf, "\r\n" );
                send_to_desc_color( buf, d );
-               d->connected = CON_GET_NEW_PASSWORD;
-               break;
-
-            case 'n':
-            case 'N':
-               send_to_desc_color( "&zOk, what is it, then? &w", d );
-               /*
-                * clear descriptor pointer to get rid of bug message in log 
-                */
-               d->character->desc = NULL;
-               free_char( d->character );
-               d->character = NULL;
-               d->connected = CON_GET_NAME;
-               break;
-
-            default:
-               send_to_desc_color( "&zPlease type &WYes&z or &WNo&z. &w", d );
-               break;
-         }
-         break;
-
-      case CON_GET_NEW_PASSWORD:
-         write_to_buffer( d, "\r\n", 2 );
-
-         if( strlen( argument ) < 5 )
-         {
-            send_to_desc_color( "&zPassword must be at least five characters long.\r\nPassword: &w", d );
-            return;
-         }
-
-         if( argument[0] == '!' )
-         {
-            write_to_buffer( d, "Password cannot begin with the '!' character.\r\nPassword: ", 0 );
-            return;
-         }
-
-         pwdnew = sha256_crypt( argument );
-
-         DISPOSE( ch->pcdata->pwd );
-         ch->pcdata->pwd = str_dup( pwdnew );
-         send_to_desc_color( "\r\n&zPlease retype the password to confirm: &w", d );
-         d->connected = CON_CONFIRM_NEW_PASSWORD;
-         break;
-
-      case CON_CONFIRM_NEW_PASSWORD:
-         write_to_buffer( d, "\r\n", 2 );
-
-         if( strcmp( sha256_crypt( argument ), ch->pcdata->pwd ) )
-         {
-            send_to_desc_color( "&zPasswords don't match.\r\nRetype password: &w", d );
-            d->connected = CON_GET_NEW_PASSWORD;
-            return;
-         }
-
-         write_to_buffer( d, echo_on_str, 0 );
-         send_to_desc_color( "\r\n&zWhat is your sex (&WM&z/&WF&z/&WN&z)? &w", d );
-         d->connected = CON_GET_NEW_SEX;
-         break;
-
-      case CON_GET_NEW_SEX:
-         switch ( argument[0] )
-         {
-            case 'm':
-            case 'M':
-               ch->sex = SEX_MALE;
-               break;
-            case 'f':
-            case 'F':
-               ch->sex = SEX_FEMALE;
-               break;
-            case 'n':
-            case 'N':
-               ch->sex = SEX_NEUTRAL;
-               break;
-            default:
-               send_to_desc_color( "&zThat's not a sex.\r\nWhat is your sex?&w ", d );
-               return;
-         }
-
-         send_to_desc_color( "\r\n&zYou may choose from the following races, or type &Whelp [race]&z to learn more.\r\n",
-                             d );
-         send_to_desc_color( "Keep in mind that you must ROLEPLAY the race you select. If you choose a\r\n", d );
-         send_to_desc_color( "droid, you must RP your character accordingly. If you choose noghri, you\r\n", d );
-         send_to_desc_color( "must roleplay your character as the race is expected. This applies to all\r\n", d );
-         send_to_desc_color( "races, and if you are unsure about how to RP a race, refer to the helpfile.\r\n", d );
-         send_to_desc_color( "If you are still unsure, do not pick that race.\r\n\r\n", d );
-         buf[0] = '\0';
-         col = 0;
-         for( iRace = 0; iRace < MAX_RACE; iRace++ )
-         {
-            if( race_table[iRace].race_name && race_table[iRace].race_name[0] != '\0' )
-            {
-               if( iRace >= 0 )
-               {
-                  /*
-                   * if ( strlen(buf)+strlen(race_table[iRace].race_name) > 77 )
-                   * {
-                   * strcat( buf, "\r\n" );
-                   * 
-                   * write_to_buffer( d, buf, 0 );
-                   * buf[0] = '\0';
-                   * }
-                   */
-                  sprintf( buf2, "&R[&z%-15.15s&R]&w  ", race_table[iRace].race_name );
-                  strcat( buf, buf2 );
-                  if( ++col % 4 == 0 )
-                  {
-                     strcat( buf, "\r\n" );
-                     send_to_desc_color( buf, d );
-                     buf[0] = '\0';
-                  }
-
-               }
+               buf[0] = '\0';
             }
          }
-         if( col % 4 != 0 )
+      }
+   }
+   if( col % 4 != 0 )
+      strcat( buf, "\r\n" );
+   strcat( buf, "&z:&w " );
+   send_to_desc_color( buf, d );
+   d->connected = CON_GET_NEW_RACE;
+}
+
+void nanny_get_new_race( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH], arg[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   int iRace, iClass, col = 0;
+
+   argument = one_argument( argument, arg );
+   if( !str_cmp( arg, "help" ) )
+   {
+      do_help( ch, argument );
+      send_to_desc_color( "&zPlease choose a race:&w ", d );
+      return;
+   }
+
+   for( iRace = 0; iRace < MAX_RACE; iRace++ )
+   {
+      if( toupper( arg[0] ) == toupper( race_table[iRace].race_name[0] )
+         && !str_prefix( arg, race_table[iRace].race_name ) )
+      {
+         ch->race = iRace;
+         break;
+      }
+   }
+
+   if( iRace == MAX_RACE || !race_table[iRace].race_name || race_table[iRace].race_name[0] == '\0' )
+   {
+      send_to_desc_color( "&zThat's not a race.\r\nWhat is your race?&w ", d );
+      return;
+   }
+
+   send_to_desc_color( "\r\n&zPlease choose a main ability from the following classes:&w\r\n", d );
+   buf[0] = '\0';
+   col = 0;
+   for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
+   {
+      if( ability_name[iClass] && ability_name[iClass][0] != '\0' && str_cmp( ability_name[iClass], "force" ) )
+      {
+         sprintf( buf2, "&R[&z%-15.15s&R]&w  ", ability_name[iClass] );
+         strcat( buf, buf2 );
+         if( ++col % 4 == 0 )
+         {
             strcat( buf, "\r\n" );
-         strcat( buf, "&z:&w " );
-         send_to_desc_color( buf, d );
-         d->connected = CON_GET_NEW_RACE;
+            send_to_desc_color( buf, d );
+            buf[0] = '\0';
+         }
+      }
+   }
+   if( col % 4 != 0 )
+      strcat( buf, "\r\n" );
+   strcat( buf, "&z:&w " );
+
+   send_to_desc_color( buf, d );
+   d->connected = CON_GET_NEW_CLASS;
+}
+
+void nanny_get_new_primary( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH], arg[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   int iClass, col = 0;
+
+   argument = one_argument( argument, arg );
+   if( !str_cmp( arg, "help" ) )
+   {
+      do_help( ch, argument );
+      send_to_desc_color( "&zPlease choose an ability class:&w ", 0 );
+      return;
+   }
+   
+   for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
+   {
+      if( toupper( arg[0] ) == toupper( ability_name[iClass][0] )
+         && !str_prefix( arg, ability_name[iClass] ) && str_prefix( arg, "force" ) )
+      {
+         ch->main_ability = iClass;
          break;
-      case CON_GET_NEW_RACE:
-         argument = one_argument( argument, arg );
-         if( !str_cmp( arg, "help" ) )
+      }
+   }
+
+   if( iClass == MAX_ABILITY || !ability_name[iClass] || ability_name[iClass][0] == '\0' )
+   {
+      send_to_desc_color( "&zThat's not a skill class.\r\nWhat is it going to be? &w", d );
+      return;
+   }
+   send_to_desc_color( "\r\n&zPlease choose a secondary ability from the following classes:&w\r\n", d );
+   buf[0] = '\0';
+   col = 0;
+   for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
+   {
+      if( ability_name[iClass] && ability_name[iClass][0] != '\0' && str_cmp( ability_name[iClass], "force" )
+         && ch->main_ability != iClass )
+      {
+         sprintf( buf2, "&R[&z%-15.15s&R]&w  ", ability_name[iClass] );
+         strcat( buf, buf2 );
+         if( ++col % 4 == 0 )
          {
-            do_help( ch, argument );
-            send_to_desc_color( "&zPlease choose a race:&w ", d );
-            return;
-         }
-
-
-         for( iRace = 0; iRace < MAX_RACE; iRace++ )
-         {
-            if( toupper( arg[0] ) == toupper( race_table[iRace].race_name[0] )
-                && !str_prefix( arg, race_table[iRace].race_name ) )
-            {
-               ch->race = iRace;
-               break;
-            }
-         }
-
-         if( iRace == MAX_RACE || !race_table[iRace].race_name || race_table[iRace].race_name[0] == '\0' )
-         {
-            send_to_desc_color( "&zThat's not a race.\r\nWhat is your race?&w ", d );
-            return;
-         }
-
-         send_to_desc_color( "\r\n&zPlease choose a main ability from the following classes:&w\r\n", d );
-         buf[0] = '\0';
-         col = 0;
-         for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
-         {
-            if( ability_name[iClass] && ability_name[iClass][0] != '\0' && str_cmp( ability_name[iClass], "force" ) )
-            {
-
-
-               sprintf( buf2, "&R[&z%-15.15s&R]&w  ", ability_name[iClass] );
-               strcat( buf, buf2 );
-               if( ++col % 4 == 0 )
-               {
-                  strcat( buf, "\r\n" );
-                  send_to_desc_color( buf, d );
-                  buf[0] = '\0';
-               }
-            }
-         }
-         if( col % 4 != 0 )
             strcat( buf, "\r\n" );
-         strcat( buf, "&z:&w " );
+            send_to_desc_color( buf, d );
+            buf[0] = '\0';
+         }
+      }
+   }
+   if( col % 4 != 0 )
+      strcat( buf, "\r\n" );
+   strcat( buf, "&z:&w " );
 
-         send_to_desc_color( buf, d );
-         d->connected = CON_GET_NEW_CLASS;
+   send_to_desc_color( buf, d );
+   d->connected = CON_GET_NEW_SECOND;
+}
+
+void nanny_get_new_secondary( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH], arg[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   int iClass;
+
+   argument = one_argument( argument, arg );
+   if( !str_cmp( arg, "help" ) )
+   {
+      do_help( ch, argument );
+      send_to_desc_color( "&zPlease choose an ability class:&w ", d );
+      return;
+   }
+
+   for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
+   {
+      if( toupper( arg[0] ) == toupper( ability_name[iClass][0] )
+         && !str_prefix( arg, ability_name[iClass] ) && str_prefix( arg, "force" ) && ch->main_ability != iClass )
+      {
+         ch->secondary_ability = iClass;
          break;
+      }
+   }
 
-      case CON_GET_NEW_CLASS:
-         argument = one_argument( argument, arg );
-         if( !str_cmp( arg, "help" ) )
-         {
-            do_help( ch, argument );
-            send_to_desc_color( "&zPlease choose an ability class:&w ", 0 );
-            return;
-         }
+   if( iClass == MAX_ABILITY || !ability_name[iClass] || ability_name[iClass][0] == '\0' )
+   {
+      send_to_desc_color( "&zThat's not a skill class.\r\nWhat is it going to be?&w ", d );
+      return;
+   }
 
+   send_to_desc_color( "\r\n&zRolling stats...\r\n", d );
+   ch->perm_str = number_range( 1, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
+   ch->perm_int = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
+   ch->perm_wis = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
+   ch->perm_dex = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
+   ch->perm_con = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
+   ch->perm_cha = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
+   ch->perm_str += race_table[ch->race].str_plus;
+   ch->perm_int += race_table[ch->race].int_plus;
+   ch->perm_wis += race_table[ch->race].wis_plus;
+   ch->perm_dex += race_table[ch->race].dex_plus;
+   ch->perm_con += race_table[ch->race].con_plus;
+   ch->perm_cha += race_table[ch->race].cha_plus;
 
+   sprintf( buf, "\r\n&zSTR: &R%d  &zINT: &R%d  &zWIS: &R%d  &zDEX: &R%d  &zCON: &R%d  &zCHA: &R%d\r\n",
+      ch->perm_str, ch->perm_int, ch->perm_wis, ch->perm_dex, ch->perm_con, ch->perm_cha );
 
-         for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
-         {
-            if( toupper( arg[0] ) == toupper( ability_name[iClass][0] )
-                && !str_prefix( arg, ability_name[iClass] ) && str_prefix( arg, "force" ) )
-            {
-               ch->main_ability = iClass;
-               break;
-            }
-         }
+   send_to_desc_color( buf, d );
+   send_to_desc_color( "\r\n&zAre these stats OK?&w ", d );
+   d->connected = CON_ROLL_STATS;
+}
 
-         if( iClass == MAX_ABILITY || !ability_name[iClass] || ability_name[iClass][0] == '\0' )
-         {
-            send_to_desc_color( "&zThat's not a skill class.\r\nWhat is it going to be? &w", d );
-            return;
-         }
-         send_to_desc_color( "\r\n&zPlease choose a secondary ability from the following classes:&w\r\n", d );
-         buf[0] = '\0';
-         col = 0;
-         for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
-         {
-            if( ability_name[iClass] && ability_name[iClass][0] != '\0' && str_cmp( ability_name[iClass], "force" )
-                && ch->main_ability != iClass )
-            {
+void nanny_roll_stats( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH], buf3[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   int iClass, iDroid, col = 0;
 
-               sprintf( buf2, "&R[&z%-15.15s&R]&w  ", ability_name[iClass] );
-               strcat( buf, buf2 );
-               if( ++col % 4 == 0 )
-               {
-                  strcat( buf, "\r\n" );
-                  send_to_desc_color( buf, d );
-                  buf[0] = '\0';
-               }
-
-            }
-         }
-         if( col % 4 != 0 )
-            strcat( buf, "\r\n" );
-         strcat( buf, "&z:&w " );
-
-         send_to_desc_color( buf, d );
-         d->connected = CON_GET_NEW_SECOND;
+   switch ( argument[0] )
+   {
+      case 'y':
+      case 'Y':
          break;
-      case CON_GET_NEW_SECOND:
-         argument = one_argument( argument, arg );
-         if( !str_cmp( arg, "help" ) )
-         {
-            do_help( ch, argument );
-            send_to_desc_color( "&zPlease choose an ability class:&w ", d );
-            return;
-         }
-
-         for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
-         {
-            if( toupper( arg[0] ) == toupper( ability_name[iClass][0] )
-                && !str_prefix( arg, ability_name[iClass] ) && str_prefix( arg, "force" ) && ch->main_ability != iClass )
-            {
-               ch->secondary_ability = iClass;
-               break;
-            }
-         }
-
-         if( iClass == MAX_ABILITY || !ability_name[iClass] || ability_name[iClass][0] == '\0' )
-         {
-            send_to_desc_color( "&zThat's not a skill class.\r\nWhat is it going to be?&w ", d );
-            return;
-         }
-
-         send_to_desc_color( "\r\n&zRolling stats...\r\n", d );
-      case CON_ROLL_STATS:
-
+      case 'n':
+      case 'N':
          ch->perm_str = number_range( 1, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
          ch->perm_int = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
          ch->perm_wis = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
@@ -1956,226 +2012,141 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          ch->perm_cha += race_table[ch->race].cha_plus;
 
          sprintf( buf, "\r\n&zSTR: &R%d  &zINT: &R%d  &zWIS: &R%d  &zDEX: &R%d  &zCON: &R%d  &zCHA: &R%d\r\n",
-                  ch->perm_str, ch->perm_int, ch->perm_wis, ch->perm_dex, ch->perm_con, ch->perm_cha );
+            ch->perm_str, ch->perm_int, ch->perm_wis, ch->perm_dex, ch->perm_con, ch->perm_cha );
 
          send_to_desc_color( buf, d );
-         send_to_desc_color( "\r\n&zAre these stats OK?&w ", d );
-         d->connected = CON_STATS_OK;
-         break;
-
-      case CON_STATS_OK:
-
-         switch ( argument[0] )
+         send_to_desc_color( "\r\n&zOK?&w ", d );
+         return;
+      default:
+         send_to_desc_color( "&zInvalid selection.\r\n&WYES&z or &WNO&z? ", d );
+         return;
+   }
+   
+   if( !IS_DROID( ch ) )
+   {
+      send_to_desc_color( "\r\n&zPlease choose a height from the following list:&w\r\n", d );
+      buf[0] = '\0';
+      col = 0;
+      for( iClass = 0; iClass < 4; iClass++ )
+      {
+         if( height_name[iClass] && height_name[iClass][0] != '\0' )
          {
-            case 'y':
-            case 'Y':
-               break;
-            case 'n':
-            case 'N':
-               ch->perm_str = number_range( 1, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
-               ch->perm_int = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
-               ch->perm_wis = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
-               ch->perm_dex = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
-               ch->perm_con = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
-               ch->perm_cha = number_range( 3, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
-
-               ch->perm_str += race_table[ch->race].str_plus;
-               ch->perm_int += race_table[ch->race].int_plus;
-               ch->perm_wis += race_table[ch->race].wis_plus;
-               ch->perm_dex += race_table[ch->race].dex_plus;
-               ch->perm_con += race_table[ch->race].con_plus;
-               ch->perm_cha += race_table[ch->race].cha_plus;
-
-               sprintf( buf, "\r\n&zSTR: &R%d  &zINT: &R%d  &zWIS: &R%d  &zDEX: &R%d  &zCON: &R%d  &zCHA: &R%d\r\n",
-                        ch->perm_str, ch->perm_int, ch->perm_wis, ch->perm_dex, ch->perm_con, ch->perm_cha );
-
+            sprintf( buf3, "%s", height_name[iClass] );
+            buf3[0] = UPPER( buf3[0] );
+            sprintf( buf2, "&R[&z%-15.15s&R]&w  ", buf3 );
+            strcat( buf, buf2 );
+            if( ++col % 4 == 0 )
+            {
+               strcat( buf, "\r\n" );
                send_to_desc_color( buf, d );
-               send_to_desc_color( "\r\n&zOK?&w ", d );
-               return;
-            default:
-               send_to_desc_color( "&zInvalid selection.\r\n&WYES&z or &WNO&z? ", d );
-               return;
-         }
-
-         if( !IS_DROID( ch ) )
-         {
-            send_to_desc_color( "\r\n&zPlease choose a height from the following list:&w\r\n", d );
-            buf[0] = '\0';
-            col = 0;
-            for( iClass = 0; iClass < 4; iClass++ )
-            {
-               if( height_name[iClass] && height_name[iClass][0] != '\0' )
-               {
-                  sprintf( buf3, "%s", height_name[iClass] );
-                  buf3[0] = UPPER( buf3[0] );
-                  sprintf( buf2, "&R[&z%-15.15s&R]&w  ", buf3 );
-                  strcat( buf, buf2 );
-                  if( ++col % 4 == 0 )
-                  {
-                     strcat( buf, "\r\n" );
-                     send_to_desc_color( buf, d );
-                     buf[0] = '\0';
-                  }
-
-               }
+               buf[0] = '\0';
             }
          }
-         else
+      }
+   }
+   else
+   {
+      send_to_desc_color( "\r\n&zPlease choose a droid description from the following list:&w\r\n", d );
+      buf[0] = '\0';
+      col = 0;
+      for( iDroid = 0; iDroid < 8; iDroid++ )
+      {
+         if( droid_name[iDroid] && droid_name[iDroid][0] != '\0' )
          {
-            send_to_desc_color( "\r\n&zPlease choose a droid description from the following list:&w\r\n", d );
-            buf[0] = '\0';
-            col = 0;
-            for( iDroid = 0; iDroid < 8; iDroid++ )
+            sprintf( buf3, "%s", droid_name[iDroid] );
+            buf3[0] = UPPER( buf3[0] );
+            sprintf( buf2, "&R[&z%-15.15s&R]&w  ", buf3 );
+            strcat( buf, buf2 );
+            if( ++col % 4 == 0 )
             {
-               if( droid_name[iDroid] && droid_name[iDroid][0] != '\0' )
-               {
-                  sprintf( buf3, "%s", droid_name[iDroid] );
-                  buf3[0] = UPPER( buf3[0] );
-                  sprintf( buf2, "&R[&z%-15.15s&R]&w  ", buf3 );
-                  strcat( buf, buf2 );
-                  if( ++col % 4 == 0 )
-                  {
-                     strcat( buf, "\r\n" );
-                     send_to_desc_color( buf, d );
-                     buf[0] = '\0';
-                  }
-
-               }
+               strcat( buf, "\r\n" );
+               send_to_desc_color( buf, d );
+               buf[0] = '\0';
             }
          }
-         if( col % 4 != 0 )
-            strcat( buf, "\r\n" );
-         strcat( buf, "&z:&w " );
+      }
+   }
+   if( col % 4 != 0 )
+      strcat( buf, "\r\n" );
+   strcat( buf, "&z:&w " );
 
-         send_to_desc_color( buf, d );
-         if( !IS_DROID( ch ) )
-            d->connected = CON_GET_HEIGHT;
-         else
-            d->connected = CON_GET_DROID;
+   send_to_desc_color( buf, d );
+   if( !IS_DROID( ch ) )
+      d->connected = CON_GET_HEIGHT;
+   else
+      d->connected = CON_GET_DROID;
+}
+
+void nanny_get_height( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH], arg[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH], buf3[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   int iClass, col = 0;
+
+   argument = one_argument( argument, arg );
+   for( iClass = 0; iClass < 4; iClass++ )
+   {
+      if( toupper( arg[0] ) == toupper( height_name[iClass][0] ) && !str_prefix( arg, height_name[iClass] ) )
+      {
+         ch->pheight = iClass;
          break;
+      }
+   }
 
-      case CON_GET_HEIGHT:
-         argument = one_argument( argument, arg );
-         for( iClass = 0; iClass < 4; iClass++ )
+   if( iClass == 4 || !height_name[iClass] || height_name[iClass][0] == '\0' )
+   {
+      send_to_desc_color( "&zThat's not a height.\r\nWhat is it going to be?&w ", d );
+      return;
+   }
+
+   send_to_desc_color( "\r\n&zPlease choose a build from the following list:&w\r\n", d );
+   buf[0] = '\0';
+   col = 0;
+   for( iClass = 0; iClass < 6; iClass++ )
+   {
+      if( build_name[iClass] && build_name[iClass][0] != '\0' )
+      {
+         sprintf( buf3, "%s", build_name[iClass] );
+         buf3[0] = UPPER( buf3[0] );
+         sprintf( buf2, "&R[&z%-15.15s&R]&w  ", buf3 );
+         strcat( buf, buf2 );
+         if( ++col % 4 == 0 )
          {
-            if( toupper( arg[0] ) == toupper( height_name[iClass][0] ) && !str_prefix( arg, height_name[iClass] ) )
-            {
-               ch->pheight = iClass;
-               break;
-            }
-         }
-
-         if( iClass == 4 || !height_name[iClass] || height_name[iClass][0] == '\0' )
-         {
-            send_to_desc_color( "&zThat's not a height.\r\nWhat is it going to be?&w ", d );
-            return;
-         }
-
-         send_to_desc_color( "\r\n&zPlease choose a build from the following list:&w\r\n", d );
-         buf[0] = '\0';
-         col = 0;
-         for( iClass = 0; iClass < 6; iClass++ )
-         {
-            if( build_name[iClass] && build_name[iClass][0] != '\0' )
-            {
-               sprintf( buf3, "%s", build_name[iClass] );
-               buf3[0] = UPPER( buf3[0] );
-               sprintf( buf2, "&R[&z%-15.15s&R]&w  ", buf3 );
-               strcat( buf, buf2 );
-               if( ++col % 4 == 0 )
-               {
-                  strcat( buf, "\r\n" );
-                  send_to_desc_color( buf, d );
-                  buf[0] = '\0';
-               }
-
-            }
-         }
-         if( col % 4 != 0 )
             strcat( buf, "\r\n" );
-         strcat( buf, "&z:&w " );
-
-         send_to_desc_color( buf, d );
-         d->connected = CON_GET_BUILD;
-         break;
-
-      case CON_GET_BUILD:
-         argument = one_argument( argument, arg );
-         for( iClass = 0; iClass < 6; iClass++ )
-         {
-            if( toupper( arg[0] ) == toupper( build_name[iClass][0] ) && !str_prefix( arg, build_name[iClass] ) )
-            {
-               ch->build = iClass;
-               break;
-            }
+            send_to_desc_color( buf, d );
+            buf[0] = '\0';
          }
+   
+      }
+   }
+   if( col % 4 != 0 )
+      strcat( buf, "\r\n" );
+   strcat( buf, "&z:&w " );
+   send_to_desc_color( buf, d );
+   d->connected = CON_GET_BUILD;
+}
 
-         if( iClass == 6 || !build_name[iClass] || build_name[iClass][0] == '\0' )
-         {
-            send_to_desc_color( "&zThat's not a build.\r\nWhat is it going to be?&w ", d );
-            return;
-         }
+void nanny_get_build( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH], arg[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   int iClass;
 
-      case CON_GET_DROID:
-         if( IS_DROID( ch ) )
-         {
-            argument = one_argument( argument, arg );
-            for( iDroid = 0; iDroid < 8; iDroid++ )
-            {
-               if( toupper( arg[0] ) == toupper( droid_name[iDroid][0] ) && !str_prefix( arg, droid_name[iDroid] ) )
-               {
-                  ch->build = iDroid;
-                  break;
-               }
-            }
-
-            if( iDroid == 8 || !droid_name[iDroid] || droid_name[iDroid][0] == '\0' )
-            {
-               send_to_desc_color( "&zThat's not a droid description.\r\nWhat is it going to be?&w ", d );
-               return;
-            }
-         }
-/*  Changing this up a bit...automatically sets PLR_ANSI, skips want ansi/msp.
-
-	write_to_buffer( d, "\r\nWould you like ANSI or no graphic/color support, (R/A/N)? ", 0 ); */
+   argument = one_argument( argument, arg );
+   for( iClass = 0; iClass < 6; iClass++ )
+   {
+      if( toupper( arg[0] ) == toupper( build_name[iClass][0] ) && !str_prefix( arg, build_name[iClass] ) )
+      {
+         ch->build = iClass;
          SET_BIT( ch->act, PLR_ANSI );
-/*	d->connected = CON_GET_WANT_RIPANSI;
-        break;
-        
-    case CON_GET_WANT_RIPANSI:
-	switch ( argument[0] )
-	{
-	case 'a': case 'A': SET_BIT(ch->act,PLR_ANSI);  break;
-	case 'n': case 'N': break;
-	default:
-	    write_to_buffer( d, "Invalid selection.\r\nANSI or NONE? ", 0 );
-	    return;
-	}
-        write_to_buffer( d, "Does your mud client have the Mud Sound Protocol? ", 0 );
-	d->connected = CON_GET_MSP; 
-	 break;
-          
-
-case CON_GET_MSP:
-	switch ( argument[0] )
-	{
-	case 'y': case 'Y': SET_BIT(ch->act,PLR_SOUND);  break;
-	case 'n': case 'N': break;
-	default:
-	    write_to_buffer( d, "Invalid selection.\r\nYES or NO? ", 0 );
-	    return;
-	}
-
-	if ( !sysdata.WAIT_FOR_AUTH )
-	{
-*/ sprintf( log_buf, "%s@%s new %s.", ch->name, d->host,
-               race_table[ch->race].race_name );
+         sprintf( log_buf, "%s@%s new %s.", ch->name, d->host,
+         race_table[ch->race].race_name );
          log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
          to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
          send_to_desc_color( "\r\n&R&zWelcome to &RFall of the Empire&z. Press enter to continue.&w\r\n\r\n", d );
          {
             int ability;
-
+   
             for( ability = 0; ability < MAX_ABILITY; ability++ )
             {
                ch->skill_level[ability] = 0;
@@ -2186,413 +2157,390 @@ case CON_GET_MSP:
          ch->position = POS_STANDING;
          // Threw in commfreq here, hope it doesn't fuck with anything
          sprintf( buf, "%d%d%d.%d%d%d",
-                  number_range( 0, 9 ),
-                  number_range( 0, 9 ),
-                  number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ) );
+            number_range( 0, 9 ), number_range( 0, 9 ),
+            number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ) );
+
+         if( ch->comfreq )
+            STRFREE( ch->comfreq );
          ch->comfreq = STRALLOC( buf );
          d->connected = CON_PRESS_ENTER;
-         return;
          break;
-/*	}
+      }
+   }
 
-	write_to_buffer( d, "\r\nYou now have to wait for a god to authorize you... please be patient...\r\n", 0 );
-	sprintf( log_buf, "(1) %s@%s new %s applying for authorization...",
-				ch->name, d->host,
-				race_table[ch->race].race_name);
-	log_string( log_buf );
-	to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-	d->connected = CON_WAIT_1;
-	break;
+   if( iClass == 6 || !build_name[iClass] || build_name[iClass][0] == '\0' )
+   {
+      send_to_desc_color( "&zThat's not a build.\r\nWhat is it going to be?&w ", d );
+      return;
+   }
+}
 
-     case CON_WAIT_1:
-	write_to_buffer( d, "\r\nTwo more tries... please be patient...\r\n", 0 );
-	sprintf( log_buf, "(2) %s@%s new %s applying for authorization...",
-				ch->name, d->host,
-				race_table[ch->race].race_name);
-	log_string( log_buf );
-	to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-	d->connected = CON_WAIT_2;
-	break;
+void nanny_get_droid( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH], arg[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+   int iDroid;
 
-     case CON_WAIT_2:
-	write_to_buffer( d, "\r\nThis is your last try...\r\n", 0 );
-	sprintf( log_buf, "(3) %s@%s new %s applying for authorization...",
-				ch->name, d->host,
-				race_table[ch->race].race_name);
-	log_string( log_buf );
-	to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-	d->connected = CON_WAIT_3;
-	break;
-
-    case CON_WAIT_3:
-	write_to_buffer( d, "Sorry... try again later.\r\n", 0 );
-	close_socket( d, FALSE );
-	return;
-	break;
-
-    case CON_ACCEPTED:
-
-	sprintf( log_buf, "%s@%s new %s.", ch->name, d->host,
-				race_table[ch->race].race_name);
-	log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
-	to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-	write_to_buffer( d, "\r\n", 2 );
-	show_title(d);
-	    {
-	       int ability;
-	       
-	       for ( ability =0 ; ability < MAX_ABILITY ; ability++ )
-		{
-	          ch->skill_level[ability] = 0;
-		  ch->bonus[ability] = 0;
-		}
-	    }
-	ch->top_level = 0;
-	ch->position = POS_STANDING;
-	d->connected = CON_PRESS_ENTER;
-	break;
-*/
-      case CON_PRESS_ENTER:
-/*	if ( IS_SET(ch->act, PLR_ANSI) )
-	  send_to_pager( "\033[2J", ch );
-	else
-	  send_to_pager( "\014", ch );*/
-         if( ch->top_level >= 0 )
+   if( IS_DROID( ch ) )
+   {
+      argument = one_argument( argument, arg );
+      for( iDroid = 0; iDroid < 8; iDroid++ )
+      {
+         if( toupper( arg[0] ) == toupper( droid_name[iDroid][0] ) && !str_prefix( arg, droid_name[iDroid] ) )
          {
-            send_to_pager( "\r\n&WMessage of the Day&w\r\n", ch );
-            do_help( ch, "motd" );
-         }
-/* Uh, do we use this?
-	if ( IS_IMMORTAL(ch) )
-	{
-	  send_to_pager( "&WImmortal Message of the Day&w\r\n", ch );
-	  do_help( ch, "imotd" );
-	}
-*/
-         send_to_pager( "\r\n&WPress [ENTER] &w", ch );
-         d->connected = CON_READ_MOTD;
-         break;
-
-      case CON_READ_MOTD:
-         write_to_buffer( d, "\r\n\r\n", 0 );
-         add_char( ch );
-         /*
-          * if(ch->comfreq == NULL)
-          * {
-          * generate_com_freq(ch);
-          * sprintf(buf, "%s has no comfreq. Generating.", ch->name);
-          * log_string(buf);
-          * }
-          */
-         sprintf( buf, " %s has entered the game.", ch->name );
-         log_string_plus( buf, LOG_NORMAL, get_trust( ch ) );
-         d->connected = CON_PLAYING;
-
-
-         if( ch->top_level == 0 )
-         {
-            OBJ_DATA *obj;
-            int iLang;
-
-            ch->pcdata->clan = NULL;
-            ch->pcdata->learned[gsn_smallspace] = 25;
-            ch->pcdata->learned[gsn_shipsystems] = 25;
-            ch->pcdata->learned[gsn_navigation] = 25;
-            ch->pcdata->learned[gsn_scan] = 25;
-
-            ch->perm_lck = number_range( 6, 18 );
-            ch->perm_frc = number_range( -1000, 20 );
-            ch->affected_by = race_table[ch->race].affected;
-            ch->perm_lck += race_table[ch->race].lck_plus;
-            ch->perm_frc += race_table[ch->race].frc_plus;
-
-            if( ch->main_ability == FORCE_ABILITY )
-               ch->perm_frc = URANGE( 0, ch->perm_frc, 20 );
-            else
-               ch->perm_frc = URANGE( 0, ch->perm_frc, 20 );
-
-            if( ch->main_ability == HUNTING_ABILITY || ch->main_ability == ASSASSIN_ABILITY || IS_DROID( ch ) )
-               ch->perm_frc = 0;
-
-            /*
-             * took out automaticly knowing basic
-             * if ( (iLang = skill_lookup( "basic" )) < 0 )
-             * bug( "Nanny: cannot find basic language." );
-             * else
-             * ch->pcdata->learned[iLang] = 100;
-             */
-
-            for( iLang = 0; lang_array[iLang] != LANG_UNKNOWN; iLang++ )
-               if( lang_array[iLang] == race_table[ch->race].language )
-                  break;
-            if( lang_array[iLang] == LANG_UNKNOWN )
-            {
-               if( IS_DROID( ch ) && ( iLang = skill_lookup( "binary" ) ) >= 0 )
-               {
-                  ch->pcdata->learned[iLang] = 100;
-                  ch->speaking = LANG_BINARY;
-                  SET_BIT( ch->speaks, LANG_BINARY );
-               }
-               else
-                  bug( "Nanny: invalid racial language." );
-            }
-            else
-            {
-               if( ( iLang = skill_lookup( lang_names[iLang] ) ) < 0 )
-                  bug( "Nanny: cannot find racial language." );
-               else
-               {
-                  ch->pcdata->learned[iLang] = 100;
-                  ch->speaking = race_table[ch->race].language;
-                  if( ch->race == RACE_QUARREN && ( iLang = skill_lookup( "quarren" ) ) >= 0 )
-                  {
-                     ch->pcdata->learned[iLang] = 100;
-                     SET_BIT( ch->speaks, LANG_QUARREN );
-                  }
-                  if( ch->race == RACE_MON_CALAMARI && ( iLang = skill_lookup( "basic" ) ) >= 0 )
-                     ch->pcdata->learned[iLang] = 100;
-
-               }
-            }
-
-            /*
-             * ch->resist           += race_table[ch->race].resist;    drats 
-             */
-            /*
-             * ch->susceptible     += race_table[ch->race].suscept;    drats 
-             */
-
-            reset_colors( ch );
-            name_stamp_stats( ch );
-
+            ch->build = iDroid;
+            SET_BIT( ch->act, PLR_ANSI );
+            sprintf( log_buf, "%s@%s new %s.", ch->name, d->host,
+            race_table[ch->race].race_name );
+            log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
+            to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
+            send_to_desc_color( "\r\n&R&zWelcome to &RFall of the Empire&z. Press enter to continue.&w\r\n\r\n", d );
             {
                int ability;
 
                for( ability = 0; ability < MAX_ABILITY; ability++ )
                {
-                  ch->skill_level[ability] = 1;
-                  ch->experience[ability] = 0;
+                  ch->skill_level[ability] = 0;
                   ch->bonus[ability] = 0;
                }
             }
-            ch->top_level = 1;
-            ch->hit = ch->max_hit;
-            ch->hit += race_table[ch->race].hit;
-            ch->move = ch->max_move;
-            if( ch->perm_frc > 0 )
-               ch->max_mana = 100 + 100 * ch->perm_frc;
-            else
-               ch->max_mana = 0;
-            ch->mana = ch->max_mana;
-            sprintf( buf, "%s the %s", ch->name, race_table[ch->race].race_name );
-            set_title( ch, buf );
+            ch->top_level = 0;
+            ch->position = POS_STANDING;
+            // Threw in commfreq here, hope it doesn't fuck with anything
+            sprintf( buf, "%d%d%d.%d%d%d",
+                  number_range( 0, 9 ),
+                  number_range( 0, 9 ),
+                  number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ) );
 
-            /*
-             * Newbies get some cash! - Tawnos 
-             */
-            ch->gold = 10000;
-
-            /*
-             * Added by Narn.  Start new characters with autoexit and autgold
-             * already turned on.  Very few people don't use those. 
-             */
-            SET_BIT( ch->act, PLR_AUTOGOLD );
-            SET_BIT( ch->act, PLR_AUTOEXIT );
-
-            /*
-             * New players don't have to earn some eq 
-             */
-
-            if( ch->race != RACE_DEFEL )
-            {
-               obj = create_object( get_obj_index( 121 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_HANDS );
-               obj = create_object( get_obj_index( 122 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_BODY );
-               obj = create_object( get_obj_index( 123 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_HEAD );
-               obj = create_object( get_obj_index( 124 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_FEET );
-               obj = create_object( get_obj_index( 125 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_WAIST );
-               obj = create_object( get_obj_index( 126 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_ARMS );
-               obj = create_object( get_obj_index( 127 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_LEGS );
-               obj = create_object( get_obj_index( 128 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_SHIELD );
-               obj = create_object( get_obj_index( 129 ), 0 );
-               obj_to_char( obj, ch );
-               equip_char( ch, obj, WEAR_ABOUT );
-            }
-            obj = create_object( get_obj_index( 130 ), 0 );
-            obj_to_char( obj, ch );
-            equip_char( ch, obj, WEAR_WIELD );
-            obj = create_object( get_obj_index( 131 ), 0 );
-            obj_to_char( obj, ch );
-            equip_char( ch, obj, WEAR_EARS );
-            obj = create_object( get_obj_index( 132 ), 0 );
-            obj_to_char( obj, ch );
-            equip_char( ch, obj, WEAR_BACK );
-
-            if( !sysdata.WAIT_FOR_AUTH )
-            {
-               char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
-               ch->pcdata->auth_state = 3;
-            }
-            else
-            {
-               char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
-               ch->pcdata->auth_state = 1;
-               SET_BIT( ch->pcdata->flags, PCFLAG_UNAUTHED );
-            }
+            if( ch->comfreq )
+               STRFREE( ch->comfreq );
+            ch->comfreq = STRALLOC( buf );
+            d->connected = CON_PRESS_ENTER;
+            break;
          }
-         else if( !IS_IMMORTAL( ch ) && ch->pcdata->release_date > current_time )
-         {
-            char_to_room( ch, get_room_index( 6 ) );
-         }
+      }
 
-         else if( ch->in_room && !IS_IMMORTAL( ch )
-                  && !IS_SET( ch->in_room->room_flags, ROOM_SPACECRAFT ) && ch->in_room != get_room_index( 6 ) )
+      if( iDroid == 8 || !droid_name[iDroid] || droid_name[iDroid][0] == '\0' )
+      {
+         send_to_desc_color( "&zThat's not a droid description.\r\nWhat is it going to be?&w ", d );
+         return;
+      }
+   }
+}
+
+void nanny_press_enter( DESCRIPTOR_DATA * d, const char *argument )
+{
+   CHAR_DATA *ch = d->character;
+
+   if( ch->top_level >= 0 )
+   {
+      send_to_pager( "\r\n&WMessage of the Day&w\r\n", ch );
+      do_help( ch, "motd" );
+   }
+/* Uh, do we use this?
+   if( IS_IMMORTAL(ch) )
+   {
+      send_to_pager( "&WImmortal Message of the Day&w\r\n", ch );
+      do_help( ch, "imotd" );
+   }
+*/
+   send_to_pager( "\r\n&WPress [ENTER] &w", ch );
+   d->connected = CON_READ_MOTD;
+}
+
+void nanny_read_motd( DESCRIPTOR_DATA * d, const char *argument )
+{
+   char buf[MAX_STRING_LENGTH];
+   CHAR_DATA *ch = d->character;
+
+   write_to_buffer( d, "\r\n\r\n", 0 );
+   add_char( ch );
+   sprintf( buf, " %s has entered the game.", ch->name );
+   log_string_plus( buf, LOG_NORMAL, get_trust( ch ) );
+   d->connected = CON_PLAYING;
+
+   if( ch->top_level == 0 )
+   {
+      OBJ_DATA *obj;
+      int iLang;
+
+      ch->pcdata->clan = NULL;
+      ch->pcdata->learned[gsn_smallspace] = 25;
+      ch->pcdata->learned[gsn_shipsystems] = 25;
+      ch->pcdata->learned[gsn_navigation] = 25;
+      ch->pcdata->learned[gsn_scan] = 25;
+
+      ch->perm_lck = number_range( 6, 18 );
+      ch->perm_frc = number_range( -1000, 20 );
+      ch->affected_by = race_table[ch->race].affected;
+      ch->perm_lck += race_table[ch->race].lck_plus;
+      ch->perm_frc += race_table[ch->race].frc_plus;
+
+      if( ch->main_ability == FORCE_ABILITY )
+         ch->perm_frc = URANGE( 0, ch->perm_frc, 20 );
+      else
+         ch->perm_frc = URANGE( 0, ch->perm_frc, 20 );
+
+      if( ch->main_ability == HUNTING_ABILITY || ch->main_ability == ASSASSIN_ABILITY || IS_DROID( ch ) )
+         ch->perm_frc = 0;
+
+      /*
+       * took out automaticly knowing basic
+       * if ( (iLang = skill_lookup( "basic" )) < 0 )
+       * bug( "Nanny: cannot find basic language." );
+       * else
+       * ch->pcdata->learned[iLang] = 100;
+       */
+
+   for( iLang = 0; lang_array[iLang] != LANG_UNKNOWN; iLang++ )
+      if( lang_array[iLang] == race_table[ch->race].language )
+         break;
+      if( lang_array[iLang] == LANG_UNKNOWN )
+      {
+         if( IS_DROID( ch ) && ( iLang = skill_lookup( "binary" ) ) >= 0 )
          {
-            char_to_room( ch, ch->in_room );
-         }
-         else if( ch->in_room && !IS_IMMORTAL( ch )
-                  && IS_SET( ch->in_room->room_flags, ROOM_SPACECRAFT ) && ch->in_room != get_room_index( 6 ) )
-         {
-            /*
-             * SHIP_DATA *ship;
-             * 
-             * for ( ship = first_ship; ship; ship = ship->next )
-             * if ( ch->in_room->vnum >= ship->firstroom && ch->in_room->vnum <= ship->lastroom )
-             * if ( ship->class != SHIP_PLATFORM || ship->starsystem ) 
-             */
-            char_to_room( ch, ch->in_room );
+            ch->pcdata->learned[iLang] = 100;
+            ch->speaking = LANG_BINARY;
+            SET_BIT( ch->speaks, LANG_BINARY );
          }
          else
+            bug( "Nanny: invalid racial language." );
+      }
+      else
+      {
+         if( ( iLang = skill_lookup( lang_names[iLang] ) ) < 0 )
+            bug( "Nanny: cannot find racial language." );
+         else
          {
-            char_to_room( ch, get_room_index( wherehome( ch ) ) );
-         }
-
-         if( get_timer( ch, TIMER_SHOVEDRAG ) > 0 )
-            remove_timer( ch, TIMER_SHOVEDRAG );
-
-         if( get_timer( ch, TIMER_PKILLED ) > 0 )
-            remove_timer( ch, TIMER_PKILLED );
-         if( ch->plr_home != NULL )
-         {
-            char filename[256];
-            FILE *fph;
-            ROOM_INDEX_DATA *storeroom = ch->plr_home;
-            OBJ_DATA *obj;
-            OBJ_DATA *obj_next;
-
-            for( obj = storeroom->first_content; obj; obj = obj_next )
+            ch->pcdata->learned[iLang] = 100;
+            ch->speaking = race_table[ch->race].language;
+            if( ch->race == RACE_QUARREN && ( iLang = skill_lookup( "quarren" ) ) >= 0 )
             {
-               obj_next = obj->next_content;
-               extract_obj( obj );
+               ch->pcdata->learned[iLang] = 100;
+               SET_BIT( ch->speaks, LANG_QUARREN );
             }
+            if( ch->race == RACE_MON_CALAMARI && ( iLang = skill_lookup( "basic" ) ) >= 0 )
+               ch->pcdata->learned[iLang] = 100;
 
-            sprintf( filename, "%s%c/%s.home", PLAYER_DIR, tolower( ch->name[0] ), capitalize( ch->name ) );
-            if( ( fph = fopen( filename, "r" ) ) != NULL )
-            {
-               int iNest;
-               bool found;
-               OBJ_DATA *tobj, *tobj_next;
-
-               rset_supermob( storeroom );
-               for( iNest = 0; iNest < MAX_NEST; iNest++ )
-                  rgObjNest[iNest] = NULL;
-
-               found = TRUE;
-               for( ;; )
-               {
-                  char letter;
-                  char *word;
-
-                  letter = fread_letter( fph );
-                  if( letter == '*' )
-                  {
-                     fread_to_eol( fph );
-                     continue;
-                  }
-
-                  if( letter != '#' )
-                  {
-                     bug( "Load_plr_home: # not found.", 0 );
-                     bug( ch->name, 0 );
-                     break;
-                  }
-
-                  word = fread_word( fph );
-                  if( !str_cmp( word, "OBJECT" ) ) /* Objects  */
-                     fread_obj( supermob, fph, OS_CARRY );
-                  else if( !str_cmp( word, "END" ) )  /* Done     */
-                     break;
-                  else
-                  {
-                     bug( "Load_plr_home: bad section.", 0 );
-                     bug( ch->name, 0 );
-                     break;
-                  }
-               }
-
-               fclose( fph );
-
-               for( tobj = supermob->first_carrying; tobj; tobj = tobj_next )
-               {
-                  tobj_next = tobj->next_content;
-                  obj_from_char( tobj );
-                  obj_to_room( tobj, storeroom );
-               }
-
-               release_supermob(  );
-
-            }
          }
+      }
 
+      /*
+       * ch->resist           += race_table[ch->race].resist;    drats 
+       * ch->susceptible     += race_table[ch->race].suscept;    drats 
+       */
+
+      reset_colors( ch );
+      name_stamp_stats( ch );
+
+      {
+         int ability;
+
+         for( ability = 0; ability < MAX_ABILITY; ability++ )
          {
-            int ability;
-
-            for( ability = 0; ability < MAX_ABILITY; ability++ )
-               if( ch->skill_level[ability] > max_level( ch, ability ) )
-                  ch->skill_level[ability] = max_level( ch, ability );
+            ch->skill_level[ability] = 1;
+            ch->experience[ability] = 0;
+            ch->bonus[ability] = 0;
          }
+      }
+      ch->top_level = 1;
+      ch->hit = ch->max_hit;
+      ch->hit += race_table[ch->race].hit;
+      ch->move = ch->max_move;
+      if( ch->perm_frc > 0 )
+         ch->max_mana = 100 + 100 * ch->perm_frc;
+      else
+         ch->max_mana = 0;
+      ch->mana = ch->max_mana;
+      sprintf( buf, "%s the %s", ch->name, race_table[ch->race].race_name );
+      set_title( ch, buf );
 
-//    act( AT_ACTION, "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
-         do_look( ch, "auto" );
-         mail_count( ch );
-         break;
+      /*
+       * Newbies get some cash! - Tawnos 
+       */
+      ch->gold = 10000;
 
-         /*
-          * Far too many possible screwups if we do it this way. -- Altrag 
-          */
-/*        case CON_NEW_LANGUAGE:
-        for ( iLang = 0; lang_array[iLang] != LANG_UNKNOWN; iLang++ )
-		if ( !str_prefix( argument, lang_names[iLang] ) )
-			if ( can_learn_lang( ch, lang_array[iLang] ) )
-			{
-				add_char( ch );
-				SET_BIT( ch->speaks, lang_array[iLang] );
-				set_char_color( AT_SAY, ch );
-				ch_printf( ch, "You can now speak %s.\r\n", lang_names[iLang] );
-				d->connected = CON_PLAYING;
-				return;
-			}
-	set_char_color( AT_SAY, ch );
-	write_to_buffer( d, "You may not learn that language.  Please choose another.\r\n"
-				  "New language: ", 0 );
-	break;*/
+      /*
+       * Added by Narn.  Start new characters with autoexit and autgold
+       * already turned on.  Very few people don't use those. 
+       */
+      SET_BIT( ch->act, PLR_AUTOGOLD );
+      SET_BIT( ch->act, PLR_AUTOEXIT );
+
+      /*
+       * New players don't have to earn some eq 
+       */
+      if( ch->race != RACE_DEFEL )
+      {
+         obj = create_object( get_obj_index( 121 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_HANDS );
+         obj = create_object( get_obj_index( 122 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_BODY );
+         obj = create_object( get_obj_index( 123 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_HEAD );
+         obj = create_object( get_obj_index( 124 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_FEET );
+         obj = create_object( get_obj_index( 125 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_WAIST );
+         obj = create_object( get_obj_index( 126 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_ARMS );
+         obj = create_object( get_obj_index( 127 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_LEGS );
+         obj = create_object( get_obj_index( 128 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_SHIELD );
+         obj = create_object( get_obj_index( 129 ), 0 );
+         obj_to_char( obj, ch );
+         equip_char( ch, obj, WEAR_ABOUT );
+      }
+      obj = create_object( get_obj_index( 130 ), 0 );
+      obj_to_char( obj, ch );
+      equip_char( ch, obj, WEAR_WIELD );
+      obj = create_object( get_obj_index( 131 ), 0 );
+      obj_to_char( obj, ch );
+      equip_char( ch, obj, WEAR_EARS );
+      obj = create_object( get_obj_index( 132 ), 0 );
+      obj_to_char( obj, ch );
+      equip_char( ch, obj, WEAR_BACK );
+
+      if( !sysdata.WAIT_FOR_AUTH )
+      {
+         char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
+         ch->pcdata->auth_state = 3;
+      }
+      else
+      {
+         char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
+         ch->pcdata->auth_state = 1;
+         SET_BIT( ch->pcdata->flags, PCFLAG_UNAUTHED );
+      }
+   }
+   else if( !IS_IMMORTAL( ch ) && ch->pcdata->release_date > current_time )
+   {
+      char_to_room( ch, get_room_index( 6 ) );
+   }
+   else if( ch->in_room && !IS_IMMORTAL( ch ) && !IS_SET( ch->in_room->room_flags, ROOM_SPACECRAFT ) && ch->in_room != get_room_index( 6 ) )
+   {
+      char_to_room( ch, ch->in_room );
+   }
+   else if( ch->in_room && !IS_IMMORTAL( ch ) && IS_SET( ch->in_room->room_flags, ROOM_SPACECRAFT ) && ch->in_room != get_room_index( 6 ) )
+   {
+      /*
+       * SHIP_DATA *ship;
+       * 
+       * for ( ship = first_ship; ship; ship = ship->next )
+       * if ( ch->in_room->vnum >= ship->firstroom && ch->in_room->vnum <= ship->lastroom )
+       * if ( ship->sclass != SHIP_PLATFORM || ship->starsystem ) 
+       */
+      char_to_room( ch, ch->in_room );
+   }
+   else
+   {
+      char_to_room( ch, get_room_index( wherehome( ch ) ) );
    }
 
+   if( get_timer( ch, TIMER_SHOVEDRAG ) > 0 )
+      remove_timer( ch, TIMER_SHOVEDRAG );
+
+   if( get_timer( ch, TIMER_PKILLED ) > 0 )
+      remove_timer( ch, TIMER_PKILLED );
+
+   {
+      int ability;
+
+      for( ability = 0; ability < MAX_ABILITY; ability++ )
+         if( ch->skill_level[ability] > max_level( ch, ability ) )
+            ch->skill_level[ability] = max_level( ch, ability );
+   }
+
+   //act( AT_ACTION, "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
+   do_look( ch, "auto" );
+   mail_count( ch );
+}
+
+/*
+ * Deal with sockets that haven't logged in yet.
+ */
+void nanny( DESCRIPTOR_DATA * d, char *argument )
+{
+   while( isspace( *argument ) )
+      argument++;
+
+   switch ( d->connected )
+   {
+
+      default:
+         bug( "Nanny: bad d->connected %d.", d->connected );
+         close_socket( d, TRUE );
+         return;
+
+      case CON_GET_NAME:
+         nanny_get_name( d, argument );
+         break;
+
+      case CON_GET_OLD_PASSWORD:
+         nanny_get_old_password( d, argument );
+         break;
+
+      case CON_CONFIRM_NEW_NAME:
+         nanny_confirm_new_name( d, argument );
+         break;
+
+      case CON_GET_NEW_PASSWORD:
+         nanny_get_new_password( d, argument );
+         break;
+
+      case CON_CONFIRM_NEW_PASSWORD:
+         nanny_confirm_new_password( d, argument );
+         break;
+
+      case CON_GET_NEW_SEX:
+         nanny_get_new_sex( d, argument );
+         break;
+
+      case CON_GET_NEW_RACE:
+         nanny_get_new_race( d, argument );
+         break;
+
+      case CON_GET_NEW_CLASS:
+         nanny_get_new_primary( d, argument );
+         break;
+
+      case CON_GET_NEW_SECOND:
+         nanny_get_new_secondary( d, argument );
+         break;
+         
+      case CON_ROLL_STATS:
+         nanny_roll_stats( d, argument );
+         break;
+
+      case CON_GET_HEIGHT:
+         nanny_get_height( d, argument );
+         break;
+
+      case CON_GET_BUILD:
+         nanny_get_build( d, argument );
+         break;         
+
+      case CON_GET_DROID:
+         nanny_get_droid( d, argument );
+         break;
+
+      case CON_PRESS_ENTER:
+         nanny_press_enter( d, argument );
+         break;
+
+      case CON_READ_MOTD:
+         nanny_read_motd( d, argument );
+         break;
+   }
    return;
 }
 
@@ -2601,7 +2549,7 @@ case CON_GET_MSP:
 /*
  * Parse a name for acceptability.
  */
-bool check_parse_name( char *name )
+bool check_parse_name( const char *name )
 {
    /*
     * Reserved words.
@@ -2625,7 +2573,7 @@ bool check_parse_name( char *name )
     * Lock out IllIll twits.
     */
    {
-      char *pc;
+      const char *pc;
       bool fIll;
 
       fIll = TRUE;
@@ -2873,22 +2821,32 @@ char *obj_short( OBJ_DATA * obj )
 /* Major overhaul. -- Alty */
 /* Changed so it shows PERS instead of ch->name... sometimes -- Tawnos */
 #define NAME(ch)	(IS_NPC(ch) ? ch->short_descr : ch->name)
-char *act_string( const char *format, CHAR_DATA * to, CHAR_DATA * ch, void *arg1, void *arg2 )
+char *act_string( const char *format, CHAR_DATA * to, CHAR_DATA * ch, const void *arg1, const void *arg2 )
 {
-   static char *const he_she[] = { "it", "he", "she" };
-   static char *const him_her[] = { "it", "him", "her" };
-   static char *const his_her[] = { "its", "his", "her" };
+   static const char *const he_she[] = { "it", "he", "she" };
+   static const char *const him_her[] = { "it", "him", "her" };
+   static const char *const his_her[] = { "its", "his", "her" };
    static char buf[MAX_STRING_LENGTH];
    char fname[MAX_INPUT_LENGTH];
    char *point = buf;
+   char temp[MSL];
    const char *str = format;
    const char *i;
+   bool should_upper = false;
    CHAR_DATA *vch = ( CHAR_DATA * ) arg2;
    OBJ_DATA *obj1 = ( OBJ_DATA * ) arg1;
    OBJ_DATA *obj2 = ( OBJ_DATA * ) arg2;
 
+   if( str[0] == '$' )
+      DONT_UPPER = false;
+
    while( *str != '\0' )
    {
+      if( *str == '.' || *str == '?' || *str == '!' )
+         should_upper = true;
+      else if( should_upper == true && !isspace( *str ) && *str != '$' )
+         should_upper = false;
+
       if( *str != '$' )
       {
          *point++ = *str++;
@@ -2909,84 +2867,7 @@ char *act_string( const char *format, CHAR_DATA * to, CHAR_DATA * ch, void *arg1
                bug( "Act: bad code %c.", *str );
                i = " <@@@> ";
                break;
-            case 't':
-               i = ( char * )arg1;
-               break;
-            case 'T':
-               i = ( char * )arg2;
-               break;
-            case 'n':
-               i = ( to ? PERS( ch, to ) : NAME( ch ) );
-               break;
-            case 'N':
-               i = ( to ? PERS( vch, to ) : NAME( vch ) );
-               break;
-            case 'e':
-               if( ch->sex > 2 || ch->sex < 0 )
-               {
-                  bug( "act_string: player %s has sex set at %d!", ch->name, ch->sex );
-                  i = "it";
-               }
-               else
-                  i = he_she[URANGE( 0, ch->sex, 2 )];
-               break;
-            case 'E':
-               if( vch->sex > 2 || vch->sex < 0 )
-               {
-                  bug( "act_string: player %s has sex set at %d!", vch->name, vch->sex );
-                  i = "it";
-               }
-               else
-                  i = he_she[URANGE( 0, vch->sex, 2 )];
-               break;
-            case 'm':
-               if( ch->sex > 2 || ch->sex < 0 )
-               {
-                  bug( "act_string: player %s has sex set at %d!", ch->name, ch->sex );
-                  i = "it";
-               }
-               else
-                  i = him_her[URANGE( 0, ch->sex, 2 )];
-               break;
-            case 'M':
-               if( vch->sex > 2 || vch->sex < 0 )
-               {
-                  bug( "act_string: player %s has sex set at %d!", vch->name, vch->sex );
-                  i = "it";
-               }
-               else
-                  i = him_her[URANGE( 0, vch->sex, 2 )];
-               break;
-            case 's':
-               if( ch->sex > 2 || ch->sex < 0 )
-               {
-                  bug( "act_string: player %s has sex set at %d!", ch->name, ch->sex );
-                  i = "its";
-               }
-               else
-                  i = his_her[URANGE( 0, ch->sex, 2 )];
-               break;
-            case 'S':
-               if( vch->sex > 2 || vch->sex < 0 )
-               {
-                  bug( "act_string: player %s has sex set at %d!", vch->name, vch->sex );
-                  i = "its";
-               }
-               else
-                  i = his_her[URANGE( 0, vch->sex, 2 )];
-               break;
-            case 'q':
-               i = ( to == ch ) ? "" : "s";
-               break;
-            case 'Q':
-               i = ( to == ch ) ? "your" : his_her[URANGE( 0, ch->sex, 2 )];
-               break;
-            case 'p':
-               i = ( !to || can_see_obj( to, obj1 ) ? obj_short( obj1 ) : "something" );
-               break;
-            case 'P':
-               i = ( !to || can_see_obj( to, obj2 ) ? obj_short( obj2 ) : "something" );
-               break;
+
             case 'd':
                if( !arg2 || ( ( char * )arg2 )[0] == '\0' )
                   i = "door";
@@ -2996,20 +2877,174 @@ char *act_string( const char *format, CHAR_DATA * to, CHAR_DATA * ch, void *arg1
                   i = fname;
                }
                break;
+
+            case 'e':
+               if( ch->sex > 2 || ch->sex < 0 )
+               {
+                  bug( "act_string: player %s has sex set at %d!", ch->name, ch->sex );
+                  i = should_upper ? "It" : "it";
+               }
+               else
+                  i = should_upper ? 
+                   !can_see( to, ch ) ? "It" : capitalize( he_she[URANGE( 0, ch->sex, 2 )] ) :
+                   !can_see( to, ch ) ? "it" : he_she[URANGE( 0, ch->sex, 2 )];
+               break;
+
+            case 'E':
+               if( vch->sex > 2 || vch->sex < 0 )
+               {
+                  bug( "act_string: player %s has sex set at %d!", vch->name, vch->sex );
+                  i = should_upper ? "It" : "it";
+               }
+               else
+                  i = should_upper ? 
+                   !can_see( to, vch ) ? "It" : capitalize( he_she[URANGE( 0, vch->sex, 2 )] ) :
+                   !can_see( to, vch ) ? "it" : he_she[URANGE( 0, vch->sex, 2 )];
+               break;
+
+            case 'm':
+               if( ch->sex > 2 || ch->sex < 0 )
+               {
+                  bug( "act_string: player %s has sex set at %d!", ch->name, ch->sex );
+                  i = should_upper ? "It" : "it";
+               }
+               else
+                  i = should_upper ? 
+                   !can_see( to, ch ) ? "It" : capitalize( him_her[URANGE( 0, ch->sex, 2 )] ) :
+                   !can_see( to, ch ) ? "it" : him_her[URANGE( 0, ch->sex, 2 )];
+               break;
+
+            case 'M':
+               if( vch->sex > 2 || vch->sex < 0 )
+               {
+                  bug( "act_string: player %s has sex set at %d!", vch->name, vch->sex );
+                  i = should_upper ? "It" : "it";
+               }
+               else
+                  i = should_upper ? 
+                   !can_see( to, vch ) ? "It" : capitalize( him_her[URANGE( 0, vch->sex, 2 )] ) :
+                   !can_see( to, vch ) ? "it" : him_her[URANGE( 0, vch->sex, 2 )];
+               break;
+
+            case 'n':
+               if( !can_see( to, ch ) )
+                  i = "Someone";
+               else
+               {
+                  snprintf( temp, sizeof( temp ), "%s", ( to ? PERS( ch, to ) : NAME( ch ) ) );
+                  i = temp;
+               }
+               break;
+
+            case 'N':
+               if( !can_see( to, vch ) )
+                  i = "Someone";
+               else
+               {
+                  snprintf( temp, sizeof( temp ), "%s", ( to ? PERS( vch, to ) : NAME( vch ) ) );
+                  i = temp;
+               }
+               break;
+
+            case 'p':
+               if( !obj1 )
+               {
+                  bug( "act_string: $p used with NULL obj1!" );
+                  i = "something";
+               }
+               else
+                  i = should_upper ? ( ( !to || can_see_obj( to, obj1 ) ) ? capitalize( obj_short( obj1 ) ) : "Something" )
+                                     :( ( !to || can_see_obj( to, obj1 ) ) ? obj_short( obj1 ) : "something" );
+               break;
+
+            case 'P':
+               if( !obj2 )
+               {
+                  bug( "act_string: $P used with NULL obj2!" );
+                  i = "something";
+               }
+               else
+                  i = should_upper ? (  !to || can_see_obj( to, obj2 ) ? capitalize( obj_short( obj2 ) ) : "Something" )
+                                     :(  !to || can_see_obj( to, obj2 ) ? obj_short( obj2 ) : "something" );
+               break;
+
+            case 'q':
+               i = ( to == ch ) ? "" : "s";
+               break;
+            case 'Q':
+               i = ( to == ch ) ? "your" : his_her[URANGE( 0, ch->sex, 2 )];
+               break;
+
+            case 's':
+               if( ch->sex > 2 || ch->sex < 0 )
+               {
+                  bug( "act_string: player %s has sex set at %d!", ch->name, ch->sex );
+                  i = should_upper ? "It" : "it";
+               }
+               else
+                  i = should_upper ? 
+                   !can_see( to, ch ) ? "It" : capitalize( his_her[URANGE( 0, ch->sex, 2 )] ) :
+                   !can_see( to, ch ) ? "it" : his_her[URANGE( 0, ch->sex, 2 )];
+               break;
+
+            case 'S':
+               if( vch->sex > 2 || vch->sex < 0 )
+               {
+                  bug( "act_string: player %s has sex set at %d!", vch->name, vch->sex );
+                  i = should_upper ? "It" : "it";
+               }
+               else
+                  i = should_upper ? 
+                   !can_see( to, vch ) ? "It" : capitalize( his_her[URANGE( 0, vch->sex, 2 )] ) :
+                   !can_see( to, vch ) ? "it" : his_her[URANGE( 0, vch->sex, 2 )];
+               break;
+
+            case 't':
+               i = ( char * )arg1;
+               break;
+
+            case 'T':
+               i = ( char * )arg2;
+               break;
          }
       }
       ++str;
       while( ( *point = *i ) != '\0' )
          ++point, ++i;
    }
-   strcpy( point, "\r\n" );
-   buf[0] = UPPER( buf[0] );
+   mudstrlcpy( point, "\r\n", MSL );
+   if( !DONT_UPPER )
+   {
+      bool bUppercase = true;     //Always uppercase first letter 
+      char *astr = buf; 
+      for( char c = *astr; c; c= *++astr ) 
+      { 
+          if( c == '&' ) 
+          { 
+               //Color Code 
+               c = *++astr;     //Read Color Code 
+               if( c == '[' ) 
+               { 
+                    //Extended color code, skip until ']' 
+                    do { c = *++astr; } while ( c && c != ']' ); 
+               } 
+      
+               if( !c )     
+                   break; 
+          } 
+          else if( bUppercase && isalpha( c ) ) 
+          { 
+               *astr = toupper(c); 
+               bUppercase = false; 
+          } 
+     }
+   }
    return buf;
 }
 
 #undef NAME
 
-void act( short AType, const char *format, CHAR_DATA * ch, void *arg1, void *arg2, int type )
+void act( short AType, const char *format, CHAR_DATA * ch, const void *arg1, const void *arg2, int type )
 {
    char *txt;
    CHAR_DATA *to;
@@ -3111,27 +3146,28 @@ void act( short AType, const char *format, CHAR_DATA * ch, void *arg1, void *arg
    return;
 }
 
-void do_name( CHAR_DATA * ch, char *argument )
+void do_name( CHAR_DATA * ch, const char *argument )
 {
    char fname[1024];
    struct stat fst;
    CHAR_DATA *tmp;
+   char arg[MIL];
 
    if( !NOT_AUTHED( ch ) || ch->pcdata->auth_state != 2 )
    {
       send_to_char( "Huh?\r\n", ch );
       return;
    }
+   snprintf( arg, MIL, "%s", argument );
+   arg[0] = UPPER( arg[0] );
 
-   argument[0] = UPPER( argument[0] );
-
-   if( !check_parse_name( argument ) )
+   if( !check_parse_name( arg ) )
    {
       send_to_char( "Illegal name, try another.\r\n", ch );
       return;
    }
 
-   if( !str_cmp( ch->name, argument ) )
+   if( !str_cmp( ch->name, arg ) )
    {
       send_to_char( "That's already your name!\r\n", ch );
       return;
@@ -3139,7 +3175,7 @@ void do_name( CHAR_DATA * ch, char *argument )
 
    for( tmp = first_char; tmp; tmp = tmp->next )
    {
-      if( !str_cmp( argument, tmp->name ) )
+      if( !str_cmp( arg, tmp->name ) )
          break;
    }
 
@@ -3149,7 +3185,7 @@ void do_name( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   sprintf( fname, "%s%c/%s", PLAYER_DIR, tolower( argument[0] ), capitalize( argument ) );
+   sprintf( fname, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
    if( stat( fname, &fst ) != -1 )
    {
       send_to_char( "That name is already taken.  Please choose another.\r\n", ch );
@@ -3157,7 +3193,7 @@ void do_name( CHAR_DATA * ch, char *argument )
    }
 
    STRFREE( ch->name );
-   ch->name = STRALLOC( argument );
+   ch->name = STRALLOC( arg );
    send_to_char( "Your name has been changed.  Please apply again.\r\n", ch );
    ch->pcdata->auth_state = 0;
    return;
@@ -3219,7 +3255,7 @@ char *default_prompt( CHAR_DATA * ch )
 
 int getcolor( char clr )
 {
-   static const char colors[16] = "xrgObpcwzRGYBPCW";
+   static const char colors[17] = "xrgObpcwzRGYBPCW";
    int r;
 
    for( r = 0; r < 16; r++ )
@@ -3236,7 +3272,7 @@ void display_prompt( DESCRIPTOR_DATA * d )
    const char *prompt;
    char buf[MAX_STRING_LENGTH];
    char *pbuf = buf;
-   int pstat;
+   unsigned int pstat;
 
    if( !ch )
    {
@@ -3460,7 +3496,7 @@ bool pager_output( DESCRIPTOR_DATA * d )
    return ret;
 }
 
-void do_idealog( CHAR_DATA * ch, char *argument )
+void do_idealog( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -3496,7 +3532,7 @@ void do_idealog( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_giveslug( CHAR_DATA * ch, char *argument )
+void do_giveslug( CHAR_DATA * ch, const char *argument )
 {
 /*   SHIP_PROTOTYPE * prototype;
    CHAR_DATA	  * victim;
@@ -3558,7 +3594,7 @@ FELLOW_DATA *knowsof( CHAR_DATA * ch, CHAR_DATA * victim )
    return NULL;
 }
 
-char *PERS( CHAR_DATA * ch, CHAR_DATA * looker )
+const char *PERS( CHAR_DATA * ch, CHAR_DATA * looker )
 {
    static char buf[MAX_STRING_LENGTH];
    char race[MAX_STRING_LENGTH];

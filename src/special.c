@@ -114,7 +114,7 @@ void load_specfuns( void )
 }
 
 /* Simple validation function to be sure a function can be used on mobs */
-bool validate_spec_fun( char *name )
+bool validate_spec_fun( const char *name )
 {
    SPEC_LIST *specfun;
 
@@ -129,7 +129,7 @@ bool validate_spec_fun( char *name )
 /*
  * Given a name, return the appropriate spec_fun.
  */
-SPEC_FUN *spec_lookup( char *name )
+SPEC_FUN *spec_lookup( const char *name )
 {
    void *funHandle;
    const char *error;
@@ -771,22 +771,19 @@ bool spec_police( CHAR_DATA * ch )
                {
                   act( AT_ACTION, "$n fines $N an enormous amount of money.", ch, NULL, victim, TO_NOTVICT );
                   act( AT_ACTION, "$n fines you an enourmous amount of money.", ch, NULL, victim, TO_VICT );
-                  victim->gold = victim->gold * .75;
+                  victim->gold = ( int )( victim->gold * .75 );
                }
                else
                {
                   act( AT_ACTION, "$n fines $N a small amount of money.", ch, NULL, victim, TO_NOTVICT );
                   act( AT_ACTION, "$n fines you a small amount of money.", ch, NULL, victim, TO_VICT );
-                  victim->gold = victim->gold * .9;
+                  victim->gold = ( int )( victim->gold * .9 );
                }
             }
             return TRUE;
          }
-
    }
-
    return FALSE;
-
 }
 
 bool spec_police_attack( CHAR_DATA * ch )
@@ -817,11 +814,8 @@ bool spec_police_attack( CHAR_DATA * ch )
             multi_hit( ch, victim, TYPE_UNDEFINED );
             return TRUE;
          }
-
    }
-
    return FALSE;
-
 }
 
 bool spec_police_fine( CHAR_DATA * ch )
@@ -852,22 +846,19 @@ bool spec_police_fine( CHAR_DATA * ch )
             {
                act( AT_ACTION, "$n fines $N an enormous amount of money.", ch, NULL, victim, TO_NOTVICT );
                act( AT_ACTION, "$n fines you an enourmous amount of money.", ch, NULL, victim, TO_VICT );
-               victim->gold = victim->gold * .75;
+               victim->gold = ( int )( victim->gold * .75 );
             }
             else
             {
                act( AT_ACTION, "$n fines $N a small amount of money.", ch, NULL, victim, TO_NOTVICT );
                act( AT_ACTION, "$n fines you a small amount of money.", ch, NULL, victim, TO_VICT );
-               victim->gold = victim->gold * .9;
+               victim->gold = ( int )( victim->gold * .9 );
             }
             REMOVE_BIT( victim->pcdata->wanted_flags, 1 << vip );
             return TRUE;
          }
-
    }
-
    return FALSE;
-
 }
 
 bool spec_police_jail( CHAR_DATA * ch )
@@ -909,11 +900,8 @@ bool spec_police_jail( CHAR_DATA * ch )
             }
             return TRUE;
          }
-
    }
-
    return FALSE;
-
 }
 
 bool spec_jedi_healer( CHAR_DATA * ch )
@@ -977,7 +965,7 @@ bool spec_dark_jedi( CHAR_DATA * ch )
 {
    CHAR_DATA *victim;
    CHAR_DATA *v_next;
-   char *spell;
+   const char *spell;
    int sn;
 
 
@@ -1159,7 +1147,7 @@ bool spec_guardian( CHAR_DATA * ch )
    CHAR_DATA *victim;
    CHAR_DATA *v_next;
    CHAR_DATA *ech;
-   char *crime;
+   const char *crime;
    int max_evil;
 
    if( !IS_AWAKE( ch ) || ch->fighting )

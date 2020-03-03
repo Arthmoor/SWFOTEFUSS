@@ -31,6 +31,8 @@ Michael Seifert, and Sebastian Hammer.
 #include <ctype.h>
 #include "mud.h"
 
+bool MOBtrigger;
+
 void uphold_supermob( int *curr_serial, int serial, ROOM_INDEX_DATA **supermob_room, OBJ_DATA *true_supermob_obj )
 {
    if( *curr_serial != serial )
@@ -110,24 +112,21 @@ MPSLEEP_DATA *current_mpsleep = NULL;
  * Local function prototypes
  */
 
-char *mprog_next_command args( ( char *clist ) );
-bool mprog_seval args( ( char *lhs, char *opr, char *rhs, CHAR_DATA * mob ) );
-bool mprog_veval args( ( int lhs, char *opr, int rhs, CHAR_DATA * mob ) );
-int mprog_do_ifcheck args( ( char *ifcheck, CHAR_DATA * mob,
-                             CHAR_DATA * actor, OBJ_DATA * obj, void *vo, CHAR_DATA * rndm ) );
-void mprog_translate args( ( char ch, char *t, CHAR_DATA * mob,
-                             CHAR_DATA * actor, OBJ_DATA * obj, void *vo, CHAR_DATA * rndm ) );
-void mprog_driver args( ( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, bool single_step ) );
+char *mprog_next_command( char *clist );
+bool mprog_seval( const char *lhs, char *opr, char *rhs, CHAR_DATA * mob );
+bool mprog_veval( int lhs, char *opr, int rhs, CHAR_DATA * mob );
+int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, CHAR_DATA * rndm );
+void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, CHAR_DATA * rndm );
+void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, bool single_step );
 
-bool mprog_keyword_check args( ( const char *argu, const char *argl ) );
+bool mprog_keyword_check( const char *argu, const char *argl );
 
 
-void oprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type,
-                           OBJ_DATA * iobj );
+void oprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type, OBJ_DATA * iobj );
 void set_supermob( OBJ_DATA * obj );
 bool oprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type );
 void rprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type );
-void rprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
+void rprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
                            OBJ_DATA * obj, void *vo, int type, ROOM_INDEX_DATA * room );
 
 void init_supermob( void )
@@ -165,7 +164,7 @@ char *mprog_next_command( char *clist )
  *  still have trailing spaces so be careful when editing since:
  *  "guard" and "guard " are not equal.
  */
-bool mprog_seval( char *lhs, char *opr, char *rhs, CHAR_DATA * mob )
+bool mprog_seval( const char *lhs, char *opr, char *rhs, CHAR_DATA * mob )
 {
 
    if( !str_cmp( opr, "==" ) )
@@ -880,9 +879,9 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
  */
 void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, CHAR_DATA * rndm )
 {
-   static char *he_she[] = { "it", "he", "she" };
-   static char *him_her[] = { "it", "him", "her" };
-   static char *his_her[] = { "its", "his", "her" };
+   static const char *he_she[] = { "it", "he", "she" };
+   static const char *him_her[] = { "it", "him", "her" };
+   static const char *his_her[] = { "its", "his", "her" };
    CHAR_DATA *vict = ( CHAR_DATA * ) vo;
    OBJ_DATA *v_obj = ( OBJ_DATA * ) vo;
 
@@ -1695,7 +1694,7 @@ int mprog_do_command( char *cmnd, CHAR_DATA * mob, CHAR_DATA * actor,
    char buf[MAX_INPUT_LENGTH];
    char tmp[MAX_INPUT_LENGTH];
    char *point, *str, *i;
-   int validif, vnum;
+   int validif;
 
    /*
     * Isolate the first word of the line, it gives us a clue what
@@ -1774,7 +1773,6 @@ int mprog_do_command( char *cmnd, CHAR_DATA * mob, CHAR_DATA * actor,
    if( !str_cmp( firstword, "break" ) )
       return BERR;
 
-   vnum = mob->pIndexData->vnum;
    point = buf;
    str = cmnd;
 
@@ -1886,7 +1884,7 @@ bool mprog_keyword_check( const char *argu, const char *argl )
    char word[MAX_INPUT_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
-   int i;
+   unsigned int i;
    char *arg, *arglist;
    char *start, *end;
 
@@ -1929,7 +1927,7 @@ bool mprog_keyword_check( const char *argu, const char *argl )
  *  on a certain percent, or trigger on a keyword or word phrase.
  *  To see how this works, look at the various trigger routines..
  */
-void mprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type )
+void mprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type )
 {
 
    char temp1[MAX_STRING_LENGTH];
@@ -1940,7 +1938,7 @@ void mprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DA
    char *start;
    char *dupl;
    char *end;
-   int i;
+   unsigned int i;
 
    for( mprg = mob->pIndexData->mudprogs; mprg; mprg = mprg->next )
       if( mprg->type & type )
@@ -2293,7 +2291,7 @@ void mprog_hour_trigger( CHAR_DATA * mob )
    return;
 }
 
-void mprog_speech_trigger( char *txt, CHAR_DATA * actor )
+void mprog_speech_trigger( const char *txt, CHAR_DATA * actor )
 {
 
    CHAR_DATA *vmob;
@@ -2370,13 +2368,10 @@ void set_supermob( OBJ_DATA * obj )
 {
    ROOM_INDEX_DATA *room;
    OBJ_DATA *in_obj;
-   CHAR_DATA *mob;
    char buf[200];
 
    if( !supermob )
       supermob = create_mobile( get_mob_index( MOB_VNUM_SUPERMOB ) );
-
-   mob = supermob;   /* debugging */
 
    if( !obj )
       return;
@@ -2444,7 +2439,7 @@ bool oprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, vo
  * Triggers follow
  */
 
-int oprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
+int oprog_custom_trigger( const char *command, const char *argument, CHAR_DATA * ch )
 {
    ROOM_INDEX_DATA *room;
    MPROG_DATA *mprg;
@@ -2468,7 +2463,7 @@ int oprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
                temp = one_argument( temp, parg );
                if( !strcmp( pcom, command ) )
                {
-                  if( !parg || parg[0] == '\0' )
+                  if( parg[0] == '\0' )
                   {
                      found = TRUE;
                      break;
@@ -2500,7 +2495,7 @@ int oprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
                   temp = one_argument( temp, parg );
                   if( !strcmp( pcom, command ) )
                   {
-                     if( !parg || parg[0] == '\0' )
+                     if( parg[0] == '\0' )
                      {
                         found = TRUE;
                         break;
@@ -2526,7 +2521,7 @@ int oprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
    return 1;
 }
 
-int mprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
+int mprog_custom_trigger( const char *command, const char *argument, CHAR_DATA * ch )
 {
    ROOM_INDEX_DATA *room;
    MPROG_DATA *mprg;
@@ -2549,7 +2544,7 @@ int mprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
                temp = one_argument( temp, parg );
                if( !strcmp( pcom, command ) )
                {
-                  if( !parg || parg[0] == '\0' )
+                  if( parg[0] == '\0' )
                   {
                      found = TRUE;
                      break;
@@ -2571,7 +2566,7 @@ int mprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
    return 1;
 }
 
-int rprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
+int rprog_custom_trigger( const char *command, const char *argument, CHAR_DATA * ch )
 {
    ROOM_INDEX_DATA *room;
    MPROG_DATA *mprg;
@@ -2590,7 +2585,7 @@ int rprog_custom_trigger( char *command, char *argument, CHAR_DATA * ch )
          temp = one_argument( temp, parg );
          if( !strcmp( pcom, command ) )
          {
-            if( !parg || parg[0] == '\0' )
+            if( parg[0] == '\0' )
             {
                found = TRUE;
                break;
@@ -2643,7 +2638,7 @@ void oprog_greet_trigger( CHAR_DATA * ch )
    return;
 }
 
-void oprog_speech_trigger( char *txt, CHAR_DATA * ch )
+void oprog_speech_trigger( const char *txt, CHAR_DATA * ch )
 {
    OBJ_DATA *vobj;
 
@@ -2904,7 +2899,7 @@ void oprog_act_trigger( char *buf, OBJ_DATA * mobj, CHAR_DATA * ch, OBJ_DATA * o
    return;
 }
 
-void oprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
+void oprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
                            OBJ_DATA * obj, void *vo, int type, OBJ_DATA * iobj )
 {
 
@@ -2916,7 +2911,7 @@ void oprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
    char *start;
    char *dupl;
    char *end;
-   int i;
+   unsigned int i;
 
    for( mprg = iobj->pIndexData->mudprogs; mprg; mprg = mprg->next )
       if( mprg->type & type )
@@ -3136,7 +3131,7 @@ void rprog_death_trigger( CHAR_DATA * killer, CHAR_DATA * ch )
    return;
 }
 
-void rprog_speech_trigger( char *txt, CHAR_DATA * ch )
+void rprog_speech_trigger( const char *txt, CHAR_DATA * ch )
 {
    if( ch->in_room->progtypes & SPEECH_PROG )
    {
@@ -3160,7 +3155,7 @@ void rprog_random_trigger( CHAR_DATA * ch )
    return;
 }
 
-void rprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
+void rprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
                            OBJ_DATA * obj, void *vo, int type, ROOM_INDEX_DATA * room )
 {
 
@@ -3172,7 +3167,7 @@ void rprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
    char *start;
    char *dupl;
    char *end;
-   int i;
+   unsigned int i;
 
    if( actor && !char_died( actor ) && actor->in_room )
       room = actor->in_room;
@@ -3272,7 +3267,7 @@ void rprog_hour_trigger( CHAR_DATA * ch )
 }
 
 /* Written by Jenny, Nov 29/95 */
-void progbug( char *str, CHAR_DATA * mob )
+void progbug( const char *str, CHAR_DATA * mob )
 {
    /*
     * Check if we're dealing with supermob, which means the bug occurred
@@ -3335,7 +3330,7 @@ void room_act_update( void )
 
    while( ( runner = room_act_list ) != NULL )
    {
-      ROOM_INDEX_DATA *room = runner->vo;
+      ROOM_INDEX_DATA *room = (ROOM_INDEX_DATA *)runner->vo;
 
       while( ( mpact = room->mpact ) != NULL )
       {
@@ -3391,7 +3386,7 @@ void obj_act_update( void )
 
    while( ( runner = obj_act_list ) != NULL )
    {
-      OBJ_DATA *obj = runner->vo;
+      OBJ_DATA *obj = (OBJ_DATA *)runner->vo;
 
       while( ( mpact = obj->mpact ) != NULL )
       {

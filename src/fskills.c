@@ -37,8 +37,10 @@ Michael Seifert, and Sebastian Hammer.
 #include "mud.h"
 
 extern int top_affect;
+FORCE_SKILL *first_force_skill;
+FORCE_SKILL *last_force_skill;
 
-void fskill_refresh( CHAR_DATA * ch, char *argument )
+void fskill_refresh( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    fskill = force_test_skill_use( "meditate", ch, FORCE_NONCOMBAT );
@@ -77,7 +79,7 @@ void fskill_refresh( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_awareness( CHAR_DATA * ch, char *argument )
+void fskill_awareness( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    AFFECT_DATA af;
@@ -130,7 +132,7 @@ void fskill_awareness( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_finfo( CHAR_DATA * ch, char *argument )
+void fskill_finfo( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill, *skill;
    int count;
@@ -322,7 +324,7 @@ void fskill_finfo( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_student( CHAR_DATA * ch, char *argument )
+void fskill_student( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;
@@ -370,7 +372,7 @@ void fskill_student( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_master( CHAR_DATA * ch, char *argument )
+void fskill_master( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;
@@ -413,13 +415,13 @@ void fskill_master( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_identify( CHAR_DATA * ch, char *argument )
+void fskill_identify( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;
    int force_calc;
    if( argument[0] == '\0' )
-      argument = str_dup( ch->dest_buf );
+      argument = str_dup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "sense", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -520,7 +522,7 @@ void fskill_identify( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_promote( CHAR_DATA * ch, char *argument )
+void fskill_promote( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;
@@ -592,7 +594,7 @@ void fskill_promote( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_instruct( CHAR_DATA * ch, char *argument )
+void fskill_instruct( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill, *skill;
    CHAR_DATA *victim;
@@ -671,7 +673,7 @@ void fskill_instruct( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_heal( CHAR_DATA * ch, char *argument )
+void fskill_heal( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    fskill = force_test_skill_use( "heal", ch, FORCE_NONCOMBAT );
@@ -710,13 +712,13 @@ void fskill_heal( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_protect( CHAR_DATA * ch, char *argument )
+void fskill_protect( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;
    AFFECT_DATA af;
    if( argument[0] == '\0' )
-      argument = str_dup( ch->dest_buf );
+      argument = str_dup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "protect", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -785,13 +787,13 @@ void fskill_protect( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_fshield( CHAR_DATA * ch, char *argument )
+void fskill_fshield( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;
    AFFECT_DATA af;
    if( argument[0] == '\0' )
-      argument = str_dup( ch->dest_buf );
+      argument = str_dup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "fshield", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -886,7 +888,7 @@ void secondslash( CHAR_DATA * ch, CHAR_DATA * victim )
    return;
 }
 
-void fskill_slash( CHAR_DATA * ch, char *argument )
+void fskill_slash( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    OBJ_DATA *wield;
@@ -954,7 +956,7 @@ void fskill_slash( CHAR_DATA * ch, char *argument )
                  100 );
       if( IS_AFFECTED( victim, AFF_SANCTUARY ) )
          dam /= 2;
-      victim->hit -= dam * 1.5;
+      victim->hit -= ( int )( dam * 1.5 );
       if( wield->value[3] == WEAPON_DUAL_LIGHTSABER )
          secondslash( ch, victim );
       set_fighting( victim, ch );
@@ -1015,7 +1017,7 @@ void fskill_slash( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_whirlwind( CHAR_DATA * ch, char *argument )
+void fskill_whirlwind( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    OBJ_DATA *wield;
@@ -1071,13 +1073,13 @@ void fskill_whirlwind( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_squeeze( CHAR_DATA * ch, char *argument )
+void fskill_squeeze( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;
    AFFECT_DATA af;
    if( argument[0] == '\0' )
-      argument = str_dup( ch->dest_buf );
+      argument = str_dup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "choke", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -1147,13 +1149,13 @@ void fskill_squeeze( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_force_lightning( CHAR_DATA * ch, char *argument )
+void fskill_force_lightning( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    OBJ_DATA *wield;
    CHAR_DATA *victim;
    if( argument[0] == '\0' )
-      argument = str_dup( ch->dest_buf );
+      argument = str_dup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "lightning", ch, FORCE_COMBAT );
    if( fskill == NULL )
       return;
@@ -1220,7 +1222,7 @@ void fskill_force_lightning( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_fdisguise( CHAR_DATA * ch, char *argument )
+void fskill_fdisguise( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    fskill = force_test_skill_use( "fdisguise", ch, FORCE_NONCOMBAT );
@@ -1235,7 +1237,7 @@ void fskill_fdisguise( CHAR_DATA * ch, char *argument )
    }
 
    if( argument[0] == '\0' )
-      argument = str_dup( ch->dest_buf );
+      argument = str_dup( (const char*)ch->dest_buf );
 
    if( !strcmp( argument, "clear" ) )
    {
@@ -1278,6 +1280,8 @@ void fskill_fdisguise( CHAR_DATA * ch, char *argument )
          send_to_char( force_parse_string( ch, NULL, fskill->ch_effect[1] ), ch );
          force_send_to_room( ch, NULL, force_parse_string( ch, NULL, fskill->room_effect[1] ) );
          force_learn_from_success( ch, fskill );
+         if( ch->pcdata->disguise )
+            STRFREE( ch->pcdata->disguise );
          ch->pcdata->disguise = STRALLOC( argument );
          if( !ch->dest_buf )
             break;
@@ -1294,7 +1298,7 @@ void fskill_fdisguise( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_make_master( CHAR_DATA * ch, char *argument )
+void do_make_master( CHAR_DATA * ch, const char *argument )
 {
    char force_type[MAX_STRING_LENGTH];
    int ft;
@@ -1334,7 +1338,7 @@ void do_make_master( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
+void fskill_makelightsaber( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -1470,7 +1474,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1664,7 +1668,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
 
 }
 
-void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
+void fskill_makedualsaber( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
@@ -1799,7 +1803,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1983,7 +1987,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
 
 }
 
-void fskill_finish( CHAR_DATA * ch, char *argument )
+void fskill_finish( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    OBJ_DATA *wield;
@@ -2076,7 +2080,7 @@ void fskill_finish( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void fskill_fhelp( CHAR_DATA * ch, char *argument )
+void fskill_fhelp( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    FORCE_HELP *fhelp, *fdefault;
@@ -2086,7 +2090,7 @@ void fskill_fhelp( CHAR_DATA * ch, char *argument )
    if( fskill == NULL )
       return;
    if( !argument || argument[0] == '\0' )
-      argument = STRALLOC( "force" );
+      argument = "force";
    for( fhelp = first_force_help; fhelp; fhelp = fhelp->next )
    {
       if( fhelp->type != ch->force_type && fhelp->type != FORCE_GENERAL )
@@ -2264,7 +2268,7 @@ bool check_reflect( CHAR_DATA * ch, CHAR_DATA * victim, int dam )
    return TRUE;
 }
 
-void fskill_convert( CHAR_DATA * ch, char *argument )
+void fskill_convert( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;

@@ -6,6 +6,7 @@ Y            1300
 Z            1700
 Sector       0
 Type    	   0
+BaseValue    0
 PopSupport   55
 Starsystem   Calamari~
 GovernedBy   The New Republic~

@@ -38,7 +38,7 @@ Michael Seifert, and Sebastian Hammer.
 
 /* Modules are how ships are upgraded. Ships can have only so many modules, Depending on the type of ship. */
 /* The effectiveness of the modules can vary depending on the level of the technitian's makemodule skill */
-void do_makemodule( CHAR_DATA * ch, char *argument )
+void do_makemodule( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int affecttype, affectammount;
@@ -140,7 +140,7 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -334,7 +334,7 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_showmodules( CHAR_DATA * ch, char *argument )
+void do_showmodules( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    MODULE_DATA *mod;
@@ -402,7 +402,7 @@ void do_showmodules( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_showmodules );
 }
 
-void do_removemodule( CHAR_DATA * ch, char *argument )
+void do_removemodule( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    bool checktool;
@@ -477,7 +477,7 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -572,7 +572,7 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_shipmaintenance( CHAR_DATA * ch, char *argument )
+void do_shipmaintenance( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    int schance, change, bombs = 0;
@@ -614,7 +614,7 @@ void do_shipmaintenance( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -699,7 +699,7 @@ void do_shipmaintenance( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_scanbugs( CHAR_DATA * ch, char *argument )
+void do_scanbugs( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
 
@@ -755,7 +755,7 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;
@@ -810,7 +810,7 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_removebug( CHAR_DATA * ch, char *argument )
+void do_removebug( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    char arg[MAX_STRING_LENGTH];
@@ -862,7 +862,7 @@ void do_removebug( CHAR_DATA * ch, char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ch->dest_buf );
+         strcpy( arg, (const char*)ch->dest_buf );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;

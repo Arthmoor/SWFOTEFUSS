@@ -71,7 +71,7 @@ void comment_remove( CHAR_DATA * ch, CHAR_DATA * victim, NOTE_DATA * pnote )
    return;
 }
 
-void do_comment( CHAR_DATA * ch, char *argument )
+void do_comment( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
@@ -142,10 +142,7 @@ void do_comment( CHAR_DATA * ch, char *argument )
          send_to_char( "No comments about mobs\r\n", ch );
          return;
       }
-
-
    }
-
 
    if( !str_cmp( arg, "list" ) )
    {
@@ -352,11 +349,13 @@ void do_comment( CHAR_DATA * ch, char *argument )
 
       strtime = ctime( &current_time );
       strtime[strlen( strtime ) - 1] = '\0';
+
+      if( ch->pnote->date )
+         STRFREE( ch->pnote->date );
       ch->pnote->date = STRALLOC( strtime );
 
       pnote = ch->pnote;
       ch->pnote = NULL;
-
 
       /*
        * LIFO to make life easier 
@@ -368,7 +367,6 @@ void do_comment( CHAR_DATA * ch, char *argument )
       victim->comments = pnote;
 
       save_char_obj( victim );
-
 
 #ifdef NOTDEFD
       fclose( fpReserve );

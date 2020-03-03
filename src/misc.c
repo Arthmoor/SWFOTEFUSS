@@ -35,7 +35,7 @@ Michael Seifert, and Sebastian Hammer.
 
 extern int top_exit;
 
-void do_buyhome( CHAR_DATA * ch, char *argument )
+void do_buyhome( CHAR_DATA * ch, const char *argument )
 {
    ROOM_INDEX_DATA *room;
    AREA_DATA *pArea;
@@ -98,10 +98,11 @@ void do_buyhome( CHAR_DATA * ch, char *argument )
    send_to_char( "&GYou buy your home for 25000 credits.\r\n", ch );
 }
 
-void do_sellhome( CHAR_DATA * ch, char *argument )
+void do_sellhome( CHAR_DATA * ch, const char *argument )
 {
    ROOM_INDEX_DATA *room = ch->plr_home;
    AREA_DATA *pArea;
+   char hbuf[MSL];
 
    if( !ch->in_room )
       return;
@@ -142,12 +143,15 @@ void do_sellhome( CHAR_DATA * ch, char *argument )
 
    ch->plr_home = NULL;
    do_save( ch, "" );
+   snprintf( hbuf, MSL, "%s%c/%s.home", PLAYER_DIR, LOWER(ch->name[0]), ch->name );
+   if( remove( hbuf ) == -1 )
+       bug( "There was an error removing %s's home file", ch->name );
 
    send_to_char( "&GYou sell your home for 10000 credits.\r\n", ch );
 
 }
 
-void do_clone( CHAR_DATA * ch, char *argument )
+void do_clone( CHAR_DATA * ch, const char *argument )
 {
    long credits, bank;
    long played;
@@ -162,6 +166,12 @@ void do_clone( CHAR_DATA * ch, char *argument )
    if( IS_NPC( ch ) )
    {
       ch_printf( ch, "Yeah right!\r\n" );
+      return;
+   }
+
+   if( IS_IMMORTAL( ch ) )
+   {
+      send_to_char( "You wish!\r\n", ch );
       return;
    }
 
@@ -275,7 +285,7 @@ void do_clone( CHAR_DATA * ch, char *argument )
    ch->hit--;
 }
 
-void do_backup( CHAR_DATA * ch, char *argument )
+void do_backup( CHAR_DATA * ch, const char *argument )
 {
    long credits, bank;
    long played;
@@ -289,6 +299,12 @@ void do_backup( CHAR_DATA * ch, char *argument )
    if( IS_NPC( ch ) )
    {
       ch_printf( ch, "Yeah right!\r\n" );
+      return;
+   }
+
+   if( IS_IMMORTAL( ch ) )
+   {
+      send_to_char( "You wish!\r\n", ch );
       return;
    }
 
@@ -391,7 +407,7 @@ void do_backup( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_arm( CHAR_DATA * ch, char *argument )
+void do_arm( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
 
@@ -419,7 +435,7 @@ void do_arm( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_ammo( CHAR_DATA * ch, char *argument )
+void do_ammo( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *wield;
    OBJ_DATA *obj;
@@ -617,7 +633,7 @@ void do_ammo( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_setblaster( CHAR_DATA * ch, char *argument )
+void do_setblaster( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *wield;
    OBJ_DATA *wield2;
@@ -736,7 +752,7 @@ void do_setblaster( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_use( CHAR_DATA * ch, char *argument )
+void do_use( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char argd[MAX_INPUT_LENGTH];
@@ -837,12 +853,12 @@ void do_use( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_takedrug( CHAR_DATA * ch, char *argument )
+void do_takedrug( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    AFFECT_DATA af;
    int drug;
-   int sn;
+   int sn = 0;
 
    if( argument[0] == '\0' || !str_cmp( argument, "" ) )
    {
@@ -1015,7 +1031,7 @@ void sith_penalty( CHAR_DATA * ch )
  * Fill a container
  * Many enhancements added by Thoric (ie: filling non-drink containers)
  */
-void do_fill( CHAR_DATA * ch, char *argument )
+void do_fill( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1421,7 +1437,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_drink( CHAR_DATA * ch, char *argument )
+void do_drink( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -1576,7 +1592,7 @@ void do_drink( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_eat( CHAR_DATA * ch, char *argument )
+void do_eat( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    ch_ret retcode;
@@ -1713,7 +1729,7 @@ void do_eat( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_quaff( CHAR_DATA * ch, char *argument )
+void do_quaff( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    ch_ret retcode;
@@ -1787,7 +1803,7 @@ void do_quaff( CHAR_DATA * ch, char *argument )
 }
 
 
-void do_recite( CHAR_DATA * ch, char *argument )
+void do_recite( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -1872,10 +1888,10 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
    char buf[MAX_STRING_LENGTH];
    CHAR_DATA *rch;
    bool isup;
-   ROOM_INDEX_DATA *room, *to_room;
+   ROOM_INDEX_DATA *room, *to_room = NULL;
    EXIT_DATA *pexit, *pexit_rev;
    int edir;
-   char *txt;
+   const char *txt;
 
    if( IS_SET( obj->value[0], TRIG_UP ) )
       isup = TRUE;
@@ -1982,21 +1998,29 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       }
    }
 
-   /* Death support added by Remcon */
+   /*
+    * Death support added by Remcon 
+    */
    if( IS_SET( obj->value[0], TRIG_DEATH ) )
    {
-      /* Should we really send a message to the room? */
+      /*
+       * Should we really send a message to the room? 
+       */
       act( AT_DEAD, "$n falls prey to a terrible death!", ch, NULL, NULL, TO_ROOM );
       act( AT_DEAD, "Oopsie... you're dead!\r\n", ch, NULL, NULL, TO_CHAR );
       snprintf( buf, MAX_STRING_LENGTH, "%s hit a DEATH TRIGGER in room %d!", ch->name, ch->in_room->vnum );
       log_string( buf );
       to_channel( buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
 
-      /* Personaly I fiqured if we wanted it to be a full DT we could just have it send them into a DT. */
+      /*
+       * Personaly I fiqured if we wanted it to be a full DT we could just have it send them into a DT. 
+       */
       set_cur_char( ch );
       raw_kill( ch, ch );
 
-      /* If you want it to be more like a room deathtrap use this instead */
+      /*
+       * If you want it to be more like a room deathtrap use this instead 
+       */
 /*
       if( is_npc( ch ) )
          extract_char( ch, true );
@@ -2006,27 +2030,37 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       return;
    }
 
-   /* Object loading added by Remcon */
+   /*
+    * Object loading added by Remcon 
+    */
    if( IS_SET( obj->value[0], TRIG_OLOAD ) )
    {
       OBJ_INDEX_DATA *pObjIndex;
       OBJ_DATA *tobj;
 
-      /* value[1] for the obj vnum */
+      /*
+       * value[1] for the obj vnum 
+       */
       if( !( pObjIndex = get_obj_index( obj->value[1] ) ) )
       {
          bug( "%s: obj points to invalid object vnum %d", __FUNCTION__, obj->value[1] );
          return;
       }
-      /* Set room to NULL before the check */
+      /*
+       * Set room to NULL before the check 
+       */
       room = NULL;
-      /* value[2] for the room vnum to put the object in if there is one, 0 for giving it to char or current room */
+      /*
+       * value[2] for the room vnum to put the object in if there is one, 0 for giving it to char or current room 
+       */
       if( obj->value[2] > 0 && !( room = get_room_index( obj->value[2] ) ) )
       {
          bug( "%s: obj points to invalid room vnum %d", __FUNCTION__, obj->value[2] );
          return;
       }
-      /* Uses value[3] for level */
+      /*
+       * Uses value[3] for level 
+       */
       if( !( tobj = create_object( pObjIndex, URANGE( 0, obj->value[3], MAX_LEVEL ) ) ) )
       {
          bug( "%s: obj couldnt create_obj vnum %d at level %d", __FUNCTION__, obj->value[1], obj->value[3] );
@@ -2044,21 +2078,29 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       return;
    }
 
-   /* Mob loading added by Remcon */
+   /*
+    * Mob loading added by Remcon 
+    */
    if( IS_SET( obj->value[0], TRIG_MLOAD ) )
    {
       MOB_INDEX_DATA *pMobIndex;
       CHAR_DATA *mob;
 
-      /* value[1] for the obj vnum */
+      /*
+       * value[1] for the obj vnum 
+       */
       if( !( pMobIndex = get_mob_index( obj->value[1] ) ) )
       {
          bug( "%s: obj points to invalid mob vnum %d", __FUNCTION__, obj->value[1] );
          return;
       }
-      /* Set room to current room before the check */
+      /*
+       * Set room to current room before the check 
+       */
       room = ch->in_room;
-      /* value[2] for the room vnum to put the object in if there is one, 0 for giving it to char or current room */
+      /*
+       * value[2] for the room vnum to put the object in if there is one, 0 for giving it to char or current room 
+       */
       if( obj->value[2] > 0 && !( room = get_room_index( obj->value[2] ) ) )
       {
          bug( "%s: obj points to invalid room vnum %d", __FUNCTION__, obj->value[2] );
@@ -2073,7 +2115,9 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       return;
    }
 
-   /* Spell casting support added by Remcon */
+   /*
+    * Spell casting support added by Remcon 
+    */
    if( IS_SET( obj->value[0], TRIG_CAST ) )
    {
       if( obj->value[1] <= 0 || !IS_VALID_SN( obj->value[1] ) )
@@ -2081,11 +2125,14 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
          bug( "%s: obj points to invalid sn [%d]", __FUNCTION__, obj->value[1] );
          return;
       }
-      obj_cast_spell( obj->value[1], URANGE( 1, ( obj->value[2] > 0 ) ? obj->value[2] : ch->top_level, MAX_LEVEL ), ch, ch, NULL );
+      obj_cast_spell( obj->value[1], URANGE( 1, ( obj->value[2] > 0 ) ? obj->value[2] : ch->top_level, MAX_LEVEL ), ch, ch,
+                      NULL );
       return;
    }
 
-   /* Container support added by Remcon */
+   /*
+    * Container support added by Remcon 
+    */
    if( IS_SET( obj->value[0], TRIG_CONTAINER ) )
    {
       OBJ_DATA *container = NULL;
@@ -2114,9 +2161,15 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
          bug( "%s: obj points to object [%d], but it isn't a container.", __FUNCTION__, obj->value[2] );
          return;
       }
-      /* Could toss in some messages. Limit how it is handled etc... I'll leave that to each one to do */
-      /* Started to use TRIG_OPEN, TRIG_CLOSE, TRIG_LOCK, and TRIG_UNLOCK like TRIG_DOOR does. */
-      /* It limits it alot, but it wouldn't allow for an EATKEY change */
+      /*
+       * Could toss in some messages. Limit how it is handled etc... I'll leave that to each one to do 
+       */
+      /*
+       * Started to use TRIG_OPEN, TRIG_CLOSE, TRIG_LOCK, and TRIG_UNLOCK like TRIG_DOOR does. 
+       */
+      /*
+       * It limits it alot, but it wouldn't allow for an EATKEY change 
+       */
       if( IS_SET( obj->value[3], CONT_CLOSEABLE ) )
          TOGGLE_BIT( container->value[1], CONT_CLOSEABLE );
       if( IS_SET( obj->value[3], CONT_PICKPROOF ) )
@@ -2246,7 +2299,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
    }
 }
 
-void do_pull( CHAR_DATA * ch, char *argument )
+void do_pull( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2270,7 +2323,7 @@ void do_pull( CHAR_DATA * ch, char *argument )
    pullorpush( ch, obj, TRUE );
 }
 
-void do_push( CHAR_DATA * ch, char *argument )
+void do_push( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2295,7 +2348,7 @@ void do_push( CHAR_DATA * ch, char *argument )
 }
 
 /* pipe commands (light, tamp, smoke) by Thoric */
-void do_tamp( CHAR_DATA * ch, char *argument )
+void do_tamp( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *pipe;
    char arg[MAX_INPUT_LENGTH];
@@ -2330,7 +2383,7 @@ void do_tamp( CHAR_DATA * ch, char *argument )
    send_to_char( "It doesn't need tamping.\r\n", ch );
 }
 
-void do_smoke( CHAR_DATA * ch, char *argument )
+void do_smoke( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *pipe;
    char arg[MAX_INPUT_LENGTH];
@@ -2394,7 +2447,7 @@ void do_smoke( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_light( CHAR_DATA * ch, char *argument )
+void do_light( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *pipe;
    char arg[MAX_INPUT_LENGTH];
@@ -2435,7 +2488,7 @@ void do_light( CHAR_DATA * ch, char *argument )
    send_to_char( "It's already lit.\r\n", ch );
 }
 
-void do_empty( CHAR_DATA * ch, char *argument )
+void do_empty( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    char arg1[MAX_INPUT_LENGTH];
@@ -2563,7 +2616,7 @@ void do_empty( CHAR_DATA * ch, char *argument )
 /*
  * Apply a salve/ointment					-Thoric
  */
-void do_apply( CHAR_DATA * ch, char *argument )
+void do_apply( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    ch_ret retcode;
@@ -2740,7 +2793,7 @@ log_string_plus( buf, LOG_HIGH, LEVEL_LESSER );
    return;
 }
 
-void do_hail( CHAR_DATA * ch, char *argument )
+void do_hail( CHAR_DATA * ch, const char *argument )
 {
    int vnum;
    ROOM_INDEX_DATA *room;
@@ -2792,7 +2845,7 @@ void do_hail( CHAR_DATA * ch, char *argument )
 
       if( room != NULL )
       {
-         if( IS_SET( room->room_flags, ROOM_HOTEL ) )
+         if( IS_SET( room->room_flags, ROOM_HOTEL ) && !IS_SET( room->room_flags, ROOM_PLR_HOME ) )
             break;
          else
             room = NULL;
@@ -2820,7 +2873,7 @@ void do_hail( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_train( CHAR_DATA * ch, char *argument )
+void do_train( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *mob;
@@ -3036,7 +3089,7 @@ void do_train( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_suicide( CHAR_DATA * ch, char *argument )
+void do_suicide( CHAR_DATA * ch, const char *argument )
 {
    char logbuf[MAX_STRING_LENGTH];
    OBJ_DATA *wield;
@@ -3126,7 +3179,7 @@ void do_suicide( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_bank( CHAR_DATA * ch, char *argument )
+void do_bank( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    char arg1[MAX_INPUT_LENGTH];
@@ -3178,7 +3231,7 @@ void do_bank( CHAR_DATA * ch, char *argument )
       ch_printf( ch, "You deposit %ld credits into your account.\r\n", amount );
       return;
    }
-   else if( !str_prefix( arg1, "withdrawl" ) )
+   else if( !str_prefix( arg1, "withdraw" ) )
    {
       if( amount <= 0 )
       {
@@ -3200,7 +3253,7 @@ void do_bank( CHAR_DATA * ch, char *argument )
       return;
 
    }
-   else if( !str_prefix( arg1, "ballance" ) || !str_prefix( arg1, "balance" ) )
+   else if( !str_prefix( arg1, "balance" ) )
    {
       ch_printf( ch, "You have %ld credits in your account.\r\n", ch->pcdata->bank );
       return;
@@ -3251,11 +3304,9 @@ void do_bank( CHAR_DATA * ch, char *argument )
       do_bank( ch, "" );
       return;
    }
-
-
 }
 
-void do_showsocial( CHAR_DATA * ch, char *argument )
+void do_showsocial( CHAR_DATA * ch, const char *argument )
 {
    SOCIALTYPE *social;
 
@@ -3265,7 +3316,7 @@ void do_showsocial( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   social = find_social( argument );
+   social = find_social( argument, FALSE );
 
    if( !social )
    {
@@ -3332,7 +3383,7 @@ void do_lastname( CHAR_DATA *ch, char *argument )
 */
 
 
-void do_tune( CHAR_DATA * ch, char *argument )
+void do_tune( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    char buf[MAX_STRING_LENGTH];
@@ -3362,7 +3413,8 @@ void do_tune( CHAR_DATA * ch, char *argument )
    ship->channel = num;
    save_ship( ship );
 }
-void do_whisper( CHAR_DATA * ch, char *argument )
+
+void do_whisper( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    char arg1[MAX_STRING_LENGTH];
@@ -3384,14 +3436,14 @@ void do_whisper( CHAR_DATA * ch, char *argument )
 #define MAX_DROP_TROOPS 20
 
 //do_droptroops fixed by KeB 10/24/06
-void do_droptroops( CHAR_DATA *ch, char *argument )
+void do_droptroops( CHAR_DATA * ch, const char *argument )
 {
    int num, vnum, i;
    SHIP_DATA *ship;
    CHAR_DATA *mob;
-   MOB_INDEX_DATA  * pMobIndex;
-   OBJ_DATA        * blaster;
-   OBJ_INDEX_DATA  * pObjIndex;
+   MOB_INDEX_DATA *pMobIndex;
+   OBJ_DATA *blaster;
+   OBJ_INDEX_DATA *pObjIndex;
    ROOM_INDEX_DATA *room, *rtest;
    char tmpbuf[MAX_STRING_LENGTH];
 
@@ -3407,21 +3459,21 @@ void do_droptroops( CHAR_DATA *ch, char *argument )
       return;
    }
 
-   num = atoi(argument);
+   num = atoi( argument );
    if( num > ch->pcdata->clan->troops )
    {
       send_to_char( "Your clan doesn't have that many ground assault troops.\r\n", ch );
       return;
    }
 
-   if( ( ship = ship_from_cockpit(ch->in_room->vnum) ) == NULL )
+   if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
    {
       send_to_char( "You must be in the cockpit of the dropship to do this.\r\n", ch );
       return;
    }
 
    vnum = ship->location;
-   if( ( room = get_room_index(vnum) ) == NULL )
+   if( ( room = get_room_index( vnum ) ) == NULL )
    {
       send_to_char( "This ship is not in a room.\r\n", ch );
       return;
@@ -3443,13 +3495,17 @@ void do_droptroops( CHAR_DATA *ch, char *argument )
 
    for( i = 1; i <= num; i++ )
    {
-      /* Can be any room but the hi_room and low_room */
+      /*
+       * Can be any room but the hi_room and low_room 
+       */
       vnum = number_range( room->area->low_r_vnum + 1, room->area->hi_r_vnum - 1 );
 
-      if( ( rtest = get_room_index(vnum) ) == NULL )
+      if( ( rtest = get_room_index( vnum ) ) == NULL )
          continue;
 
-      /* Now lets make sure the room isn't safe and isn't a player home */
+      /*
+       * Now lets make sure the room isn't safe and isn't a player home 
+       */
       if( IS_SET( rtest->room_flags, ROOM_SAFE ) || IS_SET( rtest->room_flags, ROOM_PLR_HOME ) )
       {
          --i;
@@ -3458,7 +3514,7 @@ void do_droptroops( CHAR_DATA *ch, char *argument )
       mob = create_mobile( pMobIndex );
       char_to_room( mob, rtest );
       if( ch->pcdata && ch->pcdata->clan )
-         sprintf( tmpbuf , "(%s) %s" , ch->pcdata->clan->name  , mob->long_descr );
+         sprintf( tmpbuf, "(%s) %s", ch->pcdata->clan->name, mob->long_descr );
       STRFREE( mob->long_descr );
       mob->mob_clan = QUICKLINK( ch->pcdata->clan->name );
       mob->long_descr = STRALLOC( tmpbuf );
@@ -3469,12 +3525,14 @@ void do_droptroops( CHAR_DATA *ch, char *argument )
          equip_char( mob, blaster, WEAR_WIELD );
       }
    }
-   sprintf( tmpbuf, "&RYelling and the thunder of feet is heard from the troop hold as %d troops exit the ship and fan out.\r\n", num );
+   sprintf( tmpbuf,
+            "&RYelling and the thunder of feet is heard from the troop hold as %d troops exit the ship and fan out.\r\n",
+            num );
    ch->pcdata->clan->troops -= num;
    echo_to_cockpit( AT_RED, ship, tmpbuf );
 }
 
-void do_hale( CHAR_DATA * ch, char *argument )
+void do_hale( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    SHIP_DATA *ship2 = ship_from_cockpit( ch->in_room->vnum );
@@ -3524,7 +3582,7 @@ void do_hale( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_rpconvert( CHAR_DATA * ch, char *argument )
+void do_rpconvert( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
 
@@ -3567,8 +3625,13 @@ void do_rpconvert( CHAR_DATA * ch, char *argument )
       for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
       {
          if( UPPER( argument[0] ) == UPPER( ability_name[iClass][0] )
-             && !str_prefix( argument, ability_name[iClass] ) && str_prefix( argument, "force" ) )
+         && !str_prefix( argument, ability_name[iClass] ) && str_prefix( argument, "force" ) )
          {
+            if( max_level( ch, iClass ) >= 30 )
+            {
+               send_to_char( "&RYou are already at the max possible for that.\r\n", ch );
+               return;
+            }
             ch->bonus[iClass] += 1;
             ch_printf( ch, "&GYour ability in %s has been increased by 1!\r\n", ability_name[iClass] );
             sprintf( buf, "%s increased class %s with rpconvert.", ch->name, ability_name[iClass] );

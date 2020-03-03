@@ -47,12 +47,12 @@ void lost_arena( CHAR_DATA * ch );
 void remship( SHIP_DATA * ship );
 
 /* From comm.c */
-void name_log args( ( const char *str, ... ) );
+void name_log( const char *str, ... );
 
 /*
  * Local functions.
  */
-void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt );
+void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, unsigned int dt );
 void group_gain( CHAR_DATA * ch, CHAR_DATA * victim );
 int xp_compute( CHAR_DATA * gch, CHAR_DATA * victim );
 int align_compute( CHAR_DATA * gch, CHAR_DATA * victim );
@@ -540,7 +540,7 @@ ch_ret multi_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
     */
    if( IS_NPC( ch ) && ch->numattacks > 0 )
    {
-      for( schance = 0; schance <= ( ch->numattacks ); schance++ )
+      for( schance = 0; schance < ( ch->numattacks ); schance++ )
       {
          retcode = one_hit( ch, victim, dt );
          if( retcode != rNONE || who_fighting( ch ) != victim )
@@ -986,12 +986,12 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       }
       else if( wield->blaster_setting == BLASTER_FULL && wield->value[4] >= 5 )
       {
-         dam *= 1.5;
+         dam = ( int )( dam * 1.5 );
          wield->value[4] -= 5;
       }
       else if( wield->blaster_setting == BLASTER_HIGH && wield->value[4] >= 4 )
       {
-         dam *= 1.25;
+         dam = ( int )( dam * 1.25 );
          wield->value[4] -= 4;
       }
       else if( wield->blaster_setting == BLASTER_NORMAL && wield->value[4] >= 3 )
@@ -1062,12 +1062,12 @@ ch_ret one_hit( CHAR_DATA * ch, CHAR_DATA * victim, int dt )
       }
       else if( wield->blaster_setting == BLASTER_HALF && wield->value[4] >= 2 )
       {
-         dam *= 0.75;
+         dam = ( int )( dam * 0.75 );
          wield->value[4] -= 2;
       }
       else
       {
-         dam *= 0.5;
+         dam = ( int )( dam * 0.5 );
          wield->value[4] -= 1;
       }
 
@@ -1264,14 +1264,12 @@ short ris_damage( CHAR_DATA * ch, short dam, int ris )
 ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
 {
    short dameq;
-   int room;
    bool npcvict;
    bool loot;
    int xp_gain;
    OBJ_DATA *damobj, *wield, *victwield;
    ch_ret retcode;
    short dampmod;
-   int nocorpse = 0;
    retcode = rNONE;
 
    if( !ch )
@@ -1769,16 +1767,12 @@ ch_ret damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
          loot = legal_loot( ch, victim );
       else
          loot = FALSE;
-      if( IS_SET( victim->act, ACT_NOCORPSE ) )
-         nocorpse = 1;
-      // Make sure snipe doesnt loot.
-      room = victim->in_room->vnum;
 
       set_cur_char( victim );
       new_corpse = raw_kill( ch, victim );
       victim = NULL;
 
-      if( !IS_NPC( ch ) && loot && new_corpse && new_corpse->item_type == ITEM_CORPSE_NPC
+      if( ch->tempnum != INT_MIN && !IS_NPC( ch ) && loot && new_corpse && new_corpse->item_type == ITEM_CORPSE_NPC
        && new_corpse->in_room == ch->in_room && can_see_obj( ch, new_corpse ) && ch->position > POS_SLEEPING )
       {
          /*
@@ -2294,6 +2288,13 @@ OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim )
             victim->pcdata->clan->leader = STRALLOC( victim->pcdata->clan->number1 );
             STRFREE( victim->pcdata->clan->number1 );
             victim->pcdata->clan->number1 = STRALLOC( "" );
+            if( victim->pcdata->clan->number2 )
+            {
+               STRFREE( victim->pcdata->clan->number1 );
+               victim->pcdata->clan->number1 = STRALLOC( victim->pcdata->clan->number2 );
+               STRFREE( victim->pcdata->clan->number2 );
+               victim->pcdata->clan->number2 = STRALLOC( "" );
+            }
          }
          else if( victim->pcdata->clan->number2 )
          {
@@ -2546,7 +2547,7 @@ int xp_compute( CHAR_DATA * gch, CHAR_DATA * victim )
 /*
  * Revamped by Thoric to be more realistic
  */
-void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
+void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, unsigned int dt )
 {
    char buf1[256], buf2[256], buf3[256];
    const char *vs;
@@ -2680,7 +2681,7 @@ void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
    if( dam == 0 && ( !IS_NPC( victim ) && ( IS_SET( victim->pcdata->flags, PCFLAG_GAG ) ) ) )
       gvflag = TRUE;
 
-   if( dt >= 0 && dt < top_sn )
+   if( dt >= 0 && dt < (unsigned int)top_sn )
       skill = skill_table[dt];
 
    if( dt == ( TYPE_HIT + WEAPON_BLASTER ) )
@@ -2778,7 +2779,7 @@ void dam_message( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
 }
 
 
-void do_kill( CHAR_DATA * ch, char *argument )
+void do_kill( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
@@ -2850,7 +2851,7 @@ void do_kill( CHAR_DATA * ch, char *argument )
 
 
 
-void do_murde( CHAR_DATA * ch, char *argument )
+void do_murde( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "If you want to MURDER, spell it out.\r\n", ch );
    return;
@@ -2858,7 +2859,7 @@ void do_murde( CHAR_DATA * ch, char *argument )
 
 
 
-void do_murder( CHAR_DATA * ch, char *argument )
+void do_murder( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char logbuf[MAX_STRING_LENGTH];
@@ -2940,7 +2941,7 @@ bool in_arena( CHAR_DATA * ch )
 }
 
 
-void do_flee( CHAR_DATA * ch, char *argument )
+void do_flee( CHAR_DATA * ch, const char *argument )
 {
    ROOM_INDEX_DATA *was_in;
    ROOM_INDEX_DATA *now_in;
@@ -3075,7 +3076,7 @@ bool get_cover( CHAR_DATA * ch )
 
 
 
-void do_sla( CHAR_DATA * ch, char *argument )
+void do_sla( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "If you want to SLAY, spell it out.\r\n", ch );
    return;
@@ -3083,7 +3084,7 @@ void do_sla( CHAR_DATA * ch, char *argument )
 
 
 
-void do_slay( CHAR_DATA * ch, char *argument )
+void do_slay( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    char arg[MAX_INPUT_LENGTH];
@@ -3213,14 +3214,13 @@ void do_slay( CHAR_DATA * ch, char *argument )
 }
 
 //Assassin skill - retreat. Fairly shoddily thrown together.
-void do_retreat( CHAR_DATA * ch, char *argument )
+void do_retreat( CHAR_DATA * ch, const char *argument )
 {
    ROOM_INDEX_DATA *was_in;
    ROOM_INDEX_DATA *now_in;
    char buf[MAX_STRING_LENGTH];
    int edir, schance;
    EXIT_DATA *pexit;
-   EXIT_DATA *xit;
 
    if( !who_fighting( ch ) )
    {
@@ -3277,7 +3277,7 @@ void do_retreat( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   xit = get_exit( ch->in_room, edir );
+   get_exit( ch->in_room, edir );
    was_in = ch->in_room;
 
    if( ( pexit = get_exit( ch->in_room, edir ) ) == NULL || !pexit->to_room )

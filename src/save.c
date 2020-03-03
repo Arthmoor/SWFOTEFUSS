@@ -64,6 +64,7 @@ static OBJ_DATA *rgObjNest[MAX_NEST];
  */
 void fwrite_char( CHAR_DATA * ch, FILE * fp );
 void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot );
+void load_plr_home( CHAR_DATA * ch );
 
 void save_home( CHAR_DATA * ch )
 {
@@ -266,7 +267,7 @@ void save_clone( CHAR_DATA * ch )
    de_equip_char( ch );
 
    ch->save_time = current_time;
-   SET_BIT( ch->pcdata->act2, ACT_EXEMPT );
+   SET_BIT( ch->act, PLR_EXEMPT );
    sprintf( strsave, "%s%c/%s.clone", PLAYER_DIR, tolower( ch->name[0] ), capitalize( ch->name ) );
 
    /*
@@ -297,7 +298,7 @@ void save_clone( CHAR_DATA * ch )
    write_corpses( ch, NULL );
    quitting_char = NULL;
    saving_char = NULL;
-   REMOVE_BIT( ch->pcdata->act2, ACT_EXEMPT );
+   REMOVE_BIT( ch->act, PLR_EXEMPT );
    return;
 }
 
@@ -951,6 +952,11 @@ bool load_char_obj( DESCRIPTOR_DATA * d, char *name, bool preload, bool hotboot 
    }
 
    loading_char = NULL;
+   if( found )
+   {
+      if( ch->plr_home != NULL )
+         load_plr_home( ch );
+   }
    return found;
 }
 
@@ -961,13 +967,13 @@ void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot )
 {
    char buf[MAX_STRING_LENGTH];
    char *line;
-   char *word;
+   const char *word;
    int x1, x2, x3, x4, x5, x6, x7, x8, x9, x0;
    short killcnt;
    bool fMatch;
    int max_colors = 0;  /* Color code */
    time_t lastplayed;
-   int sn, extra;
+   int sn;
 
    file_ver = 0;
    killcnt = 0;
@@ -1443,7 +1449,6 @@ void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot )
             KEY( "PKills", ch->pcdata->pkills, fread_number( fp ) );
             KEY( "Played", ch->played, fread_number( fp ) );
             KEY( "Position", ch->position, fread_number( fp ) );
-            KEY( "Practice", extra, fread_number( fp ) );
             KEY( "Prompt", ch->pcdata->prompt, fread_string( fp ) );
             if( !str_cmp( word, "PTimer" ) )
             {
@@ -1765,7 +1770,7 @@ void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot )
 void fread_obj( CHAR_DATA * ch, FILE * fp, short os_type )
 {
    OBJ_DATA *obj;
-   char *word;
+   const char *word;
    int iNest;
    bool fMatch;
    bool fNest;
@@ -1863,14 +1868,11 @@ void fread_obj( CHAR_DATA * ch, FILE * fp, short os_type )
             {
                if( !fNest || !fVnum )
                {
-                  bug( "Fread_obj: incomplete object.", 0 );
                   if( obj->name )
-                     STRFREE( obj->name );
-                  if( obj->description )
-                     STRFREE( obj->description );
-                  if( obj->short_descr )
-                     STRFREE( obj->short_descr );
-                  DISPOSE( obj );
+                     bug( "%s: %s incomplete object.", __FUNCTION__, obj->name );
+                  else
+                     bug( "%s: incomplete object.", __FUNCTION__ );
+                  free_obj( obj );
                   return;
                }
                else
@@ -2096,7 +2098,7 @@ void set_alarm( long seconds )
 /*
  * Based on last time modified, show when a player was last on	-Thoric
  */
-void do_last( CHAR_DATA * ch, char *argument )
+void do_last( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
@@ -2372,3 +2374,76 @@ void save_profile( CHAR_DATA * ch )
 
    return;
 }
+
+void load_plr_home( CHAR_DATA * ch )
+{
+    char filename[256];
+    FILE *fph;
+    ROOM_INDEX_DATA *storeroom = ch->plr_home;
+    OBJ_DATA *obj;
+    OBJ_DATA *obj_next;
+
+    if( IS_NPC( ch ) || ch->plr_home == NULL )
+        return;
+
+    for( obj = storeroom->first_content; obj; obj = obj_next )
+    {
+        obj_next = obj->next_content;
+        extract_obj( obj );
+    }
+
+    sprintf( filename, "%s%c/%s.home", PLAYER_DIR, tolower( ch->name[0] ), capitalize( ch->name ) );
+    if( ( fph = fopen( filename, "r" ) ) != NULL )
+    {
+        int iNest;
+        OBJ_DATA *tobj, *tobj_next;
+
+        rset_supermob( storeroom );
+        for( iNest = 0; iNest < MAX_NEST; iNest++ )
+            rgObjNest[iNest] = NULL;
+
+        for( ;; )
+        {
+            char letter;
+            char *word;
+
+            letter = fread_letter( fph );
+            if( letter == '*' )
+            {
+                fread_to_eol( fph );
+                continue;
+            }
+
+            if( letter != '#' )
+            {
+                bug( "Load_plr_home: # not found.", 0 );
+                bug( ch->name, 0 );
+                break;
+            }
+
+            word = fread_word( fph );
+            if( !str_cmp( word, "OBJECT" ) ) /* Objects  */
+                fread_obj( supermob, fph, OS_CARRY );
+            else if( !str_cmp( word, "END" ) )  /* Done     */
+                break;
+            else
+            {
+                bug( "Load_plr_home: bad section.", 0 );
+                bug( ch->name, 0 );
+                break;
+            }
+        }
+
+        fclose( fph );
+
+        for( tobj = supermob->first_carrying; tobj; tobj = tobj_next )
+        {
+            tobj_next = tobj->next_content;
+            obj_from_char( tobj );
+            obj_to_room( tobj, storeroom );
+        }
+
+        release_supermob(  );
+    }
+}
+

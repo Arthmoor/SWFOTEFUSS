@@ -31,7 +31,7 @@ Michael Seifert, and Sebastian Hammer.
 #include <time.h>
 #include "mud.h"
 
-void do_plantbug( CHAR_DATA * ch, char *argument )
+void do_plantbug( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    BUG_DATA *pbug;
@@ -122,7 +122,7 @@ void do_plantbug( CHAR_DATA * ch, char *argument )
    }
 }
 
-void do_showbugs( CHAR_DATA * ch, char *argument )
+void do_showbugs( CHAR_DATA * ch, const char *argument )
 {
    DESCRIPTOR_DATA *d;
    CHAR_DATA *victim;
@@ -161,7 +161,7 @@ void do_showbugs( CHAR_DATA * ch, char *argument )
    learn_from_success( ch, gsn_showbugs );
 }
 
-void do_bind( CHAR_DATA * ch, char *argument )
+void do_bind( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    OBJ_DATA *tobj;
@@ -245,7 +245,7 @@ void do_bind( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_unbind( CHAR_DATA * ch, char *argument )
+void do_unbind( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    bool checkbinders = FALSE;
@@ -329,7 +329,7 @@ void do_unbind( CHAR_DATA * ch, char *argument )
    REMOVE_BIT( victim->pcdata->act2, ACT_BOUND );
 }
 
-void do_gag( CHAR_DATA * ch, char *argument )
+void do_gag( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    int schance;
@@ -384,7 +384,7 @@ void do_gag( CHAR_DATA * ch, char *argument )
    return;
 }
 
-void do_ungag( CHAR_DATA * ch, char *argument )
+void do_ungag( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
 
@@ -433,7 +433,7 @@ void do_ungag( CHAR_DATA * ch, char *argument )
    REMOVE_BIT( victim->pcdata->act2, ACT_GAGGED );
 }
 
-void do_ambush( CHAR_DATA * ch, char *argument )
+void do_ambush( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    int percent;
@@ -512,7 +512,7 @@ void do_ambush( CHAR_DATA * ch, char *argument )
 }
 
 //Contract System by Tawnos.
-void do_contract( CHAR_DATA * ch, char *argument )
+void do_contract( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    CHAR_DATA *target;
@@ -613,7 +613,7 @@ void do_contract( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_showcontracts( CHAR_DATA * ch, char *argument )
+void do_showcontracts( CHAR_DATA * ch, const char *argument )
 {
    CONTRACT_DATA *contract;
 
@@ -627,7 +627,7 @@ void do_showcontracts( CHAR_DATA * ch, char *argument )
 
 }
 
-void do_remcontract( CHAR_DATA * ch, char *argument )
+void do_remcontract( CHAR_DATA * ch, const char *argument )
 {
    CONTRACT_DATA *contract;
    CONTRACT_DATA *scontract = NULL;

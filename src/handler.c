@@ -249,15 +249,16 @@ int get_exp_worth( CHAR_DATA * ch )
    wexp += ( ch->barenumdie * ch->baresizedie + GET_DAMROLL( ch ) ) * 50;
    wexp += GET_HITROLL( ch ) * ch->top_level * 10;
    if( IS_AFFECTED( ch, AFF_SANCTUARY ) )
-      wexp += wexp * 1.5;
+      wexp += ( int )( wexp * 1.5 );
    if( IS_AFFECTED( ch, AFF_FIRESHIELD ) )
-      wexp += wexp * 1.2;
+      wexp += ( int )( wexp * 1.2 );
    if( IS_AFFECTED( ch, AFF_SHOCKSHIELD ) )
-      wexp += wexp * 1.2;
+      wexp += ( int )( wexp * 1.2 );
    wexp = URANGE( MIN_EXP_WORTH, wexp, MAX_EXP_WORTH );
 
    return wexp;
 }
+
 
 /*								-Thoric
  * Return how much experience is required for ch to get to a certain level
@@ -472,7 +473,7 @@ bool can_take_proto( CHAR_DATA * ch )
 /*
  * See if a string is one of the names of an object.
  */
-bool is_name( const char *str, char *namelist )
+bool is_name( const char *str, const char *namelist )
 {
    char name[MAX_INPUT_LENGTH];
 
@@ -486,7 +487,7 @@ bool is_name( const char *str, char *namelist )
    }
 }
 
-bool is_name_prefix( const char *str, char *namelist )
+bool is_name_prefix( const char *str, const char *namelist )
 {
    char name[MAX_INPUT_LENGTH];
 
@@ -504,7 +505,7 @@ bool is_name_prefix( const char *str, char *namelist )
  * See if a string is one of the names of an object.		-Thoric
  * Treats a dash as a word delimiter as well as a space
  */
-bool is_name2( const char *str, char *namelist )
+bool is_name2( const char *str, const char *namelist )
 {
    char name[MAX_INPUT_LENGTH];
 
@@ -518,7 +519,7 @@ bool is_name2( const char *str, char *namelist )
    }
 }
 
-bool is_name2_prefix( const char *str, char *namelist )
+bool is_name2_prefix( const char *str, const char *namelist )
 {
    char name[MAX_INPUT_LENGTH];
 
@@ -535,7 +536,7 @@ bool is_name2_prefix( const char *str, char *namelist )
 /*								-Thoric
  * Checks if str is a name in namelist supporting multiple keywords
  */
-bool nifty_is_name( char *str, char *namelist )
+bool nifty_is_name( const char *str, const char *namelist )
 {
    char name[MAX_INPUT_LENGTH];
 
@@ -552,7 +553,7 @@ bool nifty_is_name( char *str, char *namelist )
    }
 }
 
-bool nifty_is_name_prefix( char *str, char *namelist )
+bool nifty_is_name_prefix( const char *str, const char *namelist )
 {
    char name[MAX_INPUT_LENGTH];
 
@@ -1014,6 +1015,9 @@ void char_from_room( CHAR_DATA * ch )
        && obj->item_type == ITEM_LIGHT && obj->value[2] != 0 && ch->in_room->light > 0 )
       --ch->in_room->light;
 
+   if( ch->in_room->area )
+      --ch->in_room->area->nplayer;
+
    UNLINK( ch, ch->in_room->first_person, ch->in_room->last_person, next_in_room, prev_in_room );
    ch->in_room = NULL;
    ch->next_in_room = NULL;
@@ -1053,6 +1057,9 @@ void char_to_room( CHAR_DATA * ch, ROOM_INDEX_DATA * pRoomIndex )
       ch->home_vnum = ch->in_room->vnum;
    LINK( ch, pRoomIndex->first_person, pRoomIndex->last_person, next_in_room, prev_in_room );
 
+   if( ch->in_room->area )
+      if( ++ch->in_room->area->nplayer > ch->in_room->area->max_players )
+         ch->in_room->area->max_players = ch->in_room->area->nplayer;
 
    if( ( obj = get_eq_char( ch, WEAR_LIGHT ) ) != NULL && obj->item_type == ITEM_LIGHT && obj->value[2] != 0 )
       ++ch->in_room->light;
@@ -1062,6 +1069,7 @@ void char_to_room( CHAR_DATA * ch, ROOM_INDEX_DATA * pRoomIndex )
 
    return;
 }
+
 
 /*
  * Give an obj to a char.
@@ -1630,6 +1638,9 @@ void extract_char( CHAR_DATA * ch, bool fPull )
       ch->position = POS_STANDING;
    }
 
+   if( IS_NPC( ch ) )
+      update_room_reset( ch, TRUE );
+
    if( IS_SET( ch->in_room->room_flags2, ROOM_ARENA ) )
    {
       ch->hit = ch->max_hit;
@@ -1712,7 +1723,7 @@ void extract_char( CHAR_DATA * ch, bool fPull )
 /*
  * Find a char in the room.
  */
-CHAR_DATA *get_char_room( CHAR_DATA * ch, char *argument )
+CHAR_DATA *get_char_room( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    char fix[MAX_STRING_LENGTH];
@@ -1772,7 +1783,7 @@ CHAR_DATA *get_char_room( CHAR_DATA * ch, char *argument )
 /*
  * Find a char in the world.
  */
-CHAR_DATA *get_char_world( CHAR_DATA * ch, char *argument )
+CHAR_DATA *get_char_world( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *wch;
@@ -1862,7 +1873,7 @@ CHAR_DATA *get_char_world( CHAR_DATA * ch, char *argument )
 }
 
 /* Find a character by name, no PERS */
-CHAR_DATA *get_char_world_ooc( CHAR_DATA * ch, char *argument )
+CHAR_DATA *get_char_world_ooc( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    CHAR_DATA *wch;
@@ -1955,7 +1966,7 @@ CHAR_DATA *get_char_world_ooc( CHAR_DATA * ch, char *argument )
  * Find a char by comfreq
  */
 
-CHAR_DATA *get_char_from_comfreq( CHAR_DATA * ch, char *argument )
+CHAR_DATA *get_char_from_comfreq( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *wch;
 
@@ -1988,7 +1999,7 @@ CHAR_DATA *get_char_from_comfreq( CHAR_DATA * ch, char *argument )
 /*
  * Find an obj in a list.
  */
-OBJ_DATA *get_obj_list( CHAR_DATA * ch, char *argument, OBJ_DATA * list )
+OBJ_DATA *get_obj_list( CHAR_DATA * ch, const char *argument, OBJ_DATA * list )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2019,7 +2030,7 @@ OBJ_DATA *get_obj_list( CHAR_DATA * ch, char *argument, OBJ_DATA * list )
 /*
  * Find an obj in a list...going the other way			-Thoric
  */
-OBJ_DATA *get_obj_list_rev( CHAR_DATA * ch, char *argument, OBJ_DATA * list )
+OBJ_DATA *get_obj_list_rev( CHAR_DATA * ch, const char *argument, OBJ_DATA * list )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2052,7 +2063,7 @@ OBJ_DATA *get_obj_list_rev( CHAR_DATA * ch, char *argument, OBJ_DATA * list )
 /*
  * Find an obj in player's inventory.
  */
-OBJ_DATA *get_obj_carry( CHAR_DATA * ch, char *argument )
+OBJ_DATA *get_obj_carry( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2093,7 +2104,7 @@ OBJ_DATA *get_obj_carry( CHAR_DATA * ch, char *argument )
 /*
  * Find an obj in player's equipment.
  */
-OBJ_DATA *get_obj_wear( CHAR_DATA * ch, char *argument )
+OBJ_DATA *get_obj_wear( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2140,7 +2151,7 @@ OBJ_DATA *get_obj_wear( CHAR_DATA * ch, char *argument )
 /*
  * Find an obj in the room or in inventory.
  */
-OBJ_DATA *get_obj_here( CHAR_DATA * ch, char *argument )
+OBJ_DATA *get_obj_here( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
 
@@ -2165,7 +2176,7 @@ OBJ_DATA *get_obj_here( CHAR_DATA * ch, char *argument )
 /*
  * Find an obj in the world.
  */
-OBJ_DATA *get_obj_world( CHAR_DATA * ch, char *argument )
+OBJ_DATA *get_obj_world( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
@@ -2223,7 +2234,7 @@ bool ms_find_obj( CHAR_DATA * ch )
 {
    int ms = ch->mental_state;
    int drunk = IS_NPC( ch ) ? 0 : ch->pcdata->condition[COND_DRUNK];
-   char *t;
+   const char *t;
 
    /*
     * we're going to be nice and let nothing weird happen unless
@@ -2334,7 +2345,7 @@ bool ms_find_obj( CHAR_DATA * ch )
  * Generic get obj function that supports optional containers.	-Thoric
  * currently only used for "eat" and "quaff".
  */
-OBJ_DATA *find_obj( CHAR_DATA * ch, char *argument, bool carryonly )
+OBJ_DATA *find_obj( CHAR_DATA * ch, const char *argument, bool carryonly )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
@@ -2602,7 +2613,7 @@ bool can_drop_obj( CHAR_DATA * ch, OBJ_DATA * obj )
 /*
  * Return ascii name of an item type.
  */
-char *item_type_name( OBJ_DATA * obj )
+const char *item_type_name( OBJ_DATA * obj )
 {
    if( obj->item_type < 1 || obj->item_type > MAX_ITEM_TYPE )
    {
@@ -2618,7 +2629,7 @@ char *item_type_name( OBJ_DATA * obj )
 /*
  * Return ascii name of an affect location.
  */
-char *affect_loc_name( int location )
+const char *affect_loc_name( int location )
 {
    switch ( location )
    {
@@ -2765,7 +2776,7 @@ char *affect_loc_name( int location )
 /*
  * Return ascii name of an affect bit vector.
  */
-char *affect_bit_name( int vector )
+const char *affect_bit_name( int vector )
 {
    static char buf[512];
 
@@ -2842,7 +2853,7 @@ char *affect_bit_name( int vector )
 /*
  * Return ascii name of extra flags vector.
  */
-char *extra_bit_name( int extra_flags )
+const char *extra_bit_name( int extra_flags )
 {
    static char buf[512];
 
@@ -2909,7 +2920,7 @@ char *extra_bit_name( int extra_flags )
 /*
  * Return ascii name of magic flags vector. - Scryn
  */
-char *magic_bit_name( int magic_flags )
+const char *magic_bit_name( int magic_flags )
 {
    static char buf[512];
 
@@ -2927,7 +2938,7 @@ ch_ret spring_trap( CHAR_DATA * ch, OBJ_DATA * obj )
    int dam;
    int typ;
    int lev;
-   char *txt;
+   const char *txt;
    char buf[MAX_STRING_LENGTH];
    ch_ret retcode;
 
@@ -3497,6 +3508,7 @@ void free_obj( OBJ_DATA * obj )
    STRFREE( obj->description );
    STRFREE( obj->short_descr );
    STRFREE( obj->action_desc );
+   STRFREE( obj->armed_by );
    DISPOSE( obj->killer );
    DISPOSE( obj );
    return;
