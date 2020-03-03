@@ -24,7 +24,6 @@ Original DikuMUD code by: Hans Staerfeldt, Katja Nyboe, Tom Madsen,
 Michael Seifert, and Sebastian Hammer.
 
 */
-
 #include <sys/types.h>
 #include <sys/time.h>
 #include <sys/stat.h>
@@ -37,7 +36,8 @@ Michael Seifert, and Sebastian Hammer.
 #include <signal.h>
 #include <stdarg.h>
 #include "mud.h"
-#include "md5.h"
+#include "sha256.h"
+#include "mccp.h"
 
 /*
  * Socket and TCP/IP stuff.
@@ -54,7 +54,6 @@ Michael Seifert, and Sebastian Hammer.
 #define MAX_NEST	100
 static OBJ_DATA *rgObjNest[MAX_NEST];
 
-
 const char echo_off_str[] = { IAC, WILL, TELOPT_ECHO, '\0' };
 const char echo_on_str[] = { IAC, WONT, TELOPT_ECHO, '\0' };
 const char go_ahead_str[] = { IAC, GA, '\0' };
@@ -65,7 +64,6 @@ void show_condition( CHAR_DATA * ch, CHAR_DATA * victim );
 void generate_com_freq( CHAR_DATA * ch );
 
 // planets.c
-
 void write_planet_list args( ( void ) );
 
 /*
@@ -97,32 +95,27 @@ int maxdesc;
  * OS-dependent local functions.
  */
 void game_loop( void );
-int init_socket args( ( int mudport ) );
-void new_descriptor args( ( int new_desc ) );
-bool read_from_descriptor args( ( DESCRIPTOR_DATA * d ) );
-bool write_to_descriptor args( ( int desc, char *txt, int length ) );
+int init_socket( int mudport );
+void new_descriptor( int new_desc );
+bool read_from_descriptor( DESCRIPTOR_DATA * d );
+bool write_to_descriptor( DESCRIPTOR_DATA * d, char *txt, int length );
 
 /*
  * Other local functions (OS-independent).
  */
-bool check_reconnect args( ( DESCRIPTOR_DATA * d, char *name, bool fConn ) );
-bool check_playing args( ( DESCRIPTOR_DATA * d, char *name, bool kick ) );
-bool check_multi args( ( DESCRIPTOR_DATA * d, char *name ) );
-int main args( ( int argc, char **argv ) );
-void nanny args( ( DESCRIPTOR_DATA * d, char *argument ) );
-bool flush_buffer args( ( DESCRIPTOR_DATA * d, bool fPrompt ) );
-void read_from_buffer args( ( DESCRIPTOR_DATA * d ) );
-void stop_idling args( ( CHAR_DATA * ch ) );
-void free_desc args( ( DESCRIPTOR_DATA * d ) );
-void display_prompt args( ( DESCRIPTOR_DATA * d ) );
-void set_pager_input args( ( DESCRIPTOR_DATA * d, char *argument ) );
-bool pager_output args( ( DESCRIPTOR_DATA * d ) );
-
-
-
-void mail_count args( ( CHAR_DATA * ch ) );
-
-
+bool check_reconnect( DESCRIPTOR_DATA * d, char *name, bool fConn );
+bool check_playing( DESCRIPTOR_DATA * d, char *name, bool kick );
+bool check_multi( DESCRIPTOR_DATA * d, char *name );
+int main( int argc, char **argv );
+void nanny( DESCRIPTOR_DATA * d, char *argument );
+bool flush_buffer( DESCRIPTOR_DATA * d, bool fPrompt );
+void read_from_buffer( DESCRIPTOR_DATA * d );
+void stop_idling( CHAR_DATA * ch );
+void free_desc( DESCRIPTOR_DATA * d );
+void display_prompt( DESCRIPTOR_DATA * d );
+void set_pager_input( DESCRIPTOR_DATA * d, char *argument );
+bool pager_output( DESCRIPTOR_DATA * d );
+void mail_count( CHAR_DATA * ch );
 
 int main( int argc, char **argv )
 {
@@ -226,7 +219,7 @@ int main( int argc, char **argv )
     * Run the game.
     */
    log_string( "Booting Database" );
-   boot_db(  );
+   boot_db( fCopyOver );
    log_string( "Initializing socket" );
 
    if( !fCopyOver )  /* We have already the port if copyover'ed */
@@ -243,8 +236,8 @@ int main( int argc, char **argv )
 
    if( fCopyOver )
    {
-      log_string( "Running copyover_recover." );
-      copyover_recover(  );
+      log_string( "Initiating hotboot recovery." );
+      hotboot_recover(  );
    }
 
    sprintf( log_buf, "SWFotE ready on port %d.", port );
@@ -274,10 +267,10 @@ void init_descriptor( DESCRIPTOR_DATA * dnew, int desc )
    dnew->scrlen = 24;
    dnew->newstate = 0;
    dnew->prevcolor = 0x07;
-
+   dnew->can_compress = FALSE;
+   CREATE( dnew->mccp, MCCP, 1 );
    CREATE( dnew->outbuf, char, dnew->outsize );
 }
-
 
 int init_socket( int mudport )
 {
@@ -368,7 +361,7 @@ static void caught_alarm( int signum )
 {
    char buf[MAX_STRING_LENGTH];
    bug( "%s", "ALARM CLOCK!" );
-   strcpy( buf, "Alas, the hideous malevalent entity known only as 'Lag' rises once more!\n\r" );
+   strcpy( buf, "Alas, the hideous malevalent entity known only as 'Lag' rises once more!\r\n" );
    echo_to_all( AT_IMMORT, buf, ECHOTAR_ALL );
    if( newdesc )
    {
@@ -496,7 +489,7 @@ void game_loop( void )
                   || ( d->connected != CON_PLAYING && d->idle > 1200 )  /* 5 mins */
                   || d->idle > 28800 ) /* 2 hrs  */
          {
-            write_to_descriptor( d->descriptor, "Idle timeout... disconnecting.\n\r", 0 );
+            write_to_descriptor( d, "Idle timeout... disconnecting.\r\n", 0 );
             d->outtop = 0;
             close_socket( d, TRUE );
             continue;
@@ -655,7 +648,6 @@ void game_loop( void )
    return;
 }
 
-
 void new_descriptor( int new_desc )
 {
    char buf[MAX_STRING_LENGTH];
@@ -664,7 +656,8 @@ void new_descriptor( int new_desc )
    struct hostent *from;
    char *hostname;
    struct sockaddr_in sock;
-   size_t desc, size;
+   int desc;
+   socklen_t size;
 
    set_alarm( 20 );
    size = sizeof( sock );
@@ -673,15 +666,15 @@ void new_descriptor( int new_desc )
       set_alarm( 0 );
       return;
    }
+
    set_alarm( 20 );
    if( ( desc = accept( new_desc, ( struct sockaddr * )&sock, &size ) ) < 0 )
    {
       perror( "New_descriptor: accept" );
-/*	sprintf(bugbuf, "[*****] BUG: New_descriptor: accept");
-	log_string_plus( bugbuf, LOG_COMM, sysdata.log_level ); */
       set_alarm( 0 );
       return;
    }
+
    if( check_bad_desc( new_desc ) )
    {
       set_alarm( 0 );
@@ -702,43 +695,11 @@ void new_descriptor( int new_desc )
       return;
 
    CREATE( dnew, DESCRIPTOR_DATA, 1 );
-/*    dnew->next		= NULL;
-    dnew->descriptor	= desc;
-    dnew->connected	= CON_GET_NAME;
-    dnew->outsize	= 2000;
-    dnew->idle		= 0;
-    dnew->lines		= 0;
-    dnew->scrlen	= 24;
-    dnew->port		= ntohs( sock.sin_port );
-    dnew->user 		= STRALLOC("unknown");
-    dnew->auth_fd	= -1;
-    dnew->auth_inc	= 0;
-    dnew->auth_state	= 0;
-    dnew->newstate	= 0;
-    dnew->prevcolor	= 0x07;
-    dnew->original      = NULL;
-    dnew->character     = NULL;
-
-    CREATE( dnew->outbuf, char, dnew->outsize );
-*/
    init_descriptor( dnew, desc );
    dnew->port = ntohs( sock.sin_port );
    strcpy( buf, inet_ntoa( sock.sin_addr ) );
 
-/*
- *   HardBan - Disconnects user before they have a chance to name resolve.
- *             Damned spammers ;) -Tawnos
- *
- *
- *  if(!str_cmp(buf,"204.38.47.131"))
- *  {
- *	write_to_descriptor(desc, "Your personalized message here!", 0);
- *	free_desc(dnew);
- *	return;
- *   }
- */
-
-   sprintf( log_buf, "Sock.sinaddr:  %s, port %hd.", buf, dnew->port );
+   sprintf( log_buf, "Sock.sinaddr:  %s, port %d.", buf, dnew->port );
    log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
 
    dnew->host = STRALLOC( buf );
@@ -750,7 +711,7 @@ void new_descriptor( int new_desc )
    {
       if( ( !str_prefix( pban->name, dnew->host ) || !str_suffix( pban->name, hostname ) ) && pban->level >= LEVEL_SUPREME )
       {
-         write_to_descriptor( desc, "Your site has been banned from this Mud.\n\r", 0 );
+         write_to_descriptor( dnew, "Your site has been banned from this Mud.\r\n", 0 );
          free_desc( dnew );
          set_alarm( 0 );
          return;
@@ -766,7 +727,6 @@ void new_descriptor( int new_desc )
    /*
     * Init descriptor data.
     */
-
    if( !last_descriptor && first_descriptor )
    {
       DESCRIPTOR_DATA *d;
@@ -778,6 +738,11 @@ void new_descriptor( int new_desc )
    }
 
    LINK( dnew, first_descriptor, last_descriptor, next, prev );
+
+   /*
+    * MCCP Compression 
+    */
+   write_to_buffer( dnew, will_compress2_str, 0 );
 
    /*
     * Send the greeting. Forces new color function - Tawnos
@@ -831,6 +796,8 @@ void free_desc( DESCRIPTOR_DATA * d )
       DISPOSE( d->outbuf );
    if( d->pagebuf )
       DISPOSE( d->pagebuf );
+   compressEnd( d );
+   DISPOSE( d->mccp );
    DISPOSE( d );
    --num_descriptors;
    return;
@@ -852,7 +819,7 @@ void close_socket( DESCRIPTOR_DATA * dclose, bool force )
     * say bye to whoever's snooping this descriptor 
     */
    if( dclose->snoop_by )
-      write_to_buffer( dclose->snoop_by, "Your victim has left the game.\n\r", 0 );
+      write_to_buffer( dclose->snoop_by, "Your victim has left the game.\r\n", 0 );
 
    /*
     * stop snooping everyone else 
@@ -933,10 +900,7 @@ void close_socket( DESCRIPTOR_DATA * dclose, bool force )
    {
       sprintf( log_buf, "Closing link to %s.", ch->name );
       log_string_plus( log_buf, LOG_COMM, UMAX( sysdata.log_level, ch->top_level ) );
-/*
-	if ( ch->top_level < LEVEL_DEMI )
-	  to_channel( log_buf, CHANNEL_MONITOR, "Monitor", ch->top_level );
-*/
+
       if( dclose->connected == CON_PLAYING || dclose->connected == CON_EDITING )
       {
          act( AT_ACTION, "$n has lost $s link.", ch, NULL, NULL, TO_ROOM );
@@ -952,7 +916,6 @@ void close_socket( DESCRIPTOR_DATA * dclose, bool force )
       }
    }
 
-
    if( !DoNotUnlink )
    {
       /*
@@ -962,6 +925,7 @@ void close_socket( DESCRIPTOR_DATA * dclose, bool force )
          d_next = d_next->next;
       UNLINK( dclose, first_descriptor, last_descriptor, next, prev );
    }
+   compressEnd( dclose );
 
    if( dclose->descriptor == maxdesc )
       --maxdesc;
@@ -969,7 +933,6 @@ void close_socket( DESCRIPTOR_DATA * dclose, bool force )
    free_desc( dclose );
    return;
 }
-
 
 bool read_from_descriptor( DESCRIPTOR_DATA * d )
 {
@@ -989,7 +952,7 @@ bool read_from_descriptor( DESCRIPTOR_DATA * d )
    {
       sprintf( log_buf, "%s input overflow!", d->host );
       log_string( log_buf );
-      write_to_descriptor( d->descriptor, "\n\r*** PUT A LID ON IT!!! ***\n\r", 0 );
+      write_to_descriptor( d, "\r\n*** PUT A LID ON IT!!! ***\r\n", 0 );
       return FALSE;
    }
 
@@ -1022,14 +985,12 @@ bool read_from_descriptor( DESCRIPTOR_DATA * d )
    return TRUE;
 }
 
-
-
 /*
  * Transfer one line from input buffer to input line.
  */
 void read_from_buffer( DESCRIPTOR_DATA * d )
 {
-   int i, j, k;
+   int i, j, k, iac = 0;
 
    /*
     * Hold horses if pending command already.
@@ -1053,24 +1014,34 @@ void read_from_buffer( DESCRIPTOR_DATA * d )
    {
       if( k >= 254 )
       {
-         write_to_descriptor( d->descriptor, "Line too long.\n\r", 0 );
+         write_to_descriptor( d, "Line too long.\n\r", 0 );
 
          /*
           * skip the rest of the line 
-          */
-         /*
-          * for ( ; d->inbuf[i] != '\0' || i>= MAX_INBUF_SIZE ; i++ )
-          * {
-          * if ( d->inbuf[i] == '\n' || d->inbuf[i] == '\r' )
-          * break;
-          * }
           */
          d->inbuf[i] = '\n';
          d->inbuf[i + 1] = '\0';
          break;
       }
 
-      if( d->inbuf[i] == '\b' && k > 0 )
+      if( d->inbuf[i] == ( signed char )IAC )
+         iac = 1;
+      else if( iac == 1
+               && ( d->inbuf[i] == ( signed char )DO || d->inbuf[i] == ( signed char )DONT
+                    || d->inbuf[i] == ( signed char )WILL ) )
+         iac = 2;
+      else if( iac == 2 )
+      {
+         iac = 0;
+         if( d->inbuf[i] == ( signed char )TELOPT_COMPRESS2 )
+         {
+            if( d->inbuf[i - 1] == ( signed char )DO )
+               compressStart( d );
+            else if( d->inbuf[i - 1] == ( signed char )DONT )
+               compressEnd( d );
+         }
+      }
+      else if( d->inbuf[i] == '\b' && k > 0 )
          --k;
       else if( isascii( d->inbuf[i] ) && isprint( d->inbuf[i] ) )
          d->incomm[k++] = d->inbuf[i];
@@ -1096,10 +1067,7 @@ void read_from_buffer( DESCRIPTOR_DATA * d )
       {
          if( ++d->repeat >= 20 )
          {
-/*		sprintf( log_buf, "%s input spamming!", d->host );
-		log_string( log_buf );
-*/
-            write_to_descriptor( d->descriptor, "\n\r*** PUT A LID ON IT!!! ***\n\r", 0 );
+            write_to_descriptor( d, "\r\n*** PUT A LID ON IT!!! ***\r\n", 0 );
          }
       }
    }
@@ -1160,7 +1128,7 @@ bool flush_buffer( DESCRIPTOR_DATA * d, bool fPrompt )
          write_to_buffer( d->snoop_by, "% ", 2 );
          write_to_buffer( d->snoop_by, buf, 0 );
       }
-      if( !write_to_descriptor( d->descriptor, buf, 512 ) )
+      if( !write_to_descriptor( d, buf, 512 ) )
       {
          d->outtop = 0;
          return FALSE;
@@ -1176,7 +1144,7 @@ bool flush_buffer( DESCRIPTOR_DATA * d, bool fPrompt )
    {
       ch = d->original ? d->original : d->character;
       if( IS_SET( ch->act, PLR_BLANK ) )
-         write_to_buffer( d, "\n\r", 2 );
+         write_to_buffer( d, "\r\n", 2 );
 
       if( IS_SET( ch->act, PLR_PROMPT ) )
          display_prompt( d );
@@ -1216,7 +1184,7 @@ bool flush_buffer( DESCRIPTOR_DATA * d, bool fPrompt )
    /*
     * OS-dependent output.
     */
-   if( !write_to_descriptor( d->descriptor, d->outbuf, d->outtop ) )
+   if( !write_to_descriptor( d, d->outbuf, d->outtop ) )
    {
       d->outtop = 0;
       return FALSE;
@@ -1227,8 +1195,6 @@ bool flush_buffer( DESCRIPTOR_DATA * d, bool fPrompt )
       return TRUE;
    }
 }
-
-
 
 /*
  * Append onto an output buffer.
@@ -1262,7 +1228,7 @@ void write_to_buffer( DESCRIPTOR_DATA * d, const char *txt, int length )
 */
 
    /*
-    * Initial \n\r if needed.
+    * Initial \r\n if needed.
     */
    if( d->outtop == 0 && !d->fcommand )
    {
@@ -1299,37 +1265,92 @@ void write_to_buffer( DESCRIPTOR_DATA * d, const char *txt, int length )
    return;
 }
 
-
 /*
-* Lowest level output function. Write a block of text to the file descriptor.
-* If this gives errors on very long blocks (like 'ofind all'), try lowering
-* the max block size.
-*
-* Added block checking to prevent random booting of the descriptor. Thanks go
-* out to Rustry for his suggestions. -Orion
-*/
-bool write_to_descriptor( int desc, char *txt, int length )
+ * This is the MCCP version. Use write_to_descriptor_old to send non-compressed
+ * text.
+ * Updated to run with the block checks by Orion... if it doesn't work, blame
+ * him.;P -Orion
+ */
+bool write_to_descriptor( DESCRIPTOR_DATA * d, char *txt, int length )
 {
    int iStart = 0;
    int nWrite = 0;
-   int nBlock = 0;
-   int iErr = 0;
+   int nBlock;
+   int iErr;
+   int len;
 
    if( length <= 0 )
       length = strlen( txt );
 
+   if( d && d->mccp->out_compress )
+   {
+      d->mccp->out_compress->next_in = ( unsigned char * )txt;
+      d->mccp->out_compress->avail_in = length;
+
+      while( d->mccp->out_compress->avail_in )
+      {
+         d->mccp->out_compress->avail_out =
+            COMPRESS_BUF_SIZE - ( d->mccp->out_compress->next_out - d->mccp->out_compress_buf );
+
+         if( d->mccp->out_compress->avail_out )
+         {
+            int status = deflate( d->mccp->out_compress, Z_SYNC_FLUSH );
+
+            if( status != Z_OK )
+               return FALSE;
+         }
+
+         len = d->mccp->out_compress->next_out - d->mccp->out_compress_buf;
+         if( len > 0 )
+         {
+            for( iStart = 0; iStart < len; iStart += nWrite )
+            {
+               nBlock = UMIN( len - iStart, 4096 );
+               nWrite = send( d->descriptor, d->mccp->out_compress_buf + iStart, nBlock, 0 );
+               if( nWrite == -1 )
+               {
+                  iErr = errno;
+                  if( iErr == EWOULDBLOCK )
+                  {
+                     /*
+                      * This is a SPAMMY little bug error. I would suggest
+                      * not using it, but I've included it in case. -Orion
+                      *
+                      perror( "Write_to_descriptor: Send is blocking" );
+                      */
+                     nWrite = 0;
+                     continue;
+                  }
+                  else
+                  {
+                     perror( "Write_to_descriptor" );
+                     return FALSE;
+                  }
+               }
+
+               if( !nWrite )
+                  break;
+            }
+
+            if( !iStart )
+               break;
+
+            if( iStart < len )
+               memmove( d->mccp->out_compress_buf, d->mccp->out_compress_buf + iStart, len - iStart );
+
+            d->mccp->out_compress->next_out = d->mccp->out_compress_buf + len - iStart;
+         }
+      }
+      return TRUE;
+   }
+
    for( iStart = 0; iStart < length; iStart += nWrite )
    {
       nBlock = UMIN( length - iStart, 4096 );
-      nWrite = send( desc, txt + iStart, nBlock, 0 );
-
+      nWrite = send( d->descriptor, txt + iStart, nBlock, 0 );
       if( nWrite == -1 )
       {
-#ifdef WIN32
-         iErr = WSAGetLastError(  );
-#else
          iErr = errno;
-#endif
          if( iErr == EWOULDBLOCK )
          {
             /*
@@ -1348,11 +1369,52 @@ bool write_to_descriptor( int desc, char *txt, int length )
          }
       }
    }
-
    return TRUE;
 }
 
+/*
+ *
+ * Added block checking to prevent random booting of the descriptor. Thanks go
+ * out to Rustry for his suggestions. -Orion
+ */
+bool write_to_descriptor_old( int desc, char *txt, int length )
+{
+   int iStart = 0;
+   int nWrite = 0;
+   int nBlock = 0;
+   int iErr = 0;
 
+   if( length <= 0 )
+      length = strlen( txt );
+
+   for( iStart = 0; iStart < length; iStart += nWrite )
+   {
+      nBlock = UMIN( length - iStart, 4096 );
+      nWrite = send( desc, txt + iStart, nBlock, 0 );
+
+      if( nWrite == -1 )
+      {
+         iErr = errno;
+         if( iErr == EWOULDBLOCK )
+         {
+            /*
+             * This is a SPAMMY little bug error. I would suggest
+             * not using it, but I've included it in case. -Orion
+             *
+             perror( "Write_to_descriptor: Send is blocking" );
+             */
+            nWrite = 0;
+            continue;
+         }
+         else
+         {
+            perror( "Write_to_descriptor" );
+            return FALSE;
+         }
+      }
+   }
+   return TRUE;
+}
 
 void show_title( DESCRIPTOR_DATA * d )
 {
@@ -1369,48 +1431,9 @@ void show_title( DESCRIPTOR_DATA * d )
    }
    else
    {
-      write_to_buffer( d, "Press enter...\n\r", 0 );
+      write_to_buffer( d, "Press enter...\r\n", 0 );
    }
    d->connected = CON_PRESS_ENTER;
-}
-
-char *smaug_crypt( const char *pwd )
-{
-   md5_state_t state;
-   md5_byte_t digest[17];
-   static char passwd[17];
-   unsigned int x;
-
-   md5_init( &state );
-   md5_append( &state, ( const md5_byte_t * )pwd, strlen( pwd ) );
-   md5_finish( &state, digest );
-
-   strncpy( passwd, ( const char * )digest, 16 );
-   passwd[16] = '\0';
-
-   /*
-    * The listed exceptions below will fubar the MD5 authentication packets, so change them 
-    */
-   for( x = 0; x < strlen( passwd ); x++ )
-   {
-      if( passwd[x] == '\n' )
-         passwd[x] = 'n';
-      if( passwd[x] == '\r' )
-         passwd[x] = 'r';
-      if( passwd[x] == '\t' )
-         passwd[x] = 't';
-      if( passwd[x] == ' ' )
-         passwd[x] = 's';
-      if( ( int )passwd[x] == 11 )
-         passwd[x] = 'x';
-      if( ( int )passwd[x] == 12 )
-         passwd[x] = 'X';
-      if( passwd[x] == '~' )
-         passwd[x] = '+';
-      if( passwd[x] == EOF )
-         passwd[x] = 'E';
-   }
-   return ( passwd );
 }
 
 /*
@@ -1418,8 +1441,6 @@ char *smaug_crypt( const char *pwd )
  */
 void nanny( DESCRIPTOR_DATA * d, char *argument )
 {
-// extern int lang_array[];
-// extern char *lang_names[];
    char buf[MAX_STRING_LENGTH];
    char arg[MAX_STRING_LENGTH];
    char buf2[MAX_STRING_LENGTH];
@@ -1427,10 +1448,8 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
    CHAR_DATA *ch;
 
    char *pwdnew;
-   char *p;
    int iRace, iClass, iDroid;
    BAN_DATA *pban;
-/*    int iLang;*/
    bool fOld, chk;
    int col = 0;
    while( isspace( *argument ) )
@@ -1456,7 +1475,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          argument[0] = UPPER( argument[0] );
          if( !check_parse_name( argument ) )
          {
-            write_to_buffer( d, "Illegal name, try another.\n\rName: ", 0 );
+            write_to_buffer( d, "Illegal name, try another.\r\nName: ", 0 );
             return;
          }
 
@@ -1472,19 +1491,19 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                 */
                if( sysdata.DENY_NEW_PLAYERS == TRUE )
                {
-                  sprintf( buf, "The mud is currently preparing for a reboot.\n\r" );
+                  sprintf( buf, "The mud is currently preparing for a reboot.\r\n" );
                   write_to_buffer( d, buf, 0 );
-                  sprintf( buf, "New players are not accepted during this time.\n\r" );
+                  sprintf( buf, "New players are not accepted during this time.\r\n" );
                   write_to_buffer( d, buf, 0 );
-                  sprintf( buf, "Please try again in a few minutes.\n\r" );
+                  sprintf( buf, "Please try again in a few minutes.\r\n" );
                   write_to_buffer( d, buf, 0 );
                   close_socket( d, FALSE );
                }
-               sprintf( buf, "\n\rChoosing a name is one of the most important parts of this game...\n\r"
-                        "Make sure to pick a name appropriate to the character you are going\n\r"
-                        "to role play, and be sure that it suits our theme.\n\r"
-                        "If the name you select is not acceptable, you will be asked to choose\n\r"
-                        "another one.\n\r\n\rPlease choose a name for your character: " );
+               sprintf( buf, "\r\nChoosing a name is one of the most important parts of this game...\r\n"
+                        "Make sure to pick a name appropriate to the character you are going\r\n"
+                        "to role play, and be sure that it suits our theme.\r\n"
+                        "If the name you select is not acceptable, you will be asked to choose\r\n"
+                        "another one.\r\n\r\nPlease choose a name for your character: " );
                write_to_buffer( d, buf, 0 );
                d->newstate++;
                d->connected = CON_GET_NAME;
@@ -1492,7 +1511,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
             }
             else
             {
-               send_to_desc_color( "Illegal name, try another.\n\rName: ", d );
+               send_to_desc_color( "Illegal name, try another.\r\nName: ", d );
                return;
             }
          }
@@ -1503,12 +1522,12 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
             return;
          }
 
-         fOld = load_char_obj( d, argument, TRUE );
+         fOld = load_char_obj( d, argument, TRUE, FALSE );
          if( !d->character )
          {
             sprintf( log_buf, "Bad player file %s@%s.", argument, d->host );
             log_string( log_buf );
-            write_to_buffer( d, "Your playerfile is corrupt...Please notify fote@enigma.dune.net.\n\r", 0 );
+            write_to_buffer( d, "Your playerfile is corrupt...Please notify fote@enigma.dune.net.\r\n", 0 );
             close_socket( d, FALSE );
             return;
          }
@@ -1519,7 +1538,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
             if( ( !str_prefix( pban->name, d->host )
                   || !str_suffix( pban->name, d->host ) ) && pban->level >= ch->top_level )
             {
-               write_to_buffer( d, "Your site has been banned from this Mud.\n\r", 0 );
+               write_to_buffer( d, "Your site has been banned from this Mud.\r\n", 0 );
                close_socket( d, FALSE );
                return;
             }
@@ -1534,7 +1553,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                d->connected = CON_GET_NAME;
                return;
             }
-            write_to_buffer( d, "You are denied access.\n\r", 0 );
+            write_to_buffer( d, "You are denied access.\r\n", 0 );
             close_socket( d, FALSE );
             return;
          }
@@ -1551,8 +1570,8 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          {
             if( wizlock && !IS_IMMORTAL( ch ) )
             {
-               write_to_buffer( d, "The game is wizlocked.  Only immortals can connect now.\n\r", 0 );
-               write_to_buffer( d, "Please try back later.\n\r", 0 );
+               write_to_buffer( d, "The game is wizlocked.  Only immortals can connect now.\r\n", 0 );
+               write_to_buffer( d, "Please try back later.\r\n", 0 );
                close_socket( d, FALSE );
                return;
             }
@@ -1577,7 +1596,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          else
          {
             SET_BIT( ch->act, PLR_ANSI );
-            send_to_desc_color( "\n\r&zI don't recognize your name, you must be new here.\n\r\n\r", d );
+            send_to_desc_color( "\r\n&zI don't recognize your name, you must be new here.\r\n\r\n", d );
             sprintf( buf, "Did I get that right, &W%s &z(&WY&z/&WN&z)? &w", argument );
             send_to_desc_color( buf, d );
             d->connected = CON_CONFIRM_NEW_NAME;
@@ -1586,11 +1605,11 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          break;
 
       case CON_GET_OLD_PASSWORD:
-         write_to_buffer( d, "\n\r", 2 );
+         write_to_buffer( d, "\r\n", 2 );
 
-         if( strcmp( smaug_crypt( argument ), ch->pcdata->pwd ) )
+         if( strcmp( sha256_crypt( argument ), ch->pcdata->pwd ) )
          {
-            write_to_buffer( d, "Wrong password.\n\r", 0 );
+            write_to_buffer( d, "Wrong password.\r\n", 0 );
             /*
              * clear descriptor pointer to get rid of bug message in log 
              */
@@ -1626,7 +1645,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          strcpy( buf, ch->name );
          d->character->desc = NULL;
          free_char( d->character );
-         fOld = load_char_obj( d, buf, FALSE );
+         fOld = load_char_obj( d, buf, FALSE, FALSE );
          ch = d->character;
          sprintf( log_buf, "%s (%s) has connected.", ch->name, d->host );
          if( ch->top_level < LEVEL_DEMI )
@@ -1664,8 +1683,8 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          {
             case 'y':
             case 'Y':
-               sprintf( buf, "\n\r&zMake sure to use a password that won't be easily guessed by someone else."
-                        "\n\rPick a good password for %s: &w%s", ch->name, echo_off_str );
+               sprintf( buf, "\r\n&zMake sure to use a password that won't be easily guessed by someone else."
+                        "\r\nPick a good password for %s: &w%s", ch->name, echo_off_str );
                send_to_desc_color( buf, d );
                d->connected = CON_GET_NEW_PASSWORD;
                break;
@@ -1689,48 +1708,40 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          break;
 
       case CON_GET_NEW_PASSWORD:
-         write_to_buffer( d, "\n\r", 2 );
+         write_to_buffer( d, "\r\n", 2 );
 
          if( strlen( argument ) < 5 )
          {
-            send_to_desc_color( "&zPassword must be at least five characters long.\n\rPassword: &w", d );
+            send_to_desc_color( "&zPassword must be at least five characters long.\r\nPassword: &w", d );
             return;
          }
 
          if( argument[0] == '!' )
          {
-            write_to_buffer( d, "Password cannot begin with the '!' character.\n\rPassword: ", 0 );
+            write_to_buffer( d, "Password cannot begin with the '!' character.\r\nPassword: ", 0 );
             return;
          }
 
-         pwdnew = smaug_crypt( argument );
-         for( p = pwdnew; *p != '\0'; p++ )
-         {
-            if( *p == '~' )
-            {
-               send_to_desc_color( "&zNew password not acceptable, try again.\n\rPassword: &w", d );
-               return;
-            }
-         }
+         pwdnew = sha256_crypt( argument );
 
          DISPOSE( ch->pcdata->pwd );
          ch->pcdata->pwd = str_dup( pwdnew );
-         send_to_desc_color( "\n\r&zPlease retype the password to confirm: &w", d );
+         send_to_desc_color( "\r\n&zPlease retype the password to confirm: &w", d );
          d->connected = CON_CONFIRM_NEW_PASSWORD;
          break;
 
       case CON_CONFIRM_NEW_PASSWORD:
-         write_to_buffer( d, "\n\r", 2 );
+         write_to_buffer( d, "\r\n", 2 );
 
-         if( strcmp( smaug_crypt( argument ), ch->pcdata->pwd ) )
+         if( strcmp( sha256_crypt( argument ), ch->pcdata->pwd ) )
          {
-            send_to_desc_color( "&zPasswords don't match.\n\rRetype password: &w", d );
+            send_to_desc_color( "&zPasswords don't match.\r\nRetype password: &w", d );
             d->connected = CON_GET_NEW_PASSWORD;
             return;
          }
 
          write_to_buffer( d, echo_on_str, 0 );
-         send_to_desc_color( "\n\r&zWhat is your sex (&WM&z/&WF&z/&WN&z)? &w", d );
+         send_to_desc_color( "\r\n&zWhat is your sex (&WM&z/&WF&z/&WN&z)? &w", d );
          d->connected = CON_GET_NEW_SEX;
          break;
 
@@ -1750,17 +1761,17 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                ch->sex = SEX_NEUTRAL;
                break;
             default:
-               send_to_desc_color( "&zThat's not a sex.\n\rWhat is your sex?&w ", d );
+               send_to_desc_color( "&zThat's not a sex.\r\nWhat is your sex?&w ", d );
                return;
          }
 
-         send_to_desc_color( "\n\r&zYou may choose from the following races, or type &Whelp [race]&z to learn more.\n\r",
+         send_to_desc_color( "\r\n&zYou may choose from the following races, or type &Whelp [race]&z to learn more.\r\n",
                              d );
-         send_to_desc_color( "Keep in mind that you must ROLEPLAY the race you select. If you choose a\n\r", d );
-         send_to_desc_color( "droid, you must RP your character accordingly. If you choose noghri, you\n\r", d );
-         send_to_desc_color( "must roleplay your character as the race is expected. This applies to all\n\r", d );
-         send_to_desc_color( "races, and if you are unsure about how to RP a race, refer to the helpfile.\n\r", d );
-         send_to_desc_color( "If you are still unsure, do not pick that race.\n\r\n\r", d );
+         send_to_desc_color( "Keep in mind that you must ROLEPLAY the race you select. If you choose a\r\n", d );
+         send_to_desc_color( "droid, you must RP your character accordingly. If you choose noghri, you\r\n", d );
+         send_to_desc_color( "must roleplay your character as the race is expected. This applies to all\r\n", d );
+         send_to_desc_color( "races, and if you are unsure about how to RP a race, refer to the helpfile.\r\n", d );
+         send_to_desc_color( "If you are still unsure, do not pick that race.\r\n\r\n", d );
          buf[0] = '\0';
          col = 0;
          for( iRace = 0; iRace < MAX_RACE; iRace++ )
@@ -1772,7 +1783,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                   /*
                    * if ( strlen(buf)+strlen(race_table[iRace].race_name) > 77 )
                    * {
-                   * strcat( buf, "\n\r" );
+                   * strcat( buf, "\r\n" );
                    * 
                    * write_to_buffer( d, buf, 0 );
                    * buf[0] = '\0';
@@ -1782,7 +1793,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                   strcat( buf, buf2 );
                   if( ++col % 4 == 0 )
                   {
-                     strcat( buf, "\n\r" );
+                     strcat( buf, "\r\n" );
                      send_to_desc_color( buf, d );
                      buf[0] = '\0';
                   }
@@ -1791,7 +1802,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
             }
          }
          if( col % 4 != 0 )
-            strcat( buf, "\n\r" );
+            strcat( buf, "\r\n" );
          strcat( buf, "&z:&w " );
          send_to_desc_color( buf, d );
          d->connected = CON_GET_NEW_RACE;
@@ -1818,11 +1829,11 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
 
          if( iRace == MAX_RACE || !race_table[iRace].race_name || race_table[iRace].race_name[0] == '\0' )
          {
-            send_to_desc_color( "&zThat's not a race.\n\rWhat is your race?&w ", d );
+            send_to_desc_color( "&zThat's not a race.\r\nWhat is your race?&w ", d );
             return;
          }
 
-         send_to_desc_color( "\n\r&zPlease choose a main ability from the following classes:&w\n\r", d );
+         send_to_desc_color( "\r\n&zPlease choose a main ability from the following classes:&w\r\n", d );
          buf[0] = '\0';
          col = 0;
          for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
@@ -1835,14 +1846,14 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                strcat( buf, buf2 );
                if( ++col % 4 == 0 )
                {
-                  strcat( buf, "\n\r" );
+                  strcat( buf, "\r\n" );
                   send_to_desc_color( buf, d );
                   buf[0] = '\0';
                }
             }
          }
          if( col % 4 != 0 )
-            strcat( buf, "\n\r" );
+            strcat( buf, "\r\n" );
          strcat( buf, "&z:&w " );
 
          send_to_desc_color( buf, d );
@@ -1872,10 +1883,10 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
 
          if( iClass == MAX_ABILITY || !ability_name[iClass] || ability_name[iClass][0] == '\0' )
          {
-            send_to_desc_color( "&zThat's not a skill class.\n\rWhat is it going to be? &w", d );
+            send_to_desc_color( "&zThat's not a skill class.\r\nWhat is it going to be? &w", d );
             return;
          }
-         send_to_desc_color( "\n\r&zPlease choose a secondary ability from the following classes:&w\n\r", d );
+         send_to_desc_color( "\r\n&zPlease choose a secondary ability from the following classes:&w\r\n", d );
          buf[0] = '\0';
          col = 0;
          for( iClass = 0; iClass < MAX_ABILITY; iClass++ )
@@ -1888,7 +1899,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                strcat( buf, buf2 );
                if( ++col % 4 == 0 )
                {
-                  strcat( buf, "\n\r" );
+                  strcat( buf, "\r\n" );
                   send_to_desc_color( buf, d );
                   buf[0] = '\0';
                }
@@ -1896,7 +1907,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
             }
          }
          if( col % 4 != 0 )
-            strcat( buf, "\n\r" );
+            strcat( buf, "\r\n" );
          strcat( buf, "&z:&w " );
 
          send_to_desc_color( buf, d );
@@ -1923,11 +1934,11 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
 
          if( iClass == MAX_ABILITY || !ability_name[iClass] || ability_name[iClass][0] == '\0' )
          {
-            send_to_desc_color( "&zThat's not a skill class.\n\rWhat is it going to be?&w ", d );
+            send_to_desc_color( "&zThat's not a skill class.\r\nWhat is it going to be?&w ", d );
             return;
          }
 
-         send_to_desc_color( "\n\r&zRolling stats...\n\r", d );
+         send_to_desc_color( "\r\n&zRolling stats...\r\n", d );
       case CON_ROLL_STATS:
 
          ch->perm_str = number_range( 1, 6 ) + number_range( 1, 6 ) + number_range( 1, 6 );
@@ -1944,11 +1955,11 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          ch->perm_con += race_table[ch->race].con_plus;
          ch->perm_cha += race_table[ch->race].cha_plus;
 
-         sprintf( buf, "\n\r&zSTR: &R%d  &zINT: &R%d  &zWIS: &R%d  &zDEX: &R%d  &zCON: &R%d  &zCHA: &R%d\n\r",
+         sprintf( buf, "\r\n&zSTR: &R%d  &zINT: &R%d  &zWIS: &R%d  &zDEX: &R%d  &zCON: &R%d  &zCHA: &R%d\r\n",
                   ch->perm_str, ch->perm_int, ch->perm_wis, ch->perm_dex, ch->perm_con, ch->perm_cha );
 
          send_to_desc_color( buf, d );
-         send_to_desc_color( "\n\r&zAre these stats OK?&w ", d );
+         send_to_desc_color( "\r\n&zAre these stats OK?&w ", d );
          d->connected = CON_STATS_OK;
          break;
 
@@ -1975,20 +1986,20 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                ch->perm_con += race_table[ch->race].con_plus;
                ch->perm_cha += race_table[ch->race].cha_plus;
 
-               sprintf( buf, "\n\r&zSTR: &R%d  &zINT: &R%d  &zWIS: &R%d  &zDEX: &R%d  &zCON: &R%d  &zCHA: &R%d\n\r",
+               sprintf( buf, "\r\n&zSTR: &R%d  &zINT: &R%d  &zWIS: &R%d  &zDEX: &R%d  &zCON: &R%d  &zCHA: &R%d\r\n",
                         ch->perm_str, ch->perm_int, ch->perm_wis, ch->perm_dex, ch->perm_con, ch->perm_cha );
 
                send_to_desc_color( buf, d );
-               send_to_desc_color( "\n\r&zOK?&w ", d );
+               send_to_desc_color( "\r\n&zOK?&w ", d );
                return;
             default:
-               send_to_desc_color( "&zInvalid selection.\n\r&WYES&z or &WNO&z? ", d );
+               send_to_desc_color( "&zInvalid selection.\r\n&WYES&z or &WNO&z? ", d );
                return;
          }
 
          if( !IS_DROID( ch ) )
          {
-            send_to_desc_color( "\n\r&zPlease choose a height from the following list:&w\n\r", d );
+            send_to_desc_color( "\r\n&zPlease choose a height from the following list:&w\r\n", d );
             buf[0] = '\0';
             col = 0;
             for( iClass = 0; iClass < 4; iClass++ )
@@ -2001,7 +2012,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                   strcat( buf, buf2 );
                   if( ++col % 4 == 0 )
                   {
-                     strcat( buf, "\n\r" );
+                     strcat( buf, "\r\n" );
                      send_to_desc_color( buf, d );
                      buf[0] = '\0';
                   }
@@ -2011,7 +2022,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
          }
          else
          {
-            send_to_desc_color( "\n\r&zPlease choose a droid description from the following list:&w\n\r", d );
+            send_to_desc_color( "\r\n&zPlease choose a droid description from the following list:&w\r\n", d );
             buf[0] = '\0';
             col = 0;
             for( iDroid = 0; iDroid < 8; iDroid++ )
@@ -2024,7 +2035,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                   strcat( buf, buf2 );
                   if( ++col % 4 == 0 )
                   {
-                     strcat( buf, "\n\r" );
+                     strcat( buf, "\r\n" );
                      send_to_desc_color( buf, d );
                      buf[0] = '\0';
                   }
@@ -2033,7 +2044,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
             }
          }
          if( col % 4 != 0 )
-            strcat( buf, "\n\r" );
+            strcat( buf, "\r\n" );
          strcat( buf, "&z:&w " );
 
          send_to_desc_color( buf, d );
@@ -2056,11 +2067,11 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
 
          if( iClass == 4 || !height_name[iClass] || height_name[iClass][0] == '\0' )
          {
-            send_to_desc_color( "&zThat's not a height.\n\rWhat is it going to be?&w ", d );
+            send_to_desc_color( "&zThat's not a height.\r\nWhat is it going to be?&w ", d );
             return;
          }
 
-         send_to_desc_color( "\n\r&zPlease choose a build from the following list:&w\n\r", d );
+         send_to_desc_color( "\r\n&zPlease choose a build from the following list:&w\r\n", d );
          buf[0] = '\0';
          col = 0;
          for( iClass = 0; iClass < 6; iClass++ )
@@ -2073,7 +2084,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
                strcat( buf, buf2 );
                if( ++col % 4 == 0 )
                {
-                  strcat( buf, "\n\r" );
+                  strcat( buf, "\r\n" );
                   send_to_desc_color( buf, d );
                   buf[0] = '\0';
                }
@@ -2081,7 +2092,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
             }
          }
          if( col % 4 != 0 )
-            strcat( buf, "\n\r" );
+            strcat( buf, "\r\n" );
          strcat( buf, "&z:&w " );
 
          send_to_desc_color( buf, d );
@@ -2101,7 +2112,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
 
          if( iClass == 6 || !build_name[iClass] || build_name[iClass][0] == '\0' )
          {
-            send_to_desc_color( "&zThat's not a build.\n\rWhat is it going to be?&w ", d );
+            send_to_desc_color( "&zThat's not a build.\r\nWhat is it going to be?&w ", d );
             return;
          }
 
@@ -2120,13 +2131,13 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
 
             if( iDroid == 8 || !droid_name[iDroid] || droid_name[iDroid][0] == '\0' )
             {
-               send_to_desc_color( "&zThat's not a droid description.\n\rWhat is it going to be?&w ", d );
+               send_to_desc_color( "&zThat's not a droid description.\r\nWhat is it going to be?&w ", d );
                return;
             }
          }
 /*  Changing this up a bit...automatically sets PLR_ANSI, skips want ansi/msp.
 
-	write_to_buffer( d, "\n\rWould you like ANSI or no graphic/color support, (R/A/N)? ", 0 ); */
+	write_to_buffer( d, "\r\nWould you like ANSI or no graphic/color support, (R/A/N)? ", 0 ); */
          SET_BIT( ch->act, PLR_ANSI );
 /*	d->connected = CON_GET_WANT_RIPANSI;
         break;
@@ -2137,7 +2148,7 @@ void nanny( DESCRIPTOR_DATA * d, char *argument )
 	case 'a': case 'A': SET_BIT(ch->act,PLR_ANSI);  break;
 	case 'n': case 'N': break;
 	default:
-	    write_to_buffer( d, "Invalid selection.\n\rANSI or NONE? ", 0 );
+	    write_to_buffer( d, "Invalid selection.\r\nANSI or NONE? ", 0 );
 	    return;
 	}
         write_to_buffer( d, "Does your mud client have the Mud Sound Protocol? ", 0 );
@@ -2151,7 +2162,7 @@ case CON_GET_MSP:
 	case 'y': case 'Y': SET_BIT(ch->act,PLR_SOUND);  break;
 	case 'n': case 'N': break;
 	default:
-	    write_to_buffer( d, "Invalid selection.\n\rYES or NO? ", 0 );
+	    write_to_buffer( d, "Invalid selection.\r\nYES or NO? ", 0 );
 	    return;
 	}
 
@@ -2161,7 +2172,7 @@ case CON_GET_MSP:
                race_table[ch->race].race_name );
          log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
          to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-         send_to_desc_color( "\n\r&R&zWelcome to &RFall of the Empire&z. Press enter to continue.&w\n\r\n\r", d );
+         send_to_desc_color( "\r\n&R&zWelcome to &RFall of the Empire&z. Press enter to continue.&w\r\n\r\n", d );
          {
             int ability;
 
@@ -2184,7 +2195,7 @@ case CON_GET_MSP:
          break;
 /*	}
 
-	write_to_buffer( d, "\n\rYou now have to wait for a god to authorize you... please be patient...\n\r", 0 );
+	write_to_buffer( d, "\r\nYou now have to wait for a god to authorize you... please be patient...\r\n", 0 );
 	sprintf( log_buf, "(1) %s@%s new %s applying for authorization...",
 				ch->name, d->host,
 				race_table[ch->race].race_name);
@@ -2194,7 +2205,7 @@ case CON_GET_MSP:
 	break;
 
      case CON_WAIT_1:
-	write_to_buffer( d, "\n\rTwo more tries... please be patient...\n\r", 0 );
+	write_to_buffer( d, "\r\nTwo more tries... please be patient...\r\n", 0 );
 	sprintf( log_buf, "(2) %s@%s new %s applying for authorization...",
 				ch->name, d->host,
 				race_table[ch->race].race_name);
@@ -2204,7 +2215,7 @@ case CON_GET_MSP:
 	break;
 
      case CON_WAIT_2:
-	write_to_buffer( d, "\n\rThis is your last try...\n\r", 0 );
+	write_to_buffer( d, "\r\nThis is your last try...\r\n", 0 );
 	sprintf( log_buf, "(3) %s@%s new %s applying for authorization...",
 				ch->name, d->host,
 				race_table[ch->race].race_name);
@@ -2214,7 +2225,7 @@ case CON_GET_MSP:
 	break;
 
     case CON_WAIT_3:
-	write_to_buffer( d, "Sorry... try again later.\n\r", 0 );
+	write_to_buffer( d, "Sorry... try again later.\r\n", 0 );
 	close_socket( d, FALSE );
 	return;
 	break;
@@ -2225,7 +2236,7 @@ case CON_GET_MSP:
 				race_table[ch->race].race_name);
 	log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
 	to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-	write_to_buffer( d, "\n\r", 2 );
+	write_to_buffer( d, "\r\n", 2 );
 	show_title(d);
 	    {
 	       int ability;
@@ -2248,22 +2259,22 @@ case CON_GET_MSP:
 	  send_to_pager( "\014", ch );*/
          if( ch->top_level >= 0 )
          {
-            send_to_pager( "\n\r&WMessage of the Day&w\n\r", ch );
+            send_to_pager( "\r\n&WMessage of the Day&w\r\n", ch );
             do_help( ch, "motd" );
          }
 /* Uh, do we use this?
 	if ( IS_IMMORTAL(ch) )
 	{
-	  send_to_pager( "&WImmortal Message of the Day&w\n\r", ch );
+	  send_to_pager( "&WImmortal Message of the Day&w\r\n", ch );
 	  do_help( ch, "imotd" );
 	}
 */
-         send_to_pager( "\n\r&WPress [ENTER] &w", ch );
+         send_to_pager( "\r\n&WPress [ENTER] &w", ch );
          d->connected = CON_READ_MOTD;
          break;
 
       case CON_READ_MOTD:
-         write_to_buffer( d, "\n\r\n\r", 0 );
+         write_to_buffer( d, "\r\n\r\n", 0 );
          add_char( ch );
          /*
           * if(ch->comfreq == NULL)
@@ -2572,12 +2583,12 @@ case CON_GET_MSP:
 				add_char( ch );
 				SET_BIT( ch->speaks, lang_array[iLang] );
 				set_char_color( AT_SAY, ch );
-				ch_printf( ch, "You can now speak %s.\n\r", lang_names[iLang] );
+				ch_printf( ch, "You can now speak %s.\r\n", lang_names[iLang] );
 				d->connected = CON_PLAYING;
 				return;
 			}
 	set_char_color( AT_SAY, ch );
-	write_to_buffer( d, "You may not learn that language.  Please choose another.\n\r"
+	write_to_buffer( d, "You may not learn that language.  Please choose another.\r\n"
 				  "New language: ", 0 );
 	break;*/
    }
@@ -2654,7 +2665,7 @@ bool check_reconnect( DESCRIPTOR_DATA * d, char *name, bool fConn )
       {
          if( fConn && ch->switched )
          {
-            write_to_buffer( d, "Already playing.\n\rName: ", 0 );
+            write_to_buffer( d, "Already playing.\r\nName: ", 0 );
             d->connected = CON_GET_NAME;
             if( d->character )
             {
@@ -2682,7 +2693,7 @@ bool check_reconnect( DESCRIPTOR_DATA * d, char *name, bool fConn )
             d->character = ch;
             ch->desc = d;
             ch->timer = 0;
-            send_to_char( "Reconnecting.\n\r", ch );
+            send_to_char( "Reconnecting.\r\n", ch );
             act( AT_ACTION, "$n has reconnected.", ch, NULL, NULL, TO_ROOM );
             sprintf( log_buf, "%s (%s) reconnected.", ch->name, d->host );
             log_string_plus( log_buf, LOG_COMM, UMAX( sysdata.log_level, ch->top_level ) );
@@ -2733,7 +2744,7 @@ bool check_multi( DESCRIPTOR_DATA * d, char *name )
          }
          if( iloop >= 10 )
             return FALSE;
-         write_to_buffer( d, "Sorry multi-playing is not allowed ... have you other character quit first.\n\r", 0 );
+         write_to_buffer( d, "Sorry multi-playing is not allowed ... have you other character quit first.\r\n", 0 );
          sprintf( log_buf, "%s attempting to multiplay with %s.",
                   dold->original ? dold->original->name : dold->character->name, d->character->name );
          log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
@@ -2764,15 +2775,15 @@ bool check_playing( DESCRIPTOR_DATA * d, char *name, bool kick )
          ch = dold->original ? dold->original : dold->character;
          if( !ch->name || ( cstate != CON_PLAYING && cstate != CON_EDITING ) )
          {
-            write_to_buffer( d, "Already connected - try again.\n\r", 0 );
+            write_to_buffer( d, "Already connected - try again.\r\n", 0 );
             sprintf( log_buf, "%s already connected.", ch->name );
             log_string_plus( log_buf, LOG_COMM, sysdata.log_level );
             return BERR;
          }
          if( !kick )
             return TRUE;
-         write_to_buffer( d, "Already playing... Kicking off old connection.\n\r", 0 );
-         write_to_buffer( dold, "Kicking off old connection... bye!\n\r", 0 );
+         write_to_buffer( d, "Already playing... Kicking off old connection.\r\n", 0 );
+         write_to_buffer( dold, "Kicking off old connection... bye!\r\n", 0 );
          close_socket( dold, FALSE );
          /*
           * clear descriptor pointer to get rid of bug message in log 
@@ -2785,7 +2796,7 @@ bool check_playing( DESCRIPTOR_DATA * d, char *name, bool kick )
          if( ch->switched )
             do_return( ch->switched, "" );
          ch->switched = NULL;
-         send_to_char( "Reconnecting.\n\r", ch );
+         send_to_char( "Reconnecting.\r\n", ch );
          act( AT_ACTION, "$n has reconnected, kicking off old link.", ch, NULL, NULL, TO_ROOM );
          sprintf( log_buf, "%s@%s reconnected, kicking off old link.", ch->name, d->host );
          log_string_plus( log_buf, LOG_COMM, UMAX( sysdata.log_level, ch->top_level ) );
@@ -2991,7 +3002,7 @@ char *act_string( const char *format, CHAR_DATA * to, CHAR_DATA * ch, void *arg1
       while( ( *point = *i ) != '\0' )
          ++point, ++i;
    }
-   strcpy( point, "\n\r" );
+   strcpy( point, "\r\n" );
    buf[0] = UPPER( buf[0] );
    return buf;
 }
@@ -3108,7 +3119,7 @@ void do_name( CHAR_DATA * ch, char *argument )
 
    if( !NOT_AUTHED( ch ) || ch->pcdata->auth_state != 2 )
    {
-      send_to_char( "Huh?\n\r", ch );
+      send_to_char( "Huh?\r\n", ch );
       return;
    }
 
@@ -3116,13 +3127,13 @@ void do_name( CHAR_DATA * ch, char *argument )
 
    if( !check_parse_name( argument ) )
    {
-      send_to_char( "Illegal name, try another.\n\r", ch );
+      send_to_char( "Illegal name, try another.\r\n", ch );
       return;
    }
 
    if( !str_cmp( ch->name, argument ) )
    {
-      send_to_char( "That's already your name!\n\r", ch );
+      send_to_char( "That's already your name!\r\n", ch );
       return;
    }
 
@@ -3134,20 +3145,20 @@ void do_name( CHAR_DATA * ch, char *argument )
 
    if( tmp )
    {
-      send_to_char( "That name is already taken.  Please choose another.\n\r", ch );
+      send_to_char( "That name is already taken.  Please choose another.\r\n", ch );
       return;
    }
 
    sprintf( fname, "%s%c/%s", PLAYER_DIR, tolower( argument[0] ), capitalize( argument ) );
    if( stat( fname, &fst ) != -1 )
    {
-      send_to_char( "That name is already taken.  Please choose another.\n\r", ch );
+      send_to_char( "That name is already taken.  Please choose another.\r\n", ch );
       return;
    }
 
    STRFREE( ch->name );
    ch->name = STRALLOC( argument );
-   send_to_char( "Your name has been changed.  Please apply again.\n\r", ch );
+   send_to_char( "Your name has been changed.  Please apply again.\r\n", ch );
    ch->pcdata->auth_state = 0;
    return;
 }
@@ -3196,7 +3207,7 @@ char *default_prompt( CHAR_DATA * ch )
    static char buf[MAX_STRING_LENGTH];
    strcpy( buf, "" );
    if( ch->skill_level[FORCE_ABILITY] > 1 || get_trust( ch ) >= LEVEL_IMMORTAL )
-      strcat( buf, "&pForce:&P%m/&p%M  &pAlign:&P%a\n\r" );
+      strcat( buf, "&pForce:&P%m/&p%M  &pAlign:&P%a\r\n" );
 //  strcat(buf, "&BHealth:&C%h&B/%H  &BMovement:&C%v&B/%V  &w%e");
 //  strcat(buf, "&C >&w");
 
@@ -3315,7 +3326,7 @@ void display_prompt( DESCRIPTOR_DATA * d )
                      pstat = 0;
                   break;
                case 'n':
-                  sprintf( pbuf, "\n\r" );
+                  sprintf( pbuf, "\r\n" );
                   break;
                case 'u':
                   pstat = num_descriptors;
@@ -3405,7 +3416,7 @@ bool pager_output( DESCRIPTOR_DATA * d )
    while( lines < 0 && d->pagepoint >= d->pagebuf )
       if( *( --d->pagepoint ) == '\n' )
          ++lines;
-   if( *d->pagepoint == '\n' && *( ++d->pagepoint ) == '\r' )
+   if( *d->pagepoint == '\r' && *( ++d->pagepoint ) == '\n' )
       ++d->pagepoint;
    if( d->pagepoint < d->pagebuf )
       d->pagepoint = d->pagebuf;
@@ -3418,7 +3429,7 @@ bool pager_output( DESCRIPTOR_DATA * d )
       ++last;
    if( last != d->pagepoint )
    {
-      if( !write_to_descriptor( d->descriptor, d->pagepoint, ( last - d->pagepoint ) ) )
+      if( !write_to_descriptor( d, d->pagepoint, ( last - d->pagepoint ) ) )
          return FALSE;
       d->pagepoint = last;
    }
@@ -3435,226 +3446,18 @@ bool pager_output( DESCRIPTOR_DATA * d )
    }
    d->pagecmd = -1;
    if( IS_SET( ch->act, PLR_ANSI ) )
-      if( write_to_descriptor( d->descriptor, ANSI_LBLUE, 0 ) == FALSE )
+      if( write_to_descriptor( d, ANSI_LBLUE, 0 ) == FALSE )
          return FALSE;
-   if( ( ret = write_to_descriptor( d->descriptor, "(C)ontinue, (R)efresh, (B)ack, (Q)uit: [C] ", 0 ) ) == FALSE )
+   if( ( ret = write_to_descriptor( d, "(C)ontinue, (R)efresh, (B)ack, (Q)uit: [C] ", 0 ) ) == FALSE )
       return FALSE;
    if( IS_SET( ch->act, PLR_ANSI ) )
    {
       char buf[32];
 
       snprintf( buf, 32, "%s", color_str( d->pagecolor, ch ) );
-      ret = write_to_descriptor( d->descriptor, buf, 0 );
+      ret = write_to_descriptor( d, buf, 0 );
    }
    return ret;
-}
-
-
-/*  Warm reboot stuff, gotta make sure to thank Erwin for this :) */
-
-void do_copyover( CHAR_DATA * ch, char *argument )
-{
-   FILE *fp;
-   DESCRIPTOR_DATA *d, *de_next;
-   SHIP_DATA *ship;
-   PLANET_DATA *planet;
-   char buf[100], buf2[100], buf3[100];
-
-   if( str_cmp( argument, "now" ) && str_cmp( argument, "warn" ) && str_cmp( argument, "poscrash" )
-       && str_cmp( argument, "nosave" ) )
-   {
-      send_to_char( "Syntax: copyover (warn/now/nosave)\n\r", ch );
-      return;
-   }
-
-   fp = fopen( COPYOVER_FILE, "w" );
-
-   if( !fp )
-   {
-      send_to_char( "Copyover file not writeable, aborted.\n\r", ch );
-      log_printf( "Could not write to copyover file: %s", COPYOVER_FILE );
-      perror( "do_copyover:fopen" );
-      return;
-   }
-
-   /*
-    * In memory of ||/Korey/Nathan/Eleven. -Tawnos 
-    */
-
-   if( !str_cmp( argument, "warn" ) )
-   {
-      do_echo( ch, "^g ^x &WCopyover Warning ^g ^x" );
-      return;
-   }
-
-   if( !str_cmp( argument, "poscrash" ) )
-   {
-      do_echo( ch, "^r ^x &WPossible Crash ^r ^x" );
-      return;
-   }
-
-
-   /*
-    * Consider changing all saved areas here, if you use OLC 
-    */
-
-   /*
-    * do_asave (NULL, ""); - autosave changed areas 
-    */
-
-   // Save ships
-
-   if( str_cmp( argument, "nosave" ) )
-      for( ship = first_ship; ship; ship = ship->next )
-         save_ship( ship );
-
-   // Save planets
-   if( str_cmp( argument, "nosave" ) )
-      for( planet = first_planet; planet; planet = planet->next )
-         save_planet( planet );
-
-   sprintf( buf, "\n\rYou have an intense feeling of Deja Vu...\n\r" );
-//    sprintf (buf, "\n\r *** COPYOVER by %s - please remain seated!\n\r", ch->name);
-   /*
-    * For each playing descriptor, save its state 
-    */
-   for( d = first_descriptor; d; d = de_next )
-   {
-      CHAR_DATA *och = CH( d );
-      de_next = d->next;   /* We delete from the list , so need to save this */
-      if( !d->character || d->connected != CON_PLAYING ) /* drop those logging on */
-      {
-         write_to_descriptor( d->descriptor, "\n\rSorry, we are rebooting." " Come back in a few minutes.\n\r", 0 );
-         close_socket( d, FALSE );  /* throw'em out */
-      }
-      else
-      {
-         do_save( d->character, "" );
-         fprintf( fp, "%d %s %s\n", d->descriptor, och->name, d->host );
-         if( och->top_level == 1 )
-         {
-            write_to_descriptor( d->descriptor, "Since you are level one,"
-                                 "and level one characters do not save, you gain a free level!\n\r", 0 );
-            advance_level( och, 2 );
-            och->top_level++; /* Advance_level doesn't do that */
-         }
-         save_char_obj( och );
-         write_to_descriptor( d->descriptor, buf, 0 );
-      }
-   }
-   fprintf( fp, "-1\n" );
-   fclose( fp );
-
-#ifdef IMC
-   imc_hotboot(  );
-#endif
-
-   /*
-    * exec - descriptors are inherited 
-    */
-   sprintf( buf, "%d", port );
-   sprintf( buf2, "%d", control );
-#ifdef IMC
-   if( this_imcmud )
-      snprintf( buf3, 100, "%d", this_imcmud->desc );
-   else
-      strncpy( buf3, "-1", 100 );
-#else
-   strncpy( buf3, "-1", 100 );
-#endif
-
-   execl( EXE_FILE, "swr", buf, "copyover", buf2, buf3, ( char * )NULL );
-
-   /*
-    * Failed - sucessful exec will not return 
-    */
-   perror( "do_copyover: execl" );
-   send_to_char( "Copyover FAILED!\n\r", ch );
-}
-
-/* Recover from a copyover - load players */
-void copyover_recover(  )
-{
-   DESCRIPTOR_DATA *d;
-   FILE *fp;
-   char name[100];
-   char host[MAX_STRING_LENGTH];
-   int desc;
-   bool fOld;
-
-   log_string( "Copyover recovery initiated" );
-
-   fp = fopen( COPYOVER_FILE, "r" );
-
-   if( !fp )   /* there are some descriptors open which will hang forever then ? */
-   {
-      perror( "copyover_recover:fopen" );
-      log_string( "Copyover file not found. Exitting.\n\r" );
-      exit( 1 );
-   }
-
-   unlink( COPYOVER_FILE );   /* In case something crashes
-                               * - doesn't prevent reading */
-   for( ;; )
-   {
-      fscanf( fp, "%d %s %s\n", &desc, name, host );
-      if( desc == -1 )
-         break;
-
-      /*
-       * Write something, and check if it goes error-free 
-       */
-      if( !write_to_descriptor( desc, "\n\rYou definitely remember being here before..\n\r", 0 ) )
-      {
-         close( desc ); /* nope */
-         continue;
-      }
-
-      CREATE( d, DESCRIPTOR_DATA, 1 );
-      init_descriptor( d, desc );   /* set up various stuff */
-
-      d->host = STRALLOC( host );
-
-      LINK( d, first_descriptor, last_descriptor, next, prev );
-      d->connected = CON_COPYOVER_RECOVER;   /* negative so close_socket
-                                              * will cut them off */
-
-      /*
-       * Now, find the pfile 
-       */
-
-      fOld = load_char_obj( d, name, FALSE );
-
-      if( !fOld ) /* Player file not found?! */
-      {
-         write_to_descriptor( desc, "\n\rSomehow, your character was lost in the copyover sorry.\n\r", 0 );
-         close_socket( d, FALSE );
-      }
-      else  /* ok! */
-      {
-         write_to_descriptor( desc, "\n\rYour feeling of Deja Vu has subsided.\n\r", 0 );
-//          write_to_descriptor (desc, "\n\rCopyover recovery complete.\n\r",0);
-
-         /*
-          * Just In Case,  Someone said this isn't necassary, but _why_
-          * do we want to dump someone in limbo? 
-          */
-         if( !d->character->in_room )
-            d->character->in_room = get_room_index( ROOM_VNUM_TEMPLE );
-
-         /*
-          * Insert in the char_list 
-          */
-         LINK( d->character, first_char, last_char, next, prev );
-
-         char_to_room( d->character, d->character->in_room );
-         do_look( d->character, "auto noprog" );
-         act( AT_ACTION, "$n materializes!", d->character, NULL, NULL, TO_ROOM );
-         d->connected = CON_PLAYING;
-      }
-
-   }
-   fclose( fp );
 }
 
 void do_idealog( CHAR_DATA * ch, char *argument )
@@ -3668,7 +3471,7 @@ void do_idealog( CHAR_DATA * ch, char *argument )
    if( arg[0] == '\0' )
    {
       send_to_pager
-         ( "         &B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&w&WIDEA LOG&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&w&W\n\r",
+         ( "         &B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&w&WIDEA LOG&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&w&W\r\n",
            ch );
       show_file( ch, IDEA_FILE );
       return;
@@ -3679,13 +3482,13 @@ void do_idealog( CHAR_DATA * ch, char *argument )
       sprintf( buf, "%sideas.txt", SYSTEM_DIR );
       sprintf( buf2, "%sideas.bak", SYSTEM_DIR );
       rename( buf, buf2 );
-      send_to_char( "Idealog removed, saved as ideas.bak\n\r", ch );
+      send_to_char( "Idealog removed, saved as ideas.bak\r\n", ch );
       return;
    }
    else
    {
       send_to_char
-         ( "         &B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&WIDEA LOG&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-\n\r",
+         ( "         &B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&B-=&r-=&WIDEA LOG&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-&B=-&r=-\r\n",
            ch );
       show_file( ch, IDEA_FILE );
    }
@@ -3700,19 +3503,19 @@ void do_giveslug( CHAR_DATA * ch, char *argument )
 
    if(argument[0] == '\0')
    {
-	send_to_char("Give who a slug?\n\r", ch);
+	send_to_char("Give who a slug?\r\n", ch);
 	return;
    }
 
    if ( (victim = get_char_world(ch, argument)) == NULL)
    {
-	send_to_char("They aren't here.\n\r", ch);
+	send_to_char("They aren't here.\r\n", ch);
 	return;
    }
 
    if (IS_NPC(victim))
    {
-	send_to_char("Only players can have slugs given to them.\n\r", ch);
+	send_to_char("Only players can have slugs given to them.\r\n", ch);
 	return;
    }
 
@@ -3737,8 +3540,8 @@ void do_giveslug( CHAR_DATA * ch, char *argument )
               write_ship_list();
             }
  
-    send_to_char("&w&GA slug has been created for you at the newbie docking bay.\n\r", victim);
-    send_to_char("Done.\n\r", ch);
+    send_to_char("&w&GA slug has been created for you at the newbie docking bay.\r\n", victim);
+    send_to_char("Done.\r\n", ch);
 */
 }
 

@@ -141,11 +141,10 @@ void make_scraps( OBJ_DATA * obj )
    extract_obj( obj );
 }
 
-
 /*
  * Make a corpse out of a character.
  */
-void make_corpse( CHAR_DATA * ch, char *killer )
+OBJ_DATA *make_corpse( CHAR_DATA *ch, char *killer )
 {
    char buf[MAX_STRING_LENGTH];
    OBJ_DATA *corpse;
@@ -154,7 +153,7 @@ void make_corpse( CHAR_DATA * ch, char *killer )
    char *name;
 
    if( !IS_NPC( ch ) && ch->top_level < 10 )
-      return;
+      return NULL;
 
    if( IS_NPC( ch ) )
    {
@@ -211,8 +210,7 @@ void make_corpse( CHAR_DATA * ch, char *killer )
    STRFREE( corpse->description );
    corpse->description = STRALLOC( buf );
 
-   if( corpse->killer )
-      STRFREE( corpse->killer );
+   DISPOSE( corpse->killer );
    corpse->killer = str_dup( killer );
 
    for( obj = ch->first_carrying; obj; obj = obj_next )
@@ -224,12 +222,8 @@ void make_corpse( CHAR_DATA * ch, char *killer )
       else
          obj_to_obj( obj, corpse );
    }
-
-   obj_to_room( corpse, ch->in_room );
-   return;
+   return obj_to_room( corpse, ch->in_room );
 }
-
-
 
 void make_blood( CHAR_DATA * ch )
 {
@@ -240,7 +234,6 @@ void make_blood( CHAR_DATA * ch )
    obj->value[1] = number_range( 3, UMIN( 5, ch->top_level ) );
    obj_to_room( obj, ch->in_room );
 }
-
 
 void make_bloodstain( CHAR_DATA * ch )
 {

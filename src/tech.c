@@ -61,7 +61,7 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
              && str_cmp( arg, "manuever" ) && str_cmp( arg, "chaff" ) && str_cmp( arg, "alarm" ) )
          {
             send_to_char
-               ( "Modules may affect the following aspects of the ship:\n\rPrimary, Secondary, Missile, Rocket, Torpedo, Hull, Shield, Speed, Hyperspeed, Energy, Manuever, Chaff, and Alarm.\n\r",
+               ( "Modules may affect the following aspects of the ship:\r\nPrimary, Secondary, Missile, Rocket, Torpedo, Hull, Shield, Speed, Hyperspeed, Energy, Manuever, Chaff, and Alarm.\r\n",
                  ch );
             return;
          }
@@ -72,7 +72,7 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
          checktool = FALSE;
          if( !IS_SET( ch->in_room->room_flags, ROOM_FACTORY ) )
          {
-            send_to_char( "&RYou need to be in a factory or workshop to do that.\n\r", ch );
+            send_to_char( "&RYou need to be in a factory or workshop to do that.\r\n", ch );
             return;
          }
 
@@ -93,31 +93,31 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
 
          if( !checklens )
          {
-            send_to_char( "&RYou need a lens to control the energy.\n\r", ch );
+            send_to_char( "&RYou need a lens to control the energy.\r\n", ch );
             return;
          }
 
          if( !checkbat )
          {
-            send_to_char( "&RYou need a battery to power the module.\n\r", ch );
+            send_to_char( "&RYou need a battery to power the module.\r\n", ch );
             return;
          }
 
          if( !checksuper )
          {
-            send_to_char( "&RYou need a superconductor to focus the energy.\n\r", ch );
+            send_to_char( "&RYou need a superconductor to focus the energy.\r\n", ch );
             return;
          }
 
          if( !checkcircuit )
          {
-            send_to_char( "&RYou need a circuit board to control the module.\n\r", ch );
+            send_to_char( "&RYou need a circuit board to control the module.\r\n", ch );
             return;
          }
 
          if( !checktool )
          {
-            send_to_char( "&RYou need a toolkit to build the module.\n\r", ch );
+            send_to_char( "&RYou need a toolkit to build the module.\r\n", ch );
             return;
          }
 
@@ -127,13 +127,13 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makemodule] );
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of creating a module.\n\r", ch );
+            send_to_char( "&GYou begin the long process of creating a module.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 10, do_makemodule, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "&RYou can't figure out what to do.\n\r", ch );
+         send_to_char( "&RYou can't figure out what to do.\r\n", ch );
          learn_from_failure( ch, gsn_makemodule );
          return;
 
@@ -147,7 +147,7 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish your work.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish your work.\r\n", ch );
          return;
    }
 
@@ -160,7 +160,7 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
    if( ( pObjIndex = get_obj_index( MODULE_VNUM ) ) == NULL )
    {
       send_to_char
-         ( "&RThe item you are trying to create is missing from the database.\n\rPlease inform the administration of this error.\n\r",
+         ( "&RThe item you are trying to create is missing from the database.\r\nPlease inform the administration of this error.\r\n",
            ch );
       return;
    }
@@ -207,9 +207,9 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
    if( number_percent(  ) > schance * 2 || ( !checklens ) || ( !checktool ) || ( !checkbat ) || ( !checksuper )
        || ( !checkcircuit ) )
    {
-      send_to_char( "&RYou hold up your newly created module.\n\r", ch );
-      send_to_char( "&RThe module begins to shake violently turning red hot!\n\r", ch );
-      send_to_char( "&RYou drop it as it begins to burn your hand and then.. It disintigrates!\n\r", ch );
+      send_to_char( "&RYou hold up your newly created module.\r\n", ch );
+      send_to_char( "&RThe module begins to shake violently turning red hot!\r\n", ch );
+      send_to_char( "&RYou drop it as it begins to burn your hand and then.. It disintigrates!\r\n", ch );
       learn_from_failure( ch, gsn_makemodule );
       return;
    }
@@ -320,7 +320,7 @@ void do_makemodule( CHAR_DATA * ch, char *argument )
 
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your newly created module.&w\n\r", ch );
+   send_to_char( "&GYou finish your work and hold up your newly created module.&w\r\n", ch );
    act( AT_PLAIN, "$n finishes creating a new module.", ch, NULL, argument, TO_ROOM );
 
    {
@@ -348,19 +348,19 @@ void do_showmodules( CHAR_DATA * ch, char *argument )
 
    if( ( ship = ship_from_engine( ch->in_room->vnum ) ) == NULL )
    {
-      send_to_char( "You must be in the engine room of a ship.\n\r", ch );
+      send_to_char( "You must be in the engine room of a ship.\r\n", ch );
       return;
    }
 
    if( number_percent(  ) > schance )
    {
-      send_to_char( "&RYou fail to find the module control panel.\n\r", ch );
+      send_to_char( "&RYou fail to find the module control panel.\r\n", ch );
       learn_from_failure( ch, gsn_showmodules );
       return;
    }
-   send_to_char( "&z+--------------------------------------+\n\r", ch );
-   send_to_char( "&z| &RNum  Type                   Quantity &z|\n\r", ch );
-   send_to_char( "&z| &r---  ----                   -------- &z|\n\r", ch );
+   send_to_char( "&z+--------------------------------------+\r\n", ch );
+   send_to_char( "&z| &RNum  Type                   Quantity &z|\r\n", ch );
+   send_to_char( "&z| &r---  ----                   -------- &z|\r\n", ch );
    i = 0;
    for( mod = ship->first_module; mod; mod = mod->next )
    {
@@ -392,13 +392,13 @@ void do_showmodules( CHAR_DATA * ch, char *argument )
       if( mod->affect == AFFECT_CHAFF )
          strcpy( str, "Chaff" );
 
-      sprintf( buf, "&z| &P%2d&p)  &G&W%-22.22s %-8.8d &z|\n\r", i, str, mod->ammount );
+      sprintf( buf, "&z| &P%2d&p)  &G&W%-22.22s %-8.8d &z|\r\n", i, str, mod->ammount );
       send_to_char( buf, ch );
    }
-   send_to_char( "&z+--------------------------------------+\n\r", ch );
+   send_to_char( "&z+--------------------------------------+\r\n", ch );
    xpgain = UMAX( 100, i * 100 );
    gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-   ch_printf( ch, " You gain %d experience for being a Technician.\n\r", xpgain );
+   ch_printf( ch, " You gain %d experience for being a Technician.\r\n", xpgain );
    learn_from_success( ch, gsn_showmodules );
 }
 
@@ -425,13 +425,13 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
 
          if( !ship )
          {
-            send_to_char( "You need to be in the ships engine room.\n\r", ch );
+            send_to_char( "You need to be in the ships engine room.\r\n", ch );
             return;
          }
 
          if( arg[0] == '\0' || atoi( arg ) == 0 )
          {
-            send_to_char( "Remove WHICH module? Use the number next to it on showmodules.\n\r", ch );
+            send_to_char( "Remove WHICH module? Use the number next to it on showmodules.\r\n", ch );
             return;
          }
 
@@ -443,7 +443,7 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
 
          if( checktool == FALSE )
          {
-            send_to_char( "You need a toolkit to remove a module.\n\r", ch );
+            send_to_char( "You need a toolkit to remove a module.\r\n", ch );
             return;
          }
          i = 0;
@@ -453,7 +453,7 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
 
          if( i < num || i == 0 )
          {
-            send_to_char( "No such module installed.\n\r", ch );
+            send_to_char( "No such module installed.\r\n", ch );
             return;
          }
 
@@ -462,15 +462,15 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
          {
             strcpy( arg, argument );
             ch->dest_buf = str_dup( arg );
-            send_to_char( "&GYou begin the long process of removing a module.\n\r", ch );
-            sprintf( buf, "$n takes out $s toolkit and begins to work.\n\r" );
+            send_to_char( "&GYou begin the long process of removing a module.\r\n", ch );
+            sprintf( buf, "$n takes out $s toolkit and begins to work.\r\n" );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
 
             add_timer( ch, TIMER_DO_FUN, 5, do_removemodule, 1 );
             return;
          }
 
-         send_to_char( "&RYou are unable to figure out what to do.\n\r", ch );
+         send_to_char( "&RYou are unable to figure out what to do.\r\n", ch );
          learn_from_failure( ch, gsn_removemodule );
          return;
 
@@ -484,7 +484,7 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish.\r\n", ch );
          return;
    }
    ch->substate = SUB_NONE;
@@ -500,14 +500,14 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
    ship = ship_from_engine( ch->in_room->vnum );
    if( !ship )
    {
-      send_to_char( "Error: Something went wrong. Contact an Admin!\n\r", ch );
+      send_to_char( "Error: Something went wrong. Contact an Admin!\r\n", ch );
       return;
    }
 
    if( number_percent(  ) > schance * 2 )
    {
-      send_to_char( "&RYou finish removing the module and everything's looking good...\n\r", ch );
-      send_to_char( "&RThen you realize you removed the hyperdrive energy core. OOPS!\n\r", ch );
+      send_to_char( "&RYou finish removing the module and everything's looking good...\r\n", ch );
+      send_to_char( "&RThen you realize you removed the hyperdrive energy core. OOPS!\r\n", ch );
       learn_from_failure( ch, gsn_removemodule );
       return;
    }
@@ -560,13 +560,13 @@ void do_removemodule( CHAR_DATA * ch, char *argument )
       }
    }
 
-   send_to_char( "You finish removing the module and toss the extra scraps away.\n\r", ch );
+   send_to_char( "You finish removing the module and toss the extra scraps away.\r\n", ch );
 
    {
       long xpgain;
       xpgain = ( ( ch->skill_level[TECHNICIAN_ABILITY] + 1 ) * 300 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, " You gain %d experience for being a Technician.\n\r", xpgain );
+      ch_printf( ch, " You gain %d experience for being a Technician.\r\n", xpgain );
       learn_from_success( ch, gsn_removemodule );
    }
    return;
@@ -585,7 +585,7 @@ void do_shipmaintenance( CHAR_DATA * ch, char *argument )
 
    if( ( ch->pcdata->learned[gsn_shipmaintenance] ) <= 0 )
    {
-      send_to_char( "Huh?\n\r", ch );
+      send_to_char( "Huh?\r\n", ch );
       return;
    }
 
@@ -594,20 +594,20 @@ void do_shipmaintenance( CHAR_DATA * ch, char *argument )
       default:
          if( ( ship = ship_from_engine( ch->in_room->vnum ) ) == NULL )
          {
-            send_to_char( "&RYou must be in the engine room of a ship to do that!\n\r", ch );
+            send_to_char( "&RYou must be in the engine room of a ship to do that!\r\n", ch );
             return;
          }
 
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_shipmaintenance] );
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou start performing basic maintenance on your ship...\n\r", ch );
+            send_to_char( "&GYou start performing basic maintenance on your ship...\r\n", ch );
             act( AT_PLAIN, "$n begins some basic ship maintenance.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 15, do_shipmaintenance, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "&RYou fail to perform even the most basic of ship maintenance skills.\n\r", ch );
+         send_to_char( "&RYou fail to perform even the most basic of ship maintenance skills.\r\n", ch );
          learn_from_failure( ch, gsn_shipmaintenance );
          return;
 
@@ -621,7 +621,7 @@ void do_shipmaintenance( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are distracted and fail to finish your maintenance.\n\r", ch );
+         send_to_char( "&RYou are distracted and fail to finish your maintenance.\r\n", ch );
          return;
    }
 
@@ -683,14 +683,14 @@ void do_shipmaintenance( CHAR_DATA * ch, char *argument )
       }  //if check
    }  // for loop   
 
-   ch_printf( ch, "&GRepairs complete.. Hull raised %d points, ship weaponry and chaff restocked.\n\r", change );
+   ch_printf( ch, "&GRepairs complete.. Hull raised %d points, ship weaponry and chaff restocked.\r\n", change );
    if( ship->bombs > oldbombs )
-      ch_printf( ch, "&G%d bombs loaded into ship from inventory.\n\r", ship->bombs - oldbombs );
+      ch_printf( ch, "&G%d bombs loaded into ship from inventory.\r\n", ship->bombs - oldbombs );
 
    act( AT_PLAIN, "$n finishes patching the hull and restocking the ship.", ch, NULL, argument, TO_ROOM );
 
    xp = get_ship_value( ship ) / 100;
-   ch_printf( ch, "&WYou gain %ld points of technician experience!\n\r", ( get_ship_value( ship ) / 100 ) );
+   ch_printf( ch, "&WYou gain %ld points of technician experience!\r\n", ( get_ship_value( ship ) / 100 ) );
    gain_exp( ch, xp, TECHNICIAN_ABILITY );
 
    learn_from_success( ch, gsn_shipmaintenance );
@@ -718,7 +718,7 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
 
          if( arg[0] == '\0' )
          {
-            send_to_char( "Syntax: checkbugs <person>\n\r", ch );
+            send_to_char( "Syntax: checkbugs <person>\r\n", ch );
             return;
          }
 
@@ -727,13 +727,13 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
 
          if( !victim )
          {
-            send_to_char( "They aren't here.\n\r", ch );
+            send_to_char( "They aren't here.\r\n", ch );
             return;
          }
 
          if( IS_NPC( victim ) )
          {
-            send_to_char( "You can only do that to players.\n\r", ch );
+            send_to_char( "You can only do that to players.\r\n", ch );
             return;
          }
 
@@ -741,14 +741,14 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
 
          if( number_percent(  ) - 20 < schance )
          {
-            send_to_char( "&w&GScanning...\n\r", ch );
+            send_to_char( "&w&GScanning...\r\n", ch );
             act( AT_PLAIN, "$n takes a scanner and begins to scan $N.", ch, NULL, victim, TO_NOTVICT );
             act( AT_PLAIN, "$n takes a scanner and begins to scan you for bugs.", ch, NULL, victim, TO_VICT );
             add_timer( ch, TIMER_DO_FUN, 10, do_scanbugs, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "You punch random buttons on the scanner, unsure of what you are doing.\n\r", ch );
+         send_to_char( "You punch random buttons on the scanner, unsure of what you are doing.\r\n", ch );
          learn_from_failure( ch, gsn_scanbugs );
          return;
 
@@ -764,7 +764,7 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish scanning.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish scanning.\r\n", ch );
          return;
 
    }
@@ -775,7 +775,7 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
 
    if( number_percent(  ) > schance * 2 + 20 )
    {
-      send_to_char( "&w&RYou struggle with the scanner, furious in your ignorance of its abilities.\n\r", ch );
+      send_to_char( "&w&RYou struggle with the scanner, furious in your ignorance of its abilities.\r\n", ch );
       learn_from_failure( ch, gsn_scanbugs );
       return;
    }
@@ -784,7 +784,7 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
 
    if( !victim )
    {
-      send_to_char( "Your victim left before you finished scanning!\n\r", ch );
+      send_to_char( "Your victim left before you finished scanning!\r\n", ch );
       return;
    }
 
@@ -793,9 +793,9 @@ void do_scanbugs( CHAR_DATA * ch, char *argument )
       i++;
 
    if( i >= 1 )
-      ch_printf( ch, "&w&GScan Complete. %d bugs apparent.\n\r", i );
+      ch_printf( ch, "&w&GScan Complete. %d bugs apparent.\r\n", i );
    else
-      send_to_char( "&w&GScan Complete. No bugs apparent.\n\r", ch );
+      send_to_char( "&w&GScan Complete. No bugs apparent.\r\n", ch );
 
    learn_from_success( ch, gsn_scanbugs );
 
@@ -825,7 +825,7 @@ void do_removebug( CHAR_DATA * ch, char *argument )
 
          if( arg[0] == '\0' )
          {
-            send_to_char( "Syntax: removebug <person>\n\r", ch );
+            send_to_char( "Syntax: removebug <person>\r\n", ch );
             return;
          }
 
@@ -834,13 +834,13 @@ void do_removebug( CHAR_DATA * ch, char *argument )
 
          if( !victim )
          {
-            send_to_char( "They aren't here.\n\r", ch );
+            send_to_char( "They aren't here.\r\n", ch );
             return;
          }
 
          if( IS_NPC( victim ) )
          {
-            send_to_char( "You can only do that to players.\n\r", ch );
+            send_to_char( "You can only do that to players.\r\n", ch );
             return;
          }
 
@@ -848,14 +848,14 @@ void do_removebug( CHAR_DATA * ch, char *argument )
 
          if( number_percent(  ) < schance + 20 )
          {
-            send_to_char( "&w&GYou begin to pick at a bug, trying to remove it without notifying the owner...\n\r", ch );
+            send_to_char( "&w&GYou begin to pick at a bug, trying to remove it without notifying the owner...\r\n", ch );
             act( AT_PLAIN, "$n takes $s toolkit and begins removing a bug from $N.", ch, NULL, victim, TO_NOTVICT );
             act( AT_PLAIN, "$n takes $s toolkit and begins removing a bug from you.", ch, NULL, victim, TO_VICT );
             add_timer( ch, TIMER_DO_FUN, 1, do_removebug, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "You look curiously at the bug, unsure of how to remove it.\n\r", ch );
+         send_to_char( "You look curiously at the bug, unsure of how to remove it.\r\n", ch );
          learn_from_failure( ch, gsn_removebug );
          return;
 
@@ -871,7 +871,7 @@ void do_removebug( CHAR_DATA * ch, char *argument )
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interrupted and fail to finish removing the bug.\n\r", ch );
+         send_to_char( "&RYou are interrupted and fail to finish removing the bug.\r\n", ch );
          return;
 
    }
@@ -885,14 +885,14 @@ void do_removebug( CHAR_DATA * ch, char *argument )
 
    if( !victim )
    {
-      send_to_char( "Your victim left before you finished removing the bug!\n\r", ch );
+      send_to_char( "Your victim left before you finished removing the bug!\r\n", ch );
       return;
    }
 
    if( number_percent(  ) > schance * 2 || !victim->first_bug )
    {
-      send_to_char( "&w&RYou fiddle with the bug, and suddenly a small beeper goes off...\n\r", ch );
-      send_to_char( "&w&RIt appears you've failed.\n\r", ch );
+      send_to_char( "&w&RYou fiddle with the bug, and suddenly a small beeper goes off...\r\n", ch );
+      send_to_char( "&w&RIt appears you've failed.\r\n", ch );
       learn_from_failure( ch, gsn_scanbugs );
       return;
    }
@@ -903,7 +903,7 @@ void do_removebug( CHAR_DATA * ch, char *argument )
    UNLINK( bugs, victim->first_bug, victim->last_bug, next_in_bug, prev_in_bug );
    STRFREE( bugs->name );
    DISPOSE( bugs );
-   send_to_char( "&w&GWith a satisfying *click*, you detach the bug and smash it.\n\r", ch );
+   send_to_char( "&w&GWith a satisfying *click*, you detach the bug and smash it.\r\n", ch );
    learn_from_success( ch, gsn_removebug );
    {
       long xpgain;

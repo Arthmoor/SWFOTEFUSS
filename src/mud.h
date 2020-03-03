@@ -141,13 +141,14 @@ typedef struct wizent WIZENT;
 typedef struct member_data MEMBER_DATA;   /* Individual member data */
 typedef struct member_list MEMBER_LIST;   /* List of members in clan */
 typedef struct membersort_data MS_DATA;   /* List for sorted roster list */
+typedef struct specfun_list SPEC_LIST;
 
 /*
  * Function types.
  */
-typedef void DO_FUN args( ( CHAR_DATA * ch, char *argument ) );
-typedef bool SPEC_FUN args( ( CHAR_DATA * ch ) );
-typedef ch_ret SPELL_FUN args( ( int sn, int level, CHAR_DATA * ch, void *vo ) );
+typedef void DO_FUN( CHAR_DATA * ch, char *argument );
+typedef bool SPEC_FUN( CHAR_DATA * ch );
+typedef ch_ret SPELL_FUN( int sn, int level, CHAR_DATA * ch, void *vo );
 
 #define DUR_CONV	23.333333333333333333333333
 #define HIDDEN_TILDE	'*'
@@ -249,6 +250,7 @@ typedef ch_ret SPELL_FUN args( ( int sn, int level, CHAR_DATA * ch, void *vo ) )
 #define LEVEL_AVATAR		   (MAX_LEVEL - 5)
 #include "pfiles.h"
 #include "color.h"
+#include "hotboot.h"
 #ifdef IMC
 #include "imc.h"
 #endif
@@ -462,7 +464,6 @@ struct weather_data
    int sunlight;
 };
 
-
 /*
  * Structure used to build wizlist
  */
@@ -474,23 +475,23 @@ struct wizent
    short level;
 };
 
-
 /*
  * Connected state for a channel.
  */
 typedef enum
 {
-   CON_PLAYING, CON_GET_NAME, CON_GET_OLD_PASSWORD,
+   CON_GET_NAME = -99, CON_GET_OLD_PASSWORD,
    CON_CONFIRM_NEW_NAME, CON_GET_NEW_PASSWORD, CON_CONFIRM_NEW_PASSWORD,
    CON_GET_NEW_SEX, CON_READ_MOTD,
-   CON_GET_NEW_RACE, CON_GET_EMULATION, CON_EDITING,
+   CON_GET_NEW_RACE, CON_GET_EMULATION,
    CON_GET_WANT_RIPANSI, CON_TITLE, CON_PRESS_ENTER,
    CON_WAIT_1, CON_WAIT_2, CON_WAIT_3,
    CON_ACCEPTED, CON_GET_PKILL, CON_READ_IMOTD,
    CON_GET_NEW_EMAIL, CON_GET_MSP, CON_GET_NEW_CLASS,
    CON_GET_NEW_SECOND, CON_ROLL_STATS, CON_STATS_OK,
-   CON_COPYOVER_RECOVER, CON_GET_PUEBLO, CON_GET_HEIGHT, CON_GET_BUILD,
-   CON_GET_DROID
+   CON_GET_PUEBLO, CON_GET_HEIGHT, CON_GET_BUILD,
+   CON_GET_DROID,
+   CON_COPYOVER_RECOVER, CON_PLAYING = 0, CON_EDITING
 } connection_types;
 
 /*
@@ -523,6 +524,8 @@ struct descriptor_data
    DESCRIPTOR_DATA *snoop_by;
    CHAR_DATA *character;
    CHAR_DATA *original;
+   struct mccp_data *mccp; /* Mud Client Compression Protocol */
+   bool can_compress;
    char *host;
    char *hostip;
    int port;
@@ -548,8 +551,6 @@ struct descriptor_data
    int newstate;
    unsigned char prevcolor;
 };
-
-
 
 /*
  * Attribute bonus structures.
@@ -1161,6 +1162,7 @@ struct module_data
    int affect; // What item is it going to affect.
    int ammount;   // How much is it going to affect it.
 };
+
 struct ship_data
 {
    SHIP_DATA *next;
@@ -1334,7 +1336,6 @@ struct missile_data
    int mx, my, mz;
 };
 
-
 struct tourney_data
 {
    int open;
@@ -1439,6 +1440,7 @@ struct smaug_affect
 #define MOB_VNUM_MERC_PATROL 	33
 #define MOB_VNUM_MERC_FORCES 	34
 #define MOB_VNUM_SHIP_GUARD	35
+#define MOB_VNUM_SUPERMOB 3
 
 /* Ship Flags */
 #define SHIP_NOHIJACK           BV00
@@ -2419,6 +2421,8 @@ struct mob_index_data
    char *short_descr;
    char *long_descr;
    char *description;
+   char *spec_funname;
+   char *spec_funname2;
    int vnum;
    short count;
    short killed;
@@ -2524,6 +2528,8 @@ struct char_data
    HHF_DATA *hating;
    SPEC_FUN *spec_fun;
    SPEC_FUN *spec_2;
+   char *spec_funname;
+   char *spec_funname2;
    MPROG_ACT_LIST *mpact;
    int mpactnum;
    short mpscriptpos;
@@ -2660,6 +2666,9 @@ struct char_data
    int pheight, build;
    CHAR_DATA *aiming_at;
    short colors[MAX_COLORS];
+   int home_vnum;  /* hotboot tracker */
+   int resetvnum;
+   int resetnum;
 };
 
 struct killed_data
@@ -2765,9 +2774,8 @@ struct pc_data
 #ifdef IMC
    IMC_CHARDATA *imcchardata;
 #endif
+   bool hotboot; /* hotboot tracker */
 };
-
-
 
 /*
  * Liquids.
@@ -2782,8 +2790,6 @@ struct liq_type
    short liq_affect[3];
 };
 
-
-
 /*
  * Extra description data for a room or object.
  */
@@ -2794,8 +2800,6 @@ struct extra_descr_data
    char *keyword; /* Keyword in look/examine          */
    char *description;   /* What to see                      */
 };
-
-
 
 /*
  * Prototype for an object.
@@ -2828,7 +2832,6 @@ struct obj_index_data
    short layers;
    int rent;   /* Unused */
 };
-
 
 /*
  * One object.
@@ -2871,8 +2874,8 @@ struct obj_data
    int value[6];
    short count;   /* support for object grouping */
    int serial; /* serial number         */
+   int room_vnum; /* hotboot tracker */
 };
-
 
 /*
  * Exit data.
@@ -2927,6 +2930,7 @@ struct reset_data
    int arg1;
    int arg2;
    int arg3;
+   bool sreset;
 };
 
 /*
@@ -3013,8 +3017,8 @@ struct system_data
    char *guild_advisor; /* guild overseer and advisor. */
    int save_flags;   /* Toggles for saving conditions */
    short save_frequency;   /* How old to autosave someone */
+   void *dlHandle;
 };
-
 
 /*
  * Room type.
@@ -3100,8 +3104,6 @@ typedef enum
    SKILL_HERB
 } skill_types;
 
-
-
 struct timerset
 {
    int num_uses;
@@ -3110,8 +3112,6 @@ struct timerset
    struct timeval max_time;
 };
 
-
-
 /*
  * Skills include spells as a particular case.
  */
@@ -3119,7 +3119,9 @@ struct skill_type
 {
    char *name; /* Name of skill     */
    SPELL_FUN *spell_fun;   /* Spell pointer (for spells) */
-   DO_FUN *skill_fun;   /* Skill pointer (for skills) */
+   char *spell_fun_name;   /* Spell function name - Trax */
+   DO_FUN *skill_fun;      /* Skill pointer (for skills) */
+   char *skill_fun_name;   /* Skill function name - Trax */
    short target;  /* Legal targets     */
    short minimum_position; /* Position for caster / user */
    short slot; /* Slot for #OBJECT loading   */
@@ -3385,14 +3387,17 @@ extern short gsn_coynite;
 extern short gsn_duinuogwuin;
 extern short gsn_droid;
 
-/*
- * Utility macros.
- */
-#define UMIN(a, b)		((a) < (b) ? (a) : (b))
-#define UMAX(a, b)		((a) > (b) ? (a) : (b))
-#define URANGE(a, b, c)		((b) < (a) ? (a) : ((b) > (c) ? (c) : (b)))
-#define LOWER(c)		((c) >= 'A' && (c) <= 'Z' ? (c)+'a'-'A' : (c))
-#define UPPER(c)		((c) >= 'a' && (c) <= 'z' ? (c)+'A'-'a' : (c))
+// Utility macros.
+int umin( int check, int ncheck );
+int umax( int check, int ncheck );
+int urange( int mincheck, int check, int maxcheck );
+
+#define UMIN( a, b )      ( umin( (a), (b) ) )
+#define UMAX( a, b )      ( umax( (a), (b) ) )
+#define URANGE(a, b, c )  ( urange( (a), (b), (c) ) )
+#define LOWER( c )        ( (c) >= 'A' && (c) <= 'Z' ? (c) + 'a' - 'A' : (c) )
+#define UPPER( c )        ( (c) >= 'a' && (c) <= 'z' ? (c) + 'A' - 'a' : (c) )
+
 #define IS_SET(flag, bit)	((flag) & (bit))
 #define SET_BIT(var, bit)	((var) |= (bit))
 #define REMOVE_BIT(var, bit)	((var) &= ~(bit))
@@ -3570,7 +3575,6 @@ do {								\
   }								\
 } while(0)
 
-
 #define ASSIGN_GSN(gsn, skill)					\
 do								\
 {								\
@@ -3584,7 +3588,7 @@ do								\
 {								\
     if ( (ch)->substate == SUB_RESTRICTED )			\
     {								\
-	send_to_char( "You cannot use this command from within another command.\n\r", ch );	\
+	send_to_char( "You cannot use this command from within another command.\r\n", ch );	\
 	return;							\
     }								\
 } while(0)
@@ -3695,20 +3699,7 @@ do								\
 #define CAN_WEAR(obj, part)	(IS_SET((obj)->wear_flags,  (part)))
 #define IS_OBJ_STAT(obj, stat)	(IS_SET((obj)->extra_flags, (stat)))
 
-
-
-/*
- * Description macros.
- */
-/* PERS WILL NOW BE HANDLED IN COMM.C
-#define PERS(ch, looker)	( can_see( (looker), (ch) ) ?		\
-				( IS_NPC(ch) ? (ch)->short_descr	\
-				: (ch)->name ) : IS_IMMORTAL(ch) ? "Immortal" : "someone" )
-
-*/
-
 #define log_string( txt )	( log_string_plus( (txt), LOG_NORMAL, LEVEL_LOG ) )
-
 
 /*
  * Structure for a command in the command lookup table.
@@ -3718,13 +3709,12 @@ struct cmd_type
    CMDTYPE *next;
    char *name;
    DO_FUN *do_fun;
+   char *fun_name;
    short position;
    short level;
    short log;
    struct timerset userec;
 };
-
-
 
 /*
  * Structure for a social in the socials table.
@@ -3740,6 +3730,13 @@ struct social_type
    char *vict_found;
    char *char_auto;
    char *others_auto;
+};
+
+struct specfun_list
+{
+   SPEC_LIST *next;
+   SPEC_LIST *prev;
+   char *name;
 };
 
 /*
@@ -3809,7 +3806,6 @@ extern char bname[MAX_STRING_LENGTH];
 /*
  * Global variables.
  */
-
 extern MPSLEEP_DATA *first_mpwait;  /* Storing sleeping mud progs */
 extern MPSLEEP_DATA *last_mpwait;   /* - */
 extern MPSLEEP_DATA *current_mpwait;   /* - */
@@ -3880,6 +3876,8 @@ extern AREA_DATA *first_asort;
 extern AREA_DATA *last_asort;
 extern AREA_DATA *first_bsort;
 extern AREA_DATA *last_bsort;
+extern SPEC_LIST *first_specfun;
+extern SPEC_LIST *last_specfun;
 
 extern TELEPORT_DATA *first_teleport;
 extern TELEPORT_DATA *last_teleport;
@@ -4147,7 +4145,6 @@ DECLARE_DO_FUN( do_comment );
 DECLARE_DO_FUN( do_compare );
 DECLARE_DO_FUN( do_config );
 DECLARE_DO_FUN( do_consider );
-DECLARE_DO_FUN( do_copyover );
 DECLARE_DO_FUN( do_senate );
 DECLARE_DO_FUN( do_addsenator );
 DECLARE_DO_FUN( do_remsenator );
@@ -4727,8 +4724,6 @@ DECLARE_DO_FUN( fskill_makedualsaber );
                                               * every half hour - trying to
                                               * determine best reboot time */
 #define TEMP_FILE	SYSTEM_DIR "charsave.tmp"  /* More char save protect */
-#define COPYOVER_FILE	SYSTEM_DIR "copyover.dat"  /* for warm reboots    */
-#define EXE_FILE	"../src/swr"   /* executable path  */
 #define SLOG_FILE	"../.slog/slog.txt"  /* Secret Log       */
 
 /*
@@ -4942,7 +4937,6 @@ long int get_prototype_value args( ( SHIP_PROTOTYPE * prototype ) );
 void create_ship_rooms args( ( SHIP_DATA * ship ) );
 
 /* comm.c */
-char *smaug_crypt( const char *pwd );
 char *PERS args( ( CHAR_DATA * ch, CHAR_DATA * looker ) );
 FELLOW_DATA *knowsof args( ( CHAR_DATA * ch, CHAR_DATA * victim ) );
 void close_socket args( ( DESCRIPTOR_DATA * dclose, bool force ) );
@@ -4950,7 +4944,6 @@ void write_to_buffer args( ( DESCRIPTOR_DATA * d, const char *txt, int length ) 
 void write_to_pager args( ( DESCRIPTOR_DATA * d, const char *txt, int length ) );
 void send_to_char args( ( const char *txt, CHAR_DATA * ch ) );
 void send_to_char_color args( ( const char *txt, CHAR_DATA * ch ) );
-void color_send_to_desc args( ( const char *txt, DESCRIPTOR_DATA * d ) );
 void send_to_char_noand args( ( const char *txt, CHAR_DATA * ch ) );
 void send_to_pager args( ( const char *txt, CHAR_DATA * ch ) );
 void send_to_pager_color args( ( const char *txt, CHAR_DATA * ch ) );
@@ -4960,7 +4953,6 @@ int strlen_color args( ( char *argument ) );
 char *format_str args( ( char *str, int len ) );
 void pager_printf args( ( CHAR_DATA * ch, char *fmt, ... ) );
 void log_printf args( ( char *fmt, ... ) );
-void copyover_recover args( ( void ) );
 
 void act( short AType, const char *format, CHAR_DATA * ch, void *arg1, void *arg2, int type );
 
@@ -4971,9 +4963,10 @@ void reset_area args( ( AREA_DATA * pArea ) );
 
 /* db.c */
 void show_file args( ( CHAR_DATA * ch, char *filename ) );
+bool is_valid_filename( CHAR_DATA *ch, const char *direct, const char *filename );
 char *str_dup args( ( char const *str ) );
 char *centertext args( ( char *text, int size ) );
-void boot_db args( ( void ) );
+void boot_db( bool fCopyOver );
 void area_update args( ( void ) );
 void add_char args( ( CHAR_DATA * ch ) );
 CD *create_mobile args( ( MOB_INDEX_DATA * pMobIndex ) );
@@ -5086,11 +5079,11 @@ bool is_safe args( ( CHAR_DATA * ch, CHAR_DATA * victim ) );
 bool is_safe_nm args( ( CHAR_DATA * ch, CHAR_DATA * victim ) );
 bool legal_loot args( ( CHAR_DATA * ch, CHAR_DATA * victim ) );
 bool check_illegal_pk args( ( CHAR_DATA * ch, CHAR_DATA * victim ) );
-void raw_kill args( ( CHAR_DATA * ch, CHAR_DATA * victim ) );
+OBJ_DATA *raw_kill( CHAR_DATA *ch, CHAR_DATA *victim );
 bool in_arena args( ( CHAR_DATA * ch ) );
 
 /* makeobjs.c */
-void make_corpse args( ( CHAR_DATA * ch, char *killer ) );
+OBJ_DATA *make_corpse( CHAR_DATA *ch, char *killer );
 void make_blood args( ( CHAR_DATA * ch ) );
 void make_bloodstain args( ( CHAR_DATA * ch ) );
 void make_scraps args( ( OBJ_DATA * obj ) );
@@ -5182,7 +5175,7 @@ int apply_ac args( ( OBJ_DATA * obj, int iWear ) );
 OD *get_eq_char args( ( CHAR_DATA * ch, int iWear ) );
 void equip_char args( ( CHAR_DATA * ch, OBJ_DATA * obj, int iWear ) );
 void unequip_char args( ( CHAR_DATA * ch, OBJ_DATA * obj ) );
-int count_obj_list( RESET_DATA *pReset, OBJ_INDEX_DATA *pObjIndex, OBJ_DATA *list );
+int count_obj_list( OBJ_INDEX_DATA *pObjIndex, OBJ_DATA *list );
 int count_mob_in_room args( ( MOB_INDEX_DATA * mob, ROOM_INDEX_DATA * list ) );
 void obj_from_room args( ( OBJ_DATA * obj ) );
 OD *obj_to_room args( ( OBJ_DATA * obj, ROOM_INDEX_DATA * pRoomIndex ) );
@@ -5257,7 +5250,8 @@ void economize_mobgold args( ( CHAR_DATA * mob ) );
 bool economy_has args( ( AREA_DATA * tarea, int gold ) );
 void add_kill args( ( CHAR_DATA * ch, CHAR_DATA * mob ) );
 int times_killed args( ( CHAR_DATA * ch, CHAR_DATA * mob ) );
-
+void check_switches( bool possess );
+void check_switch( CHAR_DATA *ch, bool possess );
 
 /* interp.c */
 bool check_pos args( ( CHAR_DATA * ch, short position ) );
@@ -5266,7 +5260,7 @@ bool is_number args( ( char *arg ) );
 int number_argument args( ( char *argument, char *arg ) );
 char *one_argument args( ( char *argument, char *arg_first ) );
 char *one_argument2 args( ( char *argument, char *arg_first ) );
-ST *find_social args( ( char *command ) );
+ST *find_social( const char *command );
 CMDTYPE *find_command args( ( char *command ) );
 void hash_commands( void );
 void start_timer args( ( struct timeval * sttime ) );
@@ -5308,10 +5302,10 @@ void write_corpses args( ( CHAR_DATA * ch, char *name ) );
 void save_char_obj args( ( CHAR_DATA * ch ) );
 void save_clone args( ( CHAR_DATA * ch ) );
 void save_profile args( ( CHAR_DATA * ch ) );
-bool load_char_obj args( ( DESCRIPTOR_DATA * d, char *name, bool preload ) );
+bool load_char_obj( DESCRIPTOR_DATA *d, char *name, bool preload, bool hotboot );
 void set_alarm args( ( long seconds ) );
 void requip_char args( ( CHAR_DATA * ch ) );
-void fwrite_obj args( ( CHAR_DATA * ch, OBJ_DATA * obj, FILE * fp, int iNest, short os_type ) );
+void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest, short os_type, bool hotboot );
 void fread_obj args( ( CHAR_DATA * ch, FILE * fp, short os_type ) );
 void de_equip_char args( ( CHAR_DATA * ch ) );
 void re_equip_char args( ( CHAR_DATA * ch ) );
@@ -5320,8 +5314,7 @@ void save_home args( ( CHAR_DATA * ch ) );
 /* shops.c */
 
 /* special.c */
-SF *spec_lookup args( ( const char *name ) );
-char *lookup_spec args( ( SPEC_FUN * special ) );
+SF *spec_lookup( char *name );
 
 /* tables.c */
 int get_skill args( ( char *skilltype ) );
@@ -5442,6 +5435,7 @@ void make_random_marketlist args( ( void ) );
  * mudprograms stuff
  */
 extern CHAR_DATA *supermob;
+extern OBJ_DATA *supermob_obj;
 
 void oprog_speech_trigger( char *txt, CHAR_DATA * ch );
 void oprog_random_trigger( OBJ_DATA * obj );

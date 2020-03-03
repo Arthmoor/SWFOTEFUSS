@@ -125,7 +125,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
 
    if( !arg || !argument )
    {
-      send_to_char( "Usage: buymobship <ship type> <starsystem to be sent to>\n\r", ch );
+      send_to_char( "Usage: buymobship <ship type> <starsystem to be sent to>\r\n", ch );
       return;
    }
    if( IS_NPC( ch ) || !ch->pcdata )
@@ -152,7 +152,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
 
    if( arg == NULL || !arg || arg[0] == '\0' )
    {
-      send_to_char( "\n\r&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
+      send_to_char( "\r\n&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w                               Available ships                               &W|\r\n", ch );
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
 
@@ -180,7 +180,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
 
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w               Refer to 'shiplist' for a complete ship listing               &W|\r\n", ch );
-      send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\n\r", ch );
+      send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       return;
    }
 
@@ -195,7 +195,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
    }
    if( !found_proto )
    {
-      send_to_char( "\n\r&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
+      send_to_char( "\r\n&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w                               Available ships                               &W|\r\n", ch );
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
 
@@ -222,7 +222,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
       }
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w               Refer to 'shiplist' for a complete ship listing               &W|\r\n", ch );
-      send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\n\r", ch );
+      send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       return;
    }
    ship_type = x;
@@ -231,12 +231,12 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
 
    if( ( clan->clan_type == 0 ) && str_cmp( ship_prototypes[ship_type].clan, ch->pcdata->clan->name ) )
    {
-      send_to_char( "Your organization may only purchase its own ship models.\n\r", ch );
+      send_to_char( "Your organization may only purchase its own ship models.\r\n", ch );
       return;
    }
    if( ship_prototypes[x].class != 0 && ship_prototypes[x].class != 1 && ship_prototypes[x].class != 2 )
    {
-      send_to_char( "You may only purchase fighters, bombers, or midtargets for mobile ships.\n\r", ch );
+      send_to_char( "You may only purchase fighters, bombers, or midtargets for mobile ships.\r\n", ch );
       return;
    }
    vnum = find_vnum_block( ship_prototypes[ship_type].num_rooms );
@@ -316,7 +316,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
    }
    if( !fsys )
    {
-      send_to_char( "No such starsystem.\n\r", ch );
+      send_to_char( "No such starsystem.\r\n", ch );
       return;
    }
    for( planet = ssystem->first_planet; planet; planet = planet->next_in_system )
@@ -326,7 +326,7 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
    }
    if( !fplan )
    {
-      send_to_char( "Your organization does not control any planets in that starsystem.\n\r", ch );
+      send_to_char( "Your organization does not control any planets in that starsystem.\r\n", ch );
       return;
    }
    count = 0;
@@ -342,12 +342,12 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
    }
    if( !fcap )
    {
-      send_to_char( "There isn't a capital class ship in that starsystem.\n\r", ch );
+      send_to_char( "There isn't a capital class ship in that starsystem.\r\n", ch );
       return;
    }
    if( count > 3 * caps )
    {
-      send_to_char( "You can only have 3 mobile ships per capital-class ship in a system.\n\r", ch );
+      send_to_char( "You can only have 3 mobile ships per capital-class ship in a system.\r\n", ch );
       return;
    }
    for( tarea = first_area; tarea; tarea = tarea->next )
@@ -362,9 +362,9 @@ void do_buymobship( CHAR_DATA * ch, char *argument )
 
    ch->pcdata->clan->funds -= ship_prototypes[ship_type].cost * 1.3;
 
-   ch_printf( ch, "It costs %d to build the ship and %d to train a pilot.\n\r",
+   ch_printf( ch, "It costs %d to build the ship and %d to train a pilot.\r\n",
               ship_prototypes[ship_type].cost, ship_prototypes[ship_type].cost / 3 );
-   ch_printf( ch, "%s is quickly dispatched to the %s system.\n\r", shipname, ssystem->name );
+   ch_printf( ch, "%s is quickly dispatched to the %s system.\r\n", shipname, ssystem->name );
 
    ship = make_prototype_ship( ship_type, vnum, ch, shipname );
    ship->owner = STRALLOC( ch->pcdata->clan->name );
@@ -427,7 +427,7 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
    }
    if( argument == NULL || !argument || argument[0] == '\0' )
    {
-      send_to_char( "\n\r&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
+      send_to_char( "\r\n&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w                               Available ships                               &W|\r\n", ch );
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
 
@@ -462,7 +462,7 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
 
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w               Refer to 'shiplist' for a complete ship listing               &W|\r\n", ch );
-      send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\n\r", ch );
+      send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       return;
    }
    argument = one_argument( argument, arg );
@@ -477,7 +477,7 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
    }
    if( !found_proto )
    {
-      send_to_char( "\n\r&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
+      send_to_char( "\r\n&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w                               Available ships                               &W|\r\n", ch );
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
 
@@ -511,7 +511,7 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
       }
       send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       send_to_char( "&W|&w               Refer to 'shiplist' for a complete ship listing               &W|\r\n", ch );
-      send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\n\r", ch );
+      send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
       return;
    }
    ship_type = x;
@@ -524,7 +524,7 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
 
    if( ( clan->clan_type == 0 ) && str_cmp( ship_prototypes[ship_type].clan, ch->pcdata->clan->name ) )
    {
-      send_to_char( "Your organization may only purchase its own ship models.\n\r", ch );
+      send_to_char( "Your organization may only purchase its own ship models.\r\n", ch );
       return;
    }
    vnum = find_vnum_block( ship_prototypes[ship_type].num_rooms );
@@ -562,7 +562,7 @@ void do_orderclanship( CHAR_DATA * ch, char *argument )
    ch->pcdata->clan->funds -= ship_prototypes[ship_type].cost;
 
    send_to_char( "&wA shipyard salesman enters some information into a datapad.\r\n", ch );
-   send_to_char( "&R&CThe salesman says:&R&W You're all set. Thanks.\n\r", ch );
+   send_to_char( "&R&CThe salesman says:&R&W You're all set. Thanks.\r\n", ch );
    ship = make_prototype_ship( ship_type, vnum, ch, argument );
    ship->owner = ch->pcdata->clan->name;
    save_ship( ship );
@@ -591,7 +591,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
    {
       if( argument == NULL || !argument || argument[0] == '\0' )
       {
-         send_to_char( "\n\r&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
+         send_to_char( "\r\n&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
          send_to_char( "&W|&w                               Available ships                               &W|\r\n", ch );
          send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
 
@@ -624,7 +624,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
          }
          send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
          send_to_char( "&W|&w               Refer to 'shiplist' for a complete ship listing               &W|\r\n", ch );
-         send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\n\r", ch );
+         send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
          return;
       }
    }
@@ -632,7 +632,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
    {
       if( argument == NULL || !argument || argument[0] == '\0' )
       {
-         ch_printf( ch, "&z+&W------------------------&z The Black Market &W--------------------------&z+\n\r" );
+         ch_printf( ch, "&z+&W------------------------&z The Black Market &W--------------------------&z+\r\n" );
          for( marketship = first_market_ship; marketship; marketship = marketship->next )
          {
             for( x = 0; x < NUM_PROTOTYPES; x++ )
@@ -645,13 +645,13 @@ void do_ordership( CHAR_DATA * ch, char *argument )
                }
             }
 
-            ch_printf( ch, "&W|&z %-35.35s&W |&z Quantity: %d&W |&z Cost: %-8d&W |\n\r", bmshipname, marketship->quantity,
+            ch_printf( ch, "&W|&z %-35.35s&W |&z Quantity: %d&W |&z Cost: %-8d&W |\r\n", bmshipname, marketship->quantity,
                        bmshipcost );
             count++;
          }
          if( count == 0 )
-            ch_printf( ch, "&W|&z                         No ships available.                        &W|\n\r" );
-         ch_printf( ch, "&z+&W--------------------------------------------------------------------&z+\n\r" );
+            ch_printf( ch, "&W|&z                         No ships available.                        &W|\r\n" );
+         ch_printf( ch, "&z+&W--------------------------------------------------------------------&z+\r\n" );
          return;
       }
    }
@@ -688,7 +688,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
    {
       if( !IS_SET( ch->in_room->room_flags2, ROOM_BLACKMARKET ) )
       {
-         send_to_char( "\n\r&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
+         send_to_char( "\r\n&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
          send_to_char( "&W|&w                               Available ships                               &W|\r\n", ch );
          send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
 
@@ -721,12 +721,12 @@ void do_ordership( CHAR_DATA * ch, char *argument )
          }
          send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
          send_to_char( "&W|&w               Refer to 'shiplist' for a complete ship listing               &W|\r\n", ch );
-         send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\n\r", ch );
+         send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
          return;
       }
       else
       {
-         ch_printf( ch, "&z+&W------------------------&z The Black Market &W--------------------------&z+\n\r" );
+         ch_printf( ch, "&z+&W------------------------&z The Black Market &W--------------------------&z+\r\n" );
          for( marketship = first_market_ship; marketship; marketship = marketship->next )
          {
             for( x = 0; x < NUM_PROTOTYPES; x++ )
@@ -742,13 +742,13 @@ void do_ordership( CHAR_DATA * ch, char *argument )
                      bmshipcost = ship_prototypes[x].cost * 1.5;
                }
             }
-            ch_printf( ch, "&W|&z %-35.35s&W |&z Quantity: %d&W |&z Cost: %-8d&W |\n\r", bmshipname, marketship->quantity,
+            ch_printf( ch, "&W|&z %-35.35s&W |&z Quantity: %d&W |&z Cost: %-8d&W |\r\n", bmshipname, marketship->quantity,
                        bmshipcost );
             count++;
          }
          if( count == 0 )
-            ch_printf( ch, "&W|&z                         No ships available.                        &W|\n\r" );
-         ch_printf( ch, "&z+&W--------------------------------------------------------------------&z+\n\r" );
+            ch_printf( ch, "&W|&z                         No ships available.                        &W|\r\n" );
+         ch_printf( ch, "&z+&W--------------------------------------------------------------------&z+\r\n" );
          return;
       }
    }
@@ -761,7 +761,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
    }
    if( ship_prototypes[ship_type].class == 3 && !IS_IMMORTAL( ch ) )
    {
-      send_to_char( "At the moment, capital ships may only be purchased by clans.\n\r", ch );
+      send_to_char( "At the moment, capital ships may only be purchased by clans.\r\n", ch );
       return;
    }
 
@@ -772,12 +772,12 @@ void do_ordership( CHAR_DATA * ch, char *argument )
       {
          if( !ch->pcdata->clan )
          {
-            send_to_char( "You must find a black market to purchase clanned ships.\n\r", ch );
+            send_to_char( "You must find a black market to purchase clanned ships.\r\n", ch );
             return;
          }
          else if( str_cmp( ch->pcdata->clan->name, ship_prototypes[ship_type].clan ) )
          {
-            send_to_char( "You must find a black market to purchase other clan's ships.\n\r", ch );
+            send_to_char( "You must find a black market to purchase other clan's ships.\r\n", ch );
             return;
          }
       }
@@ -816,14 +816,14 @@ void do_ordership( CHAR_DATA * ch, char *argument )
    {
       if( ch->gold < ship_prototypes[ship_type].cost * 3 )
       {
-         send_to_char( "You can't afford that ship.\n\r", ch );
+         send_to_char( "You can't afford that ship.\r\n", ch );
          return;
       }
    }
 
    if( !str_cmp( argument, "&" ) )
    {
-      send_to_char( "No color codes in ship names.\n\r", ch );
+      send_to_char( "No color codes in ship names.\r\n", ch );
       return;
    }
 
@@ -832,7 +832,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
          break;
    if( make_prototype_rooms( ship_type, vnum, tarea, argument ) == -1 )
    {
-      send_to_char( "There was a problem with your ship: unable to create a room. Notify an administrator.\n\r", ch );
+      send_to_char( "There was a problem with your ship: unable to create a room. Notify an administrator.\r\n", ch );
       bug( "Ship Shop unable to make_room.", 0 );
       return;
    }
@@ -841,7 +841,7 @@ void do_ordership( CHAR_DATA * ch, char *argument )
    {
       ch->gold -= ship_prototypes[ship_type].cost;
       send_to_char( "A shipyard salesman enters some information into a datapad.\r\n", ch );
-      send_to_char( "&R&CA salesman says:&R&W You're all set. Thanks.\n\r", ch );
+      send_to_char( "&R&CA salesman says:&R&W You're all set. Thanks.\r\n", ch );
    }
    else
    {
@@ -856,8 +856,8 @@ void do_ordership( CHAR_DATA * ch, char *argument )
          }
       }
 
-      send_to_char( "A smuggler gives a grin and shows you to the ship.\n\r", ch );
-      send_to_char( "&R&CA smuggler says:&R&W There ya go, she's all yours.\n\r", ch );
+      send_to_char( "A smuggler gives a grin and shows you to the ship.\r\n", ch );
+      send_to_char( "&R&CA smuggler says:&R&W There ya go, she's all yours.\r\n", ch );
    }
    ship = make_prototype_ship( ship_type, vnum, ch, argument );
    return;
@@ -869,17 +869,28 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
    PROTO_ROOM *proom;
    ROOM_INDEX_DATA *room;
    char sp_filename[MAX_STRING_LENGTH];
+
    CREATE( ship, SHIP_DATA, 1 );
    LINK( ship, first_ship, last_ship, next, prev );
    ship->name = STRALLOC( ship_name );
    ship->owner = STRALLOC( "" );
    ship->protoname = STRALLOC( ship_prototypes[ship_type].sname );
-   ship->clanowner = STRALLOC( ship_prototypes[ship_type].clan );
+   if( !ship_prototypes[ship_type].clan || ( ship_prototypes[ship_type].clan[0] == '\0' ) )
+      ship->clanowner = STRALLOC( "" );
+   else
+      ship->clanowner = STRALLOC( ship_prototypes[ship_type].clan );
    ship->description = STRALLOC( "" );
    ship->copilot = STRALLOC( "" );
    ship->pilot = STRALLOC( "" );
+   /* Added in check to make sure all things cruiser+ get put in 
+      the right starsystem by Keberus, thanks Guido */ 
    if( ch->in_room->area && ch->in_room->area->planet )
-      ship->home = STRALLOC( ch->in_room->area->planet->name );
+   {
+      if( ship_prototypes[ship_type].class >= SHIP_CRUISER &&  ch->in_room->area->planet->starsystem )
+         ship->home = STRALLOC( ch->in_room->area->planet->starsystem->name );
+      else
+         ship->home = STRALLOC( ch->in_room->area->planet->name );
+   }
    else
       ship->home = STRALLOC( "" );
    ship->pbeacon = STRALLOC( "" );
@@ -1073,6 +1084,7 @@ int make_prototype_rooms( int ship_type, int vnum, AREA_DATA * tarea, char *Snam
             newroom->name = STRALLOC( buf );
             if( newroom->description )
                STRFREE( newroom->description );
+            newroom->description = STRALLOC( "" ); 
             continue;
          }
          strcpy( newdesc, strlinwrp( proom->desc, 60 ) );
@@ -1145,8 +1157,6 @@ int make_prototype_rooms( int ship_type, int vnum, AREA_DATA * tarea, char *Snam
    fold_area( tarea, tarea->filename, FALSE );
    return 1;
 }
-
-
 
 int find_vnum_block( int num_needed )
 {
@@ -1989,18 +1999,18 @@ void do_shipstat( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Huh?\n\r", ch );
+      send_to_char( "Huh?\r\n", ch );
       return;
    }
    if( argument[0] == '\0' )
    {
-      send_to_char( "Usage: shipstat <ship number>\n\r", ch );
+      send_to_char( "Usage: shipstat <ship number>\r\n", ch );
       return;
    }
    shiptype = atoi( argument ) - 1;
    if( shiptype < 0 || shiptype > NUM_PROTOTYPES - 1 )
    {
-      send_to_char( "Invalid number.\n\r", ch );
+      send_to_char( "Invalid number.\r\n", ch );
       return;
    }
 
@@ -2045,20 +2055,20 @@ void do_shipstat( CHAR_DATA * ch, char *argument )
    else
       sprintf( buf10, "&RNone." );
 
-   ch_printf( ch, "&R&z+&W---------------------------------------------------------------&z+\n\r" );
+   ch_printf( ch, "&R&z+&W---------------------------------------------------------------&z+\r\n" );
    ch_printf( ch, "&W| Name: &w%-35.35s      &WCost: &w%8d &W|\r\n",
               ship_prototypes[shiptype].name, ship_prototypes[shiptype].cost );
-   ch_printf( ch, "&z+&W---------------------------------------------------------------&z+\n\r\n\r" );
+   ch_printf( ch, "&z+&W---------------------------------------------------------------&z+\r\n\r\n" );
 
-   ch_printf( ch, "&W         Primary Weapon System:&w %-30.30s\n\r", primary_beam_name_proto( shiptype ) );
-   ch_printf( ch, "&W                     Secondary:&w %-30.30s\n\r\n\r", secondary_beam_name_proto( shiptype ) );
-   ch_printf( ch, "&W          Missiles:&w %-5s&W   Torpedos:&w %-5s&W   Rockets:&w %-5s\n\r", buf3, buf5, buf7 );
-   ch_printf( ch, "&W   Planetary bombs:&w %-5s&W      Chaff:&w %-5s\n\r", buf8, buf10 );
-   ch_printf( ch, "\n\r&W   Hull:&w %-5d&W   Shields:&w %-5s&W   Speed:&w %-5d&W   Energy:&w %d\n\r",
+   ch_printf( ch, "&W         Primary Weapon System:&w %-30.30s\r\n", primary_beam_name_proto( shiptype ) );
+   ch_printf( ch, "&W                     Secondary:&w %-30.30s\r\n\r\n", secondary_beam_name_proto( shiptype ) );
+   ch_printf( ch, "&W          Missiles:&w %-5s&W   Torpedos:&w %-5s&W   Rockets:&w %-5s\r\n", buf3, buf5, buf7 );
+   ch_printf( ch, "&W   Planetary bombs:&w %-5s&W      Chaff:&w %-5s\r\n", buf8, buf10 );
+   ch_printf( ch, "\r\n&W   Hull:&w %-5d&W   Shields:&w %-5s&W   Speed:&w %-5d&W   Energy:&w %d\r\n",
               ship_prototypes[shiptype].hull, buf4, ship_prototypes[shiptype].speed, ship_prototypes[shiptype].energy );
-   ch_printf( ch, "&W           Maneuverability:&w %d   &WHyperdrive:&w %-5s\n\r", ship_prototypes[shiptype].manuever,
+   ch_printf( ch, "&W           Maneuverability:&w %d   &WHyperdrive:&w %-5s\r\n", ship_prototypes[shiptype].manuever,
               buf6 );
-   ch_printf( ch, "&W                        Turrets:&w %-5s\n\r", buf9 );
+   ch_printf( ch, "&W                        Turrets:&w %-5s\r\n", buf9 );
 
    return;
 }
@@ -2109,7 +2119,7 @@ void save_market_list(  )
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open blackmarket.lst for writing.\n\r", 0 );
+      bug( "FATAL: cannot open blackmarket.lst for writing.\r\n", 0 );
       return;
    }
    for( marketship = first_market_ship; marketship; marketship = marketship->next )
@@ -2419,7 +2429,7 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
 
          if( !ship )
          {
-            send_to_char( "You need to be in the ships engine room.\n\r", ch );
+            send_to_char( "You need to be in the ships engine room.\r\n", ch );
             return;
          }
 
@@ -2436,12 +2446,12 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
 
          if( checktool == FALSE )
          {
-            send_to_char( "You need a toolkit to install a module.\n\r", ch );
+            send_to_char( "You need a toolkit to install a module.\r\n", ch );
             return;
          }
          if( checkmod == FALSE )
          {
-            send_to_char( "You need a module to install!\n\r", ch );
+            send_to_char( "You need a module to install!\r\n", ch );
             return;
          }
 
@@ -2479,12 +2489,12 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
 //Holy ifchecks batman!
          if( modobj->value[0] == AFFECT_ALARM && ( ship->alarm == 1 ) )
          {
-            send_to_char( "This ship already has an alarm system!\n\r", ch );
+            send_to_char( "This ship already has an alarm system!\r\n", ch );
             return;
          }
          if( modobj->value[0] == AFFECT_HYPER && ( ship->hyperspeed == 1 ) )
          {
-            send_to_char( "This ship already has a first class hyperspeed drive.\n\r", ch );
+            send_to_char( "This ship already has a first class hyperspeed drive.\r\n", ch );
             return;
          }
          if( ( modobj->value[0] == AFFECT_PRIMARY && primary >= maxslot ) ||
@@ -2501,7 +2511,7 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
              ( modobj->value[0] == AFFECT_ALARM && salarm >= maxslot ) ||
              ( modobj->value[0] == AFFECT_CHAFF && chaff >= maxslot ) )
          {
-            send_to_char( "&RYou've already filled that slot to its maximum.\n\r", ch );
+            send_to_char( "&RYou've already filled that slot to its maximum.\r\n", ch );
             return;
          }
 
@@ -2516,13 +2526,13 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
 
          if( i >= maxmod )
          {
-            send_to_char( "This ship is already at it's module limit!\n\r", ch );
+            send_to_char( "This ship is already at it's module limit!\r\n", ch );
             return;
          }
 
          if( IS_SET( ship->flags, SHIP_SIMULATOR ) )
          {
-            send_to_char( "Simulators can't have modules, fool!\n\r", ch );
+            send_to_char( "Simulators can't have modules, fool!\r\n", ch );
             return;
          }
 
@@ -2530,14 +2540,14 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
          if( number_percent(  ) < schance )
          {
             ch->dest_buf = str_dup( arg );
-            send_to_char( "&GYou begin the long process of installing a new module.\n\r", ch );
-            sprintf( buf, "$n takes out $s toolkit and a module and begins to work.\n\r" );
+            send_to_char( "&GYou begin the long process of installing a new module.\r\n", ch );
+            sprintf( buf, "$n takes out $s toolkit and a module and begins to work.\r\n" );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 5, do_installmodule, 1 );
             return;
          }
 
-         send_to_char( "&RYou are unable to figure out what to do.\n\r", ch );
+         send_to_char( "&RYou are unable to figure out what to do.\r\n", ch );
          learn_from_failure( ch, gsn_installmodule );
          return;
 
@@ -2551,7 +2561,7 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish.\r\n", ch );
          return;
    }
    ch->substate = SUB_NONE;
@@ -2572,14 +2582,14 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
    ship = ship_from_engine( ch->in_room->vnum );
    if( !ship )
    {
-      send_to_char( "Error: Something went wrong. Contact an Admin!\n\r", ch );
+      send_to_char( "Error: Something went wrong. Contact an Admin!\r\n", ch );
       return;
    }
 
    if( number_percent(  ) > schance * 2 )
    {
-      send_to_char( "&RYou finish installing the new module and everything's looking good...\n\r", ch );
-      send_to_char( "&RThen it turns bright red and melts!\n\r", ch );
+      send_to_char( "&RYou finish installing the new module and everything's looking good...\r\n", ch );
+      send_to_char( "&RThen it turns bright red and melts!\r\n", ch );
       learn_from_failure( ch, gsn_installmodule );
       return;
    }
@@ -2627,13 +2637,13 @@ void do_installmodule( CHAR_DATA * ch, char *argument )
    separate_obj( modobj );
    obj_from_char( modobj );
    extract_obj( modobj );
-   send_to_char( "You finish installing your new module.\n\r", ch );
+   send_to_char( "You finish installing your new module.\r\n", ch );
 
    {
       long xpgain;
       xpgain = ( ( ch->skill_level[TECHNICIAN_ABILITY] + 1 ) * 300 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, " You gain %d experience for being a Technician.\n\r", xpgain );
+      ch_printf( ch, " You gain %d experience for being a Technician.\r\n", xpgain );
       learn_from_success( ch, gsn_installmodule );
    }
    return;
@@ -2643,7 +2653,7 @@ void do_shiplist( CHAR_DATA * ch, char *argument )
 {
    int x;
 
-   send_to_char( "\n\r&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
+   send_to_char( "\r\n&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
    send_to_char( "&W|&w                             Complete ship listing                           &W|\r\n", ch );
    send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
 
@@ -2671,6 +2681,6 @@ void do_shiplist( CHAR_DATA * ch, char *argument )
 
    send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
    send_to_char( "&W|&w               Use 'shipstat (number)' to get ship information               &W|\r\n", ch );
-   send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\n\r", ch );
+   send_to_char( "&z+&W-----------------------------------------------------------------------------&z+\r\n", ch );
    return;
 }

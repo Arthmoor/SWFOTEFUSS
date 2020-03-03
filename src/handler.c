@@ -54,59 +54,9 @@ int cur_obj_serial;
 bool cur_obj_extracted;
 obj_ret global_objcode;
 
-bool is_wizvis( CHAR_DATA * ch, CHAR_DATA * victim );
-
 OBJ_DATA *group_object( OBJ_DATA * obj1, OBJ_DATA * obj2 );
+void update_room_reset( CHAR_DATA *ch, bool setting );
 void delete_reset( RESET_DATA *pReset );
-
-void room_explode( OBJ_DATA * obj, CHAR_DATA * xch, ROOM_INDEX_DATA * room );
-void room_explode_1( OBJ_DATA * obj, CHAR_DATA * xch, ROOM_INDEX_DATA * room, int blast );
-void room_explode_2( ROOM_INDEX_DATA * room, int blast );
-
-void explode( OBJ_DATA * obj )
-{
-   if( obj->armed_by )
-   {
-      ROOM_INDEX_DATA *room;
-      CHAR_DATA *xch;
-      bool held = FALSE;
-
-      for( xch = first_char; xch; xch = xch->next )
-         if( !IS_NPC( xch ) )
-/* && nifty_is_name( obj->armed_by, xch->name ) Temp removed to see what happens*/
-         {
-            if( obj->carried_by == xch )
-            {
-               act( AT_WHITE, "$p EXPLODES in $n's hands!", obj->carried_by, obj, NULL, TO_ROOM );
-               act( AT_WHITE, "$p EXPLODES in your hands!", obj->carried_by, obj, NULL, TO_CHAR );
-               room = xch->in_room;
-               held = TRUE;
-            }
-            else if( obj->in_room )
-               room = obj->in_room;
-            else
-               room = NULL;
-
-            if( room )
-            {
-               if( !held && room->first_person )
-                  act( AT_WHITE, "$p EXPLODES!", room->first_person, obj, NULL, TO_ROOM );
-               room_explode( obj, xch, room );
-               break;
-            }
-         }
-   }
-   make_scraps( obj );
-}
-
-void room_explode( OBJ_DATA * obj, CHAR_DATA * xch, ROOM_INDEX_DATA * room )
-{
-   int blast;
-   blast = ( int )( obj->value[1] / 500 );
-   room_explode_1( obj, xch, room, blast );
-   room_explode_2( room, blast );
-
-}
 
 void room_explode_1( OBJ_DATA * obj, CHAR_DATA * xch, ROOM_INDEX_DATA * room, int blast )
 {
@@ -115,15 +65,15 @@ void room_explode_1( OBJ_DATA * obj, CHAR_DATA * xch, ROOM_INDEX_DATA * room, in
    OBJ_DATA *robj;
    OBJ_DATA *robj_next;
    int dam;
+
    if( IS_SET( room->room_flags, BFS_MARK ) )
       return;
 
    SET_BIT( room->room_flags, BFS_MARK );
-   echo_to_room( AT_WHITE, room, "The shockwave from a massive explosion rips through your body!" );
    for( rch = room->first_person; rch; rch = rnext )
    {
       rnext = rch->next_in_room;
-      //'act( AT_WHITE, "The shockwave from a massive explosion rips through your body!", room->first_person , obj, NULL, TO_ROOM );
+      act( AT_WHITE, "The shockwave from a massive explosion rips through your body!", rch, obj, NULL, TO_CHAR );
 
       dam = number_range( obj->value[0], obj->value[1] );
       damage( rch, rch, dam, TYPE_UNDEFINED );
@@ -175,12 +125,10 @@ void room_explode_1( OBJ_DATA * obj, CHAR_DATA * xch, ROOM_INDEX_DATA * room, in
          }
       }
    }
-
 }
 
 void room_explode_2( ROOM_INDEX_DATA * room, int blast )
 {
-
    if( !IS_SET( room->room_flags, BFS_MARK ) )
       return;
 
@@ -200,7 +148,50 @@ void room_explode_2( ROOM_INDEX_DATA * room, int blast )
          }
       }
    }
+}
 
+void room_explode( OBJ_DATA * obj, CHAR_DATA * xch, ROOM_INDEX_DATA * room )
+{
+   int blast;
+   blast = ( int )( obj->value[1] / 500 );
+   room_explode_1( obj, xch, room, blast );
+   room_explode_2( room, blast );
+}
+
+void explode( OBJ_DATA * obj )
+{
+   if( obj->armed_by )
+   {
+      ROOM_INDEX_DATA *room;
+      CHAR_DATA *xch;
+      bool held = FALSE;
+
+      for( xch = first_char; xch; xch = xch->next )
+         if( !IS_NPC( xch ) )
+/* && nifty_is_name( obj->armed_by, xch->name ) Temp removed to see what happens*/
+         {
+            if( obj->carried_by == xch )
+            {
+               act( AT_WHITE, "$p EXPLODES in $n's hands!", obj->carried_by, obj, NULL, TO_ROOM );
+               act( AT_WHITE, "$p EXPLODES in your hands!", obj->carried_by, obj, NULL, TO_CHAR );
+               room = obj->carried_by->in_room;
+               held = TRUE;
+            }
+            else if( obj->in_room )
+               room = obj->in_room;
+            else
+               room = NULL;
+
+            if( room )
+            {
+               if( !held && room->first_person )
+                  act( AT_WHITE, "$p EXPLODES!", room->first_person, obj, NULL, TO_ROOM );
+               room_explode( obj, xch, room );
+               break;
+            }
+         }
+   }
+   make_scraps( obj );
 }
 
 bool is_wizvis( CHAR_DATA * ch, CHAR_DATA * victim )
@@ -220,6 +211,29 @@ int get_exp( CHAR_DATA * ch, int ability )
       return 0;
 
    return ch->experience[ability];
+}
+
+int umin( int check, int ncheck )
+{
+   if( check < ncheck )
+      return check;
+   return ncheck;
+}
+
+int umax( int check, int ncheck )
+{
+   if( check > ncheck )
+      return check;
+   return ncheck;
+}
+
+int urange( int mincheck, int check, int maxcheck )
+{
+   if( check < mincheck )
+      return mincheck;
+   if( check > maxcheck )
+      return maxcheck;
+   return check;
 }
 
 /*
@@ -318,7 +332,6 @@ short get_age( CHAR_DATA * ch )
    return 17 + ( ch->played + ( current_time - ch->logon ) ) / 14400;
 }
 
-
 /*
    get_curr_xxx have been changed to alot for stat bonuses, even
    after trained to max. If you feel this is incorrect, change
@@ -343,8 +356,6 @@ short get_curr_str( CHAR_DATA * ch )
    return URANGE( 3, ch->perm_str + ch->mod_str, 25 );
 }
 
-
-
 /*
  * Retrieve character's current intelligence.
  */
@@ -361,8 +372,6 @@ short get_curr_wis( CHAR_DATA * ch )
    return URANGE( 3, ch->perm_wis + ch->mod_wis, 25 );
 }
 
-
-
 /*
  * Retrieve character's current dexterity.
  */
@@ -370,8 +379,6 @@ short get_curr_dex( CHAR_DATA * ch )
 {
    return URANGE( 3, ch->perm_dex + ch->mod_dex, 25 );
 }
-
-
 
 /*
  * Retrieve character's current constitution.
@@ -408,7 +415,6 @@ short get_curr_frc( CHAR_DATA * ch )
    return URANGE( 0, ch->perm_frc + ch->mod_frc, max );
 }
 
-
 /*
  * Retrieve a character's carry capacity.
  * Vastly reduced (finally) due to containers		-Thoric
@@ -436,8 +442,6 @@ int can_carry_n( CHAR_DATA * ch )
    return URANGE( 5, ( ch->top_level + 15 ) / 5 + get_curr_dex( ch ) - 13 - penalty, 20 );
 }
 
-
-
 /*
  * Retrieve a character's carry capacity.
  */
@@ -452,7 +456,6 @@ int can_carry_w( CHAR_DATA * ch )
    return str_app[get_curr_str( ch )].carry;
 }
 
-
 /*
  * See if a player/mob can take a piece of prototype eq		-Thoric
  */
@@ -465,7 +468,6 @@ bool can_take_proto( CHAR_DATA * ch )
    else
       return FALSE;
 }
-
 
 /*
  * See if a string is one of the names of an object.
@@ -1023,7 +1025,6 @@ void char_from_room( CHAR_DATA * ch )
    return;
 }
 
-
 /*
  * Move a char into a room.
  */
@@ -1033,23 +1034,23 @@ void char_to_room( CHAR_DATA * ch, ROOM_INDEX_DATA * pRoomIndex )
 
    if( !ch )
    {
-      bug( "Char_to_room: NULL ch!", 0 );
+      bug( "%s: NULL ch!", __FUNCTION__ );
       return;
    }
-   if( !pRoomIndex )
-   {
-      char buf[MAX_STRING_LENGTH];
 
-      sprintf( buf, "Char_to_room: %s -> NULL room!  Putting char in limbo (%d)", ch->name, ROOM_VNUM_LIMBO );
-      bug( buf, 0 );
+   if( !pRoomIndex || !get_room_index( pRoomIndex->vnum ) )
+   {
+      bug( "%s: %s -> NULL room!  Putting char in limbo (%d)", __FUNCTION__, ch->name, ROOM_VNUM_LIMBO );
       /*
        * This used to just return, but there was a problem with crashing
-       * and I saw no reason not to just put the char in limbo. -Narn 
+       * and I saw no reason not to just put the char in limbo.  -Narn
        */
       pRoomIndex = get_room_index( ROOM_VNUM_LIMBO );
    }
 
    ch->in_room = pRoomIndex;
+   if( ch->home_vnum < 1 )
+      ch->home_vnum = ch->in_room->vnum;
    LINK( ch, pRoomIndex->first_person, pRoomIndex->last_person, next_in_room, prev_in_room );
 
 
@@ -1080,7 +1081,7 @@ OBJ_DATA *obj_to_char( OBJ_DATA * obj, CHAR_DATA * ch )
 
    if( IS_OBJ_STAT( obj, ITEM_PROTOTYPE ) )
    {
-      if( !IS_IMMORTAL( ch ) && ( IS_NPC( ch ) && !IS_SET( ch->act, ACT_PROTOTYPE ) ) )
+      if( !IS_IMMORTAL( ch ) && ( !IS_NPC( ch ) && !IS_SET( ch->act, ACT_PROTOTYPE ) ) )
          return obj_to_room( obj, ch->in_room );
    }
 
@@ -1386,6 +1387,7 @@ OBJ_DATA *obj_to_room( OBJ_DATA * obj, ROOM_INDEX_DATA * pRoomIndex )
    obj->in_room = pRoomIndex;
    obj->carried_by = NULL;
    obj->in_obj = NULL;
+   obj->room_vnum = pRoomIndex->vnum; /* hotboot tracker */
    if( item_type == ITEM_FIRE )
       pRoomIndex->light += count;
    falling++;
@@ -1395,8 +1397,6 @@ OBJ_DATA *obj_to_room( OBJ_DATA * obj, ROOM_INDEX_DATA * pRoomIndex )
       write_corpses( NULL, obj->short_descr + 14 );
    return obj;
 }
-
-
 
 /*
  * Move an object into an object.
@@ -1559,8 +1559,6 @@ void extract_obj( OBJ_DATA * obj )
    return;
 }
 
-
-
 /*
  * Extract a char from the world.
  */
@@ -1568,32 +1566,30 @@ void extract_char( CHAR_DATA * ch, bool fPull )
 {
    CHAR_DATA *wch;
    OBJ_DATA *obj;
-   char buf[MAX_STRING_LENGTH];
    ROOM_INDEX_DATA *location;
    REL_DATA *RQueue, *rq_next;
 
    if( !ch )
    {
-      bug( "Extract_char: NULL ch.", 0 );
+      bug( "%s: NULL ch.", __FUNCTION__ );
       return;  /* who removed this line? */
    }
 
    if( !ch->in_room )
    {
-      bug( "Extract_char: NULL room.", 0 );
+      bug( "%s: NULL room.", __FUNCTION__ );
       return;
    }
 
    if( ch == supermob )
    {
-      bug( "Extract_char: ch == supermob!", 0 );
+      bug( "%s: ch == supermob!", __FUNCTION__ );
       return;
    }
 
    if( char_died( ch ) )
    {
-      sprintf( buf, "extract_char: %s already died!", ch->name );
-      bug( buf, 0 );
+      bug( "%s: %s already died!", __FUNCTION__, ch->name );
       return;
    }
 
@@ -1628,6 +1624,7 @@ void extract_char( CHAR_DATA * ch, bool fPull )
 
    if( ch->mount )
    {
+      update_room_reset( ch, TRUE );
       REMOVE_BIT( ch->mount->act, ACT_MOUNTED );
       ch->mount = NULL;
       ch->position = POS_STANDING;
@@ -1641,14 +1638,17 @@ void extract_char( CHAR_DATA * ch, bool fPull )
    }
 
    if( IS_NPC( ch ) && IS_SET( ch->act, ACT_MOUNTED ) )
+   {
       for( wch = first_char; wch; wch = wch->next )
+      {
          if( wch->mount == ch )
          {
             wch->mount = NULL;
             wch->position = POS_STANDING;
          }
-
-   REMOVE_BIT( ch->act, ACT_MOUNTED );
+      }
+      REMOVE_BIT( ch->act, ACT_MOUNTED );
+   }
 
    REMOVE_BIT( ch->affected_by, AFF_SANCTUARY );
 
@@ -1686,6 +1686,9 @@ void extract_char( CHAR_DATA * ch, bool fPull )
    if( ch->desc && ch->desc->original )
       do_return( ch, "" );
 
+   if( ch->switched && ch->switched->desc )
+      do_return( ch->switched, "" );
+
    for( wch = first_char; wch; wch = wch->next )
       if( wch->reply == ch )
          wch->reply = NULL;
@@ -1695,7 +1698,7 @@ void extract_char( CHAR_DATA * ch, bool fPull )
    if( ch->desc )
    {
       if( ch->desc->character != ch )
-         bug( "Extract_char: char's descriptor points to another char", 0 );
+         bug( "%s: char's descriptor points to another char", __FUNCTION__ );
       else
       {
          ch->desc->character = NULL;
@@ -1705,7 +1708,6 @@ void extract_char( CHAR_DATA * ch, bool fPull )
    }
    return;
 }
-
 
 /*
  * Find a char in the room.
@@ -1766,9 +1768,6 @@ CHAR_DATA *get_char_room( CHAR_DATA * ch, char *argument )
 
    return NULL;
 }
-
-
-
 
 /*
  * Find a char in the world.
@@ -2240,64 +2239,64 @@ bool ms_find_obj( CHAR_DATA * ch )
       {
          default:
          case 1:
-            t = "As you reach for it, you forgot what it was...\n\r";
+            t = "As you reach for it, you forgot what it was...\r\n";
             break;
          case 2:
-            t = "As you reach for it, something inside stops you...\n\r";
+            t = "As you reach for it, something inside stops you...\r\n";
             break;
          case 3:
-            t = "As you reach for it, it seems to move out of the way...\n\r";
+            t = "As you reach for it, it seems to move out of the way...\r\n";
             break;
          case 4:
-            t = "You grab frantically for it, but can't seem to get a hold of it...\n\r";
+            t = "You grab frantically for it, but can't seem to get a hold of it...\r\n";
             break;
          case 5:
-            t = "It disappears as soon as you touch it!\n\r";
+            t = "It disappears as soon as you touch it!\r\n";
             break;
          case 6:
-            t = "You would if it would stay still!\n\r";
+            t = "You would if it would stay still!\r\n";
             break;
          case 7:
-            t = "Whoa!  It's covered in blood!  Ack!  Ick!\n\r";
+            t = "Whoa!  It's covered in blood!  Ack!  Ick!\r\n";
             break;
          case 8:
-            t = "Wow... trails!\n\r";
+            t = "Wow... trails!\r\n";
             break;
          case 9:
-            t = "You reach for it, then notice the back of your hand is growing something!\n\r";
+            t = "You reach for it, then notice the back of your hand is growing something!\r\n";
             break;
          case 10:
-            t = "As you grasp it, it shatters into tiny shards which bite into your flesh!\n\r";
+            t = "As you grasp it, it shatters into tiny shards which bite into your flesh!\r\n";
             break;
          case 11:
-            t = "What about that huge dragon flying over your head?!?!?\n\r";
+            t = "What about that huge dragon flying over your head?!?!?\r\n";
             break;
          case 12:
-            t = "You stratch yourself instead...\n\r";
+            t = "You stratch yourself instead...\r\n";
             break;
          case 13:
-            t = "You hold the universe in the palm of your hand!\n\r";
+            t = "You hold the universe in the palm of your hand!\r\n";
             break;
          case 14:
-            t = "You're too scared.\n\r";
+            t = "You're too scared.\r\n";
             break;
          case 15:
-            t = "Your mother smacks your hand... 'NO!'\n\r";
+            t = "Your mother smacks your hand... 'NO!'\r\n";
             break;
          case 16:
-            t = "Your hand grasps the worse pile of revoltingness than you could ever imagine!\n\r";
+            t = "Your hand grasps the worse pile of revoltingness than you could ever imagine!\r\n";
             break;
          case 17:
-            t = "You stop reaching for it as it screams out at you in pain!\n\r";
+            t = "You stop reaching for it as it screams out at you in pain!\r\n";
             break;
          case 18:
-            t = "What about the millions of burrow-maggots feasting on your arm?!?!\n\r";
+            t = "What about the millions of burrow-maggots feasting on your arm?!?!\r\n";
             break;
          case 19:
-            t = "That doesn't matter anymore... you've found the true answer to everything!\n\r";
+            t = "That doesn't matter anymore... you've found the true answer to everything!\r\n";
             break;
          case 20:
-            t = "A supreme entity has no need for that.\n\r";
+            t = "A supreme entity has no need for that.\r\n";
             break;
       }
    else
@@ -2307,22 +2306,22 @@ bool ms_find_obj( CHAR_DATA * ch )
       {
          default:
          case 1:
-            t = "In just a second...\n\r";
+            t = "In just a second...\r\n";
             break;
          case 2:
-            t = "You can't find that...\n\r";
+            t = "You can't find that...\r\n";
             break;
          case 3:
-            t = "It's just beyond your grasp...\n\r";
+            t = "It's just beyond your grasp...\r\n";
             break;
          case 4:
-            t = "...but it's under a pile of other stuff...\n\r";
+            t = "...but it's under a pile of other stuff...\r\n";
             break;
          case 5:
-            t = "You go to reach for it, but pick your nose instead.\n\r";
+            t = "You go to reach for it, but pick your nose instead.\r\n";
             break;
          case 6:
-            t = "Which one?!?  I see two... no three...\n\r";
+            t = "Which one?!?  I see two... no three...\r\n";
             break;
       }
    }
@@ -2351,7 +2350,7 @@ OBJ_DATA *find_obj( CHAR_DATA * ch, char *argument, bool carryonly )
    {
       if( carryonly && ( obj = get_obj_carry( ch, arg1 ) ) == NULL )
       {
-         send_to_char( "You do not have that item.\n\r", ch );
+         send_to_char( "You do not have that item.\r\n", ch );
          return NULL;
       }
       else if( !carryonly && ( obj = get_obj_here( ch, arg1 ) ) == NULL )
@@ -2368,7 +2367,7 @@ OBJ_DATA *find_obj( CHAR_DATA * ch, char *argument, bool carryonly )
       if( carryonly
           && ( container = get_obj_carry( ch, arg2 ) ) == NULL && ( container = get_obj_wear( ch, arg2 ) ) == NULL )
       {
-         send_to_char( "You do not have that item.\n\r", ch );
+         send_to_char( "You do not have that item.\r\n", ch );
          return NULL;
       }
       if( !carryonly && ( container = get_obj_here( ch, arg2 ) ) == NULL )
@@ -2583,8 +2582,6 @@ bool can_see_obj( CHAR_DATA * ch, OBJ_DATA * obj )
    return TRUE;
 }
 
-
-
 /*
  * True if char can drop obj.
  */
@@ -2596,12 +2593,11 @@ bool can_drop_obj( CHAR_DATA * ch, OBJ_DATA * obj )
    if( !IS_NPC( ch ) && get_trust( ch ) >= LEVEL_IMMORTAL )
       return TRUE;
 
-   if( IS_NPC( ch ) && ch->pIndexData->vnum == 3 )
+   if( IS_NPC( ch ) && ch->pIndexData->vnum == MOB_VNUM_SUPERMOB )
       return TRUE;
 
    return FALSE;
 }
-
 
 /*
  * Return ascii name of an item type.
@@ -3372,7 +3368,7 @@ void showaffect( CHAR_DATA * ch, AFFECT_DATA * paf )
       switch ( paf->location )
       {
          default:
-            sprintf( buf, "Affects %s by %d.\n\r", affect_loc_name( paf->location ), paf->modifier );
+            sprintf( buf, "Affects %s by %d.\r\n", affect_loc_name( paf->location ), paf->modifier );
             break;
          case APPLY_AFFECT:
             sprintf( buf, "Affects %s by", affect_loc_name( paf->location ) );
@@ -3382,12 +3378,12 @@ void showaffect( CHAR_DATA * ch, AFFECT_DATA * paf )
                   strcat( buf, " " );
                   strcat( buf, a_flags[x] );
                }
-            strcat( buf, "\n\r" );
+            strcat( buf, "\r\n" );
             break;
          case APPLY_WEAPONSPELL:
          case APPLY_WEARSPELL:
          case APPLY_REMOVESPELL:
-            sprintf( buf, "Casts spell '%s'\n\r",
+            sprintf( buf, "Casts spell '%s'\r\n",
                      IS_VALID_SN( paf->modifier ) ? skill_table[paf->modifier]->name : "unknown" );
             break;
          case APPLY_RESISTANT:
@@ -3400,7 +3396,7 @@ void showaffect( CHAR_DATA * ch, AFFECT_DATA * paf )
                   strcat( buf, " " );
                   strcat( buf, ris_flags[x] );
                }
-            strcat( buf, "\n\r" );
+            strcat( buf, "\r\n" );
             break;
       }
       send_to_char( buf, ch );
@@ -3447,10 +3443,69 @@ void queue_extracted_obj( OBJ_DATA * obj )
    extracted_obj_queue = obj;
 }
 
+/* Deallocates the memory used by a single object after it's been extracted. */
+void free_obj( OBJ_DATA * obj )
+{
+   AFFECT_DATA *paf, *paf_next;
+   EXTRA_DESCR_DATA *ed, *ed_next;
+   REL_DATA *RQueue, *rq_next;
+   MPROG_ACT_LIST *mpact, *mpact_next;
+
+   for( mpact = obj->mpact; mpact; mpact = mpact_next )
+   {
+      mpact_next = mpact->next;
+      DISPOSE( mpact->buf );
+      DISPOSE( mpact );
+   }
+
+   /*
+    * remove affects 
+    */
+   for( paf = obj->first_affect; paf; paf = paf_next )
+   {
+      paf_next = paf->next;
+      DISPOSE( paf );
+   }
+   obj->first_affect = obj->last_affect = NULL;
+
+   /*
+    * remove extra descriptions 
+    */
+   for( ed = obj->first_extradesc; ed; ed = ed_next )
+   {
+      ed_next = ed->next;
+      STRFREE( ed->description );
+      STRFREE( ed->keyword );
+      DISPOSE( ed );
+   }
+   obj->first_extradesc = obj->last_extradesc = NULL;
+
+   for( RQueue = first_relation; RQueue; RQueue = rq_next )
+   {
+      rq_next = RQueue->next;
+      if( RQueue->Type == relOSET_ON )
+      {
+         if( obj == RQueue->Subject )
+            ( ( CHAR_DATA * ) RQueue->Actor )->dest_buf = NULL;
+         else
+            continue;
+         UNLINK( RQueue, first_relation, last_relation, next, prev );
+         DISPOSE( RQueue );
+      }
+   }
+   STRFREE( obj->name );
+   STRFREE( obj->description );
+   STRFREE( obj->short_descr );
+   STRFREE( obj->action_desc );
+   DISPOSE( obj->killer );
+   DISPOSE( obj );
+   return;
+}
+
 /*
  * Clean out the extracted object queue
  */
-void clean_obj_queue(  )
+void clean_obj_queue( void )
 {
    OBJ_DATA *obj;
 
@@ -3458,11 +3513,7 @@ void clean_obj_queue(  )
    {
       obj = extracted_obj_queue;
       extracted_obj_queue = extracted_obj_queue->next;
-      STRFREE( obj->name );
-      STRFREE( obj->description );
-      STRFREE( obj->short_descr );
-      STRFREE( obj->action_desc );
-      DISPOSE( obj );
+      free_obj( obj );
       --cur_qobjs;
    }
 }
@@ -4056,4 +4107,55 @@ int times_killed( CHAR_DATA * ch, CHAR_DATA * mob )
       else if( ch->pcdata->killed[x].vnum == 0 )
          break;
    return 0;
+}
+
+void check_switches( bool possess )
+{
+   CHAR_DATA *ch;
+
+   for( ch = first_char; ch; ch = ch->next )
+      check_switch( ch, possess );
+}
+
+void check_switch( CHAR_DATA *ch, bool possess )
+{
+   AFFECT_DATA *paf;
+   CMDTYPE *cmd;
+   int hash, trust = get_trust(ch);
+
+   if( !ch->switched )
+      return;
+
+   if( !possess )
+   {
+      for( paf = ch->switched->first_affect; paf; paf = paf->next )
+      {
+         if( paf->duration == -1 )
+            continue;
+         if( paf->type != -1 && skill_table[paf->type]->spell_fun == spell_possess )
+            return;
+      }
+   }
+
+   for( hash = 0; hash < 126; hash++ )
+   {
+      for( cmd = command_hash[hash]; cmd; cmd = cmd->next )
+      {
+         if( cmd->do_fun != do_switch )
+            continue;
+         if( cmd->level <= trust )
+            return;
+
+         if( !IS_NPC(ch) && ch->pcdata->bestowments && is_name( cmd->name, ch->pcdata->bestowments )
+          && cmd->level <= trust )
+            return;
+      }
+   }
+
+   if( !possess )
+   {
+      set_char_color( AT_BLUE, ch->switched );
+      send_to_char( "You suddenly forfeit the power to switch!\n\r", ch->switched );
+   }
+   do_return( ch->switched, "" );
 }

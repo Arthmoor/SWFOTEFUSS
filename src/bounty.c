@@ -54,7 +54,7 @@ void save_disintegrations(  )
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open disintegration.lst for writing!\n\r", 0 );
+      bug( "FATAL: cannot open disintegration.lst for writing!\r\n", 0 );
       return;
    }
    for( tbounty = first_disintegration; tbounty; tbounty = tbounty->next )
@@ -131,18 +131,18 @@ void do_bounties( CHAR_DATA * ch, char *argument )
    int count = 0;
 
    set_char_color( AT_WHITE, ch );
-   send_to_char( "\n\rBounty                      Amount\n\r", ch );
+   send_to_char( "\r\nBounty                      Amount\r\n", ch );
    for( bounty = first_disintegration; bounty; bounty = bounty->next )
    {
       set_char_color( AT_RED, ch );
-      ch_printf( ch, "%-27s %-14ld\n\r", bounty->target, bounty->amount );
+      ch_printf( ch, "%-27s %-14ld\r\n", bounty->target, bounty->amount );
       count++;
    }
 
    if( !count )
    {
       set_char_color( AT_GREY, ch );
-      send_to_char( "There are no bounties set at this time.\n\r", ch );
+      send_to_char( "There are no bounties set at this time.\r\n", ch );
       return;
    }
 }
@@ -157,7 +157,7 @@ void do_rembounty( CHAR_DATA * ch, char *argument )
       remove_disintegration( bounty );
    else
    {
-      send_to_char( "This bounty does not exist!\n\r", ch );
+      send_to_char( "This bounty does not exist!\r\n", ch );
       return;
    }
    sprintf( buf, "The bounty on %s has been removed!", argument );
@@ -214,7 +214,7 @@ void do_addbounty( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Usage: Addbounty <target> <amount>\n\r", ch );
+      send_to_char( "Usage: Addbounty <target> <amount>\r\n", ch );
       return;
    }
 
@@ -237,31 +237,31 @@ void do_addbounty( CHAR_DATA * ch, char *argument )
 
    if( amount < 5000 )
    {
-      send_to_char( "A bounty should be at least 5000 credits.\n\r", ch );
+      send_to_char( "A bounty should be at least 5000 credits.\r\n", ch );
       return;
    }
 
    if( !( victim = get_char_world_ooc( ch, arg ) ) )
    {
-      send_to_char( "They don't appear to be here .. wait til they log in.\n\r", ch );
+      send_to_char( "They don't appear to be here .. wait til they log in.\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "You can only set bounties on other players .. not mobs!\n\r", ch );
+      send_to_char( "You can only set bounties on other players .. not mobs!\r\n", ch );
       return;
    }
 
    if( amount <= 0 )
    {
-      send_to_char( "Nice try! How about 1 or more credits instead...\n\r", ch );
+      send_to_char( "Nice try! How about 1 or more credits instead...\r\n", ch );
       return;
    }
 
    if( ch->gold < amount )
    {
-      send_to_char( "You don't have that many credits!\n\r", ch );
+      send_to_char( "You don't have that many credits!\r\n", ch );
       return;
    }
 
@@ -319,14 +319,14 @@ void claim_disintegration( CHAR_DATA * ch, CHAR_DATA * victim )
             bexp = ( exp_level( ch->skill_level[ASSASSIN_ABILITY] + 1 ) - exp_level( ch->skill_level[ASSASSIN_ABILITY] ) );
             gain_exp( ch, bexp, ASSASSIN_ABILITY );
             set_char_color( AT_BLOOD, ch );
-            ch_printf( ch, "You receive %ld assassin experience for executing a clan leader.\n\r", bexp );
+            ch_printf( ch, "You receive %ld assassin experience for executing a clan leader.\r\n", bexp );
          }
          else if( !str_cmp( victim->name, clan->number1 ) || !str_cmp( victim->name, clan->number2 ) )
          {
             bexp = ( exp_level( ch->skill_level[ASSASSIN_ABILITY] + 1 ) - exp_level( ch->skill_level[ASSASSIN_ABILITY] ) );
             gain_exp( ch, bexp, ASSASSIN_ABILITY );
             set_char_color( AT_BLOOD, ch );
-            ch_printf( ch, "You receive %ld assassin experience for executing a prominent clan member.\n\r", bexp );
+            ch_printf( ch, "You receive %ld assassin experience for executing a prominent clan member.\r\n", bexp );
          }
       }
    }
@@ -340,12 +340,12 @@ void claim_disintegration( CHAR_DATA * ch, CHAR_DATA * victim )
                     ( exp_level( ch->skill_level[HUNTING_ABILITY] + 1 ) - exp_level( ch->skill_level[HUNTING_ABILITY] ) ) );
          gain_exp( ch, bexp, HUNTING_ABILITY );
          set_char_color( AT_BLOOD, ch );
-         ch_printf( ch, "You receive %ld hunting experience for executing a wanted killer.\n\r", bexp );
+         ch_printf( ch, "You receive %ld hunting experience for executing a wanted killer.\r\n", bexp );
       }
       else if( !IS_NPC( ch ) )
       {
          SET_BIT( ch->act, PLR_KILLER );
-         ch_printf( ch, "You are now wanted for the murder of %s.\n\r", victim->name );
+         ch_printf( ch, "You are now wanted for the murder of %s.\r\n", victim->name );
       }
       sprintf( buf, "%s is Dead!", victim->name );
       echo_to_all( AT_RED, buf, 0 );
@@ -361,7 +361,7 @@ void claim_disintegration( CHAR_DATA * ch, CHAR_DATA * victim )
    gain_exp( ch, bexp, HUNTING_ABILITY );
 
    set_char_color( AT_BLOOD, ch );
-   ch_printf( ch, "You receive %ld experience and %ld credits,\n\r from the bounty on %s\n\r", exp, bounty->amount,
+   ch_printf( ch, "You receive %ld experience and %ld credits,\r\n from the bounty on %s\r\n", exp, bounty->amount,
               bounty->target );
 
    sprintf( buf, "The disintegration bounty on %s has been claimed!", victim->name );

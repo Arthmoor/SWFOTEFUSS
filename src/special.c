@@ -29,11 +29,15 @@ Michael Seifert, and Sebastian Hammer.
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <dlfcn.h>
 #include "mud.h"
 
 /* jails for wanted flags */
 
 #define ROOM_JAIL_CORUSCANT        0
+
+SPEC_LIST *first_specfun;
+SPEC_LIST *last_specfun;
 
 /*
  * The following special functions are available for mobiles.
@@ -64,120 +68,79 @@ DECLARE_SPEC_FUN( spec_make_apprentice_jedi );
 DECLARE_SPEC_FUN( spec_make_master_jedi );
 DECLARE_SPEC_FUN( spec_make_apprentice_sith );
 
-/*
- * Given a name, return the appropriate spec fun.
+/* Simple load function - no OLC support for now.
+ * This is probably something you DONT want builders playing with.
  */
-SPEC_FUN *spec_lookup( const char *name )
+void load_specfuns( void )
 {
-   if( !str_cmp( name, "spec_jedi" ) )
-      return spec_jedi;
-   if( !str_cmp( name, "spec_dark_jedi" ) )
-      return spec_dark_jedi;
-   if( !str_cmp( name, "spec_fido" ) )
-      return spec_fido;
-   if( !str_cmp( name, "spec_guardian" ) )
-      return spec_guardian;
-   if( !str_cmp( name, "spec_janitor" ) )
-      return spec_janitor;
-   if( !str_cmp( name, "spec_poison" ) )
-      return spec_poison;
-   if( !str_cmp( name, "spec_thief" ) )
-      return spec_thief;
-   if( !str_cmp( name, "spec_auth" ) )
-      return spec_auth;
-   if( !str_cmp( name, "spec_giveslug" ) )
-      return spec_giveslug;
-   if( !str_cmp( name, "spec_stormtrooper" ) )
-      return spec_stormtrooper;
-   if( !str_cmp( name, "spec_new_republic_trooper" ) )
-      return spec_new_republic_trooper;
-   if( !str_cmp( name, "spec_customs_smut" ) )
-      return spec_customs_smut;
-   if( !str_cmp( name, "spec_customs_alcohol" ) )
-      return spec_customs_alcohol;
-   if( !str_cmp( name, "spec_customs_weapons" ) )
-      return spec_customs_weapons;
-   if( !str_cmp( name, "spec_customs_spice" ) )
-      return spec_customs_spice;
-   if( !str_cmp( name, "spec_police_attack" ) )
-      return spec_police_attack;
-   if( !str_cmp( name, "spec_police_jail" ) )
-      return spec_police_jail;
-   if( !str_cmp( name, "spec_police_fine" ) )
-      return spec_police_fine;
-   if( !str_cmp( name, "spec_police" ) )
-      return spec_police;
-   if( !str_cmp( name, "spec_clan_guard" ) )
-      return spec_clan_guard;
-   if( !str_cmp( name, "spec_newbie_pilot" ) )
-      return spec_newbie_pilot;
-   if( !str_cmp( name, "spec_ground_troop" ) )
-      return spec_ground_troop;
-   if( !str_cmp( name, "spec_make_apprentice_jedi" ) )
-      return spec_make_apprentice_jedi;
-   if( !str_cmp( name, "spec_make_master_jedi" ) )
-      return spec_make_master_jedi;
-   if( !str_cmp( name, "spec_make_apprentice_sith" ) )
-      return spec_make_apprentice_sith;
-   return 0;
+   SPEC_LIST *specfun;
+   FILE *fp;
+   char filename[256];
+   char *word;
+
+   first_specfun = NULL;
+   last_specfun = NULL;
+
+   snprintf( filename, 256, "%sspecfuns.dat", SYSTEM_DIR );
+   if( !( fp = fopen( filename, "r" ) ) )
+   {
+      bug( "%s", "load_specfuns: FATAL - cannot load specfuns.dat, exiting." );
+      perror( filename );
+      exit( 1 );
+   }
+   else
+   {
+      for( ; ; )
+      {
+         if( feof( fp ) )
+	 {
+	    bug( "%s", "load_specfuns: Premature end of file!" );
+	    fclose( fp );
+            fp = NULL;
+	    return;
+	 }
+         word = fread_word( fp );
+         if( !str_cmp( word, "$" ) )
+            break;
+
+         CREATE( specfun, SPEC_LIST, 1 );
+         specfun->name = str_dup( word );
+         LINK( specfun, first_specfun, last_specfun, next, prev );
+      }
+      fclose( fp );
+      fp = NULL;
+   }
+   return;
+}
+
+/* Simple validation function to be sure a function can be used on mobs */
+bool validate_spec_fun( char *name )
+{
+   SPEC_LIST *specfun;
+
+   for( specfun = first_specfun; specfun; specfun = specfun->next )
+   {
+      if( !str_cmp( specfun->name, name ) )
+         return TRUE;
+   }
+   return FALSE;
 }
 
 /*
- * Given a pointer, return the appropriate spec fun text.
+ * Given a name, return the appropriate spec_fun.
  */
-char *lookup_spec( SPEC_FUN * special )
+SPEC_FUN *spec_lookup( char *name )
 {
-   if( special == spec_jedi )
-      return "spec_jedi";
-   if( special == spec_dark_jedi )
-      return "spec_dark_jedi";
-   if( special == spec_fido )
-      return "spec_fido";
-   if( special == spec_guardian )
-      return "spec_guardian";
-   if( special == spec_janitor )
-      return "spec_janitor";
-   if( special == spec_poison )
-      return "spec_poison";
-   if( special == spec_thief )
-      return "spec_thief";
-   if( special == spec_auth )
-      return "spec_auth";
-   if( special == spec_giveslug )
-      return "spec_giveslug";
-   if( special == spec_stormtrooper )
-      return "spec_stormtrooper";
-   if( special == spec_new_republic_trooper )
-      return "spec_new_republic_trooper";
-   if( special == spec_customs_smut )
-      return "spec_customs_smut";
-   if( special == spec_customs_weapons )
-      return "spec_customs_weapons";
-   if( special == spec_customs_alcohol )
-      return "spec_customs_alcohol";
-   if( special == spec_customs_spice )
-      return "spec_customs_spice";
-   if( special == spec_police_attack )
-      return "spec_police_attack";
-   if( special == spec_police_jail )
-      return "spec_police_jail";
-   if( special == spec_police_fine )
-      return "spec_police_fine";
-   if( special == spec_police )
-      return "spec_police";
-   if( special == spec_clan_guard )
-      return "spec_clan_guard";
-   if( special == spec_newbie_pilot )
-      return "spec_newbie_pilot";
-   if( special == spec_ground_troop )
-      return "spec_ground_troop";
-   if( special == spec_make_apprentice_jedi )
-      return "spec_make_apprentice_jedi";
-   if( special == spec_make_master_jedi )
-      return "spec_make_master_jedi";
-   if( special == spec_make_apprentice_sith )
-      return "spec_make_apprentice_sith";
-   return "";
+   void *funHandle;
+   const char *error;
+
+   funHandle = dlsym( sysdata.dlHandle, name );
+   if( ( error = dlerror() ) != NULL )
+   {
+      bug( "Error locating function %s in symbol table.", name );
+      return NULL;
+   }
+   return (SPEC_FUN*)funHandle;
 }
 
 bool spec_make_apprentice_jedi( CHAR_DATA * ch )
@@ -266,7 +229,7 @@ bool spec_newbie_pilot( CHAR_DATA * ch )
       {
          case RACE_HUMAN:
             home = 201;
-            strcpy( buf, "After a brief journey you arrive at Coruscants Menari Spaceport.\n\r\n\r" );
+            strcpy( buf, "After a brief journey you arrive at Coruscants Menari Spaceport.\r\n\r\n" );
             echo_to_room( AT_ACTION, ch->in_room, buf );
             break;
 
@@ -277,7 +240,7 @@ bool spec_newbie_pilot( CHAR_DATA * ch )
             do_say( ch, "You're home planet is a little hard to get to right now." );
             do_say( ch, "I'll take you to the Pluogus instead." );
             echo_to_room( AT_ACTION, ch->in_room,
-                          "After a brief journey the shuttle docks with the Serin Pluogus.\n\r\n\r" );
+                          "After a brief journey the shuttle docks with the Serin Pluogus.\r\n\r\n" );
             break;
       }
 
@@ -286,7 +249,7 @@ bool spec_newbie_pilot( CHAR_DATA * ch )
 
       do_look( victim, "" );
 
-      sprintf( buf, "%s steps out and the shuttle quickly returns to the academy.\n\r", victim->name );
+      sprintf( buf, "%s steps out and the shuttle quickly returns to the academy.\r\n", victim->name );
       echo_to_room( AT_ACTION, ch->in_room, buf );
    }
 
@@ -408,7 +371,7 @@ bool spec_customs_smut( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You lose %ld experience.\n\r ", ch_exp );
+               ch_printf( victim, "You lose %ld experience.\r\n ", ch_exp );
                gain_exp( victim, 0 - ch_exp, SMUGGLING_ABILITY );
                return TRUE;
             }
@@ -418,11 +381,12 @@ bool spec_customs_smut( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You receive %ld experience for smuggling %s.\n\r ", ch_exp, obj->short_descr );
+               ch_printf( victim, "You receive %ld experience for smuggling %s.\r\n ", ch_exp, obj->short_descr );
                gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
 
                act( AT_ACTION, "$n looks at $N suspiciously.", ch, NULL, victim, TO_NOTVICT );
                act( AT_ACTION, "$n look at you suspiciously.", ch, NULL, victim, TO_VICT );
+               separate_obj( obj );
                SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
 
                return TRUE;
@@ -433,9 +397,9 @@ bool spec_customs_smut( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You receive %ld experience for smuggling %s.\n\r ", ch_exp, obj->short_descr );
+               ch_printf( victim, "You receive %ld experience for smuggling %s.\r\n ", ch_exp, obj->short_descr );
                gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
-
+               separate_obj( obj );
                SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
                return TRUE;
             }
@@ -451,8 +415,9 @@ bool spec_customs_smut( CHAR_DATA * ch )
                      UMIN( content->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %s.\n\r ", ch_exp, content->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %s.\r\n ", ch_exp, content->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
+                  separate_obj( content );
                   SET_BIT( content->extra_flags, ITEM_CONTRABAND );
                   return TRUE;
                }
@@ -510,7 +475,7 @@ bool spec_customs_weapons( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You lose %ld experience.\n\r ", ch_exp );
+               ch_printf( victim, "You lose %ld experience.\r\n ", ch_exp );
                gain_exp( victim, 0 - ch_exp, SMUGGLING_ABILITY );
                return TRUE;
             }
@@ -520,11 +485,12 @@ bool spec_customs_weapons( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You receive %ld experience for smuggling %d.\n\r ", ch_exp, obj->short_descr );
+               ch_printf( victim, "You receive %ld experience for smuggling %d.\r\n ", ch_exp, obj->short_descr );
                gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
 
                act( AT_ACTION, "$n looks at $N suspiciously.", ch, NULL, victim, TO_NOTVICT );
                act( AT_ACTION, "$n look at you suspiciously.", ch, NULL, victim, TO_VICT );
+               separate_obj( obj );
                SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
                return TRUE;
             }
@@ -534,9 +500,9 @@ bool spec_customs_weapons( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You receive %ld experience for smuggling %s.\n\r ", ch_exp, obj->short_descr );
+               ch_printf( victim, "You receive %ld experience for smuggling %s.\r\n ", ch_exp, obj->short_descr );
                gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
-
+               separate_obj( obj );
                SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
                return TRUE;
             }
@@ -552,8 +518,9 @@ bool spec_customs_weapons( CHAR_DATA * ch )
                      UMIN( content->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %s.\n\r ", ch_exp, content->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %s.\r\n ", ch_exp, content->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
+                  separate_obj( content );
                   SET_BIT( content->extra_flags, ITEM_CONTRABAND );
                   return TRUE;
                }
@@ -610,7 +577,7 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
                      UMIN( obj->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You lose %ld experience. \n\r", ch_exp );
+                  ch_printf( victim, "You lose %ld experience. \r\n", ch_exp );
                   gain_exp( victim, 0 - ch_exp, SMUGGLING_ABILITY );
                   return TRUE;
                }
@@ -620,11 +587,12 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
                      UMIN( obj->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %d. \n\r", ch_exp, obj->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %d. \r\n", ch_exp, obj->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
 
                   act( AT_ACTION, "$n looks at $N suspiciously.", ch, NULL, victim, TO_NOTVICT );
                   act( AT_ACTION, "$n look at you suspiciously.", ch, NULL, victim, TO_VICT );
+                  separate_obj( obj );
                   SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
                   return TRUE;
                }
@@ -634,9 +602,9 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
                      UMIN( obj->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %d. \n\r", ch_exp, obj->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %d. \r\n", ch_exp, obj->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
-
+                  separate_obj( obj );
                   SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
                   return TRUE;
                }
@@ -657,8 +625,9 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
                      UMIN( content->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %d.\n\r ", ch_exp, content->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %d.\r\n ", ch_exp, content->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
+                  separate_obj( content );
                   SET_BIT( content->extra_flags, ITEM_CONTRABAND );
                   return TRUE;
                }
@@ -709,7 +678,7 @@ bool spec_customs_spice( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You lose %ld experience. \n\r", ch_exp );
+               ch_printf( victim, "You lose %ld experience. \r\n", ch_exp );
                gain_exp( victim, 0 - ch_exp, SMUGGLING_ABILITY );
                return TRUE;
             }
@@ -719,11 +688,12 @@ bool spec_customs_spice( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You receive %ld experience for smuggling %s. \n\r", ch_exp, obj->short_descr );
+               ch_printf( victim, "You receive %ld experience for smuggling %s. \r\n", ch_exp, obj->short_descr );
                gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
 
                act( AT_ACTION, "$n looks at $N suspiciously.", ch, NULL, victim, TO_NOTVICT );
                act( AT_ACTION, "$n look at you suspiciously.", ch, NULL, victim, TO_VICT );
+               separate_obj( obj );
                SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
                return TRUE;
             }
@@ -733,9 +703,9 @@ bool spec_customs_spice( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You receive %ld experience for smuggling %s. \n\r", ch_exp, obj->short_descr );
+               ch_printf( victim, "You receive %ld experience for smuggling %s. \r\n", ch_exp, obj->short_descr );
                gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
-
+               separate_obj( obj );
                SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
                return TRUE;
             }
@@ -751,8 +721,9 @@ bool spec_customs_spice( CHAR_DATA * ch )
                      UMIN( content->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %s.\n\r ", ch_exp, content->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %s.\r\n ", ch_exp, content->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
+                 separate_obj( content );
                   SET_BIT( content->extra_flags, ITEM_CONTRABAND );
                   return TRUE;
                }
@@ -1233,8 +1204,6 @@ bool spec_guardian( CHAR_DATA * ch )
    return FALSE;
 }
 
-
-
 bool spec_janitor( CHAR_DATA * ch )
 {
    OBJ_DATA *trash;
@@ -1248,6 +1217,8 @@ bool spec_janitor( CHAR_DATA * ch )
       trash_next = trash->next_content;
       if( !IS_SET( trash->wear_flags, ITEM_TAKE ) || IS_OBJ_STAT( trash, ITEM_BURRIED ) )
          continue;
+      if( IS_OBJ_STAT( trash, ITEM_PROTOTYPE ) && !IS_SET( ch->act, ACT_PROTOTYPE ) )
+         continue;
       if( trash->item_type == ITEM_DRINK_CON
           || trash->item_type == ITEM_TRASH
           || trash->cost < 10 || ( trash->pIndexData->vnum == OBJ_VNUM_SHOPPING_BAG && !trash->first_content ) )
@@ -1258,11 +1229,8 @@ bool spec_janitor( CHAR_DATA * ch )
          return TRUE;
       }
    }
-
    return FALSE;
 }
-
-
 
 bool spec_poison( CHAR_DATA * ch )
 {
@@ -1345,7 +1313,7 @@ bool spec_auth( CHAR_DATA * ch )
          {
             obj = create_object( pObjIndex, 1 );
             obj = obj_to_char( obj, victim );
-            send_to_char( "&cThe schoolmaster gives you a diploma, and shakes your hand.\n\r&w", victim );
+            send_to_char( "&cThe schoolmaster gives you a diploma, and shakes your hand.\r\n&w", victim );
          }
       }
 

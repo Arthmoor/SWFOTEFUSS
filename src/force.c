@@ -36,6 +36,44 @@ Michael Seifert, and Sebastian Hammer.
 #include <errno.h>
 #include "mud.h"
 
+void free_forceskill( FORCE_SKILL * fskill )
+{
+   short x;
+
+   if( !fskill )
+   {
+      bug( "%s: null forceskill pointer!", __FUNCTION__ );
+      return;
+   }
+     
+   STRFREE( fskill->name );
+   STRFREE( fskill->code );
+
+   for( x = 0; x < 5; x++ )
+   {
+      STRFREE( fskill->room_effect[x] );
+      STRFREE( fskill->victim_effect[x] );
+      STRFREE( fskill->ch_effect[x] );
+   }
+   DISPOSE( fskill );
+   return;
+}
+
+void free_forcehelp( FORCE_HELP * fhelp )
+{
+   if( !fhelp )
+   {
+      bug( "%s: null forcehelp pointer!", __FUNCTION__ );
+      return;
+   }
+
+   STRFREE( fhelp->desc );
+   STRFREE( fhelp->name );
+
+   DISPOSE( fhelp );
+   return;
+}
+
 int check_force_skill( CHAR_DATA * ch, char *command, char *argument )
 {
    FORCE_SKILL *fskill;
@@ -58,7 +96,6 @@ int check_force_skill( CHAR_DATA * ch, char *command, char *argument )
    ( *fskill->do_fun ) ( ch, argument );
    return 1;
 }
-
 
 void force_send_to_room( CHAR_DATA * ch, CHAR_DATA * victim, char *msg )
 {
@@ -190,7 +227,7 @@ char *force_parse_string( CHAR_DATA * ch, CHAR_DATA * victim, char *srcmsg )
          strncpy( msg, strrep( msg, "$fc", "&w" ), MAX_STRING_LENGTH );
       }
    }
-   strncpy( msg, strrep( msg, "$RN$$RN$", "\r\n\r\n" ), MAX_STRING_LENGTH );
+   strncpy( msg, strrep( msg, "$RN$$RN$", "\r\r\n\n" ), MAX_STRING_LENGTH );
    strncpy( msg, strrep( msg, "$RN$", "\r\n" ), MAX_STRING_LENGTH );
    return msg;
 }
@@ -464,6 +501,7 @@ int force_promote_ready( CHAR_DATA * ch )
       return 0;
    return 1;
 }
+
 void draw_force_line_rev( CHAR_DATA * ch, int length )
 {
    int x;
@@ -496,6 +534,7 @@ void draw_force_line_rev( CHAR_DATA * ch, int length )
    send_to_char( "&z)[::&wo&z::::)", ch );
    send_to_char( "&G&w", ch );
 }
+
 void draw_force_line( CHAR_DATA * ch, int length )
 {
    int x;
@@ -559,7 +598,7 @@ void do_fstat( CHAR_DATA * ch, char *argument )
    ch_printf( ch, "&G&WControl: &G&w%-7s &G&WAlter: &G&w%-9s &G&WSense: &G&w%-9s &G&WWaitState: &G&w%-5d\r\n",
               fskill->control ? "Yes" : "No", fskill->alter ? "Yes" : "No", fskill->sense ? "Yes" : "No",
               fskill->wait_state );
-   ch_printf( ch, "&G&WDisabled: &G&w%-6s &G&WNotskill: &G&w%-6s &G&WMastertrain: &G&w%-6s\r\n\r\n",
+   ch_printf( ch, "&G&WDisabled: &G&w%-6s &G&WNotskill: &G&w%-6s &G&WMastertrain: &G&w%-6s\r\r\n\n",
               fskill->disabled ? "Yes" : "No", fskill->notskill ? "Yes" : "No", fskill->mastertrain ? "Yes" : "No",
               fskill->wait_state );
    if( !argument || argument[0] == '\0' )
@@ -863,6 +902,7 @@ void do_fset( CHAR_DATA * ch, char *argument )
       else if( !strcmp( arg2, "remove" ) )
       {
          UNLINK( fskill, first_force_skill, last_force_skill, next, prev );
+         free_forceskill( fskill );
          write_all_forceskills(  );
          send_to_char( "Done.\r\n", ch );
          return;
@@ -1041,11 +1081,11 @@ void do_fset( CHAR_DATA * ch, char *argument )
          return;
 
       case SUB_RESTRICTED:
-         send_to_char( "You cannot use this command from within another command.\n\r", ch );
+         send_to_char( "You cannot use this command from within another command.\r\n", ch );
          return;
 
       case SUB_NONE:
-         send_to_char( "USAGE: fset <skill> <field> [<value>]\r\n\r\n", ch );
+         send_to_char( "USAGE: fset <skill> <field> [<value>]\r\r\n\n", ch );
          send_to_char( "PUT VALID FIELDS HERE\r\n", ch );
          return;
       case SUB_FORCE_CH0:
@@ -1336,6 +1376,7 @@ void do_fhset( CHAR_DATA * ch, char *argument )
       else if( !strcmp( arg3, "remove" ) )
       {
          UNLINK( fhelp, first_force_help, last_force_help, next, prev );
+         free_forcehelp( fhelp );
          write_all_forcehelps(  );
          send_to_char( "Done.\r\n", ch );
          return;
@@ -1348,11 +1389,11 @@ void do_fhset( CHAR_DATA * ch, char *argument )
          return;
 
       case SUB_RESTRICTED:
-         send_to_char( "You cannot use this command from within another command.\n\r", ch );
+         send_to_char( "You cannot use this command from within another command.\r\n", ch );
          return;
 
       case SUB_NONE:
-         send_to_char( "USAGE: fhset <helpfile> <jedi/sith/general> <field> [value]\r\n\r\n", ch );
+         send_to_char( "USAGE: fhset <helpfile> <jedi/sith/general> <field> [value]\r\r\n\n", ch );
          send_to_char( "PUT VALID FIELDS HERE\r\n", ch );
          return;
       case SUB_FORCE_HELP:

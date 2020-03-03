@@ -60,13 +60,13 @@ void do_tellsnoop( CHAR_DATA * ch, char *argument )
 
    if( arg[0] == '\0' )
    {
-      send_to_char( "&RSyntax: spy <commfreq/clear>\n\r", ch );
+      send_to_char( "&RSyntax: spy <commfreq/clear>\r\n", ch );
       return;
    }
 
    if( !str_cmp( arg, "clear" ) || !str_cmp( arg, "self" ) )
    {
-      send_to_char( "You turn your radio off.\n\r", ch );
+      send_to_char( "You turn your radio off.\r\n", ch );
       ch->pcdata->tell_snoop = NULL;
       return;
    }
@@ -75,14 +75,14 @@ void do_tellsnoop( CHAR_DATA * ch, char *argument )
    {
       if( isalpha( arg[i] ) )
       {
-         send_to_char( "&RSyntax: spy <commfreg/clear>\n\r", ch );
+         send_to_char( "&RSyntax: spy <commfreg/clear>\r\n", ch );
          return;
       }
    }
 
    if( strlen( arg ) > 3 && arg[3] != '.' )
    {
-      send_to_char( "&RSyntax: spy <commfreg/clear>\n\r", ch );
+      send_to_char( "&RSyntax: spy <commfreg/clear>\r\n", ch );
       return;
    }
 
@@ -92,12 +92,12 @@ void do_tellsnoop( CHAR_DATA * ch, char *argument )
    {
       learn_from_success( ch, gsn_spy );
       ch->pcdata->tell_snoop = STRALLOC( arg );
-      sprintf( buf, "You are now listening to all communications with %s.\n\r", ch->pcdata->tell_snoop );
+      sprintf( buf, "You are now listening to all communications with %s.\r\n", ch->pcdata->tell_snoop );
       send_to_char( buf, ch );
    }
    else
    {
-      send_to_char( "You fail to find the correct frequency.\n\r", ch );
+      send_to_char( "You fail to find the correct frequency.\r\n", ch );
       learn_from_failure( ch, gsn_spy );
    }
 }
@@ -611,26 +611,26 @@ void do_inquire( CHAR_DATA * ch, char *argument )
 
          if( ( checkdata == FALSE ) )
          {
-            send_to_char( "You need a datapad to slice into the banking computer system.\n\r", ch );
+            send_to_char( "You need a datapad to slice into the banking computer system.\r\n", ch );
             return;
          }
          if( !IS_SET( ch->in_room->room_flags, ROOM_BANK ) )
          {
-            send_to_char( "You must be in a bank.\n\r", ch );
+            send_to_char( "You must be in a bank.\r\n", ch );
             return;
          }
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_inquire] );
          if( number_percent(  ) < schance )
          {
 
-            send_to_char( "&GYou begin the long process of trying to slice into the banking computer system.\n\r", ch );
+            send_to_char( "&GYou begin the long process of trying to slice into the banking computer system.\r\n", ch );
             sprintf( buf, "$n takes $s datapad and hooks into a data port." );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 10, do_inquire, 1 );
             return;
 
          }
-         send_to_char( "&RYou are unable to find the banking computer system.\n\r", ch );
+         send_to_char( "&RYou are unable to find the banking computer system.\r\n", ch );
          learn_from_failure( ch, gsn_inquire );
          return;
 
@@ -638,7 +638,7 @@ void do_inquire( CHAR_DATA * ch, char *argument )
          break;
       case SUB_TIMER_DO_ABORT:
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interrupted and fail to finish slicing into the banking computer system.\n\r", ch );
+         send_to_char( "&RYou are interrupted and fail to finish slicing into the banking computer system.\r\n", ch );
          return;
    }
 
@@ -650,34 +650,34 @@ void do_inquire( CHAR_DATA * ch, char *argument )
 
    if( number_percent(  ) > schance * 2 )
    {
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\n\r",
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Invalid passcode.                                                     ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
+      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Invalid passcode.                                                     ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       learn_from_failure( ch, gsn_inquire );
       return;
    }
 
-   ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-   ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\n\r",
+   ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+   ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
               number_range( 11111, 99999 ) );
-   ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-   ch_printf( ch, "&z|^g&x Login accepted...retrieving account data, stand by.                   ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g&x _______  Account  _____________________________________ Savings _____ &z^x|\n\r" );
+   ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+   ch_printf( ch, "&z|^g&x Login accepted...retrieving account data, stand by.                   ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g&x _______  Account  _____________________________________ Savings _____ &z^x|\r\n" );
    for( d = first_descriptor; d; d = d->next )
    {
       if( !d->character )
@@ -686,15 +686,15 @@ void do_inquire( CHAR_DATA * ch, char *argument )
          continue;
       if( IS_IMMORTAL( d->character ) )
          continue;
-      ch_printf( ch, "&z|^g&x     # %s                                  %-9.9d      ^x&z|\n\r", acctname( d->character ),
+      ch_printf( ch, "&z|^g&x     # %s                                  %-9.9d      ^x&z|\r\n", acctname( d->character ),
                  d->character->pcdata->bank );
    }
-   ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-   ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
+   ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+   ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
 
    xpgain = 3000;
    gain_exp( ch, xpgain, SLICER_ABILITY );
-   ch_printf( ch, " You gain %d experience points for being a Slicer.\n\r", xpgain );
+   ch_printf( ch, " You gain %d experience points for being a Slicer.\r\n", xpgain );
    learn_from_success( ch, gsn_inquire );
    return;
 
@@ -717,7 +717,7 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
       default:
          if( arg[0] == '\0' )
          {
-            send_to_char( "&RUsage: Makecommsystem <name>\n\r&w", ch );
+            send_to_char( "&RUsage: Makecommsystem <name>\r\n&w", ch );
             return;
          }
 
@@ -749,31 +749,31 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
 
          if( !checktool )
          {
-            send_to_char( "You need a toolkit to build a commsystem!\n\r", ch );
+            send_to_char( "You need a toolkit to build a commsystem!\r\n", ch );
             return;
          }
 
          if( !checkdura )
          {
-            send_to_char( "You need some duraplast to build a commsystem!\n\r", ch );
+            send_to_char( "You need some duraplast to build a commsystem!\r\n", ch );
             return;
          }
 
          if( !checkbattery )
          {
-            send_to_char( "You need a battery to power your commsystem!\n\r", ch );
+            send_to_char( "You need a battery to power your commsystem!\r\n", ch );
             return;
          }
 
          if( !checkcrystal )
          {
-            send_to_char( "You need a small crystal to focus the signal!\n\r", ch );
+            send_to_char( "You need a small crystal to focus the signal!\r\n", ch );
             return;
          }
 
          if( !checkcircuit )
          {
-            send_to_char( "You need a small circuit to control the commsystem!\n\r", ch );
+            send_to_char( "You need a small circuit to control the commsystem!\r\n", ch );
             return;
          }
 
@@ -781,13 +781,13 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
 
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of making a commsystem.\n\r", ch );
+            send_to_char( "&GYou begin the long process of making a commsystem.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 5, do_makecommsystem, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "&RYou can't figure out how to fit the parts together.\n\r", ch );
+         send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
          learn_from_failure( ch, gsn_makecommsystem );
          return;
 
@@ -801,7 +801,7 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish your work.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish your work.\r\n", ch );
          return;
    }
 
@@ -813,7 +813,7 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
    if( ( pObjIndex = get_obj_index( vnum ) ) == NULL )
    {
       send_to_char
-         ( "&RThe item you are trying to create is missing from the database.\n\rPlease inform the administration of this error.\n\r",
+         ( "&RThe item you are trying to create is missing from the database.\r\nPlease inform the administration of this error.\r\n",
            ch );
       return;
    }
@@ -863,9 +863,9 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
    if( number_percent(  ) > schance * 2 || ( !checktool ) || ( !checkdura ) || ( !checkcrystal ) || ( !checkbattery )
        || ( !checkcircuit ) )
    {
-      send_to_char( "&RYou hold up your new commsystem and press a couple of buttons\n\r", ch );
-      send_to_char( "&RYour new commsystem begins to shake violently.\n\r", ch );
-      send_to_char( "&RYou new commsystem suddnely explodes in your hand.\n\r", ch );
+      send_to_char( "&RYou hold up your new commsystem and press a couple of buttons\r\n", ch );
+      send_to_char( "&RYour new commsystem begins to shake violently.\r\n", ch );
+      send_to_char( "&RYou new commsystem suddnely explodes in your hand.\r\n", ch );
       ch->hit -= 15;
       learn_from_failure( ch, gsn_makecommsystem );
       return;
@@ -890,7 +890,7 @@ void do_makecommsystem( CHAR_DATA * ch, char *argument )
    obj->cost = 45000;
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your new commsystem.&w\n\r", ch );
+   send_to_char( "&GYou finish your work and hold up your new commsystem.&w\r\n", ch );
    act( AT_PLAIN, "$n finishes making $s new commsystem.", ch, NULL, argument, TO_ROOM );
 
    {
@@ -922,7 +922,7 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
       default:
          if( arg[0] == '\0' )
          {
-            send_to_char( "&RUsage: Makedatapad <name>\n\r&w", ch );
+            send_to_char( "&RUsage: Makedatapad <name>\r\n&w", ch );
             return;
          }
 
@@ -958,38 +958,38 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
 
          if( !checktool )
          {
-            send_to_char( "You need a toolkit to build a datapad!\n\r", ch );
+            send_to_char( "You need a toolkit to build a datapad!\r\n", ch );
             return;
          }
 
          if( !checkdura )
          {
-            send_to_char( "You need some durasteel to build your datapad!\n\r", ch );
+            send_to_char( "You need some durasteel to build your datapad!\r\n", ch );
             return;
          }
 
          if( !checkbattery )
          {
-            send_to_char( "You need a battery to power your datapad!\n\r", ch );
+            send_to_char( "You need a battery to power your datapad!\r\n", ch );
             return;
          }
 
          if( !checksuper )
          {
-            send_to_char( "You need a superconductor to focus the energy of the battery.!\n\r", ch );
+            send_to_char( "You need a superconductor to focus the energy of the battery.!\r\n", ch );
             return;
          }
 
          if( !checkcircuit )
          {
-            send_to_char( "You need a small circuit to control the datapad!\n\r", ch );
+            send_to_char( "You need a small circuit to control the datapad!\r\n", ch );
             return;
          }
 
 
          if( !checklens )
          {
-            send_to_char( "You need a lens for the display.\n\r", ch );
+            send_to_char( "You need a lens for the display.\r\n", ch );
             return;
          }
 
@@ -997,13 +997,13 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
 
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of making a datapad.\n\r", ch );
+            send_to_char( "&GYou begin the long process of making a datapad.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 5, do_makedatapad, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "&RYou can't figure out how to fit the parts together.\n\r", ch );
+         send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
          learn_from_failure( ch, gsn_makedatapad );
          return;
 
@@ -1017,7 +1017,7 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish your work.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish your work.\r\n", ch );
          return;
    }
 
@@ -1029,7 +1029,7 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
    if( ( pObjIndex = get_obj_index( vnum ) ) == NULL )
    {
       send_to_char
-         ( "&RThe item you are trying to create is missing from the database.\n\rPlease inform the administration of this error.\n\r",
+         ( "&RThe item you are trying to create is missing from the database.\r\nPlease inform the administration of this error.\r\n",
            ch );
       return;
    }
@@ -1086,9 +1086,9 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
    if( number_percent(  ) > schance * 2 || ( !checktool ) || ( !checkdura ) || ( !checksuper ) || ( !checkbattery )
        || ( !checkcircuit ) || ( !checklens ) )
    {
-      send_to_char( "&RYou hold up your new datapad and begin entering data.\n\r", ch );
-      send_to_char( "&RYour new datapad begins to shake violently.\n\r", ch );
-      send_to_char( "&RYou new datapad suddnely explodes in your hand.\n\r", ch );
+      send_to_char( "&RYou hold up your new datapad and begin entering data.\r\n", ch );
+      send_to_char( "&RYour new datapad begins to shake violently.\r\n", ch );
+      send_to_char( "&RYou new datapad suddnely explodes in your hand.\r\n", ch );
       ch->hit -= 15;
       learn_from_failure( ch, gsn_makedatapad );
       return;
@@ -1113,7 +1113,7 @@ void do_makedatapad( CHAR_DATA * ch, char *argument )
    obj->cost = 45000;
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your new datpad.&w\n\r", ch );
+   send_to_char( "&GYou finish your work and hold up your new datpad.&w\r\n", ch );
    act( AT_PLAIN, "$n finishes making $s new datapad.", ch, NULL, argument, TO_ROOM );
 
    {
@@ -1147,7 +1147,7 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
       default:
          if( argument[0] == '\0' )
          {
-            send_to_char( "Syntax: Codecrack <ship>\n\r", ch );
+            send_to_char( "Syntax: Codecrack <ship>\r\n", ch );
             return;
          }
          else if( ( ship = ship_in_room( ch->in_room, arg ) ) != NULL )
@@ -1157,7 +1157,7 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
          }
          else
          {
-            send_to_char( "There is no such ship docked here.\n\r", ch );
+            send_to_char( "There is no such ship docked here.\r\n", ch );
             return;
          }
 
@@ -1169,7 +1169,7 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
 
          if( checkdata == FALSE )
          {
-            send_to_char( "You need a datapad to slice into the ships computer system.\n\r", ch );
+            send_to_char( "You need a datapad to slice into the ships computer system.\r\n", ch );
             return;
          }
 
@@ -1181,20 +1181,20 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
             {
                ship = get_ship( arg );
                ch->dest_buf = str_dup( arg );
-               send_to_char( "&GYou begin the long process of trying to slice into a ships computer.\n\r", ch );
-               sprintf( buf, "$n takes $s datapad and hooks into the %s's data port.\n\r", ship->name );
+               send_to_char( "&GYou begin the long process of trying to slice into a ships computer.\r\n", ch );
+               sprintf( buf, "$n takes $s datapad and hooks into the %s's data port.\r\n", ship->name );
                act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
                add_timer( ch, TIMER_DO_FUN, 25, do_codecrack, 1 );
                return;
             }
             else
             {
-               send_to_char( "There is no such ship here.\n\r", ch );
+               send_to_char( "There is no such ship here.\r\n", ch );
                return;
             }
          }
 
-         send_to_char( "&RYou are unable to find this ship's dataport.\n\r", ch );
+         send_to_char( "&RYou are unable to find this ship's dataport.\r\n", ch );
          ch->pcdata->is_hacking = FALSE;
          learn_from_failure( ch, gsn_codecrack );
          return;
@@ -1210,7 +1210,7 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
          ch->pcdata->is_hacking = FALSE;
-         send_to_char( "&RYou are interupted and fail to finish slicing into the ships computer system.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish slicing into the ships computer system.\r\n", ch );
          return;
    }
 
@@ -1226,7 +1226,7 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
    ship = ship_in_room( ch->in_room, arg );
    if( !ship )
    {
-      send_to_char( "&RThat ship is no longer here.\n\r", ch );
+      send_to_char( "&RThat ship is no longer here.\r\n", ch );
       return;
    }
    x = number_percent(  );
@@ -1257,7 +1257,7 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
    ch->pcdata->is_hacking = FALSE;
    if( !ship->password )
    {
-      sprintf( buf, "Error..%s does not have a password.\n\r", ship->name );
+      sprintf( buf, "Error..%s does not have a password.\r\n", ship->name );
       send_to_char( buf, ch );
       log_string( buf );
       return;
@@ -1286,7 +1286,7 @@ void do_codecrack( CHAR_DATA * ch, char *argument )
       xpgain = 3000;
       ch->pcdata->is_hacking = FALSE;
       gain_exp( ch, xpgain, SLICER_ABILITY );
-      ch_printf( ch, " You gain %d experience as for being a Slicer.\n\r", xpgain );
+      ch_printf( ch, " You gain %d experience as for being a Slicer.\r\n", xpgain );
       learn_from_success( ch, gsn_codecrack );
    }
    return;
@@ -1314,14 +1314,14 @@ void do_disableship( CHAR_DATA * ch, char *argument )
       default:
          if( arg1[0] == '\0' || arg2[0] == '\0' )
          {
-            send_to_char( "Syntax: Disable <ship> <system>\n\rSystem being one of: shields, primary, hyper, launcher.\n\r",
+            send_to_char( "Syntax: Disable <ship> <system>\r\nSystem being one of: shields, primary, hyper, launcher.\r\n",
                           ch );
             return;
          }
 
          if( ( ship1 = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
          {
-            send_to_char( "You need to be in a ships cockpit to use this skill.\n\r", ch );
+            send_to_char( "You need to be in a ships cockpit to use this skill.\r\n", ch );
             return;
          }
 
@@ -1329,20 +1329,20 @@ void do_disableship( CHAR_DATA * ch, char *argument )
              && str_cmp( arg2, "hyper" ) )
          {
             send_to_char
-               ( "You need to pick a system to disable. Please choose either:\n\rprimary, shields, launcher, hyper.\n\r",
+               ( "You need to pick a system to disable. Please choose either:\r\nprimary, shields, launcher, hyper.\r\n",
                  ch );
             return;
          }
 
          if( !ship1->starsystem )
          {
-            send_to_char( "Don't you think you should be in a starsystem first.?\n\r", ch );
+            send_to_char( "Don't you think you should be in a starsystem first.?\r\n", ch );
             return;
          }
 
          if( IS_SET( ship1->flags, SHIP_SIMULATOR ) )
          {
-            send_to_char( "&RYou hook your commsystem into the datapor... wha? Theres no dataport!\n\r", ch );
+            send_to_char( "&RYou hook your commsystem into the datapor... wha? Theres no dataport!\r\n", ch );
             return;
          }
 
@@ -1351,13 +1351,13 @@ void do_disableship( CHAR_DATA * ch, char *argument )
 
          if( !ship2 )
          {
-            send_to_char( "There is no ship in this starsystem!\n\r", ch );
+            send_to_char( "There is no ship in this starsystem!\r\n", ch );
             return;
          }
 
          if( ship2->class == 3 )
          {
-            send_to_char( "That ship has too great of security to disable it.\n\r", ch );
+            send_to_char( "That ship has too great of security to disable it.\r\n", ch );
             return;
          }
 
@@ -1371,13 +1371,13 @@ void do_disableship( CHAR_DATA * ch, char *argument )
 
          if( !checkdata )
          {
-            send_to_char( "You need a datapad to do this.\n\r", ch );
+            send_to_char( "You need a datapad to do this.\r\n", ch );
             return;
          }
 
          if( !checkcomm )
          {
-            send_to_char( "You need a commsystem to do this.\n\r", ch );
+            send_to_char( "You need a commsystem to do this.\r\n", ch );
             return;
          }
 
@@ -1390,8 +1390,8 @@ void do_disableship( CHAR_DATA * ch, char *argument )
                 * Ship Launcher Disable Code
                 */
                strcpy( disable, arg2 );
-               send_to_char( "You take out your datapad and commsystem and begin working on disabling the ship.\n\r", ch );
-               act( AT_PLAIN, "$n takes out $s datapad and begins working on disabling a ships launcher.\n\r", ch, NULL,
+               send_to_char( "You take out your datapad and commsystem and begin working on disabling the ship.\r\n", ch );
+               act( AT_PLAIN, "$n takes out $s datapad and begins working on disabling a ships launcher.\r\n", ch, NULL,
                     NULL, TO_ROOM );
                ch->dest_buf = str_dup( arg1 );
                add_timer( ch, TIMER_DO_FUN, 5, do_disableship, 1 );
@@ -1401,8 +1401,8 @@ void do_disableship( CHAR_DATA * ch, char *argument )
             if( !str_cmp( arg2, "shields" ) )
             {
                strcpy( disable, arg2 );
-               send_to_char( "You take out your datapad and commsystem and begin working on disabling the ship.\n\r", ch );
-               act( AT_PLAIN, "$n takes out $s datapad and begins working on disabling a ships shields.\n\r", ch, NULL, NULL,
+               send_to_char( "You take out your datapad and commsystem and begin working on disabling the ship.\r\n", ch );
+               act( AT_PLAIN, "$n takes out $s datapad and begins working on disabling a ships shields.\r\n", ch, NULL, NULL,
                     TO_ROOM );
                ch->dest_buf = str_dup( arg1 );
                add_timer( ch, TIMER_DO_FUN, 15, do_disableship, 1 );
@@ -1416,8 +1416,8 @@ void do_disableship( CHAR_DATA * ch, char *argument )
                 * return;
                 */
                strcpy( disable, arg2 );
-               send_to_char( "You take out your datapad and commsystem and begin working on disabling the ship.\n\r", ch );
-               act( AT_PLAIN, "$n takes out $s datapad and begins working on disabling a ships hyperdrive.\n\r", ch, NULL,
+               send_to_char( "You take out your datapad and commsystem and begin working on disabling the ship.\r\n", ch );
+               act( AT_PLAIN, "$n takes out $s datapad and begins working on disabling a ships hyperdrive.\r\n", ch, NULL,
                     NULL, TO_ROOM );
                ch->dest_buf = str_dup( arg1 );
                add_timer( ch, TIMER_DO_FUN, 10, do_disableship, 1 );
@@ -1427,15 +1427,15 @@ void do_disableship( CHAR_DATA * ch, char *argument )
             if( !str_cmp( arg2, "primary" ) )
             {
                strcpy( disable, arg2 );
-               send_to_char( "You take out your datapad and commsystem and begin working on disabling the ship.\n\r", ch );
-               act( AT_PLAIN, "$n takes out $s datapad and begins working on disabling a ships primary weapons system.\n\r",
+               send_to_char( "You take out your datapad and commsystem and begin working on disabling the ship.\r\n", ch );
+               act( AT_PLAIN, "$n takes out $s datapad and begins working on disabling a ships primary weapons system.\r\n",
                     ch, NULL, NULL, TO_ROOM );
                ch->dest_buf = str_dup( arg1 );
                add_timer( ch, TIMER_DO_FUN, 30, do_disableship, 1 );
                return;
             }
          }
-         send_to_char( "&RYou are unable to gain access to this ships computer system.\n\r", ch );
+         send_to_char( "&RYou are unable to gain access to this ships computer system.\r\n", ch );
          learn_from_failure( ch, gsn_disable );
          return;
 
@@ -1449,7 +1449,7 @@ void do_disableship( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish disabling the ships computer system.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish disabling the ships computer system.\r\n", ch );
          return;
    }
 
@@ -1540,7 +1540,7 @@ void do_disableship( CHAR_DATA * ch, char *argument )
    xpgain = 3000;
    learn_from_success( ch, gsn_disable );
    gain_exp( ch, xpgain, SLICER_ABILITY );
-   ch_printf( ch, " You gain %d experience as for being a Slicer.\n\r", xpgain );
+   ch_printf( ch, " You gain %d experience as for being a Slicer.\r\n", xpgain );
    return;
 
 
@@ -1564,13 +1564,13 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
       default:
          if( arg1[0] == '\0' )
          {
-            send_to_char( "Syntax: Assignpilot <name>\n\r", ch );
+            send_to_char( "Syntax: Assignpilot <name>\r\n", ch );
             return;
          }
 
          if( ( ship1 = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
          {
-            send_to_char( "You need to be in a ships cockpit to use this skill.\n\r", ch );
+            send_to_char( "You need to be in a ships cockpit to use this skill.\r\n", ch );
             return;
          }
 
@@ -1583,13 +1583,13 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
 
          if( !checkdata )
          {
-            send_to_char( "You need a datapad to do this.\n\r", ch );
+            send_to_char( "You need a datapad to do this.\r\n", ch );
             return;
          }
 
          if( autofly( ship1 ) )
          {
-            send_to_char( "&W&RYou need to have autopilot turned off in order to access the ships databanks.\n\r", ch );
+            send_to_char( "&W&RYou need to have autopilot turned off in order to access the ships databanks.\r\n", ch );
             return;
          }
 
@@ -1597,13 +1597,13 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
          if( number_percent(  ) < schance )
          {
             strcpy( disable, arg2 );
-            send_to_char( "You take out your datapad working on changing this ships pilot.\n\r", ch );
-            act( AT_PLAIN, "$n takes out $s datapad and begins working on something.\n\r", ch, NULL, argument, TO_ROOM );
+            send_to_char( "You take out your datapad working on changing this ships pilot.\r\n", ch );
+            act( AT_PLAIN, "$n takes out $s datapad and begins working on something.\r\n", ch, NULL, argument, TO_ROOM );
             ch->dest_buf = str_dup( arg1 );
             add_timer( ch, TIMER_DO_FUN, 5, do_assignpilot, 1 );
             return;
          }
-         send_to_char( "&RYou are unable to gain access to this ships computer system.\n\r", ch );
+         send_to_char( "&RYou are unable to gain access to this ships computer system.\r\n", ch );
          learn_from_failure( ch, gsn_assignpilot );
          return;
 
@@ -1617,7 +1617,7 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish assigning a ships pilot.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish assigning a ships pilot.\r\n", ch );
          return;
    }
 
@@ -1685,7 +1685,7 @@ void do_assignpilot( CHAR_DATA * ch, char *argument )
    xpgain = 3000;
    learn_from_success( ch, gsn_assignpilot );
    gain_exp( ch, xpgain, SLICER_ABILITY );
-   ch_printf( ch, " You gain %d experience as for being a Slicer.\n\r", xpgain );
+   ch_printf( ch, " You gain %d experience as for being a Slicer.\r\n", xpgain );
    return;
 
 
@@ -1713,20 +1713,20 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
       default:
          if( arg[0] == '\0' || arg2[0] == '\0' )
          {
-            send_to_char( "Syntax: Slicebank <account> <amount>\n\r", ch );
+            send_to_char( "Syntax: Slicebank <account> <amount>\r\n", ch );
             return;
          }
 
          if( ch->fighting )
          {
-            send_to_char( "You're a little preoccupied...\n\r", ch );
+            send_to_char( "You're a little preoccupied...\r\n", ch );
             return;
          }
 
 
          if( !IS_SET( ch->in_room->room_flags, ROOM_BANK ) )
          {
-            send_to_char( "You must be in a bank to slice someones account.\n\r", ch );
+            send_to_char( "You must be in a bank to slice someones account.\r\n", ch );
             return;
          }
 
@@ -1737,24 +1737,24 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
          }
          if( ( checkdata == FALSE ) )
          {
-            send_to_char( "You need a datapad to slice into the banking computer system.\n\r", ch );
+            send_to_char( "You need a datapad to slice into the banking computer system.\r\n", ch );
             return;
          }
          if( !str_cmp( arg2, acctname( ch ) ) )
          {
-            send_to_char( "That's your account. Insurance fraud is not applicable here on FotE.\n\r", ch );
+            send_to_char( "That's your account. Insurance fraud is not applicable here on FotE.\r\n", ch );
             return;
          }
 
          if( atoi( arg ) < 0 )
          {
-            send_to_char( "Why don't you just GIVE them the money?\n\r", ch );
+            send_to_char( "Why don't you just GIVE them the money?\r\n", ch );
             return;
          }
 
          ch->dest_buf = str_dup( arg );
          ch->dest_buf_2 = str_dup( arg2 );
-         send_to_char( "&GYou begin the long process of trying to slice into the banking computer system.\n\r", ch );
+         send_to_char( "&GYou begin the long process of trying to slice into the banking computer system.\r\n", ch );
          sprintf( buf, "$n takes $s datapad and hooks it into a data port." );
          act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
          add_timer( ch, TIMER_DO_FUN, 10, do_slicebank, 1 );
@@ -1776,7 +1776,7 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
          DISPOSE( ch->dest_buf );
          DISPOSE( ch->dest_buf_2 );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interrupted and fail to finish slicing into the banking computer system.\n\r", ch );
+         send_to_char( "&RYou are interrupted and fail to finish slicing into the banking computer system.\r\n", ch );
          return;
    }
 
@@ -1808,106 +1808,106 @@ void do_slicebank( CHAR_DATA * ch, char *argument )
    }
    if( number_percent(  ) > schance )
    {
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\n\r",
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Invalid passcode.                                                     ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
+      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Invalid passcode.                                                     ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       learn_from_failure( ch, gsn_slicebank );
       return;
    }
    if( number_percent(  ) > schance * 2 && found )
    {
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\n\r",
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Request DENIED. Account owner has been notified.                      ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
+      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Request DENIED. Account owner has been notified.                      ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
 
       learn_from_failure( ch, gsn_slicebank );
-      send_to_char( "&R[&YBank: &WALERT&R] &WAn attempt was made on your bank account.\n\r", d->character );
+      send_to_char( "&R[&YBank: &WALERT&R] &WAn attempt was made on your bank account.\r\n", d->character );
       return;
    }
    if( !found )
    {
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\n\r",
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Account %-15.15s is not active.                                ^x&z|\n\r", arg2 );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
+      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Account %-15.15s is not active.                                ^x&z|\r\n", arg2 );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
       return;
    }
 
    steal = atoi( arg );
    if( steal > d->character->pcdata->bank / 20 )
    {
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\n\r",
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
                  number_range( 11111, 99999 ) );
-      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g&x Request DENIED, transfer too high. Account owner has been notified.   ^x&z|\n\r" );
-      ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
-      send_to_char( "&R[&YBank: &WALERT&R] &WAn attempt was made on your bank account.\n\r", d->character );
+      ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+      ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g&x Request DENIED, transfer too high. Account owner has been notified.   ^x&z|\r\n" );
+      ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+      ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
+      send_to_char( "&R[&YBank: &WALERT&R] &WAn attempt was made on your bank account.\r\n", d->character );
       return;
    }
 
-   ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-   ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\n\r",
+   ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g&x Welcome to the Galactic Bank Database. Unauthorized entry prohibited. ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+   ch_printf( ch, "&z|^g&x Login: %d                                                          ^x&z|\r\n",
               number_range( 11111, 99999 ) );
-   ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x|\n\r" );
-   ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g&x Request accepted. Credits transferred.                                ^x&z|\n\r" );
-   ch_printf( ch, "&z|^g                                                                       ^x&z|\n\r" );
-   ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\n\r" );
+   ch_printf( ch, "&z|^g&x Passcode: *********                                                   ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x|\r\n" );
+   ch_printf( ch, "&z|^g&x Login accepted...retrieving account information, stand by.            ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g&x Processing request, stand by.                                         ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g&x Request accepted. Credits transferred.                                ^x&z|\r\n" );
+   ch_printf( ch, "&z|^g                                                                       ^x&z|\r\n" );
+   ch_printf( ch, "&z|+---------------------------------------------------------------------+|&w\r\n" );
 
    ch->pcdata->bank += steal;
    d->character->pcdata->bank -= steal;
    //xpgain = UMIN( obj->cost*10 ,( exp_level(ch->skill_level[SLICER_ABILITY]+1) - exp_level(ch->skill_level[SLICER_ABILITY]) ) );
    xpgain = 3000;
    gain_exp( ch, xpgain, SLICER_ABILITY );
-   ch_printf( ch, " You gain %d experience points for being a Slicer.\n\r", xpgain );
+   ch_printf( ch, " You gain %d experience points for being a Slicer.\r\n", xpgain );
    learn_from_success( ch, gsn_slicebank );
    return;
 
@@ -1933,7 +1933,7 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
 
          if( arg[0] == '\0' )
          {
-            send_to_char( "Syntax: checkprints <corpse>\n\r", ch );
+            send_to_char( "Syntax: checkprints <corpse>\r\n", ch );
             return;
          }
 
@@ -1948,38 +1948,38 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
 
          if( ( checkdata == FALSE ) )
          {
-            send_to_char( "You need a datapad to gain access to the fingerprint computer system.\n\r", ch );
+            send_to_char( "You need a datapad to gain access to the fingerprint computer system.\r\n", ch );
             return;
          }
 
          if( ( checkcomm == FALSE ) )
          {
-            send_to_char( "You need a commsystem to gain access to the fingerprint computer system.\n\r", ch );
+            send_to_char( "You need a commsystem to gain access to the fingerprint computer system.\r\n", ch );
             return;
          }
 
          if( ch->fighting )
          {
-            send_to_char( "While you're fighting?  Nice try.\n\r", ch );
+            send_to_char( "While you're fighting?  Nice try.\r\n", ch );
             return;
          }
 
          obj = get_obj_list( ch, argument, ch->in_room->first_content );
          if( !obj )
          {
-            send_to_char( "There's no such corpse here.\n\r", ch );
+            send_to_char( "There's no such corpse here.\r\n", ch );
             return;
          }
 
          if( obj->item_type != ITEM_CORPSE_NPC && obj->item_type != ITEM_CORPSE_PC )
          {
-            send_to_char( "This is not a corpse.\n\r", ch );
+            send_to_char( "This is not a corpse.\r\n", ch );
             return;
          }
 
          if( !obj->killer )
          {
-            send_to_char( "Error: No Killer. Contact Immortals.\n\r", ch );
+            send_to_char( "Error: No Killer. Contact Immortals.\r\n", ch );
             return;
          }
 
@@ -1987,13 +1987,13 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
          if( number_percent(  ) < schance )
          {
             ch->dest_buf = str_dup( arg );
-            send_to_char( "&GYou begin the long process of cross checking fingerprints.\n\r", ch );
-            sprintf( buf, "$n takes $s datapad and hooks into a commsystem.\n\r" );
+            send_to_char( "&GYou begin the long process of cross checking fingerprints.\r\n", ch );
+            sprintf( buf, "$n takes $s datapad and hooks into a commsystem.\r\n" );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 5, do_checkprints, 1 );
             return;
          }
-         send_to_char( "&RYou are unable to find a match for the fingerprints.\n\r", ch );
+         send_to_char( "&RYou are unable to find a match for the fingerprints.\r\n", ch );
          learn_from_failure( ch, gsn_checkprints );
          return;
 
@@ -2007,7 +2007,7 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish checking the fingerprints.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish checking the fingerprints.\r\n", ch );
          return;
    }
 
@@ -2025,19 +2025,19 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
    obj = get_obj_list( ch, arg, ch->in_room->first_content );
    if( !obj )
    {
-      send_to_char( "There's no such corpse here.\n\r", ch );
+      send_to_char( "There's no such corpse here.\r\n", ch );
       return;
    }
 
    if( obj->item_type != ITEM_CORPSE_NPC && obj->item_type != ITEM_CORPSE_PC )
    {
-      send_to_char( "This is not a corpse.\n\r", ch );
+      send_to_char( "This is not a corpse.\r\n", ch );
       return;
    }
 
    if( !obj->killer )
    {
-      send_to_char( "Error: No Killer. Contact Immortals.\n\r", ch );
+      send_to_char( "Error: No Killer. Contact Immortals.\r\n", ch );
       return;
    }
    x = number_percent(  );
@@ -2076,7 +2076,7 @@ void do_checkprints( CHAR_DATA * ch, char *argument )
    //xpgain = UMIN( obj->cost*10 ,( exp_level(ch->skill_level[SLICER_ABILITY]+1) - exp_level(ch->skill_level[SLICER_ABILITY]) ) );
    xpgain = 3000;
    gain_exp( ch, xpgain, SLICER_ABILITY );
-   ch_printf( ch, " You gain %d experience points for being a Slicer.\n\r", xpgain );
+   ch_printf( ch, " You gain %d experience points for being a Slicer.\r\n", xpgain );
    learn_from_success( ch, gsn_checkprints );
    return;
 

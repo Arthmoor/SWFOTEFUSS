@@ -31,6 +31,45 @@ Michael Seifert, and Sebastian Hammer.
 #include <ctype.h>
 #include "mud.h"
 
+void uphold_supermob( int *curr_serial, int serial, ROOM_INDEX_DATA **supermob_room, OBJ_DATA *true_supermob_obj )
+{
+   if( *curr_serial != serial )
+   {
+      char buf[128];
+
+      if( supermob->in_room != *supermob_room )
+      {
+         char_from_room( supermob );
+         char_to_room( supermob, *supermob_room );
+      }
+
+      if( true_supermob_obj && true_supermob_obj != supermob_obj )
+      {
+          supermob_obj = true_supermob_obj;
+          STRFREE( supermob->short_descr );
+          STRFREE( supermob->description );
+          supermob->short_descr = QUICKLINK( supermob_obj->short_descr );
+          snprintf( buf, 128, "Object #%d", supermob_obj->pIndexData->vnum );
+          supermob->description = STRALLOC( buf );
+      }
+      else
+      {
+         if( !true_supermob_obj )
+            supermob_obj = NULL;
+         if( supermob->short_descr )
+            STRFREE( supermob->short_descr );
+         if( supermob->description )
+            STRFREE( supermob->description );
+         supermob->short_descr = QUICKLINK( (*supermob_room)->name );
+         snprintf( buf, 128, "Room #%d", (*supermob_room)->vnum );
+         supermob->description = STRALLOC( buf );
+      }
+      *curr_serial = serial;
+   }
+   else
+      *supermob_room = supermob->in_room;
+}
+
 /* Defines by Narn for new mudprog parsing, used as 
    return values from mprog_do_command. */
 #define COMMANDOK    1
@@ -91,60 +130,21 @@ void rprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, vo
 void rprog_wordlist_check( char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
                            OBJ_DATA * obj, void *vo, int type, ROOM_INDEX_DATA * room );
 
-/***************************************************************************
- * Local function code and brief comments.
- */
-
-/* if you dont have these functions, you damn well should... */
-
-#ifdef DUNNO_STRSTR
-char *strstr( s1, s2 )
-     const char *s1;
-     const char *s2;
-{
-   char *cp;
-   int i, j = strlen( s1 ) - strlen( s2 ), k = strlen( s2 );
-   if( j < 0 )
-      return NULL;
-   for( i = 0; i <= j && strncmp( s1++, s2, k ) != 0; i++ );
-   return ( i > j ) ? NULL : ( s1 - 1 );
-}
-#endif
-
-#define RID ROOM_INDEX_DATA
-
 void init_supermob( void )
 {
-   RID *office;
+   ROOM_INDEX_DATA *office;
 
-   supermob = create_mobile( get_mob_index( 3 ) );
-   office = get_room_index( 3 );
+   supermob = create_mobile( get_mob_index( MOB_VNUM_SUPERMOB ) );
+   office = get_room_index( ROOM_VNUM_POLY );
    char_to_room( supermob, office );
-
-#ifdef NOTDEFD
-   CREATE( supermob, CHAR_DATA, 1 );
-   clear_char( supermob );
-
-   SET_BIT( supermob->act, ACT_IS_NPC );
-   supermob->name = STRALLOC( "supermob" );
-   supermob->short_descr = STRALLOC( "." );
-   supermob->long_descr = STRALLOC( "." );
-
-   CREATE( supermob_index, MOB_INDEX_DATA, 1 )
-#endif
 }
 
-
-#undef RID
-
-
-/* Used to get sequential lines of a multi line string (separated by "\n\r")
+/* Used to get sequential lines of a multi line string (separated by "\r\n")
  * Thus its like one_argument(), but a trifle different. It is destructive
  * to the multi line string argument, and thus clist must not be shared.
  */
 char *mprog_next_command( char *clist )
 {
-
    char *pointer = clist;
 
    while( *pointer != '\n' && *pointer != '\0' )
@@ -405,10 +405,10 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->first_carrying; pObj; pObj = pObj->next_content )
          if( can_see_obj( mob, pObj ) && pObj->pIndexData->vnum == vnum )
-            lhsvl++;
+            lhsvl += pObj->count;
       for( pObj = mob->in_room->first_content; pObj; pObj = pObj->next_content )
          if( can_see_obj( mob, pObj ) && pObj->pIndexData->vnum == vnum )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -433,10 +433,10 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->first_carrying; pObj; pObj = pObj->next_content )
          if( can_see_obj( mob, pObj ) && pObj->item_type == type )
-            lhsvl++;
+            lhsvl += pObj->count;
       for( pObj = mob->in_room->first_content; pObj; pObj = pObj->next_content )
          if( can_see_obj( mob, pObj ) && pObj->item_type == type )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -457,7 +457,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->in_room->first_content; pObj; pObj = pObj->next_content )
          if( can_see_obj( mob, pObj ) && pObj->pIndexData->vnum == vnum )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -482,7 +482,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->in_room->first_content; pObj; pObj = pObj->next_content )
          if( can_see_obj( mob, pObj ) && pObj->item_type == type )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -503,7 +503,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->first_carrying; pObj; pObj = pObj->next_content )
          if( can_see_obj( mob, pObj ) && pObj->pIndexData->vnum == vnum )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -528,7 +528,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->first_carrying; pObj; pObj = pObj->next_content )
          if( can_see_obj( mob, pObj ) && pObj->item_type == type )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -549,7 +549,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->first_carrying; pObj; pObj = pObj->next_content )
          if( pObj->wear_loc != WEAR_NONE && can_see_obj( mob, pObj ) && pObj->pIndexData->vnum == vnum )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -574,7 +574,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->first_carrying; pObj; pObj = pObj->next_content )
          if( pObj->wear_loc != WEAR_NONE && can_see_obj( mob, pObj ) && pObj->item_type == type )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -595,7 +595,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->first_carrying; pObj; pObj = pObj->next_content )
          if( pObj->wear_loc == WEAR_NONE && can_see_obj( mob, pObj ) && pObj->pIndexData->vnum == vnum )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -620,7 +620,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       lhsvl = 0;
       for( pObj = mob->first_carrying; pObj; pObj = pObj->next_content )
          if( pObj->wear_loc == WEAR_NONE && can_see_obj( mob, pObj ) && pObj->item_type == type )
-            lhsvl++;
+            lhsvl += pObj->count;
       rhsvl = is_number( rval ) ? atoi( rval ) : -1;
       if( rhsvl < 1 )
          rhsvl = 1;
@@ -1255,6 +1255,21 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA 
    static int prog_nest;
    MPSLEEP_DATA *mpsleep = NULL;
    char arg[MAX_INPUT_LENGTH];
+   static int serial;
+   int curr_serial;
+   ROOM_INDEX_DATA *supermob_room;
+   OBJ_DATA *true_supermob_obj;
+   bool rprog_oprog = ( mob == supermob );
+
+   if( rprog_oprog )
+   {
+      serial++;
+      supermob_room = mob->in_room;
+      true_supermob_obj = supermob_obj;
+   }
+   else
+      true_supermob_obj = NULL, supermob_room = NULL;
+   curr_serial = serial;
 
    if( IS_AFFECTED( mob, AFF_CHARM ) )
       return;
@@ -1330,10 +1345,9 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA 
 
       for( count = 0; count < MAX_IFS; count++ )
       {
-         for( count2 = 0; count2 < DO_ELSE; count2++ )
+         for( count2 = 0; count2 <= DO_ELSE; count2++ )
             ifstate[count][count2] = current_mpsleep->ifstate[count][count2];
       }
-
       current_mpsleep = NULL;
    }
 
@@ -1393,10 +1407,8 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA 
          mpsleep->iflevel = iflevel;
          for( count = 0; count < MAX_IFS; count++ )
          {
-            for( count2 = 0; count2 < DO_ELSE; count2++ )
-            {
+            for( count2 = 0; count2 <= DO_ELSE; count2++ )
                mpsleep->ifstate[count][count2] = ifstate[count][count2];
-            }
          }
 
          /*
@@ -1447,13 +1459,15 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA 
          return;
       }
 
-
       /*
        * Evaluate/execute the command, check what happened. 
        */
       result = mprog_do_command( cmnd, mob, actor, obj, vo, rndm,
                                  ( ifstate[iflevel][IN_IF] && !ifstate[iflevel][DO_IF] )
                                  || ( ifstate[iflevel][IN_ELSE] && !ifstate[iflevel][DO_ELSE] ), ( ignorelevel > 0 ) );
+
+      if( rprog_oprog )
+         uphold_supermob( &curr_serial, serial, &supermob_room, true_supermob_obj );
 
       /*
        * Script prog support  -Thoric 
@@ -2349,7 +2363,6 @@ void rprog_script_trigger( ROOM_INDEX_DATA * room )
    return;
 }
 
-
 /*
  *  Mudprogram additions begin here
  */
@@ -2361,24 +2374,22 @@ void set_supermob( OBJ_DATA * obj )
    char buf[200];
 
    if( !supermob )
-      supermob = create_mobile( get_mob_index( 3 ) );
+      supermob = create_mobile( get_mob_index( MOB_VNUM_SUPERMOB ) );
 
    mob = supermob;   /* debugging */
 
    if( !obj )
       return;
 
+   supermob_obj = obj;
+
    for( in_obj = obj; in_obj->in_obj; in_obj = in_obj->in_obj )
       ;
 
    if( in_obj->carried_by )
-   {
       room = in_obj->carried_by->in_room;
-   }
    else
-   {
       room = obj->in_room;
-   }
 
    if( !room )
       return;
@@ -2406,10 +2417,10 @@ void set_supermob( OBJ_DATA * obj )
 
 void release_supermob(  )
 {
+   supermob_obj = NULL;
    char_from_room( supermob );
-   char_to_room( supermob, get_room_index( 3 ) );
+   char_to_room( supermob, get_room_index( ROOM_VNUM_POLY ) );
 }
-
 
 bool oprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type )
 {
@@ -3263,30 +3274,24 @@ void rprog_hour_trigger( CHAR_DATA * ch )
 /* Written by Jenny, Nov 29/95 */
 void progbug( char *str, CHAR_DATA * mob )
 {
-   char buf[MAX_STRING_LENGTH];
-
    /*
     * Check if we're dealing with supermob, which means the bug occurred
     * in a room or obj prog. 
     */
-   if( mob->pIndexData->vnum == 3 )
+   if( mob->pIndexData->vnum == MOB_VNUM_SUPERMOB )
    {
       /*
        * It's supermob.  In set_supermob and rset_supermob, the description
        * was set to indicate the object or room, so we just need to show
        * the description in the bug message. 
        */
-      sprintf( buf, "%s, %s.", str, mob->description == NULL ? "(unknown)" : mob->description );
+      bug( "%s, %s.", str, mob->description == NULL ? "(unknown)" : mob->description );
    }
    else
-   {
-      sprintf( buf, "%s, Mob #%d.", str, mob->pIndexData->vnum );
-   }
+      bug( "%s, Mob #%d.", str, mob->pIndexData->vnum );
 
-   bug( buf, 0 );
    return;
 }
-
 
 /* Room act prog updates.  Use a separate list cuz we dont really wanna go
    thru 5-10000 rooms every pulse.. can we say lag? -- Alty */

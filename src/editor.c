@@ -89,7 +89,7 @@ struct editor_data
 /* "max_size" is the maximum size of the final text converted to string */
 /* "text_size" is equal to the strlen of all lines added up; the actual
  * total length when converted to string is equal to this number plus
- * line_count * 2, because of the trailing "\n\r" that has to be added
+ * line_count * 2, because of the trailing "\r\n" that has to be added
  * to each line (of course, plus 1 because of the final \0).
  * Thus, if(total_size + line_count * 2 +1) > max_size, the buffer cant
  * hold more data.
@@ -310,8 +310,7 @@ char *editdata_to_str( EDITOR_DATA * edd )
          }
       }
       buf[i++] = '\n';
-      buf[i++] = '\r';
-      used += 2;
+      used++;
       eline = eline->next;
    }
 
@@ -363,8 +362,8 @@ void start_editing_nolimit( CHAR_DATA * ch, char *old_text, short max_total )
       bug( "NOT GOOD: start_editing: ch->substate == SUB_RESTRICTED", 0 );
 
    set_char_color( AT_GREEN, ch );
-   send_to_char( "Begin entering your text now (/? = help /s = save /c = clear /l = list)\n\r", ch );
-   send_to_char( "-----------------------------------------------------------------------\n\r", ch );
+   send_to_char( "Begin entering your text now (/? = help /s = save /c = clear /l = list)\r\n", ch );
+   send_to_char( "-----------------------------------------------------------------------\r\n", ch );
    if( ch->editor )
       stop_editing( ch );
 
@@ -400,7 +399,7 @@ void stop_editing( CHAR_DATA * ch )
    set_char_color( AT_PLAIN, ch );
    discard_editdata( ch->editor );
    ch->editor = NULL;
-   send_to_char( "Done.\n\r", ch );
+   send_to_char( "Done.\r\n", ch );
    ch->dest_buf = NULL;
    ch->spare_ptr = NULL;
    ch->substate = SUB_NONE;
@@ -425,20 +424,20 @@ void edit_buffer( CHAR_DATA * ch, char *argument )
    d = ch->desc;
    if( d == NULL )
    {
-      send_to_char( "You have no descriptor.\n\r", ch );
+      send_to_char( "You have no descriptor.\r\n", ch );
       return;
    }
 
    if( d->connected != CON_EDITING )
    {
-      send_to_char( "You can't do that!\n\r", ch );
+      send_to_char( "You can't do that!\r\n", ch );
       bug( "Edit_buffer: d->connected != CON_EDITING", 0 );
       return;
    }
 
    if( ch->substate <= SUB_PAUSE )
    {
-      send_to_char( "You can't do that!\n\r", ch );
+      send_to_char( "You can't do that!\r\n", ch );
       bug( "Edit_buffer: illegal ch->substate (%d)", ch->substate );
       d->connected = CON_PLAYING;
       return;
@@ -446,7 +445,7 @@ void edit_buffer( CHAR_DATA * ch, char *argument )
 
    if( !ch->editor )
    {
-      send_to_char( "You can't do that!\n\r", ch );
+      send_to_char( "You can't do that!\r\n", ch );
       bug( "Edit_buffer: null editor", 0 );
       d->connected = CON_PLAYING;
       return;
@@ -483,7 +482,7 @@ void edit_buffer( CHAR_DATA * ch, char *argument )
       else if( !str_cmp( cmd + 1, "f" ) )
          editor_format_lines( ch, edd );
       else
-         send_to_char( "Uh? Type '/?' to see the list of valid editor commands.\n\r", ch );
+         send_to_char( "Uh? Type '/?' to see the list of valid editor commands.\r\n", ch );
 
       if( str_cmp( cmd + 1, "a" ) && str_cmp( cmd + 1, "s" ) )
          send_to_char( "> ", ch );
@@ -513,7 +512,7 @@ void edit_buffer( CHAR_DATA * ch, char *argument )
 
    if( TOTAL_BUFFER_SIZE( edd ) + linelen + 2 >= edd->max_size )
    {
-      send_to_char( "Buffer full.\n\r", ch );
+      send_to_char( "Buffer full.\r\n", ch );
       editor_save( ch, edd, "" );
    }
    else
@@ -538,7 +537,7 @@ void edit_buffer( CHAR_DATA * ch, char *argument )
          edd->line_count++;
       }
       else
-         send_to_char( "(Continued)\n\r", ch );
+         send_to_char( "(Continued)\r\n", ch );
 
       send_to_char( "> ", ch );
    }
@@ -604,9 +603,9 @@ void editor_print_info( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
    }
 
    ch_printf( ch,
-              "Currently editing: %s\n\r"
-              "Total lines: %4d   On line:  %4d\n\r"
-              "Buffer size: %4d   Max size: %4d\n\r",
+              "Currently editing: %s\r\n"
+              "Total lines: %4d   On line:  %4d\r\n"
+              "Buffer size: %4d   Max size: %4d\r\n",
               edd->desc ? edd->desc : "(Null description)", edd->line_count, i, TOTAL_BUFFER_SIZE( edd ), edd->max_size );
 }
 
@@ -618,44 +617,44 @@ void editor_help( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
       /*
        * general help 
        */
-      "Editing commands\n\r"
-         "---------------------------------\n\r"
-         "/l [range]      list buffer\n\r"
-         "/c              clear buffer\n\r"
-         "/d <line>       delete line\n\r"
-         "/g <line>       goto line\n\r"
-         "/i <line>       insert line\n\r"
-         "/r <old> <new>  global replace\n\r"
-         "/a              abort editing\n\r"
-         "/p              print information\n\r"
-         "/! <command>    execute command (do not use another editing command)\n\r"
-         "/s              save buffer\n\r" "Type /? <command>  to get more information on each command.\n\r\n\r",
+      "Editing commands\r\n"
+         "---------------------------------\r\n"
+         "/l [range]      list buffer\r\n"
+         "/c              clear buffer\r\n"
+         "/d <line>       delete line\r\n"
+         "/g <line>       goto line\r\n"
+         "/i <line>       insert line\r\n"
+         "/r <old> <new>  global replace\r\n"
+         "/a              abort editing\r\n"
+         "/p              print information\r\n"
+         "/! <command>    execute command (do not use another editing command)\r\n"
+         "/s              save buffer\r\n" "Type /? <command>  to get more information on each command.\r\n\r\n",
 
-      "/l [range]: Lists the buffer. Shows what you've written. Optionaly\n\r" "   takes a range of lines as argument.\n\r",
+      "/l [range]: Lists the buffer. Shows what you've written. Optionaly\r\n" "   takes a range of lines as argument.\r\n",
 
-      "/c: Clears the buffer, leaving only one empty line.\n\r",
+      "/c: Clears the buffer, leaving only one empty line.\r\n",
 
-      "/d <line>: Deletes a line. If you delete the line currently being\n\r"
-         "   edited, the insertion point is moved down if possible, if not, up.\n\r",
+      "/d <line>: Deletes a line. If you delete the line currently being\r\n"
+         "   edited, the insertion point is moved down if possible, if not, up.\r\n",
 
-      "/g <line>: Moves the insertion point to a given line.\n\r",
+      "/g <line>: Moves the insertion point to a given line.\r\n",
 
-      "/i <line>: Inserts an empty line before the given line.\n\r",
+      "/i <line>: Inserts an empty line before the given line.\r\n",
 
-      "/r <old text> <new text>: Global search and replace text. The arguments\n\r"
-         "  are case-sensitive. To replace a multi-word text, surround it with\n\r"
-         "  single quotes. When inside quotes, you must escape the single quote\n\r"
-         "  character, double quote character, and the bar: (') becomes (\\'),\n\r"
-         "  (\") becomes (\\\") and (\\) becomes (\\\\)\n\r",
+      "/r <old text> <new text>: Global search and replace text. The arguments\r\n"
+         "  are case-sensitive. To replace a multi-word text, surround it with\r\n"
+         "  single quotes. When inside quotes, you must escape the single quote\r\n"
+         "  character, double quote character, and the bar: (') becomes (\\'),\r\n"
+         "  (\") becomes (\\\") and (\\) becomes (\\\\)\r\n",
 
-      "/a: Aborts edition, terminating the edition session and throwing\n\r" "   away what you've edited.\n\r",
+      "/a: Aborts edition, terminating the edition session and throwing\r\n" "   away what you've edited.\r\n",
 
-      "/p: Prints information about the current editing session.\n\r",
+      "/p: Prints information about the current editing session.\r\n",
 
-      "/!: Escaped command. Executes the given command as if you were\n\r"
-         "   outside the editor. This is only allowed to imms, since it can\n\r" "   potentialy crash the mud.\n\r",
+      "/!: Escaped command. Executes the given command as if you were\r\n"
+         "   outside the editor. This is only allowed to imms, since it can\r\n" "   potentialy crash the mud.\r\n",
 
-      "/s: Saves the current buffer, terminating the edition session.\n\r",
+      "/s: Saves the current buffer, terminating the edition session.\r\n",
    };
 
    for( i = 0; arg[i] != NULL; i++ )
@@ -665,7 +664,7 @@ void editor_help( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
    }
 
    if( arg[i] == NULL )
-      send_to_char( "No editor help about that.\n\r", ch );
+      send_to_char( "No editor help about that.\r\n", ch );
    else
       send_to_char( ceditor_help[i], ch );
 }
@@ -679,7 +678,7 @@ void editor_clear_buf( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
    discard_editdata( edd );
    ch->editor = str_to_editdata( "", max_size );
    ch->editor->desc = desc;
-   send_to_char( "Buffer cleared.\n\r", ch );
+   send_to_char( "Buffer cleared.\r\n", ch );
 }
 
 
@@ -696,12 +695,12 @@ void editor_search_and_replace( CHAR_DATA * ch, EDITOR_DATA * edd, char *argumen
    argument = finer_one_argument( argument, word_dst );
    if( word_src[0] == '\0' || word_dst[0] == '\0' )
    {
-      send_to_char( "Need word to replace, and replacement.\n\r", ch );
+      send_to_char( "Need word to replace, and replacement.\r\n", ch );
       return;
    }
    if( strcmp( word_src, word_dst ) == 0 )
    {
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       return;
    }
 
@@ -734,16 +733,16 @@ void editor_search_and_replace( CHAR_DATA * ch, EDITOR_DATA * edd, char *argumen
 
    if( TOTAL_BUFFER_SIZE( cloned_edd ) >= cloned_edd->max_size )
    {
-      send_to_char( "As a result of this operation, the buffer would grow\n\r"
-                    "larger than its maximum allowed size. Operation has been\n\r" "cancelled.\n\r", ch );
+      send_to_char( "As a result of this operation, the buffer would grow\r\n"
+                    "larger than its maximum allowed size. Operation has been\r\n" "cancelled.\r\n", ch );
       discard_editdata( cloned_edd );
    }
    else
    {
-      ch_printf( ch, "Replacing all occurrences of '%s' with '%s'...\n\r", word_src, word_dst );
+      ch_printf( ch, "Replacing all occurrences of '%s' with '%s'...\r\n", word_src, word_dst );
       discard_editdata( edd );
       ch->editor = cloned_edd;
-      ch_printf( ch, "Found and replaced %d occurrence(s).\n\r", repl_count );
+      ch_printf( ch, "Found and replaced %d occurrence(s).\r\n", repl_count );
    }
 
 }
@@ -757,14 +756,14 @@ void editor_insert_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
 
    if( argument[0] == '\0' || !is_number( argument ) )
    {
-      send_to_char( "Must supply the line number.\n\r", ch );
+      send_to_char( "Must supply the line number.\r\n", ch );
       return;
    }
    lineindex = atoi( argument );
 
    if( lineindex < 1 || lineindex > edd->line_count )
    {
-      ch_printf( ch, "Line number is out of range (1-%d).\n\r", edd->line_count );
+      ch_printf( ch, "Line number is out of range (1-%d).\r\n", edd->line_count );
       return;
    }
 
@@ -789,7 +788,7 @@ void editor_insert_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
 
    edd->line_count++;
 
-   ch_printf( ch, "Inserted line at %d.\n\r", lineindex );
+   ch_printf( ch, "Inserted line at %d.\r\n", lineindex );
 }
 
 void editor_delete_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
@@ -799,14 +798,14 @@ void editor_delete_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
 
    if( argument[0] == '\0' || !is_number( argument ) )
    {
-      send_to_char( "Must supply the line number.\n\r", ch );
+      send_to_char( "Must supply the line number.\r\n", ch );
       return;
    }
    lineindex = atoi( argument );
 
    if( lineindex < 1 || lineindex > edd->line_count )
    {
-      ch_printf( ch, "Line number is out of range (1-%d).\n\r", edd->line_count );
+      ch_printf( ch, "Line number is out of range (1-%d).\r\n", edd->line_count );
       return;
    }
 
@@ -820,10 +819,10 @@ void editor_delete_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
             edd->first_line->line[0] = '\0';
             edd->first_line->line_used = 0;
             edd->text_size = 0;
-            send_to_char( "Deleted line 1.\n\r", ch );
+            send_to_char( "Deleted line 1.\r\n", ch );
          }
          else
-            send_to_char( "The buffer is empty.\n\r", ch );
+            send_to_char( "The buffer is empty.\r\n", ch );
          return;
       }
 
@@ -856,7 +855,7 @@ void editor_delete_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
    DISPOSE( del_line->line );
    DISPOSE( del_line );
 
-   ch_printf( ch, "Deleted line %d.\n\r", lineindex );
+   ch_printf( ch, "Deleted line %d.\r\n", lineindex );
 }
 
 void editor_goto_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
@@ -865,14 +864,14 @@ void editor_goto_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
 
    if( argument[0] == '\0' || !is_number( argument ) )
    {
-      send_to_char( "Must supply the line number.\n\r", ch );
+      send_to_char( "Must supply the line number.\r\n", ch );
       return;
    }
    lineindex = atoi( argument );
 
    if( lineindex < 1 || lineindex > edd->line_count )
    {
-      ch_printf( ch, "Line number is out of range (1-%d).\n\r", edd->line_count );
+      ch_printf( ch, "Line number is out of range (1-%d).\r\n", edd->line_count );
       return;
    }
 
@@ -884,7 +883,7 @@ void editor_goto_line( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
       num++;
    }
 
-   ch_printf( ch, "On line %d.\n\r", lineindex );
+   ch_printf( ch, "On line %d.\r\n", lineindex );
 }
 
 void editor_list( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
@@ -905,22 +904,22 @@ void editor_list( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
    else
       to = edd->line_count;
 
-   send_to_pager( "------------------\n\r", ch );
+   send_to_pager( "------------------\r\n", ch );
    line_num = 1;
    eline = edd->first_line;
    while( eline )
    {
       if( line_num >= from && line_num <= to )
-         pager_printf( ch, "%2d>%c%s\n\r", line_num, eline == edd->on_line ? '*' : ' ', eline->line );
+         pager_printf( ch, "%2d>%c%s\r\n", line_num, eline == edd->on_line ? '*' : ' ', eline->line );
       eline = eline->next;
       line_num++;
    }
-   send_to_pager( "------------------\n\r", ch );
+   send_to_pager( "------------------\r\n", ch );
 }
 
 void editor_abort( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
 {
-   send_to_char( "\n\rAborting... ", ch );
+   send_to_char( "\r\nAborting... ", ch );
    stop_editing( ch );
 }
 
@@ -937,10 +936,10 @@ void editor_escaped_cmd( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )
       ch->substate = substate;
       ch->last_cmd = last_cmd;
       set_char_color( AT_GREEN, ch );
-      send_to_char( "\n\r", ch );
+      send_to_char( "\r\n", ch );
    }
    else
-      send_to_char( "You can't use '/!'.\n\r", ch );
+      send_to_char( "You can't use '/!'.\r\n", ch );
 }
 
 void editor_save( CHAR_DATA * ch, EDITOR_DATA * edd, char *argument )

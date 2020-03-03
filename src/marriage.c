@@ -48,62 +48,62 @@ void do_marry( CHAR_DATA * ch, char *argument )
 
    if( arg1[0] == '\0' || arg2[0] == '\0' )
    {
-      send_to_char( "Syntax: Marry <victim1> <victim2>\n\r", ch );
+      send_to_char( "Syntax: Marry <victim1> <victim2>\r\n", ch );
       return;
    }
 
    if( ( vic1 = get_char_room( ch, arg1 ) ) == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be here.\n\r", arg1 );
+      sprintf( buf, "%s doesn't appear to be here.\r\n", arg1 );
       send_to_char( buf, ch );
       return;
    }
 
    if( ( vic2 = get_char_room( ch, arg2 ) ) == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be here.\n\r", arg2 );
+      sprintf( buf, "%s doesn't appear to be here.\r\n", arg2 );
       send_to_char( buf, ch );
       return;
    }
 
    if( IS_NPC( vic1 ) )
    {
-      sprintf( buf, "%s appears to be a mob. Why marry it off to anyone?\n\r", vic1->name );
+      sprintf( buf, "%s appears to be a mob. Why marry it off to anyone?\r\n", vic1->name );
       send_to_char( buf, ch );
       return;
    }
 
    if( IS_NPC( vic2 ) )
    {
-      sprintf( buf, "%s appears to be a mob. Why marry it off to anyone?\n\r", vic2->name );
+      sprintf( buf, "%s appears to be a mob. Why marry it off to anyone?\r\n", vic2->name );
       send_to_char( buf, ch );
       return;
    }
 
    if( !vic1->pcdata->fiance || vic1->pcdata->fiance == NULL || vic1->pcdata->fiance != vic2->name )
    {
-      sprintf( buf, "%s is not engaged to %s. Perhaps a proposal would be a good first step.\n\r", vic1->name, vic2->name );
+      sprintf( buf, "%s is not engaged to %s. Perhaps a proposal would be a good first step.\r\n", vic1->name, vic2->name );
       send_to_char( buf, ch );
       return;
    }
 
    if( !vic2->pcdata->fiance || vic2->pcdata->fiance == NULL || vic2->pcdata->fiance != vic1->name )
    {
-      sprintf( buf, "%s is not engaged to %s. Perhaps a proposal would be a good first step.\n\r", vic2->name, vic1->name );
+      sprintf( buf, "%s is not engaged to %s. Perhaps a proposal would be a good first step.\r\n", vic2->name, vic1->name );
       send_to_char( buf, ch );
       return;
    }
 
    if( vic1->top_level < 5 )
    {
-      sprintf( buf, "%s is to low a level to get married.\n\r", vic1->name );
+      sprintf( buf, "%s is to low a level to get married.\r\n", vic1->name );
       send_to_char( buf, ch );
       return;
    }
 
    if( vic2->top_level < 5 )
    {
-      sprintf( buf, "%s is to low a level to get married.\n\r", vic2->name );
+      sprintf( buf, "%s is to low a level to get married.\r\n", vic2->name );
       send_to_char( buf, ch );
       return;
    }
@@ -151,41 +151,41 @@ void do_divorce( CHAR_DATA * ch, char *argument )
 
    if( arg1[0] == '\0' && arg2[0] == '\0' )
    {
-      send_to_char( "Syntax: Divorce <victim1> <victim2>\n\r", ch );
+      send_to_char( "Syntax: Divorce <victim1> <victim2>\r\n", ch );
       return;
    }
 
    if( ( vic1 = get_char_room( ch, arg1 ) ) == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be here. You should wait for them.\n\r", arg1 );
+      sprintf( buf, "%s doesn't appear to be here. You should wait for them.\r\n", arg1 );
       send_to_char( buf, ch );
       return;
    }
 
    if( ( vic2 = get_char_room( ch, arg2 ) ) == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be here. You should wait for then.\n\r", arg2 );
+      sprintf( buf, "%s doesn't appear to be here. You should wait for then.\r\n", arg2 );
       send_to_char( buf, ch );
       return;
    }
 
    if( !vic1->pcdata->spouse || vic1->pcdata->spouse == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be married.\n\r", vic1->name );
+      sprintf( buf, "%s doesn't appear to be married.\r\n", vic1->name );
       send_to_char( buf, ch );
       return;
    }
 
    if( !vic2->pcdata->spouse || vic2->pcdata->spouse == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be married.\n\r", vic2->name );
+      sprintf( buf, "%s doesn't appear to be married.\r\n", vic2->name );
       send_to_char( buf, ch );
       return;
    }
 
    if( vic1->pcdata->spouse != vic2->pcdata->spouse )
    {
-      sprintf( buf, "%s is not married to %s\n\r", vic1->name, vic2->name );
+      sprintf( buf, "%s is not married to %s\r\n", vic1->name, vic2->name );
       send_to_char( buf, ch );
       return;
    }
@@ -211,19 +211,19 @@ void do_propose( CHAR_DATA * ch, char *argument )
 
    if( arg[0] == '\0' )
    {
-      send_to_char( "Syntax: Propose <victim>\n\r", ch );
+      send_to_char( "Syntax: Propose <victim>\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, arg ) ) == NULL )
    {
-      send_to_char( "They aren't here.\n\r", ch );
+      send_to_char( "They aren't here.\r\n", ch );
       return;
    }
 
    if( ch == victim )
    {
-      send_to_char( "Why would you want to propose to yourself?\n\r", ch );
+      send_to_char( "Why would you want to propose to yourself?\r\n", ch );
       if( ch->sex == SEX_MALE )
          sprintf( buf, "What a moron. %s proposed to himself.", ch->name );
       else if( ch->sex == SEX_FEMALE )
@@ -238,35 +238,35 @@ void do_propose( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "Why would you propose to a mob?\n\r", ch );
+      send_to_char( "Why would you propose to a mob?\r\n", ch );
       return;
    }
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Why would a mob propose to someone?\n\r", ch );
+      send_to_char( "Why would a mob propose to someone?\r\n", ch );
       return;
    }
 
    if( victim->pcdata->fiance && victim->pcdata->fiance != NULL )
    {
-      send_to_char( "They are already engaged.\n\r", ch );
+      send_to_char( "They are already engaged.\r\n", ch );
       return;
    }
 
    if( victim->pcdata->spouse && victim->pcdata->spouse != NULL )
    {
-      send_to_char( "They are already married.\n\r", ch );
+      send_to_char( "They are already married.\r\n", ch );
    }
    if( victim->pcdata->proposed && victim->pcdata->proposed != NULL )
    {
-      sprintf( buf, "They have already been proposed to by %s.\n\r", victim->pcdata->proposed );
+      sprintf( buf, "They have already been proposed to by %s.\r\n", victim->pcdata->proposed );
       return;
    }
 
    if( victim->pcdata->propose && victim->pcdata->propose != NULL )
    {
-      sprintf( buf, "They have already been proposed to %s.\n\r", victim->pcdata->propose );
+      sprintf( buf, "They have already been proposed to %s.\r\n", victim->pcdata->propose );
       return;
    }
 
@@ -289,38 +289,38 @@ void do_accept( CHAR_DATA * ch, char *argument )
 
    if( arg[0] == '\0' )
    {
-      send_to_char( "Syntax: Accept <victim>\n\r", ch );
+      send_to_char( "Syntax: Accept <victim>\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, arg ) ) == NULL )
    {
-      send_to_char( "They aren't here.\n\r", ch );
+      send_to_char( "They aren't here.\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "You can't accept a mobs proposel cause they can't propose.\n\r", ch );
+      send_to_char( "You can't accept a mobs proposel cause they can't propose.\r\n", ch );
       return;
    }
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Why would someone propose to you? Your a mob.\n\r", ch );
+      send_to_char( "Why would someone propose to you? Your a mob.\r\n", ch );
       return;
    }
 
 
    if( victim->name != ch->pcdata->proposed )
    {
-      send_to_char( "But they haven't proposed to you.\n\r", ch );
+      send_to_char( "But they haven't proposed to you.\r\n", ch );
       return;
    }
 
    if( victim->pcdata->propose != ch->name )
    {
-      send_to_char( "So sad they must have proposed to someone else.\n\r", ch );
+      send_to_char( "So sad they must have proposed to someone else.\r\n", ch );
       return;
    }
 
@@ -345,38 +345,38 @@ void do_decline( CHAR_DATA * ch, char *argument )
 
    if( arg[0] == '\0' )
    {
-      send_to_char( "Syntax: Accept <victim>\n\r", ch );
+      send_to_char( "Syntax: Accept <victim>\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, arg ) ) == NULL )
    {
-      send_to_char( "They aren't here.\n\r", ch );
+      send_to_char( "They aren't here.\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "You can't accept a mobs proposel cause they can't propose.\n\r", ch );
+      send_to_char( "You can't accept a mobs proposel cause they can't propose.\r\n", ch );
       return;
    }
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Why would someone propose to you? Your a mob.\n\r", ch );
+      send_to_char( "Why would someone propose to you? Your a mob.\r\n", ch );
       return;
    }
 
 
    if( victim->name != ch->pcdata->proposed )
    {
-      send_to_char( "But they haven't proposed to you.\n\r", ch );
+      send_to_char( "But they haven't proposed to you.\r\n", ch );
       return;
    }
 
    if( victim->pcdata->propose != ch->name )
    {
-      send_to_char( "So sad they must have proposed to someone else.\n\r", ch );
+      send_to_char( "So sad they must have proposed to someone else.\r\n", ch );
       return;
    }
 
@@ -394,44 +394,44 @@ void do_spousetalk( CHAR_DATA * ch, char *argument )
 
    if( !argument || argument[0] == '\0' )
    {
-      send_to_char( "What would you like to send to your spouse?\n\r", ch );
+      send_to_char( "What would you like to send to your spouse?\r\n", ch );
       return;
    }
 
 
    if( ch->position == POS_SLEEPING )
    {
-      send_to_char( "In your dreams or what?\n\r", ch );
+      send_to_char( "In your dreams or what?\r\n", ch );
       return;
    }
 
    if( ch->position == POS_FIGHTING )
    {
-      send_to_char( "You should finish what your doing first!\n\r", ch );
+      send_to_char( "You should finish what your doing first!\r\n", ch );
       return;
    }
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "your a mob....thats just wrong!\n\r", ch );
+      send_to_char( "your a mob....thats just wrong!\r\n", ch );
       return;
    }
 
    if( !ch->pcdata->spouse )
    {
-      send_to_char( "But you are not married!\n\r", ch );
+      send_to_char( "But you are not married!\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_world( ch, ch->pcdata->spouse ) ) == NULL )
    {
-      sprintf( buf, "%s is not connected.\n\r", ch->pcdata->spouse );
+      sprintf( buf, "%s is not connected.\r\n", ch->pcdata->spouse );
       send_to_char( buf, ch );
       return;
    }
 
-   sprintf( buf, "&G[&PSpouse&G] &Pto %s: &W%s\n\r", victim->name, argument );
+   sprintf( buf, "&G[&PSpouse&G] &Pto %s: &W%s\r\n", victim->name, argument );
    send_to_char( buf, ch );
-   sprintf( buf, "&G[&PSpouse&G] &P%s Spouse talks: &W%s\n\r", ch->name, argument );
+   sprintf( buf, "&G[&PSpouse&G] &P%s Spouse talks: &W%s\r\n", ch->name, argument );
    send_to_char( buf, victim );
 }

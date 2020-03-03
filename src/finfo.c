@@ -184,7 +184,7 @@ void write_forcehelp_list(  )
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open forhelps.lst for writing!\n\r", 0 );
+      bug( "FATAL: cannot open forhelps.lst for writing!\r\n", 0 );
       return;
    }
    for( fhelp = first_force_help; fhelp; fhelp = fhelp->next )
@@ -497,7 +497,7 @@ void write_forceskill_list(  )
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open forskills.lst for writing!\n\r", 0 );
+      bug( "FATAL: cannot open forskills.lst for writing!\r\n", 0 );
       return;
    }
    for( fskill = first_force_skill; fskill; fskill = fskill->next )

@@ -535,22 +535,6 @@ Log         0
 End
 
 #COMMAND
-Name        buyvendor~
-Code        reserved
-Position    0
-Level       36
-Log         0
-End
-
-#COMMAND
-Name        buyshop~
-Code        reserved
-Position    0
-Level       1
-Log         0
-End
-
-#COMMAND
 Name        bet~
 Code        do_bet
 Position    0
@@ -695,14 +679,6 @@ Log         1
 End
 
 #COMMAND
-Name        clear~
-Code        reserved
-Position    0
-Level       0
-Log         0
-End
-
-#COMMAND
 Name        cedit~
 Code        do_cedit
 Position    0
@@ -737,14 +713,6 @@ End
 #COMMAND
 Name        config~
 Code        do_config
-Position    0
-Level       0
-Log         0
-End
-
-#COMMAND
-Name        councils~
-Code        reserved
 Position    0
 Level       0
 Log         0
@@ -791,22 +759,6 @@ Log         1
 End
 
 #COMMAND
-Name        copyship~
-Code        reserved
-Position    0
-Level       32
-Log         0
-End
-
-#COMMAND
-Name        copyover~
-Code        do_copyover
-Position    0
-Level       34
-Log         1
-End
-
-#COMMAND
 Name        call~
 Code        do_hail
 Position    0
@@ -820,14 +772,6 @@ Code        do_cleanroom
 Position    0
 Level       33
 Log         1
-End
-
-#COMMAND
-Name        collectcredits~
-Code        reserved
-Position    0
-Level       36
-Log         0
 End
 
 #COMMAND
@@ -859,14 +803,6 @@ Name        clanstat~
 Code        do_clanstat
 Position    0
 Level       1
-Log         0
-End
-
-#COMMAND
-Name        clanbuytroops~
-Code        reserved
-Position    0
-Level       36
 Log         0
 End
 
@@ -1063,14 +999,6 @@ Log         0
 End
 
 #COMMAND
-Name        designship~
-Code        reserved
-Position    0
-Level       36
-Log         0
-End
-
-#COMMAND
 Name        describe~
 Code        do_describe
 Position    0
@@ -1159,26 +1087,10 @@ Log         0
 End
 
 #COMMAND
-Name        entryvector~
-Code        reserved
-Position    5
-Level       0
-Log         0
-End
-
-#COMMAND
 Name        endsimulator~
 Code        do_endsimulator
 Position    0
 Level       0
-Log         0
-End
-
-#COMMAND
-Name        exempt~
-Code        do_exempt
-Position    0
-Level       36
 Log         0
 End
 
@@ -1415,14 +1327,6 @@ Log         0
 End
 
 #COMMAND
-Name        governments~
-Code        reserved
-Position    0
-Level       1
-Log         0
-End
-
-#COMMAND
 Name        giveship~
 Code        do_giveship
 Position    0
@@ -1447,14 +1351,6 @@ Log         0
 End
 
 #COMMAND
-Name        gotoship~
-Code        reserved
-Position    0
-Level       33
-Log         0
-End
-
-#COMMAND
 Name        genmarket~
 Code        do_generate_market
 Position    0
@@ -1463,19 +1359,19 @@ Log         1
 End
 
 #COMMAND
-Name        giveclanship~
-Code        reserved
-Position    0
-Level       36
-Log         0
-End
-
-#COMMAND
 Name        gold~
 Code        do_gold
 Position    0
 Level       1
 Log         0
+End
+
+#COMMAND
+Name        hotboot~
+Code        do_hotboot
+Position    0
+Level       34
+Log         1
 End
 
 #COMMAND
@@ -1671,14 +1567,6 @@ Log         1
 End
 
 #COMMAND
-Name        jumpvector~
-Code        reserved
-Position    5
-Level       0
-Log         0
-End
-
-#COMMAND
 Name        kill~
 Code        do_kill
 Position    7
@@ -1796,14 +1684,6 @@ Code        do_log
 Position    0
 Level       35
 Log         1
-End
-
-#COMMAND
-Name        lastname~
-Code        reserved
-Position    0
-Level       1
-Log         0
 End
 
 #COMMAND
@@ -2271,26 +2151,10 @@ Log         0
 End
 
 #COMMAND
-Name        muse~
-Code        reserved
-Position    0
-Level       32
-Log         0
-End
-
-#COMMAND
 Name        mwhere~
 Code        do_mwhere
 Position    0
 Level       32
-Log         0
-End
-
-#COMMAND
-Name        mpfavor~
-Code        reserved
-Position    0
-Level       1
 Log         0
 End
 
@@ -2327,14 +2191,6 @@ Log         0
 End
 
 #COMMAND
-Name        makeship2~
-Code        reserved
-Position    0
-Level       36
-Log         0
-End
-
-#COMMAND
 Name        makesimulator~
 Code        do_makesimulator
 Position    0
@@ -2347,14 +2203,6 @@ Name        makemobship~
 Code        do_makemobship
 Position    0
 Level       35
-Log         0
-End
-
-#COMMAND
-Name        makeprototypeship~
-Code        reserved
-Position    0
-Level       36
 Log         0
 End
 
@@ -2679,14 +2527,6 @@ Log         0
 End
 
 #COMMAND
-Name        pagelength~
-Code        reserved
-Position    0
-Level       1
-Log         0
-End
-
-#COMMAND
 Name        pull~
 Code        do_pull
 Position    5
@@ -2751,34 +2591,10 @@ Log         0
 End
 
 #COMMAND
-Name        prototypes~
-Code        reserved
-Position    0
-Level       0
-Log         0
-End
-
-#COMMAND
 Name        pfiles~
 Code        do_pfiles
 Position    0
 Level       36
-Log         0
-End
-
-#COMMAND
-Name        placevendor~
-Code        reserved
-Position    0
-Level       36
-Log         0
-End
-
-#COMMAND
-Name        pricevendor~
-Code        reserved
-Position    0
-Level       1
 Log         0
 End
 
@@ -2849,22 +2665,6 @@ End
 #COMMAND
 Name        recharge~
 Code        do_recharge
-Position    5
-Level       0
-Log         0
-End
-
-#COMMAND
-Name        refuel~
-Code        reserved
-Position    5
-Level       0
-Log         0
-End
-
-#COMMAND
-Name        reload~
-Code        reserved
 Position    5
 Level       0
 Log         0
@@ -3092,14 +2892,6 @@ Code        do_rstat
 Position    0
 Level       31
 Log         0
-End
-
-#COMMAND
-Name        rreset~
-Code        do_rreset
-Position    0
-Level       32
-Log         3
 End
 
 #COMMAND
@@ -3345,14 +3137,6 @@ End
 #COMMAND
 Name        setclan~
 Code        do_setclan
-Position    0
-Level       33
-Log         1
-End
-
-#COMMAND
-Name        setcouncil~
-Code        reserved
 Position    0
 Level       33
 Log         1
@@ -3673,30 +3457,6 @@ End
 #COMMAND
 Name        sshow~
 Code        do_slookup
-Position    0
-Level       36
-Log         0
-End
-
-#COMMAND
-Name        showprototypes~
-Code        reserved
-Position    0
-Level       0
-Log         0
-End
-
-#COMMAND
-Name        setprototype~
-Code        reserved
-Position    0
-Level       35
-Log         1
-End
-
-#COMMAND
-Name        srepair~
-Code        reserved
 Position    0
 Level       36
 Log         0

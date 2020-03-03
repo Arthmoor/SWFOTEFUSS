@@ -45,31 +45,31 @@ void do_plantbug( CHAR_DATA * ch, char *argument )
 
    if( ( victim = get_char_room( ch, argument ) ) == NULL )
    {
-      send_to_char( "They aren't here.\n\r", ch );
+      send_to_char( "They aren't here.\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "You can't bug NPC's!\n\r", ch );
+      send_to_char( "You can't bug NPC's!\r\n", ch );
       return;
    }
 
    if( IS_IMMORTAL( victim ) )
    {
-      send_to_char( "Don't try to plant bugs on immortals.\n\r", ch );
+      send_to_char( "Don't try to plant bugs on immortals.\r\n", ch );
       return;
    }
 
    if( in_arena( ch ) )
    {
-      send_to_char( "You're here to FIGHT, not spy.\n\r", ch );
+      send_to_char( "You're here to FIGHT, not spy.\r\n", ch );
       return;
    }
 
    if( ch == victim )
    {
-      send_to_char( "You can't bug yourself!\n\r", ch );
+      send_to_char( "You can't bug yourself!\r\n", ch );
       return;
    }
 
@@ -79,14 +79,14 @@ void do_plantbug( CHAR_DATA * ch, char *argument )
 
    if( checkbug == FALSE )
    {
-      send_to_char( "You don't have any bugs to plant.\n\r", ch );
+      send_to_char( "You don't have any bugs to plant.\r\n", ch );
       return;
    }
 
    for( cbug = victim->first_bug; cbug; cbug = cbug->next_in_bug )
       if( !str_cmp( ch->name, cbug->name ) )
       {
-         send_to_char( "You have already planted a bug on this person.\n\r", ch );
+         send_to_char( "You have already planted a bug on this person.\r\n", ch );
          return;
       }
 
@@ -96,7 +96,7 @@ void do_plantbug( CHAR_DATA * ch, char *argument )
    {
       act( AT_WHITE, "You carefully reach into $N's pocket and place a bug.", ch, NULL, victim, TO_CHAR );
       CREATE( pbug, BUG_DATA, 1 );
-      pbug->name = ch->name;
+      pbug->name = QUICKLINK( ch->name );
       LINK( pbug, victim->first_bug, victim->last_bug, next_in_bug, prev_in_bug );
       learn_from_success( ch, gsn_plantbug );
 
@@ -114,10 +114,10 @@ void do_plantbug( CHAR_DATA * ch, char *argument )
    }
    else
    {
-      send_to_char( "&RYou try to find a pocket to plant the bug in but fail!\n\r", ch );
+      send_to_char( "&RYou try to find a pocket to plant the bug in but fail!\r\n", ch );
       learn_from_failure( ch, gsn_plantbug );
       if( number_bits( 0 ) == 0 )
-         ch_printf( victim, "You feel a slight brush against your pocket to find %s's hand there.\n\r", PERS( ch, victim ) );
+         ch_printf( victim, "You feel a slight brush against your pocket to find %s's hand there.\r\n", PERS( ch, victim ) );
       return;
    }
 }
@@ -134,12 +134,12 @@ void do_showbugs( CHAR_DATA * ch, char *argument )
    schance = number_percent(  ) - 20;
    if( schance > ch->pcdata->learned[gsn_showbugs] )
    {
-      send_to_char( "You can't figure out what to do.\n\r", ch );
+      send_to_char( "You can't figure out what to do.\r\n", ch );
       learn_from_failure( ch, gsn_showbugs );
       return;
    }
-   send_to_char( "Player                Planet/Ship        Room Name\n\r", ch );
-   send_to_char( "------                -----------        ---------\n\r", ch );
+   send_to_char( "Player                Planet/Ship        Room Name\r\n", ch );
+   send_to_char( "------                -----------        ---------\r\n", ch );
 
    for( d = first_descriptor; d; d = d->next )
       if( ( d->connected == CON_PLAYING || d->connected == CON_EDITING ) && ( victim = d->character ) != NULL )
@@ -153,7 +153,7 @@ void do_showbugs( CHAR_DATA * ch, char *argument )
                   sprintf( buf2, "%s", ship->name );
                else
                   sprintf( buf2, "Unknown" );
-               sprintf( buf, "%-21.21s %-18.18s %s\n\r", PERS( victim, ch ), buf2, victim->in_room->name );
+               sprintf( buf, "%-21.21s %-18.18s %s\r\n", PERS( victim, ch ), buf2, victim->in_room->name );
                send_to_char( buf, ch );
                break;
             }
@@ -171,31 +171,31 @@ void do_bind( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Syntax: Bind <victim>\n\r", ch );
+      send_to_char( "Syntax: Bind <victim>\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, argument ) ) == NULL )
    {
-      send_to_char( "They are not here.\n\r", ch );
+      send_to_char( "They are not here.\r\n", ch );
       return;
    }
 
    if( victim == ch )
    {
-      send_to_char( "You can not bind yourself!\n\r", ch );
+      send_to_char( "You can not bind yourself!\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "You can only bind players.\n\r", ch );
+      send_to_char( "You can only bind players.\r\n", ch );
       return;
    }
 
    if( IS_SET( victim->pcdata->act2, ACT_BOUND ) )
    {
-      send_to_char( "They've already been bound!\n\r", ch );
+      send_to_char( "They've already been bound!\r\n", ch );
       return;
    }
 
@@ -208,13 +208,13 @@ void do_bind( CHAR_DATA * ch, char *argument )
 
    if( checkbinders == FALSE )
    {
-      send_to_char( "You don't have any binders to bind them with.\n\r", ch );
+      send_to_char( "You don't have any binders to bind them with.\r\n", ch );
       return;
    }
 
    if( victim->position != POS_STUNNED && victim->position != POS_SLEEPING )
    {
-      send_to_char( "They need to be stunned or asleep.\n\r", ch );
+      send_to_char( "They need to be stunned or asleep.\r\n", ch );
       return;
    }
 
@@ -238,7 +238,7 @@ void do_bind( CHAR_DATA * ch, char *argument )
    }
    else
    {
-      send_to_char( "You peer at the binders, curious upon how to use them.\n\r", ch );
+      send_to_char( "You peer at the binders, curious upon how to use them.\r\n", ch );
       learn_from_failure( ch, gsn_bind );
    }
 
@@ -254,43 +254,43 @@ void do_unbind( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "You're a mob.\n\r", ch );
+      send_to_char( "You're a mob.\r\n", ch );
       return;
    }
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Syntax: Unbind <victim>\n\r", ch );
+      send_to_char( "Syntax: Unbind <victim>\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, argument ) ) == NULL )
    {
-      send_to_char( "They aren't here.\n\r", ch );
+      send_to_char( "They aren't here.\r\n", ch );
       return;
    }
 
    if( victim == ch )
    {
-      send_to_char( "You can not unbind yourself!\n\r", ch );
+      send_to_char( "You can not unbind yourself!\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "You can only unbind players.\n\r", ch );
+      send_to_char( "You can only unbind players.\r\n", ch );
       return;
    }
 
    if( IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
-      send_to_char( "Nice try. You're bound yourself!\n\r", ch );
+      send_to_char( "Nice try. You're bound yourself!\r\n", ch );
       return;
    }
 
    if( !IS_SET( victim->pcdata->act2, ACT_BOUND ) )
    {
-      send_to_char( "But they're not bound.\n\r", ch );
+      send_to_char( "But they're not bound.\r\n", ch );
       return;
    }
 
@@ -300,7 +300,7 @@ void do_unbind( CHAR_DATA * ch, char *argument )
       unequip_char( victim, obj );
    else
    {
-      send_to_char( "Something went wrong. get an imm.\n\r", ch );
+      send_to_char( "Something went wrong. get an imm.\r\n", ch );
       sprintf( buf, "%s unbinding %s: has no bothwrists object!", ch->name, victim->name );
       bug( buf );
       return;
@@ -316,7 +316,7 @@ void do_unbind( CHAR_DATA * ch, char *argument )
    if( checkbinders == FALSE )
    {
       bug( "Unbind: no binders in victims inventory." );
-      send_to_char( "Something went wrong. get an imm.\n\r", ch );
+      send_to_char( "Something went wrong. get an imm.\r\n", ch );
       return;
    }
 
@@ -336,32 +336,32 @@ void do_gag( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Syntax: Gag <victim>\n\r", ch );
+      send_to_char( "Syntax: Gag <victim>\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, argument ) ) == NULL )
    {
-      send_to_char( "They are not here.\n\r", ch );
+      send_to_char( "They are not here.\r\n", ch );
       return;
    }
 
    if( victim == ch )
    {
-      send_to_char( "You can not gag yourself!\n\r", ch );
+      send_to_char( "You can not gag yourself!\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "You can only gag players.\n\r", ch );
+      send_to_char( "You can only gag players.\r\n", ch );
       return;
    }
 
    if( ( victim->position != POS_STUNNED ) && ( victim->position != POS_SLEEPING )
        && !IS_SET( victim->pcdata->act2, ACT_BOUND ) )
    {
-      send_to_char( "They need to be stunned, asleep, or bound.\n\r", ch );
+      send_to_char( "They need to be stunned, asleep, or bound.\r\n", ch );
       return;
    }
 
@@ -377,7 +377,7 @@ void do_gag( CHAR_DATA * ch, char *argument )
    }
    else
    {
-      send_to_char( "You look puzzled as you wonder how to put on such a contraption.\n\r", ch );
+      send_to_char( "You look puzzled as you wonder how to put on such a contraption.\r\n", ch );
       learn_from_failure( ch, gsn_gag );
    }
 
@@ -390,31 +390,31 @@ void do_ungag( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Syntax: Ungag <victim>\n\r", ch );
+      send_to_char( "Syntax: Ungag <victim>\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, argument ) ) == NULL )
    {
-      send_to_char( "They aren't here.\n\r", ch );
+      send_to_char( "They aren't here.\r\n", ch );
       return;
    }
 
    if( victim == ch && IS_SET( victim->pcdata->act2, ACT_BOUND ) )
    {
-      send_to_char( "You can not ungag yourself when you're bound!\n\r", ch );
+      send_to_char( "You can not ungag yourself when you're bound!\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) )
    {
-      send_to_char( "You can only ungag players.\n\r", ch );
+      send_to_char( "You can only ungag players.\r\n", ch );
       return;
    }
 
    if( !IS_SET( victim->pcdata->act2, ACT_GAGGED ) )
    {
-      send_to_char( "But they're not gagged.\n\r", ch );
+      send_to_char( "But they're not gagged.\r\n", ch );
       return;
    }
 
@@ -440,49 +440,49 @@ void do_ambush( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Syntax: Ambush <victim>\n\r", ch );
+      send_to_char( "Syntax: Ambush <victim>\r\n", ch );
       return;
    }
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Only players may use this ability.\n\r", ch );
+      send_to_char( "Only players may use this ability.\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, argument ) ) == NULL )
    {
-      send_to_char( "How can you ambush someone who's not even here.\n\r", ch );
+      send_to_char( "How can you ambush someone who's not even here.\r\n", ch );
       return;
    }
 
    if( ch == victim )
    {
-      send_to_char( "How can you possibly ambush yourself?\n\r", ch );
+      send_to_char( "How can you possibly ambush yourself?\r\n", ch );
       return;
    }
 
    if( ch->position == POS_FIGHTING )
    {
-      send_to_char( "You are already fighting someone!\n\r", ch );
+      send_to_char( "You are already fighting someone!\r\n", ch );
       return;
    }
 
    if( victim->position == POS_FIGHTING )
    {
-      send_to_char( "They are already fighting someone!\n\r", ch );
+      send_to_char( "They are already fighting someone!\r\n", ch );
       return;
    }
 
    if( victim->position <= POS_STUNNED )
    {
-      send_to_char( "Come now, there's no honor in that!\n\r", ch );
+      send_to_char( "Come now, there's no honor in that!\r\n", ch );
       return;
    }
 
    if( !IS_SET( ch->affected_by, AFF_SNEAK ) )
    {
-      send_to_char( "You are moving far too loudly to ambush someone!\n\r", ch );
+      send_to_char( "You are moving far too loudly to ambush someone!\r\n", ch );
       return;
    }
    percent = number_percent(  ) - ( get_curr_lck( ch ) - 14 ) + ( get_curr_lck( victim ) - 13 );
@@ -532,43 +532,43 @@ void do_contract( CHAR_DATA * ch, char *argument )
 
    if( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0' )
    {
-      send_to_char( "&RSyntax: contract <person> <target> <amount>\n\r", ch );
+      send_to_char( "&RSyntax: contract <person> <target> <amount>\r\n", ch );
       return;
    }
 
    if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
    {
-      send_to_char( "They aren't here.\n\r", ch );
+      send_to_char( "They aren't here.\r\n", ch );
       return;
    }
 
    if( ( target = get_char_world_ooc( ch, arg2 ) ) == NULL )
    {
-      send_to_char( "Your target is currently not online.\n\r", ch );
+      send_to_char( "Your target is currently not online.\r\n", ch );
       return;
    }
 
    if( ch == victim )
    {
-      send_to_char( "You can't contract yourself!\n\r", ch );
+      send_to_char( "You can't contract yourself!\r\n", ch );
       return;
    }
 
    if( IS_NPC( victim ) || IS_NPC( target ) )
    {
-      send_to_char( "You can't contract NPC's.\n\r", ch );
+      send_to_char( "You can't contract NPC's.\r\n", ch );
       return;
    }
 
    if( ch == target )
    {
-      send_to_char( "You can't contract against yourself!\n\r", ch );
+      send_to_char( "You can't contract against yourself!\r\n", ch );
       return;
    }
 
    if( target == victim )
    {
-      send_to_char( "You can't contract them to kill themself!\n\r", ch );
+      send_to_char( "You can't contract them to kill themself!\r\n", ch );
       return;
    }
 
@@ -576,13 +576,13 @@ void do_contract( CHAR_DATA * ch, char *argument )
 
    if( amount < 5000 )
    {
-      send_to_char( "&RYour contract must be for at least 5000 credits.\n\r", ch );
+      send_to_char( "&RYour contract must be for at least 5000 credits.\r\n", ch );
       return;
    }
 
    if( ch->gold < amount )
    {
-      send_to_char( "&RYou don't have enough credits!\n\r", ch );
+      send_to_char( "&RYou don't have enough credits!\r\n", ch );
       return;
    }
 
@@ -592,9 +592,9 @@ void do_contract( CHAR_DATA * ch, char *argument )
       {
          ch->gold -= amount;
          ccontract->amount += amount;
-         ch_printf( ch, "&GYou have contracted %s to kill %s for an amount of %d credits.\n\r", PERS( victim, ch ),
+         ch_printf( ch, "&GYou have contracted %s to kill %s for an amount of %d credits.\r\n", PERS( victim, ch ),
                     target->name, amount );
-         ch_printf( victim, "&G%s has contracted you to kill %s, raising your contract reward by %d credits.\n\r",
+         ch_printf( victim, "&G%s has contracted you to kill %s, raising your contract reward by %d credits.\r\n",
                     PERS( ch, victim ), target->name, amount );
          return;
       }
@@ -606,9 +606,9 @@ void do_contract( CHAR_DATA * ch, char *argument )
    LINK( contract, victim->first_contract, victim->last_contract, next_in_contract, prev_in_contract );
 
    ch->gold -= amount;
-   ch_printf( ch, "&GYou have contracted %s to kill %s for an amount of %d credits.\n\r", PERS( victim, ch ), target->name,
+   ch_printf( ch, "&GYou have contracted %s to kill %s for an amount of %d credits.\r\n", PERS( victim, ch ), target->name,
               amount );
-   ch_printf( victim, "&G%s has contracted you to kill %s for an amount of %d credits.\n\r", PERS( ch, victim ),
+   ch_printf( victim, "&G%s has contracted you to kill %s for an amount of %d credits.\r\n", PERS( ch, victim ),
               target->name, amount );
 
 }
@@ -617,12 +617,12 @@ void do_showcontracts( CHAR_DATA * ch, char *argument )
 {
    CONTRACT_DATA *contract;
 
-   send_to_char( "&R   Target   &W|&R Amount\n\r", ch );
-   send_to_char( "&W------------|----------\n\r", ch );
+   send_to_char( "&R   Target   &W|&R Amount\r\n", ch );
+   send_to_char( "&W------------|----------\r\n", ch );
 
    for( contract = ch->first_contract; contract; contract = contract->next_in_contract )
    {
-      ch_printf( ch, "&R%-12s&W|&R %d&W\n\r", contract->target, contract->amount );
+      ch_printf( ch, "&R%-12s&W|&R %d&W\r\n", contract->target, contract->amount );
    }
 
 }
@@ -634,7 +634,7 @@ void do_remcontract( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "&RSyntax: remcontract <target name>\n\r", ch );
+      send_to_char( "&RSyntax: remcontract <target name>\r\n", ch );
       return;
    }
 
@@ -649,7 +649,7 @@ void do_remcontract( CHAR_DATA * ch, char *argument )
 
    if( !scontract || scontract == NULL )
    {
-      send_to_char( "No such target.\n\r", ch );
+      send_to_char( "No such target.\r\n", ch );
       return;
    }
 
@@ -657,7 +657,7 @@ void do_remcontract( CHAR_DATA * ch, char *argument )
    UNLINK( scontract, ch->first_contract, ch->last_contract, next_in_contract, prev_in_contract );
    DISPOSE( scontract );
 
-   send_to_char( "Contract removed.\n\r", ch );
+   send_to_char( "Contract removed.\r\n", ch );
    return;
 
 }

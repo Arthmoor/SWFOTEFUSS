@@ -87,28 +87,28 @@ void fskill_awareness( CHAR_DATA * ch, char *argument )
       return;
    if( IS_AFFECTED( ch, AFF_TRUESIGHT ) )
    {
-      send_to_char( "You are already fully aware.\n\r", ch );
+      send_to_char( "You are already fully aware.\r\n", ch );
       return;
    }
    switch ( ch->substate )
    {
       default:
 
-         send_to_char( "You close your eyes, and focus on nothing.\n\r", ch );
+         send_to_char( "You close your eyes, and focus on nothing.\r\n", ch );
          act( AT_PLAIN, "$n closes $s eyes.", ch, NULL, NULL, TO_ROOM );
          add_timer( ch, TIMER_DO_FUN, 3, fskill_awareness, 1 );
          return;
       case 1:
          if( number_range( 0, 4 ) != 0 && number_range( 0, 100 ) > ch->force_skill[FORCE_SKILL_AWARENESS] )
          {
-            send_to_char( "You open your eyes, but everything looks the same.\n\r", ch );
+            send_to_char( "You open your eyes, but everything looks the same.\r\n", ch );
             act( AT_PLAIN, "$n opens $s eyes.", ch, NULL, NULL, TO_ROOM );
             force_learn_from_failure( ch, fskill );
             ch->substate = SUB_NONE;
             return;
          }
 
-         send_to_char( "You open your eyes with greater awareness of your surroundings.\n\r", ch );
+         send_to_char( "You open your eyes with greater awareness of your surroundings.\r\n", ch );
          act( AT_PLAIN, "$n opens $s eyes.", ch, NULL, NULL, TO_ROOM );
          af.type = gsn_truesight;
          af.duration = 112 * ch->force_level_status;
@@ -122,7 +122,7 @@ void fskill_awareness( CHAR_DATA * ch, char *argument )
          break;
 
       case SUB_TIMER_DO_ABORT:
-         send_to_char( "You open your eyes, but everything looks the same.\n\r", ch );
+         send_to_char( "You open your eyes, but everything looks the same.\r\n", ch );
          act( AT_PLAIN, "$n opens $s eyes.", ch, NULL, NULL, TO_ROOM );
          break;
    }
@@ -147,9 +147,9 @@ void fskill_finfo( CHAR_DATA * ch, char *argument )
    force_learn_from_success( ch, fskill );
    draw_force_line( ch, 69 );
    if( ch->force_type == FORCE_JEDI )
-      send_to_char( "\n\r         &bYou are a &BJedi&b. ", ch );
+      send_to_char( "\r\n         &bYou are a &BJedi&b. ", ch );
    if( ch->force_type == FORCE_SITH )
-      send_to_char( "\n\r         &rYou are a &RSith&r. ", ch );
+      send_to_char( "\r\n         &rYou are a &RSith&r. ", ch );
    ch_printf( ch, "   Mana: %s%d%s/%s%d    ",
               ch->force_type == FORCE_JEDI ? "&B" : "&R", ch->mana,
               ch->force_type == FORCE_JEDI ? "&b" : "&r", ch->force_type == FORCE_JEDI ? "&B" : "&R", ch->max_mana );
@@ -159,13 +159,13 @@ void fskill_finfo( CHAR_DATA * ch, char *argument )
               ch->force_type == FORCE_JEDI ? force_parse_string( ch, NULL, "&B$nfl" ) : force_parse_string( ch, NULL,
                                                                                                             "&R$nfl" ) );
    draw_force_line_rev( ch, 69 );
-   ch_printf( ch, "\r\n\r\n" );
+   ch_printf( ch, "\r\r\n\n" );
    // Level 1 skills
    if( ch->force_type == FORCE_JEDI )
       send_to_char( "                             &z(&BApprentice &bskills&z)", ch );
    else
       send_to_char( "                             &z(&RApprentice &rskills&z)", ch );
-   send_to_char( "\n\r", ch );
+   send_to_char( "\r\n", ch );
    for( count = 1, skill = first_force_skill; skill; skill = skill->next, count++ )
    {
       if( skill->status != 1 )
@@ -205,11 +205,11 @@ void fskill_finfo( CHAR_DATA * ch, char *argument )
 
       if( count == 3 )
       {
-         send_to_char( "\n\r", ch );
+         send_to_char( "\r\n", ch );
          count = 0;
       }
    }
-   send_to_char( "\n\r", ch );
+   send_to_char( "\r\n", ch );
    // Level 2 skills
    if( ch->force_level_status >= 2 )
    {
@@ -217,7 +217,7 @@ void fskill_finfo( CHAR_DATA * ch, char *argument )
          send_to_char( "                             &z(&BJedi Knight &bskills&z)", ch );
       else
          send_to_char( "                              &z(&RSith Lord &rskills&z)", ch );
-      send_to_char( "\n\r", ch );
+      send_to_char( "\r\n", ch );
       for( count = 1, skill = first_force_skill; skill; skill = skill->next, count++ )
       {
          if( skill->status != 2 )
@@ -257,11 +257,11 @@ void fskill_finfo( CHAR_DATA * ch, char *argument )
 
          if( count == 3 )
          {
-            send_to_char( "\n\r", ch );
+            send_to_char( "\r\n", ch );
             count = 0;
          }
       }
-      send_to_char( "\n\r\n\r", ch );
+      send_to_char( "\r\n\r\n", ch );
    }
    if( ch->force_level_status >= 3 )
    {
@@ -270,7 +270,7 @@ void fskill_finfo( CHAR_DATA * ch, char *argument )
          send_to_char( "                             &z(&BJedi Master &bskills&z)", ch );
       else
          send_to_char( "                             &z(&RSith Master &rskills&z)", ch );
-      send_to_char( "\n\r", ch );
+      send_to_char( "\r\n", ch );
       for( count = 1, skill = first_force_skill; skill; skill = skill->next, count++ )
       {
          if( skill->status != 3 )
@@ -310,13 +310,13 @@ void fskill_finfo( CHAR_DATA * ch, char *argument )
 
          if( count == 3 )
          {
-            send_to_char( "\n\r", ch );
+            send_to_char( "\r\n", ch );
             count = 0;
          }
       }
    }
    if( count != 0 )
-      send_to_char( "\n\r\n\r", ch );
+      send_to_char( "\r\n\r\n", ch );
 
 
    return;
@@ -474,11 +474,11 @@ void fskill_identify( CHAR_DATA * ch, char *argument )
             if( x < 150 )
                send_to_char( force_parse_string( ch, victim, "The force is with this one.\r\n" ), ch );
             else if( x >= 150 && x < 200 )
-               send_to_char( force_parse_string( ch, victim, "The force is strong with this one.\n\r" ), ch );
+               send_to_char( force_parse_string( ch, victim, "The force is strong with this one.\r\n" ), ch );
             else if( x >= 200 && x < 225 )
-               send_to_char( force_parse_string( ch, victim, "The force is very strong with this one.\n\r" ), ch );
+               send_to_char( force_parse_string( ch, victim, "The force is very strong with this one.\r\n" ), ch );
             else if( x >= 225 && x < 250 )
-               send_to_char( force_parse_string( ch, victim, "The force is exceedingly strong with this one...\n\r" ), ch );
+               send_to_char( force_parse_string( ch, victim, "The force is exceedingly strong with this one...\r\n" ), ch );
             else
                send_to_char( force_parse_string
                              ( ch, victim,
@@ -493,11 +493,11 @@ void fskill_identify( CHAR_DATA * ch, char *argument )
             if( x < 150 )
                send_to_char( force_parse_string( ch, victim, "The force is with this one.\r\n" ), ch );
             else if( x >= 150 && x < 200 )
-               send_to_char( force_parse_string( ch, victim, "The force is strong with this one.\n\r" ), ch );
+               send_to_char( force_parse_string( ch, victim, "The force is strong with this one.\r\n" ), ch );
             else if( x >= 200 && x < 225 )
-               send_to_char( force_parse_string( ch, victim, "The force is very strong with this one.\n\r" ), ch );
+               send_to_char( force_parse_string( ch, victim, "The force is very strong with this one.\r\n" ), ch );
             else if( x >= 225 && x < 250 )
-               send_to_char( force_parse_string( ch, victim, "The force is exceedingly strong with this one...\n\r" ), ch );
+               send_to_char( force_parse_string( ch, victim, "The force is exceedingly strong with this one...\r\n" ), ch );
             else
                send_to_char( force_parse_string
                              ( ch, victim,
@@ -524,30 +524,42 @@ void fskill_promote( CHAR_DATA * ch, char *argument )
 {
    FORCE_SKILL *fskill;
    CHAR_DATA *victim;
+
    fskill = force_test_skill_use( "promote", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
+
    victim = force_get_victim( ch, argument, FORCE_INROOM );
    if( !victim )
       return;
+
    if( IS_NPC( victim ) )
    {
       send_to_char( "You cannot find that player to promote them.\r\n", ch );
       return;
    }
+
    if( victim == ch )
    {
       send_to_char( "You cannot promote yourself.\r\n", ch );
       return;
    }
+
    if( victim->force_identified != 1 )
    {
       send_to_char( force_parse_string( ch, victim, "$n has not been identified as having ability in the force.\r\n" ), ch );
       return;
    }
+
    if( victim->force_level_status == FORCE_MASTER )
    {
       send_to_char( force_parse_string( ch, victim, "$n has no need to be promoted!\r\n" ), ch );
+      return;
+   }
+
+   if( !victim->force_master )
+   {
+      send_to_char( "They don't have a master\r\n", ch );
       return;
    }
 /*
@@ -562,11 +574,13 @@ void fskill_promote( CHAR_DATA * ch, char *argument )
       send_to_char( "You can only promote your own student.\r\n", ch );
       return;
    }
+
    if( !force_promote_ready( victim ) )
    {
       send_to_char( "They are not ready to be promoted yet.\r\n", ch );
       return;
    }
+
    victim->force_level_status++;
    if( victim->force_level_status == FORCE_MASTER )
       victim->force_converted = 0;
@@ -836,28 +850,28 @@ void secondslash( CHAR_DATA * ch, CHAR_DATA * victim )
    if( !ch || !victim )
       return;
 
-   ch_printf( ch, "You follow through with the other end of your saber.\n\r", PERS( victim, ch ) );
-   ch_printf( victim, "%s follows through with the other end of their saber!\n\r", PERS( ch, victim ) );
-   act( AT_WHITE, "$n follows through with the other end of their saber!\n\r", ch, NULL, victim, TO_NOTVICT );
+   ch_printf( ch, "You follow through with the other end of your saber.\r\n", PERS( victim, ch ) );
+   ch_printf( victim, "%s follows through with the other end of their saber!\r\n", PERS( ch, victim ) );
+   act( AT_WHITE, "$n follows through with the other end of their saber!\r\n", ch, NULL, victim, TO_NOTVICT );
 
    if( number_range( 0, 4 ) != 0 && number_range( 0, 125 ) > URANGE( 1, ch->force_skill[FORCE_SKILL_STRIKE], 75 ) )
    {
-      ch_printf( ch, "The slash barely misses them.\n\r" );
-      ch_printf( victim, "The other end of the saber cuts the air inches away from you.\n\r" );
+      ch_printf( ch, "The slash barely misses them.\r\n" );
+      ch_printf( victim, "The other end of the saber cuts the air inches away from you.\r\n" );
       act( AT_WHITE, "$n's slash barely misses $N.", ch, NULL, victim, TO_NOTVICT );
       set_fighting( victim, ch );
       return;
    }
    if( check_parry( ch, victim ) )
    {
-      ch_printf( ch, "%s quickly parries your attack.\n\r", PERS( victim, ch ) );
-      ch_printf( ch, "You quickly parry the attack.\n\r", PERS( ch, victim ) );
+      ch_printf( ch, "%s quickly parries your attack.\r\n", PERS( victim, ch ) );
+      ch_printf( ch, "You quickly parry the attack.\r\n", PERS( ch, victim ) );
       act( AT_WHITE, "$N quickly parries $n's attack.", ch, NULL, victim, TO_NOTVICT );
       set_fighting( victim, ch );
       return;
    }
-   ch_printf( ch, "Your attack cleanly slices into them!\n\r" );
-   ch_printf( victim, "The other end of the saber slides along your torso!\n\r" );
+   ch_printf( ch, "Your attack cleanly slices into them!\r\n" );
+   ch_printf( victim, "The other end of the saber slides along your torso!\r\n" );
    act( AT_WHITE, "$N grimaces as $n's lightsaber slices into them!", ch, NULL, victim, TO_NOTVICT );
 
    dam =
@@ -895,22 +909,22 @@ void fskill_slash( CHAR_DATA * ch, char *argument )
       }
       if( ( victim = get_char_room( ch, argument ) ) == NULL )
       {
-         send_to_char( "They aren't here.\n\r", ch );
+         send_to_char( "They aren't here.\r\n", ch );
          return;
       }
       if( IS_SET( ch->in_room->room_flags, ROOM_SAFE ) )
       {
-         send_to_char( "You must go elsewhere to do that.\n\r", ch );
+         send_to_char( "You must go elsewhere to do that.\r\n", ch );
          return;
       }
-      ch_printf( ch, "You swing your lightsaber at %s!\n\r", PERS( victim, ch ) );
-      ch_printf( victim, "%s swings their lightsaber at you!\n\r", PERS( ch, victim ) );
-      act( AT_WHITE, "$n swings their lightsaber at $N!\n\r", ch, NULL, victim, TO_NOTVICT );
+      ch_printf( ch, "You swing your lightsaber at %s!\r\n", PERS( victim, ch ) );
+      ch_printf( victim, "%s swings their lightsaber at you!\r\n", PERS( ch, victim ) );
+      act( AT_WHITE, "$n swings their lightsaber at $N!\r\n", ch, NULL, victim, TO_NOTVICT );
 
       if( number_range( 0, 4 ) != 0 && number_range( 0, 100 ) > URANGE( 1, ch->force_skill[FORCE_SKILL_STRIKE], 75 ) )
       {
-         ch_printf( ch, "Your lightsaber cuts the air inches away from them.\n\r" );
-         ch_printf( victim, "Their lightsaber cuts the air inches away from your midsection.\n\r" );
+         ch_printf( ch, "Your lightsaber cuts the air inches away from them.\r\n" );
+         ch_printf( victim, "Their lightsaber cuts the air inches away from your midsection.\r\n" );
          act( AT_WHITE, "$n's slash barely misses $N.", ch, NULL, victim, TO_NOTVICT );
          if( wield->value[3] == WEAPON_DUAL_LIGHTSABER )
             secondslash( ch, victim );
@@ -919,16 +933,16 @@ void fskill_slash( CHAR_DATA * ch, char *argument )
       }
       if( check_parry( ch, victim ) )
       {
-         ch_printf( ch, "%s quickly parries your attack.\n\r", PERS( victim, ch ) );
-         ch_printf( ch, "You quickly parry the attack.\n\r", PERS( ch, victim ) );
+         ch_printf( ch, "%s quickly parries your attack.\r\n", PERS( victim, ch ) );
+         ch_printf( ch, "You quickly parry the attack.\r\n", PERS( ch, victim ) );
          act( AT_WHITE, "$N quickly parries $n's attack.", ch, NULL, victim, TO_NOTVICT );
          if( wield->value[3] == WEAPON_DUAL_LIGHTSABER )
             secondslash( ch, victim );
          force_learn_from_failure( ch, fskill );
          return;
       }
-      ch_printf( ch, "Your attack cleanly slices across their midsection!\n\r" );
-      ch_printf( victim, "Their attack cleanly slices across your midsection!\n\r" );
+      ch_printf( ch, "Your attack cleanly slices across their midsection!\r\n" );
+      ch_printf( victim, "Their attack cleanly slices across your midsection!\r\n" );
       act( AT_WHITE, "$N grimaces as $n's lightsaber slices into them!", ch, NULL, victim, TO_NOTVICT );
 
       dam =
@@ -1210,15 +1224,19 @@ void fskill_fdisguise( CHAR_DATA * ch, char *argument )
 {
    FORCE_SKILL *fskill;
    fskill = force_test_skill_use( "fdisguise", ch, FORCE_NONCOMBAT );
+
    if( fskill == NULL )
       return;
+
    if( argument[0] == '\0' && !ch->dest_buf )
    {
       send_to_char( "You have to specify a disguise.\r\n", ch );
       return;
    }
+
    if( argument[0] == '\0' )
       argument = str_dup( ch->dest_buf );
+
    if( !strcmp( argument, "clear" ) )
    {
       if( !ch->pcdata->disguise )
@@ -1236,6 +1254,7 @@ void fskill_fdisguise( CHAR_DATA * ch, char *argument )
       DISPOSE( ch->dest_buf );
       return;
    }
+
    switch ( ch->substate )
    {
       default:
@@ -1244,6 +1263,7 @@ void fskill_fdisguise( CHAR_DATA * ch, char *argument )
          force_send_to_room( ch, NULL, force_parse_string( ch, NULL, fskill->room_effect[0] ) );
          add_timer( ch, TIMER_DO_FUN, 5, fskill_fdisguise, 1 );
          return;
+
       case 1:
          if( number_range( 0, 4 ) != 0 && number_range( 0, 100 ) > ch->force_skill[FORCE_SKILL_DISGUISE] )
          {
@@ -1254,10 +1274,11 @@ void fskill_fdisguise( CHAR_DATA * ch, char *argument )
             DISPOSE( ch->dest_buf );
             return;
          }
+
          send_to_char( force_parse_string( ch, NULL, fskill->ch_effect[1] ), ch );
          force_send_to_room( ch, NULL, force_parse_string( ch, NULL, fskill->room_effect[1] ) );
          force_learn_from_success( ch, fskill );
-         ch->pcdata->disguise = strdup( argument );
+         ch->pcdata->disguise = STRALLOC( argument );
          if( !ch->dest_buf )
             break;
          DISPOSE( ch->dest_buf );
@@ -1336,7 +1357,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
       default:
          if( arg[0] == '\0' )
          {
-            send_to_char( "&RUsage: Makelightsaber <name>\n\r&w", ch );
+            send_to_char( "&RUsage: Makelightsaber <name>\r\n&w", ch );
             return;
          }
 
@@ -1352,7 +1373,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
 
          if( !IS_SET( ch->in_room->room_flags, ROOM_SAFE ) || !IS_SET( ch->in_room->room_flags, ROOM_SILENCE ) )
          {
-            send_to_char( "&RYou need to be in a quiet peaceful place to craft a lightsaber.\n\r", ch );
+            send_to_char( "&RYou need to be in a quiet peaceful place to craft a lightsaber.\r\n", ch );
             return;
          }
 
@@ -1380,69 +1401,69 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
 
          if( !checktool )
          {
-            send_to_char( "&RYou need toolkit to make a lightsaber.\n\r", ch );
+            send_to_char( "&RYou need toolkit to make a lightsaber.\r\n", ch );
             return;
          }
 
          if( !checkdura )
          {
-            send_to_char( "&RYou need something to make it out of.\n\r", ch );
+            send_to_char( "&RYou need something to make it out of.\r\n", ch );
             return;
          }
 
          if( !checkbatt )
          {
-            send_to_char( "&RYou need a power source for your lightsaber.\n\r", ch );
+            send_to_char( "&RYou need a power source for your lightsaber.\r\n", ch );
             return;
          }
 
          if( !checkoven )
          {
-            send_to_char( "&RYou need a small furnace to heat and shape the components.\n\r", ch );
+            send_to_char( "&RYou need a small furnace to heat and shape the components.\r\n", ch );
             return;
          }
 
          if( !checkcirc )
          {
-            send_to_char( "&RYou need a small circuit board.\n\r", ch );
+            send_to_char( "&RYou need a small circuit board.\r\n", ch );
             return;
          }
 
          if( !checkcond )
          {
-            send_to_char( "&RYou still need a small superconductor for your lightsaber.\n\r", ch );
+            send_to_char( "&RYou still need a small superconductor for your lightsaber.\r\n", ch );
             return;
          }
 
          if( !checklens )
          {
-            send_to_char( "&RYou still need a lens to focus the beam.\n\r", ch );
+            send_to_char( "&RYou still need a lens to focus the beam.\r\n", ch );
             return;
          }
 
          if( !checkgems )
          {
-            send_to_char( "&RLightsabers require 1 to 3 gems to work properly.\n\r", ch );
+            send_to_char( "&RLightsabers require 1 to 3 gems to work properly.\r\n", ch );
             return;
          }
 
          if( !checkmirr )
          {
-            send_to_char( "&RYou need a high intesity reflective cup to create a lightsaber.\n\r", ch );
+            send_to_char( "&RYou need a high intesity reflective cup to create a lightsaber.\r\n", ch );
             return;
          }
 
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->force_skill[FORCE_SKILL_MAKELIGHTSABER] );
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of crafting a lightsaber.\n\r", ch );
+            send_to_char( "&GYou begin the long process of crafting a lightsaber.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, fskill_makelightsaber, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "&RYou can't figure out how to fit the parts together.\n\r", ch );
+         send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
          force_learn_from_failure( ch, fskill );
          return;
 
@@ -1456,7 +1477,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish your work.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish your work.\r\n", ch );
          return;
    }
 
@@ -1468,7 +1489,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
    if( ( pObjIndex = get_obj_index( vnum ) ) == NULL )
    {
       send_to_char
-         ( "&RThe item you are trying to create is missing from the database.\n\rPlease inform the administration of this error.\n\r",
+         ( "&RThe item you are trying to create is missing from the database.\r\nPlease inform the administration of this error.\r\n",
            ch );
       return;
    }
@@ -1566,9 +1587,9 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
    if( number_percent(  ) > schance * 2 || ( !checktool ) || ( !checkdura ) || ( !checkbatt ) || ( !checkoven )
        || ( !checkmirr ) || ( !checklens ) || ( !checkgems ) || ( !checkcond ) || ( !checkcirc ) )
    {
-      send_to_char( "&RYou hold up your new lightsaber and press the switch hoping for the best.\n\r", ch );
-      send_to_char( "&RInstead of a blade of light, smoke starts pouring from the handle.\n\r", ch );
-      send_to_char( "&RYou drop the hot handle and watch as it melts on away on the floor.\n\r", ch );
+      send_to_char( "&RYou hold up your new lightsaber and press the switch hoping for the best.\r\n", ch );
+      send_to_char( "&RInstead of a blade of light, smoke starts pouring from the handle.\r\n", ch );
+      send_to_char( "&RYou drop the hot handle and watch as it melts on away on the floor.\r\n", ch );
       force_learn_from_failure( ch, fskill );
       return;
    }
@@ -1629,7 +1650,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, char *argument )
    obj->cost = 50000;
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your newly created lightsaber.&w\n\r", ch );
+   send_to_char( "&GYou finish your work and hold up your newly created lightsaber.&w\r\n", ch );
    act( AT_PLAIN, "$n finishes making $s new lightsaber.", ch, NULL, argument, TO_ROOM );
 
    {
@@ -1665,7 +1686,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
       default:
          if( arg[0] == '\0' )
          {
-            send_to_char( "&RUsage: Makedualsaber <name>\n\r&w", ch );
+            send_to_char( "&RUsage: Makedualsaber <name>\r\n&w", ch );
             return;
          }
 
@@ -1681,7 +1702,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
 
          if( !IS_SET( ch->in_room->room_flags, ROOM_SAFE ) || !IS_SET( ch->in_room->room_flags, ROOM_SILENCE ) )
          {
-            send_to_char( "&RYou need to be in a quiet peaceful place to craft a lightsaber.\n\r", ch );
+            send_to_char( "&RYou need to be in a quiet peaceful place to craft a lightsaber.\r\n", ch );
             return;
          }
 
@@ -1709,69 +1730,69 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
 
          if( !checktool )
          {
-            send_to_char( "&RYou need toolkit to make a dual-bladed lightsaber.\n\r", ch );
+            send_to_char( "&RYou need toolkit to make a dual-bladed lightsaber.\r\n", ch );
             return;
          }
 
          if( !checkdura )
          {
-            send_to_char( "&RYou need something to make it out of.\n\r", ch );
+            send_to_char( "&RYou need something to make it out of.\r\n", ch );
             return;
          }
 
          if( !checkbatt )
          {
-            send_to_char( "&RYou need a power source for your dual-bladed lightsaber.\n\r", ch );
+            send_to_char( "&RYou need a power source for your dual-bladed lightsaber.\r\n", ch );
             return;
          }
 
          if( !checkoven )
          {
-            send_to_char( "&RYou need a small furnace to heat and shape the components.\n\r", ch );
+            send_to_char( "&RYou need a small furnace to heat and shape the components.\r\n", ch );
             return;
          }
 
          if( !checkcirc )
          {
-            send_to_char( "&RYou need a small circuit board.\n\r", ch );
+            send_to_char( "&RYou need a small circuit board.\r\n", ch );
             return;
          }
 
          if( !checkcond )
          {
-            send_to_char( "&RYou still need a small superconductor for your dual-bladed lightsaber.\n\r", ch );
+            send_to_char( "&RYou still need a small superconductor for your dual-bladed lightsaber.\r\n", ch );
             return;
          }
 
          if( !checklens )
          {
-            send_to_char( "&RYou still need a lens to focus the beams.\n\r", ch );
+            send_to_char( "&RYou still need a lens to focus the beams.\r\n", ch );
             return;
          }
 
          if( !checkgems )
          {
-            send_to_char( "&RLightsabers require 1 to 3 gems to work properly.\n\r", ch );
+            send_to_char( "&RLightsabers require 1 to 3 gems to work properly.\r\n", ch );
             return;
          }
 
          if( !checkmirr )
          {
-            send_to_char( "&RYou need a high intesity reflective cup to create a lightsaber.\n\r", ch );
+            send_to_char( "&RYou need a high intesity reflective cup to create a lightsaber.\r\n", ch );
             return;
          }
 
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->force_skill[FORCE_SKILL_MAKEDUALSABER] );
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of crafting a dual-bladed lightsaber.\n\r", ch );
+            send_to_char( "&GYou begin the long process of crafting a dual-bladed lightsaber.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, fskill_makedualsaber, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "&RYou can't figure out how to fit the parts together.\n\r", ch );
+         send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
          force_learn_from_failure( ch, fskill );
          return;
 
@@ -1785,7 +1806,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interupted and fail to finish your work.\n\r", ch );
+         send_to_char( "&RYou are interupted and fail to finish your work.\r\n", ch );
          return;
    }
 
@@ -1797,7 +1818,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
    if( ( pObjIndex = get_obj_index( vnum ) ) == NULL )
    {
       send_to_char
-         ( "&RThe item you are trying to create is missing from the database.\n\rPlease inform the administration of this error.\n\r",
+         ( "&RThe item you are trying to create is missing from the database.\r\nPlease inform the administration of this error.\r\n",
            ch );
       return;
    }
@@ -1895,9 +1916,9 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
    if( number_percent(  ) > schance * 2 || ( !checktool ) || ( !checkdura ) || ( !checkbatt ) || ( !checkoven )
        || ( !checkmirr ) || ( !checklens ) || ( !checkgems ) || ( !checkcond ) || ( !checkcirc ) )
    {
-      send_to_char( "&RYou hold up your new dual-bladed lightsaber and press the switch.\n\r", ch );
-      send_to_char( "&RInstead of a blade of light, smoke starts pouring from the handle.\n\r", ch );
-      send_to_char( "&RYou drop the hot handle and watch as it melts on away on the floor.\n\r", ch );
+      send_to_char( "&RYou hold up your new dual-bladed lightsaber and press the switch.\r\n", ch );
+      send_to_char( "&RInstead of a blade of light, smoke starts pouring from the handle.\r\n", ch );
+      send_to_char( "&RYou drop the hot handle and watch as it melts on away on the floor.\r\n", ch );
       force_learn_from_failure( ch, fskill );
       return;
    }
@@ -1948,7 +1969,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, char *argument )
    obj->cost = 50000;
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your newly created dual-bladed lightsaber.&w\n\r", ch );
+   send_to_char( "&GYou finish your work and hold up your newly created dual-bladed lightsaber.&w\r\n", ch );
    act( AT_PLAIN, "$n finishes making $s new dual-bladed lightsaber.", ch, NULL, argument, TO_ROOM );
 
    {
@@ -2045,7 +2066,7 @@ void fskill_finish( CHAR_DATA * ch, char *argument )
    }
    else
    {
-      sprintf( buf, "%s killed by %s at %d, using finish.\n\r", victim->name, ch->name, ch->in_room->vnum );
+      sprintf( buf, "%s killed by %s at %d, using finish.\r\n", victim->name, ch->name, ch->in_room->vnum );
       log_string( buf );
       raw_kill( ch, victim );
       //add_plr_death(victim->name, "cut into two");
@@ -2083,7 +2104,7 @@ void fskill_fhelp( CHAR_DATA * ch, char *argument )
    if( !match )
    {
       fhelp = fdefault;
-      send_to_char( "\r\nNo such Force Help file.\r\n\r\n", ch );
+      send_to_char( "\r\nNo such Force Help file.\r\r\n\n", ch );
    }
    if( fhelp->skill != -1 && ch->force_skill[fhelp->skill] == 0 )
    {

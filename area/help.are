@@ -2131,10 +2131,26 @@ SWReality immortals: Himself (Durga), Mark Matt (Merth), Jp Coldarone
 (Exar), Greg Baily (Thrawn), Ackbar, Satin, Streen and Bib as well as much
 input from our other builders and players.
  
-DikuMud (c) program and concept by Sebastian Hammer
-(quinn@freja.diku.dk), Michael Seifert (seifert@freja.diku.dk),
-Hans Henrik (bombman@freja.diku.dk), Tom Madsen (noop@freja.diku.dk),
-and Katja Nyboe(katz@freja.diku.dk).
+DikuMud (c) program and concept by:
+
+Sebastian Hammer                  Michael Seifert
+Prss. Maries Alle 15, 1           Nr. Soeg. 37C, 1, doer 3
+1908 Frb. C.                      1370 Copenhagen K.
+DENMARK                           DENMARK
+(email bombman@freja.diku.dk)     (email noop@freja.diku.dk)
+
+Hans Henrik St{rfeldt             Tom Madsen
+Langs} 19                         R|de Mellemvej 94B, 64
+3500 V{rl|se                      2300 Copenhagen S.
+DENMARK                           DENMARK
+(email bombman@freja.diku.dk)     (email noop@freja.diku.dk)
+
+Katja Nyboe
+Kildeg}rdsvej 2
+2900 Hellerup
+31 62 82 84
+DENMARK
+(email katz@freja.diku.dk)
  
 Merc 2.1 (c) was created by Furey (mec@shell.portal.com), Hatchet
 (hatchet@uclink.berkeley.edu), and Kahn
@@ -4964,9 +4980,9 @@ Leaves the current ship (at hatch).
 ~
 
 31 LEVERFLAGS SWITCHFLAGS BUTTONFLAGS PULLCHAINFLAGS DIALFLAGS~
-FLAG NAME     |  BITVECTOR  |  DESCRIPTION
+ FLAG NAME     |  BITVECTOR  |  DESCRIPTION
 ----------------------------------------------------------------------
-UP            |          1  |  Trigger is UP 
+UP            |          1  |  Trigger is UP
 UNLOCK        |          2  |  Trigger unlocks something
 LOCK          |          4  |  Trigger locks something
 D_NORTH       |          8  |  Affects the north exit
@@ -4976,21 +4992,26 @@ D_WEST        |         64  |  Affects the west exit
 D_UP          |        128  |  Affects the exit up
 D_DOWN        |        256  |  Affects the exit down
 DOOR          |        512  |  Affects a door
-CONTAINER    *|       1024  |  Affects a container
+CONTAINER     |       1024  |  Affects a container
 OPEN          |       2048  |  Opens something
 CLOSE         |       4096  |  Closes something
 PASSAGE       |       8192  |  Creates a passage
-OLOAD        *|      16384  |  Loads up an object
-MLOAD        *|      32768  |  Loads up a mobile
+OLOAD         |      16384  |  Loads up an object
+MLOAD         |      32768  |  Loads up a mobile
 TELEPORT      |      65536  |  Teleports the puller
-TELEPORTALL  *|     131072  |  Teleports everyone in the room
-TELEPORTPLUS *|     262144  |  Teleports everything in the room
-DEATH        *|     524288  |  Causes instant death
-CAST         *|    1048567  |  Casts a power (sn in value1)
+TELEPORTALL   |     131072  |  Teleports everyone in the room
+TELEPORTPLUS  |     262144  |  Teleports everything in the room
+DEATH         |     524288  |  Causes instant death
+CAST          |    1048576  |  Casts a spell (sn in value1) (level in value2)
 FAKEBLADE    *|    2097152  |  Lever is a wax covered sword blade (OUCH)
 RAND4         |    4194304  |  Randomizes the exits N, S, E, W
 RAND6         |    8388608  |  Randomizes the exits N, S, E, W, U, D
 TRAPDOOR     *|   16777216  |  Opens a trap door, everthing falls down
+ANOTHERROOM  *|   33554432  |
+USEDIAL      *|   67108864  |
+ABSOLUTEVNUM *|  134217728  |
+SHOWROOMDESC  |  268435456  |  When used with TELEPORT(s) it will show the room's description.
+AUTORETURN    |  536870912  |  Will prevent returning the device to its original position when set.
 
 See OSET and ITEMVALUES.  * = not yet implemented.
 ~

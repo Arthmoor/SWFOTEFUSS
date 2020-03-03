@@ -86,7 +86,7 @@ void write_planet_list(  )
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open planet.lst for writing!\n\r", 0 );
+      bug( "FATAL: cannot open planet.lst for writing!\r\n", 0 );
       return;
    }
    for( tplanet = first_planet; tplanet; tplanet = tplanet->next )
@@ -415,7 +415,7 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Huh?\n\r", ch );
+      send_to_char( "Huh?\r\n", ch );
       return;
    }
 
@@ -424,42 +424,42 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
 
    if( arg1[0] == '\0' )
    {
-      send_to_char( "Usage: setplanet <planet> <field> [value]\n\r", ch );
-      send_to_char( "\n\rField being one of:\n\r", ch );
-      send_to_char( " name filename area starsystem governed_by x y z\n\r", ch );
+      send_to_char( "Usage: setplanet <planet> <field> [value]\r\n", ch );
+      send_to_char( "\r\nField being one of:\r\n", ch );
+      send_to_char( " name filename area starsystem governed_by x y z\r\n", ch );
       return;
    }
 
-   planet = get_planet( arg1 );
-   if( !planet )
+   if( !( planet = get_planet( arg1 ) ) )
    {
-      send_to_char( "No such planet.\n\r", ch );
+      send_to_char( "No such planet.\r\n", ch );
       return;
    }
-
 
    if( !strcmp( arg2, "name" ) )
    {
       STRFREE( planet->name );
       planet->name = STRALLOC( argument );
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       return;
    }
+
    if( !strcmp( arg2, "type" ) )
    {
       if( !argument )
          planet->controls = 0;
       else
          planet->controls = atoi( argument );
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       return;
    }
+
    if( !strcmp( arg2, "sector" ) )
    {
       planet->sector = atoi( argument );
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       return;
    }
@@ -472,7 +472,7 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
          AREA_DATA *area = planet->area;
          LINK( area, planet->first_area, planet->last_area, next_on_planet, prev_on_planet );
       }
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       return;
    }
@@ -484,11 +484,11 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
       if( clan )
       {
          planet->governed_by = clan;
-         send_to_char( "Done.\n\r", ch );
+         send_to_char( "Done.\r\n", ch );
          save_planet( planet );
       }
       else
-         send_to_char( "No such clan.\n\r", ch );
+         send_to_char( "No such clan.\r\n", ch );
       return;
    }
 
@@ -502,10 +502,10 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
       {
          starsystem = planet->starsystem;
          LINK( planet, starsystem->first_planet, starsystem->last_planet, next_in_system, prev_in_system );
-         send_to_char( "Done.\n\r", ch );
+         send_to_char( "Done.\r\n", ch );
       }
       else
-         send_to_char( "No such starsystem.\n\r", ch );
+         send_to_char( "No such starsystem.\r\n", ch );
       save_planet( planet );
       return;
    }
@@ -513,45 +513,39 @@ void do_setplanet( CHAR_DATA * ch, char *argument )
    if( !strcmp( arg2, "x" ) )
    {
       planet->x = atoi( argument );
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       write_planet_list(  );
       return;
-
    }
 
    if( !strcmp( arg2, "y" ) )
    {
       planet->y = atoi( argument );
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       write_planet_list(  );
       return;
-
    }
 
    if( !strcmp( arg2, "z" ) )
    {
       planet->z = atoi( argument );
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       write_planet_list(  );
       return;
-
    }
-
 
    if( !strcmp( arg2, "filename" ) )
    {
       DISPOSE( planet->filename );
       planet->filename = str_dup( argument );
-      send_to_char( "Done.\n\r", ch );
+      send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       write_planet_list(  );
       return;
    }
-
-
    do_setplanet( ch, "" );
    return;
 }
@@ -569,20 +563,20 @@ void do_showplanet( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Huh?\n\r", ch );
+      send_to_char( "Huh?\r\n", ch );
       return;
    }
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Usage: showplanet <planet>\n\r", ch );
+      send_to_char( "Usage: showplanet <planet>\r\n", ch );
       return;
    }
 
    planet = get_planet( argument );
    if( !planet )
    {
-      send_to_char( "No such planet.\n\r", ch );
+      send_to_char( "No such planet.\r\n", ch );
       return;
    }
 
@@ -603,32 +597,32 @@ void do_showplanet( CHAR_DATA * ch, char *argument )
       pf = tempf / planet->size * 100;
    }
 
-   ch_printf( ch, "&W%s\n\r", planet->name );
+   ch_printf( ch, "&W%s\r\n", planet->name );
    if( IS_IMMORTAL( ch ) )
-      ch_printf( ch, "&WFilename: &G%s\n\r", planet->filename );
+      ch_printf( ch, "&WFilename: &G%s\r\n", planet->filename );
 
-   ch_printf( ch, "&WTerrain: &G%s\n\r", sector_name[planet->sector] );
-   ch_printf( ch, "&WGoverned by: &G%s\n\r", planet->governed_by ? planet->governed_by->name : "" );
-   ch_printf( ch, "&WPlanet Size: &G%d\n\r", planet->size );
-   ch_printf( ch, "&WPercent Civilized: &G%d\n\r", pc );
-   ch_printf( ch, "&WPercent Wilderness: &G%d\n\r", pw );
-   ch_printf( ch, "&WPercent Farmland: &G%d\n\r", pf );
-   ch_printf( ch, "&WBarracks: &G%d\n\r", planet->barracks );
-   ch_printf( ch, "&WPatrols: &G%d&W/%d\n\r", num_guards, planet->barracks * 5 );
-   ch_printf( ch, "&WPopulation: &G%d&W\n\r", planet->population );
-   ch_printf( ch, "&WPopular Support: &G%.2f\n\r", planet->pop_support );
-   ch_printf( ch, "&WCurrent Monthly Revenue: &G%ld\n\r", get_taxes( planet ) );
+   ch_printf( ch, "&WTerrain: &G%s\r\n", sector_name[planet->sector] );
+   ch_printf( ch, "&WGoverned by: &G%s\r\n", planet->governed_by ? planet->governed_by->name : "" );
+   ch_printf( ch, "&WPlanet Size: &G%d\r\n", planet->size );
+   ch_printf( ch, "&WPercent Civilized: &G%d\r\n", pc );
+   ch_printf( ch, "&WPercent Wilderness: &G%d\r\n", pw );
+   ch_printf( ch, "&WPercent Farmland: &G%d\r\n", pf );
+   ch_printf( ch, "&WBarracks: &G%d\r\n", planet->barracks );
+   ch_printf( ch, "&WPatrols: &G%d&W/%d\r\n", num_guards, planet->barracks * 5 );
+   ch_printf( ch, "&WPopulation: &G%d&W\r\n", planet->population );
+   ch_printf( ch, "&WPopular Support: &G%.2f\r\n", planet->pop_support );
+   ch_printf( ch, "&WCurrent Monthly Revenue: &G%ld\r\n", get_taxes( planet ) );
    area[0] = '\0';
    for( pArea = planet->first_area; pArea; pArea = pArea->next_on_planet )
    {
       strcat( area, pArea->filename );
       strcat( area, ", " );
    }
-   ch_printf( ch, "&WAreas: &G%s\n\r", area );
+   ch_printf( ch, "&WAreas: &G%s\r\n", area );
    if( IS_IMMORTAL( ch ) && !planet->area )
    {
       ch_printf( ch, "&RWarning - this planet is not attached to an area!&G" );
-      ch_printf( ch, "\n\r" );
+      ch_printf( ch, "\r\n" );
    }
 
    return;
@@ -643,7 +637,7 @@ void do_makeplanet( CHAR_DATA * ch, char *argument )
 
    if( !argument || argument[0] == '\0' )
    {
-      send_to_char( "Usage: makeplanet <planet name>\n\r", ch );
+      send_to_char( "Usage: makeplanet <planet name>\r\n", ch );
       return;
    }
 
@@ -672,7 +666,7 @@ void do_planets( CHAR_DATA * ch, char *argument )
    SPACE_DATA *starsystem;
 
    set_char_color( AT_WHITE, ch );
-   send_to_char( "Planet             Starsystem    Governed By                  Popular Support\n\r", ch );
+   send_to_char( "Planet             Starsystem    Governed By                  Popular Support\r\n", ch );
 
    for( starsystem = first_starsystem; starsystem; starsystem = starsystem->next )
       for( planet = starsystem->first_planet; planet; planet = planet->next_in_system )
@@ -681,11 +675,11 @@ void do_planets( CHAR_DATA * ch, char *argument )
             continue;
          ch_printf( ch, "&G%-18s %-12s  %-25s    ",
                     planet->name, starsystem->name, planet->governed_by ? planet->governed_by->name : "" );
-         ch_printf( ch, "%.1f\n\r", planet->pop_support );
+         ch_printf( ch, "%.1f\r\n", planet->pop_support );
          if( IS_IMMORTAL( ch ) && !planet->area )
          {
             ch_printf( ch, "&RWarning - this planet is not attached to an area!&G" );
-            ch_printf( ch, "\n\r" );
+            ch_printf( ch, "\r\n" );
          }
 
          count++;
@@ -697,11 +691,11 @@ void do_planets( CHAR_DATA * ch, char *argument )
          continue;
 
       ch_printf( ch, "&G%-15s %-12s  %-25s    ", planet->name, "", planet->governed_by ? planet->governed_by->name : "" );
-      ch_printf( ch, "%.1f\n\r", !str_cmp( planet->governed_by->name, "Neutral" ) ? 100.0 : planet->pop_support );
+      ch_printf( ch, "%.1f\r\n", !str_cmp( planet->governed_by->name, "Neutral" ) ? 100.0 : planet->pop_support );
       if( IS_IMMORTAL( ch ) && !planet->area )
       {
          ch_printf( ch, "&RWarning - this planet is not attached to an area!&G" );
-         ch_printf( ch, "\n\r" );
+         ch_printf( ch, "\r\n" );
       }
 
       count++;
@@ -710,9 +704,9 @@ void do_planets( CHAR_DATA * ch, char *argument )
    if( !count )
    {
       set_char_color( AT_BLOOD, ch );
-      send_to_char( "There are no planets currently formed.\n\r", ch );
+      send_to_char( "There are no planets currently formed.\r\n", ch );
    }
-   send_to_char( "&WUse SHOWPLANET for more information.\n\r", ch );
+   send_to_char( "&WUse SHOWPLANET for more information.\r\n", ch );
 
 }
 
@@ -730,13 +724,13 @@ void do_capture( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) || !ch->pcdata )
    {
-      send_to_char( "huh?\n\r", ch );
+      send_to_char( "huh?\r\n", ch );
       return;
    }
 
    if( !ch->pcdata->clan )
    {
-      send_to_char( "You need to be a member of an organization to do that!\n\r", ch );
+      send_to_char( "You need to be a member of an organization to do that!\r\n", ch );
       return;
    }
 
@@ -744,19 +738,19 @@ void do_capture( CHAR_DATA * ch, char *argument )
 
    if( ( planet = ch->in_room->area->planet ) == NULL )
    {
-      send_to_char( "You must be on a planet to capture it.\n\r", ch );
+      send_to_char( "You must be on a planet to capture it.\r\n", ch );
       return;
    }
 
    if( clan == planet->governed_by )
    {
-      send_to_char( "Your organization already controls this planet.\n\r", ch );
+      send_to_char( "Your organization already controls this planet.\r\n", ch );
       return;
    }
 
    if( clan->clan_type == CLAN_CRIME || clan->clan_type == CLAN_GUILD )
    {
-      send_to_char( "Your clan can't capture planets!\n\r", ch );
+      send_to_char( "Your clan can't capture planets!\r\n", ch );
       return;
    }
 
@@ -772,7 +766,7 @@ void do_capture( CHAR_DATA * ch, char *argument )
             continue;
          if( sClan == planet->governed_by )
          {
-            send_to_char( "A planet cannot be captured while protected by orbiting spacecraft.\n\r", ch );
+            send_to_char( "A planet cannot be captured while protected by orbiting spacecraft.\r\n", ch );
             return;
          }
       }
@@ -780,21 +774,21 @@ void do_capture( CHAR_DATA * ch, char *argument )
 
    if( planet->first_guard )
    {
-      send_to_char( "This planet is protected by soldiers.\n\r", ch );
-      send_to_char( "You will have to eliminate all enemy forces before you can capture it.\n\r", ch );
+      send_to_char( "This planet is protected by soldiers.\r\n", ch );
+      send_to_char( "You will have to eliminate all enemy forces before you can capture it.\r\n", ch );
       return;
    }
    if( planet->governed_by->name && planet->governed_by->name != NULL )
    {
       if( !str_cmp( planet->governed_by->name, "Neutral" ) )
       {
-         send_to_char( "This planet cannot be captured.\n\r", ch );
+         send_to_char( "This planet cannot be captured.\r\n", ch );
          return;
       }
    }
    if( planet->pop_support > 0 )
    {
-      send_to_char( "The population is not in favour of changing leaders right now.\n\r", ch );
+      send_to_char( "The population is not in favour of changing leaders right now.\r\n", ch );
       return;
    }
 
@@ -808,7 +802,7 @@ void do_capture( CHAR_DATA * ch, char *argument )
    if( support < 0 )
    {
       send_to_char
-         ( "There is not enough popular support for your organization!\n\rTry improving loyalty on the planets that you already control.\n\r",
+         ( "There is not enough popular support for your organization!\r\nTry improving loyalty on the planets that you already control.\r\n",
            ch );
       return;
    }

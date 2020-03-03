@@ -47,7 +47,7 @@ Rockets     0
 Maxrockets  0
 Torpedos     0
 Maxtorpedos  0
-Lastdoc      28613
+Lastdoc      4556
 Firstroom    915
 Lastroom     921
 Hanger1      0
@@ -75,7 +75,7 @@ Gunseat      921
 Navseat      921
 Engineroom   921
 Entrance     915
-Shipstate    0
+Shipstate    1
 Missilestate 0
 Energy       10000
 Manuever     11

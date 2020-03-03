@@ -90,7 +90,7 @@ void fread_timedata( FILE * fp )
 
       if( !fMatch )
       {
-         bug( "Fread_timedata: no match: %s", word );
+         bug( "%s: no match: %s", __FUNCTION__, word );
          fread_to_eol( fp );
       }
    }
@@ -123,7 +123,7 @@ bool load_timedata( void )
 
          if( letter != '#' )
          {
-            bug( "%s", "Load_timedata: # not found." );
+            bug( "%s: # not found.", __FUNCTION__ );
             break;
          }
 
@@ -137,7 +137,7 @@ bool load_timedata( void )
             break;
          else
          {
-            bug( "Load_timedata: bad section - %s.", word );
+            bug( "%s: bad section - %s.", __FUNCTION__, word );
             break;
          }
       }
@@ -214,7 +214,7 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
             break;
 
          case 'A':
-            KEY( "Act", pact, fread_number( fp ) );
+            KEY( "Act2", pact, fread_number( fp ) );
             break;
 
          case 'C':
@@ -226,19 +226,18 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
                goto timecheck;
             break;
 
-         case 'L':
-            KEY( "Level", level, fread_number( fp ) );
-            break;
-
          case 'N':
             KEY( "Name", name, fread_string( fp ) );
+            break;
+
+         case 'T':
+            KEY( "Toplevel", level, fread_number( fp ) );
             break;
 
          case 'V':
             KEY( "Version", file_ver, fread_number( fp ) );
             break;
       }
-
       if( !fMatch )
          fread_to_eol( fp );
    }
@@ -421,7 +420,7 @@ void do_pfiles( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) )
    {
-      send_to_char( "Mobs cannot use this command!\n\r", ch );
+      send_to_char( "Mobs cannot use this command!\r\n", ch );
       return;
    }
 
@@ -451,7 +450,7 @@ void do_pfiles( CHAR_DATA * ch, char *argument )
    {
       new_pfile_time_t = current_time + 86400;
       save_timedata(  );
-      send_to_char( "New cleanup time set for 24 hrs from now.\n\r", ch );
+      send_to_char( "New cleanup time set for 24 hrs from now.\r\n", ch );
       return;
    }
 
@@ -463,7 +462,7 @@ void do_pfiles( CHAR_DATA * ch, char *argument )
       return;
    }
 
-   send_to_char( "Invalid argument.\n\r", ch );
+   send_to_char( "Invalid argument.\r\n", ch );
    return;
 }
 

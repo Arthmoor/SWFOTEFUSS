@@ -31,6 +31,7 @@ Michael Seifert, and Sebastian Hammer.
 #include <string.h>
 #include <time.h>
 #include "mud.h"
+#include "sha256.h"
 
 extern int top_exit;
 
@@ -47,7 +48,7 @@ void do_buyhome( CHAR_DATA * ch, char *argument )
 
    if( ch->plr_home != NULL )
    {
-      send_to_char( "&RYou already have a home!\n\r&w", ch );
+      send_to_char( "&RYou already have a home!\r\n&w", ch );
       return;
    }
 
@@ -57,27 +58,27 @@ void do_buyhome( CHAR_DATA * ch, char *argument )
    {
       if( room->area == pArea )
       {
-         send_to_char( "&RThis area isn't installed yet!\n\r&w", ch );
+         send_to_char( "&RThis area isn't installed yet!\r\n&w", ch );
          return;
       }
    }
 
    if( !IS_SET( room->room_flags, ROOM_EMPTY_HOME ) )
    {
-      send_to_char( "&RThis room isn't for sale!\n\r&w", ch );
+      send_to_char( "&RThis room isn't for sale!\r\n&w", ch );
       return;
    }
 
    if( ch->gold < 25000 )
    {
-      send_to_char( "&RThis room costs 25000 credits you don't have enough!\n\r&w", ch );
+      send_to_char( "&RThis room costs 25000 credits you don't have enough!\r\n&w", ch );
       return;
    }
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Set the room name.  A very brief single line room description.\n\r", ch );
-      send_to_char( "Usage: Buyhome <Room Name>\n\r", ch );
+      send_to_char( "Set the room name.  A very brief single line room description.\r\n", ch );
+      send_to_char( "Usage: Buyhome <Room Name>\r\n", ch );
       return;
    }
 
@@ -94,7 +95,7 @@ void do_buyhome( CHAR_DATA * ch, char *argument )
    ch->plr_home = room;
    do_save( ch, "" );
 
-   send_to_char( "&GYou buy your home for 25000 credits.\n\r", ch );
+   send_to_char( "&GYou buy your home for 25000 credits.\r\n", ch );
 }
 
 void do_sellhome( CHAR_DATA * ch, char *argument )
@@ -112,7 +113,7 @@ void do_sellhome( CHAR_DATA * ch, char *argument )
 
    if( ch->plr_home != room )
    {
-      send_to_char( "&RYou don't own this place!\n\r&w", ch );
+      send_to_char( "&RYou don't own this place!\r\n&w", ch );
       return;
    }
 
@@ -120,14 +121,14 @@ void do_sellhome( CHAR_DATA * ch, char *argument )
    {
       if( room->area == pArea )
       {
-         send_to_char( "&RThis area isn't installed yet!\n\r&w", ch );
+         send_to_char( "&RThis area isn't installed yet!\r\n&w", ch );
          return;
       }
    }
 
    if( !IS_SET( room->room_flags, ROOM_PLR_HOME ) )
    {
-      send_to_char( "&RThis room isn't owned!\n\r&w", ch );
+      send_to_char( "&RThis room isn't owned!\r\n&w", ch );
       return;
    }
 
@@ -142,7 +143,7 @@ void do_sellhome( CHAR_DATA * ch, char *argument )
    ch->plr_home = NULL;
    do_save( ch, "" );
 
-   send_to_char( "&GYou sell your home for 10000 credits.\n\r", ch );
+   send_to_char( "&GYou sell your home for 10000 credits.\r\n", ch );
 
 }
 
@@ -160,19 +161,19 @@ void do_clone( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) )
    {
-      ch_printf( ch, "Yeah right!\n\r" );
+      ch_printf( ch, "Yeah right!\r\n" );
       return;
    }
 
    if( ch->in_room->vnum != 10001 && ch->in_room->vnum != 1233 )
    {
-      ch_printf( ch, "You can't do that here!\n\r" );
+      ch_printf( ch, "You can't do that here!\r\n" );
       return;
    }
 
    if( IS_DROID( ch ) )
    {
-      ch_printf( ch, "Droids don't clone, they &W&RBackup&w&W!\n\r" );
+      ch_printf( ch, "Droids don't clone, they &W&RBackup&w&W!\r\n" );
       return;
    }
 
@@ -181,14 +182,14 @@ void do_clone( CHAR_DATA * ch, char *argument )
 
    if( ch->rppoints < 4 )
    {
-      ch_printf( ch, "Cloning costs 4 RP Points. You don't have enough.\n\rHelp rppoints for more information." );
+      ch_printf( ch, "Cloning costs 4 RP Points. You don't have enough.\r\nHelp rppoints for more information." );
       return;
    }
    else
    {
       ch->rppoints -= 4;
 
-      ch_printf( ch, "You are escorted into a small room.\n\r\n\r" );
+      ch_printf( ch, "You are escorted into a small room.\r\n\r\n" );
    }
 
    if( !secondroom )
@@ -232,16 +233,16 @@ void do_clone( CHAR_DATA * ch, char *argument )
       if( ch->pcdata->bestowments )
       {
          strcpy( bestowments, ch->pcdata->bestowments );
-         STRFREE( ch->pcdata->bestowments );
-         ch->pcdata->bestowments = STRALLOC( "" );
+         DISPOSE( ch->pcdata->bestowments );
+         ch->pcdata->bestowments = str_dup( "" );
       }
       save_clone( ch );
       STRFREE( ch->pcdata->clan_name );
       ch->pcdata->clan_name = STRALLOC( clanname );
       if( bestowments[0] != '\0' )
       {
-         STRFREE( ch->pcdata->bestowments );
-         ch->pcdata->bestowments = STRALLOC( bestowments );
+         DISPOSE( ch->pcdata->bestowments );
+         ch->pcdata->bestowments = str_dup( bestowments );
       }
    }
    else
@@ -267,9 +268,9 @@ void do_clone( CHAR_DATA * ch, char *argument )
    }
    do_look( ch, "" );
 
-   ch_printf( ch, "\n\r&WA small tissue sample is taken from your arm.\n\r" );
-   ch_printf( ch, "&ROuch!\n\r\n\r" );
-   ch_printf( ch, "&WYou have been succesfully cloned.\n\r" );
+   ch_printf( ch, "\r\n&WA small tissue sample is taken from your arm.\r\n" );
+   ch_printf( ch, "&ROuch!\r\n\r\n" );
+   ch_printf( ch, "&WYou have been succesfully cloned.\r\n" );
 
    ch->hit--;
 }
@@ -287,19 +288,19 @@ void do_backup( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) )
    {
-      ch_printf( ch, "Yeah right!\n\r" );
+      ch_printf( ch, "Yeah right!\r\n" );
       return;
    }
 
    if( ch->in_room->vnum != 10001 && ch->in_room->vnum != 1233 )
    {
-      ch_printf( ch, "You can't do that here!\n\r" );
+      ch_printf( ch, "You can't do that here!\r\n" );
       return;
    }
 
    if( !IS_DROID( ch ) )
    {
-      ch_printf( ch, "Only droids need to backup their software!\n\r" );
+      ch_printf( ch, "Only droids need to backup their software!\r\n" );
       return;
    }
 
@@ -308,13 +309,13 @@ void do_backup( CHAR_DATA * ch, char *argument )
 
    if( ch->rppoints < 4 )
    {
-      ch_printf( ch, "Backing up costs 4 RP Points. You don't have enough.\n\rHelp rppoints for more information." );
+      ch_printf( ch, "Backing up costs 4 RP Points. You don't have enough.\r\nHelp rppoints for more information." );
       return;
    }
    else
    {
       ch->rppoints -= 4;
-      ch_printf( ch, "You are escorted into a small room.\n\r\n\r" );
+      ch_printf( ch, "You are escorted into a small room.\r\n\r\n" );
    }
 
    if( !secondroom )
@@ -384,9 +385,9 @@ void do_backup( CHAR_DATA * ch, char *argument )
    }
    do_look( ch, "" );
 
-   ch_printf( ch, "\n\r&WYou stick your head interface into a wall socket.\n\r" );
-   ch_printf( ch, "&RA slight whirr in your brain feels a bit uncomfortable...\n\r\n\r" );
-   ch_printf( ch, "&WYour data has been moved to a disaster recovery facility.\n\r" );
+   ch_printf( ch, "\r\n&WYou stick your head interface into a wall socket.\r\n" );
+   ch_printf( ch, "&RA slight whirr in your brain feels a bit uncomfortable...\r\n\r\n" );
+   ch_printf( ch, "&WYour data has been moved to a disaster recovery facility.\r\n" );
 
 }
 
@@ -396,7 +397,7 @@ void do_arm( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) || !ch->pcdata )
    {
-      ch_printf( ch, "You have no idea how to do that.\n\r" );
+      ch_printf( ch, "You have no idea how to do that.\r\n" );
       return;
    }
 
@@ -404,7 +405,7 @@ void do_arm( CHAR_DATA * ch, char *argument )
 
    if( !obj || obj->item_type != ITEM_GRENADE )
    {
-      ch_printf( ch, "You don't seem to be holding a grenade!\n\r" );
+      ch_printf( ch, "You don't seem to be holding a grenade!\r\n" );
       return;
    }
 
@@ -413,7 +414,7 @@ void do_arm( CHAR_DATA * ch, char *argument )
       STRFREE( obj->armed_by );
    obj->armed_by = STRALLOC( ch->name );
 
-   ch_printf( ch, "You arm %s.\n\r", obj->short_descr );
+   ch_printf( ch, "You arm %s.\r\n", obj->short_descr );
    act( AT_PLAIN, "$n arms $p.", ch, obj, NULL, TO_ROOM );
 
 }
@@ -441,7 +442,7 @@ void do_ammo( CHAR_DATA * ch, char *argument )
 
    if( !wield || wield->item_type != ITEM_WEAPON )
    {
-      send_to_char( "&RYou don't seem to be holding a weapon.\n\r&w", ch );
+      send_to_char( "&RYou don't seem to be holding a weapon.\r\n&w", ch );
       return;
    }
 
@@ -450,7 +451,7 @@ void do_ammo( CHAR_DATA * ch, char *argument )
 
       if( obj && obj->item_type != ITEM_AMMO )
       {
-         send_to_char( "&RYour hands are too full to reload your blaster.\n\r&w", ch );
+         send_to_char( "&RYour hands are too full to reload your blaster.\r\n&w", ch );
          return;
       }
 
@@ -489,12 +490,12 @@ void do_ammo( CHAR_DATA * ch, char *argument )
 
       if( !checkammo )
       {
-         send_to_char( "&RYou don't seem to have any ammo to reload your blaster with.\n\r&w", ch );
+         send_to_char( "&RYou don't seem to have any ammo to reload your blaster with.\r\n&w", ch );
          return;
       }
 
       ch_printf( ch,
-                 "You replace your ammunition cartridge.\n\rYour blaster is charged with %d shots at high power to %d shots on low.\n\r",
+                 "You replace your ammunition cartridge.\r\nYour blaster is charged with %d shots at high power to %d shots on low.\r\n",
                  charge / 5, charge );
       act( AT_PLAIN, "$n replaces the ammunition cell in $p.", ch, wield, NULL, TO_ROOM );
 
@@ -504,7 +505,7 @@ void do_ammo( CHAR_DATA * ch, char *argument )
 
       if( obj && obj->item_type != ITEM_BOLT )
       {
-         send_to_char( "&RYour hands are too full to reload your bowcaster.\n\r&w", ch );
+         send_to_char( "&RYour hands are too full to reload your bowcaster.\r\n&w", ch );
          return;
       }
 
@@ -543,11 +544,11 @@ void do_ammo( CHAR_DATA * ch, char *argument )
 
       if( !checkammo )
       {
-         send_to_char( "&RYou don't seem to have any quarrels to reload your bowcaster with.\n\r&w", ch );
+         send_to_char( "&RYou don't seem to have any quarrels to reload your bowcaster with.\r\n&w", ch );
          return;
       }
 
-      ch_printf( ch, "You replace your quarrel pack.\n\rYour bowcaster is charged with %d energy bolts.\n\r", charge );
+      ch_printf( ch, "You replace your quarrel pack.\r\nYour bowcaster is charged with %d energy bolts.\r\n", charge );
       act( AT_PLAIN, "$n replaces the quarrels in $p.", ch, wield, NULL, TO_ROOM );
 
    }
@@ -556,7 +557,7 @@ void do_ammo( CHAR_DATA * ch, char *argument )
 
       if( obj && obj->item_type != ITEM_BATTERY )
       {
-         send_to_char( "&RYour hands are too full to replace the power cell.\n\r&w", ch );
+         send_to_char( "&RYour hands are too full to replace the power cell.\r\n&w", ch );
          return;
       }
 
@@ -585,29 +586,29 @@ void do_ammo( CHAR_DATA * ch, char *argument )
 
       if( !checkammo )
       {
-         send_to_char( "&RYou don't seem to have a power cell.\n\r&w", ch );
+         send_to_char( "&RYou don't seem to have a power cell.\r\n&w", ch );
          return;
       }
 
       if( wield->value[3] == WEAPON_LIGHTSABER )
       {
-         ch_printf( ch, "You replace your power cell.\n\rYour lightsaber is charged to %d/%d units.\n\r", charge, charge );
+         ch_printf( ch, "You replace your power cell.\r\nYour lightsaber is charged to %d/%d units.\r\n", charge, charge );
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
          act( AT_PLAIN, "$p ignites with a bright glow.", ch, wield, NULL, TO_ROOM );
       }
       else if( wield->value[3] == WEAPON_VIBRO_BLADE )
       {
-         ch_printf( ch, "You replace your power cell.\n\rYour vibro-blade is charged to %d/%d units.\n\r", charge, charge );
+         ch_printf( ch, "You replace your power cell.\r\nYour vibro-blade is charged to %d/%d units.\r\n", charge, charge );
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
       }
       else if( wield->value[3] == WEAPON_FORCE_PIKE )
       {
-         ch_printf( ch, "You replace your power cell.\n\rYour force-pike is charged to %d/%d units.\n\r", charge, charge );
+         ch_printf( ch, "You replace your power cell.\r\nYour force-pike is charged to %d/%d units.\r\n", charge, charge );
          act( AT_PLAIN, "$n replaces the power cell in $p.", ch, wield, NULL, TO_ROOM );
       }
       else
       {
-         ch_printf( ch, "You feel very foolish.\n\r" );
+         ch_printf( ch, "You feel very foolish.\r\n" );
          act( AT_PLAIN, "$n tries to jam a power cell into $p.", ch, wield, NULL, TO_ROOM );
       }
    }
@@ -630,13 +631,13 @@ void do_setblaster( CHAR_DATA * ch, char *argument )
 
    if( !wield && !wield2 )
    {
-      send_to_char( "&RYou don't seem to be wielding a blaster.\n\r&w", ch );
+      send_to_char( "&RYou don't seem to be wielding a blaster.\r\n&w", ch );
       return;
    }
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "&RUsage: setblaster <full|high|normal|half|low|stun>\n\r&w", ch );
+      send_to_char( "&RUsage: setblaster <full|high|normal|half|low|stun>\r\n&w", ch );
       return;
    }
 
@@ -651,12 +652,12 @@ void do_setblaster( CHAR_DATA * ch, char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_FULL;
-         send_to_char( "&YWielded blaster set to FULL Power\n\r&w", ch );
+         send_to_char( "&YWielded blaster set to FULL Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_FULL;
-         send_to_char( "&YDual wielded blaster set to FULL Power\n\r&w", ch );
+         send_to_char( "&YDual wielded blaster set to FULL Power\r\n&w", ch );
       }
       return;
    }
@@ -665,12 +666,12 @@ void do_setblaster( CHAR_DATA * ch, char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_HIGH;
-         send_to_char( "&YWielded blaster set to HIGH Power\n\r&w", ch );
+         send_to_char( "&YWielded blaster set to HIGH Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_HIGH;
-         send_to_char( "&YDual wielded blaster set to HIGH Power\n\r&w", ch );
+         send_to_char( "&YDual wielded blaster set to HIGH Power\r\n&w", ch );
       }
       return;
    }
@@ -679,12 +680,12 @@ void do_setblaster( CHAR_DATA * ch, char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_NORMAL;
-         send_to_char( "&YWielded blaster set to NORMAL Power\n\r&w", ch );
+         send_to_char( "&YWielded blaster set to NORMAL Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_NORMAL;
-         send_to_char( "&YDual wielded blaster set to NORMAL Power\n\r&w", ch );
+         send_to_char( "&YDual wielded blaster set to NORMAL Power\r\n&w", ch );
       }
       return;
    }
@@ -693,12 +694,12 @@ void do_setblaster( CHAR_DATA * ch, char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_HALF;
-         send_to_char( "&YWielded blaster set to HALF Power\n\r&w", ch );
+         send_to_char( "&YWielded blaster set to HALF Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_HALF;
-         send_to_char( "&YDual wielded blaster set to HALF Power\n\r&w", ch );
+         send_to_char( "&YDual wielded blaster set to HALF Power\r\n&w", ch );
       }
       return;
    }
@@ -707,12 +708,12 @@ void do_setblaster( CHAR_DATA * ch, char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_LOW;
-         send_to_char( "&YWielded blaster set to LOW Power\n\r&w", ch );
+         send_to_char( "&YWielded blaster set to LOW Power\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_LOW;
-         send_to_char( "&YDual wielded blaster set to LOW Power\n\r&w", ch );
+         send_to_char( "&YDual wielded blaster set to LOW Power\r\n&w", ch );
       }
       return;
    }
@@ -721,12 +722,12 @@ void do_setblaster( CHAR_DATA * ch, char *argument )
       if( wield )
       {
          wield->blaster_setting = BLASTER_STUN;
-         send_to_char( "&YWielded blaster set to STUN\n\r&w", ch );
+         send_to_char( "&YWielded blaster set to STUN\r\n&w", ch );
       }
       if( wield2 )
       {
          wield2->blaster_setting = BLASTER_STUN;
-         send_to_char( "&YDual wielded blaster set to STUN\n\r&w", ch );
+         send_to_char( "&YDual wielded blaster set to STUN\r\n&w", ch );
       }
       return;
    }
@@ -752,7 +753,7 @@ void do_use( CHAR_DATA * ch, char *argument )
 
    if( argd[0] == '\0' )
    {
-      send_to_char( "Use what?\n\r", ch );
+      send_to_char( "Use what?\r\n", ch );
       return;
    }
 
@@ -770,7 +771,7 @@ void do_use( CHAR_DATA * ch, char *argument )
 
    if( device->item_type != ITEM_DEVICE )
    {
-      send_to_char( "You can't figure out what it is your supposed to do with it.\n\r", ch );
+      send_to_char( "You can't figure out what it is your supposed to do with it.\r\n", ch );
       return;
    }
 
@@ -789,7 +790,7 @@ void do_use( CHAR_DATA * ch, char *argument )
       }
       else
       {
-         send_to_char( "Use on whom or what?\n\r", ch );
+         send_to_char( "Use on whom or what?\r\n", ch );
          return;
       }
    }
@@ -797,7 +798,7 @@ void do_use( CHAR_DATA * ch, char *argument )
    {
       if( ( victim = get_char_room( ch, arg ) ) == NULL && ( obj = get_obj_here( ch, arg ) ) == NULL )
       {
-         send_to_char( "You can't find your target.\n\r", ch );
+         send_to_char( "You can't find your target.\r\n", ch );
          return;
       }
    }
@@ -845,7 +846,7 @@ void do_takedrug( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' || !str_cmp( argument, "" ) )
    {
-      send_to_char( "Use what?\n\r", ch );
+      send_to_char( "Use what?\r\n", ch );
       return;
    }
 
@@ -854,7 +855,7 @@ void do_takedrug( CHAR_DATA * ch, char *argument )
 
    if( obj->item_type == ITEM_DEVICE )
    {
-      send_to_char( "Try holding it first.\n\r", ch );
+      send_to_char( "Try holding it first.\r\n", ch );
       return;
    }
 
@@ -993,8 +994,8 @@ void jedi_bonus( CHAR_DATA * ch )
    if( number_range( 1, 100 ) == 1 )
    {
       ch->max_mana++;
-      send_to_char( "&YYou are wise in your use of the force.\n\r", ch );
-      send_to_char( "You feel a little stronger in your wisdom.&w\n\r", ch );
+      send_to_char( "&YYou are wise in your use of the force.\r\n", ch );
+      send_to_char( "You feel a little stronger in your wisdom.&w\r\n", ch );
    }
 }
 
@@ -1006,7 +1007,7 @@ void sith_penalty( CHAR_DATA * ch )
       if( ch->max_hit > 100 )
          ch->max_hit--;
       ch->hit--;
-      send_to_char( "&zYour body grows weaker as your strength in the dark side grows.&w\n\r", ch );
+      send_to_char( "&zYour body grows weaker as your strength in the dark side grows.&w\r\n", ch );
    }
 }
 
@@ -1035,7 +1036,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
 
    if( arg1[0] == '\0' )
    {
-      send_to_char( "Fill what?\n\r", ch );
+      send_to_char( "Fill what?\r\n", ch );
       return;
    }
 
@@ -1044,7 +1045,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
 
    if( ( obj = get_obj_carry( ch, arg1 ) ) == NULL )
    {
-      send_to_char( "You do not have that item.\n\r", ch );
+      send_to_char( "You do not have that item.\r\n", ch );
       return;
    }
    else
@@ -1055,7 +1056,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
    {
       default:
          act( AT_ACTION, "$n tries to fill $p... (Don't ask me how)", ch, obj, NULL, TO_ROOM );
-         send_to_char( "You cannot fill that.\n\r", ch );
+         send_to_char( "You cannot fill that.\r\n", ch );
          return;
          /*
           * place all fillable item types here 
@@ -1089,7 +1090,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
       }
       if( get_obj_weight( obj ) / obj->count >= obj->value[0] )
       {
-         send_to_char( "It's already full as it can be.\n\r", ch );
+         send_to_char( "It's already full as it can be.\r\n", ch );
          return;
       }
    }
@@ -1098,14 +1099,14 @@ void do_fill( CHAR_DATA * ch, char *argument )
       diff = obj->value[0] - obj->value[1];
       if( diff < 1 || obj->value[1] >= obj->value[0] )
       {
-         send_to_char( "It's already full as it can be.\n\r", ch );
+         send_to_char( "It's already full as it can be.\r\n", ch );
          return;
       }
    }
 
    if( dest_item == ITEM_PIPE && IS_SET( obj->value[3], PIPE_FULLOFASH ) )
    {
-      send_to_char( "It's full of ashes, and needs to be emptied first.\n\r", ch );
+      send_to_char( "It's full of ashes, and needs to be emptied first.\r\n", ch );
       return;
    }
 
@@ -1127,7 +1128,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
       {
          if( ( source = get_obj_carry( ch, arg2 ) ) == NULL )
          {
-            send_to_char( "You don't have that item.\n\r", ch );
+            send_to_char( "You don't have that item.\r\n", ch );
             return;
          }
          if( source->item_type != src_item1 && source->item_type != src_item2
@@ -1141,7 +1142,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
       {
          if( ( source = get_obj_here( ch, arg2 ) ) == NULL )
          {
-            send_to_char( "You cannot find that item.\n\r", ch );
+            send_to_char( "You cannot find that item.\r\n", ch );
             return;
          }
       }
@@ -1151,7 +1152,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
 
    if( !source && dest_item == ITEM_PIPE )
    {
-      send_to_char( "Fill it with what?\n\r", ch );
+      send_to_char( "Fill it with what?\r\n", ch );
       return;
    }
 
@@ -1197,19 +1198,19 @@ void do_fill( CHAR_DATA * ch, char *argument )
          switch ( src_item1 )
          {
             default:
-               send_to_char( "There is nothing appropriate here!\n\r", ch );
+               send_to_char( "There is nothing appropriate here!\r\n", ch );
                return;
             case ITEM_FOUNTAIN:
-               send_to_char( "There is no fountain or pool here!\n\r", ch );
+               send_to_char( "There is no fountain or pool here!\r\n", ch );
                return;
             case ITEM_BLOOD:
-               send_to_char( "There is no blood pool here!\n\r", ch );
+               send_to_char( "There is no blood pool here!\r\n", ch );
                return;
             case ITEM_HERB_CON:
-               send_to_char( "There are no herbs here!\n\r", ch );
+               send_to_char( "There are no herbs here!\r\n", ch );
                return;
             case ITEM_HERB:
-               send_to_char( "You cannot find any smoking herbs.\n\r", ch );
+               send_to_char( "You cannot find any smoking herbs.\r\n", ch );
                return;
          }
       }
@@ -1231,7 +1232,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
 
       if( source == obj )
       {
-         send_to_char( "You can't fill something with itself!\n\r", ch );
+         send_to_char( "You can't fill something with itself!\r\n", ch );
          return;
       }
 
@@ -1244,7 +1245,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
                 || ch->carry_weight + get_obj_weight( source ) > can_carry_w( ch )
                 || ( get_obj_weight( source ) + get_obj_weight( obj ) / obj->count ) > obj->value[0] )
             {
-               send_to_char( "You can't do that.\n\r", ch );
+               send_to_char( "You can't do that.\r\n", ch );
                return;
             }
             separate_obj( obj );
@@ -1254,12 +1255,12 @@ void do_fill( CHAR_DATA * ch, char *argument )
             obj_to_obj( source, obj );
             break;
          case ITEM_MONEY:
-            send_to_char( "You can't do that... yet.\n\r", ch );
+            send_to_char( "You can't do that... yet.\r\n", ch );
             break;
          case ITEM_CORPSE_PC:
             if( IS_NPC( ch ) )
             {
-               send_to_char( "You can't do that.\n\r", ch );
+               send_to_char( "You can't do that.\r\n", ch );
                return;
             }
 
@@ -1284,7 +1285,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
                }
                if( !fGroup )
                {
-                  send_to_char( "That's someone else's corpse.\n\r", ch );
+                  send_to_char( "That's someone else's corpse.\r\n", ch );
                   return;
                }
             }
@@ -1300,7 +1301,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
          case ITEM_CORPSE_NPC:
             if( ( otmp = source->first_content ) == NULL )
             {
-               send_to_char( "It's empty.\n\r", ch );
+               send_to_char( "It's empty.\r\n", ch );
                return;
             }
             separate_obj( obj );
@@ -1324,7 +1325,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
                act( AT_ACTION, "$n fills $p from $P.", ch, obj, source, TO_ROOM );
             }
             else
-               send_to_char( "There is nothing appropriate in there.\n\r", ch );
+               send_to_char( "There is nothing appropriate in there.\r\n", ch );
             break;
       }
       return;
@@ -1332,7 +1333,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
 
    if( source->value[1] < 1 )
    {
-      send_to_char( "There's none left!\n\r", ch );
+      send_to_char( "There's none left!\r\n", ch );
       return;
    }
    if( source->count > 1 && source->item_type != ITEM_FOUNTAIN )
@@ -1343,12 +1344,12 @@ void do_fill( CHAR_DATA * ch, char *argument )
    {
       default:
          bug( "do_fill: got bad item type: %d", source->item_type );
-         send_to_char( "Something went wrong...\n\r", ch );
+         send_to_char( "Something went wrong...\r\n", ch );
          return;
       case ITEM_FOUNTAIN:
          if( obj->value[1] != 0 && obj->value[2] != 0 )
          {
-            send_to_char( "There is already another liquid in it.\n\r", ch );
+            send_to_char( "There is already another liquid in it.\r\n", ch );
             return;
          }
          obj->value[2] = 0;
@@ -1359,7 +1360,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
       case ITEM_BLOOD:
          if( obj->value[1] != 0 && obj->value[2] != 13 )
          {
-            send_to_char( "There is already another liquid in it.\n\r", ch );
+            send_to_char( "There is already another liquid in it.\r\n", ch );
             return;
          }
          obj->value[2] = 13;
@@ -1377,7 +1378,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
       case ITEM_HERB:
          if( obj->value[1] != 0 && obj->value[2] != source->value[2] )
          {
-            send_to_char( "There is already another type of herb in it.\n\r", ch );
+            send_to_char( "There is already another type of herb in it.\r\n", ch );
             return;
          }
          obj->value[2] = source->value[2];
@@ -1392,7 +1393,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
       case ITEM_HERB_CON:
          if( obj->value[1] != 0 && obj->value[2] != source->value[2] )
          {
-            send_to_char( "There is already another type of herb in it.\n\r", ch );
+            send_to_char( "There is already another type of herb in it.\r\n", ch );
             return;
          }
          obj->value[2] = source->value[2];
@@ -1406,7 +1407,7 @@ void do_fill( CHAR_DATA * ch, char *argument )
       case ITEM_DRINK_CON:
          if( obj->value[1] != 0 && obj->value[2] != source->value[2] )
          {
-            send_to_char( "There is already another liquid in it.\n\r", ch );
+            send_to_char( "There is already another liquid in it.\r\n", ch );
             return;
          }
          obj->value[2] = source->value[2];
@@ -1442,7 +1443,7 @@ void do_drink( CHAR_DATA * ch, char *argument )
 
       if( !obj )
       {
-         send_to_char( "Drink what?\n\r", ch );
+         send_to_char( "Drink what?\r\n", ch );
          return;
       }
    }
@@ -1450,7 +1451,7 @@ void do_drink( CHAR_DATA * ch, char *argument )
    {
       if( ( obj = get_obj_here( ch, arg ) ) == NULL )
       {
-         send_to_char( "You can't find it.\n\r", ch );
+         send_to_char( "You can't find it.\r\n", ch );
          return;
       }
    }
@@ -1460,7 +1461,7 @@ void do_drink( CHAR_DATA * ch, char *argument )
 
    if( !IS_NPC( ch ) && ch->pcdata->condition[COND_DRUNK] > 40 )
    {
-      send_to_char( "You fail to reach your mouth.  *Hic*\n\r", ch );
+      send_to_char( "You fail to reach your mouth.  *Hic*\r\n", ch );
       return;
    }
 
@@ -1483,14 +1484,14 @@ void do_drink( CHAR_DATA * ch, char *argument )
          if( obj->carried_by == ch )
             do_quaff( ch, obj->name );
          else
-            send_to_char( "You're not carrying that.\n\r", ch );
+            send_to_char( "You're not carrying that.\r\n", ch );
          break;
 
       case ITEM_FOUNTAIN:
          if( !oprog_use_trigger( ch, obj, NULL, NULL, NULL ) )
          {
             act( AT_ACTION, "$n drinks from the fountain.", ch, NULL, NULL, TO_ROOM );
-            send_to_char( "You take a long thirst quenching drink.\n\r", ch );
+            send_to_char( "You take a long thirst quenching drink.\r\n", ch );
          }
 
          if( !IS_NPC( ch ) )
@@ -1500,7 +1501,7 @@ void do_drink( CHAR_DATA * ch, char *argument )
       case ITEM_DRINK_CON:
          if( obj->value[1] <= 0 )
          {
-            send_to_char( "It is already empty.\n\r", ch );
+            send_to_char( "It is already empty.\r\n", ch );
             return;
          }
 
@@ -1529,25 +1530,25 @@ void do_drink( CHAR_DATA * ch, char *argument )
          if( !IS_NPC( ch ) )
          {
             if( ch->pcdata->condition[COND_DRUNK] > 24 )
-               send_to_char( "You feel quite sloshed.\n\r", ch );
+               send_to_char( "You feel quite sloshed.\r\n", ch );
             else if( ch->pcdata->condition[COND_DRUNK] > 18 )
-               send_to_char( "You feel very drunk.\n\r", ch );
+               send_to_char( "You feel very drunk.\r\n", ch );
             else if( ch->pcdata->condition[COND_DRUNK] > 12 )
-               send_to_char( "You feel drunk.\n\r", ch );
+               send_to_char( "You feel drunk.\r\n", ch );
             else if( ch->pcdata->condition[COND_DRUNK] > 8 )
-               send_to_char( "You feel a little drunk.\n\r", ch );
+               send_to_char( "You feel a little drunk.\r\n", ch );
             else if( ch->pcdata->condition[COND_DRUNK] > 5 )
-               send_to_char( "You feel light headed.\n\r", ch );
+               send_to_char( "You feel light headed.\r\n", ch );
 
             if( ch->pcdata->condition[COND_FULL] > 40 )
-               send_to_char( "You are full.\n\r", ch );
+               send_to_char( "You are full.\r\n", ch );
 
             if( ch->pcdata->condition[COND_THIRST] > 40 )
-               send_to_char( "You feel bloated.\n\r", ch );
+               send_to_char( "You feel bloated.\r\n", ch );
             else if( ch->pcdata->condition[COND_THIRST] > 36 )
-               send_to_char( "Your stomach is sloshing around.\n\r", ch );
+               send_to_char( "Your stomach is sloshing around.\r\n", ch );
             else if( ch->pcdata->condition[COND_THIRST] > 30 )
-               send_to_char( "You do not feel thirsty.\n\r", ch );
+               send_to_char( "You do not feel thirsty.\r\n", ch );
          }
 
          if( obj->value[3] )
@@ -1583,7 +1584,7 @@ void do_eat( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Eat what?\n\r", ch );
+      send_to_char( "Eat what?\r\n", ch );
       return;
    }
 
@@ -1605,7 +1606,7 @@ void do_eat( CHAR_DATA * ch, char *argument )
 
       if( !IS_NPC( ch ) && ch->pcdata->condition[COND_FULL] > 40 )
       {
-         send_to_char( "You are too full to eat more.\n\r", ch );
+         send_to_char( "You are too full to eat more.\r\n", ch );
          return;
       }
    }
@@ -1649,9 +1650,9 @@ void do_eat( CHAR_DATA * ch, char *argument )
             condition = ch->pcdata->condition[COND_FULL];
             gain_condition( ch, COND_FULL, ( obj->value[0] * foodcond ) / 10 );
             if( condition <= 1 && ch->pcdata->condition[COND_FULL] > 1 )
-               send_to_char( "You are no longer hungry.\n\r", ch );
+               send_to_char( "You are no longer hungry.\r\n", ch );
             else if( ch->pcdata->condition[COND_FULL] > 40 )
-               send_to_char( "You are full.\n\r", ch );
+               send_to_char( "You are full.\r\n", ch );
          }
 
          if( obj->value[3] != 0 || ( foodcond < 4 && number_range( 0, foodcond + 1 ) == 0 ) )
@@ -1694,9 +1695,9 @@ void do_eat( CHAR_DATA * ch, char *argument )
             condition = ch->pcdata->condition[COND_FULL];
             gain_condition( ch, COND_FULL, obj->value[4] );
             if( condition <= 1 && ch->pcdata->condition[COND_FULL] > 1 )
-               send_to_char( "You are no longer hungry.\n\r", ch );
+               send_to_char( "You are no longer hungry.\r\n", ch );
             else if( ch->pcdata->condition[COND_FULL] > 40 )
-               send_to_char( "You are full.\n\r", ch );
+               send_to_char( "You are full.\r\n", ch );
          }
          retcode = obj_cast_spell( obj->value[1], obj->value[0], ch, ch, NULL );
          if( retcode == rNONE )
@@ -1719,7 +1720,7 @@ void do_quaff( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' || !str_cmp( argument, "" ) )
    {
-      send_to_char( "Quaff what?\n\r", ch );
+      send_to_char( "Quaff what?\r\n", ch );
       return;
    }
 
@@ -1743,7 +1744,7 @@ void do_quaff( CHAR_DATA * ch, char *argument )
     */
    if( !IS_NPC( ch ) && ( ch->pcdata->condition[COND_FULL] >= 48 || ch->pcdata->condition[COND_THIRST] >= 48 ) )
    {
-      send_to_char( "Your stomach cannot contain any more.\n\r", ch );
+      send_to_char( "Your stomach cannot contain any more.\r\n", ch );
       return;
    }
 
@@ -1800,7 +1801,7 @@ void do_recite( CHAR_DATA * ch, char *argument )
 
    if( arg1[0] == '\0' )
    {
-      send_to_char( "Activate what?\n\r", ch );
+      send_to_char( "Activate what?\r\n", ch );
       return;
    }
 
@@ -1809,7 +1810,7 @@ void do_recite( CHAR_DATA * ch, char *argument )
 
    if( ( scroll = get_obj_carry( ch, arg1 ) ) == NULL )
    {
-      send_to_char( "You do not have that item.\n\r", ch );
+      send_to_char( "You do not have that item.\r\n", ch );
       return;
    }
 
@@ -1822,13 +1823,13 @@ void do_recite( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) && ( scroll->pIndexData->vnum == OBJ_VNUM_SCROLL_SCRIBING ) )
    {
-      send_to_char( "As a mob, this dialect is foreign to you.\n\r", ch );
+      send_to_char( "As a mob, this dialect is foreign to you.\r\n", ch );
       return;
    }
 
    if( ( scroll->pIndexData->vnum == OBJ_VNUM_SCROLL_SCRIBING ) && ( ch->top_level + 10 < scroll->value[0] ) )
    {
-      send_to_char( "This item is too complex for you to understand.\n\r", ch );
+      send_to_char( "This item is too complex for you to understand.\r\n", ch );
       return;
    }
 
@@ -1839,7 +1840,7 @@ void do_recite( CHAR_DATA * ch, char *argument )
    {
       if( ( victim = get_char_room( ch, arg2 ) ) == NULL && ( obj = get_obj_here( ch, arg2 ) ) == NULL )
       {
-         send_to_char( "You can't find it.\n\r", ch );
+         send_to_char( "You can't find it.\r\n", ch );
          return;
       }
    }
@@ -1863,7 +1864,6 @@ void do_recite( CHAR_DATA * ch, char *argument )
    return;
 }
 
-
 /*
  * Function to handle the state changing of a triggerobject (lever)  -Thoric
  */
@@ -1884,7 +1884,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
    switch ( obj->item_type )
    {
       default:
-         sprintf( buf, "You can't %s that!\n\r", pull ? "pull" : "push" );
+         sprintf( buf, "You can't %s that!\r\n", pull ? "pull" : "push" );
          send_to_char( buf, ch );
          return;
          break;
@@ -1893,14 +1893,14 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       case ITEM_PULLCHAIN:
          if( ( !pull && isup ) || ( pull && !isup ) )
          {
-            sprintf( buf, "It is already %s.\n\r", isup ? "up" : "down" );
+            sprintf( buf, "It is already %s.\r\n", isup ? "up" : "down" );
             send_to_char( buf, ch );
             return;
          }
       case ITEM_BUTTON:
          if( ( !pull && isup ) || ( pull & !isup ) )
          {
-            sprintf( buf, "It is already %s.\n\r", isup ? "in" : "out" );
+            sprintf( buf, "It is already %s.\r\n", isup ? "in" : "out" );
             send_to_char( buf, ch );
             return;
          }
@@ -1936,6 +1936,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       else
          SET_BIT( obj->value[0], TRIG_UP );
    }
+
    if( IS_SET( obj->value[0], TRIG_TELEPORT )
        || IS_SET( obj->value[0], TRIG_TELEPORTALL ) || IS_SET( obj->value[0], TRIG_TELEPORTPLUS ) )
    {
@@ -1976,10 +1977,157 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       randomize_exits( room, maxd );
       for( rch = room->first_person; rch; rch = rch->next_in_room )
       {
-         send_to_char( "You hear a loud rumbling sound.\n\r", rch );
-         send_to_char( "Something seems different...\n\r", rch );
+         send_to_char( "You hear a loud rumbling sound.\r\n", rch );
+         send_to_char( "Something seems different...\r\n", rch );
       }
    }
+
+   /* Death support added by Remcon */
+   if( IS_SET( obj->value[0], TRIG_DEATH ) )
+   {
+      /* Should we really send a message to the room? */
+      act( AT_DEAD, "$n falls prey to a terrible death!", ch, NULL, NULL, TO_ROOM );
+      act( AT_DEAD, "Oopsie... you're dead!\r\n", ch, NULL, NULL, TO_CHAR );
+      snprintf( buf, MAX_STRING_LENGTH, "%s hit a DEATH TRIGGER in room %d!", ch->name, ch->in_room->vnum );
+      log_string( buf );
+      to_channel( buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
+
+      /* Personaly I fiqured if we wanted it to be a full DT we could just have it send them into a DT. */
+      set_cur_char( ch );
+      raw_kill( ch, ch );
+
+      /* If you want it to be more like a room deathtrap use this instead */
+/*
+      if( is_npc( ch ) )
+         extract_char( ch, true );
+      else
+         extract_char( ch, false );
+*/
+      return;
+   }
+
+   /* Object loading added by Remcon */
+   if( IS_SET( obj->value[0], TRIG_OLOAD ) )
+   {
+      OBJ_INDEX_DATA *pObjIndex;
+      OBJ_DATA *tobj;
+
+      /* value[1] for the obj vnum */
+      if( !( pObjIndex = get_obj_index( obj->value[1] ) ) )
+      {
+         bug( "%s: obj points to invalid object vnum %d", __FUNCTION__, obj->value[1] );
+         return;
+      }
+      /* Set room to NULL before the check */
+      room = NULL;
+      /* value[2] for the room vnum to put the object in if there is one, 0 for giving it to char or current room */
+      if( obj->value[2] > 0 && !( room = get_room_index( obj->value[2] ) ) )
+      {
+         bug( "%s: obj points to invalid room vnum %d", __FUNCTION__, obj->value[2] );
+         return;
+      }
+      /* Uses value[3] for level */
+      if( !( tobj = create_object( pObjIndex, URANGE( 0, obj->value[3], MAX_LEVEL ) ) ) )
+      {
+         bug( "%s: obj couldnt create_obj vnum %d at level %d", __FUNCTION__, obj->value[1], obj->value[3] );
+         return;
+      }
+      if( room )
+         obj_to_room( tobj, room );
+      else
+      {
+         if( CAN_WEAR( obj, ITEM_TAKE ) )
+            obj_to_char( tobj, ch );
+         else
+            obj_to_room( tobj, ch->in_room );
+      }
+      return;
+   }
+
+   /* Mob loading added by Remcon */
+   if( IS_SET( obj->value[0], TRIG_MLOAD ) )
+   {
+      MOB_INDEX_DATA *pMobIndex;
+      CHAR_DATA *mob;
+
+      /* value[1] for the obj vnum */
+      if( !( pMobIndex = get_mob_index( obj->value[1] ) ) )
+      {
+         bug( "%s: obj points to invalid mob vnum %d", __FUNCTION__, obj->value[1] );
+         return;
+      }
+      /* Set room to current room before the check */
+      room = ch->in_room;
+      /* value[2] for the room vnum to put the object in if there is one, 0 for giving it to char or current room */
+      if( obj->value[2] > 0 && !( room = get_room_index( obj->value[2] ) ) )
+      {
+         bug( "%s: obj points to invalid room vnum %d", __FUNCTION__, obj->value[2] );
+         return;
+      }
+      if( !( mob = create_mobile( pMobIndex ) ) )
+      {
+         bug( "%s: obj couldnt create_mobile vnum %d", __FUNCTION__, obj->value[1] );
+         return;
+      }
+      char_to_room( mob, room );
+      return;
+   }
+
+   /* Spell casting support added by Remcon */
+   if( IS_SET( obj->value[0], TRIG_CAST ) )
+   {
+      if( obj->value[1] <= 0 || !IS_VALID_SN( obj->value[1] ) )
+      {
+         bug( "%s: obj points to invalid sn [%d]", __FUNCTION__, obj->value[1] );
+         return;
+      }
+      obj_cast_spell( obj->value[1], URANGE( 1, ( obj->value[2] > 0 ) ? obj->value[2] : ch->top_level, MAX_LEVEL ), ch, ch, NULL );
+      return;
+   }
+
+   /* Container support added by Remcon */
+   if( IS_SET( obj->value[0], TRIG_CONTAINER ) )
+   {
+      OBJ_DATA *container = NULL;
+
+      room = get_room_index( obj->value[1] );
+      if( !room )
+         room = obj->in_room;
+      if( !room )
+      {
+         bug( "%s: obj points to invalid room %d", __FUNCTION__, obj->value[1] );
+         return;
+      }
+
+      for( container = ch->in_room->first_content; container; container = container->next_content )
+      {
+         if( container->pIndexData->vnum == obj->value[2] )
+            break;
+      }
+      if( !container )
+      {
+         bug( "%s: obj points to a container [%d] thats not where it should be?", __FUNCTION__, obj->value[2] );
+         return;
+      }
+      if( container->item_type != ITEM_CONTAINER )
+      {
+         bug( "%s: obj points to object [%d], but it isn't a container.", __FUNCTION__, obj->value[2] );
+         return;
+      }
+      /* Could toss in some messages. Limit how it is handled etc... I'll leave that to each one to do */
+      /* Started to use TRIG_OPEN, TRIG_CLOSE, TRIG_LOCK, and TRIG_UNLOCK like TRIG_DOOR does. */
+      /* It limits it alot, but it wouldn't allow for an EATKEY change */
+      if( IS_SET( obj->value[3], CONT_CLOSEABLE ) )
+         TOGGLE_BIT( container->value[1], CONT_CLOSEABLE );
+      if( IS_SET( obj->value[3], CONT_PICKPROOF ) )
+         TOGGLE_BIT( container->value[1], CONT_PICKPROOF );
+      if( IS_SET( obj->value[3], CONT_CLOSED ) )
+         TOGGLE_BIT( container->value[1], CONT_CLOSED );
+      if( IS_SET( obj->value[3], CONT_LOCKED ) )
+         TOGGLE_BIT( container->value[1], CONT_LOCKED );
+      return;
+   }
+
    if( IS_SET( obj->value[0], TRIG_DOOR ) )
    {
       room = get_room_index( obj->value[1] );
@@ -2098,7 +2246,6 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
    }
 }
 
-
 void do_pull( CHAR_DATA * ch, char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -2107,7 +2254,7 @@ void do_pull( CHAR_DATA * ch, char *argument )
    one_argument( argument, arg );
    if( arg[0] == '\0' )
    {
-      send_to_char( "Pull what?\n\r", ch );
+      send_to_char( "Pull what?\r\n", ch );
       return;
    }
 
@@ -2131,7 +2278,7 @@ void do_push( CHAR_DATA * ch, char *argument )
    one_argument( argument, arg );
    if( arg[0] == '\0' )
    {
-      send_to_char( "Push what?\n\r", ch );
+      send_to_char( "Push what?\r\n", ch );
       return;
    }
 
@@ -2156,7 +2303,7 @@ void do_tamp( CHAR_DATA * ch, char *argument )
    one_argument( argument, arg );
    if( arg[0] == '\0' )
    {
-      send_to_char( "Tamp what?\n\r", ch );
+      send_to_char( "Tamp what?\r\n", ch );
       return;
    }
 
@@ -2165,12 +2312,12 @@ void do_tamp( CHAR_DATA * ch, char *argument )
 
    if( ( pipe = get_obj_carry( ch, arg ) ) == NULL )
    {
-      send_to_char( "You aren't carrying that.\n\r", ch );
+      send_to_char( "You aren't carrying that.\r\n", ch );
       return;
    }
    if( pipe->item_type != ITEM_PIPE )
    {
-      send_to_char( "You can't tamp that.\n\r", ch );
+      send_to_char( "You can't tamp that.\r\n", ch );
       return;
    }
    if( !IS_SET( pipe->value[3], PIPE_TAMPED ) )
@@ -2180,7 +2327,7 @@ void do_tamp( CHAR_DATA * ch, char *argument )
       SET_BIT( pipe->value[3], PIPE_TAMPED );
       return;
    }
-   send_to_char( "It doesn't need tamping.\n\r", ch );
+   send_to_char( "It doesn't need tamping.\r\n", ch );
 }
 
 void do_smoke( CHAR_DATA * ch, char *argument )
@@ -2191,7 +2338,7 @@ void do_smoke( CHAR_DATA * ch, char *argument )
    one_argument( argument, arg );
    if( arg[0] == '\0' )
    {
-      send_to_char( "Smoke what?\n\r", ch );
+      send_to_char( "Smoke what?\r\n", ch );
       return;
    }
 
@@ -2200,7 +2347,7 @@ void do_smoke( CHAR_DATA * ch, char *argument )
 
    if( ( pipe = get_obj_carry( ch, arg ) ) == NULL )
    {
-      send_to_char( "You aren't carrying that.\n\r", ch );
+      send_to_char( "You aren't carrying that.\r\n", ch );
       return;
    }
    if( pipe->item_type != ITEM_PIPE )
@@ -2255,7 +2402,7 @@ void do_light( CHAR_DATA * ch, char *argument )
    one_argument( argument, arg );
    if( arg[0] == '\0' )
    {
-      send_to_char( "Light what?\n\r", ch );
+      send_to_char( "Light what?\r\n", ch );
       return;
    }
 
@@ -2264,12 +2411,12 @@ void do_light( CHAR_DATA * ch, char *argument )
 
    if( ( pipe = get_obj_carry( ch, arg ) ) == NULL )
    {
-      send_to_char( "You aren't carrying that.\n\r", ch );
+      send_to_char( "You aren't carrying that.\r\n", ch );
       return;
    }
    if( pipe->item_type != ITEM_PIPE )
    {
-      send_to_char( "You can't light that.\n\r", ch );
+      send_to_char( "You can't light that.\r\n", ch );
       return;
    }
    if( !IS_SET( pipe->value[3], PIPE_LIT ) )
@@ -2285,7 +2432,7 @@ void do_light( CHAR_DATA * ch, char *argument )
       SET_BIT( pipe->value[3], PIPE_LIT );
       return;
    }
-   send_to_char( "It's already lit.\n\r", ch );
+   send_to_char( "It's already lit.\r\n", ch );
 }
 
 void do_empty( CHAR_DATA * ch, char *argument )
@@ -2301,7 +2448,7 @@ void do_empty( CHAR_DATA * ch, char *argument )
 
    if( arg1[0] == '\0' )
    {
-      send_to_char( "Empty what?\n\r", ch );
+      send_to_char( "Empty what?\r\n", ch );
       return;
    }
    if( ms_find_obj( ch ) )
@@ -2309,7 +2456,7 @@ void do_empty( CHAR_DATA * ch, char *argument )
 
    if( ( obj = get_obj_carry( ch, arg1 ) ) == NULL )
    {
-      send_to_char( "You aren't carrying that.\n\r", ch );
+      send_to_char( "You aren't carrying that.\r\n", ch );
       return;
    }
    if( obj->count > 1 )
@@ -2331,7 +2478,7 @@ void do_empty( CHAR_DATA * ch, char *argument )
       case ITEM_DRINK_CON:
          if( obj->value[1] < 1 )
          {
-            send_to_char( "It's already empty.\n\r", ch );
+            send_to_char( "It's already empty.\r\n", ch );
             return;
          }
          act( AT_ACTION, "You empty $p.", ch, obj, NULL, TO_CHAR );
@@ -2346,7 +2493,7 @@ void do_empty( CHAR_DATA * ch, char *argument )
          }
          if( !obj->first_content )
          {
-            send_to_char( "It's already empty.\n\r", ch );
+            send_to_char( "It's already empty.\r\n", ch );
             return;
          }
          if( arg2[0] == '\0' )
@@ -2354,14 +2501,14 @@ void do_empty( CHAR_DATA * ch, char *argument )
             if( IS_SET( ch->in_room->room_flags, ROOM_NODROP ) || ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_LITTERBUG ) ) )
             {
                set_char_color( AT_MAGIC, ch );
-               send_to_char( "A magical force stops you!\n\r", ch );
+               send_to_char( "A magical force stops you!\r\n", ch );
                set_char_color( AT_TELL, ch );
-               send_to_char( "Someone tells you, 'No littering here!'\n\r", ch );
+               send_to_char( "Someone tells you, 'No littering here!'\r\n", ch );
                return;
             }
             if( IS_SET( ch->in_room->room_flags, ROOM_NODROPALL ) )
             {
-               send_to_char( "You can't seem to do that here...\n\r", ch );
+               send_to_char( "You can't seem to do that here...\r\n", ch );
                return;
             }
             if( empty_obj( obj, NULL, ch->in_room ) )
@@ -2372,7 +2519,7 @@ void do_empty( CHAR_DATA * ch, char *argument )
                   save_char_obj( ch );
             }
             else
-               send_to_char( "Hmmm... didn't work.\n\r", ch );
+               send_to_char( "Hmmm... didn't work.\r\n", ch );
          }
          else
          {
@@ -2380,17 +2527,17 @@ void do_empty( CHAR_DATA * ch, char *argument )
 
             if( !dest )
             {
-               send_to_char( "You can't find it.\n\r", ch );
+               send_to_char( "You can't find it.\r\n", ch );
                return;
             }
             if( dest == obj )
             {
-               send_to_char( "You can't empty something into itself!\n\r", ch );
+               send_to_char( "You can't empty something into itself!\r\n", ch );
                return;
             }
             if( dest->item_type != ITEM_CONTAINER )
             {
-               send_to_char( "That's not a container!\n\r", ch );
+               send_to_char( "That's not a container!\r\n", ch );
                return;
             }
             if( IS_SET( dest->value[1], CONT_CLOSED ) )
@@ -2423,7 +2570,7 @@ void do_apply( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Apply what?\n\r", ch );
+      send_to_char( "Apply what?\r\n", ch );
       return;
    }
 
@@ -2432,7 +2579,7 @@ void do_apply( CHAR_DATA * ch, char *argument )
 
    if( ( obj = get_obj_carry( ch, argument ) ) == NULL )
    {
-      send_to_char( "You do not have that.\n\r", ch );
+      send_to_char( "You do not have that.\r\n", ch );
       return;
    }
 
@@ -2524,7 +2671,7 @@ void actiondesc( CHAR_DATA * ch, OBJ_DATA * obj, void *vo )
       else if( *srcptr == '%' && *++srcptr == 's' )
       {
          ichar = "You";
-         iroom = IS_NPC( ch ) ? ch->short_descr : ch->name;
+         iroom = "$n";
       }
       else
       {
@@ -2603,37 +2750,37 @@ void do_hail( CHAR_DATA * ch, char *argument )
 
    if( ch->position < POS_FIGHTING )
    {
-      send_to_char( "You might want to stop fighting first!\n\r", ch );
+      send_to_char( "You might want to stop fighting first!\r\n", ch );
       return;
    }
 
    if( ch->position < POS_STANDING )
    {
-      send_to_char( "You might want to stand up first!\n\r", ch );
+      send_to_char( "You might want to stand up first!\r\n", ch );
       return;
    }
 
    if( IS_SET( ch->in_room->room_flags, ROOM_INDOORS ) )
    {
-      send_to_char( "You'll have to go outside to do that!\n\r", ch );
+      send_to_char( "You'll have to go outside to do that!\r\n", ch );
       return;
    }
 
    if( IS_SET( ch->in_room->room_flags, ROOM_SPACECRAFT ) )
    {
-      send_to_char( "You can't do that on spacecraft!\n\r", ch );
+      send_to_char( "You can't do that on spacecraft!\r\n", ch );
       return;
    }
 
    if( ch->gold < ( ch->top_level - 9 ) )
    {
-      send_to_char( "You don't have enough credits!\n\r", ch );
+      send_to_char( "You don't have enough credits!\r\n", ch );
       return;
    }
 
    if( !IS_NPC( ch ) && IS_SET( ch->pcdata->act2, ACT_BOUND ) )
    {
-      send_to_char( "You attempt to wave your hand for a cab, but in vain!\n\r", ch );
+      send_to_char( "You attempt to wave your hand for a cab, but in vain!\r\n", ch );
       return;
    }
 
@@ -2654,7 +2801,7 @@ void do_hail( CHAR_DATA * ch, char *argument )
 
    if( room == NULL )
    {
-      send_to_char( "There doesn't seem to be any taxis nearby!\n\r", ch );
+      send_to_char( "There doesn't seem to be any taxis nearby!\r\n", ch );
       return;
    }
 
@@ -2665,7 +2812,7 @@ void do_hail( CHAR_DATA * ch, char *argument )
    char_from_room( ch );
    char_to_room( ch, room );
 
-   send_to_char( "A speederbike picks you up and drives you to a safe location.\n\rYou pay the driver 20 credits.\n\r\n\n",
+   send_to_char( "A speederbike picks you up and drives you to a safe location.\r\nYou pay the driver 20 credits.\r\n\n\n",
                  ch );
    act( AT_ACTION, "$n $T", ch, NULL, "arrives on a speederbike, gets off and pays the driver before it leaves.", TO_ROOM );
 
@@ -2693,14 +2840,14 @@ void do_train( CHAR_DATA * ch, char *argument )
 
    if( arg[0] == '\0' )
    {
-      send_to_char( "Train what?\n\r", ch );
-      send_to_char( "\n\rChoices: strength, intelligence, wisdom, dexterity, constitution or charisma\n\r", ch );
+      send_to_char( "Train what?\r\n", ch );
+      send_to_char( "\r\nChoices: strength, intelligence, wisdom, dexterity, constitution or charisma\r\n", ch );
       return;
    }
 
    if( !IS_AWAKE( ch ) )
    {
-      send_to_char( "In your dreams, or what?\n\r", ch );
+      send_to_char( "In your dreams, or what?\r\n", ch );
       return;
    }
 
@@ -2713,7 +2860,7 @@ void do_train( CHAR_DATA * ch, char *argument )
 
    if( ( !mob ) || ( !tfound ) )
    {
-      send_to_char( "You can't do that here.\n\r", ch );
+      send_to_char( "You can't do that here.\r\n", ch );
       return;
    }
 
@@ -2734,7 +2881,7 @@ void do_train( CHAR_DATA * ch, char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already stronger than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
-      send_to_char( "&GYou begin your weight training.\n\r", ch );
+      send_to_char( "&GYou begin your weight training.\r\n", ch );
    }
    if( !str_cmp( arg, "dex" ) || !str_cmp( arg, "dexterity" ) )
    {
@@ -2743,7 +2890,7 @@ void do_train( CHAR_DATA * ch, char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already more dextrous than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
-      send_to_char( "&GYou begin to work at some challenging tests of coordination.\n\r", ch );
+      send_to_char( "&GYou begin to work at some challenging tests of coordination.\r\n", ch );
    }
    if( !str_cmp( arg, "int" ) || !str_cmp( arg, "intelligence" ) )
    {
@@ -2752,7 +2899,7 @@ void do_train( CHAR_DATA * ch, char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already more educated than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
-      send_to_char( "&GYou begin your studies.\n\r", ch );
+      send_to_char( "&GYou begin your studies.\r\n", ch );
    }
    if( !str_cmp( arg, "wis" ) || !str_cmp( arg, "wisdom" ) )
    {
@@ -2761,7 +2908,7 @@ void do_train( CHAR_DATA * ch, char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already far wiser than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
-      send_to_char( "&GYou begin contemplating several ancient texts in an effort to gain wisdom.\n\r", ch );
+      send_to_char( "&GYou begin contemplating several ancient texts in an effort to gain wisdom.\r\n", ch );
    }
    if( !str_cmp( arg, "con" ) || !str_cmp( arg, "constitution" ) )
    {
@@ -2770,7 +2917,7 @@ void do_train( CHAR_DATA * ch, char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you are already healthier than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
-      send_to_char( "&GYou begin your endurance training.\n\r", ch );
+      send_to_char( "&GYou begin your endurance training.\r\n", ch );
    }
    if( !str_cmp( arg, "cha" ) || !str_cmp( arg, "charisma" ) )
    {
@@ -2779,7 +2926,7 @@ void do_train( CHAR_DATA * ch, char *argument )
          act( AT_TELL, "$n tells you 'I cannot help you... you already are more charming than I.'", mob, NULL, ch, TO_VICT );
          return;
       }
-      send_to_char( "&GYou begin lessons in maners and ettiquite.\n\r", ch );
+      send_to_char( "&GYou begin lessons in maners and ettiquite.\r\n", ch );
    }
    //add_timer ( ch , TIMER_DO_FUN , 10 , do_train , 1 );
    //ch->dest_buf = str_dup(arg);
@@ -2796,7 +2943,7 @@ void do_train( CHAR_DATA * ch, char *argument )
     * case SUB_TIMER_DO_ABORT:
     * DISPOSE( ch->dest_buf );
     * ch->substate = SUB_NONE;
-    * send_to_char("&RYou fail to complete your training.\n\r", ch);
+    * send_to_char("&RYou fail to complete your training.\r\n", ch);
     * return;
     * }
     * 
@@ -2812,10 +2959,10 @@ void do_train( CHAR_DATA * ch, char *argument )
    {
       if( !successful )
       {
-         send_to_char( "&RYou feel that you have wasted alot of energy for nothing...\n\r", ch );
+         send_to_char( "&RYou feel that you have wasted alot of energy for nothing...\r\n", ch );
          return;
       }
-      send_to_char( "&GAfter much excercise you feel a little stronger.\n\r", ch );
+      send_to_char( "&GAfter much excercise you feel a little stronger.\r\n", ch );
       ch->perm_str++;
       return;
    }
@@ -2824,10 +2971,10 @@ void do_train( CHAR_DATA * ch, char *argument )
    {
       if( !successful )
       {
-         send_to_char( "&RAfter all that training you still feel like a clutz...\n\r", ch );
+         send_to_char( "&RAfter all that training you still feel like a clutz...\r\n", ch );
          return;
       }
-      send_to_char( "&GAfter working hard at many challenging tasks you feel a bit more coordinated.\n\r", ch );
+      send_to_char( "&GAfter working hard at many challenging tasks you feel a bit more coordinated.\r\n", ch );
       ch->perm_dex++;
       return;
    }
@@ -2836,10 +2983,10 @@ void do_train( CHAR_DATA * ch, char *argument )
    {
       if( !successful )
       {
-         send_to_char( "&RHitting the books leaves you only with sore eyes...\n\r", ch );
+         send_to_char( "&RHitting the books leaves you only with sore eyes...\r\n", ch );
          return;
       }
-      send_to_char( "&GAfter much studying you feel alot more knowledgeable.\n\r", ch );
+      send_to_char( "&GAfter much studying you feel alot more knowledgeable.\r\n", ch );
       ch->perm_int++;
       return;
    }
@@ -2848,11 +2995,11 @@ void do_train( CHAR_DATA * ch, char *argument )
    {
       if( !successful )
       {
-         send_to_char( "&RStudying the ancient texts has left you more confused than wise...\n\r", ch );
+         send_to_char( "&RStudying the ancient texts has left you more confused than wise...\r\n", ch );
          return;
       }
       send_to_char
-         ( "&GAfter contemplating several seemingly meaningless events you suddenly \n\rreceive a flash of insight into the workings of the universe.\n\r",
+         ( "&GAfter contemplating several seemingly meaningless events you suddenly \r\nreceive a flash of insight into the workings of the universe.\r\n",
            ch );
       ch->perm_wis++;
       return;
@@ -2863,11 +3010,11 @@ void do_train( CHAR_DATA * ch, char *argument )
       if( !successful )
       {
          send_to_char
-            ( "&RYou spend long a long arobics session ecersising very hard but finish \n\rfeeling only tired and out of breath....\n\r",
+            ( "&RYou spend long a long arobics session ecersising very hard but finish \r\nfeeling only tired and out of breath....\r\n",
               ch );
          return;
       }
-      send_to_char( "&GAfter a long tiring exercise session you feel much healthier than before.\n\r", ch );
+      send_to_char( "&GAfter a long tiring exercise session you feel much healthier than before.\r\n", ch );
       ch->perm_con++;
       return;
    }
@@ -2877,11 +3024,11 @@ void do_train( CHAR_DATA * ch, char *argument )
    {
       if( !successful )
       {
-         send_to_char( "&RYou finish your self improvement session feeling a little depressed.\n\r", ch );
+         send_to_char( "&RYou finish your self improvement session feeling a little depressed.\r\n", ch );
          return;
       }
       send_to_char
-         ( "&GYou spend some time focusing on how to improve your personality and feel \n\rmuch better about yourself and the ways others see you.\n\r",
+         ( "&GYou spend some time focusing on how to improve your personality and feel \r\nmuch better about yourself and the ways others see you.\r\n",
            ch );
       ch->perm_cha++;
       return;
@@ -2896,19 +3043,19 @@ void do_suicide( CHAR_DATA * ch, char *argument )
 
    if( IS_NPC( ch ) || !ch->pcdata )
    {
-      send_to_char( "Yeah right!\n\r", ch );
+      send_to_char( "Yeah right!\r\n", ch );
       return;
    }
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "&RIf you really want to delete this character type suicide and your password.\n\r", ch );
+      send_to_char( "&RIf you really want to delete this character type suicide and your password.\r\n", ch );
       return;
    }
 
-   if( strcmp( smaug_crypt( argument ), ch->pcdata->pwd ) )
+   if( strcmp( sha256_crypt( argument ), ch->pcdata->pwd ) )
    {
-      send_to_char( "Sorry wrong password.\n\r", ch );
+      send_to_char( "Sorry wrong password.\r\n", ch );
       sprintf( logbuf, "%s attempting to commit suicide... WRONG PASSWORD!", ch->name );
       log_string( logbuf );
       return;
@@ -2918,7 +3065,7 @@ void do_suicide( CHAR_DATA * ch, char *argument )
 
    if( !wield )
    {
-      act( AT_BLOOD, "You ram your thumbs into your eyesockets, blood spurts onto the floor.\n\r", ch, NULL, NULL, TO_CHAR );
+      act( AT_BLOOD, "You ram your thumbs into your eyesockets, blood spurts onto the floor.\r\n", ch, NULL, NULL, TO_CHAR );
       act( AT_BLOOD, "Blood spurts onto your shoes as $n rams his thumbs into $s eyesockets.", ch, NULL, NULL, TO_ROOM );
    }
    else
@@ -2926,7 +3073,7 @@ void do_suicide( CHAR_DATA * ch, char *argument )
       switch ( wield->value[3] )
       {
          default:
-            act( AT_BLOOD, "You ram your thumbs into your eyesockets, blood spurts onto the floor.\n\r", ch, NULL, NULL,
+            act( AT_BLOOD, "You ram your thumbs into your eyesockets, blood spurts onto the floor.\r\n", ch, NULL, NULL,
                  TO_CHAR );
             act( AT_BLOOD, "Blood spurts onto your shoes as $n rams his thumbs into $s eyesockets.", ch, NULL, NULL,
                  TO_ROOM );
@@ -2997,13 +3144,13 @@ void do_bank( CHAR_DATA * ch, char *argument )
 
    if( !ch->in_room || !IS_SET( ch->in_room->room_flags, ROOM_BANK ) )
    {
-      send_to_char( "You must be in a bank to do that!\n\r", ch );
+      send_to_char( "You must be in a bank to do that!\r\n", ch );
       return;
    }
 
    if( arg1[0] == '\0' )
    {
-      send_to_char( "Usage: BANK <deposit|withdraw|balance|transfer> [amount] (character, if transfer)\n\r", ch );
+      send_to_char( "Usage: BANK <deposit|withdraw|balance|transfer> [amount] (character, if transfer)\r\n", ch );
       return;
    }
 
@@ -3014,48 +3161,48 @@ void do_bank( CHAR_DATA * ch, char *argument )
    {
       if( amount <= 0 )
       {
-         send_to_char( "You may only deposit amounts greater than zero.\n\r", ch );
+         send_to_char( "You may only deposit amounts greater than zero.\r\n", ch );
          do_bank( ch, "" );
          return;
       }
 
       if( ch->gold < amount )
       {
-         send_to_char( "You don't have that many credits on you.\n\r", ch );
+         send_to_char( "You don't have that many credits on you.\r\n", ch );
          return;
       }
 
       ch->gold -= amount;
       ch->pcdata->bank += amount;
 
-      ch_printf( ch, "You deposit %ld credits into your account.\n\r", amount );
+      ch_printf( ch, "You deposit %ld credits into your account.\r\n", amount );
       return;
    }
    else if( !str_prefix( arg1, "withdrawl" ) )
    {
       if( amount <= 0 )
       {
-         send_to_char( "You may only withdraw amounts greater than zero.\n\r", ch );
+         send_to_char( "You may only withdraw amounts greater than zero.\r\n", ch );
          do_bank( ch, "" );
          return;
       }
 
       if( ch->pcdata->bank < amount )
       {
-         send_to_char( "You don't have that many credits in your account.\n\r", ch );
+         send_to_char( "You don't have that many credits in your account.\r\n", ch );
          return;
       }
 
       ch->gold += amount;
       ch->pcdata->bank -= amount;
 
-      ch_printf( ch, "You withdraw %ld credits from your account.\n\r", amount );
+      ch_printf( ch, "You withdraw %ld credits from your account.\r\n", amount );
       return;
 
    }
    else if( !str_prefix( arg1, "ballance" ) || !str_prefix( arg1, "balance" ) )
    {
-      ch_printf( ch, "You have %ld credits in your account.\n\r", ch->pcdata->bank );
+      ch_printf( ch, "You have %ld credits in your account.\r\n", ch->pcdata->bank );
       return;
    }
    else if( !str_prefix( arg1, "transfer" ) )
@@ -3064,39 +3211,39 @@ void do_bank( CHAR_DATA * ch, char *argument )
 
       if( victim == NULL || IS_NPC( victim ) )
       {
-         send_to_char( "They aren't here.\n\r", ch );
+         send_to_char( "They aren't here.\r\n", ch );
          return;
       }
 
       if( ch->top_level <= 10 )
       {
-         send_to_char( "You must be level 11 or higher to use the bank transfer command.\n\r", ch );
+         send_to_char( "You must be level 11 or higher to use the bank transfer command.\r\n", ch );
          return;
       }
 
       if( ch->pcdata->bank < amount )
       {
-         send_to_char( "You don't have that many credits.\n\r", ch );
+         send_to_char( "You don't have that many credits.\r\n", ch );
          return;
       }
 
       if( amount <= 0 )
       {
-         send_to_char( "You may only transfer amounts greater than zero.\n\r", ch );
+         send_to_char( "You may only transfer amounts greater than zero.\r\n", ch );
          return;
       }
       if( victim->pcdata->bank > 0 && victim->pcdata->bank + amount < 0 )
       {
-         send_to_char( "Their account cannot handle that much money!\n\r", ch );
+         send_to_char( "Their account cannot handle that much money!\r\n", ch );
          return;
       }
-      ch_printf( ch, "&W&GYou transfer %ld credits to %s's account.\n\r", amount, arg3 );
+      ch_printf( ch, "&W&GYou transfer %ld credits to %s's account.\r\n", amount, arg3 );
       sprintf( logbuf, "%s transfers %ld credits to %s", ch->name, amount, victim->name );
       log_string( logbuf );
       ch->pcdata->bank -= amount;
       victim->pcdata->bank += amount;
-      ch_printf( ch, "Successful.\n\r" );
-      ch_printf( victim, "&W&G%s has deposited %ld credits into your account.\n\r", ch->name, amount );
+      ch_printf( ch, "Successful.\r\n" );
+      ch_printf( victim, "&W&G%s has deposited %ld credits into your account.\r\n", ch->name, amount );
       return;
    }
    else
@@ -3114,7 +3261,7 @@ void do_showsocial( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' || !argument )
    {
-      send_to_char( "&RSyntax: showsocial <social>&W\n\r", ch );
+      send_to_char( "&RSyntax: showsocial <social>&W\r\n", ch );
       return;
    }
 
@@ -3122,16 +3269,16 @@ void do_showsocial( CHAR_DATA * ch, char *argument )
 
    if( !social )
    {
-      send_to_char( "No such social.\n\r", ch );
+      send_to_char( "No such social.\r\n", ch );
       return;
    }
 
-   ch_printf( ch, "&GSocial&B:&W %s\n\r\n\r&GChar, No Arg&B:&W %s\n\r", social->name, social->char_no_arg );
-   ch_printf( ch, "&GOthers, No Arg&B:&W %s\n\r&GChar, Vict found&B:&W %s\n\r&GOthers, Vict Found&B:&W %s\n\r",
+   ch_printf( ch, "&GSocial&B:&W %s\r\n\r\n&GChar, No Arg&B:&W %s\r\n", social->name, social->char_no_arg );
+   ch_printf( ch, "&GOthers, No Arg&B:&W %s\r\n&GChar, Vict found&B:&W %s\r\n&GOthers, Vict Found&B:&W %s\r\n",
               social->others_no_arg ? social->others_no_arg : "(not set)",
               social->char_found ? social->char_found : "(not set)",
               social->others_found ? social->others_found : "(not set)" );
-   ch_printf( ch, "&GVict, Found&B:&W %s\n\r&GChar, Self &B:&W %s\n\r&GOthers, Self &B:&W %s\n\r",
+   ch_printf( ch, "&GVict, Found&B:&W %s\r\n&GChar, Self &B:&W %s\r\n&GOthers, Self &B:&W %s\r\n",
               social->vict_found ? social->vict_found : "(not set)", social->char_auto ? social->char_auto : "(not set)",
               social->others_auto ? social->others_auto : "(not set)" );
    return;
@@ -3142,31 +3289,31 @@ void do_lastname( CHAR_DATA *ch, char *argument )
 {
   if ( IS_NPC(ch))
   {
-    send_to_char("Mobs have no last names!\n\r", ch);
+    send_to_char("Mobs have no last names!\r\n", ch);
     return;
   }
 
   if ( argument[0] == '\0' && ch->pcdata->last_name )
   {
-    send_to_char("Last name cleared. Please use 'lastname <argument>' to set your last name.\n\r", ch);
+    send_to_char("Last name cleared. Please use 'lastname <argument>' to set your last name.\r\n", ch);
     ch->pcdata->last_name = NULL;
     return;
   }
   else if( argument[0] == '\0' )
   {
-    send_to_char("Set your last name to what?\n\r", ch);
+    send_to_char("Set your last name to what?\r\n", ch);
     return;
   }
 
   if ( !strcmp( argument, " " ) || !strcmp( argument, "&" ))
   {
-    send_to_char("You can't have spaces or colors in your last name. Choose another.\n\r", ch);  
+    send_to_char("You can't have spaces or colors in your last name. Choose another.\r\n", ch);  
     return;
   }
 
   if ( !check_parse_name( argument ) )
   {
-    send_to_char("Illegal Last Name. Try Another.\n\r", ch);
+    send_to_char("Illegal Last Name. Try Another.\r\n", ch);
     return;
   }
 
@@ -3174,12 +3321,12 @@ void do_lastname( CHAR_DATA *ch, char *argument )
 
   if (!str_cmp(ch->pcdata->last_name, argument))
   {
-    send_to_char("That's already your last name!\n\r", ch);
+    send_to_char("That's already your last name!\r\n", ch);
     return;
   }
 
   ch->pcdata->last_name = STRALLOC( argument );
-  send_to_char("Your last name has been changed.\n\r", ch);
+  send_to_char("Your last name has been changed.\r\n", ch);
   return;
 }
 */
@@ -3192,25 +3339,25 @@ void do_tune( CHAR_DATA * ch, char *argument )
    int num;
    if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
    {
-      send_to_char( "You must be in the cockpit of a ship to tune it's channel.\n\r", ch );
+      send_to_char( "You must be in the cockpit of a ship to tune it's channel.\r\n", ch );
       return;
    }
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "Syntax: Tune <channel>\n\r", ch );
+      send_to_char( "Syntax: Tune <channel>\r\n", ch );
       return;
    }
 
    num = atoi( argument );
    if( num > 100 || num < 0 )
    {
-      send_to_char( "The accepted channel range runs 1-100 or 0 for public.\n\r", ch );
+      send_to_char( "The accepted channel range runs 1-100 or 0 for public.\r\n", ch );
       return;
    }
    act( AT_WHITE, "You make some adjustments on the ships comm system.", ch, NULL, NULL, TO_CHAR );
    act( AT_WHITE, "$n makes some adjustments on the ships comm system.", ch, NULL, NULL, TO_ROOM );
-   sprintf( buf, "Ships channel tuned to %s%d.\n\r", num == 0 ? "the public channel " : "", num );
+   sprintf( buf, "Ships channel tuned to %s%d.\r\n", num == 0 ? "the public channel " : "", num );
    send_to_char( buf, ch );
    ship->channel = num;
    save_ship( ship );
@@ -3225,79 +3372,95 @@ void do_whisper( CHAR_DATA * ch, char *argument )
    strcpy( arg2, argument );
    if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
    {
-      send_to_char( "They are not in here.\n\r", ch );
+      send_to_char( "They are not in here.\r\n", ch );
       return;
    }
-   sprintf( buf, "&B[&Cwhisper&B] &Cto %s: &W%s\n\r", PERS( victim, ch ), arg2 );
+   sprintf( buf, "&B[&Cwhisper&B] &Cto %s: &W%s\r\n", PERS( victim, ch ), arg2 );
    send_to_char( buf, ch );
-   sprintf( buf, "&B[&Cwhisper&B] &C%s whispers: &W%s\n\r", PERS( ch, victim ), arg2 );
+   sprintf( buf, "&B[&Cwhisper&B] &C%s whispers: &W%s\r\n", PERS( ch, victim ), arg2 );
    send_to_char( buf, victim );
 }
 
-void do_droptroops( CHAR_DATA * ch, char *argument )
+#define MAX_DROP_TROOPS 20
+
+//do_droptroops fixed by KeB 10/24/06
+void do_droptroops( CHAR_DATA *ch, char *argument )
 {
    int num, vnum, i;
    SHIP_DATA *ship;
    CHAR_DATA *mob;
-   MOB_INDEX_DATA *pMobIndex;
-   OBJ_DATA *blaster;
-   OBJ_INDEX_DATA *pObjIndex;
-   ROOM_INDEX_DATA *room;
+   MOB_INDEX_DATA  * pMobIndex;
+   OBJ_DATA        * blaster;
+   OBJ_INDEX_DATA  * pObjIndex;
+   ROOM_INDEX_DATA *room, *rtest;
    char tmpbuf[MAX_STRING_LENGTH];
+
    if( ch->pcdata->clan == NULL )
    {
-      send_to_char( "You must be in a clan to drop troops.\n\r", ch );
+      send_to_char( "You must be in a clan to drop troops.\r\n", ch );
       return;
    }
 
    if( ch->pcdata->clan->troops < 1 )
    {
-      send_to_char( "Your clan has no ground assault troops.\n\r", ch );
+      send_to_char( "Your clan has no ground assault troops.\r\n", ch );
       return;
    }
 
-   num = atoi( argument );
+   num = atoi(argument);
    if( num > ch->pcdata->clan->troops )
    {
-      send_to_char( "Your clan doesn't have that many ground assault troops.\n\r", ch );
+      send_to_char( "Your clan doesn't have that many ground assault troops.\r\n", ch );
       return;
    }
 
-   if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
+   if( ( ship = ship_from_cockpit(ch->in_room->vnum) ) == NULL )
    {
-      send_to_char( "You must be in the cockpit of the dropship to do this.\n\r", ch );
+      send_to_char( "You must be in the cockpit of the dropship to do this.\r\n", ch );
       return;
    }
 
    vnum = ship->location;
-   if( ( room = get_room_index( vnum ) ) == NULL )
+   if( ( room = get_room_index(vnum) ) == NULL )
    {
-      send_to_char( "This ship is not in a room.\n\r", ch );
+      send_to_char( "This ship is not in a room.\r\n", ch );
       return;
    }
 
-   if( num > 10 )
-      num = 10;
+   if( num > MAX_DROP_TROOPS )
+   {
+      ch_printf( ch, "You can only drop %d troops at once!\r\n", MAX_DROP_TROOPS );
+      return;
+   }
    if( num > ch->pcdata->clan->troops )
       num = ch->pcdata->clan->troops;
 
    if( ( pMobIndex = get_mob_index( 82 ) ) == NULL )
       return;
+
    if( room->area == NULL )
       return;
+
    for( i = 1; i <= num; i++ )
    {
-      vnum = number_range( room->area->low_r_vnum, room->area->hi_r_vnum );
-      if( ( room = get_room_index( vnum ) ) == NULL )
+      /* Can be any room but the hi_room and low_room */
+      vnum = number_range( room->area->low_r_vnum + 1, room->area->hi_r_vnum - 1 );
+
+      if( ( rtest = get_room_index(vnum) ) == NULL )
          continue;
+
+      /* Now lets make sure the room isn't safe and isn't a player home */
+      if( IS_SET( rtest->room_flags, ROOM_SAFE ) || IS_SET( rtest->room_flags, ROOM_PLR_HOME ) )
+      {
+         --i;
+         continue;
+      }
       mob = create_mobile( pMobIndex );
-      char_to_room( mob, room );
+      char_to_room( mob, rtest );
       if( ch->pcdata && ch->pcdata->clan )
-         //STRFREE( mob->name );
-         //mob->name = STRALLOC( ch->pcdata->clan->name );
-         sprintf( tmpbuf, "(%s) %s", ch->pcdata->clan->name, mob->long_descr );
+         sprintf( tmpbuf , "(%s) %s" , ch->pcdata->clan->name  , mob->long_descr );
       STRFREE( mob->long_descr );
-      mob->mob_clan = ch->pcdata->clan->name;
+      mob->mob_clan = QUICKLINK( ch->pcdata->clan->name );
       mob->long_descr = STRALLOC( tmpbuf );
       if( ( pObjIndex = get_obj_index( OBJ_VNUM_BLASTECH_E11 ) ) != NULL )
       {
@@ -3306,9 +3469,7 @@ void do_droptroops( CHAR_DATA * ch, char *argument )
          equip_char( mob, blaster, WEAR_WIELD );
       }
    }
-   sprintf( tmpbuf,
-            "&RYelling and the thunder of feet is heard from the troop hold as %d troops exit the ship and fan out.\n\r",
-            num );
+   sprintf( tmpbuf, "&RYelling and the thunder of feet is heard from the troop hold as %d troops exit the ship and fan out.\r\n", num );
    ch->pcdata->clan->troops -= num;
    echo_to_cockpit( AT_RED, ship, tmpbuf );
 }
@@ -3325,39 +3486,39 @@ void do_hale( CHAR_DATA * ch, char *argument )
    strcpy( arg2, argument );
    if( arg1[0] == '\0' || arg2[0] == '\0' )
    {
-      send_to_char( "Syntax: Hail <ship> <message>\n\r", ch );
+      send_to_char( "Syntax: Hail <ship> <message>\r\n", ch );
       return;
    }
 
    ship = get_ship( arg1 );
-   send_to_char( "\n\r", ch );
+   send_to_char( "\r\n", ch );
    if( !ship )
    {
-      send_to_char( "No Such Ship!\n\r", ch );
+      send_to_char( "No Such Ship!\r\n", ch );
       return;
    }
    if( !ship2 )
    {
-      send_to_char( "But your not in a cockpit!\n\r", ch );
+      send_to_char( "But your not in a cockpit!\r\n", ch );
       return;
    }
 
    if( IS_SET( ship->flags, SHIP_SIMULATOR ) && !IS_SET( ship2->flags, SHIP_SIMULATOR ) )
    {
-      send_to_char( "No Such Ship!\n\r", ch );
+      send_to_char( "No Such Ship!\r\n", ch );
       return;
    }
 
    if( !IS_SET( ship->flags, SHIP_SIMULATOR ) && IS_SET( ship2->flags, SHIP_SIMULATOR ) )
    {
-      send_to_char( "No Such Ship!\n\r", ch );
+      send_to_char( "No Such Ship!\r\n", ch );
       return;
    }
 
    sprintf( buf, "&B[&CShip Hail&B] &C%s&B: &w%s", ship2->name, arg2 );
    sprintf( buf1, "&B[&CShip Hail&B] &CYou send&B: &w%s", arg2 );
    send_to_char( buf1, ch );
-   sprintf( buf1, "&g%s adjusts some settings on the comm system and says:\n\r&C'&w%s&C'", ch->name, arg2 );
+   sprintf( buf1, "&g%s adjusts some settings on the comm system and says:\r\n&C'&w%s&C'", ch->name, arg2 );
    act( AT_GREEN, buf1, ch, NULL, NULL, TO_NOTVICT );
    echo_to_cockpit( AT_BLUE, ship, buf );
    return;
@@ -3372,16 +3533,16 @@ void do_rpconvert( CHAR_DATA * ch, char *argument )
 
    if( argument[0] == '\0' )
    {
-      send_to_char( "&w&WSpend your RP points on what? The various options are:\n\r", ch );
-      send_to_char( "&G+-----------------------------------------------------+\n\r", ch );
-      send_to_char( "&G| &W1&G | &WBonus Level to any Class  &G| &W             10 RPP &G|&W\n\r", ch );
-      send_to_char( "&G| &W2&G | &WClone                     &G| &W              4 RPP &G|&W\n\r", ch );
-      send_to_char( "&G| &W3&G | &W5% to any skill(max 100%) &G| &W              1 RPP &G|&W\n\r", ch );
-      send_to_char( "&G+-----------------------------------------------------+\n\r\n\r", ch );
+      send_to_char( "&w&WSpend your RP points on what? The various options are:\r\n", ch );
+      send_to_char( "&G+-----------------------------------------------------+\r\n", ch );
+      send_to_char( "&G| &W1&G | &WBonus Level to any Class  &G| &W             10 RPP &G|&W\r\n", ch );
+      send_to_char( "&G| &W2&G | &WClone                     &G| &W              4 RPP &G|&W\r\n", ch );
+      send_to_char( "&G| &W3&G | &W5% to any skill(max 100%) &G| &W              1 RPP &G|&W\r\n", ch );
+      send_to_char( "&G+-----------------------------------------------------+\r\n\r\n", ch );
 
-      send_to_char( "&WFor more information on any bonus, type 'help rpconvert'\n\r", ch );
-      send_to_char( "&WTo buy your bonus, type 'rpconvert <number of bonus> [extra arguments]'\n\r", ch );
-      send_to_char( "&WException: For cloning, type 'clone' at the cloning center or 'backup' if you're droid.\n\r", ch );
+      send_to_char( "&WFor more information on any bonus, type 'help rpconvert'\r\n", ch );
+      send_to_char( "&WTo buy your bonus, type 'rpconvert <number of bonus> [extra arguments]'\r\n", ch );
+      send_to_char( "&WException: For cloning, type 'clone' at the cloning center or 'backup' if you're droid.\r\n", ch );
       return;
    }
 
@@ -3393,13 +3554,13 @@ void do_rpconvert( CHAR_DATA * ch, char *argument )
 
       if( argument[0] == '\0' || !argument )
       {
-         send_to_char( "&RSyntax: rpconvert 1 <class>\n\r", ch );
+         send_to_char( "&RSyntax: rpconvert 1 <class>\r\n", ch );
          return;
       }
 
       if( ch->rppoints < 10 )
       {
-         send_to_char( "&RThis bonus costs 10 RP points. You don't have enough.\n\r", ch );
+         send_to_char( "&RThis bonus costs 10 RP points. You don't have enough.\r\n", ch );
          return;
       }
 
@@ -3409,7 +3570,7 @@ void do_rpconvert( CHAR_DATA * ch, char *argument )
              && !str_prefix( argument, ability_name[iClass] ) && str_prefix( argument, "force" ) )
          {
             ch->bonus[iClass] += 1;
-            ch_printf( ch, "&GYour ability in %s has been increased by 1!\n\r", ability_name[iClass] );
+            ch_printf( ch, "&GYour ability in %s has been increased by 1!\r\n", ability_name[iClass] );
             sprintf( buf, "%s increased class %s with rpconvert.", ch->name, ability_name[iClass] );
             log_string( buf );
             ch->rppoints = ch->rppoints - 10;
@@ -3419,7 +3580,7 @@ void do_rpconvert( CHAR_DATA * ch, char *argument )
 
       if( iClass == MAX_ABILITY )
       {
-         send_to_char( "No such class.\n\r", ch );
+         send_to_char( "No such class.\r\n", ch );
          return;
       }
 
@@ -3428,7 +3589,7 @@ void do_rpconvert( CHAR_DATA * ch, char *argument )
 
    if( atoi( argument ) == 2 )
    {
-      send_to_char( "&RJust type 'clone' or 'backup' at a cloning facility!\n\r", ch );
+      send_to_char( "&RJust type 'clone' or 'backup' at a cloning facility!\r\n", ch );
       return;
    }
 
@@ -3440,13 +3601,13 @@ void do_rpconvert( CHAR_DATA * ch, char *argument )
 
       if( argument[0] == '\0' || !argument )
       {
-         send_to_char( "&RSyntax: rpconvert 2 <skill>\n\r", ch );
+         send_to_char( "&RSyntax: rpconvert 2 <skill>\r\n", ch );
          return;
       }
 
       if( ch->rppoints < 1 )
       {
-         send_to_char( "&RThis bonus costs 1 RP point. You don't have enough.\n\r", ch );
+         send_to_char( "&RThis bonus costs 1 RP point. You don't have enough.\r\n", ch );
          return;
       }
 
@@ -3454,27 +3615,27 @@ void do_rpconvert( CHAR_DATA * ch, char *argument )
 
       if( !sn || sn < 1 )
       {
-         send_to_char( "&RNo such skill.\n\r", ch );
+         send_to_char( "&RNo such skill.\r\n", ch );
          return;
       }
 
       if( ch->pcdata->learned[sn] < 1 )
       {
-         send_to_char( "&RYou must have at least practiced the skill to increase its percentage!\n\r", ch );
+         send_to_char( "&RYou must have at least practiced the skill to increase its percentage!\r\n", ch );
          return;
       }
 
       if( ch->pcdata->learned[sn] >= 100 )
       {
-         send_to_char( "&RYou already have this skill adepted!\n\r", ch );
+         send_to_char( "&RYou already have this skill adepted!\r\n", ch );
          return;
       }
 
       ch->pcdata->learned[sn] = UMIN( ch->pcdata->learned[sn] + 5, 100 );
       ch->rppoints -= 1;
 
-      ch_printf( ch, "&GYou have spent 1 RPP to increase %s by 5%!\n\r", skill_table[sn]->name );
-      sprintf( buf, "%s increased %s by 5%% with rpconvert.\n\r", ch->name, skill_table[sn]->name );
+      ch_printf( ch, "&GYou have spent 1 RPP to increase %s by 5%!\r\n", skill_table[sn]->name );
+      sprintf( buf, "%s increased %s by 5%% with rpconvert.\r\n", ch->name, skill_table[sn]->name );
       log_string( buf );
 
       return;

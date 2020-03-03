@@ -137,9 +137,9 @@ void explode_emissile( CHAR_DATA * ch, ROOM_INDEX_DATA * proom, int mindam, int 
    for( rch = proom->first_person; rch; rch = rch->next_in_room )
    {
       if( incendiary )
-         ch_printf( rch, "&RThe missile EXPLODES into a rain of fire!\n\r" );
+         ch_printf( rch, "&RThe missile EXPLODES into a rain of fire!\r\n" );
       else
-         ch_printf( rch, "&RThe massive shockwave from the EXPLOSION rips through your body!&w\n\r" );
+         ch_printf( rch, "&RThe massive shockwave from the EXPLOSION rips through your body!&w\r\n" );
 
       dam = number_range( mindam, maxdam );
       damage( ch, rch, dam, TYPE_MISSILE );
@@ -173,7 +173,7 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
 
          if( arg2[0] == '\0' || ( str_cmp( arg, "infrared" ) && str_cmp( arg, "magnifying" ) ) )
          {
-            send_to_char( "&RUsage: Makegoggles <infrared/magnifying> <name>\n\r&w", ch );
+            send_to_char( "&RUsage: Makegoggles <infrared/magnifying> <name>\r\n&w", ch );
             return;
          }
 
@@ -185,7 +185,7 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
 
          if( !IS_SET( ch->in_room->room_flags, ROOM_FACTORY ) )
          {
-            send_to_char( "&RYou need to be in a factory or workshop to do that.\n\r", ch );
+            send_to_char( "&RYou need to be in a factory or workshop to do that.\r\n", ch );
             return;
          }
 
@@ -205,27 +205,27 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
 
          if( !checkduraplast )
          {
-            send_to_char( "&RYou need a piece of duraplast.\n\r", ch );
+            send_to_char( "&RYou need a piece of duraplast.\r\n", ch );
             return;
          }
          if( !checkcirc )
          {
-            send_to_char( "&RYou'll need some circuitry.\n\r", ch );
+            send_to_char( "&RYou'll need some circuitry.\r\n", ch );
             return;
          }
          if( !checkbatt )
          {
-            send_to_char( "&RYou need a small battery.\n\r", ch );
+            send_to_char( "&RYou need a small battery.\r\n", ch );
             return;
          }
          if( !checklens )
          {
-            send_to_char( "&RYou'll need a lens.\n\r", ch );
+            send_to_char( "&RYou'll need a lens.\r\n", ch );
             return;
          }
          if( !checktool )
          {
-            send_to_char( "&RYou'll need a toolkit.\n\r", ch );
+            send_to_char( "&RYou'll need a toolkit.\r\n", ch );
             return;
          }
 
@@ -233,16 +233,16 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
          if( number_percent(  ) < schance )
          {
             if( !str_cmp( arg, "infrared" ) )
-               send_to_char( "&GYou begin the long process of creating a pair of infrared goggles.\n\r", ch );
+               send_to_char( "&GYou begin the long process of creating a pair of infrared goggles.\r\n", ch );
             else
-               send_to_char( "&GYou begin the long process of creating a pair of magnifying goggles.\n\r", ch );
+               send_to_char( "&GYou begin the long process of creating a pair of magnifying goggles.\r\n", ch );
             act( AT_PLAIN, "$n takes $s toolkit and begins putting something together.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 12, do_makegoggles, 1 );
             ch->dest_buf = str_dup( arg );
             ch->dest_buf_2 = str_dup( arg2 );
             return;
          }
-         send_to_char( "&RYou can't figure out what to do.\n\r", ch );
+         send_to_char( "&RYou can't figure out what to do.\r\n", ch );
          learn_from_failure( ch, gsn_makegoggles );
          return;
 
@@ -261,7 +261,7 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
          DISPOSE( ch->dest_buf );
          DISPOSE( ch->dest_buf_2 );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interrupted and fail to finish your work.\n\r", ch );
+         send_to_char( "&RYou are interrupted and fail to finish your work.\r\n", ch );
          return;
    }
 
@@ -309,7 +309,7 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
 
    if( number_percent(  ) > schance * 2 || ( !checkcirc ) || ( !checkbatt ) || ( !checkduraplast ) || ( !checklens ) )
    {
-      send_to_char( "&RYou turn the goggles on, but the lens shatters!\n\r", ch );
+      send_to_char( "&RYou turn the goggles on, but the lens shatters!\r\n", ch );
       learn_from_failure( ch, gsn_makegoggles );
       return;
    }
@@ -364,9 +364,9 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
    obj = obj_to_char( obj, ch );
 
    if( !str_cmp( arg, "infrared" ) )
-      send_to_char( "&GYou finish making a pair of infrared goggles.&w\n\r", ch );
+      send_to_char( "&GYou finish making a pair of infrared goggles.&w\r\n", ch );
    else
-      send_to_char( "&GYou finish making a pair of magnifying goggles.&w\n\r", ch );
+      send_to_char( "&GYou finish making a pair of magnifying goggles.&w\r\n", ch );
 
    act( AT_PLAIN, "$n finishes contstructing a pair of goggles.", ch, NULL, argument, TO_ROOM );
 
@@ -378,7 +378,7 @@ void do_makegoggles( CHAR_DATA * ch, char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.\n\r", xpgain );
+      ch_printf( ch, "You gain %d engineering experience.\r\n", xpgain );
    }
    learn_from_success( ch, gsn_makegoggles );
 }
@@ -400,7 +400,7 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
       default:
          if( arg[0] == '\0' )
          {
-            send_to_char( "&RUsage: Makemissile <explosive/incendiary>\n\r&w", ch );
+            send_to_char( "&RUsage: Makemissile <explosive/incendiary>\r\n&w", ch );
             return;
          }
 
@@ -411,7 +411,7 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
 
          if( !IS_SET( ch->in_room->room_flags, ROOM_FACTORY ) )
          {
-            send_to_char( "&RYou need to be in a factory or workshop to do that.\n\r", ch );
+            send_to_char( "&RYou need to be in a factory or workshop to do that.\r\n", ch );
             return;
          }
          chemNum = 0;
@@ -431,45 +431,45 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
 
          if( !checktool )
          {
-            send_to_char( "&RYou need toolkit to make a missile.\n\r", ch );
+            send_to_char( "&RYou need toolkit to make a missile.\r\n", ch );
             return;
          }
 
          if( !checkdura )
          {
-            send_to_char( "&RYou'll need a chunk of durasteel to make the shell.\n\r", ch );
+            send_to_char( "&RYou'll need a chunk of durasteel to make the shell.\r\n", ch );
             return;
          }
 
          if( !checkbatt )
          {
-            send_to_char( "&RYou need a small battery.\n\r", ch );
+            send_to_char( "&RYou need a small battery.\r\n", ch );
             return;
          }
 
          if( !checkcirc )
          {
-            send_to_char( "&RYou need a small circuit.\n\r", ch );
+            send_to_char( "&RYou need a small circuit.\r\n", ch );
             return;
          }
 
          if( chemNum < 3 )
          {
-            send_to_char( "&RYou'll need two chemicals for the explosive, and one for propulsion.\n\r", ch );
+            send_to_char( "&RYou'll need two chemicals for the explosive, and one for propulsion.\r\n", ch );
             return;
          }
 
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makemissile] );
          if( number_percent(  ) < schance )
          {
-            send_to_char( "&GYou begin the long process of making a missile.\n\r", ch );
+            send_to_char( "&GYou begin the long process of making a missile.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and a few parts, beginning to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 22, do_makemissile, 1 );
             ch->dest_buf = str_dup( arg );
             return;
          }
-         send_to_char( "&RYou can't figure out how to fit the parts together.\n\r", ch );
+         send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
          learn_from_failure( ch, gsn_makemissile );
          return;
 
@@ -483,7 +483,7 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
       case SUB_TIMER_DO_ABORT:
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
-         send_to_char( "&RYou are interrupted and fail to finish your work.\n\r", ch );
+         send_to_char( "&RYou are interrupted and fail to finish your work.\r\n", ch );
          return;
    }
 
@@ -495,7 +495,7 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
    if( ( pObjIndex = get_obj_index( vnum ) ) == NULL )
    {
       send_to_char
-         ( "&RThe item you are trying to create is missing from the database.\n\rPlease inform the administration of this error.\n\r",
+         ( "&RThe item you are trying to create is missing from the database.\r\nPlease inform the administration of this error.\r\n",
            ch );
       return;
    }
@@ -564,15 +564,15 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
    if( number_percent(  ) > schance * 2 || ( !checktool ) || ( !checkdura ) || ( !checkbatt ) || ( !checkcirc ) )
    {
       if( number_range( 0, 1 ) == 1 )
-         send_to_char( "&RYou finish the missile, but you forgot to install the propulsion primer!\n\r", ch );
+         send_to_char( "&RYou finish the missile, but you forgot to install the propulsion primer!\r\n", ch );
       else if( number_range( 0, 1 ) == 1 )
-         send_to_char( "&RYou finish the missile, but half the explosive is still on the worktable!\n\r", ch );
+         send_to_char( "&RYou finish the missile, but half the explosive is still on the worktable!\r\n", ch );
       else if( number_range( 0, 1 ) == 1 )
-         send_to_char( "&RYou finish the missile, but the circuitry fails, and it starts to smoke.\n\r", ch );
+         send_to_char( "&RYou finish the missile, but the circuitry fails, and it starts to smoke.\r\n", ch );
       else
       {
-         send_to_char( "&RYou finish the missile, only to figure out that you've made a grenade!\n\r", ch );
-         send_to_char( "&RYou toss the grenade into the disposal.\n\r", ch );
+         send_to_char( "&RYou finish the missile, only to figure out that you've made a grenade!\r\n", ch );
+         send_to_char( "&RYou toss the grenade into the disposal.\r\n", ch );
       }
       learn_from_failure( ch, gsn_makemissile );
       return;
@@ -608,7 +608,7 @@ void do_makemissile( CHAR_DATA * ch, char *argument )
 
    obj = obj_to_char( obj, ch );
 
-   send_to_char( "&GYou finish your work and hold up your newly created missile.&w\n\r", ch );
+   send_to_char( "&GYou finish your work and hold up your newly created missile.&w\r\n", ch );
    act( AT_PLAIN, "$n finishes making $s new missile.", ch, NULL, argument, TO_ROOM );
 
    {
@@ -649,31 +649,31 @@ void do_launch2( CHAR_DATA * ch, char *argument )
    if( IS_SET( ch->in_room->room_flags, ROOM_SAFE ) )
    {
       set_char_color( AT_MAGIC, ch );
-      send_to_char( "You'll have to do that elsewhere.\n\r", ch );
+      send_to_char( "You'll have to do that elsewhere.\r\n", ch );
       return;
    }
 
    if( get_eq_char( ch, WEAR_DUAL_WIELD ) != NULL )
    {
-      send_to_char( "You can't do that while wielding two weapons.\n\r", ch );
+      send_to_char( "You can't do that while wielding two weapons.\r\n", ch );
       return;
    }
    if( !wield )
    {
-      send_to_char( "You must have a launcher equipped first.\n\r", ch );
+      send_to_char( "You must have a launcher equipped first.\r\n", ch );
       return;
    }
 
    if( wield->item_type != ITEM_GLAUNCHER && wield->item_type != ITEM_RLAUNCHER )
    {
-      send_to_char( "You must have a launcher equipped first.\n\r", ch );
+      send_to_char( "You must have a launcher equipped first.\r\n", ch );
       return;
    }
 
    if( ( arg[0] == '\0' ) )
    {
-      send_to_char( "Missile Launcher usage:  launch <dir> <optional target>.\n\r", ch );
-      send_to_char( "Grenade Launcher usage:  launch <dir> <how far>.\n\r", ch );
+      send_to_char( "Missile Launcher usage:  launch <dir> <optional target>.\r\n", ch );
+      send_to_char( "Grenade Launcher usage:  launch <dir> <how far>.\r\n", ch );
       return;
    }
    dir = get_door( arg );
@@ -681,18 +681,18 @@ void do_launch2( CHAR_DATA * ch, char *argument )
    {
       if( wield->value[5] == 0 )
       {
-         send_to_char( "You must load a missile into it first.\n\r", ch );
+         send_to_char( "You must load a missile into it first.\r\n", ch );
          return;
       }
       if( wield->value[2] == 1 && !ch->aiming_at && arg2[0] != '\0' )
       {
-         send_to_char( "This launcher is equipped with a guidance system...you must AIM first.\n\r", ch );
+         send_to_char( "This launcher is equipped with a guidance system...you must AIM first.\r\n", ch );
          return;
       }
       max_dist = wield->value[0];
       if( ( pexit = get_exit( ch->in_room, dir ) ) == NULL )
       {
-         send_to_char( "Your ignorance of common sense shows as you fire the missile into a wall!\n\r", ch );
+         send_to_char( "Your ignorance of common sense shows as you fire the missile into a wall!\r\n", ch );
          act( AT_ACTION, "$n fires a missile into the wall!", ch, NULL, NULL, TO_ROOM );
 
          if( wield->value[1] == 1 )
@@ -758,7 +758,7 @@ void do_launch2( CHAR_DATA * ch, char *argument )
             break;
       }
 
-      ch_printf( ch, "You launch the missile %s.\n\r", dtxt );
+      ch_printf( ch, "You launch the missile %s.\r\n", dtxt );
 
       for( pexit = ch->in_room->first_exit; pexit; pexit = pexit->next )
       {
@@ -780,9 +780,9 @@ void do_launch2( CHAR_DATA * ch, char *argument )
                               dtxt );
                      send_to_char( buf, rch );
                   }
-                  send_to_char( "&RThe missile flies directly into the doorway, and EXPLODES!\n\r", ch );
-                  send_to_char( "&wThe doorway is reduced to nothing but debris.\n\r", ch );
-                  act( AT_ACTION, "&RThe doorway is reduced to nothing but debris.&w\n\r", ch, NULL, NULL, TO_ROOM );
+                  send_to_char( "&RThe missile flies directly into the doorway, and EXPLODES!\r\n", ch );
+                  send_to_char( "&wThe doorway is reduced to nothing but debris.\r\n", ch );
+                  act( AT_ACTION, "&RThe doorway is reduced to nothing but debris.&w\r\n", ch, NULL, NULL, TO_ROOM );
                   if( wield->value[1] == 1 )
                      explode_emissile( ch, ch->in_room, wield->value[3], wield->value[4], 1 );
                   else
@@ -793,7 +793,7 @@ void do_launch2( CHAR_DATA * ch, char *argument )
                      if( number_range( 1, 4 ) == 4 )
                      {
                         ch_printf( rch,
-                                   "&RYou are too close to the door, and the EXPLOSION knocks you to the ground!&w\n\r" );
+                                   "&RYou are too close to the door, and the EXPLOSION knocks you to the ground!&w\r\n" );
                         act( AT_RED, "$n is too close to the door, and the EXPLOSION knocks them to the ground!", rch, NULL,
                              NULL, TO_ROOM );
                         rch->position = POS_SITTING;
@@ -811,8 +811,8 @@ void do_launch2( CHAR_DATA * ch, char *argument )
                               dtxt );
                      send_to_char( buf, rch );
                   }
-                  send_to_char( "&RThe missile flies directly into the doorway, and EXPLODES!\n\r", ch );
-                  send_to_char( "&wThe door remains undamaged, aside from some carbon scoring.\n\r", ch );
+                  send_to_char( "&RThe missile flies directly into the doorway, and EXPLODES!\r\n", ch );
+                  send_to_char( "&wThe door remains undamaged, aside from some carbon scoring.\r\n", ch );
                   act( AT_ACTION, "&RThe door remains undamaged, aside from some carbon scoring.", ch, NULL, NULL, TO_ROOM );
                   if( wield->value[1] == 1 )
                      explode_emissile( ch, ch->in_room, wield->value[3], wield->value[4], 1 );
@@ -873,13 +873,13 @@ void do_launch2( CHAR_DATA * ch, char *argument )
             }
             if( number_range( -15, schance + ( rch->perm_lck - 12 ) ) >= 0 )  // Direct hit
             {
-               ch_printf( ch, "Your missile scores a direct hit on %s!\n\r", PERS( rch, ch ) );
-               ch_printf( rch, "A missile fired from %s flies into you!\n\r", ftxt );
+               ch_printf( ch, "Your missile scores a direct hit on %s!\r\n", PERS( rch, ch ) );
+               ch_printf( rch, "A missile fired from %s flies into you!\r\n", ftxt );
                for( zch = proom->first_person; zch; zch = zch->next_in_room )
                {
                   if( zch == rch )
                      continue;
-                  ch_printf( zch, "A missile fired from the %s flies right into %s!\n\r", ftxt, PERS( rch, zch ) );
+                  ch_printf( zch, "A missile fired from the %s flies right into %s!\r\n", ftxt, PERS( rch, zch ) );
                }
                if( wield->value[1] == 1 )
                   explode_emissile( ch, proom, wield->value[3], wield->value[4], 1 );
@@ -896,13 +896,13 @@ void do_launch2( CHAR_DATA * ch, char *argument )
             }
             else if( number_range( -15, schance + ( rch->perm_lck - 12 ) ) >= -5 )  // Miss, but still damages
             {
-               ch_printf( ch, "%s narrowly dodges your missile, but it explodes nearby.\n\r", PERS( rch, ch ) );
-               ch_printf( rch, "You barely dodge a missile fired from %s, but it explodes near you!\n\r", ftxt );
+               ch_printf( ch, "%s narrowly dodges your missile, but it explodes nearby.\r\n", PERS( rch, ch ) );
+               ch_printf( rch, "You barely dodge a missile fired from %s, but it explodes near you!\r\n", ftxt );
                for( zch = proom->first_person; zch; zch = zch->next_in_room )
                {
                   if( zch == rch )
                      continue;
-                  ch_printf( zch, "%s barely dodges a missile fired at them from %s, but it still explodes nearby!\n\r",
+                  ch_printf( zch, "%s barely dodges a missile fired at them from %s, but it still explodes nearby!\r\n",
                              PERS( rch, zch ), ftxt );
                }
                if( wield->value[1] == 1 )
@@ -920,19 +920,19 @@ void do_launch2( CHAR_DATA * ch, char *argument )
             }
             else
             {
-               ch_printf( ch, "%s dodges the missile fired at them.\n\r", PERS( rch, ch ) );
-               ch_printf( rch, "A missile flies in from %s! Luckily, you dodge it.\n\r", ftxt );
+               ch_printf( ch, "%s dodges the missile fired at them.\r\n", PERS( rch, ch ) );
+               ch_printf( rch, "A missile flies in from %s! Luckily, you dodge it.\r\n", ftxt );
                for( zch = proom->first_person; zch; zch = zch->next_in_room )
                {
                   if( zch == rch )
                      continue;
-                  ch_printf( zch, "A missile flies in from %s at %s! They quickly dodge it.\n\r", ftxt, PERS( rch, zch ) );
+                  ch_printf( zch, "A missile flies in from %s at %s! They quickly dodge it.\r\n", ftxt, PERS( rch, zch ) );
                }
                msgsent = TRUE;
             }
             if( ch->aiming_at )
             {
-               send_to_char( "&G*&gbeep&G* Target lost. Target acquisition necessary for relaunch.\n\r", ch );
+               send_to_char( "&G*&gbeep&G* Target lost. Target acquisition necessary for relaunch.\r\n", ch );
                ch->aiming_at = NULL;
             }
 
@@ -953,10 +953,10 @@ void do_launch2( CHAR_DATA * ch, char *argument )
 
                   for( rch = proom->first_person; rch; rch = rch->next_in_room )
                   {
-                     ch_printf( rch, "&wA missile flies in from the %s, and explodes upon impact of the doorway %s!\n\r",
+                     ch_printf( rch, "&wA missile flies in from the %s, and explodes upon impact of the doorway %s!\r\n",
                                 ftxt, dtxt );
-                     ch_printf( rch, "&RThe doorway is reduced to nothing but debris.&w\n\r" );
-                     ch_printf( ch, "&WThe missile travels %d room%s away, and hits a door, which is destroyed!\n\r",
+                     ch_printf( rch, "&RThe doorway is reduced to nothing but debris.&w\r\n" );
+                     ch_printf( ch, "&WThe missile travels %d room%s away, and hits a door, which is destroyed!\r\n",
                                 dist, dist > 1 ? "s" : "" );
                   }
                }
@@ -964,10 +964,10 @@ void do_launch2( CHAR_DATA * ch, char *argument )
                {
                   for( rch = proom->first_person; rch; rch = rch->next_in_room )
                   {
-                     ch_printf( rch, "&wA missile flies in from the %s, and explodes upon impact of the doorway %s!\n\r",
+                     ch_printf( rch, "&wA missile flies in from the %s, and explodes upon impact of the doorway %s!\r\n",
                                 ftxt, dtxt );
-                     ch_printf( rch, "&RThe door remains undamaged, aside from some carbon scoring.\n\r" );
-                     ch_printf( ch, "&WThe missile travels %d room%s, and hits a door, which remains undamaged!\n\r",
+                     ch_printf( rch, "&RThe door remains undamaged, aside from some carbon scoring.\r\n" );
+                     ch_printf( ch, "&WThe missile travels %d room%s, and hits a door, which remains undamaged!\r\n",
                                 dist, dist > 1 ? "s" : "" );
                   }
                }
@@ -980,7 +980,7 @@ void do_launch2( CHAR_DATA * ch, char *argument )
                {
                   if( number_range( 1, 4 ) == 4 )
                   {
-                     ch_printf( rch, "&wYou are too close to the door, and the EXPLOSION knocks you to the ground!&w\n\r" );
+                     ch_printf( rch, "&wYou are too close to the door, and the EXPLOSION knocks you to the ground!&w\r\n" );
                      for( zch = proom->first_person; zch; zch = zch->next_in_room )
                      {
                         if( zch == rch )
@@ -1008,13 +1008,13 @@ void do_launch2( CHAR_DATA * ch, char *argument )
          if( dist == max_dist )  //Missile reaches range
          {
             if( msgsent == FALSE )
-               sprintf( buf, "A missile flies in from %s, loses speed, and drops, exploding!\n\r", ftxt );
+               sprintf( buf, "A missile flies in from %s, loses speed, and drops, exploding!\r\n", ftxt );
             else
-               sprintf( buf, "The missile loses speed and drops, exploding!\n\r" );
+               sprintf( buf, "The missile loses speed and drops, exploding!\r\n" );
             for( zch = proom->first_person; zch; zch = zch->next_in_room )
                send_to_char( buf, zch );
 
-            ch_printf( ch, "The missile travels %d room%s away, loses speed, and explodes as it drops!\n\r",
+            ch_printf( ch, "The missile travels %d room%s away, loses speed, and explodes as it drops!\r\n",
                        dist, dist > 1 ? "s" : "" );
             if( wield->value[1] == 1 )
                explode_emissile( ch, proom, wield->value[3], wield->value[4], 1 );
@@ -1036,9 +1036,9 @@ void do_launch2( CHAR_DATA * ch, char *argument )
          else
          {
             if( msgsent == FALSE )
-               sprintf( buf, "A missile flies in from %s, and continues %s!\n\r", ftxt, dtxt );
+               sprintf( buf, "A missile flies in from %s, and continues %s!\r\n", ftxt, dtxt );
             else
-               sprintf( buf, "The missile continues %s. That was close!\n\r", dtxt );
+               sprintf( buf, "The missile continues %s. That was close!\r\n", dtxt );
             for( zch = proom->first_person; zch; zch = zch->next_in_room )
                send_to_char( buf, zch );
             dist++;
@@ -1051,12 +1051,12 @@ void do_launch2( CHAR_DATA * ch, char *argument )
       {
          //msgsent, boom, return
          if( msgsent == FALSE )
-            sprintf( buf, "A missile flies in from %s, and explodes, hitting a wall!\n\r", ftxt );
+            sprintf( buf, "A missile flies in from %s, and explodes, hitting a wall!\r\n", ftxt );
          else
-            sprintf( buf, "The missile flies into a wall, and explodes!\n\r" );
+            sprintf( buf, "The missile flies into a wall, and explodes!\r\n" );
          for( zch = proom->first_person; zch; zch = zch->next_in_room )
             send_to_char( buf, zch );
-         ch_printf( ch, "The missile flies %d room%s away, and hits a wall, exploding!\n\r", dist, dist > 1 ? "s" : "" );
+         ch_printf( ch, "The missile flies %d room%s away, and hits a wall, exploding!\r\n", dist, dist > 1 ? "s" : "" );
 
          if( wield->value[1] == 1 )
             explode_emissile( ch, proom, wield->value[3], wield->value[4], 1 );
@@ -1077,15 +1077,15 @@ void do_launch2( CHAR_DATA * ch, char *argument )
   {
     if(wield->value[1] + wield->value[2] == 0)
     {
-     send_to_char("You don't have any grenades loaded.\n\r", ch);
+     send_to_char("You don't have any grenades loaded.\r\n", ch);
      return;
     }
     if(!isdigit(atoi(arg2))
     {
-     ch_printf("Invalid distance. It must be a number between 1 and %d.\n\r", wield->value[5])
+     ch_printf("Invalid distance. It must be a number between 1 and %d.\r\n", wield->value[5])
     if(atoi(arg2) > wield->value[5])
     {
-     send_to_char("This launcher isn't capable of firing a grenade that far.\n\r", ch);
+     send_to_char("This launcher isn't capable of firing a grenade that far.\r\n", ch);
      return;
     }
     if ( ( pexit = get_exit( ch->in_room, dir ) ) == NULL )
@@ -1107,7 +1107,7 @@ void do_load( CHAR_DATA * ch, char *argument )
 
    if( arg1[0] == '\0' || arg2[0] == '\0' )
    {
-      send_to_char( "Usage: load <object> <launcher>.\n\r", ch );
+      send_to_char( "Usage: load <object> <launcher>.\r\n", ch );
       return;
    }
 
@@ -1115,32 +1115,32 @@ void do_load( CHAR_DATA * ch, char *argument )
 
    if( !launcher )
    {
-      ch_printf( ch, "You don't seem to be carrying a '%s'.\n\r", arg2 );
+      ch_printf( ch, "You don't seem to be carrying a '%s'.\r\n", arg2 );
       return;
    }
    if( launcher->item_type != ITEM_RLAUNCHER && launcher->item_type != ITEM_GLAUNCHER )
    {
-      ch_printf( ch, "&w%s&w isn't a launcher.\n\r", launcher->short_descr );
+      ch_printf( ch, "&w%s&w isn't a launcher.\r\n", launcher->short_descr );
       return;
    }
    if( launcher->item_type == ITEM_RLAUNCHER )
    {
       if( launcher->value[5] == 1 )
       {
-         ch_printf( ch, "&w%s&w is already loaded with an %s missile.\n\r",
+         ch_printf( ch, "&w%s&w is already loaded with an %s missile.\r\n",
                     launcher->short_descr, launcher->value[1] == 0 ? "explosive" : "incendiary" );
          return;
       }
       if( ( obj = get_obj_carry( ch, arg1 ) ) == NULL )
       {
-         ch_printf( ch, "You don't seem to be carrying a '%s'.\n\r", arg1 );
+         ch_printf( ch, "You don't seem to be carrying a '%s'.\r\n", arg1 );
          return;
       }
       else
       {
          if( obj->item_type != ITEM_MISSILE )
          {
-            ch_printf( ch, "&w%s&w isn't a missile.\n\r", obj->short_descr );
+            ch_printf( ch, "&w%s&w isn't a missile.\r\n", obj->short_descr );
             return;
          }
       }
@@ -1155,12 +1155,12 @@ void do_load( CHAR_DATA * ch, char *argument )
       extract_obj( obj );
 
       WAIT_STATE( ch, 12 );
-      ch_printf( ch, "&wYou load &w%s&w into &w%s&w.\n\r", obj->short_descr, launcher->short_descr );
+      ch_printf( ch, "&wYou load &w%s&w into &w%s&w.\r\n", obj->short_descr, launcher->short_descr );
       for( rch = ch->in_room->first_person; rch; rch = rch->next_in_room )
       {
          if( ch == rch )
             continue;
-         ch_printf( rch, "&w%s loads &w%s&w into &w%s&w.\n\r", PERS( ch, rch ), obj->short_descr, launcher->short_descr );
+         ch_printf( rch, "&w%s loads &w%s&w into &w%s&w.\r\n", PERS( ch, rch ), obj->short_descr, launcher->short_descr );
       }
       return;
    }
@@ -1175,7 +1175,7 @@ void do_unload( CHAR_DATA * ch, char *argument )
 
    if( argument == '\0' )
    {
-      send_to_char( "Usage: unload <launcher>.\n\r", ch );
+      send_to_char( "Usage: unload <launcher>.\r\n", ch );
       return;
    }
 
@@ -1183,12 +1183,12 @@ void do_unload( CHAR_DATA * ch, char *argument )
 
    if( !launcher )
    {
-      ch_printf( ch, "You don't seem to be carrying a '%s'.\n\r", argument );
+      ch_printf( ch, "You don't seem to be carrying a '%s'.\r\n", argument );
       return;
    }
    if( launcher->item_type != ITEM_RLAUNCHER && launcher->item_type != ITEM_GLAUNCHER )
    {
-      ch_printf( ch, "&w%s&w isn't a launcher.\n\r", launcher->short_descr );
+      ch_printf( ch, "&w%s&w isn't a launcher.\r\n", launcher->short_descr );
       return;
    }
 
@@ -1196,7 +1196,7 @@ void do_unload( CHAR_DATA * ch, char *argument )
    {
       if( launcher->value[5] == 0 )
       {
-         ch_printf( ch, "&w%s&w is already unloaded.\n\r", launcher->short_descr );
+         ch_printf( ch, "&w%s&w is already unloaded.\r\n", launcher->short_descr );
          return;
       }
 
@@ -1238,12 +1238,12 @@ void do_unload( CHAR_DATA * ch, char *argument )
       launcher->value[5] = 0;
 
       WAIT_STATE( ch, 12 );
-      ch_printf( ch, "&wYou unload %s&w.\n\r", launcher->short_descr );
+      ch_printf( ch, "&wYou unload %s&w.\r\n", launcher->short_descr );
       for( rch = ch->in_room->first_person; rch; rch = rch->next_in_room )
       {
          if( ch == rch )
             continue;
-         ch_printf( rch, "&w%s&w unloads %s&w.\n\r", PERS( ch, rch ), launcher->short_descr );
+         ch_printf( rch, "&w%s&w unloads %s&w.\r\n", PERS( ch, rch ), launcher->short_descr );
       }
       return;
    }
@@ -1259,13 +1259,13 @@ void do_link( CHAR_DATA * ch, char *argument )
 
    if( ( ship = ship_from_gunseat( ch->in_room->vnum ) ) == NULL )
    {
-      send_to_char( "&RYou must be in the gunseat of a ship to link weapon systems.\n\r", ch );
+      send_to_char( "&RYou must be in the gunseat of a ship to link weapon systems.\r\n", ch );
       return;
    }
 
    if( str_cmp( argument, "primary" ) && str_cmp( argument, "secondary" ) && str_cmp( argument, "launchers" ) )
    {
-      send_to_char( "Usage: link <primary/secondary/launchers>\n\r", ch );
+      send_to_char( "Usage: link <primary/secondary/launchers>\r\n", ch );
       return;
    }
 
@@ -1273,7 +1273,7 @@ void do_link( CHAR_DATA * ch, char *argument )
    {
       if( ship->primaryType == B_NONE )
       {
-         send_to_char( "&RThis ship is not equipped with a primary weapon system.\n\r", ch );
+         send_to_char( "&RThis ship is not equipped with a primary weapon system.\r\n", ch );
          return;
       }
 
@@ -1316,19 +1316,19 @@ void do_link( CHAR_DATA * ch, char *argument )
 
       if( x <= 1 )
       {
-         send_to_char( "The current primary weapon can only fire once.\n\r", ch );
+         send_to_char( "The current primary weapon can only fire once.\r\n", ch );
          return;
       }
 
       ship->primaryLinked = TRUE;
-      ch_printf( ch, "Primary weapon systems are linked. All available will fire.\n\r" );
+      ch_printf( ch, "Primary weapon systems are linked. All available will fire.\r\n" );
       return;
    }
    if( !str_prefix( argument, "secondary" ) )
    {
       if( ship->secondaryType == B_NONE )
       {
-         send_to_char( "&RThis ship is not equipped with a secondary weapon system.\n\r", ch );
+         send_to_char( "&RThis ship is not equipped with a secondary weapon system.\r\n", ch );
          return;
       }
 
@@ -1371,19 +1371,19 @@ void do_link( CHAR_DATA * ch, char *argument )
 
       if( x <= 1 )
       {
-         send_to_char( "The current secondary weapon can only fire once.\n\r", ch );
+         send_to_char( "The current secondary weapon can only fire once.\r\n", ch );
          return;
       }
 
       ship->secondaryLinked = TRUE;
-      ch_printf( ch, "Secondary weapon systems are linked. All available will fire.\n\r" );
+      ch_printf( ch, "Secondary weapon systems are linked. All available will fire.\r\n" );
       return;
    }
    if( !str_prefix( argument, "launchers" ) )
    {
       if( !ship->maxmissiles && !ship->maxtorpedos && !ship->maxrockets )
       {
-         send_to_char( "This ship does not have a launcher system installed.\n\r", ch );
+         send_to_char( "This ship does not have a launcher system installed.\r\n", ch );
          return;
       }
 
@@ -1394,12 +1394,12 @@ void do_link( CHAR_DATA * ch, char *argument )
           ( ship->maxrockets && ship->maxmissiles ) || ( ship->maxrockets && ship->maxtorpedos ) )
       {
          ship->warheadLinked = TRUE;
-         ch_printf( ch, "Launcher system linked. All available will fire.\n\r" );
+         ch_printf( ch, "Launcher system linked. All available will fire.\r\n" );
          return;
       }
       else
       {
-         ch_printf( ch, "You only have one launcher type, linking is unnecessary.\n\r" );
+         ch_printf( ch, "You only have one launcher type, linking is unnecessary.\r\n" );
          return;
       }
    }
@@ -1411,14 +1411,14 @@ void do_unlink( CHAR_DATA * ch, char *argument )
 
    if( ( ship = ship_from_gunseat( ch->in_room->vnum ) ) == NULL )
    {
-      send_to_char( "&RYou must be in the gunseat of a ship to unlink weapon systems.\n\r", ch );
+      send_to_char( "&RYou must be in the gunseat of a ship to unlink weapon systems.\r\n", ch );
       return;
    }
 
    if( str_cmp( argument, "primary" ) && str_cmp( argument, "secondary" )
        && str_cmp( argument, "launchers" ) && str_cmp( argument, "all" ) )
    {
-      send_to_char( "Usage: unlink <primary/secondary/launchers/all>\n\r", ch );
+      send_to_char( "Usage: unlink <primary/secondary/launchers/all>\r\n", ch );
       return;
    }
 
@@ -1426,69 +1426,69 @@ void do_unlink( CHAR_DATA * ch, char *argument )
    {
       if( ship->primaryCount == 0 )
       {
-         send_to_char( "This ship doesn't have a primary weapon system.\n\r", ch );
+         send_to_char( "This ship doesn't have a primary weapon system.\r\n", ch );
          return;
       }
       if( ship->primaryLinked == FALSE )
       {
-         send_to_char( "The primary weapon systems aren't linked.\n\r", ch );
+         send_to_char( "The primary weapon systems aren't linked.\r\n", ch );
          return;
       }
       ship->primaryLinked = FALSE;
-      send_to_char( "You unlink the primary weapon systems.\n\r", ch );
-      act( AT_PLAIN, "$n presses a few buttons on the console.\n\r", ch, NULL, NULL, TO_ROOM );
+      send_to_char( "You unlink the primary weapon systems.\r\n", ch );
+      act( AT_PLAIN, "$n presses a few buttons on the console.\r\n", ch, NULL, NULL, TO_ROOM );
       return;
    }
    if( !str_prefix( argument, "secondary" ) )
    {
       if( ship->secondaryCount == 0 )
       {
-         send_to_char( "This ship doesn't have a secondary weapon system.\n\r", ch );
+         send_to_char( "This ship doesn't have a secondary weapon system.\r\n", ch );
          return;
       }
       if( ship->secondaryLinked == FALSE )
       {
-         send_to_char( "The secondary weapon systems aren't linked.\n\r", ch );
+         send_to_char( "The secondary weapon systems aren't linked.\r\n", ch );
          return;
       }
       ship->secondaryLinked = FALSE;
-      send_to_char( "You unlink the secondary weapon systems.\n\r", ch );
-      act( AT_PLAIN, "$n presses a few buttons on the console.\n\r", ch, NULL, NULL, TO_ROOM );
+      send_to_char( "You unlink the secondary weapon systems.\r\n", ch );
+      act( AT_PLAIN, "$n presses a few buttons on the console.\r\n", ch, NULL, NULL, TO_ROOM );
       return;
    }
    if( !str_prefix( argument, "launchers" ) )
    {
       if( ship->warheadLinked == FALSE )
       {
-         send_to_char( "The launcher systems aren't linked.\n\r", ch );
+         send_to_char( "The launcher systems aren't linked.\r\n", ch );
          return;
       }
       ship->warheadLinked = FALSE;
-      send_to_char( "You unlink the launcher systems.\n\r", ch );
-      act( AT_PLAIN, "$n presses a few buttons on the console.\n\r", ch, NULL, NULL, TO_ROOM );
+      send_to_char( "You unlink the launcher systems.\r\n", ch );
+      act( AT_PLAIN, "$n presses a few buttons on the console.\r\n", ch, NULL, NULL, TO_ROOM );
       return;
    }
    if( !str_prefix( argument, "all" ) )
    {
       if( ship->warheadLinked == FALSE && ship->primaryLinked == FALSE && ship->secondaryLinked == FALSE )
       {
-         send_to_char( "No ship system is linked.\n\r", ch );
+         send_to_char( "No ship system is linked.\r\n", ch );
          return;
       }
       if( ship->primaryLinked == TRUE )
       {
          ship->primaryLinked = FALSE;
-         send_to_char( "Primary weapon systems unlinked.\n\r", ch );
+         send_to_char( "Primary weapon systems unlinked.\r\n", ch );
       }
       if( ship->secondaryLinked == TRUE )
       {
          ship->secondaryLinked = FALSE;
-         send_to_char( "Secondary weapon systems unlinked.\n\r", ch );
+         send_to_char( "Secondary weapon systems unlinked.\r\n", ch );
       }
       if( ship->warheadLinked == TRUE )
       {
          ship->warheadLinked = FALSE;
-         send_to_char( "Launcher systems unlinked.\n\r", ch );
+         send_to_char( "Launcher systems unlinked.\r\n", ch );
       }
       return;
    }
@@ -1502,23 +1502,23 @@ void do_barrel_roll( CHAR_DATA * ch, char *argument )
 
    if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
    {
-      send_to_char( "&RYou must be in the cockpit of a ship to perform a maneuver.\n\r", ch );
+      send_to_char( "&RYou must be in the cockpit of a ship to perform a maneuver.\r\n", ch );
       return;
    }
 
    if( ship->manuever < 70 )
    {
-      send_to_char( "This ship isn't maneuverable enough to perform a barrel roll.\n\r", ch );
+      send_to_char( "This ship isn't maneuverable enough to perform a barrel roll.\r\n", ch );
       return;
    }
    if( ship->shipstate == SHIP_HYPERSPACE )
    {
-      send_to_char( "&RYou can only do that in realspace.\n\r", ch );
+      send_to_char( "&RYou can only do that in realspace.\r\n", ch );
       return;
    }
    if( !ship->starsystem )
    {
-      send_to_char( "&RYou can only do that in realspace.\n\r", ch );
+      send_to_char( "&RYou can only do that in realspace.\r\n", ch );
       return;
    }
 
@@ -1528,19 +1528,19 @@ void do_barrel_roll( CHAR_DATA * ch, char *argument )
          schance = IS_NPC( ch ) ? ch->top_level * 2 : ch->pcdata->learned[gsn_barrelroll];
          if( number_percent(  ) > schance )
          {
-            send_to_char( "&RYou attempt to do a barrel roll, but fail horribly.\n\r", ch );
+            send_to_char( "&RYou attempt to do a barrel roll, but fail horribly.\r\n", ch );
             return;
          }
 
          if( ship->juking == TRUE )
          {
-            send_to_char( "&YYou stop juking from side to side, and perform a barrel roll.\n\r", ch );
+            send_to_char( "&YYou stop juking from side to side, and perform a barrel roll.\r\n", ch );
             sprintf( buf, "%s stops juking from side to side.", ship->name );
             echo_to_system( AT_YELLOW, ship, buf, NULL );
             ship->juking = FALSE;
          }
          ship->rolling = TRUE;
-         send_to_char( "&GThe ship starts rolling...\n\r", ch );
+         send_to_char( "&GThe ship starts rolling...\r\n", ch );
          act( AT_PLAIN, "$n performs a barrel roll.", ch, NULL, NULL, TO_ROOM );
          sprintf( buf, "%s performs a barrel roll.", ship->name );
          echo_to_system( AT_YELLOW, ship, buf, NULL );
@@ -1555,8 +1555,8 @@ void do_barrel_roll( CHAR_DATA * ch, char *argument )
          ch->substate = SUB_NONE;
          if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
             return;
-         send_to_char( "&YYou level out your flight pattern.\n\r", ch );
-         act( AT_PLAIN, "$n levels out $s flight pattern.\n\r", ch, NULL, NULL, TO_ROOM );
+         send_to_char( "&YYou level out your flight pattern.\r\n", ch );
+         act( AT_PLAIN, "$n levels out $s flight pattern.\r\n", ch, NULL, NULL, TO_ROOM );
          sprintf( buf, "%s levels out its flight pattern.", ship->name );
          echo_to_system( AT_YELLOW, ship, buf, NULL );
          ship->rolling = FALSE;
@@ -1566,8 +1566,8 @@ void do_barrel_roll( CHAR_DATA * ch, char *argument )
    ch->substate = SUB_NONE;
    if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
       return;
-   send_to_char( "&YYou level out your flight pattern.\n\r", ch );
-   act( AT_PLAIN, "$n levels out $s flight pattern.\n\r", ch, NULL, NULL, TO_ROOM );
+   send_to_char( "&YYou level out your flight pattern.\r\n", ch );
+   act( AT_PLAIN, "$n levels out $s flight pattern.\r\n", ch, NULL, NULL, TO_ROOM );
    sprintf( buf, "%s levels out its flight pattern.", ship->name );
    echo_to_system( AT_YELLOW, ship, buf, NULL );
    ship->rolling = FALSE;
@@ -1582,23 +1582,23 @@ void do_juke( CHAR_DATA * ch, char *argument )
 
    if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
    {
-      send_to_char( "&RYou must be in the cockpit of a ship to perform a maneuver.\n\r", ch );
+      send_to_char( "&RYou must be in the cockpit of a ship to perform a maneuver.\r\n", ch );
       return;
    }
 
    if( ship->manuever < 75 )
    {
-      send_to_char( "This ship isn't maneuverable enough to perform a juke.\n\r", ch );
+      send_to_char( "This ship isn't maneuverable enough to perform a juke.\r\n", ch );
       return;
    }
    if( ship->shipstate == SHIP_HYPERSPACE )
    {
-      send_to_char( "&RYou can only do that in realspace.\n\r", ch );
+      send_to_char( "&RYou can only do that in realspace.\r\n", ch );
       return;
    }
    if( !ship->starsystem )
    {
-      send_to_char( "&RYou can only do that in realspace.\n\r", ch );
+      send_to_char( "&RYou can only do that in realspace.\r\n", ch );
       return;
    }
 
@@ -1608,19 +1608,19 @@ void do_juke( CHAR_DATA * ch, char *argument )
          schance = IS_NPC( ch ) ? ch->top_level * 2 : ch->pcdata->learned[gsn_juke];
          if( number_percent(  ) > schance )
          {
-            send_to_char( "&RYou attempt to do a juke, but fail horribly.\n\r", ch );
+            send_to_char( "&RYou attempt to do a juke, but fail horribly.\r\n", ch );
             return;
          }
 
          if( ship->rolling == TRUE )
          {
-            send_to_char( "&YYou break out of the barrel roll, and start juking.\n\r", ch );
+            send_to_char( "&YYou break out of the barrel roll, and start juking.\r\n", ch );
             sprintf( buf, "%s stops rolling.", ship->name );
             echo_to_system( AT_YELLOW, ship, buf, NULL );
             ship->rolling = FALSE;
          }
          ship->juking = TRUE;
-         send_to_char( "&GYou perform the maneuver, and the ship jukes from side to side.\n\r", ch );
+         send_to_char( "&GYou perform the maneuver, and the ship jukes from side to side.\r\n", ch );
          act( AT_PLAIN, "$n jukes the ship from side to side.", ch, NULL, NULL, TO_ROOM );
          sprintf( buf, "%s starts juking from side to side.", ship->name );
          echo_to_system( AT_YELLOW, ship, buf, NULL );
@@ -1635,8 +1635,8 @@ void do_juke( CHAR_DATA * ch, char *argument )
          ch->substate = SUB_NONE;
          if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
             return;
-         send_to_char( "&YYou level out your flight pattern.\n\r", ch );
-         act( AT_PLAIN, "$n levels out $s flight pattern.\n\r", ch, NULL, NULL, TO_ROOM );
+         send_to_char( "&YYou level out your flight pattern.\r\n", ch );
+         act( AT_PLAIN, "$n levels out $s flight pattern.\r\n", ch, NULL, NULL, TO_ROOM );
          sprintf( buf, "%s levels out its flight pattern.", ship->name );
          echo_to_system( AT_YELLOW, ship, buf, NULL );
          ship->juking = FALSE;
@@ -1646,8 +1646,8 @@ void do_juke( CHAR_DATA * ch, char *argument )
    ch->substate = SUB_NONE;
    if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
       return;
-   send_to_char( "You level out your flight pattern.\n\r", ch );
-   act( AT_PLAIN, "$n levels out $s flight pattern.\n\r", ch, NULL, NULL, TO_ROOM );
+   send_to_char( "You level out your flight pattern.\r\n", ch );
+   act( AT_PLAIN, "$n levels out $s flight pattern.\r\n", ch, NULL, NULL, TO_ROOM );
    sprintf( buf, "%s levels out its flight pattern.", ship->name );
    echo_to_system( AT_YELLOW, ship, buf, NULL );
    ship->juking = FALSE;
