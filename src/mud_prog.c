@@ -2016,7 +2016,7 @@ void mprog_time_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void 
          continue;
       }
 
-      if( ( mprg->type & type ) && ( ( !mprg->triggered ) || ( mprg->type && HOUR_PROG ) ) )
+      if( ( mprg->type & type ) && ( ( !mprg->triggered ) || ( mprg->type == HOUR_PROG ) ) )
       {
          mprg->triggered = TRUE;
          mprog_driver( mprg->comlist, mob, actor, obj, vo, FALSE );

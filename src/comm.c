@@ -105,8 +105,8 @@ bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
 /*
  * Other local functions (OS-independent).
  */
-bool check_reconnect( DESCRIPTOR_DATA * d, char *name, bool fConn );
-bool check_playing( DESCRIPTOR_DATA * d, char *name, bool kick );
+short check_reconnect( DESCRIPTOR_DATA * d, char *name, bool fConn );
+short check_playing( DESCRIPTOR_DATA * d, char *name, bool kick );
 bool check_multi( DESCRIPTOR_DATA * d, char *name );
 int main( int argc, char **argv );
 void nanny( DESCRIPTOR_DATA * d, char *argument );
@@ -1469,7 +1469,8 @@ void nanny_get_name( DESCRIPTOR_DATA *d, char *argument )
    char buf[MAX_STRING_LENGTH];
    CHAR_DATA *ch = d->character;
    BAN_DATA *pban;
-   bool fOld, chk;
+   bool fOld;
+   short chk;
 
    if( argument[0] == '\0' )
    {
@@ -1621,7 +1622,7 @@ void nanny_get_old_password( DESCRIPTOR_DATA * d, char *argument )
 {
    char buf[MAX_STRING_LENGTH];
    CHAR_DATA *ch = d->character;
-   bool chk;
+   short chk;
 
    write_to_buffer( d, "\r\n", 2 );
 
@@ -2291,10 +2292,9 @@ void nanny_read_motd( DESCRIPTOR_DATA * d, const char *argument )
        * else
        * ch->pcdata->learned[iLang] = 100;
        */
-
-   for( iLang = 0; lang_array[iLang] != LANG_UNKNOWN; iLang++ )
-      if( lang_array[iLang] == race_table[ch->race].language )
-         break;
+      for( iLang = 0; lang_array[iLang] != LANG_UNKNOWN; iLang++ )
+         if( lang_array[iLang] == race_table[ch->race].language )
+            break;
       if( lang_array[iLang] == LANG_UNKNOWN )
       {
          if( IS_DROID( ch ) && ( iLang = skill_lookup( "binary" ) ) >= 0 )
@@ -2598,12 +2598,10 @@ bool check_parse_name( const char *name )
    return TRUE;
 }
 
-
-
 /*
  * Look for link-dead player to reconnect.
  */
-bool check_reconnect( DESCRIPTOR_DATA * d, char *name, bool fConn )
+short check_reconnect( DESCRIPTOR_DATA * d, char *name, bool fConn )
 {
    CHAR_DATA *ch;
 
@@ -2654,12 +2652,9 @@ bool check_reconnect( DESCRIPTOR_DATA * d, char *name, bool fConn )
    return FALSE;
 }
 
-
-
 /*
  * Check if already playing.
  */
-
 bool check_multi( DESCRIPTOR_DATA * d, char *name )
 {
    DESCRIPTOR_DATA *dold;
@@ -2706,7 +2701,7 @@ bool check_multi( DESCRIPTOR_DATA * d, char *name )
 
 }
 
-bool check_playing( DESCRIPTOR_DATA * d, char *name, bool kick )
+short check_playing( DESCRIPTOR_DATA * d, char *name, bool kick )
 {
    CHAR_DATA *ch;
 

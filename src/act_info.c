@@ -1933,7 +1933,7 @@ short str_similarity( const char *astr, const char *bstr )
       if( LOWER( *astr ) == LOWER( *bstr ) )
          matches++;
 
-      if( ++bstr == '\0' )
+      if( ++bstr == NULL )
          return matches;
    }
 

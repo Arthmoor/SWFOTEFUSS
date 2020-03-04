@@ -1918,7 +1918,7 @@ void do_steal( CHAR_DATA * ch, const char *argument )
                IS_NPC( victim ) ? victim->short_descr : victim->name );
       log_string( logbuf );
       learn_from_success( ch, gsn_steal );
-      if( IS_NPC( victim ) );
+      if( IS_NPC( victim ) )
       {
          xp =
             UMIN( amount * 10,
@@ -1979,7 +1979,7 @@ void do_steal( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_steal );
    sprintf( logbuf, "%s stole %s from %s.\r\n", ch->name, obj->name, IS_NPC( victim ) ? victim->short_descr : victim->name );
    log_string( logbuf );
-   if( IS_NPC( victim ) );
+   if( IS_NPC( victim ) )
    {
       xp =
          UMIN( obj->cost * 10,

@@ -1192,7 +1192,7 @@ void do_unload( CHAR_DATA * ch, const char *argument )
    OBJ_DATA *obj;
    OBJ_DATA *launcher;
 
-   if( argument == '\0' )
+   if( argument[0] == '\0' )
    {
       send_to_char( "Usage: unload <launcher>.\r\n", ch );
       return;

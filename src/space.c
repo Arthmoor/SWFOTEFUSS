@@ -7071,24 +7071,23 @@ void do_info( CHAR_DATA * ch, const char *argument )
 
    if( !str_cmp( target->owner, ch->name ) || !str_cmp( target->pilot, ch->name ) || !str_cmp( target->copilot, ch->name ) )
       ch_printf( ch, "&G| &WOwner: &w%s&G || &WPilot: &w%s&G || &WCoPilot: &w%s&G |\r\n",
-                 target->owner != '\0' ? target->owner : "None.", target->pilot != '\0' ? target->pilot : "None.",
-                 target->copilot != '\0' ? target->copilot : "None." );
+                 target->owner != NULL ? target->owner : "None.", target->pilot != NULL ? target->pilot : "None.",
+                 target->copilot != NULL ? target->copilot : "None." );
    else if( !str_cmp( target->owner, "Public" ) || !str_cmp( target->owner, "public" ) )
       ch_printf( ch, "&G| &WOwner: &wPublic &G || &WPilot: &w---------&G || &WCoPilot: &w---------&G |\r\n" );
    else if( ch->pcdata->clan )
    {
       if( !str_cmp( target->owner, ch->pcdata->clan->name ) )
          ch_printf( ch, "&G| &WOwner: &w%s&G || &WPilot: &w%s&G || &WCoPilot: &w%s&G |\r\n",
-                    target->owner != '\0' ? target->owner : "None.", target->pilot != '\0' ? target->pilot : "None.",
-                    target->copilot != '\0' ? target->copilot : "None." );
+                    target->owner != NULL ? target->owner : "None.", target->pilot != NULL ? target->pilot : "None.",
+                    target->copilot != NULL ? target->copilot : "None." );
    }
    else
       ch_printf( ch, "&G| &WOwner: &w%s&G || &WPilot: &w%s&G || &WCoPilot: &w%s&G |\r\n\r\n",
-                 ship->owner != '\0' ? "---------" : "None.", "---------", "---------" );
+                 ship->owner != NULL ? "---------" : "None.", "---------", "---------" );
 
    sprintf( buf, "$n checks over %s thoroughly.", target->name );
    act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
-
 }
 
 void do_autorecharge( CHAR_DATA * ch, const char *argument )

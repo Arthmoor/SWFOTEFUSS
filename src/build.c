@@ -3156,7 +3156,7 @@ void do_oset( CHAR_DATA * ch, const char *argument )
       if( !can_omodify( ch, obj ) )
          return;
 
-      if( arg3 == '\0' )
+      if( arg3[0] == '\0' )
       {
          send_to_char( "&WYou &RMUST choose a new name\n\r", ch );
          return;

@@ -361,8 +361,7 @@ void claim_disintegration( CHAR_DATA * ch, CHAR_DATA * victim )
    gain_exp( ch, bexp, HUNTING_ABILITY );
 
    set_char_color( AT_BLOOD, ch );
-   ch_printf( ch, "You receive %ld experience and %ld credits,\r\n from the bounty on %s\r\n", exp, bounty->amount,
-              bounty->target );
+   ch_printf( ch, "You receive %ld experience and %ld credits, from the bounty on %s\r\n", bexp, bounty->amount, bounty->target );
 
    sprintf( buf, "The disintegration bounty on %s has been claimed!", victim->name );
    echo_to_all( AT_RED, buf, 0 );

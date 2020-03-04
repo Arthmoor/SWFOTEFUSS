@@ -62,7 +62,6 @@ Michael Seifert, and Sebastian Hammer.
 #define ARENA_END   41  /* vnum of last real arena room */
 #define HALL_FAME_FILE  SYSTEM_DIR "halloffame.lst"
 
-
 struct hall_of_fame_element
 {
    char name[MAX_INPUT_LENGTH + 1];
@@ -271,7 +270,7 @@ void do_chaos( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   if( ( lo_lim || hi_lim || game_length ) < 0 )
+   if( lo_lim < 0 || hi_lim < 0 || game_length < 0 )
    {
       send_to_char( "I like positive numbers thank you.\r\n", ch );
       return;
@@ -292,7 +291,6 @@ void do_chaos( CHAR_DATA * ch, const char *argument )
    start_arena(  );
 
 }
-
 
 void start_arena(  )
 {

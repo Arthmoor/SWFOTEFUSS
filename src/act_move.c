@@ -1518,7 +1518,7 @@ void do_open( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   if( !str_cmp( arg, "hatch" ) );
+   if( !str_cmp( arg, "hatch" ) )
    {
       do_openhatch( ch, argument );
       return;
@@ -1527,8 +1527,6 @@ void do_open( CHAR_DATA * ch, const char *argument )
    do_openhatch( ch, arg );
    return;
 }
-
-
 
 void do_close( CHAR_DATA * ch, const char *argument )
 {

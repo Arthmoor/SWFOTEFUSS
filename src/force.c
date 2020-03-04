@@ -1417,9 +1417,9 @@ FORCE_HELP *get_force_help( const char *fname, const char *type )
    bool found_jedi = FALSE;
    bool found_sith = FALSE;
    bool match = FALSE;
-   if( !fname || fname == '\0' )
+   if( !fname || fname[0] == '\0' )
       return NULL;
-   if( !type || type == '\0' )
+   if( !type || type[0] == '\0' )
       return NULL;
    for( fhelp = first_force_help; fhelp; fhelp = fhelp->next )
    {
