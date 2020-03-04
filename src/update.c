@@ -1327,6 +1327,8 @@ void mobile_update( void )
       if( !IS_SET( ch->act, ACT_RUNNING )
           && !IS_SET( ch->act, ACT_SENTINEL )
           && !IS_SET( ch->act, ACT_PROTOTYPE )
+          && !IS_SET( ch->act, ACT_NOWANDER )
+          && !IS_SET( ch->act, ACT_PET )
           && ( door = number_bits( 5 ) ) <= 9
           && ( pexit = get_exit( ch->in_room, door ) ) != NULL
           && pexit->to_room
