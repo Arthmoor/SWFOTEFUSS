@@ -176,10 +176,9 @@ bool mprog_seval( const char *lhs, char *opr, char *rhs, CHAR_DATA * mob )
    if( !str_cmp( opr, "!/" ) )
       return ( bool ) ( str_infix( rhs, lhs ) );
 
-   sprintf( log_buf, "Improper MOBprog operator '%s'", opr );
+   snprintf( log_buf, MAX_STRING_LENGTH, "Improper MOBprog operator '%s'", opr );
    progbug( log_buf, mob );
    return 0;
-
 }
 
 bool mprog_veval( int lhs, char *opr, int rhs, CHAR_DATA * mob )
@@ -202,11 +201,10 @@ bool mprog_veval( int lhs, char *opr, int rhs, CHAR_DATA * mob )
    if( !str_cmp( opr, "|" ) )
       return ( lhs | rhs );
 
-   sprintf( log_buf, "Improper MOBprog operator '%s'", opr );
+   snprintf( log_buf, MAX_STRING_LENGTH, "Improper MOBprog operator '%s'", opr );
    progbug( log_buf, mob );
 
    return 0;
-
 }
 
 /* This function performs the evaluation of the if checks.  It is
@@ -226,7 +224,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
    char cvar[MAX_INPUT_LENGTH];
    char chck[MAX_INPUT_LENGTH];
    char opr[MAX_INPUT_LENGTH];
-   char rval[MAX_INPUT_LENGTH];
+   char rval[MAX_STRING_LENGTH];
    char *point = ifcheck;
    char *pchck = chck;
    CHAR_DATA *chkchar = NULL;
@@ -322,7 +320,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
             chkobj = ( OBJ_DATA * ) vo;
             break;
          default:
-            sprintf( rval, "Bad argument '%c' to '%s'", cvar[0], chck );
+            snprintf( rval, MAX_STRING_LENGTH, "Bad argument '%c' to '%s'", cvar[0], chck );
             progbug( rval, mob );
             return BERR;
       }
@@ -375,7 +373,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "timeskilled" ) )
@@ -412,7 +410,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "otypehere" ) )
@@ -440,7 +438,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "ovnumroom" ) )
@@ -461,7 +459,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "otyperoom" ) )
@@ -486,7 +484,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH);
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "ovnumcarry" ) )
@@ -507,7 +505,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "otypecarry" ) )
@@ -532,7 +530,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "ovnumwear" ) )
@@ -553,7 +551,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "otypewear" ) )
@@ -578,7 +576,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "ovnuminv" ) )
@@ -599,7 +597,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( !str_cmp( chck, "otypeinv" ) )
@@ -624,7 +622,7 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
       if( rhsvl < 1 )
          rhsvl = 1;
       if( !*opr )
-         strcpy( opr, "==" );
+         mudstrlcpy( opr, "==", MAX_INPUT_LENGTH );
       return mprog_veval( lhsvl, opr, rhsvl, mob );
    }
    if( chkchar )
@@ -853,7 +851,6 @@ int mprog_do_ifcheck( char *ifcheck, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DAT
    progbug( "Unknown ifcheck", mob );
    return BERR;
 }
-
 
 /* This routine handles the variables for command expansion.
  * If you want to add any go right ahead, it should be fairly
@@ -1226,9 +1223,7 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_
          progbug( "Bad $var", mob );
          break;
    }
-
    return;
-
 }
 
 /*  The main focus of the MOBprograms.  This routine is called 
@@ -1328,7 +1323,7 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA 
          count++;
       }
 
-   strcpy( tmpcmndlst, com_list );
+   mudstrlcpy( tmpcmndlst, com_list, MAX_STRING_LENGTH );
    command_list = tmpcmndlst;
 
    /*
@@ -1878,7 +1873,6 @@ void mpsleep_update(  )
    }
 }
 
-
 bool mprog_keyword_check( const char *argu, const char *argl )
 {
    char word[MAX_INPUT_LENGTH];
@@ -1888,9 +1882,9 @@ bool mprog_keyword_check( const char *argu, const char *argl )
    char *arg, *arglist;
    char *start, *end;
 
-   strcpy( arg1, strlower( argu ) );
+   mudstrlcpy( arg1, strlower( argu ), MAX_INPUT_LENGTH );
    arg = arg1;
-   strcpy( arg2, strlower( argl ) );
+   mudstrlcpy( arg2, strlower( argl ), MAX_INPUT_LENGTH );
    arglist = arg2;
 
    for( i = 0; i < strlen( arglist ); i++ )
@@ -1922,14 +1916,12 @@ bool mprog_keyword_check( const char *argu, const char *argl )
    return FALSE;
 }
 
-
 /* The next two routines are the basic trigger types. Either trigger
  *  on a certain percent, or trigger on a keyword or word phrase.
  *  To see how this works, look at the various trigger routines..
  */
 void mprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type )
 {
-
    char temp1[MAX_STRING_LENGTH];
    char temp2[MAX_INPUT_LENGTH];
    char word[MAX_INPUT_LENGTH];
@@ -1943,11 +1935,11 @@ void mprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor, 
    for( mprg = mob->pIndexData->mudprogs; mprg; mprg = mprg->next )
       if( mprg->type & type )
       {
-         strcpy( temp1, mprg->arglist );
+         mudstrlcpy( temp1, mprg->arglist, MAX_STRING_LENGTH );
          list = temp1;
          for( i = 0; i < strlen( list ); i++ )
             list[i] = LOWER( list[i] );
-         strcpy( temp2, arg );
+         mudstrlcpy( temp2, arg, MAX_INPUT_LENGTH );
          dupl = temp2;
          for( i = 0; i < strlen( dupl ); i++ )
             dupl[i] = LOWER( dupl[i] );
@@ -1979,9 +1971,7 @@ void mprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor, 
                      dupl = start + 1;
          }
       }
-
    return;
-
 }
 
 void mprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type )
@@ -2126,7 +2116,6 @@ void mprog_act_trigger( char *buf, CHAR_DATA * mob, CHAR_DATA * ch, OBJ_DATA * o
 
 void mprog_bribe_trigger( CHAR_DATA * mob, CHAR_DATA * ch, int amount )
 {
-
    char buf[MAX_STRING_LENGTH];
    MPROG_DATA *mprg;
    OBJ_DATA *obj;
@@ -2141,7 +2130,7 @@ void mprog_bribe_trigger( CHAR_DATA * mob, CHAR_DATA * ch, int amount )
          return;
 
       obj = create_object( get_obj_index( OBJ_VNUM_MONEY_SOME ), 0 );
-      sprintf( buf, obj->short_descr, amount );
+      snprintf( buf, MAX_STRING_LENGTH, obj->short_descr, amount );
       STRFREE( obj->short_descr );
       obj->short_descr = STRALLOC( buf );
       obj->value[0] = amount;
@@ -2155,9 +2144,7 @@ void mprog_bribe_trigger( CHAR_DATA * mob, CHAR_DATA * ch, int amount )
             break;
          }
    }
-
    return;
-
 }
 
 void mprog_death_trigger( CHAR_DATA * killer, CHAR_DATA * mob )
@@ -2225,9 +2212,7 @@ void mprog_greet_trigger( CHAR_DATA * ch )
    CHAR_DATA *vmob, *vmob_next;
 
 #ifdef DEBUG
-   char buf[MAX_STRING_LENGTH];
-   sprintf( buf, "mprog_greet_trigger -> %s", ch->name );
-   log_string( buf );
+   log_printf( "mprog_greet_trigger -> %s", ch->name );
 #endif
 
    for( vmob = ch->in_room->first_person; vmob; vmob = vmob_next )
@@ -2249,7 +2234,6 @@ void mprog_greet_trigger( CHAR_DATA * ch )
          mprog_percent_check( vmob, ch, NULL, NULL, ALL_GREET_PROG );
    }
    return;
-
 }
 
 void mprog_hitprcnt_trigger( CHAR_DATA * mob, CHAR_DATA * ch )
@@ -2399,7 +2383,7 @@ void set_supermob( OBJ_DATA * obj )
     * Added by Jenny to allow bug messages to show the vnum
     * of the object, and not just supermob's vnum 
     */
-   sprintf( buf, "Object #%d", obj->pIndexData->vnum );
+   snprintf( buf, 200, "Object #%d", obj->pIndexData->vnum );
    STRFREE( supermob->description );
    supermob->description = STRALLOC( buf );
 
@@ -2902,7 +2886,6 @@ void oprog_act_trigger( char *buf, OBJ_DATA * mobj, CHAR_DATA * ch, OBJ_DATA * o
 void oprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
                            OBJ_DATA * obj, void *vo, int type, OBJ_DATA * iobj )
 {
-
    char temp1[MAX_STRING_LENGTH];
    char temp2[MAX_INPUT_LENGTH];
    char word[MAX_INPUT_LENGTH];
@@ -2916,11 +2899,11 @@ void oprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
    for( mprg = iobj->pIndexData->mudprogs; mprg; mprg = mprg->next )
       if( mprg->type & type )
       {
-         strcpy( temp1, mprg->arglist );
+         mudstrlcpy( temp1, mprg->arglist, MAX_STRING_LENGTH );
          list = temp1;
          for( i = 0; i < strlen( list ); i++ )
             list[i] = LOWER( list[i] );
-         strcpy( temp2, arg );
+         mudstrlcpy( temp2, arg, MAX_INPUT_LENGTH );
          dupl = temp2;
          for( i = 0; i < strlen( dupl ); i++ )
             dupl[i] = LOWER( dupl[i] );
@@ -2956,18 +2939,14 @@ void oprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
                      dupl = start + 1;
          }
       }
-
    return;
 }
-
-
 
 /*
  *  room_prog support starts here
  *
  *
  */
-
 void rset_supermob( ROOM_INDEX_DATA * room )
 {
    char buf[200];
@@ -2985,7 +2964,7 @@ void rset_supermob( ROOM_INDEX_DATA * room )
        * Added by Jenny to allow bug messages to show the vnum
        * of the room, and not just supermob's vnum 
        */
-      sprintf( buf, "Room #%d", room->vnum );
+      snprintf( buf, 200, "Room #%d", room->vnum );
       STRFREE( supermob->description );
       supermob->description = STRALLOC( buf );
 
@@ -2994,7 +2973,6 @@ void rset_supermob( ROOM_INDEX_DATA * room )
 
    }
 }
-
 
 void rprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * obj, void *vo, int type )
 {
@@ -3158,7 +3136,6 @@ void rprog_random_trigger( CHAR_DATA * ch )
 void rprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
                            OBJ_DATA * obj, void *vo, int type, ROOM_INDEX_DATA * room )
 {
-
    char temp1[MAX_STRING_LENGTH];
    char temp2[MAX_INPUT_LENGTH];
    char word[MAX_INPUT_LENGTH];
@@ -3175,11 +3152,11 @@ void rprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor,
    for( mprg = room->mudprogs; mprg; mprg = mprg->next )
       if( mprg->type & type )
       {
-         strcpy( temp1, mprg->arglist );
+         mudstrlcpy( temp1, mprg->arglist, MAX_STRING_LENGTH );
          list = temp1;
          for( i = 0; i < strlen( list ); i++ )
             list[i] = LOWER( list[i] );
-         strcpy( temp2, arg );
+         mudstrlcpy( temp2, arg, MAX_INPUT_LENGTH );
          dupl = temp2;
          for( i = 0; i < strlen( dupl ); i++ )
             dupl[i] = LOWER( dupl[i] );

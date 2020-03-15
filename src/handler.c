@@ -620,7 +620,7 @@ void affect_modify( CHAR_DATA * ch, AFFECT_DATA * paf, bool fAdd )
    switch ( paf->location % REVERSE_APPLY )
    {
       default:
-         bug( "Affect_modify: unknown location %d.", paf->location );
+         bug( "%s: unknown location %d.", __func__, paf->location );
          return;
 
       case APPLY_NONE:
@@ -743,7 +743,7 @@ void affect_modify( CHAR_DATA * ch, AFFECT_DATA * paf, bool fAdd )
          if( IS_VALID_SN( mod ) )
             affect_strip( ch, mod );
          else
-            bug( "affect_modify: APPLY_STRIPSN invalid sn %d", mod );
+            bug( "%s: APPLY_STRIPSN invalid sn %d", __func__, mod );
          break;
 
 /* spell cast upon wear/removal of an object	-Thoric */
@@ -878,8 +878,6 @@ void affect_modify( CHAR_DATA * ch, AFFECT_DATA * paf, bool fAdd )
    return;
 }
 
-
-
 /*
  * Give an affect to a char.
  */
@@ -889,13 +887,13 @@ void affect_to_char( CHAR_DATA * ch, AFFECT_DATA * paf )
 
    if( !ch )
    {
-      bug( "Affect_to_char: NULL ch!", 0 );
+      bug( "%s: NULL ch!", __func__ );
       return;
    }
 
    if( !paf )
    {
-      bug( "Affect_to_char: NULL paf!", 0 );
+      bug( "%s: NULL paf!", __func__ );
       return;
    }
 
@@ -911,7 +909,6 @@ void affect_to_char( CHAR_DATA * ch, AFFECT_DATA * paf )
    return;
 }
 
-
 /*
  * Remove an affect from a char.
  */
@@ -919,7 +916,7 @@ void affect_remove( CHAR_DATA * ch, AFFECT_DATA * paf )
 {
    if( !ch->first_affect )
    {
-      bug( "Affect_remove: no affect.", 0 );
+      bug( "%s: no affect.", __func__ );
       return;
    }
 
@@ -948,8 +945,6 @@ void affect_strip( CHAR_DATA * ch, int sn )
    return;
 }
 
-
-
 /*
  * Return true if a char is affected by a spell.
  */
@@ -963,7 +958,6 @@ bool is_affected( CHAR_DATA * ch, int sn )
 
    return FALSE;
 }
-
 
 /*
  * Add or enhance an affect.
@@ -990,7 +984,6 @@ void affect_join( CHAR_DATA * ch, AFFECT_DATA * paf )
    return;
 }
 
-
 /*
  * Move a char out of a room.
  */
@@ -1000,16 +993,15 @@ void char_from_room( CHAR_DATA * ch )
 
    if( !ch )
    {
-      bug( "Char_from_room: NULL char.", 0 );
+      bug( "%s: NULL char.", __func__ );
       return;
    }
 
    if( !ch->in_room )
    {
-      bug( "Char_from_room: NULL room: %s", ch->name );
+      bug( "%s: NULL room: %s", __func__, ch->name );
       return;
    }
-
 
    if( ( obj = get_eq_char( ch, WEAR_LIGHT ) ) != NULL
        && obj->item_type == ITEM_LIGHT && obj->value[2] != 0 && ch->in_room->light > 0 )
@@ -1038,13 +1030,13 @@ void char_to_room( CHAR_DATA * ch, ROOM_INDEX_DATA * pRoomIndex )
 
    if( !ch )
    {
-      bug( "%s: NULL ch!", __FUNCTION__ );
+      bug( "%s: NULL ch!", __func__ );
       return;
    }
 
    if( !pRoomIndex || !get_room_index( pRoomIndex->vnum ) )
    {
-      bug( "%s: %s -> NULL room!  Putting char in limbo (%d)", __FUNCTION__, ch->name, ROOM_VNUM_LIMBO );
+      bug( "%s: %s -> NULL room!  Putting char in limbo (%d)", __func__, ch->name, ROOM_VNUM_LIMBO );
       /*
        * This used to just return, but there was a problem with crashing
        * and I saw no reason not to just put the char in limbo.  -Narn
@@ -1133,8 +1125,6 @@ OBJ_DATA *obj_to_char( OBJ_DATA * obj, CHAR_DATA * ch )
    return ( oret ? oret : obj );
 }
 
-
-
 /*
  * Take an obj from its character.
  */
@@ -1144,7 +1134,7 @@ void obj_from_char( OBJ_DATA * obj )
 
    if( ( ch = obj->carried_by ) == NULL )
    {
-      bug( "Obj_from_char: null ch.", 0 );
+      bug( "%s: null ch.", __func__ );
       return;
    }
 
@@ -1168,7 +1158,6 @@ void obj_from_char( OBJ_DATA * obj )
    ch->carry_weight -= get_obj_weight( obj );
    return;
 }
-
 
 /*
  * Find the ac value of an obj, including position effect.
@@ -1221,8 +1210,6 @@ int apply_ac( OBJ_DATA * obj, int iWear )
    return 0;
 }
 
-
-
 /*
  * Find a piece of eq on a character.
  * Will pick the top layer if clothing is layered.		-Thoric
@@ -1243,8 +1230,6 @@ OBJ_DATA *get_eq_char( CHAR_DATA * ch, int iWear )
    return maxobj;
 }
 
-
-
 /*
  * Equip a char with an obj.
  */
@@ -1255,13 +1240,13 @@ void equip_char( CHAR_DATA * ch, OBJ_DATA * obj, int iWear )
 
    if( obj->carried_by != ch )
    {
-      bug( "equip_char: obj not being carried by ch!" );
+      bug( "%s: obj not being carried by ch!", __func__ );
       return;
    }
 
    if( ( otmp = get_eq_char( ch, iWear ) ) != NULL && ( !otmp->pIndexData->layers || !obj->pIndexData->layers ) )
    {
-      bug( "Equip_char: already equipped (%s, %d).", ch->name, iWear );
+      bug( "%s: already equipped (%s, %d).", __func__, ch->name, iWear );
       return;
    }
 
@@ -1305,8 +1290,6 @@ void equip_char( CHAR_DATA * ch, OBJ_DATA * obj, int iWear )
    return;
 }
 
-
-
 /*
  * Unequip a char with an obj.
  */
@@ -1316,7 +1299,7 @@ void unequip_char( CHAR_DATA * ch, OBJ_DATA * obj )
 
    if( obj->wear_loc == WEAR_NONE )
    {
-      bug( "Unequip_char: already unequipped.", 0 );
+      bug( "%s: already unequipped.", __func__ );
       return;
    }
 
@@ -1353,7 +1336,7 @@ void obj_from_room( OBJ_DATA * obj )
 
    if( ( in_room = obj->in_room ) == NULL )
    {
-      bug( "obj_from_room: NULL.", 0 );
+      bug( "%s: NULL.", __func__ );
       return;
    }
 
@@ -1372,7 +1355,6 @@ void obj_from_room( OBJ_DATA * obj )
       write_corpses( NULL, obj->short_descr + 14 );
    return;
 }
-
 
 /*
  * Move an obj into a room.
@@ -1415,7 +1397,7 @@ OBJ_DATA *obj_to_obj( OBJ_DATA * obj, OBJ_DATA * obj_to )
 
    if( obj == obj_to )
    {
-      bug( "Obj_to_obj: trying to put object inside itself: vnum %d", obj->pIndexData->vnum );
+      bug( "%s: trying to put object inside itself: vnum %d", __func__, obj->pIndexData->vnum );
       return obj;
    }
    /*
@@ -1441,7 +1423,6 @@ OBJ_DATA *obj_to_obj( OBJ_DATA * obj, OBJ_DATA * obj_to )
    return obj;
 }
 
-
 /*
  * Move an object out of an object.
  */
@@ -1451,7 +1432,7 @@ void obj_from_obj( OBJ_DATA * obj )
 
    if( ( obj_from = obj->in_obj ) == NULL )
    {
-      bug( "Obj_from_obj: null obj_from.", 0 );
+      bug( "%s: null obj_from.", __func__ );
       return;
    }
 
@@ -1471,8 +1452,6 @@ void obj_from_obj( OBJ_DATA * obj )
    return;
 }
 
-
-
 /*
  * Extract an obj from the world.
  */
@@ -1483,13 +1462,13 @@ void extract_obj( OBJ_DATA * obj )
 
    if( !obj )
    {
-      bug( "extract_obj: !obj" );
+      bug( "%s: !obj", __func__ );
       return;
    }
 
    if( obj_extracted( obj ) )
    {
-      bug( "extract_obj: obj %d already extracted!", obj->pIndexData->vnum );
+      bug( "%s: obj %d already extracted!", __func__, obj->pIndexData->vnum );
       return;
    }
 
@@ -1579,25 +1558,25 @@ void extract_char( CHAR_DATA * ch, bool fPull )
 
    if( !ch )
    {
-      bug( "%s: NULL ch.", __FUNCTION__ );
+      bug( "%s: NULL ch.", __func__ );
       return;  /* who removed this line? */
    }
 
    if( !ch->in_room )
    {
-      bug( "%s: NULL room.", __FUNCTION__ );
+      bug( "%s: NULL room.", __func__ );
       return;
    }
 
    if( ch == supermob )
    {
-      bug( "%s: ch == supermob!", __FUNCTION__ );
+      bug( "%s: ch == supermob!", __func__ );
       return;
    }
 
    if( char_died( ch ) )
    {
-      bug( "%s: %s already died!", __FUNCTION__, ch->name );
+      bug( "%s: %s already died!", __func__, ch->name );
       return;
    }
 
@@ -1709,7 +1688,7 @@ void extract_char( CHAR_DATA * ch, bool fPull )
    if( ch->desc )
    {
       if( ch->desc->character != ch )
-         bug( "%s: char's descriptor points to another char", __FUNCTION__ );
+         bug( "%s: char's descriptor points to another char", __func__ );
       else
       {
          ch->desc->character = NULL;
@@ -1745,7 +1724,7 @@ CHAR_DATA *get_char_room( CHAR_DATA * ch, const char *argument )
    {
       if( ch == rch )
          continue;
-      sprintf( fix, "__%s", rch->name );
+      snprintf( fix, MAX_STRING_LENGTH, "__%s", rch->name );
       if( ( can_see( ch, rch ) && ( nifty_is_name( arg, PERS( rch, ch ) ) || !str_cmp( arg, fix ) ) )
           || ( IS_NPC( rch ) && vnum == rch->pIndexData->vnum ) || ( IS_NPC( ch ) && ( nifty_is_name( arg, rch->name ) ) )
           || ( IS_NPC( rch ) && nifty_is_name( arg, rch->name ) ) )
@@ -2099,8 +2078,6 @@ OBJ_DATA *get_obj_carry( CHAR_DATA * ch, const char *argument )
    return NULL;
 }
 
-
-
 /*
  * Find an obj in player's equipment.
  */
@@ -2112,7 +2089,7 @@ OBJ_DATA *get_obj_wear( CHAR_DATA * ch, const char *argument )
 
    if( !ch )
    {
-      bug( "get_obj_wear: null ch" );
+      bug( "%s: null ch", __func__ );
    }
 
    number = number_argument( argument, arg );
@@ -2145,8 +2122,6 @@ OBJ_DATA *get_obj_wear( CHAR_DATA * ch, const char *argument )
 
    return NULL;
 }
-
-
 
 /*
  * Find an obj in the room or in inventory.
@@ -2407,7 +2382,6 @@ int get_obj_number( OBJ_DATA * obj )
    return obj->count;
 }
 
-
 /*
  * Return weight of an object, including weight of contents.
  */
@@ -2422,8 +2396,6 @@ int get_obj_weight( OBJ_DATA * obj )
    return weight;
 }
 
-
-
 /*
  * True if room is dark.
  */
@@ -2431,7 +2403,7 @@ bool room_is_dark( ROOM_INDEX_DATA * pRoomIndex )
 {
    if( !pRoomIndex )
    {
-      bug( "room_is_dark: NULL pRoomIndex", 0 );
+      bug( "%s: NULL pRoomIndex", __func__ );
       return TRUE;
    }
 
@@ -2450,8 +2422,6 @@ bool room_is_dark( ROOM_INDEX_DATA * pRoomIndex )
    return FALSE;
 }
 
-
-
 /*
  * True if room is private.
  */
@@ -2462,13 +2432,13 @@ bool room_is_private( CHAR_DATA * ch, ROOM_INDEX_DATA * pRoomIndex )
 
    if( !ch )
    {
-      bug( "room_is_private: NULL ch", 0 );
+      bug( "%s: NULL ch", __func__ );
       return FALSE;
    }
 
    if( !pRoomIndex )
    {
-      bug( "room_is_private: NULL pRoomIndex", 0 );
+      bug( "%s: NULL pRoomIndex", __func__ );
       return FALSE;
    }
 
@@ -2488,8 +2458,6 @@ bool room_is_private( CHAR_DATA * ch, ROOM_INDEX_DATA * pRoomIndex )
 
    return FALSE;
 }
-
-
 
 /*
  * True if char can see victim.
@@ -2617,14 +2585,12 @@ const char *item_type_name( OBJ_DATA * obj )
 {
    if( obj->item_type < 1 || obj->item_type > MAX_ITEM_TYPE )
    {
-      bug( "Item_type_name: unknown type %d.", obj->item_type );
+      bug( "%s: unknown type %d.", __func__, obj->item_type );
       return "(unknown)";
    }
 
    return o_types[obj->item_type];
 }
-
-
 
 /*
  * Return ascii name of an affect location.
@@ -2767,11 +2733,9 @@ const char *affect_loc_name( int location )
          return "blood";
    }
 
-   bug( "Affect_location_name: unknown location %d.", location );
+   bug( "%s: unknown location %d.", __func__, location );
    return "(unknown)";
 }
-
-
 
 /*
  * Return ascii name of an affect bit vector.
@@ -2782,73 +2746,71 @@ const char *affect_bit_name( int vector )
 
    buf[0] = '\0';
    if( vector & AFF_BLIND )
-      strcat( buf, " blind" );
+      mudstrlcat( buf, " blind", 512 );
    if( vector & AFF_INVISIBLE )
-      strcat( buf, " invisible" );
+      mudstrlcat( buf, " invisible", 512 );
    if( vector & AFF_DETECT_EVIL )
-      strcat( buf, " detect_evil" );
+      mudstrlcat( buf, " detect_evil", 512 );
    if( vector & AFF_DETECT_INVIS )
-      strcat( buf, " detect_invis" );
+      mudstrlcat( buf, " detect_invis", 512 );
    if( vector & AFF_DETECT_MAGIC )
-      strcat( buf, " detect_magic" );
+      mudstrlcat( buf, " detect_magic", 512 );
    if( vector & AFF_DETECT_HIDDEN )
-      strcat( buf, " detect_hidden" );
+      mudstrlcat( buf, " detect_hidden", 512 );
    if( vector & AFF_WEAKEN )
-      strcat( buf, " weaken" );
+      mudstrlcat( buf, " weaken", 512 );
    if( vector & AFF_SANCTUARY )
-      strcat( buf, " sanctuary" );
+      mudstrlcat( buf, " sanctuary", 512 );
    if( vector & AFF_FAERIE_FIRE )
-      strcat( buf, " faerie_fire" );
+      mudstrlcat( buf, " faerie_fire", 512 );
    if( vector & AFF_INFRARED )
-      strcat( buf, " infrared" );
+      mudstrlcat( buf, " infrared", 512 );
    if( vector & AFF_CURSE )
-      strcat( buf, " curse" );
+      mudstrlcat( buf, " curse", 512 );
    if( vector & AFF_COVER_TRAIL )
-      strcat( buf, " cover trail" );
+      mudstrlcat( buf, " cover trail", 512 );
    if( vector & AFF_POISON )
-      strcat( buf, " poison" );
+      mudstrlcat( buf, " poison", 512 );
    if( vector & AFF_PROTECT )
-      strcat( buf, " protect" );
+      mudstrlcat( buf, " protect", 512 );
    if( vector & AFF_PARALYSIS )
-      strcat( buf, " paralysis" );
+      mudstrlcat( buf, " paralysis", 512 );
    if( vector & AFF_SLEEP )
-      strcat( buf, " sleep" );
+      mudstrlcat( buf, " sleep", 512 );
    if( vector & AFF_SNEAK )
-      strcat( buf, " sneak" );
+      mudstrlcat( buf, " sneak", 512 );
    if( vector & AFF_HIDE )
-      strcat( buf, " hide" );
+      mudstrlcat( buf, " hide", 512 );
    if( vector & AFF_CHARM )
-      strcat( buf, " charm" );
+      mudstrlcat( buf, " charm", 512 );
    if( vector & AFF_POSSESS )
-      strcat( buf, " possess" );
+      mudstrlcat( buf, " possess", 512 );
    if( vector & AFF_FLYING )
-      strcat( buf, " flying" );
+      mudstrlcat( buf, " flying", 512 );
    if( vector & AFF_PASS_DOOR )
-      strcat( buf, " pass_door" );
+      mudstrlcat( buf, " pass_door", 512 );
    if( vector & AFF_FLOATING )
-      strcat( buf, " floating" );
+      mudstrlcat( buf, " floating", 512 );
    if( vector & AFF_TRUESIGHT )
-      strcat( buf, " true_sight" );
+      mudstrlcat( buf, " true_sight", 512 );
    if( vector & AFF_DETECTTRAPS )
-      strcat( buf, " detect_traps" );
+      mudstrlcat( buf, " detect_traps", 512 );
    if( vector & AFF_SCRYING )
-      strcat( buf, " scrying" );
+      mudstrlcat( buf, " scrying", 512 );
    if( vector & AFF_FIRESHIELD )
-      strcat( buf, " fireshield" );
+      mudstrlcat( buf, " fireshield", 512 );
    if( vector & AFF_SHOCKSHIELD )
-      strcat( buf, " shockshield" );
+      mudstrlcat( buf, " shockshield", 512 );
    if( vector & AFF_ICESHIELD )
-      strcat( buf, " iceshield" );
+      mudstrlcat( buf, " iceshield", 512 );
    if( vector & AFF_POSSESS )
-      strcat( buf, " possess" );
+      mudstrlcat( buf, " possess", 512 );
    if( vector & AFF_BERSERK )
-      strcat( buf, " berserk" );
+      mudstrlcat( buf, " berserk", 512 );
    if( vector & AFF_AQUA_BREATH )
-      strcat( buf, " aqua_breath" );
+      mudstrlcat( buf, " aqua_breath", 512 );
    return ( buf[0] != '\0' ) ? buf + 1 : "none";
 }
-
-
 
 /*
  * Return ascii name of extra flags vector.
@@ -2859,61 +2821,61 @@ const char *extra_bit_name( int extra_flags )
 
    buf[0] = '\0';
    if( extra_flags & ITEM_GLOW )
-      strcat( buf, " glow" );
+      mudstrlcat( buf, " glow", 512 );
    if( extra_flags & ITEM_HUM )
-      strcat( buf, " hum" );
+      mudstrlcat( buf, " hum", 512 );
    if( extra_flags & ITEM_DARK )
-      strcat( buf, " dark" );
+      mudstrlcat( buf, " dark", 512 );
    if( extra_flags & ITEM_HUTT_SIZE )
-      strcat( buf, " hutt_size" );
+      mudstrlcat( buf, " hutt_size", 512 );
    if( extra_flags & ITEM_CONTRABAND )
-      strcat( buf, " contraband" );
+      mudstrlcat( buf, " contraband", 512 );
    if( extra_flags & ITEM_INVIS )
-      strcat( buf, " invis" );
+      mudstrlcat( buf, " invis", 512 );
    if( extra_flags & ITEM_MAGIC )
-      strcat( buf, " magic" );
+      mudstrlcat( buf, " magic", 512 );
    if( extra_flags & ITEM_NODROP )
-      strcat( buf, " nodrop" );
+      mudstrlcat( buf, " nodrop", 512 );
    if( extra_flags & ITEM_BLESS )
-      strcat( buf, " bless" );
+      mudstrlcat( buf, " bless", 512 );
    if( extra_flags & ITEM_ANTI_GOOD )
-      strcat( buf, " anti-good" );
+      mudstrlcat( buf, " anti-good", 512 );
    if( extra_flags & ITEM_ANTI_EVIL )
-      strcat( buf, " anti-evil" );
+      mudstrlcat( buf, " anti-evil", 512 );
    if( extra_flags & ITEM_ANTI_NEUTRAL )
-      strcat( buf, " anti-neutral" );
+      mudstrlcat( buf, " anti-neutral", 512 );
    if( extra_flags & ITEM_NOREMOVE )
-      strcat( buf, " noremove" );
+      mudstrlcat( buf, " noremove", 512 );
    if( extra_flags & ITEM_INVENTORY )
-      strcat( buf, " inventory" );
+      mudstrlcat( buf, " inventory", 512 );
    if( extra_flags & ITEM_DEATHROT )
-      strcat( buf, " deathrot" );
+      mudstrlcat( buf, " deathrot", 512 );
    if( extra_flags & ITEM_ANTI_SOLDIER )
-      strcat( buf, " anti-soldier" );
+      mudstrlcat( buf, " anti-soldier", 512 );
    if( extra_flags & ITEM_ANTI_THIEF )
-      strcat( buf, " anti-thief" );
+      mudstrlcat( buf, " anti-thief", 512 );
    if( extra_flags & ITEM_ANTI_HUNTER )
-      strcat( buf, " anti-hunter" );
+      mudstrlcat( buf, " anti-hunter", 512 );
    if( extra_flags & ITEM_ANTI_JEDI )
-      strcat( buf, " anti-jedi" );
+      mudstrlcat( buf, " anti-jedi", 512 );
    if( extra_flags & ITEM_ANTI_SITH )
-      strcat( buf, " anti-sith" );
+      mudstrlcat( buf, " anti-sith", 512 );
    if( extra_flags & ITEM_ANTI_PILOT )
-      strcat( buf, " anti-pilot" );
+      mudstrlcat( buf, " anti-pilot", 512 );
    if( extra_flags & ITEM_SMALL_SIZE )
-      strcat( buf, " small_size" );
+      mudstrlcat( buf, " small_size", 512 );
    if( extra_flags & ITEM_LARGE_SIZE )
-      strcat( buf, " large_size" );
+      mudstrlcat( buf, " large_size", 512 );
    if( extra_flags & ITEM_DONATION )
-      strcat( buf, " donation" );
+      mudstrlcat( buf, " donation", 512 );
    if( extra_flags & ITEM_CLANOBJECT )
-      strcat( buf, " clan" );
+      mudstrlcat( buf, " clan", 512 );
    if( extra_flags & ITEM_ANTI_CITIZEN )
-      strcat( buf, " anti-citizen" );
+      mudstrlcat( buf, " anti-citizen", 512 );
    if( extra_flags & ITEM_PROTOTYPE )
-      strcat( buf, " prototype" );
+      mudstrlcat( buf, " prototype", 512 );
    if( extra_flags & ITEM_HUMAN_SIZE )
-      strcat( buf, " human_size" );
+      mudstrlcat( buf, " human_size", 512 );
    return ( buf[0] != '\0' ) ? buf + 1 : "none";
 }
 
@@ -2926,7 +2888,7 @@ const char *magic_bit_name( int magic_flags )
 
    buf[0] = '\0';
    if( magic_flags & ITEM_RETURNING )
-      strcat( buf, " returning" );
+      mudstrlcat( buf, " returning", 512 );
    return ( buf[0] != '\0' ) ? buf + 1 : "none";
 }
 
@@ -2994,9 +2956,9 @@ ch_ret spring_trap( CHAR_DATA * ch, OBJ_DATA * obj )
    }
 
    dam = number_range( obj->value[2], obj->value[2] * 2 );
-   sprintf( buf, "You are %s!", txt );
+   snprintf( buf, MAX_STRING_LENGTH, "You are %s!", txt );
    act( AT_HITME, buf, ch, NULL, NULL, TO_CHAR );
-   sprintf( buf, "$n is %s.", txt );
+   snprintf( buf, MAX_STRING_LENGTH, "$n is %s.", txt );
    act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
    --obj->value[0];
    if( obj->value[0] <= 0 )
@@ -3148,7 +3110,7 @@ void extract_exit( ROOM_INDEX_DATA * room, EXIT_DATA * pexit )
  */
 void extract_room( ROOM_INDEX_DATA * room )
 {
-   bug( "extract_room: not implemented", 0 );
+   bug( "%s: not implemented", __func__ );
    /*
     * (remove room from hash table)
     * clean_room( room )
@@ -3360,7 +3322,6 @@ void fix_char( CHAR_DATA * ch )
    re_equip_char( ch );
 }
 
-
 /*
  * Show an affect verbosely to a character			-Thoric
  */
@@ -3371,7 +3332,7 @@ void showaffect( CHAR_DATA * ch, AFFECT_DATA * paf )
 
    if( !paf )
    {
-      bug( "showaffect: NULL paf", 0 );
+      bug( "%s: NULL paf", __func__ );
       return;
    }
    if( paf->location != APPLY_NONE && paf->modifier != 0 )
@@ -3379,35 +3340,35 @@ void showaffect( CHAR_DATA * ch, AFFECT_DATA * paf )
       switch ( paf->location )
       {
          default:
-            sprintf( buf, "Affects %s by %d.\r\n", affect_loc_name( paf->location ), paf->modifier );
+            snprintf( buf, MAX_STRING_LENGTH, "Affects %s by %d.\r\n", affect_loc_name( paf->location ), paf->modifier );
             break;
          case APPLY_AFFECT:
-            sprintf( buf, "Affects %s by", affect_loc_name( paf->location ) );
+            snprintf( buf, MAX_STRING_LENGTH, "Affects %s by", affect_loc_name( paf->location ) );
             for( x = 0; x < 32; x++ )
                if( IS_SET( paf->modifier, 1 << x ) )
                {
-                  strcat( buf, " " );
-                  strcat( buf, a_flags[x] );
+                  mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+                  mudstrlcat( buf, a_flags[x], MAX_STRING_LENGTH );
                }
-            strcat( buf, "\r\n" );
+            mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
             break;
          case APPLY_WEAPONSPELL:
          case APPLY_WEARSPELL:
          case APPLY_REMOVESPELL:
-            sprintf( buf, "Casts spell '%s'\r\n",
+            snprintf( buf, MAX_STRING_LENGTH, "Casts spell '%s'\r\n",
                      IS_VALID_SN( paf->modifier ) ? skill_table[paf->modifier]->name : "unknown" );
             break;
          case APPLY_RESISTANT:
          case APPLY_IMMUNE:
          case APPLY_SUSCEPTIBLE:
-            sprintf( buf, "Affects %s by", affect_loc_name( paf->location ) );
+            snprintf( buf, MAX_STRING_LENGTH, "Affects %s by", affect_loc_name( paf->location ) );
             for( x = 0; x < 32; x++ )
                if( IS_SET( paf->modifier, 1 << x ) )
                {
-                  strcat( buf, " " );
-                  strcat( buf, ris_flags[x] );
+                  mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+                  mudstrlcat( buf, ris_flags[x], MAX_STRING_LENGTH );
                }
-            strcat( buf, "\r\n" );
+            mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
             break;
       }
       send_to_char( buf, ch );
@@ -3566,7 +3527,7 @@ void queue_extracted_char( CHAR_DATA * ch, bool extract )
 
    if( !ch )
    {
-      bug( "queue_extracted char: ch = NULL", 0 );
+      bug( "%s: ch = NULL", __func__ );
       return;
    }
    CREATE( ccd, EXTRACT_CHAR_DATA, 1 );
@@ -3650,7 +3611,7 @@ void extract_timer( CHAR_DATA * ch, TIMER * timer )
 {
    if( !timer )
    {
-      bug( "extract_timer: NULL timer", 0 );
+      bug( "%s: NULL timer", __func__ );
       return;
    }
 
@@ -3705,7 +3666,7 @@ bool chance( CHAR_DATA * ch, short percent )
 
    if( !ch )
    {
-      bug( "Chance: null ch!", 0 );
+      bug( "%s: null ch!", __func__ );
       return FALSE;
    }
 
@@ -3892,7 +3853,7 @@ bool empty_obj( OBJ_DATA * obj, OBJ_DATA * destobj, ROOM_INDEX_DATA * destroom )
 
    if( !obj )
    {
-      bug( "empty_obj: NULL obj", 0 );
+      bug( "%s: NULL obj", __func__ );
       return FALSE;
    }
    if( destobj || ( !destroom && !ch && ( destobj = obj->in_obj ) != NULL ) )
@@ -3944,7 +3905,7 @@ bool empty_obj( OBJ_DATA * obj, OBJ_DATA * destobj, ROOM_INDEX_DATA * destroom )
       }
       return movedsome;
    }
-   bug( "empty_obj: could not determine a destination for vnum %d", obj->pIndexData->vnum );
+   bug( "%s: could not determine a destination for vnum %d", __func__, obj->pIndexData->vnum );
    return FALSE;
 }
 

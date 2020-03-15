@@ -3505,7 +3505,7 @@ do                                              \
    if((point))                                  \
    {                                            \
       if( str_free((point)) == -1 )             \
-         bug( "&RSTRFREEing bad pointer: %s, line %d", __FILE__, __LINE__ ); \
+         bug( "%s: &RSTRFREEing bad pointer: %s, line %d", __func__, __FILE__, __LINE__ ); \
       (point) = NULL;                           \
    }                                            \
 } while(0)
@@ -3594,15 +3594,15 @@ do {								\
     break;							\
   if ( !(first) )						\
   {								\
-    bug( "CHECK_LINKS: last with NULL first!  %s.",		\
-        __STRING(first) );					\
+    bug( "%s: CHECK_LINKS: last with NULL first!  %s.",		\
+        __func__, __STRING(first) );				\
     for ( ptr = (last); ptr->prev; ptr = ptr->prev );		\
     (first) = ptr;						\
   }								\
   else if ( !(last) )						\
   {								\
-    bug( "CHECK_LINKS: first with NULL last!  %s.",		\
-        __STRING(first) );					\
+    bug( "%s: CHECK_LINKS: first with NULL last!  %s.",		\
+        __func__, __STRING(first) );				\
     for ( ptr = (first); ptr->next; ptr = ptr->next );		\
     (last) = ptr;						\
   }								\
@@ -3612,14 +3612,14 @@ do {								\
     {								\
       if ( ptr->prev != pptr )					\
       {								\
-        bug( "CHECK_LINKS(%s): %p:->prev != %p.  Fixing.",	\
-            __STRING(first), ptr, pptr );			\
+        bug( "%s: CHECK_LINKS(%s): %p:->prev != %p.  Fixing.",	\
+            __func__, __STRING(first), ptr, pptr );		\
         ptr->prev = pptr;					\
       }								\
       if ( ptr->prev && ptr->prev->next != ptr )		\
       {								\
-        bug( "CHECK_LINKS(%s): %p:->prev->next != %p.  Fixing.",\
-            __STRING(first), ptr, ptr );			\
+        bug( "%s: CHECK_LINKS(%s): %p:->prev->next != %p.  Fixing.",\
+            __func__, __STRING(first), ptr, ptr );		\
         ptr->prev->next = ptr;					\
       }								\
       pptr = ptr;						\
@@ -3632,14 +3632,14 @@ do {								\
     {								\
       if ( ptr->next != pptr )					\
       {								\
-        bug( "CHECK_LINKS (%s): %p:->next != %p.  Fixing.",	\
-            __STRING(first), ptr, pptr );			\
+        bug( "%s: CHECK_LINKS (%s): %p:->next != %p.  Fixing.",	\
+            __func__, __STRING(first), ptr, pptr );		\
         ptr->next = pptr;					\
       }								\
       if ( ptr->next && ptr->next->prev != ptr )		\
       {								\
-        bug( "CHECK_LINKS(%s): %p:->next->prev != %p.  Fixing.",\
-            __STRING(first), ptr, ptr );			\
+        bug( "%s: CHECK_LINKS(%s): %p:->next->prev != %p.  Fixing.",\
+            __func__, __STRING(first), ptr, ptr );		\
         ptr->next->prev = ptr;					\
       }								\
       pptr = ptr;						\
@@ -4826,7 +4826,6 @@ DECLARE_DO_FUN( fskill_makedualsaber );
 #define SK	SKILLTYPE
 #define SH      SHIP_DATA
 
-
 /* editor.c cronel new editor */
 #define start_editing( ch, data ) \
 	start_editing_nolimit( ch, data, MAX_STRING_LENGTH )
@@ -4878,7 +4877,6 @@ bool will_fall( CHAR_DATA * ch, int fall );
 int wherehome( CHAR_DATA * ch );
 
 /* act_obj.c */
-
 obj_ret damage_obj( OBJ_DATA * obj );
 short get_obj_resistance( OBJ_DATA * obj );
 bool remove_obj( CHAR_DATA * ch, int iWear, bool fReplace );
@@ -4958,7 +4956,6 @@ void claim_disintegration( CHAR_DATA * ch, CHAR_DATA * victim );
 bool is_disintegration( CHAR_DATA * victim );
 
 /* force.c */
-
 bool check_reflect( CHAR_DATA * ch, CHAR_DATA * victim, int dam );
 void write_all_forceskills( void );
 void save_forceskill( FORCE_SKILL * fskill );
@@ -5132,11 +5129,10 @@ void tail_chain( void );
 void delete_room( ROOM_INDEX_DATA * room );
 void delete_obj( OBJ_INDEX_DATA * obj );
 void delete_mob( MOB_INDEX_DATA * mob );
-size_t mudstrlcat( char *dst, const char *src, size_t siz );
-size_t mudstrlcpy( char *dst, const char *src, size_t siz );
-
 void sort_area( AREA_DATA * pArea, bool proto );
 void sort_area_by_name( AREA_DATA * pArea ); /* Fireblade */
+size_t mudstrlcat( char * __restrict dst, const char * __restrict src, size_t dsize );
+size_t mudstrlcpy( char * __restrict dst, const char * __restrict src, size_t dsize );
 
 /* build.c */
 bool can_rmodify( CHAR_DATA * ch, ROOM_INDEX_DATA * room );
@@ -5449,9 +5445,6 @@ void gain_exp2( CHAR_DATA * ch, int gain, int ability );
 void gain_condition( CHAR_DATA * ch, int iCond, int value );
 void update_handler( void );
 void reboot_check( time_t reset );
-#if 0
-void reboot_check( char *arg );
-#endif
 void auction_update( void );
 void remove_portal( OBJ_DATA * portal );
 int max_level( CHAR_DATA * ch, int ability );
@@ -5511,7 +5504,6 @@ const char *get_race( CHAR_DATA * ch );
 #undef	ED
 
 /* ships.c */
-
 void load_market_list( void );
 void save_market_list( void );
 void add_market_ship( SHIP_DATA * ship );

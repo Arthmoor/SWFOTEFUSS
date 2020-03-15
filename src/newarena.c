@@ -160,9 +160,8 @@ void do_bet( CHAR_DATA * ch, const char *argument )
       arena_pot += ( newbet / 2 );
       bet_pot += ( newbet / 2 );
       GET_BET_AMT( ch ) = newbet;
-      sprintf( buf, "You place %d credits on %s.\r\n", newbet, ch->betted_on->name );
-      send_to_char( buf, ch );
-      sprintf( buf, "%s has placed %d credits on %s.", ch->name, newbet, ch->betted_on->name );
+      ch_printf( ch, "You place %d credits on %s.\r\n", newbet, ch->betted_on->name );
+      snprintf( buf, MAX_INPUT_LENGTH, "%s has placed %d credits on %s.", ch->name, newbet, ch->betted_on->name );
       sportschan( buf );
    }
 }
@@ -171,7 +170,6 @@ void do_arena( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
    ROOM_INDEX_DATA *location;
-
 
    if( IS_NPC( ch ) )
    {
@@ -187,8 +185,7 @@ void do_arena( CHAR_DATA * ch, const char *argument )
 
    if( ch->top_level < lo_lim )
    {
-      sprintf( buf, "Sorry but you must be at least level %d to enter this arena.\r\n", lo_lim );
-      send_to_char( buf, ch );
+      ch_printf( ch, "Sorry but you must be at least level %d to enter this arena.\r\n", lo_lim );
       return;
    }
 
@@ -205,7 +202,6 @@ void do_arena( CHAR_DATA * ch, const char *argument )
    }
    else
    {
-
       location = ch->in_room;
       ch->pcdata->roomarena = location;
       act( AT_RED, "$n has been whisked away to the killing fields.", ch, NULL, NULL, TO_ROOM );
@@ -214,7 +210,7 @@ void do_arena( CHAR_DATA * ch, const char *argument )
       act( AT_WHITE, "$n is dropped from the sky.", ch, NULL, NULL, TO_ROOM );
       send_to_char( "You have been taken to the killing fields\r\n", ch );
       do_look( ch, "auto" );
-      sprintf( buf, "%s has joined the blood bath.", ch->name );
+      snprintf( buf, MAX_INPUT_LENGTH, "%s has joined the blood bath.", ch->name );
       sportschan( buf );
       send_to_char( buf, ch );
       ch->hit = ch->max_hit;
@@ -228,7 +224,7 @@ void do_chaos( CHAR_DATA * ch, const char *argument )
 {
    char lolimit[MAX_INPUT_LENGTH];
    char hilimit[MAX_INPUT_LENGTH], start_delay[MAX_INPUT_LENGTH];
-   char length[MAX_INPUT_LENGTH], buf[MAX_INPUT_LENGTH];
+   char length[MAX_INPUT_LENGTH];
 
    if( argument[0] == '\0' )
    {
@@ -249,8 +245,7 @@ void do_chaos( CHAR_DATA * ch, const char *argument )
    one_argument( argument, length );
    game_length = atoi( length );
 
-   sprintf( buf, "LowLim %d HiLim %d Delay %d Length %d\r\n", lo_lim, hi_lim, start_time, game_length );
-   send_to_char( buf, ch );
+   ch_printf( ch, "LowLim %d HiLim %d Delay %d Length %d\r\n", lo_lim, hi_lim, start_time, game_length );
 
    if( hi_lim >= LEVEL_GOD + 1 )
    {
@@ -289,7 +284,6 @@ void do_chaos( CHAR_DATA * ch, const char *argument )
    bet_pot = 0;
    barena = 1;
    start_arena(  );
-
 }
 
 void start_arena(  )
@@ -297,7 +291,6 @@ void start_arena(  )
    char buf1[MAX_INPUT_LENGTH];
    char buf[MAX_INPUT_LENGTH];
 //  DESCRIPTOR_DATA *d;
-
 
    if( !( ppl_challenged ) )
    {
@@ -313,25 +306,25 @@ void start_arena(  )
       {
          if( time_to_start > 1 )
          {
-            sprintf( buf1, "&WThe Killing Fields are open to top_levels &R%d &Wthru &R%d\r\n", lo_lim, hi_lim );
-            sprintf( buf1, "%s%d &Whours to start\r\n", buf1, time_to_start );
-            sprintf( buf1, "%s\r\nType &Rarena &Wto enter.\r\n", buf1 );
-            sprintf( buf, "With just %d hours to go till the start of the arena %d people have accepted the challenge!\r\n",
+            snprintf( buf1, MAX_INPUT_LENGTH, "&WThe Killing Fields are open to top_levels &R%d &Wthru &R%d\r\n", lo_lim, hi_lim );
+            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s%d &Whours to start\r\n", buf1, time_to_start );
+            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s\r\nType &Rarena &Wto enter.\r\n", buf1 );
+            snprintf( buf, MAX_INPUT_LENGTH, "With just %d hours to go till the start of the arena %d people have accepted the challenge!\r\n",
                      time_to_start, num_in_arena(  ) );
             sportschan( buf );
             sportschan( buf1 );
          }
          else
          {
-            sprintf( buf1, "&WThe Killing Fields are open to top_levels &R%d &Wthru &R%d\r\n", lo_lim, hi_lim );
-            sprintf( buf1, "%s1 &Whour to start\r\n", buf1 );
-            sprintf( buf1, "%s\r\nType &Rarena &Wto enter.\r\n", buf1 );
-            sprintf( buf, "With just 1 hour to go till the start of the arena %d people have accepted the challenge!\r\n",
+            snprintf( buf1, MAX_INPUT_LENGTH, "&WThe Killing Fields are open to top_levels &R%d &Wthru &R%d\r\n", lo_lim, hi_lim );
+            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s1 &Whour to start\r\n", buf1 );
+            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s\r\nType &Rarena &Wto enter.\r\n", buf1 );
+            snprintf( buf, MAX_INPUT_LENGTH, "With just 1 hour to go till the start of the arena %d people have accepted the challenge!\r\n",
                      num_in_arena(  ) );
             sportschan( buf );
             sportschan( buf1 );
          }
-         sprintf( buf, "&WThe arena has been opened. &R%d &Whour(s) to start.\r\n", time_to_start );
+         snprintf( buf, MAX_INPUT_LENGTH, "&WThe arena has been opened. &R%d &Whour(s) to start.\r\n", time_to_start );
          sportschan( buf );
       }
       /*
@@ -354,11 +347,11 @@ void start_arena(  )
       {
          if( time_to_start > 1 )
          {
-            sprintf( buf1, "The duel will start in %d hours.", time_to_start );
+            snprintf( buf1, MAX_INPUT_LENGTH, "The duel will start in %d hours.", time_to_start );
          }
          else
          {
-            sprintf( buf1, "The duel will start in 1 hour." );
+            snprintf( buf1, MAX_INPUT_LENGTH, "The duel will start in 1 hour." );
          }
          sportschan( buf1 );
          time_to_start--;
@@ -412,17 +405,17 @@ void do_game(  )
    }
    else if( time_left_in_game % 5 )
    {
-      sprintf( buf, "With %d hours left in the game there are %d players left.", time_left_in_game, num_in_arena(  ) );
+      snprintf( buf, MAX_INPUT_LENGTH, "With %d hours left in the game there are %d players left.", time_left_in_game, num_in_arena(  ) );
       sportschan( buf );
    }
    else if( time_left_in_game == 1 )
    {
-      sprintf( buf, "With 1 hour left in the game there are %d players left.", num_in_arena(  ) );
+      snprintf( buf, MAX_INPUT_LENGTH, "With 1 hour left in the game there are %d players left.", num_in_arena(  ) );
       sportschan( buf );
    }
    else if( time_left_in_game <= 4 )
    {
-      sprintf( buf, "With %d hours left in the game there are %d players left.", time_left_in_game, num_in_arena(  ) );
+      snprintf( buf, MAX_INPUT_LENGTH, "With %d hours left in the game there are %d players left.", time_left_in_game, num_in_arena(  ) );
       sportschan( buf );
    }
    time_left_in_game--;
@@ -457,20 +450,17 @@ void find_game_winner(  )
             act( AT_YELLOW, "$n falls from the sky.", i, NULL, NULL, TO_ROOM );
             if( time_left_in_game == 1 )
             {
-               sprintf( buf, "After 1 hour of battle %s is declared the winner", i->name );
+               snprintf( buf, MAX_INPUT_LENGTH, "After 1 hour of battle %s is declared the winner", i->name );
                sportschan( buf );
             }
             else
             {
-               sprintf( buf, "After %d hours of battle %s is declared the winner",
+               snprintf( buf, MAX_INPUT_LENGTH, "After %d hours of battle %s is declared the winner",
                         game_length - time_left_in_game, i->name );
                sportschan( buf );
             }
             i->gold += arena_pot / 2;
-            sprintf( buf, "You have been awarded %d credits for winning the arena\r\n", ( arena_pot / 2 ) );
-            send_to_char( buf, i );
-//          sprintf(buf2, "%s awarded %d credits for winning arena", i->name,                 (arena_pot/2));
-//          bug(buf2, 0);
+            ch_printf( i, "You have been awarded %d credits for winning the arena\r\n", ( arena_pot / 2 ) );
             CREATE( fame_node, struct hall_of_fame_element, 1 );
             strncpy( fame_node->name, i->name, MAX_INPUT_LENGTH );
             fame_node->name[MAX_INPUT_LENGTH] = '\0';
@@ -486,20 +476,21 @@ void find_game_winner(  )
       }
    }
 }
+
 void show_jack_pot(  )
 {
    char buf1[MAX_INPUT_LENGTH];
 
-   sprintf( buf1, "&G&W\r\n\007\007Lets get ready to RUMBLE!!!!!!!!\r\n" );
-   sprintf( buf1, "%sThe jack pot for this arena is %d credits\r\n", buf1, arena_pot );
-   sprintf( buf1, "%s%d credits have been bet on this arena.\r\r\n\n", buf1, bet_pot );
+   snprintf( buf1, MAX_INPUT_LENGTH, "&G&W\r\n\007\007Lets get ready to RUMBLE!!!!!!!!\r\n" );
+   snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%sThe jack pot for this arena is %d credits\r\n", buf1, arena_pot );
+   snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s%d credits have been bet on this arena.\r\r\n\n", buf1, bet_pot );
    sportschan( buf1 );
-
 }
 
 void silent_end(  )
 {
    char buf[MAX_INPUT_LENGTH];
+
    ppl_in_arena = 0;
    ppl_challenged = 0;
    in_start_arena = 0;
@@ -509,7 +500,7 @@ void silent_end(  )
    time_left_in_game = 0;
    arena_pot = 0;
    bet_pot = 0;
-   sprintf( buf, "It looks like no one was brave enough to enter the Arena." );
+   mudstrlcpy( buf, "It looks like no one was brave enough to enter the Arena.\r\n", MAX_INPUT_LENGTH );
    sportschan( buf );
 }
 
@@ -519,10 +510,10 @@ void do_end_game(  )
    CHAR_DATA *i;
    DESCRIPTOR_DATA *d;
    ROOM_INDEX_DATA *location;
+
    for( d = first_descriptor; d; d = d->next )
    {
       if( d->connected == CON_PLAYING )
-
       {
          i = d->character;
          if( IS_SET( i->in_room->room_flags2, ROOM_ARENA ) )
@@ -541,7 +532,7 @@ void do_end_game(  )
          }
       }
    }
-   sprintf( buf, "After %d hours of battle the Match is a draw", game_length );
+   snprintf( buf, MAX_INPUT_LENGTH, "After %d hours of battle the Match is a draw!\r\n", game_length );
    sportschan( buf );
    time_left_in_game = 0;
    ppl_in_arena = 0;
@@ -572,7 +563,7 @@ void sportschan( char *argument )
    char buf1[MAX_INPUT_LENGTH];
    DESCRIPTOR_DATA *i;
 
-   sprintf( buf1, "&RInfo: &W%s\r\n", argument );
+   snprintf( buf1, MAX_INPUT_LENGTH, "&RInfo: &W%s\r\n", argument );
 
    for( i = first_descriptor; i; i = i->next )
    {
@@ -591,7 +582,6 @@ void do_awho( CHAR_DATA * ch, const char *argument )
    DESCRIPTOR_DATA *d;
    CHAR_DATA *tch;
    char buf[MAX_INPUT_LENGTH];
-   char buf2[MAX_INPUT_LENGTH];
    int phealth;
    int num = num_in_arena(  );
 
@@ -601,15 +591,16 @@ void do_awho( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "&W  Players in the &BChaos&W Arena\r\n" );
-   sprintf( buf, "%s-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-", buf );
-   sprintf( buf, "%s&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-\r\n", buf );
-   sprintf( buf, "%sGame Length = &R%-3d   &WTime To Start &R%-3d\r\n", buf, game_length, time_to_start );
-   sprintf( buf, "%s&Wtop_level Limits &R%d &Wto &R%d\r\n", buf, lo_lim, hi_lim );
-   sprintf( buf, "%s         &WJackpot = &R%d\r\n", buf, arena_pot );
-   sprintf( buf, "%s&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B", buf );
-   sprintf( buf, "%s-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B\r\n", buf );
+   mudstrlcpy( buf, "&W  Players in the &BChaos&W Arena\r\n", MAX_INPUT_LENGTH );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-", buf );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-\r\n", buf );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%sGame Length = &R%-3d   &WTime To Start &R%-3d\r\n", buf, game_length, time_to_start );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s&Wtop_level Limits &R%d &Wto &R%d\r\n", buf, lo_lim, hi_lim );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s         &WJackpot = &R%d\r\n", buf, arena_pot );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B", buf );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B\r\n", buf );
    send_to_char( buf, ch );
+
    for( d = first_descriptor; d; d = d->next )
    {
       if( d->connected == CON_PLAYING )
@@ -618,8 +609,7 @@ void do_awho( CHAR_DATA * ch, const char *argument )
          phealth = ( 100 * tch->hit ) / tch->max_hit;
          if( IS_SET( tch->in_room->room_flags2, ROOM_ARENA ) && ( tch->top_level < LEVEL_IMMORTAL ) )
          {
-            sprintf( buf2, "&W%12.12s         %d%%\r\n", tch->name, phealth );
-            send_to_char( buf2, ch );
+            ch_printf( ch, "&W%12.12s         %d%%\r\n", tch->name, phealth );
          }
       }
    }
@@ -630,10 +620,8 @@ void do_ahall( CHAR_DATA * ch, const char *argument )
 {
    char site[MAX_INPUT_LENGTH], format[MAX_INPUT_LENGTH], *timestr;
    char format2[MAX_INPUT_LENGTH];
-   struct hall_of_fame_element *fame_node;
-
-   char buf[MAX_INPUT_LENGTH];
    char buf2[MAX_INPUT_LENGTH];
+   struct hall_of_fame_element *fame_node;
 
    if( !fame_list )
    {
@@ -641,32 +629,30 @@ void do_ahall( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf2, "&B|---------------------------------------|\r\n" );
-   strcat( buf2, "|    &WPast Winners of The FotE Arena&B     |\r\n" );
-   strcat( buf2, "|---------------------------------------|\r\r\n\n" );
-
+   mudstrlcpy( buf2, "&B|---------------------------------------|\r\n", MAX_INPUT_LENGTH );
+   mudstrlcat( buf2, "|    &WPast Winners of The FotE Arena&B     |\r\n", MAX_INPUT_LENGTH );
+   mudstrlcat( buf2, "|---------------------------------------|\r\r\n\n", MAX_INPUT_LENGTH );
    send_to_char( buf2, ch );
-   strcpy( format, "%-25.25s  %-10.10s  %-16.16s\r\n" );
-   sprintf( buf, format, "&RName", "&RDate", "&RAward Amt" );
-   send_to_char( buf, ch );
-   sprintf( buf, format,
+
+   mudstrlcpy( format, "%-25.25s  %-10.10s  %-16.16s\r\n", MAX_INPUT_LENGTH );
+   ch_printf( ch, format, "&RName", "&RDate", "&RAward Amt" );
+
+   ch_printf( ch, format,
             "&B---------------------------------",
             "&B---------------------------------", "&B---------------------------------" );
 
-   send_to_char( buf, ch );
-   strcpy( format2, "&W%-25.25s  &R%-10.10s  &Y%-16d\r\n" );
+   mudstrlcpy( format2, "&W%-25.25s  &R%-10.10s  &Y%-16d\r\n", MAX_INPUT_LENGTH );
    for( fame_node = fame_list; fame_node; fame_node = fame_node->next )
    {
       if( fame_node->date )
       {
          timestr = asctime( localtime( &( fame_node->date ) ) );
          *( timestr + 10 ) = 0;
-         strcpy( site, timestr );
+         mudstrlcpy( site, timestr, MAX_INPUT_LENGTH );
       }
       else
-         strcpy( site, "Unknown" );
-      sprintf( buf, format2, fame_node->name, site, fame_node->award );
-      send_to_char( buf, ch );
+         mudstrlcpy( site, "Unknown", MAX_INPUT_LENGTH );
+      ch_printf( ch, format2, fame_node->name, site, fame_node->award );
    }
    return;
 }
@@ -705,7 +691,7 @@ void write_fame_list( void )
 
    if( !( fl = fopen( HALL_FAME_FILE, "w" ) ) )
    {
-      bug( "Error writing _hall_of_fame_list", 0 );
+      bug( "%s: Error writing _hall_of_fame_list", __func__ );
       return;
    }
    write_one_fame_node( fl, fame_list );  /* recursively write from end to start */
@@ -728,8 +714,6 @@ void find_bet_winners( CHAR_DATA * winner )
    DESCRIPTOR_DATA *d;
    CHAR_DATA *wch;
 
-   char buf1[MAX_INPUT_LENGTH];
-
    for( d = first_descriptor; d; d = d->next )
    {
       if( d->connected == CON_PLAYING )
@@ -737,8 +721,7 @@ void find_bet_winners( CHAR_DATA * winner )
          wch = d->original ? d->original : d->character;
          if( ( !IS_NPC( wch ) ) && ( GET_BET_AMT( wch ) > 0 ) && ( GET_BETTED_ON( wch ) == winner ) )
          {
-            sprintf( buf1, "You have won %d coins on your bet.\r\n", ( GET_BET_AMT( wch ) ) * 2 );
-            send_to_char( buf1, wch );
+            ch_printf( wch, "You have won %d coins on your bet.\r\n", ( GET_BET_AMT( wch ) ) * 2 );
             wch->gold += GET_BET_AMT( wch ) * 2;
             GET_BETTED_ON( wch ) = NULL;
             GET_BET_AMT( wch ) = 0;
@@ -746,6 +729,7 @@ void find_bet_winners( CHAR_DATA * winner )
       }
    }
 }
+
 void do_challenge( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
@@ -810,10 +794,10 @@ void do_challenge( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "&R%s &Whas challenged you to a duel!\r\n", ch->name );
-   send_to_char( buf, victim );
+   ch_printf( victim, "&R%s &Whas challenged you to a duel!\r\n", ch->name );
    send_to_char( "&WPlease either accept or decline the challenge.\r\n\r\n", victim );
-   sprintf( buf, "%s has challenged %s to a duel!!\r\n", ch->name, victim->name );
+
+   snprintf( buf, MAX_INPUT_LENGTH, "%s has challenged %s to a duel!!\r\n", ch->name, victim->name );
    location = ch->in_room;
    ch->pcdata->roomarena = location;
    sportschan( buf );
@@ -824,6 +808,7 @@ void do_aaccept( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
    ROOM_INDEX_DATA *location;
+
    if( num_in_arena(  ) > 0 )
    {
       send_to_char( "Please wait until the current arena is closed before you accept.\r\n", ch );
@@ -838,6 +823,7 @@ void do_aaccept( CHAR_DATA * ch, const char *argument )
    else
    {
       CHAR_DATA *dch;
+
       dch = ch->challenged;
       if( !dch || dch == NULL )
       {
@@ -847,7 +833,7 @@ void do_aaccept( CHAR_DATA * ch, const char *argument )
       }
       location = ch->in_room;
       ch->pcdata->roomarena = location;
-      sprintf( buf, "%s has accepted %s's challenge!", ch->name, dch->name );
+      snprintf( buf, MAX_INPUT_LENGTH, "%s has accepted %s's challenge!", ch->name, dch->name );
       sportschan( buf );
       ch->challenged = NULL;
       char_from_room( ch );
@@ -874,7 +860,7 @@ void do_adecline( CHAR_DATA * ch, const char *argument )
 
    if( ch->challenged )
    {
-      sprintf( buf, "%s has DECLINED %s's challenge! WHAT A WUSS!!!\r\n", ch->name, ch->challenged->name );
+      snprintf( buf, MAX_INPUT_LENGTH, "%s has DECLINED %s's challenge! WHAT A WUSS!!!\r\n", ch->name, ch->challenged->name );
       sportschan( buf );
       ch->challenged = NULL;
       return;
@@ -890,8 +876,6 @@ void lost_arena( CHAR_DATA * ch )
 {
    char buf[MAX_STRING_LENGTH];
 
-   sprintf( buf, "%s has been defeated in the arena!\r\n", ch->name );
+   snprintf( buf, MAX_STRING_LENGTH, "%s has been defeated in the arena!\r\n", ch->name );
    sportschan( buf );
-
-   return;
 }

@@ -5,17 +5,18 @@
  *                /-----\  |      | \  |  v  | |     | |  /                 *
  *               /       \ |      |  \ |     | +-----+ +-/                  *
  ****************************************************************************
- * AFKMud Copyright 1997-2005 by Roger Libiez (Samson),                     *
+ * AFKMud Copyright 1997-2019 by Roger Libiez (Samson),                     *
  * Levi Beckerson (Whir), Michael Ward (Tarl), Erik Wolfe (Dwip),           *
- * Cameron Carroll (Cam), Cyberfox, Karangi, Rathian, Raine, and Adjani.    *
+ * Cameron Carroll (Cam), Cyberfox, Karangi, Rathian, Raine,                *
+ * Xorith, and Adjani.                                                      *
  * All Rights Reserved.                                                     *
- * Registered with the United States Copyright Office. TX 5-877-286         *
  *                                                                          *
- * External contributions from Xorith, Quixadhal, Zarius, and many others.  *
  *                                                                          *
- * Original SMAUG 1.4a written by Thoric (Derek Snider) with Altrag,        *
+ * External contributions from Remcon, Quixadhal, Zarius, and many others.  *
+ *                                                                          *
+ * Original SMAUG 1.8b written by Thoric (Derek Snider) with Altrag,        *
  * Blodkai, Haus, Narn, Scryn, Swordbearer, Tricops, Gorog, Rennard,        *
- * Grishnakh, Fireblade, and Nivek.                                         *
+ * Grishnakh, Fireblade, Edmond, Conran, and Nivek.                         *
  *                                                                          *
  * Original MERC 2.1 code by Hatchet, Furey, and Kahn.                      *
  *                                                                          *
@@ -639,7 +640,7 @@ const char *color_str( short AType, CHAR_DATA * ch )
 {
    if( !ch )
    {
-      bug( "%s", "color_str: NULL ch!" );
+      bug( "%s: NULL ch!", __func__ );
       return ( "" );
    }
 
@@ -908,7 +909,7 @@ int colorcode( const char *src, char *dst, DESCRIPTOR_DATA * d, int dstlen, int 
             case '[':  /* Symbolic color name */
                if( ( sympos = strchr( src + 2, ']' ) ) )
                {
-                  register int subcnt = 0;
+                  int subcnt = 0;
                   unsigned int sublen = 0;
 
                   sublen = sympos - src - 2;
@@ -1305,7 +1306,7 @@ int colorcode( const char *src, char *dst, DESCRIPTOR_DATA * d, int dstlen, int 
  */
 int color_strlen( const char *src )
 {
-   register unsigned int i = 0;
+   unsigned int i = 0;
    int len = 0;
 
    if( !src || !*src )  /* Move along, nothing to see here */
@@ -1378,13 +1379,13 @@ char *colorize( const char *txt, DESCRIPTOR_DATA * d )
 
       while( ( colstr = strpbrk( prevstr, "&^}hH" ) ) != NULL )
       {
-         register int reslen = 0;
+         int reslen = 0;
 
          if( colstr > prevstr )
          {
             if( ( MAX_STRING_LENGTH - ( reslen = strlen( result ) ) ) <= ( colstr - prevstr ) )
             {
-               bug( "%s: OVERFLOW in internal MAX_STRING_LENGTH buffer!", __PRETTY_FUNCTION__ );
+               bug( "%s: OVERFLOW in internal MAX_STRING_LENGTH buffer!", __func__ );
                break;
             }
             strncat( result, prevstr, ( colstr - prevstr ) );  /* Leave this one alone! BAD THINGS(TM) will happen if you don't! */
@@ -1432,7 +1433,7 @@ void set_char_color( short AType, CHAR_DATA * ch )
    write_to_buffer( ch->desc, color_str( AType, ch ), 0 );
    if( !ch->desc )
    {
-      bug( "set_char_color: NULL descriptor after WTB! CH: %s", ch->name ? ch->name : "Unknown?!?" );
+      bug( "%s: NULL descriptor after WTB! CH: %s", __func__, ch->name ? ch->name : "Unknown?!?" );
       return;
    }
    ch->desc->pagecolor = ch->colors[AType];
@@ -1470,7 +1471,7 @@ void write_to_pager( DESCRIPTOR_DATA * d, const char *txt, size_t length )
    {
       if( d->pagesize > MAX_STRING_LENGTH * 16 )
       {
-         bug( "%s", "Pager overflow.  Ignoring.\r\n" );
+         bug( "%s: Pager overflow.  Ignoring.\r\n", __func__ );
          d->pagetop = 0;
          d->pagepoint = NULL;
          DISPOSE( d->pagebuf );
@@ -1497,7 +1498,7 @@ void set_pager_color( short AType, CHAR_DATA * ch )
    write_to_pager( ch->desc, color_str( AType, ch ), 0 );
    if( !ch->desc )
    {
-      bug( "%s: NULL descriptor after WTP! CH: %s", __FUNCTION__, ch->name ? ch->name : "Unknown?!?" );
+      bug( "%s: NULL descriptor after WTP! CH: %s", __func__, ch->name ? ch->name : "Unknown?!?" );
       return;
    }
    ch->desc->pagecolor = ch->colors[AType];
@@ -1508,7 +1509,7 @@ void send_to_desc_color( const char *txt, DESCRIPTOR_DATA * d )
 {
    if( !d )
    {
-      bug( "%s: NULL *d", __FUNCTION__ );
+      bug( "%s: NULL *d", __func__ );
       return;
    }
 
@@ -1525,7 +1526,7 @@ void send_to_char( const char *txt, CHAR_DATA * ch )
 {
    if( !ch )
    {
-      bug( "%s: NULL ch!", __FUNCTION__ );
+      bug( "%s: NULL ch!", __func__ );
       return;
    }
 
@@ -1537,7 +1538,7 @@ void send_to_pager( const char *txt, CHAR_DATA * ch )
 {
    if( !ch )
    {
-      bug( "%s: NULL ch!", __FUNCTION__ );
+      bug( "%s: NULL ch!", __func__ );
       return;
    }
 

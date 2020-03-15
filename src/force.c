@@ -45,7 +45,7 @@ void free_forceskill( FORCE_SKILL * fskill )
 
    if( !fskill )
    {
-      bug( "%s: null forceskill pointer!", __FUNCTION__ );
+      bug( "%s: null forceskill pointer!", __func__ );
       return;
    }
 
@@ -66,7 +66,7 @@ void free_forcehelp( FORCE_HELP * fhelp )
 {
    if( !fhelp )
    {
-      bug( "%s: null forcehelp pointer!", __FUNCTION__ );
+      bug( "%s: null forcehelp pointer!", __func__ );
       return;
    }
 
@@ -629,7 +629,7 @@ void do_fset( CHAR_DATA * ch, const char *argument )
    char arg2[MAX_STRING_LENGTH];
    if( !ch->desc )
    {
-      bug( "do_fset: no descriptor", 0 );
+      bug( "%s: no descriptor", __func__ );
       return;
    }
    argument = one_argument( argument, arg1 );
@@ -1050,9 +1050,10 @@ void do_fset( CHAR_DATA * ch, const char *argument )
    {
       char code[MAX_STRING_LENGTH];
       DO_FUN *fun;
+
       CREATE( fskill, FORCE_SKILL, 1 );
       fskill->name = STRALLOC( arg1 );
-      sprintf( code, "fskill_%s", fskill->name );
+      snprintf( code, MAX_STRING_LENGTH, "fskill_%s", fskill->name );
       fskill->code = STRALLOC( code );
       fun = get_force_skill_function( fskill->code );
       fskill->do_fun = fun;
@@ -1081,7 +1082,7 @@ void do_fset( CHAR_DATA * ch, const char *argument )
    switch ( ch->substate )
    {
       default:
-         bug( "do_fset: illegal substate", 0 );
+         bug( "%s: illegal substate", __func__ );
          return;
 
       case SUB_RESTRICTED:
@@ -1231,7 +1232,7 @@ void do_fhstat( CHAR_DATA * ch, const char *argument )
       return;
    }
    argument = one_argument( argument, fname );
-   strcpy( type, argument );
+   mudstrlcpy( type, argument, MAX_STRING_LENGTH );
    for( fhelp = first_force_help; fhelp; fhelp = fhelp->next )
    {
       if( nifty_is_name_prefix( fname, fhelp->name ) )
@@ -1291,7 +1292,7 @@ void do_fhstat( CHAR_DATA * ch, const char *argument )
               fhelp->type == FORCE_GENERAL ? "General" : fhelp->type == FORCE_JEDI ? "Jedi" : "Sith", fhelp->skill );
    draw_force_line( ch, 79 );
    send_to_char( "\r\n", ch );
-   strcpy( temp, fhelp->desc );
+   mudstrlcpy( temp, fhelp->desc, MAX_STRING_LENGTH );
    strrep( temp, "$RN$", "\r\n" );
    strrep( temp, "$RN$", "\r\n" );
    send_to_char( temp, ch );
@@ -1308,7 +1309,7 @@ void do_fhset( CHAR_DATA * ch, const char *argument )
    int type = -1;
    if( !ch->desc )
    {
-      bug( "do_fset: no descriptor", 0 );
+      bug( "%s: no descriptor", __func__ );
       return;
    }
    argument = one_argument( argument, arg1 );
@@ -1389,7 +1390,7 @@ void do_fhset( CHAR_DATA * ch, const char *argument )
    switch ( ch->substate )
    {
       default:
-         bug( "do_fhset: illegal substate", 0 );
+         bug( "%s: illegal substate", __func__ );
          return;
 
       case SUB_RESTRICTED:

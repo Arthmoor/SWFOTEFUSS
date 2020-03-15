@@ -130,7 +130,6 @@ struct race_type race_table[MAX_RACE] = {
     "Intera Droid", AFF_AQUA_BREATH + AFF_FLYING + AFF_FLOATING, 0, +4, -9, +5, +1, -5, 0, 0, 0, 0, 0, 0, LANG_BINARY}  //(+)lead
 };
 
-
 const char *const npc_race[MAX_NPC_RACE] = {
    "Human", "Wookiee", "Twi'lek", "Rodian", "Hutt", "Mon Calamari", "Noghri",
    "Gamorrean", "Jawa", "Adarian", "Ewok", "Verpine", "Defel", "Trandoshan",
@@ -146,7 +145,6 @@ const char *const npc_race[MAX_NPC_RACE] = {
    "r75", "r76", "r77", "r78", "r79", "r80", "r81", "r82",
    "r83", "r84", "r85", "r86", "r87", "r88", "r89", "r90"
 };
-
 
 const char *const ability_name[MAX_ABILITY] = {
    "Combat", "Piloting", "Engineering", "Bounty Hunting", "Smuggling", "Politician", "Force", "Slicer", "Assassin",
@@ -198,8 +196,6 @@ const struct str_app_type str_app[26] = {
    {10, 12, 999, 60} /* 25   */
 };
 
-
-
 const struct int_app_type int_app[26] = {
    {3},  /*  0 */
    {5},  /*  1 */
@@ -229,8 +225,6 @@ const struct int_app_type int_app[26] = {
    {99}  /* 25 */
 };
 
-
-
 const struct wis_app_type wis_app[26] = {
    {0},  /*  0 */
    {0},  /*  1 */
@@ -259,8 +253,6 @@ const struct wis_app_type wis_app[26] = {
    {6},
    {7}   /* 25 */
 };
-
-
 
 const struct dex_app_type dex_app[30] = {
    {60}, /* 0 */
@@ -295,8 +287,6 @@ const struct dex_app_type dex_app[30] = {
    {-180}   /* 29 */
 };
 
-
-
 const struct con_app_type con_app[26] = {
    {-4, 20},   /*  0 */
    {-3, 25},   /*  1 */
@@ -325,7 +315,6 @@ const struct con_app_type con_app[26] = {
    {7, 99},
    {8, 99}  /* 25 */
 };
-
 
 const struct cha_app_type cha_app[26] = {
    {-60},   /* 0 */
@@ -415,8 +404,6 @@ const struct frc_app_type frc_app[26] = {
    {0}   /* 25 */
 };
 
-
-
 /*
  * Liquid properties.
  * Used in #OBJECT section of area file.
@@ -452,8 +439,6 @@ const char *const attack_table[13] = {
    "blast", "pound", "crush", "shot", "bite",
    "pierce", "suction"
 };
-
-
 
 /*
  * The skill and spell table.

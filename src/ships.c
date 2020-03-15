@@ -241,50 +241,50 @@ void do_buymobship( CHAR_DATA * ch, const char *argument )
    if( vnum == -1 )
    {
       send_to_char( "There was a problem with your ship: free vnums. Notify an administrator.\r\n", ch );
-      bug( "Ship area is low on vnums.", 0 );
+      bug( "%s: Ship area is low on vnums.", __func__ );
       return;
    }
 
    switch ( ship_type )
    {
       default:
-         sprintf( shipname, "Mobile Ship MS" );
+         mudstrlcpy( shipname, "Mobile Ship MS", MAX_STRING_LENGTH );
          break;
          // NR
       case 0:
-         sprintf( shipname, "X-Wing Snubfighter MXW" );
+         mudstrlcpy( shipname, "X-Wing Snubfighter MXW", MAX_STRING_LENGTH );
          break;
       case 1:
-         sprintf( shipname, "A-Wing Scout MAW" );
+         mudstrlcpy( shipname, "A-Wing Scout MAW", MAX_STRING_LENGTH );
          break;
       case 2:
-         sprintf( shipname, "B-Wing Heavy Fighter MBW" );
+         mudstrlcpy( shipname, "B-Wing Heavy Fighter MBW", MAX_STRING_LENGTH );
          break;
       case 3:
-         sprintf( shipname, "Y-Wing Bomber MYB" );
+         mudstrlcpy( shipname, "Y-Wing Bomber MYB", MAX_STRING_LENGTH );
          break;
       case 4:
-         sprintf( shipname, "K-Wing Heavy Bomber MKW" );
+         mudstrlcpy( shipname, "K-Wing Heavy Bomber MKW", MAX_STRING_LENGTH );
          break;
          // Imp
       case 6:
-         sprintf( shipname, "TIE Fighter MTF" );
+         mudstrlcpy( shipname, "TIE Fighter MTF", MAX_STRING_LENGTH );
          break;
       case 7:
-         sprintf( shipname, "TIE Bomber MTB" );
+         mudstrlcpy( shipname, "TIE Bomber MTB", MAX_STRING_LENGTH );
          break;
       case 8:
-         sprintf( shipname, "TIE Defender MTD" );
+         mudstrlcpy( shipname, "TIE Defender MTD", MAX_STRING_LENGTH );
          break;
       case 9:
-         sprintf( shipname, "XM-1 Missileboat MXM" );
+         mudstrlcpy( shipname, "XM-1 Missileboat MXM", MAX_STRING_LENGTH );
          break;
       case 10:
-         sprintf( shipname, "XG-1 Assault Gunboat MXG" );
+         mudstrlcpy( shipname, "XG-1 Assault Gunboat MXG", MAX_STRING_LENGTH );
          break;
    }
 
-   sprintf( shipname, "%s%d (%s)", shipname, number_range( 1111, 9999 ), ship_prototypes[ship_type].sname );
+   snprintf( shipname + strlen( shipname ), ( MAX_STRING_LENGTH - strlen( shipname ) ), "%s%d (%s)", shipname, number_range( 1111, 9999 ), ship_prototypes[ship_type].sname );
 
    if( ch->pcdata->clan->funds < ship_prototypes[ship_type].cost )
    {
@@ -353,7 +353,7 @@ void do_buymobship( CHAR_DATA * ch, const char *argument )
    if( make_prototype_rooms( ship_type, vnum, tarea, shipname ) == -1 )
    {
       send_to_char( "There was a problem with your ship: unable to create a room. Notify an administrator.\r\n", ch );
-      bug( "Ship area unable to make_room.", 0 );
+      bug( "%s: Ship area unable to make_room.", __func__ );
       return;
    }
 
@@ -382,7 +382,7 @@ void do_buymobship( CHAR_DATA * ch, const char *argument )
    ship->vy = number_range( -3000, 3000 );
    ship->vz = number_range( -3000, 3000 );
    ship->autopilot = TRUE;
-   sprintf( buf, "%s enters the starsystem at %.0f %.0f %.0f", ship->name, ship->vx, ship->vy, ship->vz );
+   snprintf( buf, MAX_STRING_LENGTH, "%s enters the starsystem at %.0f %.0f %.0f", ship->name, ship->vx, ship->vy, ship->vz );
    echo_to_system( AT_YELLOW, ship, buf, NULL );
    return;
 }
@@ -529,12 +529,12 @@ void do_orderclanship( CHAR_DATA * ch, const char *argument )
    if( vnum == -1 )
    {
       send_to_char( "There was a problem with your ship: free vnums. Notify an administrator.\r\n", ch );
-      bug( "Ship area is low on vnums.", 0 );
+      bug( "%s: Ship area is low on vnums.", __func__ );
       return;
    }
    snprintf( argbuf, MSL, "%s", argument );  
    argbuf[0] = UPPER( argbuf[0] );
-   sprintf( argbuf, "%s (%s)", argbuf, ship_prototypes[ship_type].sname );
+   snprintf( argbuf + strlen( argbuf ), ( MAX_STRING_LENGTH - strlen( argbuf ) ), "%s (%s)", argbuf, ship_prototypes[ship_type].sname );
 
    for( ship = first_ship; ship; ship = ship->next )
    {
@@ -555,7 +555,7 @@ void do_orderclanship( CHAR_DATA * ch, const char *argument )
    if( make_prototype_rooms( ship_type, vnum, tarea, argbuf ) == -1 )
    {
       send_to_char( "There was a problem with your ship: unable to create a room. Notify an administrator.\r\n", ch );
-      bug( "Ship area unable to make_room.", 0 );
+      bug( "%s: Ship area unable to make_room.", __func__ );
       return;
    }
 
@@ -788,13 +788,14 @@ void do_ordership( CHAR_DATA * ch, const char *argument )
    if( vnum == -1 )
    {
       send_to_char( "There was a problem with your ship: free vnums. Notify an administrator.\r\n", ch );
-      bug( "Ship Shop area is low on vnums.", 0 );
+      bug( "%s: Ship Shop area is low on vnums.", __func__ );
       return;
    }
+
    snprintf( argbuf, MSL, "%s", argument );
    argbuf[0] = UPPER( argbuf[0] );
+   snprintf( argbuf + strlen( argbuf ), ( MAX_STRING_LENGTH - strlen( argbuf ) ), "%s (%s)",argbuf, ship_prototypes[ship_type].sname );
 
-   sprintf(argbuf,"%s (%s)",argbuf, ship_prototypes[ship_type].sname);
    for( ship = first_ship; ship; ship = ship->next )
    {
       if( !str_cmp( ship->name, argbuf ) )
@@ -832,7 +833,7 @@ void do_ordership( CHAR_DATA * ch, const char *argument )
    if( make_prototype_rooms( ship_type, vnum, tarea, argbuf ) == -1 )
    {
       send_to_char( "There was a problem with your ship: unable to create a room. Notify an administrator.\r\n", ch );
-      bug( "Ship Shop unable to make_room.", 0 );
+      bug( "%s: Ship Shop unable to make_room.", __func__ );
       return;
    }
 
@@ -866,7 +867,7 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
 {
    SHIP_DATA *ship;
    PROTO_ROOM *proom;
-   char sp_filename[MAX_STRING_LENGTH];
+   char sp_filename[256];
 
    CREATE( ship, SHIP_DATA, 1 );
    LINK( ship, first_ship, last_ship, next, prev );
@@ -913,7 +914,7 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
    ship->target10 = NULL;
    ship->password = number_range( 1111, 9999 );;
    ship->maxmods = ship_prototypes[ship_type].mods;
-   sprintf( sp_filename, "ship_%d.sss", vnum );
+   snprintf( sp_filename, 256, "ship_%d.sss", vnum );
    ship->filename = str_dup( sp_filename );
    ship->pilotseat = vnum;
    ship->coseat = vnum;
@@ -921,6 +922,7 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
    ship->gunseat = vnum;
    ship->entrance = vnum;
    ship->engineroom = vnum;
+
    for( proom = first_prototype_room; proom; proom = proom->next )
    {
       if( proom->what_prototype == ship_type )
@@ -931,6 +933,7 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
             ship->lastroom = proom->room_num + vnum - 1;
       }
    }
+
    for( proom = first_prototype_room; proom; proom = proom->next )
    {
       if( proom->what_prototype == ship_type )
@@ -1079,14 +1082,14 @@ int make_prototype_rooms( int ship_type, int vnum, AREA_DATA * tarea, char *Snam
          {
             if( newroom->name )
                STRFREE( newroom->name );
-            sprintf( buf, "SPARE ROOM FOR: %d", vnum );
+            snprintf( buf, MAX_STRING_LENGTH, "SPARE ROOM FOR: %d", vnum );
             newroom->name = STRALLOC( buf );
             if( newroom->description )
                STRFREE( newroom->description );
             newroom->description = STRALLOC( "" ); 
             continue;
          }
-         strcpy( newdesc, strlinwrp( proom->desc, 60 ) );
+         mudstrlcpy( newdesc, strlinwrp( proom->desc, 60 ), MAX_STRING_LENGTH );
          if( newroom->name )
             STRFREE( newroom->name );
          newroom->name = STRALLOC( strrep( proom->name, "$SN$", Sname ) );
@@ -1213,9 +1216,11 @@ void make_rprogs( int ship_type, int vnum )
    char *argument;
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
+   char arg3[MAX_INPUT_LENGTH];
    MPROG_DATA *mprog, *mprg;
    ROOM_INDEX_DATA *room;
    int mptype, x, size;
+
    for( proom = first_prototype_room; proom; proom = proom->next )
    {
       if( proom->what_prototype == ship_type )
@@ -1228,7 +1233,7 @@ void make_rprogs( int ship_type, int vnum )
                continue;
             argument = one_argument( argument, arg1 );
             argument = one_argument( argument, arg2 );
-            sprintf( argument, "%s", parse_prog_string( argument, ship_type, vnum ) );
+            snprintf( arg3, MAX_INPUT_LENGTH, "%s", parse_prog_string( argument, ship_type, vnum ) );
             room = get_room_index( proom->room_num + vnum - 1 );
             mprog = room->mudprogs;
             mptype = get_mpflag( arg1 );
@@ -1241,7 +1246,6 @@ void make_rprogs( int ship_type, int vnum )
                room->mudprogs = mprg;
             room->progtypes |= ( 1 << mptype );
 
-
             if( mptype != -1 )
             {
                mprg->type = 1 << mptype;
@@ -1249,7 +1253,7 @@ void make_rprogs( int ship_type, int vnum )
                   STRFREE( mprg->arglist );
                mprg->arglist = STRALLOC( arg2 );
             }
-            mprg->comlist = STRALLOC( argument );
+            mprg->comlist = STRALLOC( arg3 );
             mprg->next = NULL;
          }
       }
@@ -1262,13 +1266,14 @@ char *parse_prog_string( char *inp, int ship_type, int vnum )
    char rep[MAX_STRING_LENGTH];
    char newinp[MAX_STRING_LENGTH];
    int x, size;
-   strcpy( newinp, inp );
+
+   mudstrlcpy( newinp, inp, MAX_STRING_LENGTH );
    size = ship_prototypes[ship_type].num_rooms;
    for( x = 0; x < size; x++ )
    {
-      sprintf( sch, "$RNUM:%d$", x + 1 );
-      sprintf( rep, "%d", x + vnum );
-      sprintf( newinp, "%s", strrep( newinp, sch, rep ) );
+      snprintf( sch, MAX_STRING_LENGTH, "$RNUM:%d$", x + 1 );
+      snprintf( rep, MAX_STRING_LENGTH, "%d", x + vnum );
+      snprintf( newinp, MAX_STRING_LENGTH, "%s", strrep( newinp, sch, rep ) );
    }
    return str_dup( newinp );
 }
@@ -1277,15 +1282,16 @@ void save_prototype( int prototype )
 {
    PROTO_ROOM *proom;
    FILE *fpout;
-   char filename[MAX_STRING_LENGTH];
+   char filename[256];
    int x;
 
-   sprintf( filename, "%s%s.proto", SHIP_PROTOTYPE_DIR, ship_prototypes[prototype].sname );
+   snprintf( filename, 256, "%s%s.proto", SHIP_PROTOTYPE_DIR, ship_prototypes[prototype].sname );
    if( ( fpout = fopen( filename, "w" ) ) == NULL )
    {
       perror( filename );
       return;
    }
+
    fprintf( fpout, "#HEADER\n\n" );
    fprintf( fpout, "Name           %s~\n", ship_prototypes[prototype].name );
    fprintf( fpout, "Sname          %s~\n", ship_prototypes[prototype].sname );
@@ -1348,10 +1354,10 @@ void save_prototype( int prototype )
 void write_prototype_list(  )
 {
    FILE *fpout;
-   char filename[MAX_STRING_LENGTH];
+   char filename[256];
    int x;
 
-   sprintf( filename, "%sprototype.lst", SHIP_PROTOTYPE_DIR );
+   snprintf( filename, 256, "%sprototype.lst", SHIP_PROTOTYPE_DIR );
    if( ( fpout = fopen( filename, "w" ) ) == NULL )
    {
       perror( filename );
@@ -1374,10 +1380,10 @@ void write_all_prototypes(  )
 
 bool load_prototype_header( FILE * fp, int prototype )
 {
-   char buf[MAX_STRING_LENGTH];
    const char *word;
    bool done = FALSE;
    bool fMatch;
+
    while( !done )
    {
       word = feof( fp ) ? "End" : fread_word( fp );
@@ -1427,8 +1433,7 @@ bool load_prototype_header( FILE * fp, int prototype )
       }
       if( !fMatch )
       {
-         sprintf( buf, "Load_prototype_header: no match: %s", word );
-         bug( buf, 0 );
+         bug( "%s: no match: %s", __func__, word );
       }
    }
    return TRUE;
@@ -1437,10 +1442,10 @@ bool load_prototype_header( FILE * fp, int prototype )
 bool fread_prototype_room( FILE * fp, int prototype )
 {
    PROTO_ROOM *proom;
-   char buf[MAX_STRING_LENGTH];
    const char *word;
    bool done = FALSE;
    bool fMatch;
+
    CREATE( proom, PROTO_ROOM, 1 );
    proom->what_prototype = prototype;
    while( !done )
@@ -1521,8 +1526,7 @@ bool fread_prototype_room( FILE * fp, int prototype )
       }
       if( !fMatch )
       {
-         sprintf( buf, "Fread_prototype_room: no match: %s", word );
-         bug( buf, 0 );
+         bug( "%s: no match: %s", __func__, word );
       }
    }
    LINK( proom, first_prototype_room, last_prototype_room, next, prev );
@@ -1534,6 +1538,7 @@ bool load_prototype_rooms( FILE * fp, int prototype )
    char letter;
    char *word;
    bool done = FALSE;
+
    while( !done )
    {
       letter = fread_letter( fp );
@@ -1550,7 +1555,7 @@ bool load_prototype_rooms( FILE * fp, int prototype )
       }
       else
       {
-         bug( "Load_prototype_rooms, unknown prefix: %s", letter );
+         bug( "%s: unknown prefix: %s", __func__, letter );
          return FALSE;
       }
    }
@@ -1566,7 +1571,7 @@ int load_prototype( const char *prototypefile, int prototype )
    char letter;
    char *word;
 
-   sprintf( filename, "%s%s", SHIP_PROTOTYPE_DIR, prototypefile );
+   snprintf( filename, 256, "%s%s", SHIP_PROTOTYPE_DIR, prototypefile );
 
    if( ( fp = fopen( filename, "r" ) ) != NULL )
    {
@@ -1576,7 +1581,7 @@ int load_prototype( const char *prototypefile, int prototype )
          letter = fread_letter( fp );
          if( letter != '#' )
          {
-            bug( "Load_prototype: # not found.", 0 );
+            bug( "%s: # not found.", __func__ );
             break;
          }
          stage++;
@@ -1588,7 +1593,7 @@ int load_prototype( const char *prototypefile, int prototype )
                case 0:
                   if( strcmp( word, "HEADER" ) )
                   {
-                     bug( "Load_prototype: HEADER not found.", 0 );
+                     bug( "%s: HEADER not found.", __func__ );
                      break;
                   }
                   if( !load_prototype_header( fp, prototype ) )
@@ -1600,7 +1605,7 @@ int load_prototype( const char *prototypefile, int prototype )
                case 1:
                   if( strcmp( word, "ROOMS" ) )
                   {
-                     bug( "Load_prototype: ROOMS not found.", 0 );
+                     bug( "%s: ROOMS not found.", __func__ );
                      break;
                   }
                   if( !load_prototype_rooms( fp, prototype ) )
@@ -1610,7 +1615,7 @@ int load_prototype( const char *prototypefile, int prototype )
                   }
                   break;
                default:
-                  bug( "Load_prototype: Unknown stage: %d", stage );
+                  bug( "%s: Unknown stage: %d", __func__, stage );
             }
          }
          else
@@ -1632,7 +1637,7 @@ void load_ship_prototypes(  )
 
    log_string( "Loading ship prototypes..." );
 
-   sprintf( prototypeslist, "%sprototype.lst", SHIP_PROTOTYPE_DIR );
+   snprintf( prototypeslist, 256, "%sprototype.lst", SHIP_PROTOTYPE_DIR );
    if( ( fpList = fopen( prototypeslist, "r" ) ) == NULL )
    {
       perror( prototypeslist );
@@ -1660,10 +1665,10 @@ void do_makeprototypeship( CHAR_DATA * ch, const char *argument )
    int prototype;
    int cost;
    int count = 0;
-   char ship_name[MAX_STRING_LENGTH];
-   char name[MAX_STRING_LENGTH];
-   char sname[MAX_STRING_LENGTH];
-   char scost[MAX_STRING_LENGTH];
+   char ship_name[MAX_INPUT_LENGTH];
+   char name[MAX_INPUT_LENGTH];
+   char sname[MAX_INPUT_LENGTH];
+   char scost[MAX_INPUT_LENGTH];
    char buf[MAX_STRING_LENGTH];
    int x, len;
    ROOM_INDEX_DATA *room;
@@ -1675,7 +1680,7 @@ void do_makeprototypeship( CHAR_DATA * ch, const char *argument )
    argument = one_argument( argument, ship_name );
    argument = one_argument( argument, scost );
    argument = one_argument( argument, sname );
-   strcpy( name, argument );
+   mudstrlcpy( name, argument, MAX_INPUT_LENGTH );
    if( ship_name[0] == '\0' )
    {
       send_to_char( "You must specify a valid ship name.\r\n", ch );
@@ -1737,7 +1742,7 @@ void do_makeprototypeship( CHAR_DATA * ch, const char *argument )
    ship_prototypes[prototype].hyperspeed = ship->hyperspeed;
    ship_prototypes[prototype].manuever = ship->manuever;
    ship_prototypes[prototype].cost = cost;
-   sprintf( buf, "%s: '%s'", sname, name );
+   snprintf( buf, MAX_STRING_LENGTH, "%s: '%s'", sname, name );
    ship_prototypes[prototype].name = STRALLOC( buf );
    ship_prototypes[prototype].sname = STRALLOC( sname );
    ship_prototypes[prototype].sclass = ship->sclass;
@@ -1830,7 +1835,7 @@ void do_makeprototypeship( CHAR_DATA * ch, const char *argument )
       x = 1;
       for( mprg = room->mudprogs; mprg; mprg = mprg->next )
       {
-         sprintf( buf, "%s %s %s ~", mprog_flags[mprg->type], mprg->arglist, mprg->comlist );
+         snprintf( buf, MAX_STRING_LENGTH, "%s %s %s ~", mprog_flags[mprg->type], mprg->arglist, mprg->comlist );
          proom->rprog[x] = STRALLOC( buf );
          x++;
       }
@@ -1856,7 +1861,7 @@ const char *primary_beam_name_proto( int shiptype )
 {
    if( ship_prototypes[shiptype].primaryCount != 0 )
    {
-      sprintf( pbname, "%d %s", ship_prototypes[shiptype].primaryCount,
+      snprintf( pbname, MAX_STRING_LENGTH, "%d %s", ship_prototypes[shiptype].primaryCount,
                ( ship_prototypes[shiptype].primaryType == SINGLE_LASER
                  && ship_prototypes[shiptype].primaryCount ==
                  1 ) ? "Single-laser cannon" : ( ship_prototypes[shiptype].primaryType == SINGLE_LASER
@@ -1909,17 +1914,17 @@ const char *primary_beam_name_proto( int shiptype )
                                                                                   && ship_prototypes[shiptype].
                                                                                   primaryCount !=
                                                                                   1 ) ? "Heavy ion cannons" : "unknown" );
-
       return pbname;
    }
    else
       return "None.";
 }
+
 const char *secondary_beam_name_proto( int shiptype )
 {
    if( ship_prototypes[shiptype].secondaryCount != 0 )
    {
-      sprintf( pbname, "%d %s", ship_prototypes[shiptype].secondaryCount,
+      snprintf( pbname, MAX_STRING_LENGTH, "%d %s", ship_prototypes[shiptype].secondaryCount,
                ( ship_prototypes[shiptype].secondaryType == SINGLE_LASER
                  && ship_prototypes[shiptype].secondaryCount ==
                  1 ) ? "Single-laser cannon" : ( ship_prototypes[shiptype].secondaryType == SINGLE_LASER
@@ -1973,12 +1978,12 @@ const char *secondary_beam_name_proto( int shiptype )
                                                                                   && ship_prototypes[shiptype].
                                                                                   secondaryCount !=
                                                                                   1 ) ? "Heavy ion cannons" : "unknown" );
-
       return pbname;
    }
    else
       return "None.";
 }
+
 void do_shipstat( CHAR_DATA * ch, const char *argument )
 {
    int shiptype;
@@ -2011,45 +2016,45 @@ void do_shipstat( CHAR_DATA * ch, const char *argument )
    }
 
    if( ship_prototypes[shiptype].primaryType > 0 )
-      sprintf( buf1, "%d", ship_prototypes[shiptype].primaryType );
+      snprintf( buf1, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].primaryType );
    else
-      sprintf( buf1, "&RNone." );
+      mudstrlcpy( buf1, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].secondaryType > 0 )
-      sprintf( buf2, "%d", ship_prototypes[shiptype].secondaryType );
+      snprintf( buf2, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].secondaryType );
    else
-      sprintf( buf2, "&RNone." );
+      mudstrlcpy( buf2, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].range_weapons[0] > 0 )
-      sprintf( buf3, "%d", ship_prototypes[shiptype].range_weapons[0] );
+      snprintf( buf3, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].range_weapons[0] );
    else
-      sprintf( buf3, "&RNone." );
+      mudstrlcpy( buf3, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].shields > 0 )
-      sprintf( buf4, "%d", ship_prototypes[shiptype].shields );
+      snprintf( buf4, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].shields );
    else
-      sprintf( buf4, "&RNone." );
+      mudstrlcpy( buf4, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].range_weapons[1] > 0 )
-      sprintf( buf5, "%d", ship_prototypes[shiptype].range_weapons[1] );
+      snprintf( buf5, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].range_weapons[1] );
    else
-      sprintf( buf5, "&RNone." );
+      mudstrlcpy( buf5, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].hyperspeed > 0 )
-      sprintf( buf6, "Class %d", ship_prototypes[shiptype].hyperspeed );
+      snprintf( buf6, MAX_STRING_LENGTH, "Class %d", ship_prototypes[shiptype].hyperspeed );
    else
-      sprintf( buf6, "&RNone." );
+      mudstrlcpy( buf6, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].range_weapons[2] > 0 )
-      sprintf( buf7, "%d", ship_prototypes[shiptype].range_weapons[2] );
+      snprintf( buf7, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].range_weapons[2] );
    else
-      sprintf( buf7, "&RNone." );
+      mudstrlcpy( buf7, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].maxbombs > 0 )
-      sprintf( buf8, "%d", ship_prototypes[shiptype].maxbombs );
+      snprintf( buf8, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].maxbombs );
    else
-      sprintf( buf8, "&RNone." );
+      mudstrlcpy( buf8, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].turrets > 0 )
-      sprintf( buf9, "%d", ship_prototypes[shiptype].turrets );
+      snprintf( buf9, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].turrets );
    else
-      sprintf( buf9, "&RNone." );
+      mudstrlcpy( buf9, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].chaff > 0 )
-      sprintf( buf10, "%d", ship_prototypes[shiptype].chaff );
+      snprintf( buf10, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].chaff );
    else
-      sprintf( buf10, "&RNone." );
+      mudstrlcpy( buf10, "&RNone.", MAX_STRING_LENGTH );
 
    ch_printf( ch, "&R&z+&W---------------------------------------------------------------&z+\r\n" );
    ch_printf( ch, "&W| Name: &w%-35.35s      &WCost: &w%8d &W|\r\n",
@@ -2082,7 +2087,7 @@ void load_market_list(  )
 
    log_string( "Loading black market." );
 
-   sprintf( list, "%s%s", SHIP_PROTOTYPE_DIR, "blackmarket.lst" );
+   snprintf( list, 256, "%s%s", SHIP_PROTOTYPE_DIR, "blackmarket.lst" );
    if( ( fpList = fopen( list, "r" ) ) == NULL )
    {
       perror( list );
@@ -2111,11 +2116,11 @@ void save_market_list(  )
    FILE *fpout;
    char filename[256];
 
-   sprintf( filename, "%s%s", SHIP_PROTOTYPE_DIR, "blackmarket.lst" );
+   snprintf( filename, 256, "%s%s", SHIP_PROTOTYPE_DIR, "blackmarket.lst" );
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open blackmarket.lst for writing.\r\n", 0 );
+      bug( "FATAL: %s: cannot open blackmarket.lst for writing.\r\n", __func__ );
       return;
    }
    for( marketship = first_market_ship; marketship; marketship = marketship->next )
@@ -2142,7 +2147,6 @@ void add_market_ship( SHIP_DATA * ship )
          return;
       }
    }
-
 
    CREATE( marketship, BMARKET_DATA, 1 );
    LINK( marketship, first_market_ship, last_market_ship, next, prev );
@@ -2184,7 +2188,7 @@ void make_random_marketlist(  )
 	DISPOSE( marketship );
  }*/
 
-   sprintf( filename, "%s%s", SHIP_PROTOTYPE_DIR, "blackmarket.lst" );
+   snprintf( filename, 256, "%s%s", SHIP_PROTOTYPE_DIR, "blackmarket.lst" );
    fpout = fopen( filename, "w" );
    fprintf( fpout, "$\n" );
    fclose( fpout );
@@ -2195,7 +2199,6 @@ void make_random_marketlist(  )
    {
       for( x = 0; x < NUM_PROTOTYPES; x++ )
       {
-
          if( str_cmp( ship_prototypes[x].clan, "The Empire" ) && str_cmp( ship_prototypes[x].clan, "The New Republic" ) )
             continue;
          if( count == 1 )
@@ -2345,24 +2348,21 @@ void do_generate_market( CHAR_DATA * ch, const char *argument )
 {
    BMARKET_DATA *marketship;
 
-
    if( IS_NPC( ch ) )
       return;
 
    if( !first_market_ship )
    {
-      bug( "Error 0." );
+      bug( "%s: Error 0.", __func__ );
       return;
    }
 
    marketship = first_market_ship;
    if( !( marketship ) )
    {
-      bug( "Error 2." );
+      bug( "%s: Error 2.", __func__ );
       return;
    }
-
-
    // Clear list
    for( marketship = first_market_ship; marketship; marketship = marketship->next )
    {
@@ -2375,8 +2375,6 @@ void do_generate_market( CHAR_DATA * ch, const char *argument )
    make_random_marketlist(  );
    return;
 }
-
-
 
 void do_installmodule( CHAR_DATA * ch, const char *argument )
 {
@@ -2407,7 +2405,7 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
    int salarm = 0;
    int chaff = 0;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
    checktool = FALSE;
    checkmod = FALSE;
    switch ( ch->substate )
@@ -2416,7 +2414,7 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
          if( ( ship = ship_from_engine( ch->in_room->vnum ) ) != NULL )
          {
             ship = ship_from_engine( ch->in_room->vnum );
-            strcpy( arg, ship->name );
+            mudstrlcpy( arg, ship->name, MAX_INPUT_LENGTH );
          }
 
          if( !ship )
@@ -2533,7 +2531,7 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
          {
             ch->dest_buf = str_dup( arg );
             send_to_char( "&GYou begin the long process of installing a new module.\r\n", ch );
-            sprintf( buf, "$n takes out $s toolkit and a module and begins to work.\r\n" );
+            snprintf( buf, MAX_INPUT_LENGTH, "$n takes out $s toolkit and a module and begins to work.\r\n" );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 5, do_installmodule, 1 );
             return;
@@ -2546,7 +2544,7 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 

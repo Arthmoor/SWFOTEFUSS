@@ -1027,7 +1027,7 @@ void gain_condition( CHAR_DATA * ch, int iCond, int value )
             retcode = rNONE;
             break;
          default:
-            bug( "Gain_condition: invalid condition type %d", iCond );
+            bug( "%s: invalid condition type %d", __func__, iCond );
             retcode = rNONE;
             break;
       }
@@ -1142,7 +1142,7 @@ void mobile_update( void )
       set_cur_char( ch );
       if( ch == first_char && ch->prev )
       {
-         bug( "mobile_update: first_char->prev != NULL... fixed", 0 );
+         bug( "%s: first_char->prev != NULL... fixed", __func__ );
          ch->prev = NULL;
       }
 
@@ -1150,9 +1150,7 @@ void mobile_update( void )
 
       if( gch_prev && gch_prev->next != ch )
       {
-         sprintf( buf, "FATAL: Mobile_update: %s->prev->next doesn't point to ch.", ch->name );
-         bug( buf, 0 );
-         bug( "Short-cutting here", 0 );
+         bug( "FATAL: %s: %s->prev->next doesn't point to ch. Shortcutting here.", __func__, ch->name );
          gch_prev = NULL;
          ch->prev = NULL;
          do_shout( ch, "Thoric says, 'Prepare for the worst!'" );
@@ -1243,7 +1241,7 @@ void mobile_update( void )
 
       if( ch != cur_char )
       {
-         bug( "Mobile_update: ch != cur_char after spec_fun", 0 );
+         bug( "%s: ch != cur_char after spec_fun", __func__ );
          continue;
       }
 
@@ -1531,7 +1529,7 @@ void weather_update( void )
    switch ( weather_info.sky )
    {
       default:
-         bug( "Weather_update: bad sky %d.", weather_info.sky );
+         bug( "%s: bad sky %d.", __func__, weather_info.sky );
          weather_info.sky = SKY_CLOUDLESS;
          break;
 
@@ -1615,14 +1613,14 @@ void char_update( void )
    {
       if( ch == first_char && ch->prev )
       {
-         bug( "char_update: first_char->prev != NULL... fixed", 0 );
+         bug( "%s: first_char->prev != NULL... fixed", __func__ );
          ch->prev = NULL;
       }
       gch_prev = ch->prev;
       set_cur_char( ch );
       if( gch_prev && gch_prev->next != ch )
       {
-         bug( "char_update: ch->prev->next != ch", 0 );
+         bug( "%s: ch->prev->next != ch", __func__ );
          return;
       }
 
@@ -1936,8 +1934,6 @@ void char_update( void )
    return;
 }
 
-
-
 /*
  * Update all objs.
  * This function is performance sensitive.
@@ -1954,13 +1950,13 @@ void obj_update( void )
 
       if( obj == first_object && obj->prev )
       {
-         bug( "obj_update: first_object->prev != NULL... fixed", 0 );
+         bug( "%s: first_object->prev != NULL... fixed", __func__ );
          obj->prev = NULL;
       }
       gobj_prev = obj->prev;
       if( gobj_prev && gobj_prev->next != obj )
       {
-         bug( "obj_update: obj->prev->next != obj", 0 );
+         bug( "%s: obj->prev->next != obj", __func__ );
          return;
       }
       set_cur_obj( obj );
@@ -2374,8 +2370,6 @@ void aggr_update( void )
 
       for( ch = wch->in_room->first_person; ch; ch = ch_next )
       {
-         int count = 0;
-
          ch_next = ch->next_in_room;
 
          if( !IS_NPC( ch )
@@ -2397,7 +2391,7 @@ void aggr_update( void )
 
          if( !victim )
          {
-            bug( "Aggr_update: null victim.", count );
+            bug( "%s: null victim.", __func__ );
             continue;
          }
 
@@ -2573,35 +2567,6 @@ void tele_update( void )
    }
 }
 
-#if FALSE
-/* 
- * Write all outstanding authorization requests to Log channel - Gorog
- */
-void auth_update( void )
-{
-   CHAR_DATA *victim;
-   DESCRIPTOR_DATA *d;
-   char log_buf[MAX_INPUT_LENGTH];
-   bool first_time = TRUE; /* so titles are only done once */
-
-   for( d = first_descriptor; d; d = d->next )
-   {
-      victim = d->character;
-      if( victim && IS_WAITING_FOR_AUTH( victim ) )
-      {
-         if( first_time )
-         {
-            first_time = FALSE;
-            strcpy( log_buf, "Pending authorizations:" );
-            to_channel( log_buf, CHANNEL_MONITOR, "Monitor", 1 );
-         }
-         sprintf( log_buf, " %s@%s new %s", victim->name, victim->desc->host, race_table[victim->race].race_name );
-         to_channel( log_buf, CHANNEL_MONITOR, "Monitor", 1 );
-      }
-   }
-}
-#endif
-
 void auth_update( void )
 {
    CHAR_DATA *victim;
@@ -2734,14 +2699,6 @@ void update_handler( void )
    {
       pulse_second = PULSE_PER_SECOND;
       char_check(  );
-      /*
-       * reboot_check( "" ); Disabled to check if its lagging a lot - Scryn
-       */
-      /*
-       * Much faster version enabled by Altrag..
-       * although I dunno how it could lag too much, it was just a bunch
-       * of comparisons.. 
-       */
       check_dns(  );
       check_pfiles( 0 );
       reboot_check( 0 );
@@ -2773,7 +2730,6 @@ void update_handler( void )
    return;
 }
 
-
 void remove_portal( OBJ_DATA * portal )
 {
    ROOM_INDEX_DATA *fromRoom, *toRoom;
@@ -2783,7 +2739,7 @@ void remove_portal( OBJ_DATA * portal )
 
    if( !portal )
    {
-      bug( "remove_portal: portal is NULL", 0 );
+      bug( "%s: portal is NULL", __func__ );
       return;
    }
 
@@ -2791,7 +2747,7 @@ void remove_portal( OBJ_DATA * portal )
    found = FALSE;
    if( !fromRoom )
    {
-      bug( "remove_portal: portal->in_room is NULL", 0 );
+      bug( "%s: portal->in_room is NULL", __func__ );
       return;
    }
 
@@ -2804,32 +2760,17 @@ void remove_portal( OBJ_DATA * portal )
 
    if( !found )
    {
-      bug( "remove_portal: portal not found in room %d!", fromRoom->vnum );
+      bug( "%s: portal not found in room %d!", __func__, fromRoom->vnum );
       return;
    }
 
    if( pexit->vdir != DIR_PORTAL )
-      bug( "remove_portal: exit in dir %d != DIR_PORTAL", pexit->vdir );
+      bug( "%s: exit in dir %d != DIR_PORTAL", __func__, pexit->vdir );
 
    if( ( toRoom = pexit->to_room ) == NULL )
-      bug( "remove_portal: toRoom is NULL", 0 );
+      bug( "%s: toRoom is NULL", __func__ );
 
    extract_exit( fromRoom, pexit );
-   /*
-    * rendunancy 
-    */
-   /*
-    * send a message to fromRoom 
-    */
-   /*
-    * ch = fromRoom->first_person; 
-    */
-   /*
-    * if(ch!=NULL) 
-    */
-   /*
-    * act( AT_PLAIN, "A magical portal below winks from existence.", ch, NULL, NULL, TO_ROOM ); 
-    */
 
    /*
     * send a message to toRoom 
@@ -2919,217 +2860,6 @@ void reboot_check( time_t reset )
    return;
 }
 
-#if 0
-void reboot_check( char *arg )
-{
-   char buf[MAX_STRING_LENGTH];
-   extern bool mud_down;
-   /*
-    * struct tm *timestruct;
-    * int timecheck;
-    */
-   CHAR_DATA *vch;
-
-   /*
-    * Bools to show which pre-boot echoes we've done. 
-    */
-   static bool thirty = FALSE;
-   static bool fifteen = FALSE;
-   static bool ten = FALSE;
-   static bool five = FALSE;
-   static bool four = FALSE;
-   static bool three = FALSE;
-   static bool two = FALSE;
-   static bool one = FALSE;
-
-   /*
-    * This function can be called by do_setboot when the reboot time
-    * is being manually set to reset all the bools. 
-    */
-   if( !str_cmp( arg, "reset" ) )
-   {
-      thirty = FALSE;
-      fifteen = FALSE;
-      ten = FALSE;
-      five = FALSE;
-      four = FALSE;
-      three = FALSE;
-      two = FALSE;
-      one = FALSE;
-      return;
-   }
-
-   /*
-    * If the mud has been up less than 18 hours and the boot time 
-    * wasn't set manually, forget it. 
-    */
-/* Usage monitor */
-
-   if( ( current_time % 1800 ) == 0 )
-   {
-      sprintf( buf, "%s: %d players", ctime( &current_time ), num_descriptors );
-      append_to_file( USAGE_FILE, buf );
-   }
-
-/* Change by Scryn - if mud has not been up 18 hours at boot time - still 
- * allow for warnings even if not up 18 hours 
- */
-   if( new_boot_time_t - boot_time < 60 * 60 * 18 && set_boot_time->manual == 0 )
-   {
-      return;
-   }
-/*
-    timestruct = localtime( &current_time);
-
-    if ( timestruct->tm_hour == set_boot_time->hour        
-         && timestruct->tm_min  == set_boot_time->min )*/
-   if( new_boot_time_t <= current_time )
-   {
-      /*
-       * Return auction item to seller 
-       */
-      if( auction->item != NULL )
-      {
-         sprintf( buf, "Sale of %s has been stopped by mud.", auction->item->short_descr );
-         talk_auction( buf );
-         obj_to_char( auction->item, auction->seller );
-         auction->item = NULL;
-         if( auction->buyer != NULL && auction->seller != auction->buyer ) /* return money to the buyer */
-         {
-            auction->buyer->gold += auction->bet;
-            send_to_char( "Your money has been returned.\r\n", auction->buyer );
-         }
-      }
-
-      sprintf( buf, "You are forced from these realms by a strong magical presence" );
-      echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-      sprintf( buf, "as life here is reconstructed." );
-      echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-
-      /*
-       * Save all characters before booting. 
-       */
-      for( vch = first_char; vch; vch = vch->next )
-      {
-         if( !IS_NPC( vch ) )
-            save_char_obj( vch );
-      }
-      mud_down = TRUE;
-   }
-
-   /*
-    * How many minutes to the scheduled boot? 
-    */
-/*  timecheck = ( set_boot_time->hour * 60 + set_boot_time->min )
-              - ( timestruct->tm_hour * 60 + timestruct->tm_min );
-
-  if ( timecheck > 30  || timecheck < 0 ) return;
-
-  if ( timecheck <= 1 ) */
-   if( new_boot_time_t - current_time <= 60 )
-   {
-      if( one == FALSE )
-      {
-         sprintf( buf, "You feel the ground shake as the end comes near!" );
-         echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-         one = TRUE;
-         sysdata.DENY_NEW_PLAYERS = TRUE;
-      }
-      return;
-   }
-
-/*  if ( timecheck == 2 )*/
-   if( new_boot_time_t - current_time <= 120 )
-   {
-      if( two == FALSE )
-      {
-         sprintf( buf, "Lightning crackles in the sky above!" );
-         echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-         two = TRUE;
-         sysdata.DENY_NEW_PLAYERS = TRUE;
-      }
-      return;
-   }
-
-/*  if ( timecheck == 3 )*/
-   if( new_boot_time_t - current_time <= 180 )
-   {
-      if( three == FALSE )
-      {
-         sprintf( buf, "Crashes of thunder sound across the land!" );
-         echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-         three = TRUE;
-         sysdata.DENY_NEW_PLAYERS = TRUE;
-      }
-      return;
-   }
-
-/*  if ( timecheck == 4 )*/
-   if( new_boot_time_t - current_time <= 240 )
-   {
-      if( four == FALSE )
-      {
-         sprintf( buf, "The sky has suddenly turned midnight black." );
-         echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-         four = TRUE;
-         sysdata.DENY_NEW_PLAYERS = TRUE;
-      }
-      return;
-   }
-
-/*  if ( timecheck == 5 )*/
-   if( new_boot_time_t - current_time <= 300 )
-   {
-      if( five == FALSE )
-      {
-         sprintf( buf, "You notice the life forms around you slowly dwindling away." );
-         echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-         five = TRUE;
-         sysdata.DENY_NEW_PLAYERS = TRUE;
-      }
-      return;
-   }
-
-/*  if ( timecheck == 10 )*/
-   if( new_boot_time_t - current_time <= 600 )
-   {
-      if( ten == FALSE )
-      {
-         sprintf( buf, "The seas across the realm have turned frigid." );
-         echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-         ten = TRUE;
-      }
-      return;
-   }
-
-/*  if ( timecheck == 15 )*/
-   if( new_boot_time_t - current_time <= 900 )
-   {
-      if( fifteen == FALSE )
-      {
-         sprintf( buf, "The aura of magic which once surrounded the realms seems slightly unstable." );
-         echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-         fifteen = TRUE;
-      }
-      return;
-   }
-
-/*  if ( timecheck == 30 )*/
-   if( new_boot_time_t - current_time <= 1800 )
-   {
-      if( thirty == FALSE )
-      {
-         sprintf( buf, "You sense a change in the magical forces surrounding you." );
-         echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
-         thirty = TRUE;
-      }
-      return;
-   }
-
-   return;
-}
-#endif
-
 /* the auction update*/
 
 void auction_update( void )
@@ -3154,7 +2884,7 @@ void auction_update( void )
       case 3: /* SOLD! */
          if( !auction->buyer && auction->bet )
          {
-            bug( "Auction code reached SOLD, with NULL buyer, but %d gold bid", auction->bet );
+            bug( "%s: Auction code reached SOLD, with NULL buyer, but %d gold bid", __func__, auction->bet );
             auction->bet = 0;
          }
          if( auction->bet > 0 && auction->buyer != auction->seller )

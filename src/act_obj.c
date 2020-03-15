@@ -734,11 +734,9 @@ void do_put( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 void do_drop( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
-   char logbuf[MAX_STRING_LENGTH];
    OBJ_DATA *obj;
    OBJ_DATA *obj_next;
    bool found;
@@ -822,8 +820,7 @@ void do_drop( CHAR_DATA * ch, const char *argument )
          send_to_char( "OK.\r\n", ch );
          if( !IS_NPC( ch ) && IS_IMMORTAL( ch ) )
          {
-            sprintf( logbuf, "%s dropped %d credits.", ch->name, number );
-            log_string( logbuf );
+            log_printf( "%s dropped %d credits.", ch->name, number );
          }
          if( IS_SET( sysdata.save_flags, SV_DROP ) )
             save_char_obj( ch );
@@ -853,8 +850,7 @@ void do_drop( CHAR_DATA * ch, const char *argument )
       act( AT_ACTION, "You drop $p.", ch, obj, NULL, TO_CHAR );
       if( !IS_NPC( ch ) && IS_IMMORTAL( ch ) )
       {
-         sprintf( logbuf, "%s dropped %s.", ch->name, obj->short_descr );
-         log_string( logbuf );
+         log_printf( "%s dropped %s.", ch->name, obj->short_descr );
       }
 
       obj_from_char( obj );
@@ -923,8 +919,7 @@ void do_drop( CHAR_DATA * ch, const char *argument )
             obj = obj_to_room( obj, ch->in_room );
             if( !IS_NPC( ch ) && IS_IMMORTAL( ch ) )
             {
-               sprintf( logbuf, "%s dropped %s.", ch->name, obj->short_descr );
-               log_string( logbuf );
+               log_printf( "%s dropped %s.", ch->name, obj->short_descr );
             }
             oprog_drop_trigger( ch, obj );   /* mudprogs */
             if( char_died( ch ) )
@@ -952,13 +947,10 @@ void do_drop( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 void do_give( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
-   char logbuf[MAX_STRING_LENGTH];
    char buf[MAX_INPUT_LENGTH];
    CHAR_DATA *victim;
    OBJ_DATA *obj;
@@ -1021,21 +1013,16 @@ void do_give( CHAR_DATA * ch, const char *argument )
 
       ch->gold -= amount;
       victim->gold += amount;
-      sprintf( buf, "You receive %d %s from $n.", amount, ( amount > 1 ) ? "credits" : "credit" );
-/*
-        strcpy(buf, "$n gives you ");
-        strcat(buf, arg1);
-        strcat(buf, (amount > 1) ? " credits." : " credit.");
-*/
+      snprintf( buf, MAX_INPUT_LENGTH, "You receive %d %s from $n.", amount, ( amount > 1 ) ? "credits" : "credit" );
+
       act( AT_ACTION, buf, ch, NULL, victim, TO_VICT );
-      sprintf( buf, "You give $N %d %s", amount, ( amount > 1 ) ? "credits." : "credit." );
+      snprintf( buf, MAX_INPUT_LENGTH, "You give $N %d %s", amount, ( amount > 1 ) ? "credits." : "credit." );
       act( AT_ACTION, "$n gives $N some credits.", ch, NULL, victim, TO_NOTVICT );
       act( AT_ACTION, buf, ch, NULL, victim, TO_CHAR );
       send_to_char( "OK.\r\n", ch );
       if( !IS_NPC( ch ) && !IS_NPC( victim ) && IS_IMMORTAL( ch ) )
       {
-         sprintf( logbuf, "%s gives %s %d credits.", ch->name, victim->name, amount );
-         log_string( logbuf );
+         log_printf( "%s gives %s %d credits.", ch->name, victim->name, amount );
       }
       mprog_bribe_trigger( victim, ch, amount );
       if( IS_SET( sysdata.save_flags, SV_GIVE ) && !char_died( ch ) )
@@ -1101,8 +1088,7 @@ void do_give( CHAR_DATA * ch, const char *argument )
    obj = obj_to_char( obj, victim );
    if( !IS_NPC( ch ) && !IS_NPC( victim ) && IS_IMMORTAL( ch ) )
    {
-      sprintf( logbuf, "%s gives %s to %s.", ch->name, obj->short_descr, victim->name );
-      log_string( logbuf );
+      log_printf( "%s gives %s to %s.", ch->name, obj->short_descr, victim->name );
    }
 
    mprog_give_trigger( victim, ch, obj );
@@ -1283,7 +1269,6 @@ bool can_layer( CHAR_DATA * ch, OBJ_DATA * obj, short wear_loc )
  */
 void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
 {
-   char buf[MAX_STRING_LENGTH];
    OBJ_DATA *tmpobj;
    short bit, tmp;
    bool check_size;
@@ -1306,8 +1291,7 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
                   send_to_char( "You cannot wield that.\r\n", ch );
                   break;
                default:
-                  sprintf( buf, "You cannot wear that on your %s.\r\n", w_flags[bit] );
-                  send_to_char( buf, ch );
+                  ch_printf( ch, "You cannot wear that on your %s.\r\n", w_flags[bit] );
             }
          }
          return;
@@ -1324,7 +1308,6 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
          }
       }
    }
-
 
    check_size = FALSE;
 
@@ -1440,7 +1423,7 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
    switch ( 1 << bit )
    {
       default:
-         bug( "wear_obj: uknown/unused item_wear bit %d", bit );
+         bug( "%s: uknown/unused item_wear bit %d", __func__, bit );
          if( fReplace )
             send_to_char( "You can't wear, wield, or hold that.\r\n", ch );
          return;
@@ -1485,7 +1468,7 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
             return;
          }
 
-         bug( "Wear_obj: no free finger.", 0 );
+         bug( "%s: no free finger.", __func__ );
          send_to_char( "You already wear something on both fingers.\r\n", ch );
          return;
 
@@ -1529,7 +1512,7 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
             return;
          }
 
-         bug( "Wear_obj: no free neck.", 0 );
+         bug( "%s: no free neck.", __func__ );
          send_to_char( "You already wear two neck items.\r\n", ch );
          return;
 
@@ -1878,7 +1861,7 @@ void wear_obj( CHAR_DATA * ch, OBJ_DATA * obj, bool fReplace, short wear_bit )
             return;
          }
 
-         bug( "Wear_obj: no free wrist.", 0 );
+         bug( "%s: no free wrist.", __func__ );
          send_to_char( "You already wear two wrist items.\r\n", ch );
          return;
 
@@ -2308,7 +2291,7 @@ void do_brandish( CHAR_DATA * ch, const char *argument )
 
    if( ( sn = staff->value[3] ) < 0 || sn >= top_sn || skill_table[sn]->spell_fun == NULL )
    {
-      bug( "Do_brandish: bad sn %d.", sn );
+      bug( "%s: bad sn %d.", __func__, sn );
       return;
    }
 
@@ -2330,7 +2313,7 @@ void do_brandish( CHAR_DATA * ch, const char *argument )
             switch ( skill_table[sn]->target )
             {
                default:
-                  bug( "Do_brandish: bad target for sn %d.", sn );
+                  bug( "%s: bad target for sn %d.", __func__, sn );
                   return;
 
                case TAR_IGNORE:
@@ -2357,7 +2340,7 @@ void do_brandish( CHAR_DATA * ch, const char *argument )
          retcode = obj_cast_spell( staff->value[3], staff->value[0], ch, vch, NULL );
          if( retcode == rCHAR_DIED || retcode == rBOTH_DIED )
          {
-            bug( "do_brandish: char died", 0 );
+            bug( "%s: char died", __func__ );
             return;
          }
       }
@@ -2374,8 +2357,6 @@ void do_brandish( CHAR_DATA * ch, const char *argument )
 
    return;
 }
-
-
 
 void do_zap( CHAR_DATA * ch, const char *argument )
 {
@@ -2450,7 +2431,7 @@ void do_zap( CHAR_DATA * ch, const char *argument )
       retcode = obj_cast_spell( wand->value[3], wand->value[0], ch, victim, obj );
       if( retcode == rCHAR_DIED || retcode == rBOTH_DIED )
       {
-         bug( "do_zap: char died", 0 );
+         bug( "%s: char died", __func__ );
          return;
       }
    }
@@ -2479,20 +2460,20 @@ void save_clan_storeroom( CHAR_DATA * ch, CLAN_DATA * clan )
 
    if( !clan )
    {
-      bug( "save_clan_storeroom: Null clan pointer!", 0 );
+      bug( "%s: Null clan pointer!", __func__ );
       return;
    }
 
    if( !ch )
    {
-      bug( "save_clan_storeroom: Null ch pointer!", 0 );
+      bug( "%s: Null ch pointer!", __func__ );
       return;
    }
 
-   sprintf( filename, "%s%s.vault", CLAN_DIR, clan->filename );
+   snprintf( filename, 256, "%s%s.vault", CLAN_DIR, clan->filename );
    if( ( fp = fopen( filename, "w" ) ) == NULL )
    {
-      bug( "save_clan_storeroom: fopen", 0 );
+      bug( "%s: fopen", __func__ );
       perror( filename );
    }
    else
@@ -2524,13 +2505,6 @@ void do_auction( CHAR_DATA * ch, const char *argument )
    if( IS_NPC( ch ) )   /* NPC can be extracted at any time and thus can't auction! */
       return;
 
-/*    if ( ( time_info.hour > 18 || time_info.hour < 9 ) && auction->item == NULL )
-    {
-        set_char_color ( AT_LBLUE, ch );
-        send_to_char ( "\r\nThe auctioneer has retired for the evening...\r\n", ch );
-        return;
-    }
-*/
    if( arg1[0] == '\0' )
    {
       if( auction->item != NULL )
@@ -2547,9 +2521,9 @@ void do_auction( CHAR_DATA * ch, const char *argument )
           * show item data here 
           */
          if( auction->bet > 0 )
-            sprintf( buf, "%d", auction->bet );
+            snprintf( buf, MAX_STRING_LENGTH, "%d", auction->bet );
          else
-            sprintf( buf, "zero" );
+            mudstrlcpy( buf, "zero", MAX_STRING_LENGTH );
          ch_printf( ch, "\r\n&W++\r\n&z||&w Item:&G %s  &wType:&G %s\r\n", obj->short_descr,
                     aoran( item_type_name( obj ) ) );
          ch_printf( ch, "&z|| &wCurrent bid on this item is &Y%s&w credits.\r\n", buf );
@@ -2607,10 +2581,10 @@ void do_auction( CHAR_DATA * ch, const char *argument )
 
          if( IS_IMMORTAL( ch ) )
          {
-            sprintf( buf, "Seller: %s.  Bidder: %s.  Round: %d.\r\n",
+            snprintf( buf, MAX_STRING_LENGTH, "Seller: %s.  Bidder: %s.  Round: %d.\r\n",
                      auction->seller->name, auction->buyer->name, ( auction->going + 1 ) );
             send_to_char( buf, ch );
-            sprintf( buf, "Time left in round: %d seconds\r\n", auction->pulse / 4 );
+            snprintf( buf, MAX_STRING_LENGTH, "Time left in round: %d seconds\r\n", auction->pulse / 4 );
             send_to_char( buf, ch );
          }
          return;
@@ -2633,7 +2607,7 @@ void do_auction( CHAR_DATA * ch, const char *argument )
       else  /* stop the auction */
       {
          set_char_color( AT_LBLUE, ch );
-         sprintf( buf, "Sale of %s has been stopped by an Immortal.", auction->item->short_descr );
+         snprintf( buf, MAX_STRING_LENGTH, "Sale of %s has been stopped by an Immortal.", auction->item->short_descr );
          talk_auction( buf );
          obj_to_char( auction->item, auction->seller );
          if( IS_SET( sysdata.save_flags, SV_AUCTION ) )
@@ -2718,11 +2692,9 @@ void do_auction( CHAR_DATA * ch, const char *argument )
          auction->going = 0;
          auction->pulse = PULSE_AUCTION;  /* start the auction over again */
 
-         sprintf( buf, "&WNew bidder: &Y%d &Wcredits for %s.\r\n", newbet, auction->item->short_descr );
+         snprintf( buf, MAX_STRING_LENGTH, "&WNew bidder: &Y%d &Wcredits for %s.\r\n", newbet, auction->item->short_descr );
          talk_auction( buf );
          return;
-
-
       }
       else
       {
@@ -2753,7 +2725,7 @@ void do_auction( CHAR_DATA * ch, const char *argument )
    if( arg2[0] == '\0' )
    {
       auction->starting = 0;
-      strcpy( arg2, "0" );
+      mudstrlcpy( arg2, "0", MAX_INPUT_LENGTH );
    }
 
    if( !is_number( arg2 ) )
@@ -2812,7 +2784,7 @@ void do_auction( CHAR_DATA * ch, const char *argument )
             if( auction->starting > 0 )
                auction->bet = auction->starting;
 
-            sprintf( buf, "&WNew item: %s&W at &Y%d&W credits.", obj->short_descr, auction->starting );
+            snprintf( buf, MAX_STRING_LENGTH, "&WNew item: %s&W at &Y%d&W credits.", obj->short_descr, auction->starting );
             talk_auction( buf );
 
             return;
@@ -2826,8 +2798,6 @@ void do_auction( CHAR_DATA * ch, const char *argument )
    }
 }
 
-
-
 /* Make objects in rooms that are nofloor fall - Scryn 1/23/96 */
 
 void obj_fall( OBJ_DATA * obj, bool through )
@@ -2835,7 +2805,6 @@ void obj_fall( OBJ_DATA * obj, bool through )
    EXIT_DATA *pexit;
    ROOM_INDEX_DATA *to_room;
    static int fall_count;
-   char buf[MAX_STRING_LENGTH];
    static bool is_falling; /* Stop loops from the call to obj_to_room()  -- Altrag */
 
    if( !obj->in_room || is_falling )
@@ -2843,7 +2812,7 @@ void obj_fall( OBJ_DATA * obj, bool through )
 
    if( fall_count > 30 )
    {
-      bug( "object falling in loop more than 30 times", 0 );
+      bug( "%s: object falling in loop more than 30 times", __func__ );
       extract_obj( obj );
       fall_count = 0;
       return;
@@ -2862,8 +2831,7 @@ void obj_fall( OBJ_DATA * obj, bool through )
 
       if( obj->in_room == to_room )
       {
-         sprintf( buf, "Object falling into same room, room %d", to_room->vnum );
-         bug( buf, 0 );
+         bug( "%s: Object falling into same room, room %d", __func__, to_room->vnum );
          extract_obj( obj );
          return;
       }

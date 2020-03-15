@@ -31,7 +31,6 @@ Michael Seifert, and Sebastian Hammer.
 #include <time.h>
 #include "mud.h"
 
-
 /*
  * Make a fire.
  */
@@ -61,7 +60,6 @@ OBJ_DATA *make_trap( int v0, int v1, int v2, int v3 )
    return trap;
 }
 
-
 /*
  * Turn an object into scraps.		-Thoric
  */
@@ -87,23 +85,22 @@ void make_scraps( OBJ_DATA * obj )
    }
    else
    {
-      sprintf( buf, scraps->short_descr, obj->short_descr );
+      snprintf( buf, MAX_STRING_LENGTH, scraps->short_descr, obj->short_descr );
       STRFREE( scraps->short_descr );
       scraps->short_descr = STRALLOC( buf );
       if( obj->item_type != ITEM_SHIPBOMB )
       {
-         sprintf( buf, scraps->description, obj->short_descr );
+         snprintf( buf, MAX_STRING_LENGTH, scraps->description, obj->short_descr );
          STRFREE( scraps->description );
          scraps->description = STRALLOC( buf );
       }
       else
       {
-         sprintf( buf, "Bits of debris, buildings, people, and bomb scraps litter the area." );
+         snprintf( buf, MAX_STRING_LENGTH, "Bits of debris, buildings, people, and bomb scraps litter the area." );
          STRFREE( scraps->description );
          scraps->description = STRALLOC( buf );
          REMOVE_BIT( scraps->wear_flags, ITEM_TAKE );
       }
-
    }
 
    if( obj->carried_by )
@@ -198,15 +195,15 @@ OBJ_DATA *make_corpse( CHAR_DATA *ch, char *killer )
    /*
     * Added corpse name - make locate easier , other skills 
     */
-   sprintf( buf, "corpse %s", name );
+   snprintf( buf, MAX_STRING_LENGTH, "corpse %s", name );
    STRFREE( corpse->name );
    corpse->name = STRALLOC( buf );
 
-   sprintf( buf, corpse->short_descr, name );
+   snprintf( buf, MAX_STRING_LENGTH, corpse->short_descr, name );
    STRFREE( corpse->short_descr );
    corpse->short_descr = STRALLOC( buf );
 
-   sprintf( buf, corpse->description, name );
+   snprintf( buf, MAX_STRING_LENGTH, corpse->description, name );
    STRFREE( corpse->description );
    corpse->description = STRALLOC( buf );
 
@@ -244,7 +241,6 @@ void make_bloodstain( CHAR_DATA * ch )
    obj_to_room( obj, ch->in_room );
 }
 
-
 /*
  * make some coinage
  */
@@ -255,7 +251,7 @@ OBJ_DATA *create_money( int amount )
 
    if( amount <= 0 )
    {
-      bug( "Create_money: zero or negative money %d.", amount );
+      bug( "%s: zero or negative money %d.", __func__, amount );
       amount = 1;
    }
 
@@ -266,7 +262,7 @@ OBJ_DATA *create_money( int amount )
    else
    {
       obj = create_object( get_obj_index( OBJ_VNUM_MONEY_SOME ), 0 );
-      sprintf( buf, obj->short_descr, amount );
+      snprintf( buf, MAX_STRING_LENGTH, obj->short_descr, amount );
       STRFREE( obj->short_descr );
       obj->short_descr = STRALLOC( buf );
       obj->value[0] = amount;

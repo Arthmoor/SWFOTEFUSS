@@ -44,41 +44,44 @@ void do_gold( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 char *drawlife( int min, int max )
 {
    static char buf[MAX_STRING_LENGTH];
    int per;
+
+   buf[0]= '\0';
+
    per = ( ( min * 100 ) / max );
    if( per < 0 )
       per = 0;
    if( per > 100 )
       per = 100;
    if( per == 100 )
-      sprintf( buf, "&G&W[&R|||||&Y||||&G||||&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||||&Y||||&G||||&W]", MAX_STRING_LENGTH );
    else if( per >= 90 && per < 100 )
-      sprintf( buf, "&G&W[&R|||||&Y||||&G|||&G-&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||||&Y||||&G|||&G-&W]", MAX_STRING_LENGTH );
    else if( per >= 80 && per < 90 )
-      sprintf( buf, "&G&W[&R|||||&Y||||&G||&G--&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||||&Y||||&G||&G--&W]", MAX_STRING_LENGTH );
    else if( per >= 70 && per < 80 )
-      sprintf( buf, "&G&W[&R|||||&Y||||&G|&G---&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||||&Y||||&G|&G---&W]", MAX_STRING_LENGTH );
    else if( per >= 60 && per < 70 )
-      sprintf( buf, "&G&W[&R|||||&Y|||&G&G-----&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||||&Y|||&G&G-----&W]", MAX_STRING_LENGTH );
    else if( per >= 50 && per < 60 )
-      sprintf( buf, "&G&W[&R|||||&Y||&G&G------&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||||&Y||&G&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 40 && per < 50 )
-      sprintf( buf, "&G&W[&R|||||&Y|&G&G-------&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||||&Y|&G&G-------&W]", MAX_STRING_LENGTH );
    else if( per >= 30 && per < 40 )
-      sprintf( buf, "&G&W[&R|||||&Y&G&G--------&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||||&Y&G&G--------&W]", MAX_STRING_LENGTH );
    else if( per >= 30 && per < 40 )
-      sprintf( buf, "&G&W[&R||||&Y&G&G---------&W]" );
+      mudstrlcpy( buf, "&G&W[&R||||&Y&G&G---------&W]", MAX_STRING_LENGTH );
    else if( per >= 20 && per < 40 )
-      sprintf( buf, "&G&W[&R|||&Y&G&G----------&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||&Y&G&G----------&W]", MAX_STRING_LENGTH );
    else if( per >= 10 && per < 40 )
-      sprintf( buf, "&G&W[&R||&Y&G&G-----------&W]" );
+      mudstrlcpy( buf, "&G&W[&R||&Y&G&G-----------&W]", MAX_STRING_LENGTH );
    else if( per >= 0 && per < 10 )
-      sprintf( buf, "&G&W[&R&Y&G&G-------------&W]" );
-   //else sprintf(buf, "&G&W[&R&W]");
+      mudstrlcpy( buf, "&G&W[&R&Y&G&G-------------&W]", MAX_STRING_LENGTH );
+   else
+      mudstrlcpy( buf, "&G&W[&R&W]", MAX_STRING_LENGTH );
    return buf;
 }
 
@@ -86,61 +89,67 @@ char *drawmove( int min, int max )
 {
    static char buf[MAX_STRING_LENGTH];
    int per;
+
+   buf[0] = '\0';
+
    per = ( ( min * 100 ) / max );
    if( per == 100 )
-      sprintf( buf, "&G&W[&R|||&Y||&G||&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||&Y||&G||&W]", MAX_STRING_LENGTH );
    else if( per >= 90 && per < 100 )
-      sprintf( buf, "&G&W[&R|||&Y||&G|&G-&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||&Y||&G|&G-&W]", MAX_STRING_LENGTH );
    else if( per >= 80 && per < 90 )
-      sprintf( buf, "&G&W[&R|||&Y||&G&G--&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||&Y||&G&G--&W]", MAX_STRING_LENGTH );
    else if( per >= 70 && per < 80 )
-      sprintf( buf, "&G&W[&R|||&Y|&G&G---&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||&Y|&G&G---&W]", MAX_STRING_LENGTH );
    else if( per >= 60 && per < 70 )
-      sprintf( buf, "&G&W[&R|||&Y&G&G----&W]" );
+      mudstrlcpy( buf, "&G&W[&R|||&Y&G&G----&W]", MAX_STRING_LENGTH );
    else if( per >= 50 && per < 60 )
-      sprintf( buf, "&G&W[&R||&Y&G&G-----&W]" );
+      mudstrlcpy( buf, "&G&W[&R||&Y&G&G-----&W]", MAX_STRING_LENGTH );
    else if( per >= 40 && per < 50 )
-      sprintf( buf, "&G&W[&R|&Y&G&G------&W]" );
+      mudstrlcpy( buf, "&G&W[&R|&Y&G&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 30 && per < 40 )
-      sprintf( buf, "&G&W[&R|&G&Y&G------&W]" );
+      mudstrlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 20 && per < 40 )
-      sprintf( buf, "&G&W[&R|&G&Y&G------&W]" );
+      mudstrlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 10 && per < 40 )
-      sprintf( buf, "&G&W[&R|&G&Y&G------&W]" );
+      mudstrlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 0 && per < 10 )
-      sprintf( buf, "&G&W[&R&G&Y&G-------&W]" );
+      mudstrlcpy( buf, "&G&W[&R&G&Y&G-------&W]", MAX_STRING_LENGTH );
    else
-      sprintf( buf, "&G&W[&R&W]" );
+      mudstrlcpy( buf, "&G&W[&R&W]", MAX_STRING_LENGTH );
    return buf;
 }
 
 char *drawalign( int align )
 {
    static char buf[MAX_STRING_LENGTH];
+
+   buf[0] = '\0';
+
    if( align >= 100 )
-      sprintf( buf, "&W[&C============&W|&W]" );
+      mudstrlcpy( buf, "&W[&C============&W|&W]", MAX_STRING_LENGTH );
    else if( align >= 90 && align < 100 )
-      sprintf( buf, "&W[&C===========&W|&C=&W]" );
+      mudstrlcpy( buf, "&W[&C===========&W|&C=&W]", MAX_STRING_LENGTH );
    else if( align >= 60 && align < 90 )
-      sprintf( buf, "&W[&C==========&W|&C==&W]" );
+      mudstrlcpy( buf, "&W[&C==========&W|&C==&W]", MAX_STRING_LENGTH );
    else if( align >= 40 && align < 60 )
-      sprintf( buf, "&W[&C=========&W|&C===&W]" );
+      mudstrlcpy( buf, "&W[&C=========&W|&C===&W]", MAX_STRING_LENGTH );
    else if( align >= 20 && align < 40 )
-      sprintf( buf, "&W[&C========&W|&C====&W]" );
+      mudstrlcpy( buf, "&W[&C========&W|&C====&W]", MAX_STRING_LENGTH );
    else if( align >= 10 && align < 20 )
-      sprintf( buf, "&W[&C=======&W|&C=====&W]" );
+      mudstrlcpy( buf, "&W[&C=======&W|&C=====&W]", MAX_STRING_LENGTH );
    else if( align >= 0 && align < 10 )
-      sprintf( buf, "&W[&C======&W|&C======&W]" );
+      mudstrlcpy( buf, "&W[&C======&W|&C======&W]", MAX_STRING_LENGTH );
    else if( align <= -1 && align > -20 )
-      sprintf( buf, "&W[&C=====&W|&C=======&W]" );
+      mudstrlcpy( buf, "&W[&C=====&W|&C=======&W]", MAX_STRING_LENGTH );
    else if( align <= -20 && align > -40 )
-      sprintf( buf, "&W[&C====&W|&C========&W]" );
+      mudstrlcpy( buf, "&W[&C====&W|&C========&W]", MAX_STRING_LENGTH );
    else if( align <= -60 && align > -80 )
-      sprintf( buf, "&W[&C===&W|&C=========&W]" );
+      mudstrlcpy( buf, "&W[&C===&W|&C=========&W]", MAX_STRING_LENGTH );
    else if( align <= -80 && align > -100 )
-      sprintf( buf, "&W[&C==&W|&C==========&W]" );
+      mudstrlcpy( buf, "&W[&C==&W|&C==========&W]", MAX_STRING_LENGTH );
    else if( align <= -100 )
-      sprintf( buf, "&W[&W|&C============&W]" );
+      mudstrlcpy( buf, "&W[&W|&C============&W]", MAX_STRING_LENGTH );
 
    return buf;
 }
@@ -152,6 +161,7 @@ void do_score( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
    int ability;
+
    if( !argument || argument[0] == '\0' )
       victim = ch;
    else if( IS_IMMORTAL( ch ) )
@@ -357,7 +367,7 @@ const char *tiny_affect_loc_name( int location )
          return " BLOOD ";
    }
 
-   bug( "Affect_location_name: unknown location %d.", location );
+   bug( "%s: unknown location %d.", __func__, location );
    return "(? ? ?)";
 }
 
@@ -741,7 +751,7 @@ void do_equipment( CHAR_DATA * ch, const char *argument )
             if( can_see_obj( ch, obj ) )
             {
                send_to_char( format_obj_to_char( obj, ch, TRUE ), ch );
-               strcpy( buf, "" );
+               mudstrlcpy( buf, "", MAX_STRING_LENGTH );
                switch ( obj->item_type )
                {
                   default:
@@ -754,34 +764,34 @@ void do_equipment( CHAR_DATA * ch, const char *argument )
                         obj->value[1] = 1;
                      dam = ( short )( ( obj->value[0] * 10 ) / obj->value[1] );
                      if( dam >= 10 )
-                        strcat( buf, " (superb) " );
+                        mudstrlcat( buf, " (superb) ", MAX_STRING_LENGTH );
                      else if( dam >= 7 )
-                        strcat( buf, " (good) " );
+                        mudstrlcat( buf, " (good) ", MAX_STRING_LENGTH );
                      else if( dam >= 5 )
-                        strcat( buf, " (worn) " );
+                        mudstrlcat( buf, " (worn) ", MAX_STRING_LENGTH );
                      else if( dam >= 3 )
-                        strcat( buf, " (poor) " );
+                        mudstrlcat( buf, " (poor) ", MAX_STRING_LENGTH );
                      else if( dam >= 1 )
-                        strcat( buf, " (awful) " );
+                        mudstrlcat( buf, " (awful) ", MAX_STRING_LENGTH );
                      else if( dam == 0 )
-                        strcat( buf, " (broken) " );
+                        mudstrlcat( buf, " (broken) ", MAX_STRING_LENGTH );
                      send_to_char( buf, ch );
                      break;
 
                   case ITEM_WEAPON:
                      dam = INIT_WEAPON_CONDITION - obj->value[0];
                      if( dam < 2 )
-                        strcat( buf, " (superb) " );
+                        mudstrlcat( buf, " (superb) ", MAX_STRING_LENGTH );
                      else if( dam < 4 )
-                        strcat( buf, " (good) " );
+                        mudstrlcat( buf, " (good) ", MAX_STRING_LENGTH );
                      else if( dam < 7 )
-                        strcat( buf, " (worn) " );
+                        mudstrlcat( buf, " (worn) ", MAX_STRING_LENGTH );
                      else if( dam < 10 )
-                        strcat( buf, " (poor) " );
+                        mudstrlcat( buf, " (poor) ", MAX_STRING_LENGTH );
                      else if( dam < 12 )
-                        strcat( buf, " (awful) " );
+                        mudstrlcat( buf, " (awful) ", MAX_STRING_LENGTH );
                      else if( dam == 12 )
-                        strcat( buf, " (broken) " );
+                        mudstrlcat( buf, " (broken) ", MAX_STRING_LENGTH );
                      send_to_char( buf, ch );
                      
                      break;
@@ -800,32 +810,28 @@ void do_equipment( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 void set_title( CHAR_DATA * ch, const char *title )
 {
    char buf[MAX_STRING_LENGTH];
 
    if( IS_NPC( ch ) )
    {
-      bug( "Set_title: NPC.", 0 );
+      bug( "%s: NPC.", __func__ );
       return;
    }
 
    if( isalpha( title[0] ) || isdigit( title[0] ) )
    {
       buf[0] = ' ';
-      strcpy( buf + 1, title );
+      mudstrlcpy( buf + 1, title, MAX_STRING_LENGTH );
    }
    else
-      strcpy( buf, title );
+      mudstrlcpy( buf, title, MAX_STRING_LENGTH );
 
    STRFREE( ch->pcdata->title );
    ch->pcdata->title = STRALLOC( buf );
    return;
 }
-
-
 
 void do_title( CHAR_DATA * ch, const char *argument )
 {
@@ -881,7 +887,7 @@ void do_email( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   strcpy( buf, argument );
+   mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
 
    if( strlen( buf ) > 70 )
       buf[70] = '\0';
@@ -918,7 +924,7 @@ void do_screenname( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   strcpy( buf, argument );
+   mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
 
    if( strlen( buf ) > 70 )
       buf[70] = '\0';
@@ -955,9 +961,9 @@ void do_homepage( CHAR_DATA * ch, const char *argument )
    }
 
    if( strstr( argument, "://" ) )
-      strcpy( buf, argument );
+      mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
    else
-      sprintf( buf, "http://%s", argument );
+      snprintf( buf, MAX_STRING_LENGTH, "http://%s", argument );
    if( strlen( buf ) > 70 )
       buf[70] = '\0';
 
@@ -993,9 +999,9 @@ void do_wwwimage( CHAR_DATA * ch, const char *argument )
    }
 
    if( strstr( argument, "://" ) )
-      strcpy( buf, argument );
+      mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
    else
-      sprintf( buf, "http://%s", argument );
+      snprintf( buf, MAX_STRING_LENGTH, "http://%s", argument );
    if( strlen( buf ) > 70 )
       buf[70] = '\0';
 
@@ -1005,7 +1011,6 @@ void do_wwwimage( CHAR_DATA * ch, const char *argument )
    ch->pcdata->image = str_dup( buf );
    send_to_char( "WWW Image set.\r\n", ch );
 }
-
 
 /*
  * Set your personal description				-Thoric
@@ -1020,14 +1025,14 @@ void do_description( CHAR_DATA * ch, const char *argument )
 
    if( !ch->desc )
    {
-      bug( "do_description: no descriptor", 0 );
+      bug( "%s: no descriptor", __func__ );
       return;
    }
 
    switch ( ch->substate )
    {
       default:
-         bug( "do_description: illegal substate", 0 );
+         bug( "%s: illegal substate", __func__ );
          return;
 
       case SUB_RESTRICTED:
@@ -1060,14 +1065,14 @@ void do_bio( CHAR_DATA * ch, const char *argument )
 
    if( !ch->desc )
    {
-      bug( "do_bio: no descriptor", 0 );
+      bug( "%s: no descriptor", __func__ );
       return;
    }
 
    switch ( ch->substate )
    {
       default:
-         bug( "do_bio: illegal substate", 0 );
+         bug( "%s: illegal substate", __func__ );
          return;
 
       case SUB_RESTRICTED:
@@ -1089,8 +1094,6 @@ void do_bio( CHAR_DATA * ch, const char *argument )
    }
 }
 
-
-
 void do_report( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_INPUT_LENGTH];
@@ -1101,11 +1104,9 @@ void do_report( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-
    ch_printf( ch, "You report: %d/%d hp %d/%d mv.\r\n", ch->hit, ch->max_hit, ch->move, ch->max_move );
 
-
-   sprintf( buf, "$n reports: %d/%d hp %d/%d.", ch->hit, ch->max_hit, ch->move, ch->max_move );
+   snprintf( buf, MAX_INPUT_LENGTH, "$n reports: %d/%d hp %d/%d.", ch->hit, ch->max_hit, ch->move, ch->max_move );
 
    act( AT_REPORT, buf, ch, NULL, NULL, TO_ROOM );
 

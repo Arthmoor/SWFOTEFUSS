@@ -188,15 +188,14 @@ void do_restrict( CHAR_DATA * ch, const char *argument )
    {
       if( !str_prefix( arg2, "show" ) )
       {
-         sprintf( buf, "%s show", cmd->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s show", cmd->name );
          do_cedit( ch, buf );
 /*    		ch_printf( ch, "%s is at level %d.\r\n", cmd->name, cmd->level );*/
          return;
       }
       cmd->level = level;
       ch_printf( ch, "You restrict %s to level %d\r\n", cmd->name, level );
-      sprintf( buf, "%s restricting %s to level %d", ch->name, cmd->name, level );
-      log_string( buf );
+      log_printf( "%s restricting %s to level %d", ch->name, cmd->name, level );
    }
    else
       send_to_char( "You may not restrict that command.\r\n", ch );
@@ -269,7 +268,7 @@ void do_authorize( CHAR_DATA * ch, const char *argument )
       if( victim->pcdata->authed_by )
          STRFREE( victim->pcdata->authed_by );
       victim->pcdata->authed_by = QUICKLINK( ch->name );
-      sprintf( buf, "%s authorized %s", ch->name, victim->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s authorized %s", ch->name, victim->name );
       to_channel( buf, CHANNEL_MONITOR, "Monitor", ch->top_level );
       ch_printf( ch, "You have authorized %s.\r\n", victim->name );
 
@@ -285,7 +284,7 @@ void do_authorize( CHAR_DATA * ch, const char *argument )
    else if( !str_cmp( arg2, "no" ) || !str_cmp( arg2, "deny" ) )
    {
       send_to_char( "You have been denied access.\r\n", victim );
-      sprintf( buf, "%s denied authorization to %s", ch->name, victim->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s denied authorization to %s", ch->name, victim->name );
       to_channel( buf, CHANNEL_MONITOR, "Monitor", ch->top_level );
       ch_printf( ch, "You have denied %s.\r\n", victim->name );
       do_quit( victim, "" );
@@ -293,7 +292,7 @@ void do_authorize( CHAR_DATA * ch, const char *argument )
 
    else if( !str_cmp( arg2, "name" ) || !str_cmp( arg2, "n" ) )
    {
-      sprintf( buf, "%s has denied %s's name", ch->name, victim->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s has denied %s's name", ch->name, victim->name );
       to_channel( buf, CHANNEL_MONITOR, "Monitor", ch->top_level );
       ch_printf( victim,
                  "The MUD Administrators have found the name %s "
@@ -501,7 +500,7 @@ void do_disconnect( CHAR_DATA * ch, const char *argument )
       }
    }
 
-   bug( "Do_disconnect: *** desc not found ***.", 0 );
+   bug( "%s: *** desc not found ***.", __func__ );
    send_to_char( "Descriptor not found!\r\n", ch );
    return;
 }
@@ -538,7 +537,6 @@ void do_fquit( CHAR_DATA * ch, const char *argument )
    send_to_char( "Ok.\r\n", ch );
    return;
 }
-
 
 void do_forceclose( CHAR_DATA * ch, const char *argument )
 {
@@ -765,7 +763,7 @@ void transfer_char( CHAR_DATA * ch, CHAR_DATA * victim, ROOM_INDEX_DATA * locati
 {
    if( !victim->in_room )
    {
-      bug( "%s: victim in NULL room: %s", __FUNCTION__, victim->name );
+      bug( "%s: victim in NULL room: %s", __func__, victim->name );
       return;
    }
 
@@ -879,7 +877,7 @@ void do_retran( CHAR_DATA * ch, const char *argument )
       send_to_char( "They aren't here.\r\n", ch );
       return;
    }
-   sprintf( buf, "'%s' %d", victim->name, victim->retran );
+   snprintf( buf, MAX_STRING_LENGTH, "'%s' %d", victim->name, victim->retran );
    do_transfer( ch, buf );
    return;
 }
@@ -888,7 +886,7 @@ void do_regoto( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
 
-   sprintf( buf, "%d", ch->regoto );
+   snprintf( buf, MAX_STRING_LENGTH, "%d", ch->regoto );
    do_goto( ch, buf );
    return;
 }
@@ -1148,7 +1146,7 @@ void do_ostat( CHAR_DATA * ch, const char *argument )
       return;
    }
    if( arg[0] != '\'' && arg[0] != '"' && strlen( argument ) > strlen( arg ) )
-      strcpy( arg, argument );
+      mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    if( ( obj = get_obj_world( ch, arg ) ) == NULL )
    {
@@ -1266,7 +1264,7 @@ void do_mstat( CHAR_DATA * ch, const char *argument )
       return;
    }
    if( arg[0] != '\'' && arg[0] != '"' && strlen( argument ) > strlen( arg ) )
-      strcpy( arg, argument );
+      mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    if( ( victim = get_char_world( ch, arg ) ) == NULL )
    {
@@ -1376,13 +1374,13 @@ void do_mstat( CHAR_DATA * ch, const char *argument )
    {
       ch_printf( ch, "&W&z|     &GSpeaks&W: %-10d  &GSpeaking&W: %-10d                                 &z|\r\n",
                  victim->speaks, victim->speaking );
-      sprintf( langbuf, " " );
+      mudstrlcpy( langbuf, " ", MAX_STRING_LENGTH );
       for( x = 0; lang_array[x] != LANG_UNKNOWN; x++ )
       {
          if( knows_language( victim, lang_array[x], victim ) || ( IS_NPC( victim ) && victim->speaks == 0 ) )
          {
-            strcat( langbuf, lang_names[x] );
-            strcat( langbuf, " " );
+            mudstrlcat( langbuf, lang_names[x], MAX_STRING_LENGTH );
+            mudstrlcat( langbuf, " ", MAX_STRING_LENGTH );
          }
       }
       ch_printf( ch, "&W&z|  &GLanguages&W: %-64s &z|\r\n", langbuf );
@@ -1444,7 +1442,7 @@ void do_oldmstat( CHAR_DATA * ch, const char *argument )
       return;
    }
    if( arg[0] != '\'' && arg[0] != '"' && strlen( argument ) > strlen( arg ) )
-      strcpy( arg, argument );
+      mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
    if( ( victim = get_char_world( ch, arg ) ) == NULL )
    {
       send_to_char( "They aren't here.\r\n", ch );
@@ -1593,27 +1591,6 @@ void do_mfind( CHAR_DATA * ch, const char *argument )
    set_pager_color( AT_PLAIN, ch );
 
    /*
-    * Yeah, so iterating over all vnum's takes 10,000 loops.
-    * Get_mob_index is fast, and I don't feel like threading another link.
-    * Do you?
-    * -- Furey
-    */
-/*  for ( vnum = 0; nMatch < top_mob_index; vnum++ )
-    {
-	if ( ( pMobIndex = get_mob_index( vnum ) ) != NULL )
-	{
-	    if ( fAll || is_name( arg, pMobIndex->player_name ) )
-	    {
-		nMatch++;
-		sprintf( buf, "[%5d] %s\r\n",
-		    pMobIndex->vnum, capitalize( pMobIndex->short_descr ) );
-		send_to_char( buf, ch );
-	    }
-	}
-    }
-     */
-
-   /*
     * This goes through all the hash entry points (1024), and is therefore
     * much faster, though you won't get your vnums in order... oh well. :)
     *
@@ -1640,8 +1617,6 @@ void do_mfind( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 void do_ofind( CHAR_DATA * ch, const char *argument )
 {
 /*  extern int top_obj_index; */
@@ -1663,27 +1638,6 @@ void do_ofind( CHAR_DATA * ch, const char *argument )
    fAll = !str_cmp( arg, "all" );
    nMatch = 0;
 /*  nLoop	= 0; */
-
-   /*
-    * Yeah, so iterating over all vnum's takes 10,000 loops.
-    * Get_obj_index is fast, and I don't feel like threading another link.
-    * Do you?
-    * -- Furey
-    for ( vnum = 0; nMatch < top_obj_index; vnum++ )
-    {
-    nLoop++;
-    if ( ( pObjIndex = get_obj_index( vnum ) ) != NULL )
-    {
-    if ( fAll || nifty_is_name( arg, pObjIndex->name ) )
-    {
-    nMatch++;
-    sprintf( buf, "[%5d] %s\r\n",
-    pObjIndex->vnum, capitalize( pObjIndex->short_descr ) );
-    send_to_char( buf, ch );
-    }
-    }
-    }
-    */
 
    /*
     * This goes through all the hash entry points (1024), and is therefore
@@ -1711,8 +1665,6 @@ void do_ofind( CHAR_DATA * ch, const char *argument )
 
    return;
 }
-
-
 
 void do_mwhere( CHAR_DATA * ch, const char *argument )
 {
@@ -1748,7 +1700,6 @@ void do_mwhere( CHAR_DATA * ch, const char *argument )
 void do_bodybag( CHAR_DATA * ch, const char *argument )
 {
    char buf2[MAX_STRING_LENGTH];
-   char buf3[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
    OBJ_DATA *obj;
    bool found;
@@ -1761,13 +1712,9 @@ void do_bodybag( CHAR_DATA * ch, const char *argument )
    }
 
    /*
-    * make sure the buf3 is clear? 
-    */
-   sprintf( buf3, " " );
-   /*
     * check to see if vict is playing? 
     */
-   sprintf( buf2, "the corpse of %s", arg );
+   snprintf( buf2, MAX_STRING_LENGTH, "the corpse of %s", arg );
    found = FALSE;
    for( obj = first_object; obj; obj = obj->next )
    {
@@ -1787,7 +1734,6 @@ void do_bodybag( CHAR_DATA * ch, const char *argument )
       ch_printf( ch, " You couldn't find any %s\r\n", buf2 );
    return;
 }
-
 
 /* New owhere by Altrag, 03/14/96 */
 void do_owhere( CHAR_DATA * ch, const char *argument )
@@ -1821,21 +1767,21 @@ void do_owhere( CHAR_DATA * ch, const char *argument )
                        obj->pIndexData->vnum, obj_short( obj ), obj->in_obj->pIndexData->vnum, obj->in_obj->short_descr );
          ++icnt;
       }
-      sprintf( buf, "[%5d] %-28s in ", obj->pIndexData->vnum, obj_short( obj ) );
+      snprintf( buf, MAX_STRING_LENGTH, "[%5d] %-28s in ", obj->pIndexData->vnum, obj_short( obj ) );
       if( obj->carried_by )
-         sprintf( buf + strlen( buf ), "invent [%5d] %s\r\n",
+         snprintf( buf + strlen( buf ), ( MAX_STRING_LENGTH - strlen( buf ) ), "invent [%5d] %s\r\n",
                   ( IS_NPC( obj->carried_by ) ? obj->carried_by->pIndexData->vnum : 0 ), PERS( obj->carried_by, ch ) );
       else if( obj->in_room )
-         sprintf( buf + strlen( buf ), "room   [%5d] %s\r\n", obj->in_room->vnum, obj->in_room->name );
+         snprintf( buf + strlen( buf ), ( MAX_STRING_LENGTH - strlen( buf ) ), "room   [%5d] %s\r\n", obj->in_room->vnum, obj->in_room->name );
       else if( obj->in_obj )
       {
-         bug( "do_owhere: obj->in_obj after NULL!", 0 );
-         strcat( buf, "object??\r\n" );
+         bug( "%s: obj->in_obj after NULL!", __func__ );
+         mudstrlcat( buf, "object??\r\n", MAX_STRING_LENGTH );
       }
       else
       {
-         bug( "do_owhere: object doesnt have location!", 0 );
-         strcat( buf, "nowhere??\r\n" );
+         bug( "%s: object doesnt have location!", __func__, 0 );
+         mudstrlcat( buf, "nowhere??\r\n", MAX_STRING_LENGTH );
       }
       send_to_pager( buf, ch );
       ++icnt;
@@ -1850,18 +1796,18 @@ void do_owhere( CHAR_DATA * ch, const char *argument )
          continue;
       found = TRUE;
 
-      sprintf( buf, "(%3d) [%5d] %-28s in ", ++icnt, obj->pIndexData->vnum, obj_short( obj ) );
+      snprintf( buf, MAX_STRING_LENGTH, "(%3d) [%5d] %-28s in ", ++icnt, obj->pIndexData->vnum, obj_short( obj ) );
       if( obj->carried_by )
-         sprintf( buf + strlen( buf ), "invent [%5d] %s\r\n",
+         snprintf( buf + strlen( buf ), ( MAX_STRING_LENGTH - strlen( buf ) ), "invent [%5d] %s\r\n",
                   ( IS_NPC( obj->carried_by ) ? obj->carried_by->pIndexData->vnum : 0 ), PERS( obj->carried_by, ch ) );
       else if( obj->in_room )
-         sprintf( buf + strlen( buf ), "room   [%5d] %s\r\n", obj->in_room->vnum, obj->in_room->name );
+         snprintf( buf + strlen( buf ), ( MAX_STRING_LENGTH - strlen( buf ) ), "room   [%5d] %s\r\n", obj->in_room->vnum, obj->in_room->name );
       else if( obj->in_obj )
-         sprintf( buf + strlen( buf ), "object [%5d] %s\r\n", obj->in_obj->pIndexData->vnum, obj_short( obj->in_obj ) );
+         snprintf( buf + strlen( buf ), ( MAX_STRING_LENGTH - strlen( buf ) ), "object [%5d] %s\r\n", obj->in_obj->pIndexData->vnum, obj_short( obj->in_obj ) );
       else
       {
-         bug( "do_owhere: object doesnt have location!", 0 );
-         strcat( buf, "nowhere??\r\n" );
+         bug( "%s: object doesnt have location!", __func__ );
+         mudstrlcat( buf, "nowhere??\r\n", MAX_STRING_LENGTH );
       }
       send_to_pager( buf, ch );
    }
@@ -1874,14 +1820,11 @@ void do_owhere( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 void do_reboo( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "If you want to REBOOT, spell it out.\r\n", ch );
    return;
 }
-
-
 
 void do_reboot( CHAR_DATA * ch, const char *argument )
 {
@@ -1897,7 +1840,7 @@ void do_reboot( CHAR_DATA * ch, const char *argument )
    if( auction->item )
       do_auction( ch, "stop" );
 
-   sprintf( buf, "Reboot by %s.", ch->name );
+   snprintf( buf, MAX_STRING_LENGTH, "Reboot by %s.", ch->name );
    do_echo( ch, buf );
 
    if( !str_cmp( argument, "and sort skill table" ) )
@@ -1918,15 +1861,11 @@ void do_reboot( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 void do_shutdow( CHAR_DATA * ch, const char *argument )
 {
    send_to_char( "If you want to SHUTDOWN, spell it out.\r\n", ch );
    return;
 }
-
-
 
 void do_shutdown( CHAR_DATA * ch, const char *argument )
 {
@@ -1942,9 +1881,9 @@ void do_shutdown( CHAR_DATA * ch, const char *argument )
    if( auction->item )
       do_auction( ch, "stop" );
 
-   sprintf( buf, "Shutdown by %s.", ch->name );
+   snprintf( buf, MAX_STRING_LENGTH, "Shutdown by %s.", ch->name );
    append_file( ch, SHUTDOWN_FILE, buf );
-   strcat( buf, "\r\n" );
+   mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
    do_echo( ch, buf );
 
    /*
@@ -1957,7 +1896,6 @@ void do_shutdown( CHAR_DATA * ch, const char *argument )
    mud_down = TRUE;
    return;
 }
-
 
 void do_snoop( CHAR_DATA * ch, const char *argument )
 {
@@ -2432,35 +2370,35 @@ void do_low_purge( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-void do_balzhur( CHAR_DATA * ch, const char *argument )
+void do_balzhur( CHAR_DATA* ch, const char* argument )
 {
+   char ebuf[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
-   char buf[MAX_STRING_LENGTH];
-   char buf2[MAX_STRING_LENGTH];
+   char godfile[256];
+   char areafile[256];
+   char *name;
    CHAR_DATA *victim;
    AREA_DATA *pArea;
    int sn;
 
-   argument = one_argument( argument, arg );
+   set_char_color( AT_BLOOD, ch );
 
+   argument = one_argument( argument, arg );
    if( arg[0] == '\0' )
    {
       send_to_char( "Who is deserving of such a fate?\r\n", ch );
       return;
    }
-
-   if( !( victim = get_char_world( ch, arg ) ) )
+   if( ( victim = get_char_world( ch, arg ) ) == NULL )
    {
-      send_to_char( "They aren't playing.\r\n", ch );
+      send_to_char( "They aren't currently playing.\r\n", ch );
       return;
    }
-
    if( IS_NPC( victim ) )
    {
       send_to_char( "Not on NPC's.\r\n", ch );
       return;
    }
-
    if( get_trust( victim ) >= get_trust( ch ) )
    {
       send_to_char( "I wouldn't even think of that if I were you...\r\n", ch );
@@ -2475,17 +2413,15 @@ void do_balzhur( CHAR_DATA * ch, const char *argument )
    send_to_char( "Balzhur sneers at you evilly, then vanishes in a puff of smoke.\r\n", ch );
    set_char_color( AT_IMMORT, victim );
    send_to_char( "You hear an ungodly sound in the distance that makes your blood run cold!\r\n", victim );
-   snprintf( buf, MAX_STRING_LENGTH, "Balzhur screams, 'You are MINE %s!!!'", victim->name );
-   echo_to_all( AT_IMMORT, buf, ECHOTAR_ALL );
-   {
-      int ability;
+   snprintf( ebuf, MAX_STRING_LENGTH, "Balzhur screams, 'You are MINE %s!!!'", victim->name );
+   echo_to_all( AT_IMMORT, ebuf, ECHOTAR_ALL );
 
-      for( ability = 0; ability < MAX_ABILITY; ability++ )
-      {
-         victim->experience[ability] = 1;
-         victim->skill_level[ability] = 1;
-      }
+   for( int ability = 0; ability < MAX_ABILITY; ability++ )
+   {
+      victim->experience[ability] = 1;
+      victim->skill_level[ability] = 1;
    }
+
    victim->max_hit = 500;
    victim->max_mana = 0;
    victim->max_move = 1000;
@@ -2495,37 +2431,51 @@ void do_balzhur( CHAR_DATA * ch, const char *argument )
    victim->mana = victim->max_mana;
    victim->move = victim->max_move;
 
+   name = capitalize( victim->name );
+   snprintf( godfile, 256, "%s%s", GOD_DIR, name );
 
-   sprintf( buf, "%s%s", GOD_DIR, capitalize( victim->name ) );
-
-   if( !remove( buf ) )
+   set_char_color( AT_RED, ch );
+   if( !remove( godfile ) )
       send_to_char( "Player's immortal data destroyed.\r\n", ch );
    else if( errno != ENOENT )
    {
-      ch_printf( ch, "Unknown error #%d - %s (immortal data).  Report to Thoric\r\n", errno, strerror( errno ) );
-      sprintf( buf2, "%s balzhuring %s", ch->name, buf );
-      perror( buf2 );
+      ch_printf( ch, "Unknown error #%d - %s (immortal data). Report to the admins.\r\n", errno, strerror( errno ) );
+      snprintf( ebuf, MAX_STRING_LENGTH, "%s balzhuring %s", ch->name, name );
+      perror( ebuf );
    }
-   sprintf( buf2, "%s.are", capitalize( arg ) );
+
+   snprintf( areafile, 256, "%s.are", name );
    for( pArea = first_build; pArea; pArea = pArea->next )
-      if( !strcmp( pArea->filename, buf2 ) )
+   {
+      if( !str_cmp( pArea->filename, areafile ) )
       {
-         sprintf( buf, "%s%s", BUILD_DIR, buf2 );
+         char buildfile[256];
+         char buildbackup[256];
+
+         int bc = snprintf( buildfile, 256, "%s%s", BUILD_DIR, areafile );
+         if( bc < 0 )
+            bug( "%s: Output buffer error!", __func__ );
+
          if( IS_SET( pArea->status, AREA_LOADED ) )
-            fold_area( pArea, buf, FALSE );
+            fold_area( pArea, buildfile, FALSE );
          close_area( pArea );
-         sprintf( buf2, "%s.bak", buf );
+
+         bc = snprintf( buildbackup, 256, "%s.bak", buildfile );
+         if( bc < 0 )
+            bug( "%s: Output buffer error!", __func__ );
+
          set_char_color( AT_RED, ch ); /* Log message changes colors */
-         if( !rename( buf, buf2 ) )
+         if( !rename( buildfile, buildbackup ) )
             send_to_char( "Player's area data destroyed.  Area saved as backup.\r\n", ch );
          else if( errno != ENOENT )
          {
-            ch_printf( ch, "Unknown error #%d - %s (area data).  Report to Thoric.\r\n", errno, strerror( errno ) );
-            sprintf( buf2, "%s destroying %s", ch->name, buf );
-            perror( buf2 );
+            ch_printf( ch, "Unknown error #%d - %s (area data). Report to the admins.\r\n", errno, strerror( errno ) );
+            snprintf( ebuf, MAX_STRING_LENGTH, "%s destroying %s", ch->name, buildfile );
+            perror( ebuf );
          }
+         break;
       }
-
+   }
 
    make_wizlist(  );
    do_help( victim, "M_BALZHUR_" );
@@ -2533,7 +2483,6 @@ void do_balzhur( CHAR_DATA * ch, const char *argument )
    send_to_char( "You awake after a long period of time...\r\n", victim );
    while( victim->first_carrying )
       extract_obj( victim->first_carrying );
-   return;
 }
 
 void do_advance( CHAR_DATA * ch, const char *argument )
@@ -2562,17 +2511,6 @@ void do_advance( CHAR_DATA * ch, const char *argument )
    }
 
    ability = -1;
-/*    if (!str_cmp(arg3, "all")){
-    	for (iAbility = 0; iAbility < MAX_ABILITY; iAbility++ ){
-    	  ability = iAbility;
-          for ( iLevel = victim->skill_level[ability] ; iLevel < level; iLevel++ )
-           {
-	     victim->experience[ability] = exp_level(iLevel+1);
-	     gain_exp2( victim, 0 , ability );
-	   }
-        }
-        return;
-    }*/
 
    for( iAbility = 0; iAbility < MAX_ABILITY; iAbility++ )
    {
@@ -2589,7 +2527,6 @@ void do_advance( CHAR_DATA * ch, const char *argument )
       do_advance( ch, "" );
       return;
    }
-
 
    if( IS_NPC( victim ) )
    {
@@ -2693,8 +2630,6 @@ void do_immortalize( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 void do_trust( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
@@ -2739,8 +2674,6 @@ void do_trust( CHAR_DATA * ch, const char *argument )
    send_to_char( "Ok.\r\n", ch );
    return;
 }
-
-
 
 void do_restore( CHAR_DATA * ch, const char *argument )
 {
@@ -3034,7 +2967,6 @@ void do_log( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 void do_litterbug( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -3179,7 +3111,6 @@ void do_notell( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 void do_notitle( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
@@ -3221,7 +3152,7 @@ void do_notitle( CHAR_DATA * ch, const char *argument )
    else
    {
       SET_BIT( victim->pcdata->flags, PCFLAG_NOTITLE );
-      sprintf( buf, "%s", victim->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s", victim->name );
       set_title( victim, buf );
       send_to_char( "You can't set your own title!\r\n", victim );
       send_to_char( "NOTITLE set.\r\n", ch );
@@ -3320,9 +3251,6 @@ void do_unsilence( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
-
 void do_peace( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *rch;
@@ -3345,8 +3273,6 @@ void do_peace( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 BAN_DATA *first_ban;
 BAN_DATA *last_ban;
 
@@ -3357,7 +3283,7 @@ void save_banlist( void )
 
    if( !( fp = fopen( SYSTEM_DIR BAN_LIST, "w" ) ) )
    {
-      bug( "Save_banlist: Cannot open " BAN_LIST, 0 );
+      bug( "%s: Cannot open " BAN_LIST, __func__ );
       perror( BAN_LIST );
       return;
    }
@@ -3471,7 +3397,7 @@ void do_ban( CHAR_DATA * ch, const char *argument )
    LINK( pban, first_ban, last_ban, next, prev );
    pban->name = str_dup( arg );
    pban->level = LEVEL_AVATAR;
-   sprintf( buf, "%24.24s", ctime( &current_time ) );
+   snprintf( buf, MAX_STRING_LENGTH, "%24.24s", ctime( &current_time ) );
    pban->ban_time = str_dup( buf );
    save_banlist(  );
    send_to_char( "Ban created.  Mortals banned from site.\r\n", ch );
@@ -3509,8 +3435,6 @@ void do_allow( CHAR_DATA * ch, const char *argument )
    send_to_char( "Site is not banned.\r\n", ch );
    return;
 }
-
-
 
 void do_wizlock( CHAR_DATA * ch, const char *argument )
 {
@@ -3915,7 +3839,7 @@ void do_vassign( CHAR_DATA * ch, const char *argument )
 
    if( !victim->pcdata->area )
    {
-      bug( "%s: assign_area failed", __FUNCTION__ );
+      bug( "%s: assign_area failed", __func__ );
       return;
    }
 
@@ -3926,13 +3850,13 @@ void do_vassign( CHAR_DATA * ch, const char *argument )
     */
    if( !( room = make_room( lo, tarea ) ) )
    {
-      bug( "%s: make_room failed to initialize first room.", __FUNCTION__ );
+      bug( "%s: make_room failed to initialize first room.", __func__ );
       return;
    }
 
    if( !( room = make_room( hi, tarea ) ) )
    {
-      bug( "%s: make_room failed to initialize last room.", __FUNCTION__ );
+      bug( "%s: make_room failed to initialize last room.", __func__ );
       return;
    }
 
@@ -3941,7 +3865,7 @@ void do_vassign( CHAR_DATA * ch, const char *argument )
     */
    if( !( pMobIndex = make_mobile( lo, 0, "first mob" ) ) )
    {
-      bug( "%s: make_mobile failed to initialize first mob.", __FUNCTION__ );
+      bug( "%s: make_mobile failed to initialize first mob.", __func__ );
       return;
    }
    mob = create_mobile( pMobIndex );
@@ -3952,7 +3876,7 @@ void do_vassign( CHAR_DATA * ch, const char *argument )
     */
    if( !( pMobIndex = make_mobile( hi, 0, "last mob" ) ) )
    {
-      bug( "%s: make_mobile failed to initialize last mob.", __FUNCTION__ );
+      bug( "%s: make_mobile failed to initialize last mob.", __func__ );
       return;
    }
    mob = create_mobile( pMobIndex );
@@ -3963,7 +3887,7 @@ void do_vassign( CHAR_DATA * ch, const char *argument )
     */
    if( !( pObjIndex = make_object( lo, 0, "first obj" ) ) )
    {
-      bug( "%s: make_object failed to initialize first obj.", __FUNCTION__ );
+      bug( "%s: make_object failed to initialize first obj.", __func__ );
       return;
    }
    obj = create_object( pObjIndex, 0 );
@@ -3974,7 +3898,7 @@ void do_vassign( CHAR_DATA * ch, const char *argument )
     */
    if( !( pObjIndex = make_object( hi, 0, "last obj" ) ) )
    {
-      bug( "%s: make_object failed to initialize last obj.", __FUNCTION__ );
+      bug( "%s: make_object failed to initialize last obj.", __func__ );
       return;
    }
    obj = create_object( pObjIndex, 0 );
@@ -4021,7 +3945,7 @@ void do_cmdtable( CHAR_DATA * ch, const char *argument )
  */
 void do_loadup( CHAR_DATA * ch, const char *argument )
 {
-   char fname[1024];
+   char fname[256];
    char name[256];
    struct stat fst;
    DESCRIPTOR_DATA *d;
@@ -4050,7 +3974,7 @@ void do_loadup( CHAR_DATA * ch, const char *argument )
 
    name[0] = UPPER( name[0] );
 
-   sprintf( fname, "%s%c/%s", PLAYER_DIR, tolower( name[0] ), capitalize( name ) );
+   snprintf( fname, 256, "%s%c/%s", PLAYER_DIR, tolower( name[0] ), capitalize( name ) );
    if( stat( fname, &fst ) != -1 )
    {
       CREATE( d, DESCRIPTOR_DATA, 1 );
@@ -4078,7 +4002,7 @@ void do_loadup( CHAR_DATA * ch, const char *argument )
       DISPOSE( d->outbuf );
       DISPOSE( d );
       ch_printf( ch, "Player %s loaded from room %d.\r\n", capitalize( name ), old_room_vnum );
-      sprintf( buf, "%s appears from nowhere, eyes glazed over.\r\n", capitalize( name ) );
+      snprintf( buf, MAX_STRING_LENGTH, "%s appears from nowhere, eyes glazed over.\r\n", capitalize( name ) );
       act( AT_IMMORT, buf, ch, NULL, NULL, TO_ROOM );
       send_to_char( "Done.\r\n", ch );
       return;
@@ -4210,8 +4134,8 @@ void extract_area_names( char *inp, char *out )
       if( ( len = strlen( buf ) ) >= 5 && !strcmp( ".are", pbuf + len - 4 ) )
       {
          if( *out )
-            strcat( out, " " );
-         strcat( out, buf );
+            mudstrlcat( out, " ", MAX_STRING_LENGTH );
+         mudstrlcat( out, buf, MAX_STRING_LENGTH );
       }
    }
 }
@@ -4233,8 +4157,8 @@ void remove_area_names( char *inp, char *out )
       if( ( len = strlen( buf ) ) < 5 || strcmp( ".are", pbuf + len - 4 ) )
       {
          if( *out )
-            strcat( out, " " );
-         strcat( out, buf );
+            mudstrlcat( out, " ", MAX_STRING_LENGTH );
+         mudstrlcat( out, buf, MAX_STRING_LENGTH );
       }
    }
 }
@@ -4311,7 +4235,7 @@ void do_bestowarea( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "%s %s", victim->pcdata->bestowments, argument );
+   snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, argument );
    DISPOSE( victim->pcdata->bestowments );
    victim->pcdata->bestowments = str_dup( buf );
    ch_printf( victim, "%s has bestowed on you the area: %s\r\n", ch->name, argument );
@@ -4320,8 +4244,8 @@ void do_bestowarea( CHAR_DATA * ch, const char *argument )
 
 void do_bestow( CHAR_DATA * ch, const char *argument )
 {
-   char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH], arg_buf[MAX_STRING_LENGTH];
-   char tmparg[MAX_INPUT_LENGTH];
+   char arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH], arg_buf[MAX_STRING_LENGTH-30];
+   char tmparg[MAX_STRING_LENGTH];
    CHAR_DATA *victim;
    CMDTYPE *cmd;
    bool fComm = FALSE;
@@ -4413,8 +4337,8 @@ void do_bestow( CHAR_DATA * ch, const char *argument )
          continue;
       }
 
-      snprintf( tmparg, MAX_INPUT_LENGTH, "%s ", arg );
-      strncat( arg_buf, tmparg, MAX_STRING_LENGTH );
+      snprintf( tmparg, MAX_STRING_LENGTH, "%s ", arg );
+      mudstrlcat( arg_buf, tmparg, MAX_STRING_LENGTH-30 );
       argument = one_argument( argument, arg );
       fComm = TRUE;
    }
@@ -4427,7 +4351,7 @@ void do_bestow( CHAR_DATA * ch, const char *argument )
    if( arg_buf[strlen( arg_buf ) - 1] == ' ' )
       arg_buf[strlen( arg_buf ) - 1] = '\0';
 
-   sprintf( buf, "%s %s", victim->pcdata->bestowments, arg_buf );
+   snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg_buf );
    DISPOSE( victim->pcdata->bestowments );
    smash_tilde( buf );
    victim->pcdata->bestowments = str_dup( buf );
@@ -4723,7 +4647,7 @@ void close_area( AREA_DATA * pArea )
          STRFREE( rid->description );
          if( rid->first_person )
          {
-            bug( "close_area: room with people #%d", rid->vnum );
+            bug( "%s: room with people #%d", __func__, rid->vnum );
             for( ech = rid->first_person; ech; ech = ech_next )
             {
                ech_next = ech->next_in_room;
@@ -4737,7 +4661,7 @@ void close_area( AREA_DATA * pArea )
          }
          if( rid->first_content )
          {
-            bug( "close_area: room with contents #%d", rid->vnum );
+            bug( "%s: room with contents #%d", __func__, rid->vnum );
             for( eobj = rid->first_content; eobj; eobj = eobj_next )
             {
                eobj_next = eobj->next_content;
@@ -4774,7 +4698,7 @@ void close_area( AREA_DATA * pArea )
                if( trid->next == rid )
                   break;
             if( !trid )
-               bug( "Close_area: rid not in hash list %d", rid->vnum );
+               bug( "%s: rid not in hash list %d", __func__, rid->vnum );
             else
                trid->next = rid->next;
          }
@@ -4819,7 +4743,7 @@ void close_area( AREA_DATA * pArea )
                if( tmid->next == mid )
                   break;
             if( !tmid )
-               bug( "Close_area: mid not in hash list %s", mid->vnum );
+               bug( "%s: mid not in hash list %s", __func__, mid->vnum );
             else
                tmid->next = mid->next;
          }
@@ -4867,7 +4791,7 @@ void close_area( AREA_DATA * pArea )
                if( toid->next == oid )
                   break;
             if( !toid )
-               bug( "Close_area: oid not in hash list %s", oid->vnum );
+               bug( "%s: oid not in hash list %s", __func__, oid->vnum );
             else
                toid->next = oid->next;
          }
@@ -4907,14 +4831,17 @@ void close_all_areas( void )
    return;
 }
 
-void do_destroy( CHAR_DATA * ch, const char *argument )
+void do_destroy( CHAR_DATA* ch, const char* argument )
 {
    CHAR_DATA *victim;
-   char buf[MAX_STRING_LENGTH];
-   char buf2[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
+   char pfile[256];
+   char backup[256];
+   char ebuf[MAX_STRING_LENGTH];
    char *name;
    struct stat fst;
+
+   set_char_color( AT_RED, ch );
 
    one_argument( argument, arg );
    if( arg[0] == '\0' )
@@ -4927,28 +4854,23 @@ void do_destroy( CHAR_DATA * ch, const char *argument )
     * Set the file points.
     */
    name = capitalize( arg );
-   sprintf( buf, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), name );
-   sprintf( buf2, "%s%c/%s", BACKUP_DIR, tolower( arg[0] ), name );
+   snprintf( pfile, 256, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), name );
+   snprintf( backup, 256, "%s%c/%s", BACKUP_DIR, tolower( arg[0] ), name );
 
    /*
     * This check makes sure the name is valid and that the file is there, else there
     * is no need to go on. -Orion
     */
-   if( !check_parse_name( name ) || lstat( buf, &fst ) == -1 )
+   if( !check_parse_name( name ) || lstat( pfile, &fst ) == -1 )
    {
       ch_printf( ch, "No player exists by the name %s.\r\n", name );
-      return;
-   }
-
-   if( strstr( argument, "." ) )
-   {
-      send_to_char( "Nope.\r\n", ch );
       return;
    }
 
    for( victim = first_char; victim; victim = victim->next )
       if( !IS_NPC( victim ) && !str_cmp( victim->name, arg ) )
          break;
+
    if( !victim )
    {
       DESCRIPTOR_DATA *d;
@@ -4975,43 +4897,53 @@ void do_destroy( CHAR_DATA * ch, const char *argument )
             save_equipment[x][y] = NULL;
    }
 
-   if( !rename( buf, buf2 ) )
+   if( !rename( pfile, backup ) )
    {
       AREA_DATA *pArea;
+      char godfile[256];
+      char areafile[256];
+      char buildfile[256];
+      char buildbackup[256];
 
       set_char_color( AT_RED, ch );
-      send_to_char( "Player destroyed.  Pfile saved in backup directory.\r\n", ch );
-      sprintf( buf, "%s%s", GOD_DIR, capitalize( arg ) );
-      if( !remove( buf ) )
+      ch_printf( ch, "Player %s destroyed.  Pfile saved in backup directory.\r\n", name );
+
+      snprintf( godfile, 256, "%s%s", GOD_DIR, name );
+      if( !remove( godfile ) )
          send_to_char( "Player's immortal data destroyed.\r\n", ch );
       else if( errno != ENOENT )
       {
-         ch_printf( ch, "Unknown error #%d - %s (immortal data).  Report to Thoric.\r\n", errno, strerror( errno ) );
-         sprintf( buf2, "%s destroying %s", ch->name, buf );
-         perror( buf2 );
+         ch_printf( ch, "Unknown error #%d - %s (immortal data). Report to smaugmuds.afkmods.com\r\n", errno, strerror( errno ) );
+         snprintf( ebuf, MAX_STRING_LENGTH, "%s destroying %s", ch->name, godfile );
+         perror( ebuf );
       }
 
-      sprintf( buf2, "%s.are", capitalize( arg ) );
+      snprintf( areafile, 256, "%s.are", name );
       for( pArea = first_build; pArea; pArea = pArea->next )
-         if( !strcmp( pArea->filename, buf2 ) )
+      {
+         if( !str_cmp( pArea->filename, areafile ) )
          {
-            sprintf( buf, "%s%s", BUILD_DIR, buf2 );
+            int bc = snprintf( buildfile, 256, "%s%s", BUILD_DIR, areafile );
+            if( bc < 0 )
+               bug( "%s: Output buffer error!", __func__ );
+
             if( IS_SET( pArea->status, AREA_LOADED ) )
-            {
-               fold_area( pArea, buf, FALSE );
-               close_area( pArea );
-            }
-            sprintf( buf2, "%s.bak", buf );
+               fold_area( pArea, buildfile, FALSE );
+            close_area( pArea );
+
+            snprintf( buildbackup, MAX_STRING_LENGTH, "%s.bak", buildfile );
             set_char_color( AT_RED, ch ); /* Log message changes colors */
-            if( !rename( buf, buf2 ) )
+            if( !rename( buildfile, buildfile ) )
                send_to_char( "Player's area data destroyed.  Area saved as backup.\r\n", ch );
             else if( errno != ENOENT )
             {
-               ch_printf( ch, "Unknown error #%d - %s (area data).  Report to Thoric.\r\n", errno, strerror( errno ) );
-               sprintf( buf2, "%s destroying %s", ch->name, buf );
-               perror( buf2 );
+               ch_printf( ch, "Unknown error #%d - %s (area data). Report to smaugmuds.afkmods.com\r\n", errno, strerror( errno ) );
+               snprintf( ebuf, MAX_STRING_LENGTH, "%s destroying %s", ch->name, buildfile );
+               perror( ebuf );
             }
+            break;
          }
+      }
    }
    else if( errno == ENOENT )
    {
@@ -5021,11 +4953,10 @@ void do_destroy( CHAR_DATA * ch, const char *argument )
    else
    {
       set_char_color( AT_WHITE, ch );
-      ch_printf( ch, "Unknown error #%d - %s.  Report to Thoric.\r\n", errno, strerror( errno ) );
-      sprintf( buf, "%s destroying %s", ch->name, arg );
-      perror( buf );
+      ch_printf( ch, "Unknown error #%d - %s. Report to smaugmuds.afkmods.com\r\n", errno, strerror( errno ) );
+      snprintf( ebuf, MAX_STRING_LENGTH, "%s destroying %s", ch->name, arg );
+      perror( ebuf );
    }
-   return;
 }
 
 /* Super-AT command:
@@ -5073,7 +5004,7 @@ const char *name_expand( CHAR_DATA * ch )
    CHAR_DATA *rch;
    char name[MAX_INPUT_LENGTH];  /*  HOPEFULLY no mob has a name longer than THAT */
 
-   static char outbuf[MAX_INPUT_LENGTH];
+   static char outbuf[MAX_STRING_LENGTH];
 
    if( !IS_NPC( ch ) )
       return ch->name;
@@ -5082,7 +5013,7 @@ const char *name_expand( CHAR_DATA * ch )
 
    if( !name[0] ) /* weird mob .. no keywords */
    {
-      strcpy( outbuf, "" );   /* Do not return NULL, just an empty buffer */
+      mudstrlcpy( outbuf, "", MAX_STRING_LENGTH );   /* Do not return NULL, just an empty buffer */
       return outbuf;
    }
 
@@ -5093,11 +5024,9 @@ const char *name_expand( CHAR_DATA * ch )
       if( is_name( name, rch->name ) )
          count++;
 
-
-   sprintf( outbuf, "%d.%s", count, name );
+   snprintf( outbuf, MAX_STRING_LENGTH, "%d.%s", count, name );
    return outbuf;
 }
-
 
 void do_for( CHAR_DATA * ch, const char *argument )
 {
@@ -5566,9 +5495,8 @@ void do_cset( CHAR_DATA * ch, const char *argument )
 
 void get_reboot_string( void )
 {
-   sprintf( reboot_time, "%s", asctime( new_boot_time ) );
+   snprintf( reboot_time, 50, "%s", asctime( new_boot_time ) );
 }
-
 
 void do_orange( CHAR_DATA * ch, const char *argument )
 {
@@ -5787,7 +5715,6 @@ void do_sober( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 /*
  * Free a social structure					-Thoric
  */
@@ -5822,7 +5749,7 @@ void unlink_social( SOCIALTYPE * social )
 
    if( !social )
    {
-      bug( "Unlink_social: NULL social", 0 );
+      bug( "%s: NULL social", __func__ );
       return;
    }
 
@@ -5858,19 +5785,19 @@ void add_social( SOCIALTYPE * social )
 
    if( !social )
    {
-      bug( "Add_social: NULL social", 0 );
+      bug( "%s: NULL social", __func__ );
       return;
    }
 
    if( !social->name )
    {
-      bug( "Add_social: NULL social->name", 0 );
+      bug( "%s: NULL social->name", __func__ );
       return;
    }
 
    if( !social->char_no_arg )
    {
-      bug( "Add_social: NULL social->char_no_arg", 0 );
+      bug( "%s: NULL social->char_no_arg", __func__ );
       return;
    }
 
@@ -5896,7 +5823,7 @@ void add_social( SOCIALTYPE * social )
    {
       if( ( x = strcmp( social->name, tmp->name ) ) == 0 )
       {
-         bug( "Add_social: trying to add duplicate name to bucket %d", hash );
+         bug( "%s: trying to add duplicate name to bucket %d", __func__, hash );
          free_social( social );
          return;
       }
@@ -5931,6 +5858,7 @@ void do_sedit( CHAR_DATA * ch, const char *argument )
    SOCIALTYPE *social;
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
+   char snoarg[MAX_INPUT_LENGTH+5];
 
    smash_tilde( argument );
    argument = one_argument( argument, arg1 );
@@ -5969,8 +5897,8 @@ void do_sedit( CHAR_DATA * ch, const char *argument )
       }
       CREATE( social, SOCIALTYPE, 1 );
       social->name = str_dup( arg1 );
-      sprintf( arg2, "You %s.", arg1 );
-      social->char_no_arg = str_dup( arg2 );
+      snprintf( snoarg, MAX_INPUT_LENGTH+5, "You %s.", arg1 );
+      social->char_no_arg = str_dup( snoarg );
       add_social( social );
       send_to_char( "Social added.\r\n", ch );
       return;
@@ -6138,7 +6066,7 @@ void unlink_command( CMDTYPE * command )
 
    if( !command )
    {
-      bug( "Unlink_command NULL command", 0 );
+      bug( "%s NULL command", __func__ );
       return;
    }
 
@@ -6170,19 +6098,19 @@ void add_command( CMDTYPE * command )
 
    if( !command )
    {
-      bug( "Add_command: NULL command", 0 );
+      bug( "%s: NULL command", __func__ );
       return;
    }
 
    if( !command->name )
    {
-      bug( "Add_command: NULL command->name", 0 );
+      bug( "%s: NULL command->name", __func__ );
       return;
    }
 
    if( !command->do_fun )
    {
-      bug( "Add_command: NULL command->do_fun", 0 );
+      bug( "%s: NULL command->do_fun", __func__ );
       return;
    }
 
@@ -6220,7 +6148,7 @@ void do_cedit( CHAR_DATA * ch, const char *argument )
 {
    CMDTYPE *command;
    char arg1[MAX_INPUT_LENGTH];
-   char arg2[MAX_INPUT_LENGTH];
+   char arg2[MAX_INPUT_LENGTH+3];
 
    smash_tilde( argument );
    argument = one_argument( argument, arg1 );
@@ -6268,7 +6196,7 @@ void do_cedit( CHAR_DATA * ch, const char *argument )
       if( *argument )
          one_argument( argument, arg2 );
       else
-         sprintf( arg2, "do_%s", arg1 );
+         snprintf( arg2, MAX_INPUT_LENGTH+3, "do_%s", arg1 );
       command->do_fun = skill_function( arg2 );
       command->fun_name = str_dup( arg2 );
       add_command( command );
@@ -6525,9 +6453,9 @@ void do_cedit( CHAR_DATA * ch, const char *argument )
 /* Pfile Restore by Tawnos */
 void do_restorefile( CHAR_DATA * ch, const char *argument )
 {
-   char buf[MAX_STRING_LENGTH];
-   char buf2[MAX_STRING_LENGTH];
-   char fname[MAX_STRING_LENGTH];
+   char buf[256];
+   char buf2[256];
+   char fname[256];
    char arg[MAX_INPUT_LENGTH];
    struct stat fst;
 
@@ -6539,11 +6467,11 @@ void do_restorefile( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( fname, "%s%c/%s", BACKUP_DIR, tolower( arg[0] ), capitalize( arg ) );
+   snprintf( fname, 256, "%s%c/%s", BACKUP_DIR, tolower( arg[0] ), capitalize( arg ) );
    if( stat( fname, &fst ) != -1 )
    {
-      sprintf( buf2, "%s%c/%s", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
-      sprintf( buf, "%s%c/%s", BACKUP_DIR, tolower( arg[0] ), capitalize( arg ) );
+      snprintf( buf2, 256,"%s%c/%s", PLAYER_DIR, tolower( arg[0] ), capitalize( arg ) );
+      snprintf( buf, 256, "%s%c/%s", BACKUP_DIR, tolower( arg[0] ), capitalize( arg ) );
       rename( buf, buf2 );
       send_to_char( "Player data restored.\r\n", ch );
       return;
@@ -6672,12 +6600,12 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
 
    if( !ch )
    {
-      bug( "NULL ch in ostat_plus 	File: %s 	Line: %d", __FILE__, __LINE__ );
+      bug( "%s: NULL ch in ostat_plus 	File: %s 	Line: %d", __func__, __FILE__, __LINE__ );
       return;
    }
    if( !obj )
    {
-      bug( "NULL obj in ostat_plus File: %s	Line: %d", __FILE__, __LINE__ );
+      bug( "%s: NULL obj in ostat_plus File: %s	Line: %d", __func__, __FILE__, __LINE__ );
       return;
    }
 
@@ -6688,7 +6616,7 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
 	* on most things, but I'm lazy and hate digging through code to see what
 	* value[x] means... -Druid
 	******/
-   ch_printf( ch, "&cAdditional Object information\r\n" );
+   send_to_char( "&cAdditional Object information\r\n", ch );
    switch ( obj->item_type )
    {
       default:
@@ -6777,28 +6705,28 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
 	   	 * Could possibly make a function returning the string....
 	   	 *****/
          if( dam >= 10 )
-            strcpy( buf, "Superb condition" );
+            mudstrlcpy( buf, "Superb condition", MAX_STRING_LENGTH );
          else if( dam == 9 )
-            strcpy( buf, "Very good condition" );
+            mudstrlcpy( buf, "Very good condition", MAX_STRING_LENGTH );
          else if( dam == 8 )
-            strcpy( buf, "Good shape" );
+            mudstrlcpy( buf, "Good shape", MAX_STRING_LENGTH );
          else if( dam == 7 )
-            strcpy( buf, "Showing a bit of wear" );
+            mudstrlcpy( buf, "Showing a bit of wear", MAX_STRING_LENGTH );
          else if( dam == 6 )
-            strcpy( buf, "A little run down" );
+            mudstrlcpy( buf, "A little run down", MAX_STRING_LENGTH );
          else if( dam == 5 )
-            strcpy( buf, "In need of repair" );
+            mudstrlcpy( buf, "In need of repair", MAX_STRING_LENGTH );
          else if( dam == 4 )
-            strcpy( buf, "In great need of repair" );
+            mudstrlcpy( buf, "In great need of repair", MAX_STRING_LENGTH );
          else if( dam == 3 )
-            strcpy( buf, "In dire need of repair" );
+            mudstrlcpy( buf, "In dire need of repair", MAX_STRING_LENGTH );
          else if( dam == 2 )
-            strcpy( buf, "Very badly worn" );
+            mudstrlcpy( buf, "Very badly worn", MAX_STRING_LENGTH );
          else if( dam == 1 )
-            strcpy( buf, "Practically worthless" );
+            mudstrlcpy( buf, "Practically worthless", MAX_STRING_LENGTH );
          else if( dam <= 0 )
-            strcpy( buf, "Broken" );
-         strcat( buf, "\r\n" );
+            mudstrlcpy( buf, "Broken", MAX_STRING_LENGTH );
+         mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
          break;
          /*
@@ -6812,28 +6740,28 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
          else
             dam = 10;
          if( dam >= 10 )
-            strcpy( buf, "It is fresh." );
+            mudstrlcpy( buf, "It is fresh.", MAX_STRING_LENGTH );
          else if( dam == 9 )
-            strcpy( buf, "It is nearly fresh." );
+            mudstrlcpy( buf, "It is nearly fresh.", MAX_STRING_LENGTH );
          else if( dam == 8 )
-            strcpy( buf, "It is perfectly fine." );
+            mudstrlcpy( buf, "It is perfectly fine.", MAX_STRING_LENGTH );
          else if( dam == 7 )
-            strcpy( buf, "It looks good." );
+            mudstrlcpy( buf, "It looks good.", MAX_STRING_LENGTH );
          else if( dam == 6 )
-            strcpy( buf, "It looks ok." );
+            mudstrlcpy( buf, "It looks ok.", MAX_STRING_LENGTH );
          else if( dam == 5 )
-            strcpy( buf, "It is a little stale." );
+            mudstrlcpy( buf, "It is a little stale.", MAX_STRING_LENGTH );
          else if( dam == 4 )
-            strcpy( buf, "It is a bit stale." );
+            mudstrlcpy( buf, "It is a bit stale.", MAX_STRING_LENGTH );
          else if( dam == 3 )
-            strcpy( buf, "It smells slightly off." );
+            mudstrlcpy( buf, "It smells slightly off.", MAX_STRING_LENGTH );
          else if( dam == 2 )
-            strcpy( buf, "It smells quite rank." );
+            mudstrlcpy( buf, "It smells quite rank.", MAX_STRING_LENGTH );
          else if( dam == 1 )
-            strcpy( buf, "It smells revolting!" );
+            mudstrlcpy( buf, "It smells revolting!", MAX_STRING_LENGTH );
          else if( dam <= 0 )
-            strcpy( buf, "It is crawling with maggots!" );
-         strcat( buf, "\r\n" );
+            mudstrlcpy( buf, "It is crawling with maggots!", MAX_STRING_LENGTH );
+         mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
          if( obj->value[4] )
             ch_printf( ch, "&GValue[&W4&G] Timer: &W%d\r\n", obj->value[4] );
@@ -6971,72 +6899,72 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
          switch ( obj->value[1] )
          {
             default:
-               sprintf( buf, "Hit by a trap" );
-               ch_printf( ch, "Default Generic Trap\r\n" );
+               mudstrlcpy( buf, "Hit by a trap", MAX_STRING_LENGTH );
+               send_to_char( "Default Generic Trap\r\n", ch );
                ch_printf( ch, "&cDoes Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_POISON_GAS:
-               sprintf( buf, "Surrounded by a green cloud of gas" );
-               ch_printf( ch, "Poisoned Gas\r\n" );
+               mudstrlcpy( buf, "Surrounded by a green cloud of gas", MAX_STRING_LENGTH );
+               send_to_char( "Poisoned Gas\r\n", ch );
                ch_printf( ch, "&cCasts spell: &WPoison\r\n" );
                break;
             case TRAP_TYPE_POISON_DART:
-               sprintf( buf, "Hit by a dart" );
-               ch_printf( ch, "Poisoned Dart\r\n" );
-               ch_printf( ch, "&cCasts spell: &WPoison\r\n" );
+               mudstrlcpy( buf, "Hit by a dart", MAX_STRING_LENGTH );
+               send_to_char( "Poisoned Dart\r\n", ch );
+               send_to_char( "&cCasts spell: &WPoison\r\n", ch );
                ch_printf( ch, "&cOR Does Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_POISON_NEEDLE:
-               sprintf( buf, "Pricked by a needle" );
-               ch_printf( ch, "Poisoned Needle\r\n" );
-               ch_printf( ch, "&cCasts spell: &WPoison\r\n" );
+               mudstrlcpy( buf, "Pricked by a needle", MAX_STRING_LENGTH );
+               send_to_char( "Poisoned Needle\r\n", ch );
+               send_to_char( "&cCasts spell: &WPoison\r\n", ch );
                ch_printf( ch, "&cOR Does Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_POISON_DAGGER:
-               sprintf( buf, "Stabbed by a dagger" );
-               ch_printf( ch, "Poisoned Dagger\r\n" );
-               ch_printf( ch, "&cCasts spell: &WPoison\r\n" );
+               mudstrlcpy( buf, "Stabbed by a dagger", MAX_STRING_LENGTH );
+               send_to_char( "Poisoned Dagger\r\n", ch );
+               send_to_char( "&cCasts spell: &WPoison\r\n", ch );
                ch_printf( ch, "&cOR Does Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_POISON_ARROW:
-               sprintf( buf, "Struck with an arrow" );
-               ch_printf( ch, "Poisoned Arrow\r\n" );
-               ch_printf( ch, "&cCasts spell: &WPoison\r\n" );
+               mudstrlcpy( buf, "Struck with an arrow", MAX_STRING_LENGTH );
+               send_to_char( "Poisoned Arrow\r\n", ch );
+               send_to_char( "&cCasts spell: &WPoison\r\n", ch );
                ch_printf( ch, "&cOR Does Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_BLINDNESS_GAS:
-               sprintf( buf, "Surrounded by a red cloud of gas" );
-               ch_printf( ch, "Blinding Gas\r\n" );
-               ch_printf( ch, "&cCasts spell: &WBlind\r\n" );
+               mudstrlcpy( buf, "Surrounded by a red cloud of gas", MAX_STRING_LENGTH );
+               send_to_char( "Blinding Gas\r\n", ch );
+               send_to_char( "&cCasts spell: &WBlind\r\n", ch );
                break;
             case TRAP_TYPE_SLEEPING_GAS:
-               sprintf( buf, "Surrounded by a yellow cloud of gas" );
-               ch_printf( ch, "Sleeping Gas\r\n" );
-               ch_printf( ch, "&cCasts spell: &WSleep\r\n" );
+               mudstrlcpy( buf, "Surrounded by a yellow cloud of gas", MAX_STRING_LENGTH );
+               send_to_char( "Sleeping Gas\r\n", ch );
+               send_to_char( "&cCasts spell: &WSleep\r\n", ch );
                break;
             case TRAP_TYPE_FLAME:
-               sprintf( buf, "Struck by a burst of flame" );
-               ch_printf( ch, "Flame\r\n" );
-               ch_printf( ch, "&cCasts spell: &WFireball\r\n" );
+               mudstrlcpy( buf, "Struck by a burst of flame", MAX_STRING_LENGTH );
+               send_to_char( "Flame\r\n", ch );
+               send_to_char( "&cCasts spell: &WFireball\r\n", ch );
                break;
             case TRAP_TYPE_EXPLOSION:
-               sprintf( buf, "Hit by an explosion" );
-               ch_printf( ch, "Explosion\r\n" );
-               ch_printf( ch, "&cCasts spell: &WFireball\r\n" );
+               mudstrlcpy( buf, "Hit by an explosion", MAX_STRING_LENGTH );
+               send_to_char( "Explosion\r\n", ch );
+               send_to_char( "&cCasts spell: &WFireball\r\n", ch );
                break;
             case TRAP_TYPE_ACID_SPRAY:
-               sprintf( buf, "Covered by a spray of acid" );
-               ch_printf( ch, "Acid Spray\r\n" );
-               ch_printf( ch, "&cCasts spell: &WAcid Blast\r\n" );
+               mudstrlcpy( buf, "Covered by a spray of acid", MAX_STRING_LENGTH );
+               send_to_char( "Acid Spray\r\n", ch );
+               send_to_char( "&cCasts spell: &WAcid Blast\r\n", ch );
                break;
             case TRAP_TYPE_ELECTRIC_SHOCK:
-               sprintf( buf, "Suddenly shocked" );
-               ch_printf( ch, "Electric Shock\r\n" );
+               mudstrlcpy( buf, "Suddenly shocked", MAX_STRING_LENGTH );
+               send_to_char( "Electric Shock\r\n", ch );
                ch_printf( ch, "&cDoes Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_BLADE:
-               sprintf( buf, "Sliced by a razor sharp blade" );
-               ch_printf( ch, "Sharp Blade\r\n" );
+               mudstrlcpy( buf, "Sliced by a razor sharp blade", MAX_STRING_LENGTH );
+               send_to_char( "Sharp Blade\r\n", ch );
                ch_printf( ch, "&cDoes Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case ITEM_KEY:
@@ -7047,7 +6975,6 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
                if( obj->timer )
                   ch_printf( ch, "&cObject Timer, Time Left: &W%d\r\n", obj->timer );
                break;
-
          }
    }
 }
@@ -7129,7 +7056,7 @@ void do_changes( CHAR_DATA * ch, const char *argument )
    if( ( fpList = fopen( CHANGE_FILE, "r" ) ) == NULL )
    {
       send_to_char( "Something wen't wrong. The imms have been notified.\r\n", ch );
-      bug( "Do_changes: Unable to open change list" );
+      bug( "%s: Unable to open change list", __func__ );
       return;
    }
 
@@ -7146,7 +7073,7 @@ void do_changes( CHAR_DATA * ch, const char *argument )
       if( strlen( buf ) < 3 )
          break;
 
-      sprintf( display, "&w&W[&G*&W] &g%s", buf );
+      snprintf( display, MAX_STRING_LENGTH, "&w&W[&G*&W] &g%s", buf );
       send_to_char( strlinwrp( display, 78 ), ch );
       send_to_char( "&w&W-------------------------------------------------------------------------------\r\n", ch );
       ++i;
@@ -7168,10 +7095,10 @@ void do_addchange( CHAR_DATA * ch, const char *argument )
    }
 
    smash_tilde( argument );
-   sprintf( buf, "%s~", argument );
+   snprintf( buf, MAX_STRING_LENGTH, "%s~", argument );
    append_to_file( CHANGE_FILE, buf );
 
-   sprintf( buf2, "<li> %s<br><br>", argument );
+   snprintf( buf2, MAX_STRING_LENGTH, "<li> %s<br><br>", argument );
    prepend_to_file( CHANGEHTML_FILE, buf2 );
 
    send_to_char( "&GChange successfully added.\r\n", ch );

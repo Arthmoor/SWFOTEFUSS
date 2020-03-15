@@ -142,7 +142,7 @@ void fread_dns( DNS_DATA * cache, FILE * fp )
       }
 
       if( !fMatch )
-         bug( "fread_dns: no match: %s", word );
+         bug( "%s: no match: %s", __func__, word );
    }
 }
 
@@ -173,7 +173,7 @@ void load_dns( void )
 
          if( letter != '#' )
          {
-            bug( "%s: # not found.", __FUNCTION__ );
+            bug( "%s: # not found.", __func__ );
             break;
          }
 
@@ -189,7 +189,7 @@ void load_dns( void )
             break;
          else
          {
-            bug( "%s: bad section: %s.", __FUNCTION__, word );
+            bug( "%s: bad section: %s.", __func__, word );
             continue;
          }
       }
@@ -209,7 +209,7 @@ void save_dns( void )
 
    if( !( fp = fopen( filename, "w" ) ) )
    {
-      bug( "%s: fopen", __FUNCTION__ );
+      bug( "%s: fopen", __func__ );
       perror( filename );
    }
    else
@@ -244,7 +244,7 @@ bool read_from_dns( int fd, char *buffer )
    iStart = strlen( inbuf );
    if( iStart >= sizeof( inbuf ) - 10 )
    {
-      bug( "%s: DNS input overflow!!!", __FUNCTION__ );
+      bug( "%s: DNS input overflow!!!", __func__ );
       return FALSE;
    }
 
@@ -394,7 +394,7 @@ void resolve_dns( DESCRIPTOR_DATA * d, long ip )
       /*
        * Still here --> hmm. An error. 
        */
-      bug( "%s: Exec failed; Closing child.", __FUNCTION__ );
+      bug( "%s: Exec failed; Closing child.", __func__ );
       d->ifd = -1;
       d->ipid = -1;
       exit( 0 );

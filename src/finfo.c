@@ -38,7 +38,6 @@ Michael Seifert, and Sebastian Hammer.
 
 void fread_forcehelp( FORCE_HELP * fhelp, FILE * fp )
 {
-   char buf[MAX_STRING_LENGTH];
    const char *word;
    bool fMatch;
 
@@ -69,8 +68,7 @@ void fread_forcehelp( FORCE_HELP * fhelp, FILE * fp )
 
       if( !fMatch )
       {
-         sprintf( buf, "Fread_forcehelp: no match: %s", word );
-         bug( buf, 0 );
+         bug( "%s: no match: %s", __func__, word );
       }
    }
 }
@@ -85,7 +83,7 @@ bool load_forcehelp( const char *forcehelpfile )
    CREATE( fhelp, FORCE_HELP, 1 );
 
    found = FALSE;
-   sprintf( filename, "%s%s", FORCE_HELP_DIR, forcehelpfile );
+   snprintf( filename, 256, "%s%s", FORCE_HELP_DIR, forcehelpfile );
 
    if( ( fp = fopen( filename, "r" ) ) != NULL )
    {
@@ -106,7 +104,7 @@ bool load_forcehelp( const char *forcehelpfile )
 
          if( letter != '#' )
          {
-            bug( "Load_forcehelp: # not found.", 0 );
+            bug( "%s: # not found.", __func__ );
             break;
          }
 
@@ -120,10 +118,7 @@ bool load_forcehelp( const char *forcehelpfile )
             break;
          else
          {
-            char buf[MAX_STRING_LENGTH];
-
-            sprintf( buf, "Load_forcehelp: bad section: %s.", word );
-            bug( buf, 0 );
+            bug( "%s: bad section: %s.", __func__, word );
             break;
          }
       }
@@ -140,15 +135,13 @@ void load_force_help(  )
    FILE *fpList;
    const char *filename;
    char forcehelpslist[256];
-   char buf[MAX_STRING_LENGTH];
-
 
    first_force_help = NULL;
    last_force_help = NULL;
 
    log_string( "Loading force helps..." );
 
-   sprintf( forcehelpslist, "%sforcehelps.lst", FORCE_HELP_DIR );
+   snprintf( forcehelpslist, 256, "%sforcehelps.lst", FORCE_HELP_DIR );
    if( ( fpList = fopen( forcehelpslist, "r" ) ) == NULL )
    {
       perror( forcehelpslist );
@@ -164,8 +157,7 @@ void load_force_help(  )
 
       if( !load_forcehelp( filename ) )
       {
-         sprintf( buf, "Cannot load forcehelp file: %s", filename );
-         bug( buf, 0 );
+         bug( "%s: Cannot load forcehelp file: %s", __func__, filename );
       }
    }
    fclose( fpList );
@@ -180,16 +172,16 @@ void write_forcehelp_list(  )
    char buf[MAX_STRING_LENGTH];
    char filename[256];
 
-   sprintf( filename, "%s%s", FORCE_HELP_DIR, "forcehelps.lst" );
+   snprintf( filename, 256, "%s%s", FORCE_HELP_DIR, "forcehelps.lst" );
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open forhelps.lst for writing!\r\n", 0 );
+      bug( "FATAL: %s: cannot open forhelps.lst for writing!\r\n", __func__ );
       return;
    }
    for( fhelp = first_force_help; fhelp; fhelp = fhelp->next )
    {
-      sprintf( buf, "%s_%d", fhelp->name, fhelp->type );
+      snprintf( buf, MAX_STRING_LENGTH, "%s_%d", fhelp->name, fhelp->type );
       fprintf( fpout, "%s\n", buf );
    }
    fprintf( fpout, "$\n" );
@@ -211,15 +203,15 @@ void save_forcehelp( FORCE_HELP * fhelp )
 
    if( !fhelp )
    {
-      bug( "save_forcehelp: null forcehelp pointer!", 0 );
+      bug( "%s: null forcehelp pointer!", __func__ );
       return;
    }
 
-   sprintf( filename, "%s%s_%d", FORCE_HELP_DIR, fhelp->name, fhelp->type );
+   snprintf( filename, 256, "%s%s_%d", FORCE_HELP_DIR, fhelp->name, fhelp->type );
 
    if( ( fp = fopen( filename, "w" ) ) == NULL )
    {
-      bug( "save_forcehelp: fopen", 0 );
+      bug( "%s: fopen", __func__ );
       perror( filename );
    }
    else
@@ -246,7 +238,6 @@ void save_forcehelp( FORCE_HELP * fhelp )
 
 void fread_forceskill( FORCE_SKILL * fskill, FILE * fp )
 {
-   char buf[MAX_STRING_LENGTH];
    const char *word;
    bool fMatch;
 
@@ -307,8 +298,7 @@ void fread_forceskill( FORCE_SKILL * fskill, FILE * fp )
 
       if( !fMatch )
       {
-         sprintf( buf, "Fread_forceskill: no match: %s", word );
-         bug( buf, 0 );
+         bug( "%s: no match: %s", __func__, word );
       }
    }
 }
@@ -324,11 +314,10 @@ bool load_forceskill( const char *forceskillfile )
    CREATE( fskill, FORCE_SKILL, 1 );
 
    found = FALSE;
-   sprintf( filename, "%s%s", FORCE_DIR, forceskillfile );
+   snprintf( filename, 256, "%s%s", FORCE_DIR, forceskillfile );
 
    if( ( fp = fopen( filename, "r" ) ) != NULL )
    {
-
       found = TRUE;
       LINK( fskill, first_force_skill, last_force_skill, next, prev );
       for( ;; )
@@ -345,7 +334,7 @@ bool load_forceskill( const char *forceskillfile )
 
          if( letter != '#' )
          {
-            bug( "Load_forceskill: # not found.", 0 );
+            bug( "%s: # not found.", __func__ );
             break;
          }
 
@@ -359,10 +348,7 @@ bool load_forceskill( const char *forceskillfile )
             break;
          else
          {
-            char buf[MAX_STRING_LENGTH];
-
-            sprintf( buf, "Load_forceskill: bad section: %s.", word );
-            bug( buf, 0 );
+            bug( "%s: bad section: %s.", __func__, word );
             break;
          }
       }
@@ -381,15 +367,13 @@ void load_force_skills(  )
    FILE *fpList;
    const char *filename;
    char forceskillslist[256];
-   char buf[MAX_STRING_LENGTH];
-
 
    first_force_skill = NULL;
    last_force_skill = NULL;
 
    log_string( "Loading force skills..." );
 
-   sprintf( forceskillslist, "%sforceskills.lst", FORCE_DIR );
+   snprintf( forceskillslist, 256, "%sforceskills.lst", FORCE_DIR );
    if( ( fpList = fopen( forceskillslist, "r" ) ) == NULL )
    {
       perror( forceskillslist );
@@ -402,11 +386,9 @@ void load_force_skills(  )
       if( filename[0] == '$' )
          break;
 
-
       if( !load_forceskill( filename ) )
       {
-         sprintf( buf, "Cannot load forceskill file: %s", filename );
-         bug( buf, 0 );
+         bug( "%s: Cannot load forceskill file: %s", __func__, filename );
       }
    }
    fclose( fpList );
@@ -493,11 +475,11 @@ void write_forceskill_list(  )
    FILE *fpout;
    char filename[256];
 
-   sprintf( filename, "%s%s", FORCE_DIR, "forceskills.lst" );
+   snprintf( filename, 256, "%s%s", FORCE_DIR, "forceskills.lst" );
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open forskills.lst for writing!\r\n", 0 );
+      bug( "FATAL: %s: cannot open forskills.lst for writing!\r\n", __func__ );
       return;
    }
    for( fskill = first_force_skill; fskill; fskill = fskill->next )
@@ -521,15 +503,15 @@ void save_forceskill( FORCE_SKILL * fskill )
 
    if( !fskill )
    {
-      bug( "save_forceskill: null forceskill pointer!", 0 );
+      bug( "%s: null forceskill pointer!", __func__ );
       return;
    }
 
-   sprintf( filename, "%s%s", FORCE_DIR, fskill->name );
+   snprintf( filename, 256, "%s%s", FORCE_DIR, fskill->name );
 
    if( ( fp = fopen( filename, "w" ) ) == NULL )
    {
-      bug( "save_forceskill: fopen", 0 );
+      bug( "%s: fopen", __func__ );
       perror( filename );
    }
    else

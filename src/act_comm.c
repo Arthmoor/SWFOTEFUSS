@@ -53,7 +53,7 @@ void generate_com_freq( CHAR_DATA * ch )
 {
    char buf[MAX_STRING_LENGTH];
 
-   sprintf( buf, "%d%d%d.%d%d%d",
+   snprintf( buf, MAX_STRING_LENGTH, "%d%d%d.%d%d%d",
             number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ),
             number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ) );
    if( ch->comfreq )
@@ -73,7 +73,6 @@ void sound_to_room( ROOM_INDEX_DATA * room, const char *argument )
    for( vic = room->first_person; vic; vic = vic->next_in_room )
       if( !IS_NPC( vic ) && IS_SET( vic->act, PLR_SOUND ) )
          send_to_char( argument, vic );
-
 }
 
 void do_beep( CHAR_DATA * ch, const char *argument )
@@ -270,7 +269,7 @@ const char *drunk_speech( const char *argument, CHAR_DATA * ch )
 
    if( IS_NPC( ch ) || !ch->pcdata )
    {
-      strcpy( buf, argument );
+      mudstrlcpy( buf, argument, MAX_INPUT_LENGTH * 2 );
       return buf;
    }
 
@@ -278,7 +277,7 @@ const char *drunk_speech( const char *argument, CHAR_DATA * ch )
 
    if( drunk <= 0 )
    {
-      strcpy( buf, argument );
+      mudstrlcpy( buf, argument, MAX_INPUT_LENGTH * 2 );
       return buf;
    }
 
@@ -287,7 +286,7 @@ const char *drunk_speech( const char *argument, CHAR_DATA * ch )
 
    if( !argument )
    {
-      bug( "Drunk_speech: NULL argument", 0 );
+      bug( "%s: NULL argument", __func__ );
       return "";
    }
 
@@ -477,7 +476,7 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
 
    if( argument[0] == '\0' )
    {
-      sprintf( buf, "%s what?\r\n", verb );
+      snprintf( buf, MAX_STRING_LENGTH, "%s what?\r\n", verb );
       buf[0] = UPPER( buf[0] );
       send_to_char( buf, ch );   /* where'd this line go? */
       return;
@@ -501,7 +500,7 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
    {
       default:
          ch_printf( ch, "&R(&Y%s&R) &WYou: %s\r\n", verb, argument );
-         sprintf( buf, "&R(&Y%s&R) &W$n: $t", verb );
+         snprintf( buf, MAX_STRING_LENGTH, "&R(&Y%s&R) &W$n: $t", verb );
          break;
       case CHANNEL_CHAT:
          /*
@@ -511,41 +510,40 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
          break;
       case CHANNEL_HOLONET:
          ch_printf( ch, "&R<&B|&YHolonet&B|&R> &WYou&Y: &W%s\r\n", argument );
-         sprintf( buf, "&R<&B|&YHolonet&B|&R> &W$n&Y: &W$t\r\n" );
+         mudstrlcpy( buf, "&R<&B|&YHolonet&B|&R> &W$n&Y: &W$t\r\n", MAX_STRING_LENGTH );
          break;
       case CHANNEL_CLANTALK:
          ch_printf( ch, "&G&z(&pClan Network&z) You send:&P %s\r\n", argument );
-         sprintf( buf, "&G&z(&pClan Network&z) $n&z sends:&P $t" );
+         mudstrlcpy( buf, "&G&z(&pClan Network&z) $n&z sends:&P $t", MAX_STRING_LENGTH );
          break;
       case CHANNEL_SHIP:
          ch_printf( ch, "You tell the ship, '%s'\r\n", argument );
-         sprintf( buf, "$n says over the ships com system, '$t'" );
+         mudstrlcpy( buf, "$n says over the ships com system, '$t'", MAX_STRING_LENGTH );
          break;
       case CHANNEL_SYSTEM:
          ch_printf( ch, "&b(&G&WSystem: %s&b)(&G&W%d&b) &G&w'&G&W%s&w'\r\n", ship->name, ship->channel, argument );
-         sprintf( buf, "&b(&G&WSystem: %s&b)(&G&W%d&b) &G&w'&G&W%s&w'\r\n", ship->name, ship->channel, argument );
-         sprintf( garb, "&b(&G&WSystem: %s&b)(&G&W%d&b) &G&w'&G&WA garbled message comes through&w'\r\n", ship->name,
-                  number_range( 1, 100 ) );
+         snprintf( buf, MAX_STRING_LENGTH, "&b(&G&WSystem: %s&b)(&G&W%d&b) &G&w'&G&W%s&w'\r\n", ship->name, ship->channel, argument );
+         snprintf( garb, MAX_STRING_LENGTH, "&b(&G&WSystem: %s&b)(&G&W%d&b) &G&w'&G&WA garbled message comes through&w'\r\n", ship->name, number_range( 1, 100 ) );
          break;
       case CHANNEL_YELL:
       case CHANNEL_SHOUT:
          ch_printf( ch, "You %s, '%s'\r\n", verb, argument );
-         sprintf( buf, "$n %ss, '$t'", verb );
+         snprintf( buf, MAX_STRING_LENGTH, "$n %ss, '$t'", verb );
          break;
       case CHANNEL_ASK:
          ch_printf( ch, "&G(&gAsk: &G&W%s&G) &W'%s'\r\n", ch->name, argument );
-         sprintf( buf, "&G(&gAsk: &G&W%s&G) &W'%s'\r\n", ch->name, argument );
+         snprintf( buf, MAX_STRING_LENGTH, "&G(&gAsk: &G&W%s&G) &W'%s'\r\n", ch->name, argument );
          break;
       case CHANNEL_NEWBIE:
          set_char_color( AT_OOC, ch );
          ch_printf( ch, "(NEWBIE) %s: %s\r\n", ch->name, argument );
-         sprintf( buf, "(NEWBIE) $n: $t" );
+         mudstrlcpy( buf, "(NEWBIE) $n: $t", MAX_STRING_LENGTH );
          break;
       case CHANNEL_OOC:
          if( ch->top_level < LEVEL_IMMORTAL )
-            sprintf( buf, "&Y(&OOOC&Y) &G&W%s: $t", ch->name );
+            snprintf( buf, MAX_STRING_LENGTH, "&Y(&OOOC&Y) &G&W%s: $t", ch->name );
          else
-            sprintf( buf, "&Y(&OIMM&Y)&Y(&OOOC&Y) &G&W$n: $t" );
+            mudstrlcpy( buf, "&Y(&OIMM&Y)&Y(&OOOC&Y) &G&W$n: $t", MAX_STRING_LENGTH );
          position = ch->position;
          ch->position = POS_STANDING;
          act( AT_OOC, buf, ch, argument, NULL, TO_CHAR );
@@ -554,7 +552,7 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
       case CHANNEL_WARTALK:
          set_char_color( AT_WARTALK, ch );
          ch_printf( ch, "You %s '%s'\r\n", verb, argument );
-         sprintf( buf, "$n %ss '$t'", verb );
+         snprintf( buf, MAX_STRING_LENGTH, "$n %ss '$t'", verb );
          break;
       case CHANNEL_AVTALK:
       case CHANNEL_IMMTALK:
@@ -562,15 +560,15 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
       case CHANNEL_104:
       case CHANNEL_105:
          if( channel == CHANNEL_AVTALK )
-            sprintf( buf, "$n: $t" );
+            mudstrlcpy( buf, "$n: $t", MAX_STRING_LENGTH );
          else if( channel == CHANNEL_IMMTALK )
-            sprintf( buf, "&R[&WIMM: $n&R] &W$t" );
+            mudstrlcpy( buf, "&R[&WIMM: $n&R] &W$t", MAX_STRING_LENGTH );
          else if( channel == CHANNEL_103 )
-            sprintf( buf, "(i103) $n> $t" );
+            mudstrlcpy( buf, "(i103) $n> $t", MAX_STRING_LENGTH );
          else if( channel == CHANNEL_104 )
-            sprintf( buf, "(i104) $n> $t" );
+            mudstrlcpy( buf, "(i104) $n> $t", MAX_STRING_LENGTH );
          else if( channel == CHANNEL_105 )
-            sprintf( buf, "&G&w&g[&w&WAdmin&g] &w&W$n&w&g: &w&W$t&w&g" );
+            mudstrlcpy( buf, "&G&w&g[&w&WAdmin&g] &w&W$n&w&g: &w&W$t&w&g", MAX_STRING_LENGTH );
          position = ch->position;
          ch->position = POS_STANDING;
          act( channel == CHANNEL_AVTALK ? AT_AVATAR : AT_IMMORT, buf, ch, argument, NULL, TO_CHAR );
@@ -580,7 +578,7 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
 
    if( IS_SET( ch->in_room->room_flags, ROOM_LOGSPEECH ) )
    {
-      sprintf( buf2, "%s: %s (%s)", IS_NPC( ch ) ? ch->short_descr : ch->name, argument, verb );
+      snprintf( buf2, MAX_STRING_LENGTH, "%s: %s (%s)", IS_NPC( ch ) ? ch->short_descr : ch->name, argument, verb );
       append_to_file( LOG_FILE, buf2 );
    }
 
@@ -804,7 +802,7 @@ void do_retune( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "%d%d%d.%d%d%d", number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ),
+   snprintf( buf, MAX_STRING_LENGTH, "%d%d%d.%d%d%d", number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ),
             number_range( 0, 9 ), number_range( 0, 9 ), number_range( 0, 9 ) );
    if( ch->comfreq )
       STRFREE( ch->comfreq );
@@ -822,7 +820,7 @@ void to_channel( const char *argument, int channel, const char *verb, short leve
    if( !first_descriptor || argument[0] == '\0' )
       return;
 
-   sprintf( buf, "%s: %s\r\n", verb, argument );
+   snprintf( buf, MAX_STRING_LENGTH, "%s: %s\r\n", verb, argument );
 
    for( d = first_descriptor; d; d = d->next )
    {
@@ -952,9 +950,9 @@ void do_gocial( CHAR_DATA * ch, const char *command, const char *argument )
          send_to_char( "You need a social that others can see!\r\n", ch );
          return;
       }
-      sprintf( buf, "&Y(&OOOC&Y)&W %s", social->others_no_arg );
+      snprintf( buf, MAX_INPUT_LENGTH, "&Y(&OOOC&Y)&W %s", social->others_no_arg );
       act( AT_SOCIAL, buf, ch, NULL, victim, TO_MUD );
-      sprintf( buf, "&Y(&OOOC&Y)&W %s", social->char_no_arg );
+      snprintf( buf, MAX_INPUT_LENGTH, "&Y(&OOOC&Y)&W %s", social->char_no_arg );
       act( AT_SOCIAL, buf, ch, NULL, victim, TO_CHAR );
       return;
    }
@@ -972,9 +970,9 @@ void do_gocial( CHAR_DATA * ch, const char *command, const char *argument )
          send_to_char( "You need a social that others can see!\r\n", ch );
          return;
       }
-      sprintf( buf, "&Y(&OOOC&Y)&W %s", social->others_auto );
+      snprintf( buf, MAX_INPUT_LENGTH, "&Y(&OOOC&Y)&W %s", social->others_auto );
       act( AT_SOCIAL, buf, ch, NULL, victim, TO_MUD );
-      sprintf( buf, "&Y(&OOOC&Y)&W %s", social->char_auto );
+      snprintf( buf, MAX_INPUT_LENGTH, "&Y(&OOOC&Y)&W %s", social->char_auto );
       act( AT_SOCIAL, buf, ch, NULL, victim, TO_CHAR );
       return;
    }
@@ -985,16 +983,15 @@ void do_gocial( CHAR_DATA * ch, const char *command, const char *argument )
          send_to_char( "You need a social that others can see!\r\n", ch );
          return;
       }
-      sprintf( buf, "&Y(&OOOC&Y)&W %s", social->others_found );
+      snprintf( buf, MAX_INPUT_LENGTH, "&Y(&OOOC&Y)&W %s", social->others_found );
       act( AT_SOCIAL, buf, ch, NULL, victim, TO_MUD );
-      sprintf( buf, "&Y(&OOOC&Y)&W %s", social->char_found );
+      snprintf( buf, MAX_INPUT_LENGTH, "&Y(&OOOC&Y)&W %s", social->char_found );
       act( AT_SOCIAL, buf, ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "&Y(&OOOC&Y)&W %s", social->vict_found );
+      snprintf( buf, MAX_INPUT_LENGTH, "&Y(&OOOC&Y)&W %s", social->vict_found );
       act( AT_SOCIAL, buf, ch, NULL, victim, TO_VICT );
       return;
    }
 }
-
 
 void do_ooc( CHAR_DATA * ch, const char *argument )
 {
@@ -1029,14 +1026,12 @@ void do_ooc( CHAR_DATA * ch, const char *argument )
             break;
       }
       argument += i;
-      sprintf( buf, "&Y(&OOOC&Y) &W%s %s\r\n", ch->name, argument );
+      snprintf( buf, MAX_INPUT_LENGTH, "&Y(&OOOC&Y) &W%s %s\r\n", ch->name, argument );
       for( d = first_descriptor; d; d = d->next )
       {
-
          if( d->connected == CON_PLAYING || d->connected == CON_EDITING )
             send_to_char( buf, d->character );
       }
-
    }
    else
    {
@@ -1297,7 +1292,7 @@ void do_say( CHAR_DATA * ch, const char *argument )
 
    if( IS_SET( ch->in_room->room_flags, ROOM_LOGSPEECH ) )
    {
-      sprintf( buf, "%s: %s", IS_NPC( ch ) ? ch->short_descr : ch->name, argument );
+      snprintf( buf, MAX_STRING_LENGTH, "%s: %s", IS_NPC( ch ) ? ch->short_descr : ch->name, argument );
       append_to_file( LOG_FILE, buf );
    }
    mprog_speech_trigger( argument, ch );
@@ -1472,7 +1467,7 @@ void do_oldtell( CHAR_DATA * ch, const char *argument )
          och = i->original ? i->original : i->character;
          if( och->pcdata->tell_snoop && !str_cmp( och->pcdata->tell_snoop, ch->name ) && !IS_IMMORTAL( och ) && !IS_IMMORTAL( victim ) && !IS_IMMORTAL( ch ) )
          {
-            sprintf( buf, "&B[&cINTERCEPTED MESSAGE&b]\r\n&B(&YSent: &G&W%s&B) (&Yto: &G&W%s&B) (&Ymessage&B) &G&W %s\r\n",
+            snprintf( buf, MAX_INPUT_LENGTH, "&B[&cINTERCEPTED MESSAGE&b]\r\n&B(&YSent: &G&W%s&B) (&Yto: &G&W%s&B) (&Ymessage&B) &G&W %s\r\n",
                      ch->name, victim->name, argument );
             send_to_char( buf, och );
          }
@@ -1486,7 +1481,7 @@ void do_oldtell( CHAR_DATA * ch, const char *argument )
          och = i->original ? i->original : i->character;
          if( och->pcdata->tell_snoop && !str_cmp( och->pcdata->tell_snoop, victim->name ) && !IS_IMMORTAL( och ) && !IS_IMMORTAL( victim ) && !IS_IMMORTAL( ch ) )
          {
-            sprintf( buf, "&B[&cINTERCEPTED MESSAGE&b]\r\n&B(&YSent: &G&W%s&B) (&Yto: &G&W%s&B) (&Ymessage&B)&G&W %s\r\n",
+            snprintf( buf, MAX_INPUT_LENGTH, "&B[&cINTERCEPTED MESSAGE&b]\r\n&B(&YSent: &G&W%s&B) (&Yto: &G&W%s&B) (&Ymessage&B)&G&W %s\r\n",
                      ch->name, victim->name, argument );
             send_to_char( buf, och );
          }
@@ -1504,7 +1499,7 @@ void do_oldtell( CHAR_DATA * ch, const char *argument )
    victim->reply = ch;
    if( IS_SET( ch->in_room->room_flags, ROOM_LOGSPEECH ) )
    {
-      sprintf( buf, "%s: %s (tell to) %s.",
+      snprintf( buf, MAX_INPUT_LENGTH, "%s: %s (tell to) %s.",
                IS_NPC( ch ) ? ch->short_descr : ch->name, argument, IS_NPC( victim ) ? victim->short_descr : victim->name );
       append_to_file( LOG_FILE, buf );
    }
@@ -1699,15 +1694,13 @@ void do_tell( CHAR_DATA * ch, const char *argument )
    victim->reply = ch;
    if( IS_SET( ch->in_room->room_flags, ROOM_LOGSPEECH ) )
    {
-      sprintf( buf, "%s: %s (tell to) %s.",
+      snprintf( buf, MAX_INPUT_LENGTH, "%s: %s (tell to) %s.",
                IS_NPC( ch ) ? ch->short_descr : ch->name, argument, IS_NPC( victim ) ? victim->short_descr : victim->name );
       append_to_file( LOG_FILE, buf );
    }
    mprog_speech_trigger( argument, ch );
    return;
 }
-
-
 
 void do_oldreply( CHAR_DATA * ch, const char *argument )
 {
@@ -1823,7 +1816,7 @@ void do_oldreply( CHAR_DATA * ch, const char *argument )
          och = i->original ? i->original : i->character;
          if( och->pcdata->tell_snoop && !str_cmp( och->pcdata->tell_snoop, ch->name ) && !IS_IMMORTAL( och ) && !IS_IMMORTAL( victim ) && !IS_IMMORTAL( ch ) )
          {
-            sprintf( buf, "&B[&cINTERCEPTED MESSAGE&b]\r\n&B(&YSent: &G&W%s&B) (&Yto: &G&W%s&B) (&Ymessage&B) &G&W %s\r\n",
+            snprintf( buf, MAX_STRING_LENGTH, "&B[&cINTERCEPTED MESSAGE&b]\r\n&B(&YSent: &G&W%s&B) (&Yto: &G&W%s&B) (&Ymessage&B) &G&W %s\r\n",
                      ch->name, victim->name, argument );
             send_to_char( buf, och );
          }
@@ -1837,13 +1830,12 @@ void do_oldreply( CHAR_DATA * ch, const char *argument )
          och = i->original ? i->original : i->character;
          if( och->pcdata->tell_snoop && !str_cmp( och->pcdata->tell_snoop, victim->name ) && !IS_IMMORTAL( och ) && !IS_IMMORTAL( victim ) && !IS_IMMORTAL( ch ) )
          {
-            sprintf( buf, "&B[&cINTERCEPTED MESSAGE&b]\r\n&B(&YSent: &G&W%s&B) (&Yto: &G&W%s&B) (&Ymessage&B)&G&W %s\r\n",
+            snprintf( buf, MAX_STRING_LENGTH, "&B[&cINTERCEPTED MESSAGE&b]\r\n&B(&YSent: &G&W%s&B) (&Yto: &G&W%s&B) (&Ymessage&B)&G&W %s\r\n",
                      ch->name, victim->name, argument );
             send_to_char( buf, och );
          }
       }
    }
-
 
    act( AT_TELL, "&W&G[&WTell&G] &G(&WTo: $N&G)&W '$t'", ch, argument, victim, TO_CHAR );
    position = victim->position;
@@ -1856,7 +1848,7 @@ void do_oldreply( CHAR_DATA * ch, const char *argument )
    victim->reply = ch;
    if( IS_SET( ch->in_room->room_flags, ROOM_LOGSPEECH ) )
    {
-      sprintf( buf, "%s: %s (reply to) %s.",
+      snprintf( buf, MAX_STRING_LENGTH, "%s: %s (reply to) %s.",
                IS_NPC( ch ) ? ch->short_descr : ch->name, argument, IS_NPC( victim ) ? victim->short_descr : victim->name );
       append_to_file( LOG_FILE, buf );
    }
@@ -1988,7 +1980,7 @@ void do_reply( CHAR_DATA * ch, const char *argument )
    victim->reply = ch;
    if( IS_SET( ch->in_room->room_flags, ROOM_LOGSPEECH ) )
    {
-      sprintf( buf, "%s: %s (reply to) %s.",
+      snprintf( buf, MAX_STRING_LENGTH, "%s: %s (reply to) %s.",
                IS_NPC( ch ) ? ch->short_descr : ch->name, argument, IS_NPC( victim ) ? victim->short_descr : victim->name );
       append_to_file( LOG_FILE, buf );
    }
@@ -2020,9 +2012,9 @@ void do_emote( CHAR_DATA * ch, const char *argument )
    for( plast = argument; *plast != '\0'; plast++ )
       ;
 
-   strcpy( buf, argument );
+   mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
    if( isalpha( plast[-1] ) )
-      strcat( buf, "." );
+      mudstrlcat( buf, ".", MAX_STRING_LENGTH );
 
    MOBtrigger = FALSE;
    act( AT_ACTION, "$n $T", ch, NULL, buf, TO_ROOM );
@@ -2031,7 +2023,7 @@ void do_emote( CHAR_DATA * ch, const char *argument )
    ch->act = actflags;
    if( IS_SET( ch->in_room->room_flags, ROOM_LOGSPEECH ) )
    {
-      sprintf( buf, "%s %s (emote)", IS_NPC( ch ) ? ch->short_descr : ch->name, argument );
+      snprintf( buf, MAX_STRING_LENGTH, "%s %s (emote)", IS_NPC( ch ) ? ch->short_descr : ch->name, argument );
       append_to_file( LOG_FILE, buf );
    }
    return;
@@ -2152,7 +2144,7 @@ void do_quit( CHAR_DATA * ch, const char *argument )
 
    if( ch->challenged )
    {
-      sprintf( qbuf, "%s has quit! Challenge is void!", ch->name );
+      snprintf( qbuf, MAX_INPUT_LENGTH, "%s has quit! Challenge is void!", ch->name );
       ch->challenged = NULL;
       sportschan( qbuf );
    }
@@ -2166,7 +2158,7 @@ void do_quit( CHAR_DATA * ch, const char *argument )
          fch->challenged = NULL;
    }
 
-   sprintf( log_buf, "%s has quit.", ch->name );
+   snprintf( log_buf, MAX_STRING_LENGTH, "%s has quit.", ch->name );
    quitting_char = ch;
    save_char_obj( ch );
    save_home( ch );
@@ -2352,8 +2344,9 @@ void do_sound( CHAR_DATA * ch, const char *argument )
 
 void do_save( CHAR_DATA * ch, const char *argument )
 {
-   char strsave[MAX_STRING_LENGTH];
-   char strback[MAX_STRING_LENGTH];
+   char strsave[256];
+   char strback[256];
+
    if( IS_NPC( ch ) && IS_SET( ch->act, ACT_POLYMORPHED ) )
    {
       send_to_char( "You can't save while polymorphed.\r\n", ch );
@@ -2370,12 +2363,11 @@ void do_save( CHAR_DATA * ch, const char *argument )
    if( !IS_SET( ch->susceptible, race_table[ch->race].suscept ) )
       SET_BIT( ch->susceptible, race_table[ch->race].suscept );
 
-//Save backups. Might cause troubles with file accessing.
-   sprintf( strsave, "%s%c/%s", PLAYER_DIR, tolower( ch->name[0] ), capitalize( ch->name ) );
+   // Save backups. Might cause troubles with file accessing.
+   snprintf( strsave, 256, "%s%c/%s", PLAYER_DIR, tolower( ch->name[0] ), capitalize( ch->name ) );
 
-   sprintf( strback, "%s%c/%s", BACKUP_DIR, tolower( ch->name[0] ), capitalize( ch->name ) );
+   snprintf( strback, 256, "%s%c/%s", BACKUP_DIR, tolower( ch->name[0] ), capitalize( ch->name ) );
    rename( strsave, strback );
-
 
    save_char_obj( ch );
    save_home( ch );
@@ -2385,7 +2377,6 @@ void do_save( CHAR_DATA * ch, const char *argument )
    send_to_char( "Ok.\r\n", ch );
    return;
 }
-
 
 /*
  * Something from original DikuMUD that Merc yanked out.
@@ -2402,7 +2393,6 @@ bool circle_follow( CHAR_DATA * ch, CHAR_DATA * victim )
          return TRUE;
    return FALSE;
 }
-
 
 void do_follow( CHAR_DATA * ch, const char *argument )
 {
@@ -2453,13 +2443,11 @@ void do_follow( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 void add_follower( CHAR_DATA * ch, CHAR_DATA * master )
 {
    if( ch->master )
    {
-      bug( "Add_follower: non-null master.", 0 );
+      bug( "%s: non-null master.", __func__ );
       return;
    }
 
@@ -2474,13 +2462,11 @@ void add_follower( CHAR_DATA * ch, CHAR_DATA * master )
    return;
 }
 
-
-
 void stop_follower( CHAR_DATA * ch )
 {
    if( !ch->master )
    {
-      bug( "Stop_follower: null master.", 0 );
+      bug( "%s: null master.", __func__ );
       return;
    }
 
@@ -2502,8 +2488,6 @@ void stop_follower( CHAR_DATA * ch )
    return;
 }
 
-
-
 void die_follower( CHAR_DATA * ch )
 {
    CHAR_DATA *fch;
@@ -2523,8 +2507,6 @@ void die_follower( CHAR_DATA * ch )
    return;
 }
 
-
-
 void do_order( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -2535,7 +2517,7 @@ void do_order( CHAR_DATA * ch, const char *argument )
    bool found;
    bool fAll;
 
-   strcpy( argbuf, argument );
+   mudstrlcpy( argbuf, argument, MAX_INPUT_LENGTH );
    argument = one_argument( argument, arg );
 
    if( arg[0] == '\0' || argument[0] == '\0' )
@@ -2592,8 +2574,7 @@ void do_order( CHAR_DATA * ch, const char *argument )
 
    if( found )
    {
-      sprintf( log_buf, "%s: order %s.", ch->name, argbuf );
-      log_string_plus( log_buf, LOG_NORMAL, ch->top_level );
+      log_printf_plus( LOG_NORMAL, ch->top_level, "%s: order %s.", ch->name, argbuf );
       send_to_char( "Ok.\r\n", ch );
       WAIT_STATE( ch, 12 );
    }
@@ -2601,17 +2582,6 @@ void do_order( CHAR_DATA * ch, const char *argument )
       send_to_char( "You have no followers here.\r\n", ch );
    return;
 }
-
-/*
-char *itoa(int foo)
-{
-  static char bar[256];
-
-  sprintf(bar,"%d",foo);
-  return(bar);
-
-}
-*/
 
 void do_group( CHAR_DATA * ch, const char *argument )
 {
@@ -2816,7 +2786,7 @@ void do_split( CHAR_DATA * ch, const char *argument )
    set_char_color( AT_GOLD, ch );
    ch_printf( ch, "You split %d credits.  Your share is %d credits.\r\n", amount, share + extra );
 
-   sprintf( buf, "$n splits %d credits.  Your share is %d credits.", amount, share );
+   snprintf( buf, MAX_STRING_LENGTH, "$n splits %d credits.  Your share is %d credits.", amount, share );
 
    for( gch = ch->in_room->first_person; gch; gch = gch->next_in_room )
    {
@@ -2828,8 +2798,6 @@ void do_split( CHAR_DATA * ch, const char *argument )
    }
    return;
 }
-
-
 
 void do_gtell( CHAR_DATA * ch, const char *argument )
 {
@@ -2850,7 +2818,6 @@ void do_gtell( CHAR_DATA * ch, const char *argument )
    /*
     * Note use of send_to_char, so gtell works on sleepers.
     */
-/*    sprintf( buf, "%s tells the group '%s'.\r\n", ch->name, argument );*/
    for( gch = first_char; gch; gch = gch->next )
    {
       if( is_same_group( gch, ch ) )
@@ -2897,7 +2864,7 @@ void talk_auction( char *argument )
    char buf[MAX_STRING_LENGTH];
    CHAR_DATA *original;
 
-   sprintf( buf, "&R&W[&wAuction&W] %s", argument );  /* last %s to reset color */
+   snprintf( buf, MAX_STRING_LENGTH, "&R&W[&wAuction&W] %s", argument );  /* last %s to reset color */
 
    for( d = first_descriptor; d; d = d->next )
    {
@@ -2978,7 +2945,7 @@ bool can_learn_lang( CHAR_DATA * ch, int language )
                return FALSE;
             if( ( sn = skill_lookup( lang_names[lang] ) ) < 0 )
             {
-               bug( "Can_learn_lang: valid language without sn: %d", lang );
+               bug( "%s: valid language without sn: %d", __func__, lang );
                continue;
             }
             if( ch->pcdata->learned[sn] >= 99 )

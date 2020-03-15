@@ -29,7 +29,6 @@ Michael Seifert, and Sebastian Hammer.
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
-/* #include <stdlib.h> */
 #include <time.h>
 #include "mud.h"
 
@@ -37,7 +36,6 @@ extern int top_area;
 extern int top_r_vnum;
 void write_area_list( void );
 void write_starsystem_list( void );
-
 
 PLANET_DATA *first_planet;
 PLANET_DATA *last_planet;
@@ -82,11 +80,11 @@ void write_planet_list(  )
    FILE *fpout;
    char filename[256];
 
-   sprintf( filename, "%s%s", PLANET_DIR, PLANET_LIST );
+   snprintf( filename, 256, "%s%s", PLANET_DIR, PLANET_LIST );
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open planet.lst for writing!\r\n", 0 );
+      bug( "FATAL: %s: cannot open planet.lst for writing!\r\n", __func__ );
       return;
    }
    for( tplanet = first_planet; tplanet; tplanet = tplanet->next )
@@ -99,26 +97,24 @@ void save_planet( PLANET_DATA * planet )
 {
    FILE *fp;
    char filename[256];
-   char buf[MAX_STRING_LENGTH];
 
    if( !planet )
    {
-      bug( "save_planet: null planet pointer!", 0 );
+      bug( "%s: null planet pointer!", __func__ );
       return;
    }
 
    if( !planet->filename || planet->filename[0] == '\0' )
    {
-      sprintf( buf, "save_planet: %s has no filename", planet->name );
-      bug( buf, 0 );
+      bug( "%s: %s has no filename", __func__, planet->name );
       return;
    }
 
-   sprintf( filename, "%s%s", PLANET_DIR, planet->filename );
+   snprintf( filename, 256, "%s%s", PLANET_DIR, planet->filename );
 
    if( ( fp = fopen( filename, "w" ) ) == NULL )
    {
-      bug( "save_planet: fopen", 0 );
+      bug( "%s: fopen", __func__ );
       perror( filename );
    }
    else
@@ -151,7 +147,6 @@ void save_planet( PLANET_DATA * planet )
 
 void fread_planet( PLANET_DATA * planet, FILE * fp )
 {
-   char buf[MAX_STRING_LENGTH];
    const char *word;
    bool fMatch;
 
@@ -251,8 +246,7 @@ void fread_planet( PLANET_DATA * planet, FILE * fp )
 
       if( !fMatch )
       {
-         sprintf( buf, "Fread_planet: no match: %s", word );
-         bug( buf, 0 );
+         bug( "%s: no match: %s", __func__, word );
       }
 
    }
@@ -276,11 +270,10 @@ bool load_planet_file( const char *planetfile )
    planet->last_guard = NULL;
 
    found = FALSE;
-   sprintf( filename, "%s%s", PLANET_DIR, planetfile );
+   snprintf( filename, 256, "%s%s", PLANET_DIR, planetfile );
 
    if( ( fp = fopen( filename, "r" ) ) != NULL )
    {
-
       found = TRUE;
       for( ;; )
       {
@@ -296,7 +289,7 @@ bool load_planet_file( const char *planetfile )
 
          if( letter != '#' )
          {
-            bug( "Load_planet_file: # not found.", 0 );
+            bug( "%s: # not found.", __func__ );
             break;
          }
 
@@ -310,10 +303,7 @@ bool load_planet_file( const char *planetfile )
             break;
          else
          {
-            char buf[MAX_STRING_LENGTH];
-
-            sprintf( buf, "Load_planet_file: bad section: %s.", word );
-            bug( buf, 0 );
+            bug( "%s: bad section: %s.", __func__, word );
             break;
          }
       }
@@ -333,14 +323,13 @@ void load_planets(  )
    FILE *fpList;
    const char *filename;
    char planetlist[256];
-   char buf[MAX_STRING_LENGTH];
 
    first_planet = NULL;
    last_planet = NULL;
 
    log_string( "Loading planets..." );
 
-   sprintf( planetlist, "%s%s", PLANET_DIR, PLANET_LIST );
+   snprintf( planetlist, 256, "%s%s", PLANET_DIR, PLANET_LIST );
    if( ( fpList = fopen( planetlist, "r" ) ) == NULL )
    {
       perror( planetlist );
@@ -356,8 +345,7 @@ void load_planets(  )
 
       if( !load_planet_file( filename ) )
       {
-         sprintf( buf, "Cannot load planet file: %s", filename );
-         bug( buf, 0 );
+         bug( "%s: Cannot load planet file: %s", __func__, filename );
       }
    }
    fclose( fpList );
@@ -612,7 +600,6 @@ void do_showplanet( CHAR_DATA * ch, const char *argument )
       pf = ( int )( tempf / planet->size * 100 );
    }
 
-
    ch_printf( ch, "&W%s\r\n", planet->name );
    if( IS_IMMORTAL( ch ) )
       ch_printf( ch, "&WFilename: &G%s\r\n", planet->filename );
@@ -627,14 +614,14 @@ void do_showplanet( CHAR_DATA * ch, const char *argument )
    ch_printf( ch, "&WPatrols: &G%d&W/%d\r\n", num_guards, planet->barracks * 5 );
    ch_printf( ch, "&WPopulation: &G%d&W\r\n", planet->population );
    ch_printf( ch, "&WPopular Support: &G%.2f\r\n", planet->pop_support );
-ch_printf( ch, "&WBase Value: &G%d\n\r", planet->base_value );
+   ch_printf( ch, "&WBase Value: &G%d\n\r", planet->base_value );
 
    ch_printf( ch, "&WCurrent Monthly Revenue: &G%ld\r\n", get_taxes( planet ) );
    area[0] = '\0';
    for( pArea = planet->first_area; pArea; pArea = pArea->next_on_planet )
    {
-      strcat( area, pArea->filename );
-      strcat( area, ", " );
+      mudstrlcat( area, pArea->filename, MAX_STRING_LENGTH );
+      mudstrlcat( area, ", ", MAX_STRING_LENGTH );
    }
    ch_printf( ch, "&WAreas: &G%s\r\n", area );
    if( IS_IMMORTAL( ch ) && !planet->area )
@@ -657,7 +644,7 @@ void do_makeplanet( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( filename, "%s%s", PLANET_DIR, strlower( argument ) );
+   snprintf( filename, 256, "%s%s", PLANET_DIR, strlower( argument ) );
 
    CREATE( planet, PLANET_DATA, 1 );
    LINK( planet, first_planet, last_planet, next, prev );
@@ -672,7 +659,6 @@ void do_makeplanet( CHAR_DATA * ch, const char *argument )
    planet->name = STRALLOC( argument );
    planet->flags = 0;
 }
-
 
 void do_planets( CHAR_DATA * ch, const char *argument )
 {
@@ -825,11 +811,10 @@ void do_capture( CHAR_DATA * ch, const char *argument )
    planet->governed_by = clan;
    planet->pop_support = 50;
 
-   sprintf( buf, "%s has been captured by %s!", planet->name, clan->name );
+   snprintf( buf, MAX_STRING_LENGTH, "%s has been captured by %s!", planet->name, clan->name );
    echo_to_all( AT_RED, buf, 0 );
 
    save_planet( planet );
-
 
    return;
 }
@@ -845,4 +830,3 @@ long get_taxes( PLANET_DATA * planet )
 
    return gain;
 }
-

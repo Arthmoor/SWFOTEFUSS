@@ -5,12 +5,18 @@
  *                /-----\  |      | \  |  v  | |     | |  /                 *
  *               /       \ |      |  \ |     | +-----+ +-/                  *
  ****************************************************************************
- * AFKMud Copyright 1997-2002 Alsherok. Contributors: Samson, Dwip, Whir,   *
- * Cyberfox, Karangi, Rathian, Cam, Raine, and Tarl.                        *
+ * AFKMud Copyright 1997-2019 by Roger Libiez (Samson),                     *
+ * Levi Beckerson (Whir), Michael Ward (Tarl), Erik Wolfe (Dwip),           *
+ * Cameron Carroll (Cam), Cyberfox, Karangi, Rathian, Raine,                *
+ * Xorith, and Adjani.                                                      *
+ * All Rights Reserved.                                                     *
  *                                                                          *
- * Original SMAUG 1.4a written by Thoric (Derek Snider) with Altrag,        *
+ *                                                                          *
+ * External contributions from Remcon, Quixadhal, Zarius, and many others.  *
+ *                                                                          *
+ * Original SMAUG 1.8b written by Thoric (Derek Snider) with Altrag,        *
  * Blodkai, Haus, Narn, Scryn, Swordbearer, Tricops, Gorog, Rennard,        *
- * Grishnakh, Fireblade, and Nivek.                                         *
+ * Grishnakh, Fireblade, Edmond, Conran, and Nivek.                         *
  *                                                                          *
  * Original MERC 2.1 code by Hatchet, Furey, and Kahn.                      *
  *                                                                          *
@@ -40,13 +46,13 @@ short num_pfiles; /* Count up number of pfiles */
 void save_timedata( void )
 {
    FILE *fp;
-   char filename[MIL];
+   char filename[256];
 
-   sprintf( filename, "%stime.dat", SYSTEM_DIR );
+   snprintf( filename, 256, "%stime.dat", SYSTEM_DIR );
 
    if( ( fp = fopen( filename, "w" ) ) == NULL )
    {
-      bug( "save_timedata: fopen" );
+      bug( "%s: fopen", __func__ );
       perror( filename );
    }
    else
@@ -90,7 +96,7 @@ void fread_timedata( FILE * fp )
 
       if( !fMatch )
       {
-         bug( "%s: no match: %s", __FUNCTION__, word );
+         bug( "%s: no match: %s", __func__, word );
          fread_to_eol( fp );
       }
    }
@@ -98,12 +104,12 @@ void fread_timedata( FILE * fp )
 
 bool load_timedata( void )
 {
-   char filename[MIL];
+   char filename[256];
    FILE *fp;
    bool found;
 
    found = FALSE;
-   sprintf( filename, "%stime.dat", SYSTEM_DIR );
+   snprintf( filename, 256, "%stime.dat", SYSTEM_DIR );
 
    if( ( fp = fopen( filename, "r" ) ) != NULL )
    {
@@ -123,7 +129,7 @@ bool load_timedata( void )
 
          if( letter != '#' )
          {
-            bug( "%s: # not found.", __FUNCTION__ );
+            bug( "%s: # not found.", __func__ );
             break;
          }
 
@@ -137,7 +143,7 @@ bool load_timedata( void )
             break;
          else
          {
-            bug( "%s: bad section - %s.", __FUNCTION__, word );
+            bug( "%s: bad section - %s.", __func__, word );
             break;
          }
       }
@@ -248,8 +254,7 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
          else
          {
             days = sysdata.newbie_purge;
-            sprintf( log_buf, "Player %s was deleted. Exceeded time limit of %d days.", name, days );
-            log_string( log_buf );
+            log_printf( "Player %s was deleted. Exceeded time limit of %d days.", name, days );
 #ifdef AUTO_AUTH
             remove_from_auth( name );
 #endif
@@ -269,8 +274,7 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
             else
             {
                days = sysdata.regular_purge;
-               sprintf( log_buf, "Player %s was deleted. Exceeded time limit of %d days.", name, days );
-               log_string( log_buf );
+               log_printf( "Player %s was deleted. Exceeded time limit of %d days.", name, days );
 #ifdef AUTO_AUTH
                remove_from_auth( name );
 #endif
@@ -299,13 +303,13 @@ void fread_pfile( FILE * fp, time_t tdiff, char *fname, bool count )
 void read_pfile( char *dirname, char *filename, bool count )
 {
    FILE *fp;
-   char fname[MSL];
+   char fname[256];
    struct stat fst;
    time_t tdiff;
 
    now_time = time( 0 );
 
-   sprintf( fname, "%s/%s", dirname, filename );
+   snprintf( fname, 256, "%s/%s", dirname, filename );
 
    if( stat( fname, &fst ) != -1 )
    {
@@ -362,7 +366,7 @@ void pfile_scan( bool count )
 
    for( alpha_loop = 0; alpha_loop <= 25; alpha_loop++ )
    {
-      sprintf( directory_name, "%s%c", PLAYER_DIR, 'a' + alpha_loop );
+      snprintf( directory_name, 100, "%s%c", PLAYER_DIR, 'a' + alpha_loop );
       /*
        * log_string( directory_name ); 
        */
@@ -394,17 +398,14 @@ void pfile_scan( bool count )
    else
       log_string( "Pfile count completed." );
 
-   sprintf( log_buf, "Total pfiles scanned: %d", cou );
-   log_string( log_buf );
+   log_printf( "Total pfiles scanned: %d", cou );
 
    if( !count )
    {
-      sprintf( log_buf, "Total pfiles deleted: %d", deleted );
-      log_string( log_buf );
+      log_printf( "Total pfiles deleted: %d", deleted );
+      log_printf( "Total pfiles remaining: %d", cou - deleted );
 
-      sprintf( log_buf, "Total pfiles remaining: %d", cou - deleted );
       num_pfiles = cou - deleted;
-      log_string( log_buf );
 
       for( clan = first_clan; clan; clan = clan->next )
          save_clan( clan );
@@ -430,7 +431,7 @@ void do_pfiles( CHAR_DATA * ch, const char *argument )
       /*
        * Makes a backup copy of existing pfiles just in case - Samson 
        */
-      sprintf( buf, "tar -cf %spfiles.tar %s*", PLAYER_DIR, PLAYER_DIR );
+      snprintf( buf, MSL, "tar -cf %spfiles.tar %s*", PLAYER_DIR, PLAYER_DIR );
 
       /*
        * GAH, the shell pipe won't process the command that gets pieced
@@ -438,8 +439,7 @@ void do_pfiles( CHAR_DATA * ch, const char *argument )
        */
       system( buf );
 
-      sprintf( log_buf, "Manual pfile cleanup started by %s.", ch->name );
-      log_string( log_buf );
+      log_printf( "Manual pfile cleanup started by %s.", ch->name );
       pfile_scan( FALSE );
 #ifdef SAMSONRENT
       rent_update(  );
@@ -457,8 +457,7 @@ void do_pfiles( CHAR_DATA * ch, const char *argument )
 
    if( !str_cmp( argument, "count" ) )
    {
-      sprintf( log_buf, "Pfile count started by %s.", ch->name );
-      log_string( log_buf );
+      log_printf( "Pfile count started by %s.", ch->name );
       pfile_scan( TRUE );
       return;
    }
@@ -484,13 +483,12 @@ void check_pfiles( time_t reset )
    {
       if( sysdata.CLEANPFILES == TRUE )
       {
-
          char buf[MSL];
 
          /*
           * Makes a backup copy of existing pfiles just in case - Samson 
           */
-         sprintf( buf, "tar -cf %spfiles.tar %s*", PLAYER_DIR, PLAYER_DIR );
+         snprintf( buf, MSL, "tar -cf %spfiles.tar %s*", PLAYER_DIR, PLAYER_DIR );
 
          /*
           * Would use the shell pipe for this, but alas, it requires a ch in order

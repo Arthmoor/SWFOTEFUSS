@@ -37,8 +37,6 @@ char *colorize( const char *txt, DESCRIPTOR_DATA * d );
 int colorcode( const char *src, char *dst, DESCRIPTOR_DATA * d, int dstlen, int *vislen );
 void send_to_desc_color( const char *txt, DESCRIPTOR_DATA * d );
 
-
-
 #define COLOR_DIR "../color/"
 DECLARE_DO_FUN( do_color );
 

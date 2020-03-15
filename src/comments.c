@@ -38,13 +38,13 @@ void comment_remove( CHAR_DATA * ch, CHAR_DATA * victim, NOTE_DATA * pnote )
 {
    if( !victim->comments )
    {
-      bug( "comment remove: null board", 0 );
+      bug( "%s: null board", __func__ );
       return;
    }
 
    if( !pnote )
    {
-      bug( "comment remove: null pnote", 0 );
+      bug( "%s: null pnote", __func__ );
       return;
    }
 
@@ -73,7 +73,6 @@ void comment_remove( CHAR_DATA * ch, CHAR_DATA * victim, NOTE_DATA * pnote )
 
 void do_comment( CHAR_DATA * ch, const char *argument )
 {
-   char buf[MAX_STRING_LENGTH];
    char arg[MAX_INPUT_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
    NOTE_DATA *pnote;
@@ -89,7 +88,7 @@ void do_comment( CHAR_DATA * ch, const char *argument )
 
    if( !ch->desc )
    {
-      bug( "do_comment: no descriptor", 0 );
+      bug( "%s: no descriptor", __func__ );
       return;
    }
 
@@ -110,13 +109,13 @@ void do_comment( CHAR_DATA * ch, const char *argument )
       case SUB_WRITING_NOTE:
          if( !ch->pnote )
          {
-            bug( "do_comment: note got lost?", 0 );
+            bug( "%s: note got lost?", __func__ );
             send_to_char( "Your note got lost!\r\n", ch );
             stop_editing( ch );
             return;
          }
          if( ch->dest_buf != ch->pnote )
-            bug( "do_comment: sub_writing_note: ch->dest_buf != ch->pnote", 0 );
+            bug( "%s: sub_writing_note: ch->dest_buf != ch->pnote", __func__ );
          STRFREE( ch->pnote->text );
          ch->pnote->text = copy_buffer( ch );
          stop_editing( ch );
@@ -175,9 +174,8 @@ void do_comment( CHAR_DATA * ch, const char *argument )
       for( pnote = victim->comments; pnote; pnote = pnote->next )
       {
          vnum++;
-         sprintf( buf, "%2d) %-10s [%s] %s\r\n", vnum, pnote->sender, pnote->date, pnote->subject );
-/* Brittany added date to comment list and whois with above change */
-         send_to_char( buf, ch );
+         ch_printf( ch, "%2d) %-10s [%s] %s\r\n", vnum, pnote->sender, pnote->date, pnote->subject );
+         /* Brittany added date to comment list and whois with above change */
       }
 
       /*
@@ -240,9 +238,8 @@ void do_comment( CHAR_DATA * ch, const char *argument )
          vnum++;
          if( vnum == anum || fAll )
          {
-            sprintf( buf, "[%3d] %s: %s\r\n%s\r\nTo: %s\r\n",
+            ch_printf( ch, "[%3d] %s: %s\r\n%s\r\nTo: %s\r\n",
                      vnum, pnote->sender, pnote->subject, pnote->date, pnote->to_list );
-            send_to_char( buf, ch );
             send_to_char( pnote->text, ch );
             /*
              * act( AT_ACTION, "$n reads a note.", ch, NULL, NULL, TO_ROOM ); 
@@ -307,8 +304,7 @@ void do_comment( CHAR_DATA * ch, const char *argument )
          return;
       }
 
-      sprintf( buf, "%s: %s\r\nTo: %s\r\n", ch->pnote->sender, ch->pnote->subject, ch->pnote->to_list );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s: %s\r\nTo: %s\r\n", ch->pnote->sender, ch->pnote->subject, ch->pnote->to_list );
       send_to_char( ch->pnote->text, ch );
       return;
    }
@@ -367,22 +363,6 @@ void do_comment( CHAR_DATA * ch, const char *argument )
       victim->comments = pnote;
 
       save_char_obj( victim );
-
-#ifdef NOTDEFD
-      fclose( fpReserve );
-      sprintf( notefile, "%s/%s", BOARD_DIR, board->note_file );
-      if( ( fp = fopen( notefile, "a" ) ) == NULL )
-      {
-         perror( notefile );
-      }
-      else
-      {
-         fprintf( fp, "Sender  %s~\nDate    %s~\nTo      %s~\nSubject %s~\nText\n%s~\n\n",
-                  pnote->sender, pnote->date, pnote->to_list, pnote->subject, pnote->text );
-         fclose( fp );
-      }
-      fpReserve = fopen( NULL_FILE, "r" );
-#endif
 
       send_to_char( "Ok.\r\n", ch );
       return;
@@ -512,14 +492,11 @@ void fread_comment( CHAR_DATA * ch, FILE * fp )
       return;
    }
 
-   bug( "fread_comment: bad key word. strap in!", 0 );
+   bug( "%s: bad key word. strap in!", __func__ );
    /*
     * exit( 1 ); 
     */
 }
-
-
-
 
 /*
 <758hp 100m 690mv> <#10316> loadup boo

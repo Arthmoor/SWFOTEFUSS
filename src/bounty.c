@@ -33,12 +33,10 @@ Michael Seifert, and Sebastian Hammer.
 #include <time.h>
 #include "mud.h"
 
-
 BOUNTY_DATA *first_bounty;
 BOUNTY_DATA *last_bounty;
 BOUNTY_DATA *first_disintegration;
 BOUNTY_DATA *last_disintegration;
-
 
 void disintegration( CHAR_DATA * ch, CHAR_DATA * victim, long amount );
 void nodisintegration( CHAR_DATA * ch, CHAR_DATA * victim, long amount );
@@ -50,11 +48,11 @@ void save_disintegrations(  )
    FILE *fpout;
    char filename[256];
 
-   sprintf( filename, "%s%s", SYSTEM_DIR, disintegration_LIST );
+   snprintf( filename, 256, "%s%s", SYSTEM_DIR, disintegration_LIST );
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open disintegration.lst for writing!\r\n", 0 );
+      bug( "FATAL: %s: cannot open disintegration.lst for writing!\r\n", __func__ );
       return;
    }
    for( tbounty = first_disintegration; tbounty; tbounty = tbounty->next )
@@ -64,9 +62,7 @@ void save_disintegrations(  )
    }
    fprintf( fpout, "$\n" );
    fclose( fpout );
-
 }
-
 
 bool is_disintegration( CHAR_DATA * victim )
 {
@@ -101,7 +97,7 @@ void load_bounties(  )
 
    log_string( "Loading disintegrations..." );
 
-   sprintf( bountylist, "%s%s", SYSTEM_DIR, disintegration_LIST );
+   snprintf( bountylist, 256, "%s%s", SYSTEM_DIR, disintegration_LIST );
    if( ( fpList = fopen( bountylist, "r" ) ) == NULL )
    {
       perror( bountylist );
@@ -146,6 +142,7 @@ void do_bounties( CHAR_DATA * ch, const char *argument )
       return;
    }
 }
+
 void do_rembounty( CHAR_DATA * ch, const char *argument )
 {
    BOUNTY_DATA *bounty;
@@ -160,7 +157,7 @@ void do_rembounty( CHAR_DATA * ch, const char *argument )
       send_to_char( "This bounty does not exist!\r\n", ch );
       return;
    }
-   sprintf( buf, "The bounty on %s has been removed!", argument );
+   snprintf( buf, MAX_INPUT_LENGTH, "The bounty on %s has been removed!", argument );
    echo_to_all( AT_RED, buf, ECHOTAR_ALL );
 }
 
@@ -193,7 +190,7 @@ void disintegration( CHAR_DATA * ch, CHAR_DATA * victim, long amount )
    bounty->amount = bounty->amount + amount;
    save_disintegrations(  );
 
-   sprintf( buf, "Someone has added %ld credits to the bounty on %s.", amount, victim->name );
+   snprintf( buf, MAX_STRING_LENGTH, "Someone has added %ld credits to the bounty on %s.", amount, victim->name );
    echo_to_all( AT_RED, buf, 0 );
 
 }
@@ -347,7 +344,7 @@ void claim_disintegration( CHAR_DATA * ch, CHAR_DATA * victim )
          SET_BIT( ch->act, PLR_KILLER );
          ch_printf( ch, "You are now wanted for the murder of %s.\r\n", victim->name );
       }
-      sprintf( buf, "%s is Dead!", victim->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s is Dead!", victim->name );
       echo_to_all( AT_RED, buf, 0 );
       return;
 
@@ -363,9 +360,9 @@ void claim_disintegration( CHAR_DATA * ch, CHAR_DATA * victim )
    set_char_color( AT_BLOOD, ch );
    ch_printf( ch, "You receive %ld experience and %ld credits, from the bounty on %s\r\n", bexp, bounty->amount, bounty->target );
 
-   sprintf( buf, "The disintegration bounty on %s has been claimed!", victim->name );
+   snprintf( buf, MAX_STRING_LENGTH, "The disintegration bounty on %s has been claimed!", victim->name );
    echo_to_all( AT_RED, buf, 0 );
-   sprintf( buf, "%s is Dead!", victim->name );
+   snprintf( buf, MAX_STRING_LENGTH, "%s is Dead!", victim->name );
    echo_to_all( AT_RED, buf, 0 );
 
    if( !IS_SET( victim->act, PLR_KILLER ) )

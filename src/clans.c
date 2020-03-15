@@ -103,11 +103,11 @@ void write_clan_list(  )
    FILE *fpout;
    char filename[256];
 
-   sprintf( filename, "%s%s", CLAN_DIR, CLAN_LIST );
+   snprintf( filename, 256, "%s%s", CLAN_DIR, CLAN_LIST );
    fpout = fopen( filename, "w" );
    if( !fpout )
    {
-      bug( "FATAL: cannot open clan.lst for writing!\r\n", 0 );
+      bug( "FATAL: %s: cannot open clan.lst for writing!\r\n", __func__ );
       return;
    }
    for( tclan = first_clan; tclan; tclan = tclan->next )
@@ -123,26 +123,24 @@ void save_clan( CLAN_DATA * clan )
 {
    FILE *fp;
    char filename[256];
-   char buf[MAX_STRING_LENGTH];
 
    if( !clan )
    {
-      bug( "save_clan: null clan pointer!", 0 );
+      bug( "%s: null clan pointer!", __func__ );
       return;
    }
 
    if( !clan->filename || clan->filename[0] == '\0' )
    {
-      sprintf( buf, "save_clan: %s has no filename", clan->name );
-      bug( buf, 0 );
+      bug( "%s: %s has no filename", __func__, clan->name );
       return;
    }
 
-   sprintf( filename, "%s%s", CLAN_DIR, clan->filename );
+   snprintf( filename, 256, "%s%s", CLAN_DIR, clan->filename );
 
    if( ( fp = fopen( filename, "w" ) ) == NULL )
    {
-      bug( "save_clan: fopen", 0 );
+      bug( "%s: fopen", __func__ );
       perror( filename );
    }
    else
@@ -189,7 +187,6 @@ void save_clan( CLAN_DATA * clan )
  */
 void fread_clan( CLAN_DATA * clan, FILE * fp )
 {
-   char buf[MAX_STRING_LENGTH];
    const char *word;
    bool fMatch;
 
@@ -292,10 +289,8 @@ void fread_clan( CLAN_DATA * clan, FILE * fp )
 
       if( !fMatch )
       {
-         sprintf( buf, "Fread_clan: no match: %s", word );
-         bug( buf, 0 );
+         bug( "%s: no match: %s", __func__, word );
       }
-
    }
 }
 
@@ -318,7 +313,7 @@ bool load_clan_file( const char *clanfile )
    clan->mainclan = NULL;
 
    found = FALSE;
-   sprintf( filename, "%s%s", CLAN_DIR, clanfile );
+   snprintf( filename, 256, "%s%s", CLAN_DIR, clanfile );
 
    if( ( fp = fopen( filename, "r" ) ) != NULL )
    {
@@ -337,7 +332,7 @@ bool load_clan_file( const char *clanfile )
 
          if( letter != '#' )
          {
-            bug( "Load_clan_file: # not found.", 0 );
+            bug( "%s: # not found.", __func__ );
             break;
          }
 
@@ -351,10 +346,7 @@ bool load_clan_file( const char *clanfile )
             break;
          else
          {
-            char buf[MAX_STRING_LENGTH];
-
-            sprintf( buf, "Load_clan_file: bad section: %s.", word );
-            bug( buf, 0 );
+            bug( "%s: bad section: %s.", __func__, word );
             break;
          }
       }
@@ -373,7 +365,7 @@ bool load_clan_file( const char *clanfile )
          return found;
       }
 
-      sprintf( filename, "%s%s.vault", CLAN_DIR, clan->filename );
+      snprintf( filename, 256, "%s%s.vault", CLAN_DIR, clan->filename );
       if( ( fp = fopen( filename, "r" ) ) != NULL )
       {
          int iNest;
@@ -398,8 +390,7 @@ bool load_clan_file( const char *clanfile )
 
             if( letter != '#' )
             {
-               bug( "Load_clan_vault: # not found.", 0 );
-               bug( clan->name, 0 );
+               bug( "%s: # not found. %s", __func__, clan->name );
                break;
             }
 
@@ -410,8 +401,7 @@ bool load_clan_file( const char *clanfile )
                break;
             else
             {
-               bug( "Load_clan_vault: bad section.", 0 );
-               bug( clan->name, 0 );
+               bug( "%s: bad section. %s", clan->name );
                break;
             }
          }
@@ -441,7 +431,6 @@ void load_clans(  )
    FILE *fpList;
    const char *filename;
    char clanlist[256];
-   char buf[MAX_STRING_LENGTH];
    CLAN_DATA *clan;
    CLAN_DATA *bosclan;
 
@@ -450,7 +439,7 @@ void load_clans(  )
 
    log_string( "Loading clans..." );
 
-   sprintf( clanlist, "%s%s", CLAN_DIR, CLAN_LIST );
+   snprintf( clanlist, 256, "%s%s", CLAN_DIR, CLAN_LIST );
    if( ( fpList = fopen( clanlist, "r" ) ) == NULL )
    {
       perror( clanlist );
@@ -466,8 +455,7 @@ void load_clans(  )
 
       if( !load_clan_file( filename ) )
       {
-         sprintf( buf, "Cannot load clan file: %s", filename );
-         bug( buf, 0 );
+         bug( "%s: Cannot load clan file: %s", __func__, filename );
       }
    }
    fclose( fpList );
@@ -1049,15 +1037,13 @@ void do_buytroops( CHAR_DATA * ch, const char *argument )
    CLAN_DATA *clan;
    int num, cost;
    char buf[MAX_STRING_LENGTH];
+
    if( argument[0] == '\0' )
       num = 1;
    else
       num = atoi( argument );
 
    cost = ( num * 5000 );
-
-
-
 
    clan = ch->pcdata->clan;
    if( clan == NULL )
@@ -1084,7 +1070,7 @@ void do_buytroops( CHAR_DATA * ch, const char *argument )
 
    clan->troops += num;
    clan->funds -= cost;
-   sprintf( buf, "&RYou have purchased %d ground troops for %s.\r\n", num, clan->name );
+   snprintf( buf, MAX_STRING_LENGTH, "&RYou have purchased %d ground troops for %s.\r\n", num, clan->name );
    send_to_char( buf, ch );
    save_clan( clan );
 }
@@ -1362,7 +1348,7 @@ void do_shove( CHAR_DATA * ch, const char *argument )
          act( AT_PLAIN, "You are shoved into $T.", victim, NULL, ship->name, TO_CHAR );
          char_from_room( victim );
          char_to_room( victim, to_room );
-         sprintf( buf, "%s is shoved into %s.", victim->name, ship->name );
+         snprintf( buf, MAX_INPUT_LENGTH, "%s is shoved into %s.", victim->name, ship->name );
          echo_to_room( AT_PLAIN, ch->in_room, buf );
          act( AT_PLAIN, "$n is shoved into the ship.", victim, NULL, argument, TO_ROOM );
          do_look( victim, "auto" );
@@ -1895,7 +1881,6 @@ void do_war( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-
    if( argument[0] == '\0' )
    {
       send_to_char( "Declare war on who?\r\n", ch );
@@ -1917,19 +1902,20 @@ void do_war( CHAR_DATA * ch, const char *argument )
    if( nifty_is_name( wclan->name, clan->atwar ) )
    {
       CLAN_DATA *tclan;
-      strcpy( buf, "" );
+
+      mudstrlcpy( buf, "", MAX_STRING_LENGTH );
       for( tclan = first_clan; tclan; tclan = tclan->next )
          if( nifty_is_name( tclan->name, clan->atwar ) && tclan != wclan )
          {
-            strcat( buf, "\r\n " );
-            strcat( buf, tclan->name );
-            strcat( buf, " " );
+            mudstrlcat( buf, "\r\n ", MAX_STRING_LENGTH );
+            mudstrlcat( buf, tclan->name, MAX_STRING_LENGTH );
+            mudstrlcat( buf, " ", MAX_STRING_LENGTH );
          }
 
       STRFREE( clan->atwar );
       clan->atwar = STRALLOC( buf );
 
-      sprintf( buf, "%s has declared a ceasefire with %s!", clan->name, wclan->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s has declared a ceasefire with %s!", clan->name, wclan->name );
       echo_to_all( AT_WHITE, buf, ECHOTAR_ALL );
 
       save_char_obj( ch ); /* clan gets saved when pfile is saved */
@@ -1949,19 +1935,18 @@ void do_war( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   strcpy( buf, clan->atwar );
-   strcat( buf, "\r\n " );
-   strcat( buf, wclan->name );
-   strcat( buf, " " );
+   mudstrlcpy( buf, clan->atwar, MAX_STRING_LENGTH );
+   mudstrlcat( buf, "\r\n ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, wclan->name, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " ", MAX_STRING_LENGTH );
 
    STRFREE( clan->atwar );
    clan->atwar = STRALLOC( buf );
 
-   sprintf( buf, "%s has declared war on %s!", clan->name, wclan->name );
+   snprintf( buf, MAX_STRING_LENGTH, "%s has declared war on %s!", clan->name, wclan->name );
    echo_to_all( AT_RED, buf, ECHOTAR_ALL );
 
    save_char_obj( ch ); /* clan gets saved when pfile is saved */
-
 }
 
 void do_checkwar( CHAR_DATA * ch, const char *argument )
@@ -1971,60 +1956,64 @@ void do_checkwar( CHAR_DATA * ch, const char *argument )
    int clancnt, i;
    char buf[MAX_STRING_LENGTH];
    char buf2[MAX_STRING_LENGTH];
-   char buf3[MAX_STRING_LENGTH];
-   sprintf( buf, "| %-3.3s |", "" );
-   sprintf( buf2, "+-----+" );
+   char buf3[MAX_STRING_LENGTH*2];
+   char buf4[MAX_STRING_LENGTH*2];
+
+   snprintf( buf, MAX_STRING_LENGTH, "| %-3.3s |", "" );
+   mudstrlcpy( buf2, "+-----+", MAX_STRING_LENGTH );
+
    clancnt = 0;
    for( clan = first_clan; clan; clan = clan->next )
    {
       if( !str_cmp( clan->name, "Neutral" ) )
          continue;
-      sprintf( buf, "%s %-3.3s |", buf, clan->acro ? clan->acro : "NNE" );
-      sprintf( buf2, "%s-----+", buf2 );
+      snprintf( buf3, MAX_STRING_LENGTH*2, "%s %-3.3s |", buf, clan->acro ? clan->acro : "NNE" );
+      snprintf( buf4, MAX_STRING_LENGTH*2, "%s-----+", buf2 );
    }
-   send_to_char( buf2, ch );
+   send_to_char( buf4, ch );
    send_to_char( "\r\n", ch );
-   send_to_char( buf, ch );
+   send_to_char( buf3, ch );
    send_to_char( "\r\n", ch );
-   send_to_char( buf2, ch );
+   send_to_char( buf4, ch );
    send_to_char( "\r\n", ch );
+
    for( clan = first_clan; clan; clan = clan->next )
    {
       if( !str_cmp( clan->name, "Neutral" ) )
          continue;
+
       buf[0] = '\0';
-      sprintf( buf, "| %-3.3s |", clan->acro ? clan->acro : "NNE" );
+      snprintf( buf, MAX_STRING_LENGTH, "| %-3.3s |", clan->acro ? clan->acro : "NNE" );
       for( clan2 = first_clan; clan2; clan2 = clan2->next )
       {
          if( !str_cmp( clan2->name, "Neutral" ) || !str_cmp( clan->name, "Neutral" ) )
             continue;
          if( nifty_is_name( clan2->name, clan->atwar ) )
-            sprintf( buf, "%s &R%-3.3s &w|", buf, "Yes" );
+            snprintf( buf3, MAX_STRING_LENGTH*2, "%s &R%-3.3s &w|", buf, "Yes" );
          else
-            sprintf( buf, "%s &G%-3.3s &w|", buf, "No" );
-
+            snprintf( buf4, MAX_STRING_LENGTH*2, "%s &G%-3.3s &w|", buf, "No" );
       }
       clancnt++;
-      send_to_char( buf, ch );
+      send_to_char( buf4, ch );
       send_to_char( "\r\n", ch );
-      send_to_char( buf2, ch );
+      send_to_char( buf3, ch );
       send_to_char( "\r\n", ch );
    }
+
    buf3[0] = '\0';
    for( i = 0; i <= ( ( clancnt * 6 ) - 24 ); i++ )
-      strcat( buf3, " " );
+      mudstrlcat( buf3, " ", MAX_STRING_LENGTH );
 
    for( clan = first_clan; clan; clan = clan->next )
    {
       if( !str_cmp( clan->name, "Neutral" ) )
          continue;
-      sprintf( buf, "| &G%-3.3s &w| &R%-20.20s%s &w|\r\n", clan->acro ? clan->acro : "NNE", clan->name, buf3 );
-      send_to_char( buf, ch );
-
+      ch_printf( ch, "| &G%-3.3s &w| &R%-20.20s%s &w|\r\n", clan->acro ? clan->acro : "NNE", clan->name, buf3 );
    }
    send_to_char( buf2, ch );
    send_to_char( "\r\n", ch );
 }
+
 void do_empower( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -2111,7 +2100,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    }
    else if( !str_cmp( arg2, "pilot" ) )
    {
-      sprintf( buf, "%s %s", victim->pcdata->bestowments, arg2 );
+      snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg2 );
       DISPOSE( victim->pcdata->bestowments );
       victim->pcdata->bestowments = str_dup( buf );
       ch_printf( victim, "%s has given you permission to fly clan ships.\r\n", ch->name );
@@ -2119,7 +2108,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    }
    else if( !str_cmp( arg2, "withdraw" ) )
    {
-      sprintf( buf, "%s %s", victim->pcdata->bestowments, arg2 );
+      snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg2 );
       DISPOSE( victim->pcdata->bestowments );
       victim->pcdata->bestowments = str_dup( buf );
       ch_printf( victim, "%s has given you permission to withdraw clan funds.\r\n", ch->name );
@@ -2127,7 +2116,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    }
    else if( !str_cmp( arg2, "clanbuyship" ) )
    {
-      sprintf( buf, "%s %s", victim->pcdata->bestowments, arg2 );
+      snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg2 );
       DISPOSE( victim->pcdata->bestowments );
       victim->pcdata->bestowments = str_dup( buf );
       ch_printf( victim, "%s has given you permission to buy clan ships.\r\n", ch->name );
@@ -2135,7 +2124,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    }
    else if( !str_cmp( arg2, "induct" ) )
    {
-      sprintf( buf, "%s %s", victim->pcdata->bestowments, arg2 );
+      snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg2 );
       DISPOSE( victim->pcdata->bestowments );
       victim->pcdata->bestowments = str_dup( buf );
       ch_printf( victim, "%s has given you permission to induct new members.\r\n", ch->name );
@@ -2143,7 +2132,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    }
    else if( !str_cmp( arg2, "outlaw" ) )
    {
-      sprintf( buf, "%s outlaw unoutlaw", victim->pcdata->bestowments );
+      snprintf( buf, MAX_STRING_LENGTH, "%s outlaw unoutlaw", victim->pcdata->bestowments );
       DISPOSE( victim->pcdata->bestowments );
       victim->pcdata->bestowments = str_dup( buf );
       ch_printf( victim, "%s has given you permission to outlaw and unoutlaw players.\r\n", ch->name );
@@ -2162,8 +2151,6 @@ void do_empower( CHAR_DATA * ch, const char *argument )
 
    save_char_obj( victim );   /* clan gets saved when pfile is saved */
    return;
-
-
 }
 
 void save_senate(  )
@@ -2173,11 +2160,11 @@ void save_senate(  )
     FILE *fpout;
     char filename[256];
     
-    sprintf( filename, "%s%s", SYSTEM_DIR, BOUNTY_LIST );
+    snprintf( filename, 256, "%s%s", SYSTEM_DIR, BOUNTY_LIST );
     fpout = fopen( filename, "w" );
     if ( !fpout )
     {
-         bug( "FATAL: cannot open bounty.lst for writing!\r\n", 0 );
+         bug( "FATAL: %s: cannot open bounty.lst for writing!\r\n", __func__ );
          return;
     }
     for ( tbounty = first_bounty; tbounty; tbounty = tbounty->next )
@@ -2209,7 +2196,7 @@ void load_senate(  )
 
     log_string( "Loading disintegrations..." );
 
-    sprintf( bountylist, "%s%s", SYSTEM_DIR, disintegration_LIST );
+    snprintf( bountylist, 256, "%s%s", SYSTEM_DIR, disintegration_LIST );
     if ( ( fpList = fopen( bountylist, "r" ) ) == NULL )
     {
 	perror( bountylist );
@@ -2695,10 +2682,8 @@ void do_members( CHAR_DATA * ch, const char *argument )
 {
    FILE *fpList;
    const char *buf;
-   char thebuf[MAX_STRING_LENGTH];
-   char list[MAX_STRING_LENGTH];
-   char color[MAX_STRING_LENGTH];
-   char display[MAX_STRING_LENGTH];
+   char list[256];
+   char color[MAX_INPUT_LENGTH];
    char prefix[MAX_STRING_LENGTH];
    int i = 0;
    CLAN_DATA *clan;
@@ -2720,22 +2705,17 @@ void do_members( CHAR_DATA * ch, const char *argument )
 
    clan = ch->pcdata->clan;
 
-   sprintf( list, "%s%s.list", CLAN_DIR, clan->shortname );
+   snprintf( list, 256, "%s%s.list", CLAN_DIR, clan->shortname );
 
    if( ( fpList = fopen( list, "r" ) ) == NULL )
    {
       send_to_char( "Something wen't wrong. The imms have been notified.\r\n", ch );
-      bug( "Do_members: Unable to open member list" );
+      bug( "%s: Unable to open member list", __func__ );
       return;
    }
 
-   sprintf( color, "%s",
-            !str_cmp( clan->name, "The Empire" ) ? "&R" : !str_cmp( clan->name, "The New Republic" ) ? "&B" : "&G" );
-
-
-   sprintf( thebuf, "%s---------------============<&W%s%s>============---------------\r\n", color,
-            centertext( clan->name, 24 ), color );
-   send_to_char( thebuf, ch );
+   snprintf( color, MAX_INPUT_LENGTH, "%s", !str_cmp( clan->name, "The Empire" ) ? "&R" : !str_cmp( clan->name, "The New Republic" ) ? "&B" : "&G" );
+   ch_printf( ch, "%s---------------============<&W%s%s>============---------------\r\n", color, centertext( clan->name, 24 ), color );
 
    for( ;; )
    {
@@ -2751,16 +2731,15 @@ void do_members( CHAR_DATA * ch, const char *argument )
          send_to_char( "&W          ", ch );
 
       if( !str_cmp( buf, clan->leader ) )
-         sprintf( prefix, "%s[&W1%s]&W", color, color );
+         snprintf( prefix, MAX_STRING_LENGTH, "%s[&W1%s]&W", color, color );
       else if( !str_cmp( buf, clan->number1 ) )
-         sprintf( prefix, "%s[&W2%s]&W", color, color );
+         snprintf( prefix, MAX_STRING_LENGTH, "%s[&W2%s]&W", color, color );
       else if( !str_cmp( buf, clan->number2 ) )
-         sprintf( prefix, "%s[&W3%s]&W", color, color );
+         snprintf( prefix, MAX_STRING_LENGTH, "%s[&W3%s]&W", color, color );
       else
-         sprintf( prefix, "   &W" );
+         mudstrlcpy( prefix, "   &W", MAX_STRING_LENGTH );
 
-      sprintf( display, "%s%-20s", prefix, buf );
-      send_to_char( display, ch );
+      ch_printf( ch, "%s%-20s", prefix, buf );
       ++i;
 
       if( i % 3 == 0 )
@@ -2774,24 +2753,23 @@ void do_members( CHAR_DATA * ch, const char *argument )
 void add_member( char *name, char *shortname )
 {
    char buf[MAX_STRING_LENGTH];
-   char fbuf[MAX_STRING_LENGTH];
+   char fbuf[256];
 
    if( name[0] == '\0' || !name )
    {
-      bug( "add_member: No name!\r\n" );
+      bug( "%s: No name!\r\n", __func__ );
       return;
    }
 
    if( shortname[0] == '\0' || !shortname )
    {
-      bug( "add_member: No shortname!\r\n" );
+      bug( "%s: No shortname!\r\n", __func__ );
       return;
    }
 
-   sprintf( fbuf, "%s%s.list", CLAN_DIR, shortname );
-   sprintf( buf, "%s~", name );
+   snprintf( fbuf, 256, "%s%s.list", CLAN_DIR, shortname );
+   snprintf( buf, MAX_STRING_LENGTH, "%s~", name );
    append_to_file( fbuf, buf );
-
 }
 
 void remove_member( char *name, char *shortname )
@@ -2799,33 +2777,33 @@ void remove_member( char *name, char *shortname )
    FILE *fpList;
    FILE *fpNew;
    const char *buf;
-   char list[MAX_STRING_LENGTH];
+   char list[256];
    char temp[MAX_STRING_LENGTH];
 
    if( name[0] == '\0' )
    {
-      bug( "remove_member: No name!\r\n" );
+      bug( "%s: No name!\r\n", __func__ );
       return;
    }
 
    if( shortname[0] == '\0' || !shortname )
    {
-      bug( "remove_member: No shortname!\r\n" );
+      bug( "%s: No shortname!\r\n", __func__ );
       return;
    }
 
-   sprintf( list, "%s%s.list", CLAN_DIR, shortname );
-   sprintf( temp, "%s.temp", list );
+   snprintf( list, 256, "%s%s.list", CLAN_DIR, shortname );
+   snprintf( temp, MAX_STRING_LENGTH, "%s.temp", list );
 
    if( ( fpList = fopen( list, "r" ) ) == NULL )
    {
-      bug( "Unable to open member list" );
+      bug( "%s: Unable to open member list", __func__ );
       return;
    }
 
    if( ( fpNew = fopen( temp, "w" ) ) == NULL )
    {
-      bug( "remove_member: Unable to write temp list" );
+      bug( "%s: Unable to write temp list", __func__ );
       return;
    }
 

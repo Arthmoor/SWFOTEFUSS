@@ -115,7 +115,7 @@ void interpret( CHAR_DATA * ch, const char *argument )
 
    if( !ch )
    {
-      bug( "interpret: null ch!", 0 );
+      bug( "%s: null ch!", __func__ );
       return;
    }
 
@@ -127,7 +127,7 @@ void interpret( CHAR_DATA * ch, const char *argument )
       if( ( fun = ch->last_cmd ) == NULL )
       {
          ch->substate = SUB_NONE;
-         bug( "interpret: SUB_REPEATCMD with NULL last_cmd", 0 );
+         bug( "%s: SUB_REPEATCMD with NULL last_cmd", __func__ );
          return;
       }
       else
@@ -152,10 +152,10 @@ void interpret( CHAR_DATA * ch, const char *argument )
          if( !found )
          {
             cmd = NULL;
-            bug( "interpret: SUB_REPEATCMD: last_cmd invalid", 0 );
+            bug( "%s: SUB_REPEATCMD: last_cmd invalid", __func__ );
             return;
          }
-         sprintf( logline, "(%s) %s", cmd->name, argument );
+         snprintf( logline, MAX_INPUT_LENGTH, "(%s) %s", cmd->name, argument );
       }
    }
 
@@ -166,7 +166,7 @@ void interpret( CHAR_DATA * ch, const char *argument )
        */
       if( !argument || !strcmp( argument, "" ) )
       {
-         bug( "interpret: null argument!", 0 );
+         bug( "%s: null argument!", __func__ );
          return;
       }
 
@@ -198,7 +198,7 @@ void interpret( CHAR_DATA * ch, const char *argument )
        * Special parsing so ' can be a command,
        *   also no spaces needed after punctuation.
        */
-      strcpy( logline, argument );
+      mudstrlcpy( logline, argument, MAX_INPUT_LENGTH );
       if( !isalpha( argument[0] ) && !isdigit( argument[0] ) )
       {
          command[0] = argument[0];
@@ -238,10 +238,10 @@ void interpret( CHAR_DATA * ch, const char *argument )
    /*
     * Log and snoop.
     */
-   sprintf( lastplayercmd, "** %s: %s", ch->name, logline );
+   snprintf( lastplayercmd, MAX_INPUT_LENGTH * 2, "** %s: %s", ch->name, logline );
 
    if( found && cmd->log == LOG_NEVER )
-      strcpy( logline, "XXXXXXXX XXXXXXXX XXXXXXXX" );
+      mudstrlcpy( logline, "XXXXXXXX XXXXXXXX XXXXXXXX", MAX_INPUT_LENGTH );
 
    loglvl = found ? cmd->log : LOG_NORMAL;
 
@@ -251,9 +251,9 @@ void interpret( CHAR_DATA * ch, const char *argument )
       short newloglvl = loglvl;
 
       if( ch->desc && ch->desc->original )
-         sprintf( log_buf, "Log %s (%s): %s", ch->name, ch->desc->original->name, logline );
+         snprintf( log_buf, MAX_STRING_LENGTH, "Log %s (%s): %s", ch->name, ch->desc->original->name, logline );
       else
-         sprintf( log_buf, "Log %s: %s", ch->name, logline );
+         snprintf( log_buf, MAX_STRING_LENGTH, "Log %s: %s", ch->name, logline );
 
       if( newloglvl == LOG_NORMAL )
          newloglvl = LOG_ALL;
@@ -268,9 +268,9 @@ void interpret( CHAR_DATA * ch, const char *argument )
        * a logged command.  Check for descriptor in case force is used. 
        */
       if( ch->desc && ch->desc->original )
-         sprintf( log_buf, "Log %s (%s): %s", ch->name, ch->desc->original->name, logline );
+         snprintf( log_buf, MAX_STRING_LENGTH, "Log %s (%s): %s", ch->name, ch->desc->original->name, logline );
       else
-         sprintf( log_buf, "Log %s: %s", ch->name, logline );
+         snprintf( log_buf, MAX_STRING_LENGTH, "Log %s: %s", ch->name, logline );
 
       if( cmd && IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) && IS_CMD_MPROG( cmd ) )
       {
@@ -290,14 +290,6 @@ void interpret( CHAR_DATA * ch, const char *argument )
       if( fLogAll && loglvl == LOG_NORMAL && ( IS_NPC( ch ) || !IS_SET( ch->act, PLR_LOG ) ) )
          loglvl = LOG_ALL;
 
-      /*
-       * This is handled in get_trust already 
-       */
-/*	if ( ch->desc && ch->desc->original )
-	  log_string_plus( log_buf, loglvl,
-		ch->desc->original->level );
-	else
-*/
       log_string_plus( log_buf, loglvl, get_trust( ch ) );
    }
 
@@ -311,16 +303,16 @@ void interpret( CHAR_DATA * ch, const char *argument )
        * a logged command.  Check for descriptor in case force is used. 
        */
       if( ch->desc && ch->desc->original )
-         sprintf( log_buf, "SecretLog %s (%s): %s", ch->name, ch->desc->original->name, logline );
+         snprintf( log_buf, MAX_STRING_LENGTH, "SecretLog %s (%s): %s", ch->name, ch->desc->original->name, logline );
       else
-         sprintf( log_buf, "SecretLog %s: %s", ch->name, logline );
+         snprintf( log_buf, MAX_STRING_LENGTH, "SecretLog %s: %s", ch->name, logline );
 
       append_to_file( SLOG_FILE, log_buf );
    }
 
    if( ch->desc && ch->desc->snoop_by )
    {
-      sprintf( logname, "%s", ch->name );
+      snprintf( logname, MAX_INPUT_LENGTH, "%s", ch->name );
       write_to_buffer( ch->desc->snoop_by, logname, 0 );
       write_to_buffer( ch->desc->snoop_by, "% ", 2 );
       write_to_buffer( ch->desc->snoop_by, logline, 0 );
@@ -433,10 +425,9 @@ void interpret( CHAR_DATA * ch, const char *argument )
     */
    if( tmptime > 1500000 )
    {
-      sprintf( log_buf, "[*****] LAG: %s: %s %s (R:%d S:%d.%06d)", ch->name,
+      log_printf_plus( LOG_NORMAL, get_trust( ch ), "[*****] LAG: %s: %s %s (R:%d S:%d.%06d)", ch->name,
                cmd->name, ( cmd->log == LOG_NEVER ? "XXX" : argument ),
                ch->in_room ? ch->in_room->vnum : 0, ( int )( time_used.tv_sec ), ( int )( time_used.tv_usec ) );
-      log_string_plus( log_buf, LOG_NORMAL, get_trust( ch ) );
    }
 
    tail_chain(  );
@@ -620,8 +611,6 @@ bool is_number( const char *arg )
    return TRUE;
 }
 
-
-
 /*
  * Given a string like 14.foo, return 14 and 'foo'
  */
@@ -642,12 +631,12 @@ int number_argument( const char *argument, char *arg )
 
          free( numPortion );
 
-         strcpy( arg, pdot + 1 );
+         mudstrlcpy( arg, pdot + 1, MAX_INPUT_LENGTH );
          return number;
       }
    }
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
    return 1;
 }
 
@@ -783,7 +772,7 @@ void start_timer( struct timeval *sttime )
 {
    if( !sttime )
    {
-      bug( "Start_timer: NULL sttime.", 0 );
+      bug( "%s: NULL sttime.", __func__ );
       return;
    }
    gettimeofday( sttime, NULL );
@@ -800,7 +789,7 @@ time_t end_timer( struct timeval * sttime )
    gettimeofday( &etime, NULL );
    if( !sttime || ( !sttime->tv_sec && !sttime->tv_usec ) )
    {
-      bug( "End_timer: bad sttime.", 0 );
+      bug( "%s: bad sttime.", __func__ );
       return 0;
    }
    subtract_times( &etime, sttime );

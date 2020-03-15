@@ -84,7 +84,7 @@ void load_specfuns( void )
    snprintf( filename, 256, "%sspecfuns.dat", SYSTEM_DIR );
    if( !( fp = fopen( filename, "r" ) ) )
    {
-      bug( "%s", "load_specfuns: FATAL - cannot load specfuns.dat, exiting." );
+      bug( "%s: FATAL - cannot load specfuns.dat, exiting.", __func__ );
       perror( filename );
       exit( 1 );
    }
@@ -94,7 +94,7 @@ void load_specfuns( void )
       {
          if( feof( fp ) )
 	 {
-	    bug( "%s", "load_specfuns: Premature end of file!" );
+	    bug( "%s: Premature end of file!", __func__ );
 	    fclose( fp );
             fp = NULL;
 	    return;
@@ -137,7 +137,7 @@ SPEC_FUN *spec_lookup( const char *name )
    funHandle = dlsym( sysdata.dlHandle, name );
    if( ( error = dlerror() ) != NULL )
    {
-      bug( "Error locating function %s in symbol table.", name );
+      bug( "%s: Error locating function %s in symbol table.", __func__, name );
       return NULL;
    }
    return (SPEC_FUN*)funHandle;
@@ -201,7 +201,6 @@ bool spec_make_apprentice_sith( CHAR_DATA * ch )
    return FALSE;
 }
 
-
 bool spec_newbie_pilot( CHAR_DATA * ch )
 {
    int home = 32149;
@@ -229,12 +228,12 @@ bool spec_newbie_pilot( CHAR_DATA * ch )
       {
          case RACE_HUMAN:
             home = 201;
-            strcpy( buf, "After a brief journey you arrive at Coruscants Menari Spaceport.\r\n\r\n" );
+            mudstrlcpy( buf, "After a brief journey you arrive at Coruscant's Menari Spaceport.\r\n\r\n", MAX_STRING_LENGTH );
             echo_to_room( AT_ACTION, ch->in_room, buf );
             break;
 
          default:
-            sprintf( buf, "Hmm, a %s.", race_table[victim->race].race_name );
+            snprintf( buf, MAX_STRING_LENGTH, "Hmm, a %s.", race_table[victim->race].race_name );
             do_look( ch, victim->name );
             do_say( ch, buf );
             do_say( ch, "You're home planet is a little hard to get to right now." );
@@ -249,7 +248,7 @@ bool spec_newbie_pilot( CHAR_DATA * ch )
 
       do_look( victim, "" );
 
-      sprintf( buf, "%s steps out and the shuttle quickly returns to the academy.\r\n", victim->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s steps out and the shuttle quickly returns to the academy.\r\n", victim->name );
       echo_to_room( AT_ACTION, ch->in_room, buf );
    }
 
@@ -301,27 +300,20 @@ bool spec_ground_troop( CHAR_DATA * ch )
    for( victim = ch->in_room->first_person; victim; victim = v_next )
    {
       v_next = victim->next_in_room;
-      /*
-       * if ( !can_see( ch, victim ) )
-       * continue;
-       */
-      /*
-       * if ( get_timer(victim, TIMER_RECENTFIGHT) > 0 )
-       * continue;
-       */
+
       if( !IS_NPC( victim ) && IS_SET( victim->pcdata->act2, ACT_BOUND ) )
          continue;
       if( !IS_NPC( victim ) && victim->pcdata->clan && victim->pcdata->clan != NULL
           && str_cmp( ch->mob_clan, victim->pcdata->clan->name ) )
       {
-         sprintf( buf, "You are not loyal to %s", ch->mob_clan );
+         snprintf( buf, MAX_STRING_LENGTH, "You are not loyal to %s", ch->mob_clan );
          do_yell( ch, buf );
          multi_hit( ch, victim, TYPE_UNDEFINED );
          return TRUE;
       }
       if( IS_NPC( victim ) && IS_AWAKE( victim ) && str_cmp( ch->mob_clan, victim->mob_clan ) )
       {
-         sprintf( buf, "You are not loyal to %s", ch->mob_clan );
+         snprintf( buf, MAX_STRING_LENGTH, "You are not loyal to %s", ch->mob_clan );
          do_yell( ch, buf );
          multi_hit( ch, victim, TYPE_UNDEFINED );
          return TRUE;
@@ -330,8 +322,6 @@ bool spec_ground_troop( CHAR_DATA * ch )
 
    return FALSE;
 }
-
-
 
 bool spec_customs_smut( CHAR_DATA * ch )
 {
@@ -357,7 +347,7 @@ bool spec_customs_smut( CHAR_DATA * ch )
          {
             if( victim != ch && can_see( ch, victim ) && can_see_obj( ch, obj ) )
             {
-               sprintf( buf, "%s is illegal contraband. I'm going to have to confiscate that.", obj->short_descr );
+               snprintf( buf, MAX_STRING_LENGTH, "%s is illegal contraband. I'm going to have to confiscate that.", obj->short_descr );
                do_say( ch, buf );
                if( obj->wear_loc != WEAR_NONE )
                   remove_obj( victim, obj->wear_loc, TRUE );
@@ -460,7 +450,7 @@ bool spec_customs_weapons( CHAR_DATA * ch )
          {
             if( victim != ch && can_see( ch, victim ) && can_see_obj( ch, obj ) )
             {
-               sprintf( buf, "Weapons are banned from non-military usage. I'm going to have to confiscate %s.",
+               snprintf( buf, MAX_STRING_LENGTH, "Weapons are banned from non-military usage. I'm going to have to confiscate %s.",
                         obj->short_descr );
                do_say( ch, buf );
                if( obj->wear_loc != WEAR_NONE )
@@ -563,7 +553,7 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
             {
                if( victim != ch && can_see( ch, victim ) && can_see_obj( ch, obj ) )
                {
-                  sprintf( buf, "%s is illegal contraband. I'm going to have to confiscate that.", obj->short_descr );
+                  snprintf( buf, MAX_STRING_LENGTH, "%s is illegal contraband. I'm going to have to confiscate that.", obj->short_descr );
                   do_say( ch, buf );
                   if( obj->wear_loc != WEAR_NONE )
                      remove_obj( victim, obj->wear_loc, TRUE );
@@ -664,7 +654,7 @@ bool spec_customs_spice( CHAR_DATA * ch )
          {
             if( victim != ch && can_see( ch, victim ) && can_see_obj( ch, obj ) )
             {
-               sprintf( buf, "%s is illegal contraband. I'm going to have to confiscate that.", obj->short_descr );
+               snprintf( buf, MAX_STRING_LENGTH, "%s is illegal contraband. I'm going to have to confiscate that.", obj->short_descr );
                do_say( ch, buf );
                if( obj->wear_loc != WEAR_NONE )
                   remove_obj( victim, obj->wear_loc, TRUE );
@@ -758,15 +748,14 @@ bool spec_police( CHAR_DATA * ch )
       for( vip = 0; vip < 32; vip++ )
          if( IS_SET( ch->vip_flags, 1 << vip ) && IS_SET( victim->pcdata->wanted_flags, 1 << vip ) && victim->hit >= 50 )
          {
-            sprintf( buf, "Hey you're wanted on %s!", planet_flags[vip] );
+            snprintf( buf, MAX_STRING_LENGTH, "Hey you're wanted on %s!", planet_flags[vip] );
             do_say( ch, buf );
-//No longer used because of Outlaw System
-//            REMOVE_BIT( victim->pcdata->wanted_flags , 1 << vip );                       
+                     
             if( ch->top_level >= victim->top_level )
                multi_hit( ch, victim, TYPE_UNDEFINED );
             else
             {
-//changed amount because of outlaw... kinda bogus.
+               //changed amount because of outlaw... kinda bogus.
                if( number_percent(  ) >= 50 )
                {
                   act( AT_ACTION, "$n fines $N an enormous amount of money.", ch, NULL, victim, TO_NOTVICT );
@@ -808,9 +797,9 @@ bool spec_police_attack( CHAR_DATA * ch )
       for( vip = 0; vip < 32; vip++ )
          if( IS_SET( ch->vip_flags, 1 << vip ) && IS_SET( victim->pcdata->wanted_flags, 1 << vip ) && victim->hit >= 50 )
          {
-            sprintf( buf, "Hey you're wanted on %s!", planet_flags[vip] );
+            snprintf( buf, MAX_STRING_LENGTH, "Hey you're wanted on %s!", planet_flags[vip] );
             do_say( ch, buf );
-//              REMOVE_BIT( victim->pcdata->wanted_flags , 1 << vip );                     
+
             multi_hit( ch, victim, TYPE_UNDEFINED );
             return TRUE;
          }
@@ -840,7 +829,7 @@ bool spec_police_fine( CHAR_DATA * ch )
       for( vip = 0; vip <= 31; vip++ )
          if( IS_SET( ch->vip_flags, 1 << vip ) && IS_SET( victim->pcdata->wanted_flags, 1 << vip ) )
          {
-            sprintf( buf, "Hey you're wanted on %s!", planet_flags[vip] );
+            snprintf( buf, MAX_STRING_LENGTH, "Hey you're wanted on %s!", planet_flags[vip] );
             do_say( ch, buf );
             if( number_percent(  ) >= 50 )
             {
@@ -863,7 +852,6 @@ bool spec_police_fine( CHAR_DATA * ch )
 
 bool spec_police_jail( CHAR_DATA * ch )
 {
-
    ROOM_INDEX_DATA *jail = NULL;
    CHAR_DATA *victim;
    CHAR_DATA *v_next;
@@ -885,14 +873,13 @@ bool spec_police_jail( CHAR_DATA * ch )
       for( vip = 0; vip <= 31; vip++ )
          if( IS_SET( ch->vip_flags, 1 << vip ) && IS_SET( victim->pcdata->wanted_flags, 1 << vip ) )
          {
-            sprintf( buf, "Hey you're wanted on %s!", planet_flags[vip] );
+            snprintf( buf, MAX_STRING_LENGTH, "Hey you're wanted on %s!", planet_flags[vip] );
             do_say( ch, buf );
 
 /* currently no jails */
 
             if( jail )
             {
-//              REMOVE_BIT( victim->pcdata->wanted_flags , 1 << vip );                       
                act( AT_ACTION, "$n ushers $N off to jail.", ch, NULL, victim, TO_NOTVICT );
                act( AT_ACTION, "$n escorts you to jail.", ch, NULL, victim, TO_VICT );
                char_from_room( victim );
@@ -1140,7 +1127,6 @@ bool spec_new_republic_trooper( CHAR_DATA * ch )
 
 }
 
-
 bool spec_guardian( CHAR_DATA * ch )
 {
    char buf[MAX_STRING_LENGTH];
@@ -1169,14 +1155,14 @@ bool spec_guardian( CHAR_DATA * ch )
 
    if( victim && IS_SET( ch->in_room->room_flags, ROOM_SAFE ) )
    {
-      sprintf( buf, "%s is a %s!  As well as a COWARD!", victim->name, crime );
+      snprintf( buf, MAX_STRING_LENGTH, "%s is a %s!  As well as a COWARD!", victim->name, crime );
       do_yell( ch, buf );
       return TRUE;
    }
 
    if( victim )
    {
-      sprintf( buf, "%s is a %s!  PROTECT THE INNOCENT!!", victim->name, crime );
+      snprintf( buf, MAX_STRING_LENGTH, "%s is a %s!  PROTECT THE INNOCENT!!", victim->name, crime );
       do_shout( ch, buf );
       multi_hit( ch, victim, TYPE_UNDEFINED );
       return TRUE;
@@ -1313,13 +1299,10 @@ bool spec_auth( CHAR_DATA * ch )
       if( victim->pcdata->authed_by )
          STRFREE( victim->pcdata->authed_by );
       victim->pcdata->authed_by = QUICKLINK( ch->name );
-      sprintf( buf, "%s authorized %s", ch->name, victim->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s authorized %s", ch->name, victim->name );
       to_channel( buf, CHANNEL_MONITOR, "Monitor", ch->top_level );
-
-
    }
    return FALSE;
-
 }
 
 bool spec_giveslug( CHAR_DATA * ch )
@@ -1337,11 +1320,8 @@ bool spec_giveslug( CHAR_DATA * ch )
 
       SET_BIT( victim->pcdata->flags, PCFLAG_HASSLUG );
       do_giveslug( ch, victim->name );
-      sprintf( buf, "%s gave a slug to %s", ch->name, victim->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s gave a slug to %s", ch->name, victim->name );
       to_channel( buf, CHANNEL_MONITOR, "Monitor", ch->top_level );
-
    }
-
    return FALSE;
-
 }

@@ -67,7 +67,7 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
 {
    RESET_DATA *tReset, *gReset;
    static char buf[MAX_STRING_LENGTH];
-   char mobname[MAX_STRING_LENGTH], roomname[MAX_STRING_LENGTH], objname[MAX_STRING_LENGTH];
+   char mobname[MAX_INPUT_LENGTH], roomname[MAX_INPUT_LENGTH], objname[MAX_INPUT_LENGTH];
    static ROOM_INDEX_DATA *room;
    static OBJ_INDEX_DATA *obj, *obj2;
    static MOB_INDEX_DATA *mob;
@@ -83,13 +83,13 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
          mob = get_mob_index( pReset->arg1 );
          room = get_room_index( pReset->arg3 );
          if( mob )
-            strncpy( mobname, mob->player_name, MAX_STRING_LENGTH );
+            mudstrlcpy( mobname, mob->player_name, MAX_INPUT_LENGTH );
          else
-            strncpy( mobname, "Mobile: *BAD VNUM*", MAX_STRING_LENGTH );
+            mudstrlcpy( mobname, "Mobile: *BAD VNUM*", MAX_INPUT_LENGTH );
          if( room )
-            strncpy( roomname, room->name, MAX_STRING_LENGTH );
+            mudstrlcpy( roomname, room->name, MAX_INPUT_LENGTH );
          else
-            strncpy( roomname, "Room: *BAD VNUM*", MAX_STRING_LENGTH );
+            mudstrlcpy( roomname, "Room: *BAD VNUM*", MAX_INPUT_LENGTH );
          snprintf( buf, MAX_STRING_LENGTH, "%2d) %s (%d) -> %s Room: %d [%d]\r\n", *num, mobname, pReset->arg1,
                    roomname, pReset->arg3, pReset->arg2 );
 
@@ -100,11 +100,11 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
             {
                case 'E':
                   if( !mob )
-                     strncpy( mobname, "* ERROR: NO MOBILE! *", MAX_STRING_LENGTH );
+                     mudstrlcpy( mobname, "* ERROR: NO MOBILE! *", MAX_INPUT_LENGTH );
                   if( !( obj = get_obj_index( tReset->arg1 ) ) )
-                     strncpy( objname, "Object: *BAD VNUM*", MAX_STRING_LENGTH );
+                     mudstrlcpy( objname, "Object: *BAD VNUM*", MAX_INPUT_LENGTH );
                   else
-                     strncpy( objname, obj->name, MAX_STRING_LENGTH );
+                     mudstrlcpy( objname, obj->name, MAX_INPUT_LENGTH );
                   snprintf( buf + strlen( buf ), MAX_STRING_LENGTH - strlen( buf ),
                             "%2d) (equip) %s (%d) -> %s (%s) [%d]\r\n", *num, objname, tReset->arg1, mobname,
                             wear_locs[tReset->arg3], tReset->arg2 );
@@ -112,11 +112,11 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
 
                case 'G':
                   if( !mob )
-                     strncpy( mobname, "* ERROR: NO MOBILE! *", MAX_STRING_LENGTH );
+                     mudstrlcpy( mobname, "* ERROR: NO MOBILE! *", MAX_INPUT_LENGTH );
                   if( !( obj = get_obj_index( tReset->arg1 ) ) )
-                     strncpy( objname, "Object: *BAD VNUM*", MAX_STRING_LENGTH );
+                     mudstrlcpy( objname, "Object: *BAD VNUM*", MAX_INPUT_LENGTH );
                   else
-                     strncpy( objname, obj->name, MAX_STRING_LENGTH );
+                     mudstrlcpy( objname, obj->name, MAX_INPUT_LENGTH );
                   snprintf( buf + strlen( buf ), MAX_STRING_LENGTH - strlen( buf ), "%2d) (carry) %s (%d) -> %s [%d]\r\n",
                             *num, objname, tReset->arg1, mobname, tReset->arg2 );
                   break;
@@ -130,15 +130,15 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
                   {
                      case 'P':
                         if( !( obj2 = get_obj_index( gReset->arg1 ) ) )
-                           strncpy( objname, "Object1: *BAD VNUM*", MAX_STRING_LENGTH );
+                           mudstrlcpy( objname, "Object1: *BAD VNUM*", MAX_INPUT_LENGTH );
                         else
-                           strncpy( objname, obj2->name, MAX_STRING_LENGTH );
+                           mudstrlcpy( objname, obj2->name, MAX_INPUT_LENGTH );
                         if( gReset->arg3 > 0 && ( obj = get_obj_index( gReset->arg3 ) ) == NULL )
-                           strncpy( roomname, "Object2: *BAD VNUM*", MAX_STRING_LENGTH );
+                           mudstrlcpy( roomname, "Object2: *BAD VNUM*", MAX_INPUT_LENGTH );
                         else if( !obj )
-                           strncpy( roomname, "Object2: *NULL obj*", MAX_STRING_LENGTH );
+                           mudstrlcpy( roomname, "Object2: *NULL obj*", MAX_INPUT_LENGTH );
                         else
-                           strncpy( roomname, obj->name, MAX_STRING_LENGTH );
+                           mudstrlcpy( roomname, obj->name, MAX_INPUT_LENGTH );
                         snprintf( buf + strlen( buf ), MAX_STRING_LENGTH - strlen( buf ),
                                   "%2d) (put) %s (%d) -> %s (%d) [%d]\r\n", *num, objname, gReset->arg1, roomname,
                                   obj ? obj->vnum : gReset->arg3, gReset->arg2 );
@@ -151,14 +151,14 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
 
       case 'O':
          if( !( obj = get_obj_index( pReset->arg1 ) ) )
-            strncpy( objname, "Object: *BAD VNUM*", MAX_STRING_LENGTH );
+            mudstrlcpy( objname, "Object: *BAD VNUM*", MAX_INPUT_LENGTH );
          else
-            strncpy( objname, obj->name, MAX_STRING_LENGTH );
+            mudstrlcpy( objname, obj->name, MAX_INPUT_LENGTH );
          room = get_room_index( pReset->arg3 );
          if( !room )
-            strncpy( roomname, "Room: *BAD VNUM*", MAX_STRING_LENGTH );
+            mudstrlcpy( roomname, "Room: *BAD VNUM*", MAX_INPUT_LENGTH );
          else
-            strncpy( roomname, room->name, MAX_STRING_LENGTH );
+            mudstrlcpy( roomname, room->name, MAX_INPUT_LENGTH );
          snprintf( buf, MAX_STRING_LENGTH, "%2d) (object) %s (%d) -> %s Room: %d [%d]\r\n",
                    *num, objname, pReset->arg1, roomname, pReset->arg3, pReset->arg2 );
 
@@ -169,15 +169,15 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
             {
                case 'P':
                   if( !( obj2 = get_obj_index( tReset->arg1 ) ) )
-                     strncpy( objname, "Object1: *BAD VNUM*", MAX_STRING_LENGTH );
+                     mudstrlcpy( objname, "Object1: *BAD VNUM*", MAX_INPUT_LENGTH );
                   else
-                     strncpy( objname, obj2->name, MAX_STRING_LENGTH );
+                     mudstrlcpy( objname, obj2->name, MAX_INPUT_LENGTH );
                   if( tReset->arg3 > 0 && ( obj = get_obj_index( tReset->arg3 ) ) == NULL )
-                     strncpy( roomname, "Object2: *BAD VNUM*", MAX_STRING_LENGTH );
+                     mudstrlcpy( roomname, "Object2: *BAD VNUM*", MAX_INPUT_LENGTH );
                   else if( !obj )
-                     strncpy( roomname, "Object2: *NULL obj*", MAX_STRING_LENGTH );
+                     mudstrlcpy( roomname, "Object2: *NULL obj*", MAX_INPUT_LENGTH );
                   else
-                     strncpy( roomname, obj->name, MAX_STRING_LENGTH );
+                     mudstrlcpy( roomname, obj->name, MAX_INPUT_LENGTH );
                   snprintf( buf + strlen( buf ), MAX_STRING_LENGTH - strlen( buf ), "%2d) (put) %s (%d) -> %s (%d) [%d]\r\n",
                             *num, objname, tReset->arg1, roomname, obj ? obj->vnum : tReset->arg3, tReset->arg2 );
                   break;
@@ -200,28 +200,28 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
             pReset->arg2 = 0;
          if( !( room = get_room_index( pReset->arg1 ) ) )
          {
-            strncpy( roomname, "Room: *BAD VNUM*", MAX_STRING_LENGTH );
-            snprintf( objname, MAX_STRING_LENGTH, "%s (no exit)", dir_name[pReset->arg2] );
+            mudstrlcpy( roomname, "Room: *BAD VNUM*", MAX_INPUT_LENGTH );
+            snprintf( objname, MAX_INPUT_LENGTH, "%s (no exit)", dir_name[pReset->arg2] );
          }
          else
          {
-            strncpy( roomname, room->name, MAX_STRING_LENGTH );
-            snprintf( objname, MAX_STRING_LENGTH, "%s%s", dir_name[pReset->arg2],
+            mudstrlcpy( roomname, room->name, MAX_INPUT_LENGTH );
+            snprintf( objname, MAX_INPUT_LENGTH, "%s%s", dir_name[pReset->arg2],
                       get_exit( room, pReset->arg2 ) ? "" : " (NO EXIT!)" );
          }
          switch ( pReset->arg3 )
          {
             default:
-               strncpy( mobname, "(* ERROR *)", MAX_STRING_LENGTH );
+               mudstrlcpy( mobname, "(* ERROR *)", MAX_INPUT_LENGTH );
                break;
             case 0:
-               strncpy( mobname, "Open", MAX_STRING_LENGTH );
+               mudstrlcpy( mobname, "Open", MAX_INPUT_LENGTH );
                break;
             case 1:
-               strncpy( mobname, "Close", MAX_STRING_LENGTH );
+               mudstrlcpy( mobname, "Close", MAX_INPUT_LENGTH );
                break;
             case 2:
-               strncpy( mobname, "Close and lock", MAX_STRING_LENGTH );
+               mudstrlcpy( mobname, "Close and lock", MAX_INPUT_LENGTH );
                break;
          }
          snprintf( buf, MAX_STRING_LENGTH, "%2d) %s [%d] the %s [%d] door %s (%d)\r\n",
@@ -230,18 +230,18 @@ char *sprint_reset( RESET_DATA * pReset, short *num )
 
       case 'R':
          if( !( room = get_room_index( pReset->arg1 ) ) )
-            strncpy( roomname, "Room: *BAD VNUM*", MAX_STRING_LENGTH );
+            mudstrlcpy( roomname, "Room: *BAD VNUM*", MAX_INPUT_LENGTH );
          else
-            strncpy( roomname, room->name, MAX_STRING_LENGTH );
+            mudstrlcpy( roomname, room->name, MAX_INPUT_LENGTH );
          snprintf( buf, MAX_STRING_LENGTH, "%2d) Randomize exits 0 to %d -> %s (%d)\r\n", *num, pReset->arg2, roomname,
                    pReset->arg1 );
          break;
 
       case 'T':
          if( !( room = get_room_index( pReset->arg3 ) ) )
-            strncpy( roomname, "Room: *BAD VNUM*", MAX_STRING_LENGTH );
+            mudstrlcpy( roomname, "Room: *BAD VNUM*", MAX_INPUT_LENGTH );
          else
-            strncpy( roomname, room->name, MAX_STRING_LENGTH );
+            mudstrlcpy( roomname, room->name, MAX_INPUT_LENGTH );
          snprintf( buf, MAX_STRING_LENGTH, "%2d) Trap: %d %d %d %d (%s) -> %s (%d)\r\n",
                    *num, pReset->extra, pReset->arg1, pReset->arg2, pReset->arg3, flag_string( pReset->extra, trap_flags ),
                    roomname, room ? room->vnum : 0 );
@@ -524,18 +524,18 @@ void reset_room( ROOM_INDEX_DATA * room )
       switch ( pReset->command )
       {
          default:
-            bug( "%s: %s: bad command %c.", __FUNCTION__, filename, pReset->command );
+            bug( "%s: %s: bad command %c.", __func__, filename, pReset->command );
             break;
 
          case 'M':
             if( !( pMobIndex = get_mob_index( pReset->arg1 ) ) )
             {
-               bug( "%s: %s: 'M': bad mob vnum %d.", __FUNCTION__, filename, pReset->arg1 );
+               bug( "%s: %s: 'M': bad mob vnum %d.", __func__, filename, pReset->arg1 );
                continue;
             }
             if( !( pRoomIndex = get_room_index( pReset->arg3 ) ) )
             {
-               bug( "%s: %s: 'M': bad room vnum %d.", __FUNCTION__, filename, pReset->arg3 );
+               bug( "%s: %s: 'M': bad room vnum %d.", __func__, filename, pReset->arg3 );
                continue;
             }
             if( !pReset->sreset )
@@ -569,7 +569,7 @@ void reset_room( ROOM_INDEX_DATA * room )
                      case 'E':
                         if( !( pObjIndex = get_obj_index( tReset->arg1 ) ) )
                         {
-                           bug( "%s: %s: 'E' or 'G': bad obj vnum %d.", __FUNCTION__, filename, tReset->arg1 );
+                           bug( "%s: %s: 'E' or 'G': bad obj vnum %d.", __func__, filename, tReset->arg1 );
                            continue;
                         }
                         if( !mob )
@@ -592,7 +592,7 @@ void reset_room( ROOM_INDEX_DATA * room )
                         {
                            if( obj->carried_by != mob )
                            {
-                              bug( "'E' reset: can't give object %d to mob %d.", obj->pIndexData->vnum,
+                              bug( "%s: 'E' reset: can't give object %d to mob %d.", __func__, obj->pIndexData->vnum,
                                    mob->pIndexData->vnum );
                               break;
                            }
@@ -623,19 +623,19 @@ void reset_room( ROOM_INDEX_DATA * room )
                                  case 'P':
                                     if( !( pObjIndex = get_obj_index( gReset->arg1 ) ) )
                                     {
-                                       bug( "%s: %s: 'P': bad obj vnum %d.", __FUNCTION__, filename, gReset->arg1 );
+                                       bug( "%s: %s: 'P': bad obj vnum %d.", __func__, filename, gReset->arg1 );
                                        continue;
                                     }
                                     iNest = gReset->extra;
 
                                     if( !( pObjToIndex = get_obj_index( gReset->arg3 ) ) )
                                     {
-                                       bug( "%s: %s: 'P': bad objto vnum %d.", __FUNCTION__, filename, gReset->arg3 );
+                                       bug( "%s: %s: 'P': bad objto vnum %d.", __func__, filename, gReset->arg3 );
                                        continue;
                                     }
                                     if( iNest >= MAX_NEST )
                                     {
-                                       bug( "%s: %s: 'P': Exceeded nesting limit of %d", __FUNCTION__, filename, MAX_NEST );
+                                       bug( "%s: %s: 'P': Exceeded nesting limit of %d", __func__, filename, MAX_NEST );
                                        obj = NULL;
                                        break;
                                     }
@@ -685,12 +685,12 @@ void reset_room( ROOM_INDEX_DATA * room )
          case 'O':
             if( !( pObjIndex = get_obj_index( pReset->arg1 ) ) )
             {
-               bug( "%s: %s: 'O': bad obj vnum %d.", __FUNCTION__, filename, pReset->arg1 );
+               bug( "%s: %s: 'O': bad obj vnum %d.", __func__, filename, pReset->arg1 );
                continue;
             }
             if( !( pRoomIndex = get_room_index( pReset->arg3 ) ) )
             {
-               bug( "%s: %s: 'O': bad room vnum %d.", __FUNCTION__, filename, pReset->arg3 );
+               bug( "%s: %s: 'O': bad room vnum %d.", __func__, filename, pReset->arg3 );
                continue;
             }
 
@@ -743,7 +743,7 @@ void reset_room( ROOM_INDEX_DATA * room )
                      case 'T':
                         if( !IS_SET( tReset->extra, TRAP_OBJ ) )
                         {
-                           bug( "%s: Room reset found on object reset list", __FUNCTION__ );
+                           bug( "%s: Room reset found on object reset list", __func__ );
                            break;
                         }
                         else
@@ -757,7 +757,7 @@ void reset_room( ROOM_INDEX_DATA * room )
                            {
                               if( !( pObjToIndex = get_obj_index( tReset->arg3 ) ) )
                               {
-                                 bug( "%s: %s: 'T': bad objto vnum %d.", __FUNCTION__, filename, tReset->arg3 );
+                                 bug( "%s: %s: 'T': bad objto vnum %d.", __func__, filename, tReset->arg3 );
                                  continue;
                               }
                               if( room->area->nplayer > 0 || !( to_obj = get_obj_type( pObjToIndex ) ) ||
@@ -778,20 +778,20 @@ void reset_room( ROOM_INDEX_DATA * room )
                      case 'P':
                         if( !( pObjIndex = get_obj_index( tReset->arg1 ) ) )
                         {
-                           bug( "%s: %s: 'P': bad obj vnum %d.", __FUNCTION__, filename, tReset->arg1 );
+                           bug( "%s: %s: 'P': bad obj vnum %d.", __func__, filename, tReset->arg1 );
                            continue;
                         }
                         iNest = tReset->extra;
 
                         if( !( pObjToIndex = get_obj_index( tReset->arg3 ) ) )
                         {
-                           bug( "%s: %s: 'P': bad objto vnum %d.", __FUNCTION__, filename, tReset->arg3 );
+                           bug( "%s: %s: 'P': bad objto vnum %d.", __func__, filename, tReset->arg3 );
                            continue;
                         }
 
                         if( iNest >= MAX_NEST )
                         {
-                           bug( "%s: %s: 'P': Exceeded nesting limit of %d. Room %d.", __FUNCTION__, filename, MAX_NEST,
+                           bug( "%s: %s: 'P': Exceeded nesting limit of %d. Room %d.", __func__, filename, MAX_NEST,
                                 room->vnum );
                            obj = NULL;
                            break;
@@ -837,14 +837,14 @@ void reset_room( ROOM_INDEX_DATA * room )
          case 'T':
             if( IS_SET( pReset->extra, TRAP_OBJ ) )
             {
-               bug( "%s: Object trap found in room %d reset list", __FUNCTION__, room->vnum );
+               bug( "%s: Object trap found in room %d reset list", __func__, room->vnum );
                break;
             }
             else
             {
                if( !( pRoomIndex = get_room_index( pReset->arg3 ) ) )
                {
-                  bug( "%s: %s: 'T': bad room %d.", __FUNCTION__, filename, pReset->arg3 );
+                  bug( "%s: %s: 'T': bad room %d.", __func__, filename, pReset->arg3 );
                   continue;
                }
                if( room->area->nplayer > 0
@@ -858,7 +858,7 @@ void reset_room( ROOM_INDEX_DATA * room )
          case 'D':
             if( !( pRoomIndex = get_room_index( pReset->arg1 ) ) )
             {
-               bug( "%s: %s: 'D': bad room vnum %d.", __FUNCTION__, filename, pReset->arg1 );
+               bug( "%s: %s: 'D': bad room vnum %d.", __func__, filename, pReset->arg1 );
                continue;
             }
             if( !( pexit = get_exit( pRoomIndex, pReset->arg2 ) ) )
@@ -887,7 +887,7 @@ void reset_room( ROOM_INDEX_DATA * room )
          case 'R':
             if( !( pRoomIndex = get_room_index( pReset->arg1 ) ) )
             {
-               bug( "%s: %s: 'R': bad room vnum %d.", __FUNCTION__, filename, pReset->arg1 );
+               bug( "%s: %s: 'R': bad room vnum %d.", __func__, filename, pReset->arg1 );
                continue;
             }
             randomize_exits( pRoomIndex, pReset->arg2 - 1 );
@@ -956,7 +956,7 @@ RESET_DATA *add_reset( ROOM_INDEX_DATA * room, char letter, int extra, int arg1,
 
    if( !room )
    {
-      bug( "%s: NULL room!", __FUNCTION__ );
+      bug( "%s: NULL room!", __func__ );
       return NULL;
    }
 
@@ -973,7 +973,7 @@ RESET_DATA *add_reset( ROOM_INDEX_DATA * room, char letter, int extra, int arg1,
       case 'G':
          if( !room->last_mob_reset )
          {
-            bug( "%s: Can't add '%c' reset to room: last_mob_reset is NULL.", __FUNCTION__, letter );
+            bug( "%s: Can't add '%c' reset to room: last_mob_reset is NULL.", __func__, letter );
             return NULL;
          }
          room->last_obj_reset = pReset;
@@ -983,7 +983,7 @@ RESET_DATA *add_reset( ROOM_INDEX_DATA * room, char letter, int extra, int arg1,
       case 'P':
          if( !room->last_obj_reset )
          {
-            bug( "%s: Can't add '%c' reset to room: last_obj_reset is NULL.", __FUNCTION__, letter );
+            bug( "%s: Can't add '%c' reset to room: last_obj_reset is NULL.", __func__, letter );
             return NULL;
          }
          LINK( pReset, room->last_obj_reset->first_reset, room->last_obj_reset->last_reset, next_reset, prev_reset );

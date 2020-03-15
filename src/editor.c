@@ -46,6 +46,7 @@ Michael Seifert, and Sebastian Hammer.
 #include <sys/stat.h>
 #include <dirent.h>
 #include "mud.h"
+
 /****************************************************************************
  * Data types and other definitions 
  */
@@ -323,8 +324,6 @@ char *editdata_to_str( EDITOR_DATA * edd )
    return tmp;
 }
 
-
-
 /****************************************************************************
  * Main editor functions
  */
@@ -355,11 +354,11 @@ void start_editing_nolimit( CHAR_DATA * ch, char *old_text, short max_total )
 {
    if( !ch->desc )
    {
-      bug( "Fatal: start_editing: no desc", 0 );
+      bug( "Fatal: %s: no desc", __func__ );
       return;
    }
    if( ch->substate == SUB_RESTRICTED )
-      bug( "NOT GOOD: start_editing: ch->substate == SUB_RESTRICTED", 0 );
+      bug( "NOT GOOD: %s: ch->substate == SUB_RESTRICTED", __func__ );
 
    set_char_color( AT_GREEN, ch );
    send_to_char( "Begin entering your text now (/? = help /s = save /c = clear /l = list)\r\n", ch );
@@ -380,13 +379,13 @@ char *copy_buffer( CHAR_DATA * ch )
 
    if( !ch )
    {
-      bug( "copy_buffer: null ch", 0 );
+      bug( "%s: null ch", __func__ );
       return STRALLOC( "" );
    }
 
    if( !ch->editor )
    {
-      bug( "copy_buffer: null editor", 0 );
+      bug( "%s: null editor", __func__ );
       return STRALLOC( "" );
    }
 
@@ -405,7 +404,7 @@ void stop_editing( CHAR_DATA * ch )
    ch->substate = SUB_NONE;
    if( !ch->desc )
    {
-      bug( "Fatal: stop_editing: no desc", 0 );
+      bug( "Fatal: %s: no desc", __func__ );
       return;
    }
    ch->desc->connected = CON_PLAYING;
@@ -431,14 +430,14 @@ void edit_buffer( CHAR_DATA * ch, char *argument )
    if( d->connected != CON_EDITING )
    {
       send_to_char( "You can't do that!\r\n", ch );
-      bug( "Edit_buffer: d->connected != CON_EDITING", 0 );
+      bug( "%s: d->connected != CON_EDITING", __func__ );
       return;
    }
 
    if( ch->substate <= SUB_PAUSE )
    {
       send_to_char( "You can't do that!\r\n", ch );
-      bug( "Edit_buffer: illegal ch->substate (%d)", ch->substate );
+      bug( "%s: illegal ch->substate (%d)", __func__, ch->substate );
       d->connected = CON_PLAYING;
       return;
    }
@@ -446,7 +445,7 @@ void edit_buffer( CHAR_DATA * ch, char *argument )
    if( !ch->editor )
    {
       send_to_char( "You can't do that!\r\n", ch );
-      bug( "Edit_buffer: null editor", 0 );
+      bug( "%s: null editor", __func__ );
       d->connected = CON_PLAYING;
       return;
    }

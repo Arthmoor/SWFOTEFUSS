@@ -228,7 +228,7 @@ void do_mpasound( CHAR_DATA * ch, const char *argument )
 
    if( !ch )
    {
-      bug( "Nonexistent ch in do_mpasound!", 0 );
+      bug( "%s: Nonexistent ch in do_mpasound!", __func__ );
       return;
    }
 
@@ -273,7 +273,7 @@ void do_mpkill( CHAR_DATA * ch, const char *argument )
 
    if( !ch )
    {
-      bug( "Nonexistent ch in do_mpkill!", 0 );
+      bug( "%s: Nonexistent ch in do_mpkill!", __func__ );
       return;
    }
 
@@ -322,11 +322,9 @@ void do_mpkill( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 /* lets the mobile destroy an object in its inventory
    it can also destroy a worn object and it can destroy
    items using all.xxxxx or just plain all of them */
-
 void do_mpjunk( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -400,9 +398,7 @@ int get_color( const char *argument )  /* get color code from command string */
    return 0;
 }
 
-
 /* prints the message to everyone in the room other than the mob and victim */
-
 void do_mpechoaround( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -456,9 +452,7 @@ void do_mpechoaround( CHAR_DATA * ch, const char *argument )
    ch->act = actflags;
 }
 
-
 /* prints message only to victim */
-
 void do_mpechoat( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -504,9 +498,7 @@ void do_mpechoat( CHAR_DATA * ch, const char *argument )
    ch->act = actflags;
 }
 
-
 /* prints message to room at large. */
-
 void do_mpecho( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
@@ -543,11 +535,9 @@ void do_mpecho( CHAR_DATA * ch, const char *argument )
    ch->act = actflags;
 }
 
-
 /* lets the mobile load an item or mobile.  All items
 are loaded into inventory.  you can specify a level with
 the load object portion as well. */
-
 void do_mpmload( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -896,13 +886,13 @@ void do_mpadvance( CHAR_DATA * ch, const char *argument )
 
    if( argument[0] == '\0' || arg1[0] == '\0' || arg2[0] == '\0' )
    {
-      bug( "[mpadvance - Syntax Error]", 0 );
+      bug( "%s: [mpadvance - Syntax Error]", __func__ );
       return;
    }
 
    if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
    {
-      bug( "[mpadvance - Missing victim]", 0 );
+      bug( "%s: [mpadvance - Missing victim]", __func__ );
       return;
    }
 
@@ -1058,8 +1048,6 @@ void do_mpforce( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 /*
  *  Haus' toys follow:
  */
@@ -1165,7 +1153,6 @@ void do_mp_damage( CHAR_DATA * ch, const char *argument )
 
    return;
 }
-
 
 /*
  * syntax: mprestore (character) (#hps)                Gorog
@@ -1570,7 +1557,7 @@ void do_mpapply( CHAR_DATA * ch, const char *argument )
    if( victim->pcdata->auth_state >= 1 )
       return;
 
-   sprintf( log_buf, "%s@%s new %s applying for authorization...",
+   snprintf( log_buf, MAX_STRING_LENGTH, "%s@%s new %s applying for authorization...",
             victim->name, victim->desc->host, race_table[victim->race].race_name );
    log_string( log_buf );
    to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
@@ -1621,7 +1608,7 @@ void do_mpapplyb( CHAR_DATA * ch, const char *argument )
       case 1:
       default:
          send_to_char( "You attempt to regain the gods' attention.\r\n", victim );
-         sprintf( log_buf, "%s@%s new %s applying for authorization...",
+         snprintf( log_buf, MAX_STRING_LENGTH, "%s@%s new %s applying for authorization...",
                   victim->name, victim->desc->host, race_table[victim->race].race_name );
          log_string( log_buf );
          to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
@@ -1683,7 +1670,6 @@ void do_mp_deposit( CHAR_DATA * ch, const char *argument )
    }
 }
 
-
 /*
  * Withdraw some gold from the current area's economy		-Thoric
  */
@@ -1728,8 +1714,6 @@ void do_mppkset( CHAR_DATA * ch, const char *argument )
 
 }
 
-
-
 /*
  * Inflict damage from a mudprogram
  *
@@ -1743,12 +1727,12 @@ ch_ret simple_damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
 
    if( !ch )
    {
-      bug( "Damage: null ch!", 0 );
+      bug( "%s: null ch!", __func__ );
       return rERROR;
    }
    if( !victim )
    {
-      progbug( "Damage: null victim!", ch );
+      progbug( "simple_damage: null victim!", ch );
       return rVICT_DIED;
    }
 
@@ -1875,12 +1859,10 @@ ch_ret simple_damage( CHAR_DATA * ch, CHAR_DATA * victim, int dam, int dt )
    {
       if( !npcvict )
       {
-         sprintf( log_buf, "%s killed by %s at %d",
+         snprintf( log_buf, MAX_STRING_LENGTH, "%s killed by %s at %d",
                   victim->name, ( IS_NPC( ch ) ? ch->short_descr : ch->name ), victim->in_room->vnum );
          log_string( log_buf );
          to_channel( log_buf, CHANNEL_MONITOR, "Monitor", LEVEL_IMMORTAL );
-
-
       }
       set_cur_char( victim );
       raw_kill( ch, victim );

@@ -43,6 +43,7 @@ FORCE_SKILL *last_force_skill;
 void fskill_refresh( CHAR_DATA * ch, const char *argument )
 {
    FORCE_SKILL *fskill;
+
    fskill = force_test_skill_use( "meditate", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -456,12 +457,12 @@ void fskill_identify( CHAR_DATA * ch, const char *argument )
          send_to_char( force_parse_string( ch, victim, fskill->ch_effect[1] ), ch );
          if( victim->force_identified == 0 )
          {
-            bug( "(%s)Force_chance: %d", victim->name, victim->force_chance );
+            bug( "%s: (%s)Force_chance: %d", __func__, victim->name, victim->force_chance );
             if( victim->force_chance != 0 )
                force_calc = number_range( victim->force_chance, 20 );
             else
                force_calc = number_range( -300, 10 );
-            bug( "(%s)Force_calc: %d", victim->name, force_calc );
+            bug( "%s: (%s)Force_calc: %d", __func__, victim->name, force_calc );
          }
          if( force_calc > 0 && victim->force_identified == 0 )
          {
@@ -1354,7 +1355,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, const char *argument )
    if( fskill == NULL )
       return;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH);
 
    switch ( ch->substate )
    {
@@ -1474,7 +1475,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1614,15 +1615,15 @@ void fskill_makelightsaber( CHAR_DATA * ch, const char *argument )
    obj->weight = 5;
    STRFREE( obj->name );
    obj->name = STRALLOC( "lightsaber saber" );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    STRFREE( obj->action_desc );
-   strcpy( buf, arg );
-   strcat( buf, " ignites with a hum and a soft glow." );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " ignites with a hum and a soft glow.", MAX_STRING_LENGTH );
    obj->action_desc = STRALLOC( buf );
 
    CREATE( paf, AFFECT_DATA, 1 );
@@ -1683,7 +1684,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, const char *argument )
    if( fskill == NULL )
       return;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -1803,7 +1804,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1943,15 +1944,15 @@ void fskill_makedualsaber( CHAR_DATA * ch, const char *argument )
    obj->weight = 5;
    STRFREE( obj->name );
    obj->name = STRALLOC( "lightsaber saber dual" );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    STRFREE( obj->action_desc );
-   strcpy( buf, arg );
-   strcat( buf, " ignites with a hum and a soft glow." );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " ignites with a hum and a soft glow.", MAX_STRING_LENGTH );
    obj->action_desc = STRALLOC( buf );
 
    CREATE( paf, AFFECT_DATA, 1 );
@@ -1992,7 +1993,6 @@ void fskill_finish( CHAR_DATA * ch, const char *argument )
    FORCE_SKILL *fskill;
    OBJ_DATA *wield;
    CHAR_DATA *victim;
-   char buf[MAX_STRING_LENGTH];
 
    fskill = force_test_skill_use( "finish", ch, FORCE_COMBAT );
    if( fskill == NULL )
@@ -2047,9 +2047,8 @@ void fskill_finish( CHAR_DATA * ch, const char *argument )
 /*    if (IS_SET( victim->in_room->room_flags, ROOM_MINIARENA ) && !IS_NPC(victim) )
       {
          char minibuf[MAX_STRING_LENGTH];
-                     sprintf(minibuf,"&C[&B-&c=&b| &G&W$n is surrounded by a blue glow before $e is killed &b|&c=&B-&C]&G&w\r\n");
-                     act( AT_PLAIN, minibuf, victim,
-                        NULL, minibuf , TO_ROOM );
+                     snprintf( minibuf, MAX_STRING_LENGTH, "&C[&B-&c=&b| &G&W$n is surrounded by a blue glow before $e is killed &b|&c=&B-&C]&G&w\r\n");
+                     act( AT_PLAIN, minibuf, victim, NULL, minibuf, TO_ROOM );
          send_to_char("&C[&B-&c=&b| &G&WYou are surrounded by a blue glow before you are killed &b|&c=&B-&C]&G&w\r\n",victim);
       	stop_fighting( victim, TRUE );
       	stop_fighting( ch, TRUE );
@@ -2070,8 +2069,7 @@ void fskill_finish( CHAR_DATA * ch, const char *argument )
    }
    else
    {
-      sprintf( buf, "%s killed by %s at %d, using finish.\r\n", victim->name, ch->name, ch->in_room->vnum );
-      log_string( buf );
+      log_printf( "%s killed by %s at %d, using finish.\r\n", victim->name, ch->name, ch->in_room->vnum );
       raw_kill( ch, victim );
       //add_plr_death(victim->name, "cut into two");
    }
@@ -2086,6 +2084,7 @@ void fskill_fhelp( CHAR_DATA * ch, const char *argument )
    FORCE_HELP *fhelp, *fdefault;
    bool match = FALSE;
    int x, len;
+
    fskill = force_test_skill_use( "fhelp", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -2164,18 +2163,17 @@ bool check_reflect( CHAR_DATA * ch, CHAR_DATA * victim, int dam )
    victim->pcdata->lost_attacks++;
    {
       char roombuf[MAX_STRING_LENGTH];
+
       if( IS_NPC( ch ) )
       {
          ch_printf( victim, "&G&YYou swing your lightsaber in an arc, reflecting %s's blast!&w\r\n", ch->short_descr );
-         sprintf( roombuf, "&GY%s swings their lightsaber in an arc, reflecting %s's blast!&w\r\n", victim->name,
-                  ch->short_descr );
+         snprintf( roombuf, MAX_STRING_LENGTH, "&GY%s swings their lightsaber in an arc, reflecting %s's blast!&w\r\n", victim->name, ch->short_descr );
          force_send_to_room( victim, NULL, roombuf );
       }
       else
       {
          ch_printf( victim, "&G&YYou swing your lightsaber in an arc, reflecting %s's blast!&G&w\r\n", ch->name );
-         sprintf( roombuf, "&G&Y%s swings their lightsaber in an arc, reflecting %s's blast!&w\r\n", victim->name,
-                  ch->name );
+         snprintf( roombuf, MAX_STRING_LENGTH, "&G&Y%s swings their lightsaber in an arc, reflecting %s's blast!&w\r\n", victim->name, ch->name );
          force_send_to_room( victim, NULL, roombuf );
       }
    }
@@ -2184,32 +2182,33 @@ bool check_reflect( CHAR_DATA * ch, CHAR_DATA * victim, int dam )
       if( number_range( 1, 100 ) < URANGE( 0, chances * victim->force_level_status, 60 ) )
       {
          char roombuf[MAX_STRING_LENGTH];
+
          rch = ch;
          if( rch )
          {
             if( IS_NPC( rch ) )
             {
                if( !rch->short_descr || rch->short_descr[0] == '\0' )
-                  bug( "Fskill_reflect: Rch has no short %d", rch->pIndexData->vnum );
+                  bug( "%s: Rch has no short %d", __func__, rch->pIndexData->vnum );
                else if( !victim->name || victim->name[0] == '\0' )
-                  bug( "Fskill_reflect: victim has no name" );
+                  bug( "%s: victim has no name", __func__ );
                else
                {
                   ch_printf( victim, "You hit %s with a reflected shot.\r\n", rch->short_descr );
-                  sprintf( roombuf, "%s hits %s with a reflected shot.\r\n", victim->name, rch->short_descr );
+                  snprintf( roombuf, MAX_STRING_LENGTH, "%s hits %s with a reflected shot.\r\n", victim->name, rch->short_descr );
                   force_send_to_room( victim, rch, roombuf );
                }
             }
             else
             {
                if( !rch->name || rch->name[0] == '\0' )
-                  bug( "Fskill_reflect: Rch has no name" );
+                  bug( "%s: Rch has no name", __func__ );
                else if( !victim->name || victim->name[0] == '\0' )
-                  bug( "Fskill_reflect: victim has no name" );
+                  bug( "%s: victim has no name", __func__ );
                else
                {
                   ch_printf( victim, "You hit %s with a reflected shot.\r\n", rch->name );
-                  sprintf( roombuf, "%s hits %s with a reflected shot.\r\n", victim->name, rch->name );
+                  snprintf( roombuf, MAX_STRING_LENGTH, "%s hits %s with a reflected shot.\r\n", victim->name, rch->name );
                   force_send_to_room( victim, rch, roombuf );
                   ch_printf( rch, "%s hits you with a reflected shot.\r\n", victim->name );
                }
@@ -2226,31 +2225,32 @@ bool check_reflect( CHAR_DATA * ch, CHAR_DATA * victim, int dam )
             if( number_range( 1, 100 ) > chances && rch != victim )
             {
                char roombuf[MAX_STRING_LENGTH];
+
                if( !rch )
                   continue;
                if( IS_NPC( rch ) )
                {
                   if( !rch->short_descr || rch->short_descr[0] == '\0' )
-                     bug( "Fskill_reflect: Rch has no short %d", rch->pIndexData->vnum );
+                     bug( "%s: Rch has no short %d", __func__, rch->pIndexData->vnum );
                   else if( !victim->name || victim->name[0] == '\0' )
-                     bug( "Fskill_reflect: victim has no name" );
+                     bug( "%s: victim has no name", __func__ );
                   else
                   {
                      ch_printf( victim, "You hit %s with a reflected shot.\r\n", rch->short_descr );
-                     sprintf( roombuf, "%s hits %s with a reflected shot.\r\n", victim->name, rch->short_descr );
+                     snprintf( roombuf, MAX_STRING_LENGTH, "%s hits %s with a reflected shot.\r\n", victim->name, rch->short_descr );
                      force_send_to_room( victim, rch, roombuf );
                   }
                }
                else
                {
                   if( !rch->name || rch->name[0] == '\0' )
-                     bug( "Fskill_reflect: Rch has no name" );
+                     bug( "%s: Rch has no name", __func__ );
                   else if( !victim->name || victim->name[0] == '\0' )
-                     bug( "Fskill_reflect: victim has no name" );
+                     bug( "%s: victim has no name", __func__ );
                   else
                   {
                      ch_printf( victim, "You hit %s with a reflected shot.\r\n", rch->name );
-                     sprintf( roombuf, "%s hits %s with a reflected shot.\r\n", victim->name, rch->name );
+                     snprintf( roombuf, MAX_STRING_LENGTH, "%s hits %s with a reflected shot.\r\n", victim->name, rch->name );
                      force_send_to_room( victim, rch, roombuf );
                      ch_printf( rch, "%s hits you with a reflected shot.\r\n", victim->name );
                   }

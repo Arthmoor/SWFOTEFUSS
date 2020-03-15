@@ -52,9 +52,7 @@ const short rev_dir[] = {
    2, 3, 0, 1, 5, 4, 9, 8, 7, 6, 10
 };
 
-
 ROOM_INDEX_DATA *vroom_hash[64];
-
 
 /*
  * Local functions.
@@ -71,7 +69,6 @@ const char *const sect_names[SECT_MAX][2] = {
    {"In a desert", "deserts"}, {"Somewhere", "unknown"},
    {"ocean floor", "ocean floor"}, {"underground", "underground"}
 };
-
 
 const int sent_total[SECT_MAX] = {
    4, 24, 4, 4, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1
@@ -384,7 +381,7 @@ EXIT_DATA *get_exit( ROOM_INDEX_DATA * room, short dir )
 
    if( !room )
    {
-      bug( "Get_exit: NULL room", 0 );
+      bug( "%s: NULL room", __func__ );
       return NULL;
    }
 
@@ -403,7 +400,7 @@ EXIT_DATA *get_exit_to( ROOM_INDEX_DATA * room, short dir, int vnum )
 
    if( !room )
    {
-      bug( "Get_exit: NULL room", 0 );
+      bug( "%s: NULL room", __func__ );
       return NULL;
    }
 
@@ -423,7 +420,7 @@ EXIT_DATA *get_exit_num( ROOM_INDEX_DATA * room, short count )
 
    if( !room )
    {
-      bug( "Get_exit: NULL room", 0 );
+      bug( "%s: NULL room", __func__ );
       return NULL;
    }
 
@@ -432,7 +429,6 @@ EXIT_DATA *get_exit_num( ROOM_INDEX_DATA * room, short count )
          return xit;
    return NULL;
 }
-
 
 /*
  * Modify movement due to encumbrance				-Thoric
@@ -459,7 +455,6 @@ short encumbrance( CHAR_DATA * ch, short move )
       return move;
 }
 
-
 /*
  * Check to see if a character can fall down, checks for looping   -Thoric
  */
@@ -471,7 +466,7 @@ bool will_fall( CHAR_DATA * ch, int fall )
    {
       if( fall > 80 )
       {
-         bug( "Falling (in a loop?) more than 80 rooms: vnum %d", ch->in_room->vnum );
+         bug( "%s: Falling (in a loop?) more than 80 rooms: vnum %d", __func__, ch->in_room->vnum );
          char_from_room( ch );
          char_to_room( ch, get_room_index( wherehome( ch ) ) );
          fall = 0;
@@ -2180,7 +2175,7 @@ void teleport( CHAR_DATA * ch, int room, int flags )
    pRoomIndex = get_room_index( room );
    if( !pRoomIndex )
    {
-      bug( "teleport: bad room vnum %d", room );
+      bug( "%s: bad room vnum %d", __func__, room );
       return;
    }
 

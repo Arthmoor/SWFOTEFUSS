@@ -54,57 +54,49 @@ void do_marry( CHAR_DATA * ch, const char *argument )
 
    if( ( vic1 = get_char_room( ch, arg1 ) ) == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be here.\r\n", arg1 );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s doesn't appear to be here.\r\n", arg1 );
       return;
    }
 
    if( ( vic2 = get_char_room( ch, arg2 ) ) == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be here.\r\n", arg2 );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s doesn't appear to be here.\r\n", arg2 );
       return;
    }
 
    if( IS_NPC( vic1 ) )
    {
-      sprintf( buf, "%s appears to be a mob. Why marry it off to anyone?\r\n", vic1->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s appears to be a mob. Why marry it off to anyone?\r\n", vic1->name );
       return;
    }
 
    if( IS_NPC( vic2 ) )
    {
-      sprintf( buf, "%s appears to be a mob. Why marry it off to anyone?\r\n", vic2->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s appears to be a mob. Why marry it off to anyone?\r\n", vic2->name );
       return;
    }
 
    if( !vic1->pcdata->fiance || vic1->pcdata->fiance == NULL || vic1->pcdata->fiance != vic2->name )
    {
-      sprintf( buf, "%s is not engaged to %s. Perhaps a proposal would be a good first step.\r\n", vic1->name, vic2->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s is not engaged to %s. Perhaps a proposal would be a good first step.\r\n", vic1->name, vic2->name );
       return;
    }
 
    if( !vic2->pcdata->fiance || vic2->pcdata->fiance == NULL || vic2->pcdata->fiance != vic1->name )
    {
-      sprintf( buf, "%s is not engaged to %s. Perhaps a proposal would be a good first step.\r\n", vic2->name, vic1->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s is not engaged to %s. Perhaps a proposal would be a good first step.\r\n", vic2->name, vic1->name );
       return;
    }
 
    if( vic1->top_level < 5 )
    {
-      sprintf( buf, "%s is to low a level to get married.\r\n", vic1->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s is to low a level to get married.\r\n", vic1->name );
       return;
    }
 
    if( vic2->top_level < 5 )
    {
-      sprintf( buf, "%s is to low a level to get married.\r\n", vic2->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s is to low a level to get married.\r\n", vic2->name );
       return;
    }
    if( vic1->sex == SEX_MALE && vic2->sex == SEX_MALE )
@@ -132,7 +124,7 @@ void do_marry( CHAR_DATA * ch, const char *argument )
     * else if (vic1->sex == SEX_FEMALE && vic2->sex == SEX_MALE)
     * vic1->pcdata->last_name = vic2->pcdata->last_name;
     */
-   sprintf( buf, "&R(&WMarriage&R} &W%s: I am very pleased to announce that %s and %s are now married.", ch->name,
+   snprintf( buf, MAX_INPUT_LENGTH, "&R(&WMarriage&R} &W%s: I am very pleased to announce that %s and %s are now married.", ch->name,
             vic1->name, vic2->name );
    echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
    return;
@@ -157,36 +149,31 @@ void do_divorce( CHAR_DATA * ch, const char *argument )
 
    if( ( vic1 = get_char_room( ch, arg1 ) ) == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be here. You should wait for them.\r\n", arg1 );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s doesn't appear to be here. You should wait for them.\r\n", arg1 );
       return;
    }
 
    if( ( vic2 = get_char_room( ch, arg2 ) ) == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be here. You should wait for then.\r\n", arg2 );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s doesn't appear to be here. You should wait for them.\r\n", arg2 );
       return;
    }
 
    if( !vic1->pcdata->spouse || vic1->pcdata->spouse == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be married.\r\n", vic1->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s doesn't appear to be married.\r\n", vic1->name );
       return;
    }
 
    if( !vic2->pcdata->spouse || vic2->pcdata->spouse == NULL )
    {
-      sprintf( buf, "%s doesn't appear to be married.\r\n", vic2->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s doesn't appear to be married.\r\n", vic2->name );
       return;
    }
 
    if( vic1->pcdata->spouse != vic2->pcdata->spouse )
    {
-      sprintf( buf, "%s is not married to %s\r\n", vic1->name, vic2->name );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s is not married to %s\r\n", vic1->name, vic2->name );
       return;
    }
 
@@ -197,8 +184,10 @@ void do_divorce( CHAR_DATA * ch, const char *argument )
    ch->gold += 1000;
    vic1->gold -= 500;
    vic2->gold -= 500;
-   sprintf( buf, "&R(&WMarriage&R} &W%s: It is my sad duty to anounce that %s and %s are now divorced.", ch->name,
+   snprintf( buf, MAX_INPUT_LENGTH, "&R(&WMarriage&R} &W%s: It is my sad duty to anounce that %s and %s are now divorced.", ch->name,
             vic1->name, vic2->name );
+   echo_to_all( AT_YELLOW, buf, ECHOTAR_ALL );
+   return;
 }
 
 void do_propose( CHAR_DATA * ch, const char *argument )
@@ -225,16 +214,15 @@ void do_propose( CHAR_DATA * ch, const char *argument )
    {
       send_to_char( "Why would you want to propose to yourself?\r\n", ch );
       if( ch->sex == SEX_MALE )
-         sprintf( buf, "What a moron. %s proposed to himself.", ch->name );
+         snprintf( buf, MAX_INPUT_LENGTH, "What a moron. %s proposed to himself.", ch->name );
       else if( ch->sex == SEX_FEMALE )
-         sprintf( buf, "What a moron. %s proposed to herself.", ch->name );
+         snprintf( buf, MAX_INPUT_LENGTH, "What a moron. %s proposed to herself.", ch->name );
       else
-         sprintf( buf, "What a moron. %s proposed to itself.", ch->name );
+         snprintf( buf, MAX_INPUT_LENGTH, "What a moron. %s proposed to itself.", ch->name );
 
       echo_to_all( AT_WHITE, buf, ECHOTAR_ALL );
       return;
    }
-
 
    if( IS_NPC( victim ) )
    {
@@ -257,16 +245,18 @@ void do_propose( CHAR_DATA * ch, const char *argument )
    if( victim->pcdata->spouse && victim->pcdata->spouse != NULL )
    {
       send_to_char( "They are already married.\r\n", ch );
+      return;
    }
+
    if( victim->pcdata->proposed && victim->pcdata->proposed != NULL )
    {
-      sprintf( buf, "They have already been proposed to by %s.\r\n", victim->pcdata->proposed );
+      ch_printf( ch, "They have already been proposed to by %s.\r\n", victim->pcdata->proposed );
       return;
    }
 
    if( victim->pcdata->propose && victim->pcdata->propose != NULL )
    {
-      sprintf( buf, "They have already been proposed to %s.\r\n", victim->pcdata->propose );
+      ch_printf( ch, "They have already been proposed to %s.\r\n", victim->pcdata->propose );
       return;
    }
 
@@ -280,7 +270,6 @@ void do_propose( CHAR_DATA * ch, const char *argument )
 
 void do_accept( CHAR_DATA * ch, const char *argument )
 {
-
    CHAR_DATA *victim;
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_INPUT_LENGTH];
@@ -311,7 +300,6 @@ void do_accept( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-
    if( victim->name != ch->pcdata->proposed )
    {
       send_to_char( "But they haven't proposed to you.\r\n", ch );
@@ -324,7 +312,7 @@ void do_accept( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "%s has accepted %s's hand in marriage. They will soon be wed.", ch->name, victim->name );
+   snprintf( buf, MAX_INPUT_LENGTH, "%s has accepted %s's hand in marriage. They will soon be wed.", ch->name, victim->name );
    echo_to_all( AT_WHITE, buf, ECHOTAR_ALL );
    ch->pcdata->propose = NULL;
    victim->pcdata->proposed = NULL;
@@ -333,10 +321,8 @@ void do_accept( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 void do_decline( CHAR_DATA * ch, const char *argument )
 {
-
    CHAR_DATA *victim;
    char arg[MAX_INPUT_LENGTH];
    char buf[MAX_INPUT_LENGTH];
@@ -367,7 +353,6 @@ void do_decline( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-
    if( victim->name != ch->pcdata->proposed )
    {
       send_to_char( "But they haven't proposed to you.\r\n", ch );
@@ -380,7 +365,7 @@ void do_decline( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "%s has declined %s's hand in marriage.", ch->name, victim->name );
+   snprintf( buf, MAX_INPUT_LENGTH, "%s has declined %s's hand in marriage.", ch->name, victim->name );
    echo_to_all( AT_WHITE, buf, ECHOTAR_ALL );
    ch->pcdata->propose = NULL;
    ch->pcdata->proposed = NULL;
@@ -389,7 +374,6 @@ void do_decline( CHAR_DATA * ch, const char *argument )
 
 void do_spousetalk( CHAR_DATA * ch, const char *argument )
 {
-   char buf[MAX_STRING_LENGTH];
    CHAR_DATA *victim;
 
    if( !argument || argument[0] == '\0' )
@@ -397,7 +381,6 @@ void do_spousetalk( CHAR_DATA * ch, const char *argument )
       send_to_char( "What would you like to send to your spouse?\r\n", ch );
       return;
    }
-
 
    if( ch->position == POS_SLEEPING )
    {
@@ -425,13 +408,10 @@ void do_spousetalk( CHAR_DATA * ch, const char *argument )
 
    if( ( victim = get_char_world( ch, ch->pcdata->spouse ) ) == NULL )
    {
-      sprintf( buf, "%s is not connected.\r\n", ch->pcdata->spouse );
-      send_to_char( buf, ch );
+      ch_printf( ch, "%s is not connected.\r\n", ch->pcdata->spouse );
       return;
    }
 
-   sprintf( buf, "&G[&PSpouse&G] &Pto %s: &W%s\r\n", victim->name, argument );
-   send_to_char( buf, ch );
-   sprintf( buf, "&G[&PSpouse&G] &P%s Spouse talks: &W%s\r\n", ch->name, argument );
-   send_to_char( buf, victim );
+   ch_printf( ch, "&G[&PSpouse&G] &Pto %s: &W%s\r\n", victim->name, argument );
+   ch_printf( victim, "&G[&PSpouse&G] &P%s Spouse talks: &W%s\r\n", ch->name, argument );
 }

@@ -25,7 +25,6 @@ Michael Seifert, and Sebastian Hammer.
 
 */
 
-
 #include <sys/types.h>
 #include <stdio.h>
 #include <string.h>
@@ -145,10 +144,9 @@ void do_sellhome( CHAR_DATA * ch, const char *argument )
    do_save( ch, "" );
    snprintf( hbuf, MSL, "%s%c/%s.home", PLAYER_DIR, LOWER(ch->name[0]), ch->name );
    if( remove( hbuf ) == -1 )
-       bug( "There was an error removing %s's home file", ch->name );
+       bug( "%s: There was an error removing %s's home file", __func__, ch->name );
 
    send_to_char( "&GYou sell your home for 10000 credits.\r\n", ch );
-
 }
 
 void do_clone( CHAR_DATA * ch, const char *argument )
@@ -237,12 +235,12 @@ void do_clone( CHAR_DATA * ch, const char *argument )
 
    if( ch->pcdata->clan_name && ch->pcdata->clan_name[0] != '\0' )
    {
-      strcpy( clanname, ch->pcdata->clan_name );
+      mudstrlcpy( clanname, ch->pcdata->clan_name, MAX_STRING_LENGTH );
       STRFREE( ch->pcdata->clan_name );
       ch->pcdata->clan_name = STRALLOC( "" );
       if( ch->pcdata->bestowments )
       {
-         strcpy( bestowments, ch->pcdata->bestowments );
+         mudstrlcpy( bestowments, ch->pcdata->bestowments, MAX_STRING_LENGTH );
          DISPOSE( ch->pcdata->bestowments );
          ch->pcdata->bestowments = str_dup( "" );
       }
@@ -367,10 +365,10 @@ void do_backup( CHAR_DATA * ch, const char *argument )
 
    if( ch->pcdata->clan_name && ch->pcdata->clan_name[0] != '\0' )
    {
-      strcpy( clanname, ch->pcdata->clan_name );
+      mudstrlcpy( clanname, ch->pcdata->clan_name, MAX_STRING_LENGTH );
       STRFREE( ch->pcdata->clan_name );
       ch->pcdata->clan_name = STRALLOC( "" );
-      strcpy( bestowments, ch->pcdata->bestowments );
+      mudstrlcpy( bestowments, ch->pcdata->bestowments, MAX_STRING_LENGTH );
       DISPOSE( ch->pcdata->bestowments );
       ch->pcdata->bestowments = str_dup( "" );
       save_clone( ch );
@@ -844,12 +842,10 @@ void do_use( CHAR_DATA * ch, const char *argument )
       retcode = obj_cast_spell( device->value[3], device->value[0], ch, victim, obj );
       if( retcode == rCHAR_DIED || retcode == rBOTH_DIED )
       {
-         bug( "do_use: char died", 0 );
+         bug( "%s: char died", __func__ );
          return;
       }
    }
-
-
    return;
 }
 
@@ -1359,7 +1355,7 @@ void do_fill( CHAR_DATA * ch, const char *argument )
    switch ( source->item_type )
    {
       default:
-         bug( "do_fill: got bad item type: %d", source->item_type );
+         bug( "%s: got bad item type: %d", __func__, source->item_type );
          send_to_char( "Something went wrong...\r\n", ch );
          return;
       case ITEM_FOUNTAIN:
@@ -1523,7 +1519,7 @@ void do_drink( CHAR_DATA * ch, const char *argument )
 
          if( ( liquid = obj->value[2] ) >= LIQ_MAX )
          {
-            bug( "Do_drink: bad liquid number %d.", liquid );
+            bug( "%s: bad liquid number %d.", __func__, liquid );
             liquid = obj->value[2] = 0;
          }
 
@@ -1900,8 +1896,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
    switch ( obj->item_type )
    {
       default:
-         sprintf( buf, "You can't %s that!\r\n", pull ? "pull" : "push" );
-         send_to_char( buf, ch );
+         ch_printf( ch, "You can't %s that!\r\n", pull ? "pull" : "push" );
          return;
          break;
       case ITEM_SWITCH:
@@ -1909,15 +1904,13 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       case ITEM_PULLCHAIN:
          if( ( !pull && isup ) || ( pull && !isup ) )
          {
-            sprintf( buf, "It is already %s.\r\n", isup ? "up" : "down" );
-            send_to_char( buf, ch );
+            ch_printf( ch, "It is already %s.\r\n", isup ? "up" : "down" );
             return;
          }
       case ITEM_BUTTON:
          if( ( !pull && isup ) || ( pull & !isup ) )
          {
-            sprintf( buf, "It is already %s.\r\n", isup ? "in" : "out" );
-            send_to_char( buf, ch );
+            ch_printf( ch, "It is already %s.\r\n", isup ? "in" : "out" );
             return;
          }
          break;
@@ -1939,9 +1932,9 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
 
    if( !oprog_use_trigger( ch, obj, NULL, NULL, NULL ) )
    {
-      sprintf( buf, "$n %s $p.", pull ? "pulls" : "pushes" );
+      snprintf( buf, MAX_STRING_LENGTH, "$n %s $p.", pull ? "pulls" : "pushes" );
       act( AT_ACTION, buf, ch, obj, NULL, TO_ROOM );
-      sprintf( buf, "You %s $p.", pull ? "pull" : "push" );
+      snprintf( buf, MAX_STRING_LENGTH, "You %s $p.", pull ? "pull" : "push" );
       act( AT_ACTION, buf, ch, obj, NULL, TO_CHAR );
    }
 
@@ -1960,7 +1953,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
 
       if( ( room = get_room_index( obj->value[1] ) ) == NULL )
       {
-         bug( "PullOrPush: obj points to invalid room %d", obj->value[1] );
+         bug( "%s: obj points to invalid room %d", __func__, obj->value[1] );
          return;
       }
       flags = 0;
@@ -1981,7 +1974,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
 
       if( ( room = get_room_index( obj->value[1] ) ) == NULL )
       {
-         bug( "PullOrPush: obj points to invalid room %d", obj->value[1] );
+         bug( "%s: obj points to invalid room %d", __func__, obj->value[1] );
          return;
       }
 
@@ -2043,7 +2036,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
        */
       if( !( pObjIndex = get_obj_index( obj->value[1] ) ) )
       {
-         bug( "%s: obj points to invalid object vnum %d", __FUNCTION__, obj->value[1] );
+         bug( "%s: obj points to invalid object vnum %d", __func__, obj->value[1] );
          return;
       }
       /*
@@ -2055,7 +2048,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
        */
       if( obj->value[2] > 0 && !( room = get_room_index( obj->value[2] ) ) )
       {
-         bug( "%s: obj points to invalid room vnum %d", __FUNCTION__, obj->value[2] );
+         bug( "%s: obj points to invalid room vnum %d", __func__, obj->value[2] );
          return;
       }
       /*
@@ -2063,7 +2056,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
        */
       if( !( tobj = create_object( pObjIndex, URANGE( 0, obj->value[3], MAX_LEVEL ) ) ) )
       {
-         bug( "%s: obj couldnt create_obj vnum %d at level %d", __FUNCTION__, obj->value[1], obj->value[3] );
+         bug( "%s: obj couldnt create_obj vnum %d at level %d", __func__, obj->value[1], obj->value[3] );
          return;
       }
       if( room )
@@ -2091,7 +2084,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
        */
       if( !( pMobIndex = get_mob_index( obj->value[1] ) ) )
       {
-         bug( "%s: obj points to invalid mob vnum %d", __FUNCTION__, obj->value[1] );
+         bug( "%s: obj points to invalid mob vnum %d", __func__, obj->value[1] );
          return;
       }
       /*
@@ -2103,12 +2096,12 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
        */
       if( obj->value[2] > 0 && !( room = get_room_index( obj->value[2] ) ) )
       {
-         bug( "%s: obj points to invalid room vnum %d", __FUNCTION__, obj->value[2] );
+         bug( "%s: obj points to invalid room vnum %d", __func__, obj->value[2] );
          return;
       }
       if( !( mob = create_mobile( pMobIndex ) ) )
       {
-         bug( "%s: obj couldnt create_mobile vnum %d", __FUNCTION__, obj->value[1] );
+         bug( "%s: obj couldnt create_mobile vnum %d", __func__, obj->value[1] );
          return;
       }
       char_to_room( mob, room );
@@ -2122,7 +2115,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
    {
       if( obj->value[1] <= 0 || !IS_VALID_SN( obj->value[1] ) )
       {
-         bug( "%s: obj points to invalid sn [%d]", __FUNCTION__, obj->value[1] );
+         bug( "%s: obj points to invalid sn [%d]", __func__, obj->value[1] );
          return;
       }
       obj_cast_spell( obj->value[1], URANGE( 1, ( obj->value[2] > 0 ) ? obj->value[2] : ch->top_level, MAX_LEVEL ), ch, ch,
@@ -2142,7 +2135,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
          room = obj->in_room;
       if( !room )
       {
-         bug( "%s: obj points to invalid room %d", __FUNCTION__, obj->value[1] );
+         bug( "%s: obj points to invalid room %d", __func__, obj->value[1] );
          return;
       }
 
@@ -2153,12 +2146,12 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       }
       if( !container )
       {
-         bug( "%s: obj points to a container [%d] thats not where it should be?", __FUNCTION__, obj->value[2] );
+         bug( "%s: obj points to a container [%d] thats not where it should be?", __func__, obj->value[2] );
          return;
       }
       if( container->item_type != ITEM_CONTAINER )
       {
-         bug( "%s: obj points to object [%d], but it isn't a container.", __FUNCTION__, obj->value[2] );
+         bug( "%s: obj points to object [%d], but it isn't a container.", __func__, obj->value[2] );
          return;
       }
       /*
@@ -2188,7 +2181,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
          room = obj->in_room;
       if( !room )
       {
-         bug( "PullOrPush: obj points to invalid room %d", obj->value[1] );
+         bug( "%s: obj points to invalid room %d", __func__, obj->value[1] );
          return;
       }
       if( IS_SET( obj->value[0], TRIG_D_NORTH ) )
@@ -2223,7 +2216,7 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       }
       else
       {
-         bug( "PullOrPush: door: no direction flag set.", 0 );
+         bug( "%s: door: no direction flag set.", __func__ );
          return;
       }
       pexit = get_exit( room, edir );
@@ -2231,13 +2224,13 @@ void pullorpush( CHAR_DATA * ch, OBJ_DATA * obj, bool pull )
       {
          if( !IS_SET( obj->value[0], TRIG_PASSAGE ) )
          {
-            bug( "PullOrPush: obj points to non-exit %d", obj->value[1] );
+            bug( "%s: obj points to non-exit %d", __func__, obj->value[1] );
             return;
          }
          to_room = get_room_index( obj->value[2] );
          if( !to_room )
          {
-            bug( "PullOrPush: dest points to invalid room %d", obj->value[2] );
+            bug( "%s: dest points to invalid room %d", __func__, obj->value[2] );
             return;
          }
          pexit = make_exit( room, to_room, edir );
@@ -2435,7 +2428,7 @@ void do_smoke( CHAR_DATA * ch, const char *argument )
             return;
       }
       else
-         bug( "do_smoke: bad herb type %d", pipe->value[2] );
+         bug( "%s: bad herb type %d", __func__, pipe->value[2] );
 
       SET_BIT( pipe->value[3], PIPE_HOT );
       if( --pipe->value[1] < 1 )
@@ -2751,13 +2744,6 @@ void actiondesc( CHAR_DATA * ch, OBJ_DATA * obj, void *vo )
    *charptr = '\0';
    *roomptr = '\0';
 
-/*
-sprintf( buf, "Charbuf: %s", charbuf );
-log_string_plus( buf, LOG_HIGH, LEVEL_LESSER ); 
-sprintf( buf, "Roombuf: %s", roombuf );
-log_string_plus( buf, LOG_HIGH, LEVEL_LESSER ); 
-*/
-
    switch ( obj->item_type )
    {
       case ITEM_BLOOD:
@@ -2883,7 +2869,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
    if( IS_NPC( ch ) )
       return;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    /*
     * switch( ch->substate )
@@ -2981,32 +2967,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
       }
       send_to_char( "&GYou begin lessons in maners and ettiquite.\r\n", ch );
    }
-   //add_timer ( ch , TIMER_DO_FUN , 10 , do_train , 1 );
-   //ch->dest_buf = str_dup(arg);
-   //return;
 
-   /*
-    * case 1:
-    * if ( !ch->dest_buf )
-    * return;
-    * strcpy(arg, ch->dest_buf);
-    * DISPOSE( ch->dest_buf);
-    * break;
-    * 
-    * case SUB_TIMER_DO_ABORT:
-    * DISPOSE( ch->dest_buf );
-    * ch->substate = SUB_NONE;
-    * send_to_char("&RYou fail to complete your training.\r\n", ch);
-    * return;
-    * }
-    * 
-    * ch->substate = SUB_NONE;
-    * 
-    * if ( number_bits ( 2 ) == 0 )
-    * {
-    * successful = TRUE;
-    * }
-    */
    successful = TRUE;
    if( !str_cmp( arg, "str" ) || !str_cmp( arg, "strength" ) )
    {
@@ -3091,7 +3052,6 @@ void do_train( CHAR_DATA * ch, const char *argument )
 
 void do_suicide( CHAR_DATA * ch, const char *argument )
 {
-   char logbuf[MAX_STRING_LENGTH];
    OBJ_DATA *wield;
 
    if( IS_NPC( ch ) || !ch->pcdata )
@@ -3109,8 +3069,7 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
    if( strcmp( sha256_crypt( argument ), ch->pcdata->pwd ) )
    {
       send_to_char( "Sorry wrong password.\r\n", ch );
-      sprintf( logbuf, "%s attempting to commit suicide... WRONG PASSWORD!", ch->name );
-      log_string( logbuf );
+      log_printf( "%s attempting to commit suicide... WRONG PASSWORD!", ch->name );
       return;
    }
 
@@ -3171,12 +3130,10 @@ void do_suicide( CHAR_DATA * ch, const char *argument )
       }
    }
 
-   sprintf( logbuf, "%s has commited suicide.", ch->name );
-   log_string( logbuf );
+   log_printf( "%s has commited suicide.", ch->name );
 
    set_cur_char( ch );
    raw_kill( ch, ch );
-
 }
 
 void do_bank( CHAR_DATA * ch, const char *argument )
@@ -3185,7 +3142,6 @@ void do_bank( CHAR_DATA * ch, const char *argument )
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
    char arg3[MAX_INPUT_LENGTH];
-   char logbuf[MAX_INPUT_LENGTH];
    long amount = 0;
 
    argument = one_argument( argument, arg1 );
@@ -3291,8 +3247,7 @@ void do_bank( CHAR_DATA * ch, const char *argument )
          return;
       }
       ch_printf( ch, "&W&GYou transfer %ld credits to %s's account.\r\n", amount, arg3 );
-      sprintf( logbuf, "%s transfers %ld credits to %s", ch->name, amount, victim->name );
-      log_string( logbuf );
+      log_printf( "%s transfers %ld credits to %s", ch->name, amount, victim->name );
       ch->pcdata->bank -= amount;
       victim->pcdata->bank += amount;
       ch_printf( ch, "Successful.\r\n" );
@@ -3335,59 +3290,11 @@ void do_showsocial( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-/* Defunct - Now use introduce to show people your last name
-void do_lastname( CHAR_DATA *ch, char *argument )
-{
-  if ( IS_NPC(ch))
-  {
-    send_to_char("Mobs have no last names!\r\n", ch);
-    return;
-  }
-
-  if ( argument[0] == '\0' && ch->pcdata->last_name )
-  {
-    send_to_char("Last name cleared. Please use 'lastname <argument>' to set your last name.\r\n", ch);
-    ch->pcdata->last_name = NULL;
-    return;
-  }
-  else if( argument[0] == '\0' )
-  {
-    send_to_char("Set your last name to what?\r\n", ch);
-    return;
-  }
-
-  if ( !strcmp( argument, " " ) || !strcmp( argument, "&" ))
-  {
-    send_to_char("You can't have spaces or colors in your last name. Choose another.\r\n", ch);  
-    return;
-  }
-
-  if ( !check_parse_name( argument ) )
-  {
-    send_to_char("Illegal Last Name. Try Another.\r\n", ch);
-    return;
-  }
-
-  argument[0] = UPPER(argument[0]);
-
-  if (!str_cmp(ch->pcdata->last_name, argument))
-  {
-    send_to_char("That's already your last name!\r\n", ch);
-    return;
-  }
-
-  ch->pcdata->last_name = STRALLOC( argument );
-  send_to_char("Your last name has been changed.\r\n", ch);
-  return;
-}
-*/
-
-
 void do_tune( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
-   char buf[MAX_STRING_LENGTH];
    int num;
+
    if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
    {
       send_to_char( "You must be in the cockpit of a ship to tune it's channel.\r\n", ch );
@@ -3408,8 +3315,7 @@ void do_tune( CHAR_DATA * ch, const char *argument )
    }
    act( AT_WHITE, "You make some adjustments on the ships comm system.", ch, NULL, NULL, TO_CHAR );
    act( AT_WHITE, "$n makes some adjustments on the ships comm system.", ch, NULL, NULL, TO_ROOM );
-   sprintf( buf, "Ships channel tuned to %s%d.\r\n", num == 0 ? "the public channel " : "", num );
-   send_to_char( buf, ch );
+   ch_printf( ch, "Ships channel tuned to %s%d.\r\n", num == 0 ? "the public channel " : "", num );
    ship->channel = num;
    save_ship( ship );
 }
@@ -3419,18 +3325,16 @@ void do_whisper( CHAR_DATA * ch, const char *argument )
    CHAR_DATA *victim;
    char arg1[MAX_STRING_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
-   char buf[MAX_INPUT_LENGTH];
+
    argument = one_argument( argument, arg1 );
-   strcpy( arg2, argument );
+   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
    if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
    {
       send_to_char( "They are not in here.\r\n", ch );
       return;
    }
-   sprintf( buf, "&B[&Cwhisper&B] &Cto %s: &W%s\r\n", PERS( victim, ch ), arg2 );
-   send_to_char( buf, ch );
-   sprintf( buf, "&B[&Cwhisper&B] &C%s whispers: &W%s\r\n", PERS( ch, victim ), arg2 );
-   send_to_char( buf, victim );
+   ch_printf( ch, "&B[&Cwhisper&B] &Cto %s: &W%s\r\n", PERS( victim, ch ), arg2 );
+   ch_printf( victim, "&B[&Cwhisper&B] &C%s whispers: &W%s\r\n", PERS( ch, victim ), arg2 );
 }
 
 #define MAX_DROP_TROOPS 20
@@ -3514,7 +3418,7 @@ void do_droptroops( CHAR_DATA * ch, const char *argument )
       mob = create_mobile( pMobIndex );
       char_to_room( mob, rtest );
       if( ch->pcdata && ch->pcdata->clan )
-         sprintf( tmpbuf, "(%s) %s", ch->pcdata->clan->name, mob->long_descr );
+         snprintf( tmpbuf, MAX_STRING_LENGTH, "(%s) %s", ch->pcdata->clan->name, mob->long_descr );
       STRFREE( mob->long_descr );
       mob->mob_clan = QUICKLINK( ch->pcdata->clan->name );
       mob->long_descr = STRALLOC( tmpbuf );
@@ -3525,7 +3429,7 @@ void do_droptroops( CHAR_DATA * ch, const char *argument )
          equip_char( mob, blaster, WEAR_WIELD );
       }
    }
-   sprintf( tmpbuf,
+   snprintf( tmpbuf, MAX_STRING_LENGTH,
             "&RYelling and the thunder of feet is heard from the troop hold as %d troops exit the ship and fan out.\r\n",
             num );
    ch->pcdata->clan->troops -= num;
@@ -3540,8 +3444,9 @@ void do_hale( CHAR_DATA * ch, const char *argument )
    char buf1[MAX_STRING_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
+
    argument = one_argument( argument, arg1 );
-   strcpy( arg2, argument );
+   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
    if( arg1[0] == '\0' || arg2[0] == '\0' )
    {
       send_to_char( "Syntax: Hail <ship> <message>\r\n", ch );
@@ -3573,10 +3478,10 @@ void do_hale( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "&B[&CShip Hail&B] &C%s&B: &w%s", ship2->name, arg2 );
-   sprintf( buf1, "&B[&CShip Hail&B] &CYou send&B: &w%s", arg2 );
-   send_to_char( buf1, ch );
-   sprintf( buf1, "&g%s adjusts some settings on the comm system and says:\r\n&C'&w%s&C'", ch->name, arg2 );
+   snprintf( buf, MAX_STRING_LENGTH, "&B[&CShip Hail&B] &C%s&B: &w%s", ship2->name, arg2 );
+   ch_printf( ch, "&B[&CShip Hail&B] &CYou send&B: &w%s", arg2 );
+
+   snprintf( buf1, MAX_STRING_LENGTH, "&g%s adjusts some settings on the comm system and says:\r\n&C'&w%s&C'", ch->name, arg2 );
    act( AT_GREEN, buf1, ch, NULL, NULL, TO_NOTVICT );
    echo_to_cockpit( AT_BLUE, ship, buf );
    return;
@@ -3584,8 +3489,6 @@ void do_hale( CHAR_DATA * ch, const char *argument )
 
 void do_rpconvert( CHAR_DATA * ch, const char *argument )
 {
-   char buf[MAX_STRING_LENGTH];
-
    if( IS_NPC( ch ) )
       return;
 
@@ -3634,8 +3537,7 @@ void do_rpconvert( CHAR_DATA * ch, const char *argument )
             }
             ch->bonus[iClass] += 1;
             ch_printf( ch, "&GYour ability in %s has been increased by 1!\r\n", ability_name[iClass] );
-            sprintf( buf, "%s increased class %s with rpconvert.", ch->name, ability_name[iClass] );
-            log_string( buf );
+            log_printf( "%s increased class %s with rpconvert.", ch->name, ability_name[iClass] );
             ch->rppoints = ch->rppoints - 10;
             break;
          }
@@ -3698,8 +3600,7 @@ void do_rpconvert( CHAR_DATA * ch, const char *argument )
       ch->rppoints -= 1;
 
       ch_printf( ch, "&GYou have spent 1 RPP to increase %s by 5%!\r\n", skill_table[sn]->name );
-      sprintf( buf, "%s increased %s by 5%% with rpconvert.\r\n", ch->name, skill_table[sn]->name );
-      log_string( buf );
+      log_printf( "%s increased %s by 5%% with rpconvert.\r\n", ch->name, skill_table[sn]->name );
 
       return;
    }

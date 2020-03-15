@@ -31,17 +31,13 @@ Michael Seifert, and Sebastian Hammer.
 #include <time.h>
 #include "mud.h"
 
-
 /*
  * Local functions
  */
-
-#define	CD	CHAR_DATA
-CD *find_keeper( CHAR_DATA * ch );
-CD *find_fixer( CHAR_DATA * ch );
+CHAR_DATA *find_keeper( CHAR_DATA * ch );
+CHAR_DATA *find_fixer( CHAR_DATA * ch );
 int get_cost( CHAR_DATA * ch, CHAR_DATA * keeper, OBJ_DATA * obj, bool fBuy );
 int get_repaircost( CHAR_DATA * keeper, OBJ_DATA * obj );
-#undef CD
 
 /*
  * Shopping commands.
@@ -61,7 +57,6 @@ CHAR_DATA *find_keeper( CHAR_DATA * ch )
       send_to_char( "You can't do that here.\r\n", ch );
       return NULL;
    }
-
 
    /*
     * Shop hours.
@@ -247,8 +242,6 @@ int get_repaircost( CHAR_DATA * keeper, OBJ_DATA * obj )
    return cost;
 }
 
-
-
 void do_buy( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -275,7 +268,7 @@ void do_buy( CHAR_DATA * ch, const char *argument )
       pRoomIndexNext = get_room_index( ch->in_room->vnum + 1 );
       if( !pRoomIndexNext )
       {
-         bug( "Do_buy: bad pet shop at vnum %d.", ch->in_room->vnum );
+         bug( "%s: bad pet shop at vnum %d.", __func__, ch->in_room->vnum );
          send_to_char( "Sorry, you can't buy that here.\r\n", ch );
          return;
       }
@@ -307,12 +300,12 @@ void do_buy( CHAR_DATA * ch, const char *argument )
       argument = one_argument( argument, arg );
       if( arg[0] != '\0' )
       {
-         sprintf( buf, "%s %s", pet->name, arg );
+         snprintf( buf, MAX_STRING_LENGTH, "%s %s", pet->name, arg );
          STRFREE( pet->name );
          pet->name = STRALLOC( buf );
       }
 
-      sprintf( buf, "%sA neck tag says 'I belong to %s'.\r\n", pet->description, ch->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%sA neck tag says 'I belong to %s'.\r\n", pet->description, ch->name );
       STRFREE( pet->description );
       pet->description = STRALLOC( buf );
 
@@ -434,9 +427,9 @@ void do_buy( CHAR_DATA * ch, const char *argument )
       }
       else
       {
-         sprintf( arg, "$n buys %d $p%s.", noi, ( obj->short_descr[strlen( obj->short_descr ) - 1] == 's' ? "" : "s" ) );
+         snprintf( arg, MAX_INPUT_LENGTH, "$n buys %d $p%s.", noi, ( obj->short_descr[strlen( obj->short_descr ) - 1] == 's' ? "" : "s" ) );
          act( AT_ACTION, arg, ch, obj, NULL, TO_ROOM );
-         sprintf( arg, "You buy %d $p%s.", noi, ( obj->short_descr[strlen( obj->short_descr ) - 1] == 's' ? "" : "s" ) );
+         snprintf( arg, MAX_INPUT_LENGTH, "You buy %d $p%s.", noi, ( obj->short_descr[strlen( obj->short_descr ) - 1] == 's' ? "" : "s" ) );
          act( AT_ACTION, arg, ch, obj, NULL, TO_CHAR );
          act( AT_ACTION, "$N puts them into a bag and hands it to you.", ch, NULL, keeper, TO_CHAR );
       }
@@ -501,7 +494,7 @@ void do_list( CHAR_DATA * ch, const char *argument )
       pRoomIndexNext = get_room_index( ch->in_room->vnum + 1 );
       if( !pRoomIndexNext )
       {
-         bug( "Do_list: bad pet shop at vnum %d.", ch->in_room->vnum );
+         bug( "%s: bad pet shop at vnum %d.", __func__, ch->in_room->vnum );
          send_to_char( "You can't do that here.\r\n", ch );
          return;
       }
@@ -573,7 +566,6 @@ void do_list( CHAR_DATA * ch, const char *argument )
    }
 }
 
-
 void do_sell( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
@@ -635,7 +627,7 @@ void do_sell( CHAR_DATA * ch, const char *argument )
 
    separate_obj( obj );
    act( AT_ACTION, "$n sells $p.", ch, obj, NULL, TO_ROOM );
-   sprintf( buf, "You sell $p for %d credit%s.", cost, cost == 1 ? "" : "s" );
+   snprintf( buf, MAX_STRING_LENGTH, "You sell $p for %d credit%s.", cost, cost == 1 ? "" : "s" );
    act( AT_ACTION, buf, ch, obj, NULL, TO_CHAR );
    ch->gold += cost;
    keeper->gold -= cost;
@@ -674,8 +666,6 @@ void do_sell( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
-
 void do_value( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
@@ -711,7 +701,7 @@ void do_value( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "$n tells you 'I'll give you %d credits for $p.'", cost );
+   snprintf( buf, MAX_STRING_LENGTH, "$n tells you 'I'll give you %d credits for $p.'", cost );
    act( AT_TELL, buf, keeper, obj, ch, TO_VICT );
    ch->reply = keeper;
 
@@ -742,15 +732,15 @@ void repair_one_obj( CHAR_DATA * ch, CHAR_DATA * keeper, OBJ_DATA * obj,
 
    else if( ( cost = strcmp( "all", arg ) ? cost : 11 * cost / 10 ) > ch->gold )
    {
-      sprintf( buf, "$N tells you, 'It will cost %d credit%s to %s %s...'", cost, cost == 1 ? "" : "s", fixstr, obj->name );
+      snprintf( buf, MAX_STRING_LENGTH, "$N tells you, 'It will cost %d credit%s to %s %s...'", cost, cost == 1 ? "" : "s", fixstr, obj->name );
       act( AT_TELL, buf, ch, NULL, keeper, TO_CHAR );
       act( AT_TELL, "$N tells you, 'Which I see you can't afford.'", ch, NULL, keeper, TO_CHAR );
    }
    else
    {
-      sprintf( buf, "$n gives $p to $N, who quickly %s it.", fixstr2 );
+      snprintf( buf, MAX_STRING_LENGTH, "$n gives $p to $N, who quickly %s it.", fixstr2 );
       act( AT_ACTION, buf, ch, obj, keeper, TO_ROOM );
-      sprintf( buf, "$N charges you %d credit%s to %s $p.", cost, cost == 1 ? "" : "s", fixstr );
+      snprintf( buf, MAX_STRING_LENGTH, "$N charges you %d credit%s to %s $p.", cost, cost == 1 ? "" : "s", fixstr );
       act( AT_ACTION, buf, ch, obj, keeper, TO_CHAR );
       ch->gold -= cost;
       keeper->gold += cost;
@@ -839,7 +829,7 @@ void do_mobrepair( CHAR_DATA * ch, const char *argument )
 void appraise_all( CHAR_DATA * ch, CHAR_DATA * keeper, const char *fixstr )
 {
    OBJ_DATA *obj;
-   char buf[MAX_STRING_LENGTH], *pbuf = buf;
+   char buf[MAX_STRING_LENGTH];
    int cost, total = 0;
 
    for( obj = ch->first_carrying; obj != NULL; obj = obj->next_content )
@@ -860,7 +850,7 @@ void appraise_all( CHAR_DATA * ch, CHAR_DATA * keeper, const char *fixstr )
          }
          else
          {
-            sprintf( buf,
+            snprintf( buf, MAX_STRING_LENGTH,
                      "$N tells you, 'It will cost %d credit%s to %s %s'", cost, cost == 1 ? "" : "s", fixstr, obj->name );
             act( AT_TELL, buf, ch, NULL, keeper, TO_CHAR );
             total += cost;
@@ -870,13 +860,12 @@ void appraise_all( CHAR_DATA * ch, CHAR_DATA * keeper, const char *fixstr )
    if( total > 0 )
    {
       send_to_char( "\r\n", ch );
-      sprintf( buf, "$N tells you, 'It will cost %d credit%s in total.'", total, cost == 1 ? "" : "s" );
+      snprintf( buf, MAX_STRING_LENGTH, "$N tells you, 'It will cost %d credit%s in total.'", total, cost == 1 ? "" : "s" );
       act( AT_TELL, buf, ch, NULL, keeper, TO_CHAR );
-      strcpy( pbuf, "$N tells you, 'Remember there is a 10% surcharge for repair all.'" );
+      mudstrlcpy( buf, "$N tells you, 'Remember there is a 10% surcharge for repair all.'", MAX_STRING_LENGTH );
       act( AT_TELL, buf, ch, NULL, keeper, TO_CHAR );
    }
 }
-
 
 void do_appraise( CHAR_DATA * ch, const char *argument )
 {
@@ -937,7 +926,7 @@ void do_appraise( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   sprintf( buf, "$N tells you, 'It will cost %d credit%s to %s that...'", cost, cost == 1 ? "" : "s", fixstr );
+   snprintf( buf, MAX_STRING_LENGTH, "$N tells you, 'It will cost %d credit%s to %s that...'", cost, cost == 1 ? "" : "s", fixstr );
    act( AT_TELL, buf, ch, NULL, keeper, TO_CHAR );
    if( cost > ch->gold )
       act( AT_TELL, "$N tells you, 'Which I see you can't afford.'", ch, NULL, keeper, TO_CHAR );
@@ -945,9 +934,7 @@ void do_appraise( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 /* ------------------ Shop Building and Editing Section ----------------- */
-
 
 void do_makeshop( CHAR_DATA * ch, const char *argument )
 {

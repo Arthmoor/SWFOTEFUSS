@@ -65,8 +65,8 @@ struct hashstr_data *string_hash[STR_HASH_SIZE];
  */
 const char *str_alloc( const char *str )
 {
-   register int len, hash, psize;
-   register struct hashstr_data *ptr;
+   int len, hash, psize;
+   struct hashstr_data *ptr;
 
    len = strlen( str );
    psize = sizeof( struct hashstr_data );
@@ -98,7 +98,7 @@ const char *str_alloc( const char *str )
  */
 const char *quick_link( const char *str )
 {
-   register struct hashstr_data *ptr;
+   struct hashstr_data *ptr;
 
    ptr = ( struct hashstr_data * )( str - sizeof( struct hashstr_data ) );
    if( ptr->links == 0 )
@@ -119,8 +119,8 @@ const char *quick_link( const char *str )
  */
 int str_free( const char *str )
 {
-   register int len, hash;
-   register struct hashstr_data *ptr, *ptr2, *ptr2_next;
+   int len, hash;
+   struct hashstr_data *ptr, *ptr2, *ptr2_next;
 
    len = strlen( str );
    hash = len % STR_HASH_SIZE;
@@ -259,8 +259,8 @@ void show_high_hash( int top )
 
 bool in_hash_table( const char *str )
 {
-   register int len, hash, psize;
-   register struct hashstr_data *ptr;
+   int len, hash, psize;
+   struct hashstr_data *ptr;
 
    len = strlen( str );
    psize = sizeof( struct hashstr_data );

@@ -5,19 +5,25 @@
  *                /-----\  |      | \  |  v  | |     | |  /                 *
  *               /       \ |      |  \ |     | +-----+ +-/                  *
  ****************************************************************************
- * AFKMud Copyright 1997-2002 Alsherok. Contributors: Samson, Dwip, Whir,   *
- * Cyberfox, Karangi, Rathian, Cam, Raine, and Tarl.                        *
+ * AFKMud Copyright 1997-2019 by Roger Libiez (Samson),                     *
+ * Levi Beckerson (Whir), Michael Ward (Tarl), Erik Wolfe (Dwip),           *
+ * Cameron Carroll (Cam), Cyberfox, Karangi, Rathian, Raine,                *
+ * Xorith, and Adjani.                                                      *
+ * All Rights Reserved.                                                     *
  *                                                                          *
- * Original SMAUG 1.4a written by Thoric (Derek Snider) with Altrag,        *
+ *                                                                          *
+ * External contributions from Remcon, Quixadhal, Zarius, and many others.  *
+ *                                                                          *
+ * Original SMAUG 1.8b written by Thoric (Derek Snider) with Altrag,        *
  * Blodkai, Haus, Narn, Scryn, Swordbearer, Tricops, Gorog, Rennard,        *
- * Grishnakh, Fireblade, and Nivek.                                         *
+ * Grishnakh, Fireblade, Edmond, Conran, and Nivek.                         *
  *                                                                          *
  * Original MERC 2.1 code by Hatchet, Furey, and Kahn.                      *
  *                                                                          *
  * Original DikuMUD code by: Hans Staerfeldt, Katja Nyboe, Tom Madsen,      *
  * Michael Seifert, and Sebastian Hammer.                                   *
  ****************************************************************************
- *			 External DNS Resolver Module			                *
+ *                     External DNS Resolver Module                         *
  ****************************************************************************/
 
 /***************************************************************************
@@ -50,13 +56,12 @@ char *resolve_address( int address )
     
    if( ( from = gethostbyaddr( (char*)&address, sizeof(address), AF_INET ) ) != NULL )
    {
-      strcpy( addr_str, 
-    	strcmp( from->h_name, "localhost" ) ? from->h_name : "local-host" );
+      strncpy( addr_str, strcmp( from->h_name, "localhost" ) ? from->h_name : "local-host", 256 );
    }
    else
    {
-    	addr = ntohl( address );
-    	snprintf( addr_str, 256, "%d.%d.%d.%d",
+      addr = ntohl( address );
+      snprintf( addr_str, 256, "%d.%d.%d.%d",
 	    ( addr >> 24 ) & 0xFF, ( addr >> 16 ) & 0xFF,
 	    ( addr >>  8 ) & 0xFF, ( addr       ) & 0xFF );
    } 

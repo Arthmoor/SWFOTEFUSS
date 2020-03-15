@@ -252,7 +252,6 @@ int find_tongue( CHAR_DATA * ch, const char *name, bool know )
       return ch_bsearch_skill( ch, name, gsn_first_tongue, gsn_top_sn - 1 );
 }
 
-
 /*
  * Lookup a skill by slot number.
  * Used for object loading.
@@ -271,7 +270,7 @@ int slot_lookup( int slot )
 
    if( fBootDb )
    {
-      bug( "Slot_lookup: bad slot %d.", slot );
+      bug( "%s: bad slot %d.", __func__, slot );
       abort(  );
    }
 
@@ -620,7 +619,7 @@ int dice_parse( CHAR_DATA * ch, int level, char *texp )
 {
    char buf[MAX_INPUT_LENGTH];
 
-   strcpy( buf, texp );
+   mudstrlcpy( buf, texp, MAX_INPUT_LENGTH );
    return rd_parse( ch, level, buf );
 }
 
@@ -633,7 +632,7 @@ bool saves_poison_death( int level, CHAR_DATA * victim )
    int save;
    if( !victim )
    {
-      bug( "saves_poison_death: No Victim", 0 );
+      bug( "%s: No Victim", __func__ );
       return FALSE;
    }
    save = 50 + ( victim->top_level - level - victim->saving_poison_death ) * 2;
@@ -917,7 +916,7 @@ void *locate_targets( CHAR_DATA * ch, char *arg, int sn, CHAR_DATA ** victim, OB
    switch ( skill->target )
    {
       default:
-         bug( "Do_cast: bad target for sn %d.", sn );
+         bug( "%s: bad target for sn %d.", __func__, sn );
          return &pAbort;
 
       case TAR_IGNORE:
@@ -1046,7 +1045,7 @@ void do_cast( CHAR_DATA * ch, const char *argument )
 {
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
-   static char staticbuf[MAX_INPUT_LENGTH];
+   static char staticbuf[MAX_STRING_LENGTH];
    CHAR_DATA *victim;
    OBJ_DATA *obj;
    void *vo;
@@ -1197,7 +1196,7 @@ void do_cast( CHAR_DATA * ch, const char *argument )
          add_timer( ch, TIMER_DO_FUN, UMIN( skill->beats / 10, 3 ), do_cast, 1 );
          act( AT_MAGIC, "You begin to feel the force in yourself and those around you...", ch, NULL, NULL, TO_CHAR );
          act( AT_MAGIC, "$n reaches out with the force to those around...", ch, NULL, NULL, TO_ROOM );
-         sprintf( staticbuf, "%s %s", arg2, target_name );
+         snprintf( staticbuf, MAX_STRING_LENGTH, "%s %s", arg2, target_name );
          ch->dest_buf = str_dup( staticbuf );
          ch->tempnum = sn;
          return;
@@ -1208,7 +1207,7 @@ void do_cast( CHAR_DATA * ch, const char *argument )
             if( ( skill = get_skilltype( sn ) ) == NULL )
             {
                send_to_char( "Something went wrong...\r\n", ch );
-               bug( "do_cast: SUB_TIMER_DO_ABORT: bad sn %d", sn );
+               bug( "%s: SUB_TIMER_DO_ABORT: bad sn %d", __func__, sn );
                return;
             }
             mana = IS_NPC( ch ) ? 0 : skill->min_mana;
@@ -1227,17 +1226,17 @@ void do_cast( CHAR_DATA * ch, const char *argument )
          if( ( skill = get_skilltype( sn ) ) == NULL )
          {
             send_to_char( "Something went wrong...\r\n", ch );
-            bug( "do_cast: substate 1: bad sn %d", sn );
+            bug( "%s: substate 1: bad sn %d", __func__, sn );
             return;
          }
          if( !ch->dest_buf || !IS_VALID_SN( sn ) || skill->type != SKILL_SPELL )
          {
             send_to_char( "Something negates the powers of the force.\r\n", ch );
-            bug( "do_cast: ch->dest_buf NULL or bad sn (%d)", sn );
+            bug( "%s: ch->dest_buf NULL or bad sn (%d)", __func__, sn );
             return;
          }
          mana = IS_NPC( ch ) ? 0 : skill->min_mana;
-         strcpy( staticbuf, (const char*)ch->dest_buf );
+         mudstrlcpy( staticbuf, (const char*)ch->dest_buf, MAX_STRING_LENGTH );
          target_name = one_argument( staticbuf, arg2 );
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;
@@ -1444,7 +1443,6 @@ void do_cast( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 /*
  * Cast spells at targets using a magical object.
  */
@@ -1460,7 +1458,7 @@ ch_ret obj_cast_spell( int sn, int level, CHAR_DATA * ch, CHAR_DATA * victim, OB
       return retcode;
    if( !skill || !skill->spell_fun )
    {
-      bug( "Obj_cast_spell: bad sn %d.", sn );
+      bug( "%s: bad sn %d.", __func__, sn );
       return rERROR;
    }
 
@@ -1506,7 +1504,7 @@ ch_ret obj_cast_spell( int sn, int level, CHAR_DATA * ch, CHAR_DATA * victim, OB
    switch ( skill->target )
    {
       default:
-         bug( "Obj_cast_spell: bad target for sn %d.", sn );
+         bug( "%s: bad target for sn %d.", __func__, sn );
          return rERROR;
 
       case TAR_IGNORE:
@@ -1877,11 +1875,10 @@ ch_ret spell_charm_person( int sn, int level, CHAR_DATA * ch, void *vo )
    if( ch != victim )
       send_to_char( "Ok.\r\n", ch );
 
-   sprintf( buf, "%s has charmed %s.", ch->name, victim->name );
+   snprintf( buf, MAX_STRING_LENGTH, "%s has charmed %s.", ch->name, victim->name );
    log_string_plus( buf, LOG_NORMAL, ch->top_level );
    return rNONE;
 }
-
 
 ch_ret spell_chill_touch( int sn, int level, CHAR_DATA * ch, void *vo )
 {
@@ -1988,7 +1985,6 @@ ch_ret spell_create_food( int sn, int level, CHAR_DATA * ch, void *vo )
    return rNONE;
 }
 
-
 ch_ret spell_create_water( int sn, int level, CHAR_DATA * ch, void *vo )
 {
    OBJ_DATA *obj = ( OBJ_DATA * ) vo;
@@ -2017,7 +2013,7 @@ ch_ret spell_create_water( int sn, int level, CHAR_DATA * ch, void *vo )
       {
          char buf[MAX_STRING_LENGTH];
 
-         sprintf( buf, "%s water", obj->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s water", obj->name );
          STRFREE( obj->name );
          obj->name = STRALLOC( buf );
       }
@@ -2026,8 +2022,6 @@ ch_ret spell_create_water( int sn, int level, CHAR_DATA * ch, void *vo )
 
    return rNONE;
 }
-
-
 
 ch_ret spell_cure_blindness( int sn, int level, CHAR_DATA * ch, void *vo )
 {
@@ -2949,8 +2943,6 @@ ch_ret spell_lightning_bolt( int sn, int level, CHAR_DATA * ch, void *vo )
    return damage( ch, victim, dam, sn );
 }
 
-
-
 ch_ret spell_locate_object( int sn, int level, CHAR_DATA * ch, void *vo )
 {
    char buf[MAX_INPUT_LENGTH];
@@ -2973,9 +2965,8 @@ ch_ret spell_locate_object( int sn, int level, CHAR_DATA * ch, void *vo )
          ;
       if( cnt >= MAX_NEST )
       {
-         sprintf( buf, "spell_locate_obj: object [%d] %s is nested more than %d times!",
+         bug( "%s: object [%d] %s is nested more than %d times!", __func__,
                   obj->pIndexData->vnum, obj->short_descr, MAX_NEST );
-         bug( buf, 0 );
          continue;
       }
 
@@ -2987,11 +2978,11 @@ ch_ret spell_locate_object( int sn, int level, CHAR_DATA * ch, void *vo )
              && IS_SET( in_obj->carried_by->act, PLR_WIZINVIS ) )
             continue;
 
-         sprintf( buf, "%s carried by %s.\r\n", obj_short( obj ), PERS( in_obj->carried_by, ch ) );
+         snprintf( buf, MAX_INPUT_LENGTH, "%s carried by %s.\r\n", obj_short( obj ), PERS( in_obj->carried_by, ch ) );
       }
       else
       {
-         sprintf( buf, "%s in %s.\r\n", obj_short( obj ), in_obj->in_room == NULL ? "somewhere" : in_obj->in_room->name );
+         snprintf( buf, MAX_INPUT_LENGTH, "%s in %s.\r\n", obj_short( obj ), in_obj->in_room == NULL ? "somewhere" : in_obj->in_room->name );
       }
 
       buf[0] = UPPER( buf[0] );
@@ -3006,8 +2997,6 @@ ch_ret spell_locate_object( int sn, int level, CHAR_DATA * ch, void *vo )
    }
    return rNONE;
 }
-
-
 
 ch_ret spell_magic_missile( int sn, int level, CHAR_DATA * ch, void *vo )
 {
@@ -3262,7 +3251,7 @@ ch_ret spell_sleep( int sn, int level, CHAR_DATA * ch, void *vo )
     */
    if( !IS_NPC( victim ) )
    {
-      sprintf( log_buf, "%s has cast sleep on %s.", ch->name, victim->name );
+      snprintf( log_buf, MAX_STRING_LENGTH, "%s has cast sleep on %s.", ch->name, victim->name );
       log_string_plus( log_buf, LOG_NORMAL, ch->top_level );
       to_channel( log_buf, CHANNEL_MONITOR, "Monitor", UMAX( LEVEL_IMMORTAL, ch->top_level ) );
    }
@@ -3279,21 +3268,15 @@ ch_ret spell_sleep( int sn, int level, CHAR_DATA * ch, void *vo )
    return rNONE;
 }
 
-
-
 ch_ret spell_summon( int sn, int level, CHAR_DATA * ch, void *vo )
 {
    return rNONE;
 }
 
-
-
 ch_ret spell_teleport( int sn, int level, CHAR_DATA * ch, void *vo )
 {
    return rNONE;
 }
-
-
 
 ch_ret spell_ventriloquate( int sn, int level, CHAR_DATA * ch, void *vo )
 {
@@ -3304,8 +3287,8 @@ ch_ret spell_ventriloquate( int sn, int level, CHAR_DATA * ch, void *vo )
 
    target_name = one_argument( target_name, speaker );
 
-   sprintf( buf1, "%s says '%s'.\r\n", speaker, target_name );
-   sprintf( buf2, "Someone makes %s say '%s'.\r\n", speaker, target_name );
+   snprintf( buf1, MAX_STRING_LENGTH, "%s says '%s'.\r\n", speaker, target_name );
+   snprintf( buf2, MAX_STRING_LENGTH, "Someone makes %s say '%s'.\r\n", speaker, target_name );
    buf1[0] = UPPER( buf1[0] );
 
    for( vch = ch->in_room->first_person; vch; vch = vch->next_in_room )
@@ -3319,8 +3302,6 @@ ch_ret spell_ventriloquate( int sn, int level, CHAR_DATA * ch, void *vo )
 
    return rNONE;
 }
-
-
 
 ch_ret spell_weaken( int sn, int level, CHAR_DATA * ch, void *vo )
 {
@@ -3897,14 +3878,13 @@ ch_ret spell_animate_dead( int sn, int level, CHAR_DATA * ch, void *vo )
 
    if( get_mob_index( MOB_VNUM_ANIMATED_CORPSE ) == NULL )
    {
-      bug( "Vnum 5 not found for spell_animate_dead!", 0 );
+      bug( "%s: Vnum 5 not found for spell_animate_dead!", __func__ );
       return rNONE;
    }
 
-
    if( ( pMobIndex = get_mob_index( ( short )abs( corpse->cost ) ) ) == NULL )
    {
-      bug( "Can not find mob for cost of corpse, spell_animate_dead", 0 );
+      bug( "%s: Can not find mob for cost of corpse, spell_animate_dead", __func__ );
       return rSPELL_FAILED;
    }
 
@@ -3946,15 +3926,15 @@ ch_ret spell_animate_dead( int sn, int level, CHAR_DATA * ch, void *vo )
       act( AT_MAGIC, "$n makes $T rise from the grave!", ch, NULL, pMobIndex->short_descr, TO_ROOM );
       act( AT_MAGIC, "You make $T rise from the grave!", ch, NULL, pMobIndex->short_descr, TO_CHAR );
 
-      sprintf( buf, "animated corpse %s", pMobIndex->player_name );
+      snprintf( buf, MAX_STRING_LENGTH, "animated corpse %s", pMobIndex->player_name );
       STRFREE( mob->name );
       mob->name = STRALLOC( buf );
 
-      sprintf( buf, "The animated corpse of %s", pMobIndex->short_descr );
+      snprintf( buf, MAX_STRING_LENGTH, "The animated corpse of %s", pMobIndex->short_descr );
       STRFREE( mob->short_descr );
       mob->short_descr = STRALLOC( buf );
 
-      sprintf( buf, "An animated corpse of %s struggles with the horror of its undeath.\r\n", pMobIndex->short_descr );
+      snprintf( buf, MAX_STRING_LENGTH, "An animated corpse of %s struggles with the horror of its undeath.\r\n", pMobIndex->short_descr );
       STRFREE( mob->long_descr );
       mob->long_descr = STRALLOC( buf );
       add_follower( mob, ch );
@@ -4047,7 +4027,7 @@ ch_ret spell_possess( int sn, int level, CHAR_DATA * ch, void *vo )
    af.bitvector = AFF_POSSESS;
    affect_to_char( victim, &af );
 
-   sprintf( buf, "You have possessed %s!\r\n", victim->short_descr );
+   snprintf( buf, MAX_STRING_LENGTH, "You have possessed %s!\r\n", victim->short_descr );
 
    ch->desc->character = victim;
    ch->desc->original = ch;
@@ -4057,7 +4037,6 @@ ch_ret spell_possess( int sn, int level, CHAR_DATA * ch, void *vo )
    send_to_char( buf, victim );
 
    return rNONE;
-
 }
 
 /* Ignores pickproofs, but can't unlock containers. -- Altrag 17/2/96 */
@@ -4146,7 +4125,7 @@ ch_ret spell_polymorph( int sn, int level, CHAR_DATA * ch, void *vo )
    poly_mob = make_poly_mob( ch, poly_vnum );
    if( !poly_mob )
    {
-      bug( "Spell_polymorph: null polymob!", 0 );
+      bug( "%s: null polymob!", __func__ );
       return rSPELL_FAILED;
    }
 
@@ -4169,19 +4148,19 @@ CHAR_DATA *make_poly_mob( CHAR_DATA * ch, int vnum )
 
    if( !ch )
    {
-      bug( "Make_poly_mob: null ch!", 0 );
+      bug( "%s: null ch!", __func__ );
       return NULL;
    }
 
    if( vnum < 10 || vnum > 16 )
    {
-      bug( "Make_poly_mob: Vnum not in polymorphing mobs range", 0 );
+      bug( "%s: Vnum not in polymorphing mobs range", __func__ );
       return NULL;
    }
 
    if( ( pMobIndex = get_mob_index( vnum ) ) == NULL )
    {
-      bug( "Make_poly_mob: Can't find mob %d", vnum );
+      bug( "%s: Can't find mob %d", __func__, vnum );
       return NULL;
    }
    mob = create_mobile( pMobIndex );
@@ -4191,7 +4170,6 @@ CHAR_DATA *make_poly_mob( CHAR_DATA * ch, int vnum )
 
 void do_revert( CHAR_DATA * ch, const char *argument )
 {
-
    CHAR_DATA *mob;
 
    if( !IS_NPC( ch ) || !IS_SET( ch->act, ACT_POLYMORPHED ) )
@@ -4217,16 +4195,6 @@ void do_revert( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-/*  else
-  {
-    location = NULL;
-    if(ch->desc->original->pcdata->clan)
-      location = get_room_index(ch->desc->original->pcdata->clan->recall);
-    if(!location)
-      location = get_room_index(ROOM_VNUM_TEMPLE);
-    char_to_room(ch->desc->original, location);
-  }
-*/
    ch->desc->character = ch->desc->original;
    ch->desc->original = NULL;
    ch->desc->character->desc = ch->desc;
@@ -4602,7 +4570,6 @@ ch_ret spell_affectchar( int sn, int level, CHAR_DATA * ch, void *vo )
    return retcode;
 }
 
-
 /*
  * Generic spell affect						-Thoric
  */
@@ -4618,7 +4585,7 @@ ch_ret spell_affect( int sn, int level, CHAR_DATA * ch, void *vo )
 
    if( !skill->first_affect )
    {
-      bug( "spell_affect has no affects sn %d", sn );
+      bug( "%s: spell_affect has no affects sn %d", __func__, sn );
       return rNONE;
    }
    if( SPELL_FLAG( skill, SF_GROUPSPELL ) )
@@ -4695,7 +4662,7 @@ ch_ret spell_affect( int sn, int level, CHAR_DATA * ch, void *vo )
    }
    if( !victim )
    {
-      bug( "spell_affect: could not find victim: sn %d", sn );
+      bug( "%s: could not find victim: sn %d", __func__, sn );
       failed_casting( skill, ch, victim, NULL );
       return rSPELL_FAILED;
    }
@@ -4798,7 +4765,7 @@ ch_ret spell_obj_inv( int sn, int level, CHAR_DATA * ch, void *vo )
                {
                   char buf[MAX_STRING_LENGTH];
 
-                  sprintf( buf, "%s water", obj->name );
+                  snprintf( buf, MAX_STRING_LENGTH, "%s water", obj->name );
                   STRFREE( obj->name );
                   obj->name = STRALLOC( buf );
                }

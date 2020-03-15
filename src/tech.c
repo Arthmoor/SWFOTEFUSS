@@ -50,7 +50,6 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
 
    argument = one_argument( argument, arg );
 
-
    switch ( ch->substate )
    {
       default:
@@ -88,7 +87,6 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
                checkcircuit = TRUE;
             if( obj->item_type == ITEM_TOOLKIT )
                checktool = TRUE;
-
          }
 
          if( !checklens )
@@ -121,9 +119,6 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
             return;
          }
 
-
-
-
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makemodule] );
          if( number_percent(  ) < schance )
          {
@@ -140,7 +135,7 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -154,8 +149,6 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
    ch->substate = SUB_NONE;
 
    level = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makemodule] );
-
-
 
    if( ( pObjIndex = get_obj_index( MODULE_VNUM ) ) == NULL )
    {
@@ -199,7 +192,6 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
          separate_obj( obj );
          obj_from_char( obj );
       }
-
    }
 
    schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_makemodule] );
@@ -218,88 +210,86 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
    {
       affecttype = AFFECT_PRIMARY;
       affectammount = 1;
-      strcpy( name, "A Primary Weapons Module" );
+      mudstrlcpy( name, "A Primary Weapons Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "secondary" ) )
    {
       affecttype = AFFECT_SECONDARY;
       affectammount = 1;
-      strcpy( name, "A Secondary Weapons Module" );
+      mudstrlcpy( name, "A Secondary Weapons Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "missile" ) )
    {
       affecttype = AFFECT_MISSILE;
       affectammount = ( level / 20 );
-      strcpy( name, "A Missile Module" );
+      mudstrlcpy( name, "A Missile Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "rocket" ) )
    {
       affecttype = AFFECT_ROCKET;
       affectammount = ( level / 20 );
-      strcpy( name, "A Rocket Module" );
+      mudstrlcpy( name, "A Rocket Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "torpedo" ) )
    {
       affecttype = AFFECT_TORPEDO;
       affectammount = ( level / 20 );
-      strcpy( name, "A Torpedo Module" );
+      mudstrlcpy( name, "A Torpedo Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "hull" ) )
    {
       affecttype = AFFECT_HULL;
       affectammount = ( level / 2 );
-      strcpy( name, "A Hull Module" );
+      mudstrlcpy( name, "A Hull Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "shield" ) )
    {
       affecttype = AFFECT_SHIELD;
       affectammount = ( level / 5 );
-      strcpy( name, "A Shield Module" );
+      mudstrlcpy( name, "A Shield Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "speed" ) )
    {
       affecttype = AFFECT_SPEED;
       affectammount = ( level / 10 );
-      strcpy( name, "A Speed Module" );
+      mudstrlcpy( name, "A Speed Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "hyperspeed" ) )
    {
       affecttype = AFFECT_HYPER;
       affectammount = 1;
-      strcpy( name, "A Hyperspeed Module" );
+      mudstrlcpy( name, "A Hyperspeed Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "energy" ) )
    {
       affecttype = AFFECT_ENERGY;
       affectammount = ( level * 5 );
-      strcpy( name, "An Energy Module" );
+      mudstrlcpy( name, "An Energy Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "manuever" ) )
    {
       affecttype = AFFECT_MANUEVER;
       affectammount = ( level / 10 );
-      strcpy( name, "A Manuever Module" );
+      mudstrlcpy( name, "A Manuever Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "alarm" ) )
    {
       affecttype = AFFECT_ALARM;
       affectammount = 1;
-      strcpy( name, "An Alarm Module" );
+      mudstrlcpy( name, "An Alarm Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "chaff" ) )
    {
       affecttype = AFFECT_CHAFF;
       affectammount = URANGE( 1, ( level / 33 ), 3 );
-      strcpy( name, "A Chaff Module" );
+      mudstrlcpy( name, "A Chaff Module", MAX_STRING_LENGTH );
    }
-
-
 
    obj = create_object( pObjIndex, level );
    obj->item_type = ITEM_MODULE;
@@ -310,7 +300,7 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( name );
    STRFREE( obj->description );
-   strcat( name, " was dropped here." );
+   mudstrlcat( name, " was dropped here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( name );
 
    obj->value[0] = affecttype;
@@ -333,12 +323,10 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_makemodule );
 }
 
-
 void do_showmodules( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
    MODULE_DATA *mod;
-   char buf[MAX_STRING_LENGTH];
    char str[MAX_STRING_LENGTH];
    int i;
    long xpgain;
@@ -366,34 +354,33 @@ void do_showmodules( CHAR_DATA * ch, const char *argument )
    {
       i++;
       if( mod->affect == AFFECT_PRIMARY )
-         strcpy( str, "Primary Weapon" );
+         mudstrlcpy( str, "Primary Weapon", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_SECONDARY )
-         strcpy( str, "Secondary Weapon" );
+         mudstrlcpy( str, "Secondary Weapon", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_MISSILE )
-         strcpy( str, "Missile" );
+         mudstrlcpy( str, "Missile", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_ROCKET )
-         strcpy( str, "Rocket" );
+         mudstrlcpy( str, "Rocket", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_TORPEDO )
-         strcpy( str, "Torpedo" );
+         mudstrlcpy( str, "Torpedo", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_HULL )
-         strcpy( str, "Hull" );
+         mudstrlcpy( str, "Hull", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_SHIELD )
-         strcpy( str, "Shields" );
+         mudstrlcpy( str, "Shields", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_SPEED )
-         strcpy( str, "Speed" );
+         mudstrlcpy( str, "Speed", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_HYPER )
-         strcpy( str, "Hyperspeed" );
+         mudstrlcpy( str, "Hyperspeed", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_ENERGY )
-         strcpy( str, "Energy" );
+         mudstrlcpy( str, "Energy", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_MANUEVER )
-         strcpy( str, "Manuever" );
+         mudstrlcpy( str, "Manuever", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_ALARM )
-         strcpy( str, "Alarm" );
+         mudstrlcpy( str, "Alarm", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_CHAFF )
-         strcpy( str, "Chaff" );
+         mudstrlcpy( str, "Chaff", MAX_STRING_LENGTH );
 
-      sprintf( buf, "&z| &P%2d&p)  &G&W%-22.22s %-8.8d &z|\r\n", i, str, mod->ammount );
-      send_to_char( buf, ch );
+      ch_printf( ch, "&z| &P%2d&p)  &G&W%-22.22s %-8.8d &z|\r\n", i, str, mod->ammount );
    }
    send_to_char( "&z+--------------------------------------+\r\n", ch );
    xpgain = UMAX( 100, i * 100 );
@@ -413,7 +400,7 @@ void do_removemodule( CHAR_DATA * ch, const char *argument )
    int schance;
    int num, i;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
    checktool = FALSE;
    switch ( ch->substate )
    {
@@ -460,10 +447,10 @@ void do_removemodule( CHAR_DATA * ch, const char *argument )
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_removemodule] );
          if( number_percent(  ) < schance )
          {
-            strcpy( arg, argument );
+            mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
             ch->dest_buf = str_dup( arg );
             send_to_char( "&GYou begin the long process of removing a module.\r\n", ch );
-            sprintf( buf, "$n takes out $s toolkit and begins to work.\r\n" );
+            mudstrlcpy( buf, "$n takes out $s toolkit and begins to work.\r\n", MAX_INPUT_LENGTH );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
 
             add_timer( ch, TIMER_DO_FUN, 5, do_removemodule, 1 );
@@ -477,7 +464,7 @@ void do_removemodule( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -581,7 +568,7 @@ void do_shipmaintenance( CHAR_DATA * ch, const char *argument )
    OBJ_DATA *obj;
    int oldbombs;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    if( ( ch->pcdata->learned[gsn_shipmaintenance] ) <= 0 )
    {
@@ -614,7 +601,7 @@ void do_shipmaintenance( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -655,12 +642,10 @@ void do_shipmaintenance( CHAR_DATA * ch, const char *argument )
          if( ship->bombs > 0 && ship->lowbombstr > 0 && ship->hibombstr > 0 )
          {
             ship->lowbombstr = ( ( ( ship->lowbombstr * ship->bombs ) + obj->value[0] ) / ( ship->bombs + 1 ) );
-            sprintf( log_buf, "Ships lowbombstr is %d", ship->lowbombstr );
-            log_string( log_buf );
+            log_printf( "Ships lowbombstr is %d", ship->lowbombstr );
 
             ship->hibombstr = ( ( ship->hibombstr * ship->bombs ) + ( int )obj->value[1] ) / ( ship->bombs + 1 );
-            sprintf( log_buf, "Ships hibombstr is %d", ship->hibombstr );
-            log_string( log_buf );
+            log_printf( "Ships hibombstr is %d", ship->hibombstr );
          }
          else
          {
@@ -696,17 +681,13 @@ void do_shipmaintenance( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_shipmaintenance );
    return;
 
-
 }
 
 void do_scanbugs( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
-
-   char arg[MAX_STRING_LENGTH];
-
+   char arg[MAX_INPUT_LENGTH];
    int schance;
-
    BUG_DATA *bugs;
    int i;
 
@@ -755,7 +736,7 @@ void do_scanbugs( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;
@@ -813,7 +794,7 @@ void do_scanbugs( CHAR_DATA * ch, const char *argument )
 void do_removebug( CHAR_DATA * ch, const char *argument )
 {
    CHAR_DATA *victim;
-   char arg[MAX_STRING_LENGTH];
+   char arg[MAX_INPUT_LENGTH];
    int schance;
    BUG_DATA *bugs;
 
@@ -862,7 +843,7 @@ void do_removebug( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;
@@ -879,7 +860,6 @@ void do_removebug( CHAR_DATA * ch, const char *argument )
    ch->substate = SUB_NONE;
 
    schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_scanbugs] );
-
 
    victim = get_char_room( ch, arg );
 

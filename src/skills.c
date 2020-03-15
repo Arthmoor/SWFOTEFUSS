@@ -50,7 +50,6 @@ const char *const spell_class[] = { "none", "lunar", "solar", "travel", "summon"
 
 const char *const target_type[] = { "ignore", "offensive", "defensive", "self", "objinv" };
 
-
 void show_char_to_char( CHAR_DATA * list, CHAR_DATA * ch );
 int ris_save( CHAR_DATA * ch, int schance, int ris );
 bool check_illegal_psteal( CHAR_DATA * ch, CHAR_DATA * victim );
@@ -71,7 +70,6 @@ void skill_notfound( CHAR_DATA * ch, const char *argument )
    send_to_char( "Huh?\r\n", ch );
    return;
 }
-
 
 int get_ssave( const char *name )
 {
@@ -231,7 +229,7 @@ bool check_skill( CHAR_DATA * ch, const char *command, const char *argument )
       switch ( skill_table[sn]->target )
       {
          default:
-            bug( "Check_skill: bad target for sn %d.", sn );
+            bug( "%s: bad target for sn %d.", __func__, sn );
             send_to_char( "Something went wrong...\r\n", ch );
             return TRUE;
 
@@ -439,14 +437,14 @@ void do_slookup( CHAR_DATA * ch, const char *argument )
                     spell_damage[SPELL_DAMAGE( skill )],
                     spell_action[SPELL_ACTION( skill )],
                     spell_class[SPELL_CLASS( skill )], spell_power[SPELL_POWER( skill )] );
-         strcpy( buf, "Flags:" );
+         mudstrlcpy( buf, "Flags:", MAX_STRING_LENGTH );
          for( x = 11; x < 32; x++ )
             if( SPELL_FLAG( skill, 1 << x ) )
             {
-               strcat( buf, " " );
-               strcat( buf, spell_flag[x - 11] );
+               mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+               mudstrlcat( buf, spell_flag[x - 11], MAX_STRING_LENGTH );
             }
-         strcat( buf, "\r\n" );
+         mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
       }
       ch_printf( ch, "Saves: %s\r\n", spell_saves[( int )skill->saves] );
@@ -476,39 +474,39 @@ void do_slookup( CHAR_DATA * ch, const char *argument )
       {
          if( aff == skill->first_affect )
             send_to_char( "\r\n", ch );
-         sprintf( buf, "Affect %d", ++cnt );
+         snprintf( buf, MAX_STRING_LENGTH, "Affect %d", ++cnt );
          if( aff->location )
          {
-            strcat( buf, " modifies " );
-            strcat( buf, a_types[aff->location % REVERSE_APPLY] );
-            strcat( buf, " by '" );
-            strcat( buf, aff->modifier );
+            mudstrlcat( buf, " modifies ", MAX_STRING_LENGTH );
+            mudstrlcat( buf, a_types[aff->location % REVERSE_APPLY], MAX_STRING_LENGTH );
+            mudstrlcat( buf, " by '", MAX_STRING_LENGTH );
+            mudstrlcat( buf, aff->modifier, MAX_STRING_LENGTH );
             if( aff->bitvector )
-               strcat( buf, "' and" );
+               mudstrlcat( buf, "' and", MAX_STRING_LENGTH );
             else
-               strcat( buf, "'" );
+               mudstrlcat( buf, "'", MAX_STRING_LENGTH );
          }
          if( aff->bitvector )
          {
             int x;
 
-            strcat( buf, " applies" );
+            mudstrlcat( buf, " applies", MAX_STRING_LENGTH );
             for( x = 0; x < 32; x++ )
                if( IS_SET( aff->bitvector, 1 << x ) )
                {
-                  strcat( buf, " " );
-                  strcat( buf, a_flags[x] );
+                  mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+                  mudstrlcat( buf, a_flags[x], MAX_STRING_LENGTH );
                }
          }
          if( aff->duration[0] != '\0' && aff->duration[0] != '0' )
          {
-            strcat( buf, " for '" );
-            strcat( buf, aff->duration );
-            strcat( buf, "' rounds" );
+            mudstrlcat( buf, " for '", MAX_STRING_LENGTH );
+            mudstrlcat( buf, aff->duration, MAX_STRING_LENGTH );
+            mudstrlcat( buf, "' rounds", MAX_STRING_LENGTH );
          }
          if( aff->location >= REVERSE_APPLY )
-            strcat( buf, " (affects caster only)" );
-         strcat( buf, "\r\n" );
+            mudstrlcat( buf, " (affects caster only)", MAX_STRING_LENGTH );
+         mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
          if( !aff->next )
             send_to_char( "\r\n", ch );
@@ -539,9 +537,8 @@ void do_slookup( CHAR_DATA * ch, const char *argument )
          ch_printf( ch, "Immroom   : %s\r\n", skill->imm_room );
       if( skill->type != SKILL_HERB && skill->guild >= 0 && skill->guild < MAX_ABILITY )
       {
-         sprintf( buf, "guild: %s   Align: %4d   lvl: %3d\r\n",
+         ch_printf( ch, "guild: %s   Align: %4d   lvl: %3d\r\n",
                   ability_name[skill->guild], skill->alignment, skill->min_level );
-         send_to_char( buf, ch );
       }
       send_to_char( "\r\n", ch );
    }
@@ -1120,18 +1117,13 @@ void do_sset( CHAR_DATA * ch, const char *argument )
       }
       if( !str_cmp( arg2, "teachers" ) )
       {
-         //if ( skill->teachers )
-         //DISPOSE(skill->teachers);
-
          if( !str_cmp( argument, "clear" ) )
             skill->teachers = str_dup( "" );
          else
          {
-            //strcat(skill->teachers, " ");  
-            //strcat(skill->teachers, argument);
             if( skill->teachers )
             {
-               sprintf( buf, "%s %s", skill->teachers, argument );
+               snprintf( buf, MAX_STRING_LENGTH, "%s %s", skill->teachers, argument );
                skill->teachers = str_dup( buf );
             }
             else
@@ -1148,8 +1140,8 @@ void do_sset( CHAR_DATA * ch, const char *argument )
    {
       if( ( sn = skill_lookup( arg1 ) ) >= 0 )
       {
-         sprintf( arg1, "%d %s %s", sn, arg2, argument );
-         do_sset( ch, arg1 );
+         snprintf( buf, MAX_STRING_LENGTH, "%d %s %s", sn, arg2, argument );
+         do_sset( ch, buf );
       }
       else
          send_to_char( "They aren't here.\r\n", ch );
@@ -1441,10 +1433,10 @@ void do_detrap( CHAR_DATA * ch, const char *argument )
          if( !ch->dest_buf )
          {
             send_to_char( "Your detrapping was interrupted!\r\n", ch );
-            bug( "do_detrap: ch->dest_buf NULL!", 0 );
+            bug( "%s: ch->dest_buf NULL!", __func__ );
             return;
          }
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          ch->substate = SUB_NONE;
@@ -1565,10 +1557,10 @@ void do_dig( CHAR_DATA * ch, const char *argument )
          {
             send_to_char( "Your digging was interrupted!\r\n", ch );
             act( AT_PLAIN, "$n's digging was interrupted!", ch, NULL, NULL, TO_ROOM );
-            bug( "do_dig: dest_buf NULL", 0 );
+            bug( "%s: dest_buf NULL", __func__ );
             return;
          }
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1705,10 +1697,10 @@ void do_search( CHAR_DATA * ch, const char *argument )
          if( !ch->dest_buf )
          {
             send_to_char( "Your search was interrupted!\r\n", ch );
-            bug( "do_search: dest_buf NULL", 0 );
+            bug( "%s: dest_buf NULL", __func__ );
             return;
          }
-         strcpy( arg, (const char*)ch->dest_buf );
+         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
       case SUB_TIMER_DO_ABORT:
@@ -1795,7 +1787,6 @@ void do_search( CHAR_DATA * ch, const char *argument )
 void do_steal( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH];
-   char logbuf[MAX_STRING_LENGTH];
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
    CHAR_DATA *victim, *mst;
@@ -1864,7 +1855,7 @@ void do_steal( CHAR_DATA * ch, const char *argument )
       act( AT_ACTION, "$n tried to steal from you!\r\n", ch, NULL, victim, TO_VICT );
       act( AT_ACTION, "$n tried to steal from $N.\r\n", ch, NULL, victim, TO_NOTVICT );
 
-      sprintf( buf, "That %s is a bloody thief!", race_table[ch->race].race_name );
+      snprintf( buf, MAX_STRING_LENGTH, "That %s is a bloody thief!", race_table[ch->race].race_name );
       do_yell( victim, buf );
 
       learn_from_failure( ch, gsn_steal );
@@ -1891,8 +1882,6 @@ void do_steal( CHAR_DATA * ch, const char *argument )
 
          }
       }
-
-
       return;
    }
 
@@ -1914,9 +1903,8 @@ void do_steal( CHAR_DATA * ch, const char *argument )
       ch->gold += amount;
       victim->gold -= amount;
       ch_printf( ch, "Aha!  You got %d credits.\r\n", amount );
-      sprintf( logbuf, "%s stole %d credits from %s.\r\n", ch->name, amount,
+      log_printf( "%s stole %d credits from %s.\r\n", ch->name, amount,
                IS_NPC( victim ) ? victim->short_descr : victim->name );
-      log_string( logbuf );
       learn_from_success( ch, gsn_steal );
       if( IS_NPC( victim ) )
       {
@@ -1977,8 +1965,7 @@ void do_steal( CHAR_DATA * ch, const char *argument )
 
    send_to_char( "Ok.\r\n", ch );
    learn_from_success( ch, gsn_steal );
-   sprintf( logbuf, "%s stole %s from %s.\r\n", ch->name, obj->name, IS_NPC( victim ) ? victim->short_descr : victim->name );
-   log_string( logbuf );
+   log_printf( "%s stole %s from %s.\r\n", ch->name, obj->name, IS_NPC( victim ) ? victim->short_descr : victim->name );
    if( IS_NPC( victim ) )
    {
       xp =
@@ -2087,7 +2074,6 @@ void do_backstab( CHAR_DATA * ch, const char *argument )
    CHAR_DATA *victim;
    OBJ_DATA *obj;
    int percent;
-   char buf[MAX_STRING_LENGTH];
 
    if( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
    {
@@ -2119,8 +2105,7 @@ void do_backstab( CHAR_DATA * ch, const char *argument )
 
    if( !IS_NPC( ch ) && !IS_NPC( victim ) )
    {
-      sprintf( buf, "%s backstabbed %s", ch->name, victim->name );
-      log_string( buf );
+      log_printf( "%s backstabbed %s", ch->name, victim->name );
    }
 
    if( victim->position <= POS_STUNNED )
@@ -2818,7 +2803,7 @@ void do_pick( CHAR_DATA * ch, const char *argument )
       if( IS_NPC( ch ) || !ch->pcdata || y > ch->pcdata->learned[gsn_pickshiplock] )
       {
          send_to_char( "You failed.\r\n", ch );
-//          sprintf ( buf , "[ALARM] %s attempting to pick %s.", ch->name, ship->name ); 
+//          snprintf ( buf , MAX_STRING_LENGTH, "[ALARM] %s attempting to pick %s.", ch->name, ship->name ); 
 //          echo_to_all ( AT_RED , buf, 0 ); 
          if( ship->alarm == 1 )
          {
@@ -2843,8 +2828,6 @@ void do_pick( CHAR_DATA * ch, const char *argument )
    ch_printf( ch, "You see no %s here.\r\n", arg );
    return;
 }
-
-
 
 void do_sneak( CHAR_DATA * ch, const char *argument )
 {
@@ -3639,7 +3622,6 @@ void do_hitall( CHAR_DATA * ch, const char *argument )
    short nvict = 0;
    short nhit = 0;
    short percent;
-   char buf[MAX_STRING_LENGTH];
 
    if( IS_SET( ch->in_room->room_flags, ROOM_SAFE ) )
    {
@@ -3664,8 +3646,7 @@ void do_hitall( CHAR_DATA * ch, const char *argument )
       {
          if( !IS_NPC( ch ) && !IS_NPC( vch ) )
          {
-            sprintf( buf, "%s hitall'ed and hit %s", ch->name, vch->name );
-            log_string( buf );
+            log_printf( "%s hitall'ed and hit %s", ch->name, vch->name );
          }
          nhit++;
          global_retcode = one_hit( ch, vch, TYPE_UNDEFINED );
@@ -3690,8 +3671,6 @@ void do_hitall( CHAR_DATA * ch, const char *argument )
       learn_from_failure( ch, gsn_hitall );
    return;
 }
-
-
 
 bool check_illegal_psteal( CHAR_DATA * ch, CHAR_DATA * victim )
 {

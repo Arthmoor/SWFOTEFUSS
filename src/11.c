@@ -52,7 +52,7 @@ const char *primary_beam_name( SHIP_DATA * ship )
 {
    if( ship->primaryCount != 0 )
    {
-      sprintf( bname, "%d %s", ship->primaryCount,
+      snprintf( bname, MAX_STRING_LENGTH, "%d %s", ship->primaryCount,
                ( ship->primaryType == SINGLE_LASER && ship->primaryCount == 1 ) ? "Single-laser cannon" :
                ( ship->primaryType == SINGLE_LASER && ship->primaryCount != 1 ) ? "Single-laser cannons" :
                ( ship->primaryType == DUAL_LASER && ship->primaryCount == 1 ) ? "Dual-laser cannon" :
@@ -76,7 +76,7 @@ const char *primary_beam_name( SHIP_DATA * ship )
    }
    else
    {
-      sprintf( bname, "%s", "None." );
+      snprintf( bname, MAX_STRING_LENGTH, "%s", "None." );
       return bname;
    }
 }
@@ -86,7 +86,7 @@ const char *secondary_beam_name( SHIP_DATA * ship )
 
    if( ship->secondaryCount != 0 )
    {
-      sprintf( bname, "%d %s", ship->secondaryCount,
+      snprintf( bname, MAX_STRING_LENGTH, "%d %s", ship->secondaryCount,
                ( ship->secondaryType == SINGLE_LASER && ship->secondaryCount == 1 ) ? "Single-laser cannon" :
                ( ship->secondaryType == SINGLE_LASER && ship->secondaryCount != 1 ) ? "Single-laser cannons" :
                ( ship->secondaryType == DUAL_LASER && ship->secondaryCount == 1 ) ? "Dual-laser cannon" :
@@ -110,11 +110,10 @@ const char *secondary_beam_name( SHIP_DATA * ship )
    }
    else
    {
-      sprintf( bname, "%s", "None." );
+      snprintf( bname, MAX_STRING_LENGTH, "%s", "None." );
       return bname;
    }
 }
-
 
 void explode_emissile( CHAR_DATA * ch, ROOM_INDEX_DATA * proom, int mindam, int maxdam, bool incendiary )
 {
@@ -170,7 +169,7 @@ void do_makegoggles( CHAR_DATA * ch, const char *argument )
    AFFECT_DATA *aff;
 
    argument = one_argument( argument, arg );
-   strcpy( arg2, argument );
+   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -256,9 +255,9 @@ void do_makegoggles( CHAR_DATA * ch, const char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ( const char * )ch->dest_buf_2 );
+         mudstrlcpy( arg2, ( const char * )ch->dest_buf_2, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -326,15 +325,15 @@ void do_makegoggles( CHAR_DATA * ch, const char *argument )
 
    obj->level = ch->top_level;
    STRFREE( obj->name );
-   strcpy( buf, arg2 );
-   strcat( buf, " " );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg2 );
+   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was dropped here." );
+   mudstrlcat( buf, " was dropped here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[0] = ch->top_level;
    obj->value[1] = 0;
@@ -398,7 +397,7 @@ void do_makemissile( CHAR_DATA * ch, const char *argument )
    OBJ_INDEX_DATA *pObjIndex;
    int vnum, chemNum;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -481,7 +480,7 @@ void do_makemissile( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -591,18 +590,18 @@ void do_makemissile( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 2;
    STRFREE( obj->name );
-   strcpy( buf, arg );
-   strcat( buf, " missile " );
-   sprintf( buf, "%s", remand( buf ) );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " missile ", MAX_STRING_LENGTH );
+   snprintf( buf, MAX_STRING_LENGTH, "%s", remand( buf ) );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    if( !str_cmp( arg, "incendiary" ) )
       obj->short_descr = STRALLOC( "an incendiary missile" );
    else
       obj->short_descr = STRALLOC( "an explosive missile" );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    if( !IS_NPC( ch ) )
    {
@@ -777,7 +776,6 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
                   if( IS_SET( pexit->exit_info, EX_LOCKED ) )
                      REMOVE_BIT( pexit->exit_info, EX_LOCKED );
                   SET_BIT( pexit->exit_info, EX_BASHED );
-
                   
                   EXIT_DATA *other_pexit;
                   for( other_pexit = pexit->to_room->first_exit; other_pexit; other_pexit = other_pexit->next )
@@ -795,9 +793,7 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
                   {
                      if( rch == ch )
                         continue;
-                     sprintf( buf, "%s launches a missile %s, and it EXPLODES upon impact of the doorway!", PERS( ch, rch ),
-                              dtxt );
-                     send_to_char( buf, rch );
+                     ch_printf( rch, "%s launches a missile %s, and it EXPLODES upon impact of the doorway!\r\n", PERS( ch, rch ), dtxt );
                   }
                   send_to_char( "&RThe missile flies directly into the doorway, and EXPLODES!\r\n", ch );
                   send_to_char( "&wThe doorway is reduced to nothing but debris.\r\n", ch );
@@ -811,14 +807,11 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
                   {
                      if( number_range( 1, 4 ) == 4 )
                      {
-                        ch_printf( rch,
-                                   "&RYou are too close to the door, and the EXPLOSION knocks you to the ground!&w\r\n" );
-                        act( AT_RED, "$n is too close to the door, and the EXPLOSION knocks them to the ground!", rch, NULL,
-                             NULL, TO_ROOM );
+                        send_to_char( "&RYou are too close to the door, and the EXPLOSION knocks you to the ground!&w\r\n", rch );
+                        act( AT_RED, "$n is too close to the door, and the EXPLOSION knocks them to the ground!\r\n", rch, NULL, NULL, TO_ROOM );
                         rch->position = POS_SITTING;
                      }
                   }
-
                }
                else  // is bashproof
                {
@@ -826,13 +819,11 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
                   {
                      if( rch == ch )
                         continue;
-                     sprintf( buf, "&w%s fires a missile %s, and it explodes upon impact of the doorway!", PERS( ch, rch ),
-                              dtxt );
-                     send_to_char( buf, rch );
+                     ch_printf( rch, "&w%s fires a missile %s, and it explodes upon impact of the doorway!\r\n", PERS( ch, rch ), dtxt );
                   }
                   send_to_char( "&RThe missile flies directly into the doorway, and EXPLODES!\r\n", ch );
                   send_to_char( "&wThe door remains undamaged, aside from some carbon scoring.\r\n", ch );
-                  act( AT_ACTION, "&RThe door remains undamaged, aside from some carbon scoring.", ch, NULL, NULL, TO_ROOM );
+                  act( AT_ACTION, "&RThe door remains undamaged, aside from some carbon scoring.\r\n", ch, NULL, NULL, TO_ROOM );
                   if( wield->value[1] == 1 )
                      explode_emissile( ch, ch->in_room, wield->value[3], wield->value[4], 1 );
                   else
@@ -1027,14 +1018,13 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
          if( dist == max_dist )  //Missile reaches range
          {
             if( msgsent == FALSE )
-               sprintf( buf, "A missile flies in from %s, loses speed, and drops, exploding!\r\n", ftxt );
+               snprintf( buf, MAX_STRING_LENGTH, "A missile flies in from %s, loses speed, and drops, exploding!\r\n", ftxt );
             else
-               sprintf( buf, "The missile loses speed and drops, exploding!\r\n" );
+               mudstrlcpy( buf, "The missile loses speed and drops, exploding!\r\n", MAX_STRING_LENGTH );
             for( zch = proom->first_person; zch; zch = zch->next_in_room )
                send_to_char( buf, zch );
 
-            ch_printf( ch, "The missile travels %d room%s away, loses speed, and explodes as it drops!\r\n",
-                       dist, dist > 1 ? "s" : "" );
+            ch_printf( ch, "The missile travels %d room%s away, loses speed, and explodes as it drops!\r\n", dist, dist > 1 ? "s" : "" );
             if( wield->value[1] == 1 )
                explode_emissile( ch, proom, wield->value[3], wield->value[4], 1 );
             else
@@ -1055,9 +1045,9 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
          else
          {
             if( msgsent == FALSE )
-               sprintf( buf, "A missile flies in from %s, and continues %s!\r\n", ftxt, dtxt );
+               snprintf( buf, MAX_STRING_LENGTH, "A missile flies in from %s, and continues %s!\r\n", ftxt, dtxt );
             else
-               sprintf( buf, "The missile continues %s. That was close!\r\n", dtxt );
+               snprintf( buf, MAX_STRING_LENGTH, "The missile continues %s. That was close!\r\n", dtxt );
             for( zch = proom->first_person; zch; zch = zch->next_in_room )
                send_to_char( buf, zch );
             dist++;
@@ -1070,9 +1060,9 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
       {
          //msgsent, boom, return
          if( msgsent == FALSE )
-            sprintf( buf, "A missile flies in from %s, and explodes, hitting a wall!\r\n", ftxt );
+            snprintf( buf, MAX_STRING_LENGTH, "A missile flies in from %s, and explodes, hitting a wall!\r\n", ftxt );
          else
-            sprintf( buf, "The missile flies into a wall, and explodes!\r\n" );
+            mudstrlcpy( buf, "The missile flies into a wall, and explodes!\r\n", MAX_STRING_LENGTH );
          for( zch = proom->first_person; zch; zch = zch->next_in_room )
             send_to_char( buf, zch );
          ch_printf( ch, "The missile flies %d room%s away, and hits a wall, exploding!\r\n", dist, dist > 1 ? "s" : "" );
@@ -1091,26 +1081,6 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
       wield->value[5] = 0;
       return;
    }  //end if rlauncher
-/*
-  if( wield->item_type == ITEM_GLAUNCHER )
-  {
-    if(wield->value[1] + wield->value[2] == 0)
-    {
-     send_to_char("You don't have any grenades loaded.\r\n", ch);
-     return;
-    }
-    if(!isdigit(atoi(arg2))
-    {
-     ch_printf("Invalid distance. It must be a number between 1 and %d.\r\n", wield->value[5])
-    if(atoi(arg2) > wield->value[5])
-    {
-     send_to_char("This launcher isn't capable of firing a grenade that far.\r\n", ch);
-     return;
-    }
-    if ( ( pexit = get_exit( ch->in_room, dir ) ) == NULL )
-    {
-    }
-	*/
 }
 
 void do_load( CHAR_DATA * ch, const char *argument )
@@ -1554,14 +1524,14 @@ void do_barrel_roll( CHAR_DATA * ch, const char *argument )
          if( ship->juking == TRUE )
          {
             send_to_char( "&YYou stop juking from side to side, and perform a barrel roll.\r\n", ch );
-            sprintf( buf, "%s stops juking from side to side.", ship->name );
+            snprintf( buf, MAX_STRING_LENGTH, "%s stops juking from side to side.", ship->name );
             echo_to_system( AT_YELLOW, ship, buf, NULL );
             ship->juking = FALSE;
          }
          ship->rolling = TRUE;
          send_to_char( "&GThe ship starts rolling...\r\n", ch );
          act( AT_PLAIN, "$n performs a barrel roll.", ch, NULL, NULL, TO_ROOM );
-         sprintf( buf, "%s performs a barrel roll.", ship->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s performs a barrel roll.", ship->name );
          echo_to_system( AT_YELLOW, ship, buf, NULL );
          learn_from_success( ch, gsn_barrelroll );
          add_timer( ch, TIMER_DO_FUN, number_range( 3, 6 ), do_barrel_roll, 1 );
@@ -1576,7 +1546,7 @@ void do_barrel_roll( CHAR_DATA * ch, const char *argument )
             return;
          send_to_char( "&YYou level out your flight pattern.\r\n", ch );
          act( AT_PLAIN, "$n levels out $s flight pattern.\r\n", ch, NULL, NULL, TO_ROOM );
-         sprintf( buf, "%s levels out its flight pattern.", ship->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s levels out its flight pattern.", ship->name );
          echo_to_system( AT_YELLOW, ship, buf, NULL );
          ship->rolling = FALSE;
          return;
@@ -1587,7 +1557,7 @@ void do_barrel_roll( CHAR_DATA * ch, const char *argument )
       return;
    send_to_char( "&YYou level out your flight pattern.\r\n", ch );
    act( AT_PLAIN, "$n levels out $s flight pattern.\r\n", ch, NULL, NULL, TO_ROOM );
-   sprintf( buf, "%s levels out its flight pattern.", ship->name );
+   snprintf( buf, MAX_STRING_LENGTH, "%s levels out its flight pattern.", ship->name );
    echo_to_system( AT_YELLOW, ship, buf, NULL );
    ship->rolling = FALSE;
    return;
@@ -1634,14 +1604,14 @@ void do_juke( CHAR_DATA * ch, const char *argument )
          if( ship->rolling == TRUE )
          {
             send_to_char( "&YYou break out of the barrel roll, and start juking.\r\n", ch );
-            sprintf( buf, "%s stops rolling.", ship->name );
+            snprintf( buf, MAX_STRING_LENGTH, "%s stops rolling.", ship->name );
             echo_to_system( AT_YELLOW, ship, buf, NULL );
             ship->rolling = FALSE;
          }
          ship->juking = TRUE;
          send_to_char( "&GYou perform the maneuver, and the ship jukes from side to side.\r\n", ch );
          act( AT_PLAIN, "$n jukes the ship from side to side.", ch, NULL, NULL, TO_ROOM );
-         sprintf( buf, "%s starts juking from side to side.", ship->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s starts juking from side to side.", ship->name );
          echo_to_system( AT_YELLOW, ship, buf, NULL );
          learn_from_success( ch, gsn_juke );
          add_timer( ch, TIMER_DO_FUN, number_range( 3, 6 ), do_juke, 1 );
@@ -1656,7 +1626,7 @@ void do_juke( CHAR_DATA * ch, const char *argument )
             return;
          send_to_char( "&YYou level out your flight pattern.\r\n", ch );
          act( AT_PLAIN, "$n levels out $s flight pattern.\r\n", ch, NULL, NULL, TO_ROOM );
-         sprintf( buf, "%s levels out its flight pattern.", ship->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s levels out its flight pattern.", ship->name );
          echo_to_system( AT_YELLOW, ship, buf, NULL );
          ship->juking = FALSE;
          return;
@@ -1667,7 +1637,7 @@ void do_juke( CHAR_DATA * ch, const char *argument )
       return;
    send_to_char( "You level out your flight pattern.\r\n", ch );
    act( AT_PLAIN, "$n levels out $s flight pattern.\r\n", ch, NULL, NULL, TO_ROOM );
-   sprintf( buf, "%s levels out its flight pattern.", ship->name );
+   snprintf( buf, MAX_STRING_LENGTH, "%s levels out its flight pattern.", ship->name );
    echo_to_system( AT_YELLOW, ship, buf, NULL );
    ship->juking = FALSE;
    return;

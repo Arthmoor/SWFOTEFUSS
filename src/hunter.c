@@ -130,7 +130,7 @@ void do_showbugs( CHAR_DATA * ch, const char *argument )
    char buf2[MAX_STRING_LENGTH];
    SHIP_DATA *ship;
    BUG_DATA *pbug;
-   char buf[MAX_STRING_LENGTH];
+
    schance = number_percent(  ) - 20;
    if( schance > ch->pcdata->learned[gsn_showbugs] )
    {
@@ -148,13 +148,12 @@ void do_showbugs( CHAR_DATA * ch, const char *argument )
             if( !str_cmp( pbug->name, ch->name ) )
             {
                if( victim->in_room->area && victim->in_room->area->planet )
-                  sprintf( buf2, "%s", victim->in_room->area->planet->name );
+                  snprintf( buf2, MAX_STRING_LENGTH, "%s", victim->in_room->area->planet->name );
                else if( ( ship = ship_from_room( victim->in_room->vnum ) ) != NULL )
-                  sprintf( buf2, "%s", ship->name );
+                  snprintf( buf2, MAX_STRING_LENGTH, "%s", ship->name );
                else
-                  sprintf( buf2, "Unknown" );
-               sprintf( buf, "%-21.21s %-18.18s %s\r\n", PERS( victim, ch ), buf2, victim->in_room->name );
-               send_to_char( buf, ch );
+                  mudstrlcpy( buf2, "Unknown", MAX_STRING_LENGTH );
+               ch_printf( ch, "%-21.21s %-18.18s %s\r\n", PERS( victim, ch ), buf2, victim->in_room->name );
                break;
             }
       }
@@ -249,7 +248,6 @@ void do_unbind( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj;
    bool checkbinders = FALSE;
-   char buf[MAX_STRING_LENGTH];
    CHAR_DATA *victim;
 
    if( IS_NPC( ch ) )
@@ -301,8 +299,7 @@ void do_unbind( CHAR_DATA * ch, const char *argument )
    else
    {
       send_to_char( "Something went wrong. get an imm.\r\n", ch );
-      sprintf( buf, "%s unbinding %s: has no bothwrists object!", ch->name, victim->name );
-      bug( buf );
+      bug( "%s: %s unbinding %s: has no bothwrists object!", __func__, ch->name, victim->name );
       return;
    }
 
@@ -315,7 +312,7 @@ void do_unbind( CHAR_DATA * ch, const char *argument )
 
    if( checkbinders == FALSE )
    {
-      bug( "Unbind: no binders in victims inventory." );
+      bug( "%s: no binders in victims inventory.", __func__ );
       send_to_char( "Something went wrong. get an imm.\r\n", ch );
       return;
    }

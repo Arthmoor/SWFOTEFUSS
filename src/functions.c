@@ -191,7 +191,7 @@ const char *htmlcolor( const char *src )
     */
    if( strlen( src ) == 0 )
    {
-      bug( "Htmlcolor: emptry string!" );
+      bug( "%s: emptry string!", __func__ );
       return "(err)";
    }
 
@@ -215,7 +215,7 @@ const char *htmlcolor( const char *src )
    newarg = strrep( newarg, "&W", "</font><font color='#CCCCCC'>" );
    newarg = strrep( newarg, "\r", "" );
 
-   strcpy( arg, newarg );
+   mudstrlcpy( arg, newarg, MAX_STRING_LENGTH );
    return arg;
 }
 
@@ -279,7 +279,7 @@ char *format_str( char *src, int len )
    if( sp1 < len )
    {
       for( sx = 14; sx >= sp1; sx-- )
-         strcat( add_len, " " );
+         mudstrlcat( add_len, " ", MAX_STRING_LENGTH );
       strcat( src, add_len );
       return src;
    }

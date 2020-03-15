@@ -65,7 +65,7 @@ void do_makeblade( CHAR_DATA * ch, const char *argument )
    AFFECT_DATA *paf;
    AFFECT_DATA *paf2;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -142,7 +142,7 @@ void do_makeblade( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -213,15 +213,15 @@ void do_makeblade( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 3;
    STRFREE( obj->name );
-   strcpy( buf, arg );
-   strcat( buf, " vibro-blade blade " );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " vibro-blade blade ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was left here." );
+   mudstrlcat( buf, " was left here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    CREATE( paf, AFFECT_DATA, 1 );
    paf->type = -1;
@@ -280,7 +280,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
    AFFECT_DATA *paf;
    AFFECT_DATA *paf2;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -373,7 +373,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -480,15 +480,15 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 2 + level / 10;
    STRFREE( obj->name );
-   strcpy( buf, arg );
-   strcat( buf, " blaster " );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH);
+   mudstrlcat( buf, " blaster ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    CREATE( paf, AFFECT_DATA, 1 );
    paf->type = -1;
@@ -546,7 +546,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
    AFFECT_DATA *paf;
    AFFECT_DATA *paf2;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -666,7 +666,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -798,15 +798,15 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
    obj->weight = 5;
    STRFREE( obj->name );
    obj->name = STRALLOC( "lightsaber saber" );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    STRFREE( obj->action_desc );
-   strcpy( buf, arg );
-   strcat( buf, " ignites with a hum and a soft glow." );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " ignites with a hum and a soft glow.", MAX_STRING_LENGTH );
    obj->action_desc = STRALLOC( buf );
    CREATE( paf, AFFECT_DATA, 1 );
    paf->type = -1;
@@ -851,7 +851,6 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_makelightsaber );
 }
 
-
 void do_makespice( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -862,7 +861,7 @@ void do_makespice( CHAR_DATA * ch, const char *argument )
    switch ( ch->substate )
    {
       default:
-         strcpy( arg, argument );
+         mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
          if( arg[0] == '\0' )
          {
@@ -907,7 +906,7 @@ void do_makespice( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -933,16 +932,16 @@ void do_makespice( CHAR_DATA * ch, const char *argument )
 
    obj->value[1] = URANGE( 10, obj->value[1], ( IS_NPC( ch ) ? ch->top_level
                                                 : ( int )( ch->pcdata->learned[gsn_spice_refining] ) ) + 10 );
-   strcpy( buf, obj->name );
+   mudstrlcpy( buf, obj->name, MAX_STRING_LENGTH );
    STRFREE( obj->name );
-   strcat( buf, " drug spice " );
-   strcat( buf, remand( buf ) );
+   mudstrlcat( buf, " drug spice ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, "a drug made from " );
-   strcat( buf, obj->short_descr );
+   mudstrlcpy( buf, "a drug made from ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, obj->short_descr, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
-   strcat( buf, " was foolishly left lying around here." );
+   mudstrlcat( buf, " was foolishly left lying around here.", MAX_STRING_LENGTH );
    STRFREE( obj->description );
    obj->description = STRALLOC( buf );
    obj->item_type = ITEM_SPICE;
@@ -963,7 +962,6 @@ void do_makespice( CHAR_DATA * ch, const char *argument )
    }
 
    learn_from_success( ch, gsn_spice_refining );
-
 }
 
 void do_makegrenade( CHAR_DATA * ch, const char *argument )
@@ -976,7 +974,7 @@ void do_makegrenade( CHAR_DATA * ch, const char *argument )
    OBJ_INDEX_DATA *pObjIndex;
    int vnum;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -1060,7 +1058,7 @@ void do_makegrenade( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1146,15 +1144,15 @@ void do_makegrenade( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = weight;
    STRFREE( obj->name );
-   strcpy( buf, arg );
-   strcat( buf, " grenade " );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " grenade ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[0] = strength * 2;
    obj->value[1] = strength * 3;
@@ -1188,7 +1186,7 @@ void do_makelandmine( CHAR_DATA * ch, const char *argument )
    OBJ_INDEX_DATA *pObjIndex;
    int vnum;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -1272,7 +1270,7 @@ void do_makelandmine( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1358,15 +1356,15 @@ void do_makelandmine( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = weight;
    STRFREE( obj->name );
-   strcpy( buf, arg );
-   strcat( buf, " landmine " );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " landmine ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[0] = strength / 2;
    obj->value[1] = strength;
@@ -1400,7 +1398,7 @@ void do_makelight( CHAR_DATA * ch, const char *argument )
    OBJ_INDEX_DATA *pObjIndex;
    int vnum;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -1483,7 +1481,7 @@ void do_makelight( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1567,15 +1565,15 @@ void do_makelight( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 3;
    STRFREE( obj->name );
-   strcpy( buf, arg );
-   strcat( buf, " light " );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " light ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[2] = strength;
    obj->cost = obj->value[2];
@@ -1611,7 +1609,7 @@ void do_makejewelry( CHAR_DATA * ch, const char *argument )
    int value, cost;
 
    argument = one_argument( argument, arg );
-   strcpy( arg2, argument );
+   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
 
    if( !str_cmp( arg, "body" )
        || !str_cmp( arg, "head" )
@@ -1711,9 +1709,9 @@ void do_makejewelry( CHAR_DATA * ch, const char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ( const char * )ch->dest_buf_2 );
+         mudstrlcpy( arg2, ( const char * )ch->dest_buf_2, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -1779,14 +1777,14 @@ void do_makejewelry( CHAR_DATA * ch, const char *argument )
       SET_BIT( obj->wear_flags, 1 << value );
    obj->level = level;
    STRFREE( obj->name );
-   sprintf( buf, "%s ", arg2 );
-   strcat( buf, remand( buf ) );
+   snprintf( buf, MAX_STRING_LENGTH, "%s ", arg2 );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg2 );
+   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was dropped here." );
+   mudstrlcat( buf, " was dropped here.", MAX_STRING_LENGTH );
 
 // Create stat bonuses for Jewelry - Tawnos
    CREATE( paf, AFFECT_DATA, 1 );
@@ -1878,7 +1876,7 @@ void do_makearmor( CHAR_DATA * ch, const char *argument )
    int value;
 
    argument = one_argument( argument, arg );
-   strcpy( arg2, argument );
+   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
 
    if( !str_cmp( arg, "eyes" )
        || !str_cmp( arg, "ears" ) || !str_cmp( arg, "finger" ) || !str_cmp( arg, "neck" ) || !str_cmp( arg, "wrist" ) )
@@ -1964,9 +1962,9 @@ void do_makearmor( CHAR_DATA * ch, const char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ( const char * )ch->dest_buf_2 );
+         mudstrlcpy( arg2, ( const char * )ch->dest_buf_2, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -2020,14 +2018,14 @@ void do_makearmor( CHAR_DATA * ch, const char *argument )
       SET_BIT( obj->wear_flags, 1 << value );
    obj->level = level;
    STRFREE( obj->name );
-   sprintf( buf, "%s ", arg2 );
-   strcat( buf, remand( buf ) );
+   snprintf( buf, MAX_STRING_LENGTH, "%s ", arg2 );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg2 );
+   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was dropped here." );
+   mudstrlcat( buf, " was dropped here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[0] = obj->value[1];
    obj->cost *= 10;
@@ -2050,7 +2048,6 @@ void do_makearmor( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_makearmor );
 }
 
-
 void do_makecomlink( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -2063,7 +2060,7 @@ void do_makecomlink( CHAR_DATA * ch, const char *argument )
    int vnum;
 
    argument = one_argument( argument, arg );
-   strcpy( arg2, argument );
+   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -2140,9 +2137,9 @@ void do_makecomlink( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ( const char * )ch->dest_buf_2 );
+         mudstrlcpy( arg2, ( const char * )ch->dest_buf_2, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -2226,15 +2223,15 @@ void do_makecomlink( CHAR_DATA * ch, const char *argument )
    SET_BIT( obj->wear_flags, ITEM_TAKE );
    obj->weight = 3;
    STRFREE( obj->name );
-   strcpy( buf, arg2 );
-   strcat( buf, " comlink " );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " comlink ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg2 );
+   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was left here." );
+   mudstrlcat( buf, " was left here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->cost = 50;
 
@@ -2254,7 +2251,6 @@ void do_makecomlink( CHAR_DATA * ch, const char *argument )
       ch_printf( ch, "You gain %d engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makecomlink );
-
 }
 
 void do_makeshield( CHAR_DATA * ch, const char *argument )
@@ -2267,7 +2263,7 @@ void do_makeshield( CHAR_DATA * ch, const char *argument )
    OBJ_INDEX_DATA *pObjIndex;
    int vnum, level, charge, gemtype;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -2350,7 +2346,7 @@ void do_makeshield( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -2440,11 +2436,11 @@ void do_makeshield( CHAR_DATA * ch, const char *argument )
    obj->weight = 2;
    STRFREE( obj->name );
    obj->name = STRALLOC( "energy shield" );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[0] = ( int )( level / 10 + gemtype * 10 ); /* condition */
    obj->value[1] = ( int )( level / 10 + gemtype * 10 ); /* armor */
@@ -2468,7 +2464,6 @@ void do_makeshield( CHAR_DATA * ch, const char *argument )
       ch_printf( ch, "You gain %d engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makeshield );
-
 }
 
 void do_makecontainer( CHAR_DATA * ch, const char *argument )
@@ -2483,7 +2478,7 @@ void do_makecontainer( CHAR_DATA * ch, const char *argument )
    int value;
 
    argument = one_argument( argument, arg );
-   strcpy( arg2, argument );
+   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
 
    if( !str_cmp( arg, "eyes" )
        || !str_cmp( arg, "ears" ) || !str_cmp( arg, "finger" ) || !str_cmp( arg, "neck" ) || !str_cmp( arg, "wrist" ) )
@@ -2569,9 +2564,9 @@ void do_makecontainer( CHAR_DATA * ch, const char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
-         strcpy( arg2, ( const char * )ch->dest_buf_2 );
+         mudstrlcpy( arg2, ( const char * )ch->dest_buf_2, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -2625,15 +2620,15 @@ void do_makecontainer( CHAR_DATA * ch, const char *argument )
       SET_BIT( obj->wear_flags, 1 << value );
    obj->level = level;
    STRFREE( obj->name );
-   strcpy( buf, arg2 );
-   strcat( buf, " " );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg2 );
+   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was dropped here." );
+   mudstrlcat( buf, " was dropped here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[0] = level;
    obj->value[1] = 0;
@@ -2672,7 +2667,7 @@ void do_reinforcements( CHAR_DATA * ch, const char *argument )
    if( IS_NPC( ch ) || !ch->pcdata )
       return;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -2711,7 +2706,7 @@ void do_reinforcements( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -2750,7 +2745,7 @@ void do_postguard( CHAR_DATA * ch, const char *argument )
    if( IS_NPC( ch ) || !ch->pcdata )
       return;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -2789,7 +2784,7 @@ void do_postguard( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -2885,7 +2880,7 @@ void add_reinforcements( CHAR_DATA * ch )
 
          //STRFREE( mob->name );
          //mob->name = STRALLOC( ch->pcdata->clan->name );
-         sprintf( tmpbuf, "(%s) %s", ch->pcdata->clan->name, mob->long_descr );
+         snprintf( tmpbuf, MAX_STRING_LENGTH, "(%s) %s", ch->pcdata->clan->name, mob->long_descr );
          STRFREE( mob->long_descr );
          mob->long_descr = STRALLOC( tmpbuf );
       }
@@ -3280,16 +3275,16 @@ void do_first_aid( CHAR_DATA * ch, const char *argument )
    if( victim == ch )
    {
       ch_printf( ch, "You tend to your wounds.\r\n" );
-      sprintf( buf, "$n uses %s to help heal $s wounds.", medpac->short_descr );
+      snprintf( buf, MAX_STRING_LENGTH, "$n uses %s to help heal $s wounds.", medpac->short_descr );
       act( AT_ACTION, buf, ch, NULL, victim, TO_ROOM );
    }
    else
    {
-      sprintf( buf, "You tend to $N's wounds." );
+      mudstrlcpy( buf, "You tend to $N's wounds.", MAX_STRING_LENGTH );
       act( AT_ACTION, buf, ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "$n uses %s to help heal $N's wounds.", medpac->short_descr );
+      snprintf( buf, MAX_STRING_LENGTH, "$n uses %s to help heal $N's wounds.", medpac->short_descr );
       act( AT_ACTION, buf, ch, NULL, victim, TO_NOTVICT );
-      sprintf( buf, "$n uses %s to help heal your wounds.", medpac->short_descr );
+      snprintf( buf, MAX_STRING_LENGTH, "$n uses %s to help heal your wounds.", medpac->short_descr );
       act( AT_ACTION, buf, ch, NULL, victim, TO_VICT );
    }
 
@@ -3465,19 +3460,18 @@ void do_snipe( CHAR_DATA * ch, const char *argument )
          break;
    }
 
-
    if( number_percent(  ) < schance )
    {
-      sprintf( buf, "$n fires a blaster shot to the %s.", dir_name[get_door(arg)] );
+      snprintf( buf, MAX_STRING_LENGTH, "$n fires a blaster shot to the %s.", dir_name[get_door(arg)] );
       act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
 
       char_from_room( ch );
       char_to_room( ch, victim->in_room );
 
-      sprintf( buf, "A blaster shot fires at you from the %s.", dir_name[dir] );
+      snprintf( buf, MAX_STRING_LENGTH, "A blaster shot fires at you from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, victim, NULL, ch, TO_CHAR );
       act( AT_ACTION, "You fire at $N.", ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "A blaster shot fires at $N from the %s.", dir_name[dir] );
+      snprintf( buf, MAX_STRING_LENGTH, "A blaster shot fires at $N from the %s.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_NOTVICT );
 
       /* Fix to prevent automatic looting of corpses with snipe */
@@ -3495,14 +3489,14 @@ void do_snipe( CHAR_DATA * ch, const char *argument )
    }
    else
    {
-      sprintf( buf, "$n fires a blaster shot to the %s.", dir_name[get_door(arg)] );
+      snprintf( buf, MAX_STRING_LENGTH, "$n fires a blaster shot to the %s.", dir_name[get_door(arg)] );
       act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
 
       char_from_room( ch );
       char_to_room( ch, victim->in_room );
 
       act( AT_ACTION, "You fire at $N but don't even come close.", ch, NULL, victim, TO_CHAR );
-      sprintf( buf, "A blaster shot fired from the %s barely misses you.", dir_name[dir] );
+      snprintf( buf, MAX_STRING_LENGTH, "A blaster shot fired from the %s barely misses you.", dir_name[dir] );
       act( AT_ACTION, buf, ch, NULL, victim, TO_ROOM );
       learn_from_failure( ch, gsn_snipe );
    }
@@ -3551,7 +3545,6 @@ void do_throw( CHAR_DATA * ch, const char *argument )
    ROOM_INDEX_DATA *to_room;
    CHAR_DATA *victim;
    char buf[MAX_STRING_LENGTH];
-
 
    argument = one_argument( argument, arg );
    argument = one_argument( argument, arg2 );
@@ -3603,7 +3596,7 @@ void do_throw( CHAR_DATA * ch, const char *argument )
    }
    else if( arg2[0] == '\0' )
    {
-      sprintf( buf, "$n throws %s at the floor.", obj->short_descr );
+      snprintf( buf, MAX_STRING_LENGTH, "$n throws %s at the floor.", obj->short_descr );
       act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
       ch_printf( ch, "You throw %s at the floor.\r\n", obj->short_descr );
 
@@ -3684,7 +3677,6 @@ void do_throw( CHAR_DATA * ch, const char *argument )
          char_from_room( ch );
          char_to_room( ch, was_in_room );
 
-
          if( IS_SET( ch->in_room->room_flags, ROOM_SAFE ) )
          {
             set_char_color( AT_MAGIC, ch );
@@ -3703,30 +3695,28 @@ void do_throw( CHAR_DATA * ch, const char *argument )
          char_from_room( ch );
          char_to_room( ch, to_room );
 
-         sprintf( buf, "Someone throws %s at you from the %s.", obj->short_descr, dir_name[dir] );
+         snprintf( buf, MAX_STRING_LENGTH, "Someone throws %s at you from the %s.", obj->short_descr, dir_name[dir] );
          act( AT_ACTION, buf, victim, NULL, ch, TO_CHAR );
          act( AT_ACTION, "You throw $p at $N.", ch, obj, victim, TO_CHAR );
          char_from_room( ch );
          char_to_room( ch, was_in_room );
-         sprintf( buf, "$n throws %s to the %s.", obj->short_descr, dir_name[get_dir(arg2)] );
+         snprintf( buf, MAX_STRING_LENGTH, "$n throws %s to the %s.", obj->short_descr, dir_name[get_dir(arg2)] );
          act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
          char_from_room( ch );
          char_to_room( ch, to_room );
-         sprintf( buf, "%s is thrown at $N from the %s.", obj->short_descr, dir_name[dir] );
+         snprintf( buf, MAX_STRING_LENGTH, "%s is thrown at $N from the %s.", obj->short_descr, dir_name[dir] );
          act( AT_ACTION, buf, ch, NULL, victim, TO_NOTVICT );
-
-
       }
       else
       {
           ch_printf( ch, "You throw %s %s.\r\n", obj->short_descr, dir_name[get_dir( arg2 )] );
           char_from_room( ch );
           char_to_room( ch, was_in_room );
-          sprintf( buf, "$n throws %s to the %s.", obj->short_descr, dir_name[get_dir(arg2)] );
+          snprintf( buf, MAX_STRING_LENGTH, "$n throws %s to the %s.", obj->short_descr, dir_name[get_dir(arg2)] );
           act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
           char_from_room( ch );
           char_to_room( ch, to_room );
-          sprintf( buf, "%s is thrown from the %s.", obj->short_descr, dir_name[dir] );
+          snprintf( buf, MAX_STRING_LENGTH, "%s is thrown from the %s.", obj->short_descr, dir_name[dir] );
           act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
       }
    }
@@ -3773,16 +3763,14 @@ void do_throw( CHAR_DATA * ch, const char *argument )
          separate_obj( obj );
          obj_from_char( obj );
          obj = obj_to_room( obj, get_room_index( ship->entrance ) );
-         sprintf( buf, "You throw %s into %s.", obj->short_descr, ship->name );
-         send_to_char( buf, ch );
-         sprintf( buf, "%s throws %s into %s.\r\n", ch->name, obj->short_descr, ship->name );
+         ch_printf( ch, "You throw %s into %s.", obj->short_descr, ship->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s throws %s into %s.\r\n", ch->name, obj->short_descr, ship->name );
          act( AT_ACTION, buf, ch, NULL, NULL, TO_ROOM );
-         sprintf( buf, "%s is tossed into the ship with a *clink-clink-clink*.\r\n", obj->short_descr );
+         snprintf( buf, MAX_STRING_LENGTH, "%s is tossed into the ship with a *clink-clink-clink*.\r\n", obj->short_descr );
          echo_to_room( AT_WHITE, get_room_index( ship->entrance ), buf );
          return;
       }
    }
-
 
    if( obj == get_eq_char( ch, WEAR_WIELD ) && ( tmpobj = get_eq_char( ch, WEAR_DUAL_WIELD ) ) != NULL )
       tmpobj->wear_loc = WEAR_WIELD;
@@ -3795,11 +3783,6 @@ void do_throw( CHAR_DATA * ch, const char *argument )
    if( obj->item_type != ITEM_GRENADE )
       damage_obj( obj );
 
-/* NOT NEEDED UNLESS REFERING TO OBJECT AGAIN 
-
-   if( obj_extracted(obj) )
-      return;
-*/
    if( ch->in_room != was_in_room )
    {
       char_from_room( ch );
@@ -3936,7 +3919,7 @@ void do_beg( CHAR_DATA * ch, const char *argument )
 
       if( victim->alignment < 0 && victim->top_level >= ch->top_level + 5 )
       {
-         sprintf( buf, "%s is an annoying beggar and needs to be taught a lesson!", ch->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s is an annoying beggar and needs to be taught a lesson!", ch->name );
          do_yell( victim, buf );
          global_retcode = multi_hit( victim, ch, TYPE_UNDEFINED );
       }
@@ -3945,7 +3928,6 @@ void do_beg( CHAR_DATA * ch, const char *argument )
 
       return;
    }
-
 
    act( AT_ACTION, "$n begs $N for money.\r\n", ch, NULL, victim, TO_NOTVICT );
    act( AT_ACTION, "$n begs you for money!\r\n", ch, NULL, victim, TO_VICT );
@@ -3973,7 +3955,6 @@ void do_beg( CHAR_DATA * ch, const char *argument )
    act( AT_ACTION, "You give $n some money.\r\n", ch, NULL, victim, TO_VICT );
 
    return;
-
 }
 
 void do_pickshiplock( CHAR_DATA * ch, const char *argument )
@@ -4071,11 +4052,10 @@ void do_hijack( CHAR_DATA * ch, const char *argument )
    schance = IS_NPC( ch ) ? 0 : ( int )( ch->pcdata->learned[gsn_shipsystems] );
    if( number_percent(  ) < schance )
    {
-
       if( ship->hatchopen )
       {
          ship->hatchopen = FALSE;
-         sprintf( buf, "The hatch on %s closes.", ship->name );
+         snprintf( buf, MAX_STRING_LENGTH, "The hatch on %s closes.", ship->name );
          echo_to_room( AT_YELLOW, get_room_index( ship->location ), buf );
          echo_to_room( AT_YELLOW, get_room_index( ship->entrance ), "The hatch slides shut." );
       }
@@ -4083,13 +4063,13 @@ void do_hijack( CHAR_DATA * ch, const char *argument )
       send_to_char( "Launch sequence initiated.\r\n", ch );
       act( AT_PLAIN, "$n starts up the ship and begins the launch sequence.", ch, NULL, argument, TO_ROOM );
       echo_to_ship( AT_YELLOW, ship, "The ship hums as it lifts off the ground." );
-      sprintf( buf, "%s begins to launch.", ship->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s begins to launch.", ship->name );
       echo_to_room( AT_YELLOW, get_room_index( ship->location ), buf );
       ship->shipstate = SHIP_LAUNCH;
       ship->currspeed = ship->realspeed;
       learn_from_success( ch, gsn_shipsystems );
       learn_from_success( ch, gsn_hijack );
-//                   sprintf( buf, "%s has been hijacked!", ship->name );
+//                   snprintf( buf, MAX_STRING_LENGTH, "%s has been hijacked!", ship->name );
 //             echo_to_all( AT_RED , buf, 0 );
 
       return;
@@ -4097,7 +4077,6 @@ void do_hijack( CHAR_DATA * ch, const char *argument )
    set_char_color( AT_RED, ch );
    send_to_char( "You fail to work the controls properly!\r\n", ch );
    return;
-
 }
 
 void do_special_forces( CHAR_DATA * ch, const char *argument )
@@ -4108,7 +4087,7 @@ void do_special_forces( CHAR_DATA * ch, const char *argument )
    if( IS_NPC( ch ) || !ch->pcdata )
       return;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -4147,7 +4126,7 @@ void do_special_forces( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -4178,7 +4157,6 @@ void do_special_forces( CHAR_DATA * ch, const char *argument )
 
 }
 
-
 void do_elite_guard( CHAR_DATA * ch, const char *argument )
 {
    char arg[MAX_INPUT_LENGTH];
@@ -4187,7 +4165,7 @@ void do_elite_guard( CHAR_DATA * ch, const char *argument )
    if( IS_NPC( ch ) || !ch->pcdata )
       return;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -4226,7 +4204,7 @@ void do_elite_guard( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -4266,7 +4244,7 @@ void do_add_patrol( CHAR_DATA * ch, const char *argument )
    if( IS_NPC( ch ) || !ch->pcdata )
       return;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -4305,7 +4283,7 @@ void do_add_patrol( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -4524,7 +4502,7 @@ void do_smalltalk( CHAR_DATA * ch, const char *argument )
 
       if( victim->alignment < -500 && victim->top_level >= ch->top_level + 5 )
       {
-         sprintf( buf, "SHUT UP %s!", ch->name );
+         snprintf( buf, MAX_STRING_LENGTH, "SHUT UP %s!", ch->name );
          do_yell( victim, buf );
          global_retcode = multi_hit( victim, ch, TYPE_UNDEFINED );
       }
@@ -4643,7 +4621,7 @@ void do_propeganda( CHAR_DATA * ch, const char *argument )
 
    planet = ch->in_room->area->planet;
 
-   sprintf( buf, ", and the evils of %s", planet->governed_by ? planet->governed_by->name : "their current leaders" );
+   snprintf( buf, MAX_STRING_LENGTH, ", and the evils of %s", planet->governed_by ? planet->governed_by->name : "their current leaders" );
    ch_printf( ch, "You speak to them about the benifits of the %s%s.\r\n", ch->pcdata->clan->name,
               planet->governed_by == clan ? "" : buf );
    act( AT_ACTION, "$n speaks about his organization.\r\n", ch, NULL, victim, TO_VICT );
@@ -4658,7 +4636,7 @@ void do_propeganda( CHAR_DATA * ch, const char *argument )
 
       if( planet->governed_by != clan )
       {
-         sprintf( buf, "%s is a traitor!", ch->name );
+         snprintf( buf, MAX_STRING_LENGTH, "%s is a traitor!", ch->name );
          do_yell( victim, buf );
          global_retcode = multi_hit( victim, ch, TYPE_UNDEFINED );
       }
@@ -4856,7 +4834,7 @@ void do_seduce( CHAR_DATA * ch, const char *argument )
    if( IS_SET( victim->immune, RIS_CHARM ) )
    {
       send_to_char( "They seem to be immune to such acts.\r\n", ch );
-      sprintf( buf, "%s is trying to seduce you but just looks sleazy.\r\n", ch->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s is trying to seduce you but just looks sleazy.\r\n", ch->name );
       act( AT_MAGIC, buf, ch, NULL, victim, TO_ROOM );
       return;
    }
@@ -4870,7 +4848,7 @@ void do_seduce( CHAR_DATA * ch, const char *argument )
    if( !IS_NPC( victim ) && !IS_NPC( ch ) )
    {
       send_to_char( "I don't think so...\r\n", ch );
-      sprintf( buf, "%s is trying to seduce you but just looks sleazy.\r\n", ch->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s is trying to seduce you but just looks sleazy.\r\n", ch->name );
       act( AT_MAGIC, buf, ch, NULL, victim, TO_ROOM );
       return;
    }
@@ -4883,7 +4861,7 @@ void do_seduce( CHAR_DATA * ch, const char *argument )
        || ch->sex == victim->sex )
    {
       send_to_char( "&w&BYou failed.\r\n", ch );
-      sprintf( buf, "%s is trying to seduce you but just looks sleazy.\r\n", ch->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s is trying to seduce you but just looks sleazy.\r\n", ch->name );
       act( AT_MAGIC, buf, ch, NULL, victim, TO_ROOM );
       learn_from_failure( ch, gsn_seduce );
       return;
@@ -4913,11 +4891,9 @@ void do_seduce( CHAR_DATA * ch, const char *argument )
       send_to_char( "Ok.\r\n", ch );
 
    learn_from_success( ch, gsn_seduce );
-   sprintf( buf, "%s has seduced %s.", ch->name, victim->name );
-   log_string_plus( buf, LOG_NORMAL, ch->top_level );
+   log_printf_plus( LOG_NORMAL, ch->top_level, "%s has seduced %s.", ch->name, victim->name );
 
    return;
-
 }
 
 void do_mass_propeganda( CHAR_DATA * ch, const char *argument )
@@ -4964,7 +4940,7 @@ void do_mass_propeganda( CHAR_DATA * ch, const char *argument )
 
    planet = ch->in_room->area->planet;
 
-   sprintf( buf, ", and the evils of %s", planet->governed_by ? planet->governed_by->name : "their current leaders" );
+   snprintf( buf, MAX_STRING_LENGTH, ", and the evils of %s", planet->governed_by ? planet->governed_by->name : "their current leaders" );
    ch_printf( ch, "You speak to the people about the benefits of the %s%s.\r\n", ch->pcdata->clan->name,
               planet->governed_by == clan ? "" : buf );
    act( AT_ACTION, "$n speaks about their organization.\r\n", ch, NULL, NULL, TO_ROOM );
@@ -5028,11 +5004,11 @@ void do_gather_intelligence( CHAR_DATA * ch, const char *argument )
 void do_repair( CHAR_DATA * ch, const char *argument )
 {
    OBJ_DATA *obj, *cobj;
-   char arg[MAX_STRING_LENGTH];
+   char arg[MAX_INPUT_LENGTH];
    int schance;
    bool checktool, checksew;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -5105,7 +5081,7 @@ void do_repair( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -5175,7 +5151,7 @@ void do_makeduallightsaber( CHAR_DATA * ch, const char *argument )
    AFFECT_DATA *paf;
    AFFECT_DATA *paf2;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -5295,7 +5271,7 @@ void do_makeduallightsaber( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -5427,15 +5403,15 @@ void do_makeduallightsaber( CHAR_DATA * ch, const char *argument )
    obj->weight = 5;
    STRFREE( obj->name );
    obj->name = STRALLOC( "lightsaber saber" );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was carelessly misplaced here." );
+   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    STRFREE( obj->action_desc );
-   strcpy( buf, arg );
-   strcat( buf, " ignites with a hum and a soft glow." );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " ignites with a hum and a soft glow.", MAX_STRING_LENGTH );
    obj->action_desc = STRALLOC( buf );
    CREATE( paf, AFFECT_DATA, 1 );
    paf->type = -1;
@@ -5491,7 +5467,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
    int vnum;
    AFFECT_DATA *paf;
 
-   strcpy( arg, argument );
+   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -5568,7 +5544,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -5639,15 +5615,15 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 3;
    STRFREE( obj->name );
-   strcpy( buf, arg );
-   strcat( buf, " force pike" );
-   strcat( buf, remand( buf ) );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   mudstrlcat( buf, " force pike", MAX_STRING_LENGTH );
+   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   strcpy( buf, arg );
+   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   strcat( buf, " was left here." );
+   mudstrlcat( buf, " was left here.", MAX_STRING_LENGTH );
    CREATE( paf, AFFECT_DATA, 1 );
    paf->type = -1;
    paf->duration = -1;
@@ -6030,11 +6006,10 @@ void do_plantbeacon( CHAR_DATA * ch, const char *argument )
 
    if( number_percent(  ) < ch->pcdata->learned[gsn_plantbeacon] )
    {
-      sprintf( buf, "You place a locating beacon on the hull of %s.\r\n", ship->name );
-      send_to_char( buf, ch );
-      sprintf( buf, "%s places a device on the hull of %s.", ch->name, ship->name );
+      ch_printf( ch, "You place a locating beacon on the hull of %s.\r\n", ship->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s places a device on the hull of %s.", ch->name, ship->name );
       act( AT_PLAIN, buf, ch, NULL, NULL, TO_ROOM );
-      sprintf( buf, "%s %s", ship->pbeacon, ch->name );
+      snprintf( buf, MAX_STRING_LENGTH, "%s %s", ship->pbeacon, ch->name );
       STRFREE( ship->pbeacon );
       ship->pbeacon = STRALLOC( buf );
       save_ship( ship );
@@ -6088,9 +6063,9 @@ void do_showbeacons( CHAR_DATA * ch, const char *argument )
       if( is_name( ch->name, ship->pbeacon ) )
       {
          if( !ship->in_room && ship->shipstate != SHIP_HYPERSPACE )
-            sprintf( buf3, "&w%.0f&z, &w%.0f&z, &w%.0f", ship->vx, ship->vy, ship->vz );
+            snprintf( buf3, MAX_STRING_LENGTH, "&w%.0f&z, &w%.0f&z, &w%.0f", ship->vx, ship->vy, ship->vz );
          if( ship->shipstate == SHIP_HYPERSPACE )
-            sprintf( buf3, "In Hyperspace" );
+            mudstrlcpy( buf3, "In Hyperspace", MAX_STRING_LENGTH );
 
          for( ship2 = first_ship; ship2; ship2 = ship2->next )
          {
@@ -6098,26 +6073,26 @@ void do_showbeacons( CHAR_DATA * ch, const char *argument )
             {
                if( ship->in_room->vnum == ship2->hanger1 )
                {
-                  sprintf( buf, "%s", ship2->name );
-                  sprintf( buf2, "%s", ship->in_room->name );
+                  snprintf( buf, MAX_STRING_LENGTH, "%s", ship2->name );
+                  snprintf( buf2, MAX_STRING_LENGTH, "%s", ship->in_room->name );
                   break;
                }
                if( ship->in_room->vnum == ship2->hanger2 )
                {
-                  sprintf( buf, "%s", ship2->name );
-                  sprintf( buf2, "%s", ship->in_room->name );
+                  snprintf( buf, MAX_STRING_LENGTH, "%s", ship2->name );
+                  snprintf( buf2, MAX_STRING_LENGTH, "%s", ship->in_room->name );
                   break;
                }
                if( ship->in_room->vnum == ship2->hanger3 )
                {
-                  sprintf( buf, "%s", ship2->name );
-                  sprintf( buf2, "%s", ship->in_room->name );
+                  snprintf( buf, MAX_STRING_LENGTH, "%s", ship2->name );
+                  snprintf( buf2, MAX_STRING_LENGTH, "%s", ship->in_room->name );
                   break;
                }
                if( ship->in_room->vnum == ship2->hanger4 )
                {
-                  sprintf( buf, "%s", ship2->name );
-                  sprintf( buf2, "%s", ship->in_room->name );
+                  snprintf( buf, MAX_STRING_LENGTH, "%s", ship2->name );
+                  snprintf( buf2, MAX_STRING_LENGTH, "%s", ship->in_room->name );
                   break;
                }
             }
@@ -6145,7 +6120,7 @@ void do_showbeacons( CHAR_DATA * ch, const char *argument )
 void do_checkbeacons( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
-   char arg[MAX_STRING_LENGTH];
+   char arg[MAX_INPUT_LENGTH];
    int schance;
 
    if( IS_NPC( ch ) )
@@ -6185,7 +6160,7 @@ void do_checkbeacons( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;
@@ -6196,7 +6171,6 @@ void do_checkbeacons( CHAR_DATA * ch, const char *argument )
          ch->substate = SUB_NONE;
          send_to_char( "&RYou are interrupted and fail to finish scanning.\r\n", ch );
          return;
-
    }
 
    ch->substate = SUB_NONE;
@@ -6227,7 +6201,7 @@ void do_checkbeacons( CHAR_DATA * ch, const char *argument )
 void do_nullifybeacons( CHAR_DATA * ch, const char *argument )
 {
    SHIP_DATA *ship;
-   char arg[MAX_STRING_LENGTH];
+   char arg[MAX_INPUT_LENGTH];
    int schance;
 
    if( IS_NPC( ch ) )
@@ -6267,7 +6241,7 @@ void do_nullifybeacons( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         strcpy( arg, ( const char * )ch->dest_buf );
+         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;
