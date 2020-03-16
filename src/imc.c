@@ -222,29 +222,27 @@ size_t imcstrlcat( char * __restrict dst, const char * __restrict src, size_t ds
 /* Generic log function which will route the log messages to the appropriate system logging function */
 void imclog( const char *format, ... )
 {
-   char buf[LGST-5], buf2[LGST];
+   char buf[LGST];
    va_list ap;
 
    va_start( ap, format );
    vsnprintf( buf, LGST-5, format, ap );
    va_end( ap );
 
-   snprintf( buf2, LGST, "IMC: %s", buf );
-   log_string( buf2 );
+   log_printf( " IMC: %s", buf );
 }
 
 /* Generic bug logging function which will route the message to the appropriate function that handles bug logs */
 void imcbug( const char *format, ... )
 {
-   char buf[LGST-5], buf2[LGST];
+   char buf[LGST];
    va_list ap;
 
    va_start( ap, format );
-   vsnprintf( buf, LGST-5, format, ap );
+   vsnprintf( buf, LGST, format, ap );
    va_end( ap );
 
-   snprintf( buf2, LGST, "IMC: %s", buf );
-   bug( "%s", buf2 );
+   bug( " IMC: %s", buf );
 }
 
 /*
