@@ -208,7 +208,7 @@ void save_skill_table( int delnum )
       fwrite_skill( fpout, skill_table[x] );
    }
    fprintf( fpout, "#END\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 /*
@@ -234,7 +234,7 @@ void save_herb_table(  )
       fwrite_skill( fpout, herb_table[x] );
    }
    fprintf( fpout, "#END\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 /*
@@ -284,7 +284,7 @@ void save_socials(  )
       }
    }
    fprintf( fpout, "#END\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 int get_skill( const char *skilltype )
@@ -339,7 +339,7 @@ void save_commands(  )
       }
    }
    fprintf( fpout, "#END\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 SKILLTYPE *fread_skill( FILE * fp )
@@ -524,7 +524,7 @@ void load_skill_table(  )
             if( top_sn >= MAX_SKILL )
             {
                bug( "%s: more skills than MAX_SKILL %d", __func__, MAX_SKILL );
-               fclose( fp );
+               FCLOSE( fp );
                return;
             }
             skill_table[top_sn++] = fread_skill( fp );
@@ -538,7 +538,7 @@ void load_skill_table(  )
             continue;
          }
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
    else
    {
@@ -578,7 +578,7 @@ void load_herb_table(  )
             if( top_herb >= MAX_HERB )
             {
                bug( "%s: more herbs than MAX_HERB %d", __func__, MAX_HERB );
-               fclose( fp );
+               FCLOSE( fp );
                return;
             }
             herb_table[top_herb++] = fread_skill( fp );
@@ -594,7 +594,7 @@ void load_herb_table(  )
             continue;
          }
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
    else
    {
@@ -709,7 +709,7 @@ void load_socials(  )
             continue;
          }
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
    else
    {
@@ -855,7 +855,7 @@ void load_commands(  )
             continue;
          }
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
    else
    {

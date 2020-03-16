@@ -85,6 +85,9 @@ if ( !str_cmp( word, (literal) ) )     \
    break;                              \
 }
 
+/* Macro taken from DOTD codebase. Fcloses a file, then nulls its pointer for safety. */
+#define FCLOSE(fp)  fclose((fp)); (fp)=NULL;
+
 /*
  * Structure types.
  */
@@ -201,6 +204,9 @@ typedef ch_ret SPELL_FUN( int sn, int level, CHAR_DATA * ch, void *vo );
 #define MAX_STRING_LENGTH	 4096 /* buf */
 #define MAX_INPUT_LENGTH	 1024 /* arg */
 #define MAX_INBUF_SIZE		 1024
+
+#define MSL			MAX_STRING_LENGTH
+#define MIL			MAX_INPUT_LENGTH
 
 #define MAX_MOB_COUNT		10
 

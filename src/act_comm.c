@@ -2185,17 +2185,10 @@ void do_quit( CHAR_DATA * ch, const char *argument )
       for( y = 0; y < MAX_LAYERS; y++ )
          save_equipment[x][y] = NULL;
 
-   /*
-    * don't show who's logging off to leaving player 
-    */
-/*
-    to_channel( log_buf, CHANNEL_MONITOR, "Monitor", level ); 
-*/
    log_string_plus( log_buf, LOG_COMM, level );
 
    return;
 }
-
 
 void send_rip_screen( CHAR_DATA * ch )
 {
@@ -2207,7 +2200,7 @@ void send_rip_screen( CHAR_DATA * ch )
    {
       while( ( BUFF[num] = fgetc( rpfile ) ) != EOF )
          num++;
-      fclose( rpfile );
+      FCLOSE( rpfile );
       BUFF[num] = 0;
       write_to_buffer( ch->desc, BUFF, num );
    }
@@ -2223,7 +2216,7 @@ void send_rip_title( CHAR_DATA * ch )
    {
       while( ( BUFF[num] = fgetc( rpfile ) ) != EOF )
          num++;
-      fclose( rpfile );
+      FCLOSE( rpfile );
       BUFF[num] = 0;
       write_to_buffer( ch->desc, BUFF, num );
    }
@@ -2239,7 +2232,7 @@ void send_ansi_title( CHAR_DATA * ch )
    {
       while( ( BUFF[num] = fgetc( rpfile ) ) != EOF )
          num++;
-      fclose( rpfile );
+      FCLOSE( rpfile );
       BUFF[num] = 0;
       write_to_buffer( ch->desc, BUFF, num );
    }
@@ -2255,12 +2248,11 @@ void send_ascii_title( CHAR_DATA * ch )
    {
       while( ( BUFF[num] = fgetc( rpfile ) ) != EOF )
          num++;
-      fclose( rpfile );
+      FCLOSE( rpfile );
       BUFF[num] = 0;
       write_to_buffer( ch->desc, BUFF, num );
    }
 }
-
 
 void do_rip( CHAR_DATA * ch, const char *argument )
 {

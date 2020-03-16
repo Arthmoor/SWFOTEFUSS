@@ -5,12 +5,18 @@
  *                /-----\  |      | \  |  v  | |     | |  /                 *
  *               /       \ |      |  \ |     | +-----+ +-/                  *
  ****************************************************************************
- * AFKMud (c)1997-2002 Alsherok. Contributors: Samson, Dwip, Whir,          *
- * Cyberfox, Karangi, Rathian, Cam, Raine, and Tarl.                        *
+ * AFKMud Copyright 1997-2019 by Roger Libiez (Samson),                     *
+ * Levi Beckerson (Whir), Michael Ward (Tarl), Erik Wolfe (Dwip),           *
+ * Cameron Carroll (Cam), Cyberfox, Karangi, Rathian, Raine,                *
+ * Xorith, and Adjani.                                                      *
+ * All Rights Reserved.                                                     *
  *                                                                          *
- * Original SMAUG 1.4a written by Thoric (Derek Snider) with Altrag,        *
+ *                                                                          *
+ * External contributions from Remcon, Quixadhal, Zarius, and many others.  *
+ *                                                                          *
+ * Original SMAUG 1.8b written by Thoric (Derek Snider) with Altrag,        *
  * Blodkai, Haus, Narn, Scryn, Swordbearer, Tricops, Gorog, Rennard,        *
- * Grishnakh, Fireblade, and Nivek.                                         *
+ * Grishnakh, Fireblade, Edmond, Conran, and Nivek.                         *
  *                                                                          *
  * Original MERC 2.1 code by Hatchet, Furey, and Kahn.                      *
  *                                                                          *
@@ -22,18 +28,6 @@
 
 /* Used to interact with other snippets */
 #define PFILECODE
-
-#ifndef FCLOSE
-#define FCLOSE(fp)  fclose(fp); fp=NULL;
-#endif
-
-#ifndef MSL
-#define MSL MAX_STRING_LENGTH
-#endif
-
-#ifndef MIL
-#define MIL MAX_INPUT_LENGTH
-#endif
 
 extern time_t pfile_time;
 extern HOUR_MIN_SEC *set_pfile_time;

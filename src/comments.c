@@ -424,7 +424,6 @@ void do_comment( CHAR_DATA * ch, const char *argument )
    return;
 }
 
-
 void fwrite_comments( CHAR_DATA * ch, FILE * fp )
 {
    NOTE_DATA *pnote;
@@ -457,7 +456,7 @@ void fread_comment( CHAR_DATA * ch, FILE * fp )
          letter = getc( fp );
          if( feof( fp ) )
          {
-            fclose( fp );
+            FCLOSE( fp );
             return;
          }
       }

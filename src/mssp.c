@@ -147,8 +147,7 @@ void save_mssp_info( void )
       fprintf( fp, "%s", "End\n\n" );
       fprintf( fp, "%s", "#END\n" );
 
-      fclose( fp );
-      fp = NULL;
+      FCLOSE( fp );
    }
 }
 
@@ -202,8 +201,7 @@ bool load_mssp_data( void )
             break;
          }
       }
-      fclose( fp );
-      fp = NULL;
+      FCLOSE( fp );
    }
    return found;
 }

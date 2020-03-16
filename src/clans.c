@@ -113,7 +113,7 @@ void write_clan_list(  )
    for( tclan = first_clan; tclan; tclan = tclan->next )
       fprintf( fpout, "%s\n", tclan->filename );
    fprintf( fpout, "$\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 /*
@@ -176,8 +176,7 @@ void save_clan( CLAN_DATA * clan )
          fprintf( fp, "MainClan     %s~\n", clan->mainclan->name );
       fprintf( fp, "End\n\n" );
       fprintf( fp, "#END\n" );
-      fclose( fp );
-      fp = NULL;
+      FCLOSE( fp );
    }
    return;
 }
@@ -350,7 +349,7 @@ bool load_clan_file( const char *clanfile )
             break;
          }
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
 
    if( found )
@@ -405,7 +404,7 @@ bool load_clan_file( const char *clanfile )
                break;
             }
          }
-         fclose( fp );
+         FCLOSE( fp );
          for( tobj = supermob->first_carrying; tobj; tobj = tobj_next )
          {
             tobj_next = tobj->next_content;
@@ -458,7 +457,7 @@ void load_clans(  )
          bug( "%s: Cannot load clan file: %s", __func__, filename );
       }
    }
-   fclose( fpList );
+   FCLOSE( fpList );
    log_string( " Done clans\r\nSorting clans...." );
 
    for( clan = first_clan; clan; clan = clan->next )
@@ -2173,7 +2172,7 @@ void save_senate(  )
         fprintf( fpout, "%ld\n", tbounty->amount );
     }
     fprintf( fpout, "$\n" );
-    fclose( fpout );
+    FCLOSE( fpout );
 */
 }
 
@@ -2214,7 +2213,7 @@ void load_senate(  )
 	amount = fread_number( fpList );
 	bounty->amount = amount;
     }
-    fclose( fpList );
+    FCLOSE( fpList );
     log_string(" Done bounties " );
 
     return;
@@ -2747,7 +2746,7 @@ void do_members( CHAR_DATA * ch, const char *argument )
 
    }
    send_to_char( "\r\n", ch );
-   fclose( fpList );
+   FCLOSE( fpList );
 }
 
 void add_member( char *name, char *shortname )
@@ -2817,7 +2816,7 @@ void remove_member( char *name, char *shortname )
       if( str_cmp( name, buf ) && strlen( buf ) > 2 )
          fprintf( fpNew, "%s~\n", buf );
    }
-   fclose( fpNew );
-   fclose( fpList );
+   FCLOSE( fpNew );
+   FCLOSE( fpList );
    rename( temp, list );
 }

@@ -90,7 +90,7 @@ void write_planet_list(  )
    for( tplanet = first_planet; tplanet; tplanet = tplanet->next )
       fprintf( fpout, "%s\n", tplanet->filename );
    fprintf( fpout, "$\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 void save_planet( PLANET_DATA * planet )
@@ -139,8 +139,7 @@ void save_planet( PLANET_DATA * planet )
          fprintf( fp, "Area         %s~\n", pArea->filename );
       fprintf( fp, "End\n\n" );
       fprintf( fp, "#END\n" );
-      fclose( fp );
-      fp = NULL;
+      FCLOSE( fp );
    }
    return;
 }
@@ -307,7 +306,7 @@ bool load_planet_file( const char *planetfile )
             break;
          }
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
 
    if( !found )
@@ -348,7 +347,7 @@ void load_planets(  )
          bug( "%s: Cannot load planet file: %s", __func__, filename );
       }
    }
-   fclose( fpList );
+   FCLOSE( fpList );
    log_string( " Done planets " );
    return;
 }

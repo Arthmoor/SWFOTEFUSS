@@ -2130,7 +2130,7 @@ void do_hset( CHAR_DATA * ch, const char *argument )
          fprintf( fpout, "%d %s~\n%s~\n\n", pHelp->level, pHelp->keyword, help_fix( pHelp->text ) );
 
       fprintf( fpout, "0 $~\n\n\n#$\n" );
-      fclose( fpout );
+      FCLOSE( fpout );
       send_to_char( "Saved.\r\n", ch );
       return;
    }
@@ -2631,10 +2631,10 @@ void do_who( CHAR_DATA * ch, const char *argument )
                sMatch, sMatch == 1 ? "" : "s", nMatch, nMatch == 1 ? "" : "s" );
       fprintf( whoout, "<div style='position: absolute; color: white; top: 5px; right: 5px;'>%s</div></font>",
                ( char * )ctime( &current_time ) );
-      fclose( whoout );
+      FCLOSE( whoout );
       return;
    }
-   fclose( whoout );
+   FCLOSE( whoout );
    ch_printf( ch,
               "\r\n&z( &R%d &rvisible &zplayer%s. &R%d &rtotal&z player%s. )&R-_&r-^^-_-&R^^&r-_-^^&R-_-^^&r-_-^^-_-^^-&R_-^^&r-_-^^-_-&R^^-\r\n",
               sMatch, sMatch == 1 ? "" : "s", nMatch, nMatch == 1 ? "" : "s" );

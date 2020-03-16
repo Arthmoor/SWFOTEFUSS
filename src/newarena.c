@@ -681,7 +681,7 @@ void load_hall_of_fame( void )
       fame_list = next_node;
    }
 
-   fclose( fl );
+   FCLOSE( fl );
    return;
 }
 
@@ -695,7 +695,7 @@ void write_fame_list( void )
       return;
    }
    write_one_fame_node( fl, fame_list );  /* recursively write from end to start */
-   fclose( fl );
+   FCLOSE( fl );
 
    return;
 }

@@ -122,7 +122,7 @@ bool load_forcehelp( const char *forcehelpfile )
             break;
          }
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
 
    if( !( found ) )
@@ -160,7 +160,7 @@ void load_force_help(  )
          bug( "%s: Cannot load forcehelp file: %s", __func__, filename );
       }
    }
-   fclose( fpList );
+   FCLOSE( fpList );
    log_string( " Done force helps " );
    return;
 }
@@ -185,7 +185,7 @@ void write_forcehelp_list(  )
       fprintf( fpout, "%s\n", buf );
    }
    fprintf( fpout, "$\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 void write_all_forcehelps(  )
@@ -232,7 +232,7 @@ void save_forcehelp( FORCE_HELP * fhelp )
       fprintf( fp, "#END\n" );
 
    }
-   fclose( fp );
+   FCLOSE( fp );
    return;
 }
 
@@ -352,7 +352,7 @@ bool load_forceskill( const char *forceskillfile )
             break;
          }
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
 
    if( !( found ) )
@@ -391,7 +391,7 @@ void load_force_skills(  )
          bug( "%s: Cannot load forceskill file: %s", __func__, filename );
       }
    }
-   fclose( fpList );
+   FCLOSE( fpList );
    log_string( " Done force skills " );
    return;
 }
@@ -485,7 +485,7 @@ void write_forceskill_list(  )
    for( fskill = first_force_skill; fskill; fskill = fskill->next )
       fprintf( fpout, "%s\n", fskill->name );
    fprintf( fpout, "$\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 void write_all_forceskills(  )
@@ -598,8 +598,7 @@ void save_forceskill( FORCE_SKILL * fskill )
       fprintf( fp, "WaitState      %d\n", fskill->wait_state );
       fprintf( fp, "End\n\n" );
       fprintf( fp, "#END\n" );
-      fclose( fp );
-      fp = NULL;
+      FCLOSE( fp );
    }
    return;
 }

@@ -1347,7 +1347,7 @@ void save_prototype( int prototype )
    fprintf( fpout, "\n#ENDROOMS\n\n" );
 
    fprintf( fpout, "#END\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
    return;
 }
 
@@ -1366,7 +1366,7 @@ void write_prototype_list(  )
    for( x = 0; x < NUM_PROTOTYPES; x++ )
       fprintf( fpout, "%s.proto\n", ship_prototypes[x].sname );
    fprintf( fpout, "$\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
    return;
 }
 
@@ -1621,7 +1621,7 @@ int load_prototype( const char *prototypefile, int prototype )
          else
             ok = FALSE;
       }
-      fclose( fp );
+      FCLOSE( fp );
    }
    return prototype;
 }
@@ -1652,7 +1652,7 @@ void load_ship_prototypes(  )
 
       prototype = load_prototype( filename, prototype );
    }
-   fclose( fpList );
+   FCLOSE( fpList );
    log_string( " Done ship prototypes " );
    NUM_PROTOTYPES = prototype + 1;
    // write_all_prototypes();
@@ -2105,7 +2105,7 @@ void load_market_list(  )
       quantity = fread_number( fpList );
       marketship->quantity = quantity;
    }
-   fclose( fpList );
+   FCLOSE( fpList );
    log_string( "Finished loading blackmarket." );
    return;
 }
@@ -2129,7 +2129,7 @@ void save_market_list(  )
       fprintf( fpout, "%d\n", marketship->quantity );
    }
    fprintf( fpout, "$\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 }
 
 void add_market_ship( SHIP_DATA * ship )
@@ -2191,7 +2191,7 @@ void make_random_marketlist(  )
    snprintf( filename, 256, "%s%s", SHIP_PROTOTYPE_DIR, "blackmarket.lst" );
    fpout = fopen( filename, "w" );
    fprintf( fpout, "$\n" );
-   fclose( fpout );
+   FCLOSE( fpout );
 
    // Make a new list
    count = 0;
