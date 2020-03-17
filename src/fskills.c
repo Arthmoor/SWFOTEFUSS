@@ -853,7 +853,7 @@ void secondslash( CHAR_DATA * ch, CHAR_DATA * victim )
    if( !ch || !victim )
       return;
 
-   ch_printf( ch, "You follow through with the other end of your saber.\r\n", PERS( victim, ch ) );
+   send_to_char( "You follow through with the other end of your saber.\r\n", ch );
    ch_printf( victim, "%s follows through with the other end of their saber!\r\n", PERS( ch, victim ) );
    act( AT_WHITE, "$n follows through with the other end of their saber!\r\n", ch, NULL, victim, TO_NOTVICT );
 
@@ -868,7 +868,7 @@ void secondslash( CHAR_DATA * ch, CHAR_DATA * victim )
    if( check_parry( ch, victim ) )
    {
       ch_printf( ch, "%s quickly parries your attack.\r\n", PERS( victim, ch ) );
-      ch_printf( ch, "You quickly parry the attack.\r\n", PERS( ch, victim ) );
+      send_to_char( "You quickly parry the attack.\r\n", ch );
       act( AT_WHITE, "$N quickly parries $n's attack.", ch, NULL, victim, TO_NOTVICT );
       set_fighting( victim, ch );
       return;
@@ -937,7 +937,7 @@ void fskill_slash( CHAR_DATA * ch, const char *argument )
       if( check_parry( ch, victim ) )
       {
          ch_printf( ch, "%s quickly parries your attack.\r\n", PERS( victim, ch ) );
-         ch_printf( ch, "You quickly parry the attack.\r\n", PERS( ch, victim ) );
+         send_to_char( "You quickly parry the attack.\r\n", ch );
          act( AT_WHITE, "$N quickly parries $n's attack.", ch, NULL, victim, TO_NOTVICT );
          if( wield->value[3] == WEAPON_DUAL_LIGHTSABER )
             secondslash( ch, victim );

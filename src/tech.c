@@ -318,7 +318,7 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
 
       xpgain = ( ( ch->skill_level[TECHNICIAN_ABILITY] + 1 ) * 200 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, "You gain %d technician experience.", xpgain );
+      ch_printf( ch, "You gain %ld technician experience.", xpgain );
    }
    learn_from_success( ch, gsn_makemodule );
 }
@@ -385,7 +385,7 @@ void do_showmodules( CHAR_DATA * ch, const char *argument )
    send_to_char( "&z+--------------------------------------+\r\n", ch );
    xpgain = UMAX( 100, i * 100 );
    gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-   ch_printf( ch, " You gain %d experience for being a Technician.\r\n", xpgain );
+   ch_printf( ch, " You gain %ld experience for being a Technician.\r\n", xpgain );
    learn_from_success( ch, gsn_showmodules );
 }
 
@@ -553,7 +553,7 @@ void do_removemodule( CHAR_DATA * ch, const char *argument )
       long xpgain;
       xpgain = ( ( ch->skill_level[TECHNICIAN_ABILITY] + 1 ) * 300 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, " You gain %d experience for being a Technician.\r\n", xpgain );
+      ch_printf( ch, " You gain %ld experience for being a Technician.\r\n", xpgain );
       learn_from_success( ch, gsn_removemodule );
    }
    return;
@@ -785,7 +785,7 @@ void do_scanbugs( CHAR_DATA * ch, const char *argument )
 
       xpgain = ( ch->experience[TECHNICIAN_ABILITY] / 30 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, "You gain %d technician experience.", xpgain );
+      ch_printf( ch, "You gain %ld technician experience.", xpgain );
    }
 
    return;
@@ -809,7 +809,6 @@ void do_removebug( CHAR_DATA * ch, const char *argument )
             send_to_char( "Syntax: removebug <person>\r\n", ch );
             return;
          }
-
 
          victim = get_char_room( ch, arg );
 
@@ -890,7 +889,7 @@ void do_removebug( CHAR_DATA * ch, const char *argument )
 
       xpgain = ( ch->experience[TECHNICIAN_ABILITY] / 25 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, "You gain %d technician experience.", xpgain );
+      ch_printf( ch, "You gain %ld technician experience.", xpgain );
    }
 
    return;

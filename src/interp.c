@@ -726,7 +726,7 @@ const char *one_argument2( const char *argument, char *arg_first )
    return argument;
 }
 
-void do_timecmd( CHAR_DATA * ch, const char *argument )
+void do_timecmd( CHAR_DATA* ch, const char* argument )
 {
    struct timeval sttime;
    struct timeval etime;
@@ -764,7 +764,7 @@ void do_timecmd( CHAR_DATA * ch, const char *argument )
    set_char_color( AT_PLAIN, ch );
    send_to_char( "Timing complete.\r\n", ch );
    subtract_times( &etime, &sttime );
-   ch_printf( ch, "Timing took %d.%06d seconds.\r\n", etime.tv_sec, etime.tv_usec );
+   ch_printf( ch, "Timing took %ld.%06ld seconds.\r\n", etime.tv_sec, etime.tv_usec );
    return;
 }
 
@@ -811,7 +811,7 @@ void send_timer( struct timerset *vtime, CHAR_DATA * ch )
    carry = ( vtime->total_time.tv_sec % vtime->num_uses ) * 1000000;
    ntime.tv_usec = ( vtime->total_time.tv_usec + carry ) / vtime->num_uses;
    ch_printf( ch, "Has been used %d times this boot.\r\n", vtime->num_uses );
-   ch_printf( ch, "Time (in secs): min %d.%0.6d; avg: %d.%0.6d; max %d.%0.6d"
+   ch_printf( ch, "Time (in secs): min %ld.%06ld; avg: %ld.%06ld; max %ld.%06ld"
               "\r\n", vtime->min_time.tv_sec, vtime->min_time.tv_usec, ntime.tv_sec,
               ntime.tv_usec, vtime->max_time.tv_sec, vtime->max_time.tv_usec );
    return;

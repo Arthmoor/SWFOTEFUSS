@@ -203,7 +203,7 @@ void do_score( CHAR_DATA * ch, const char *argument )
    ch_printf( ch, "&z|  &cAlign: %s                    &cCharisma: &g%-2d  &z|\r\n", drawalign( victim->alignment ),
               get_curr_cha( victim ) );
    send_to_char( "&z|----------------------------------------------------------|&W\r\n", ch );
-   ch_printf( ch, "&z|  &cCredits: &g%-10d             &cSavings: &g%-10d     &z|&W\r\n", victim->gold,
+   ch_printf( ch, "&z|  &cCredits: &g%-10d             &cSavings: &g%-10ld     &z|&W\r\n", victim->gold,
               victim->pcdata->bank );
    ch_printf( ch, "&z|  &cWeight:  %s        &cItems: %s  &z|&W\r\n",
               drawlife( victim->carry_weight, can_carry_w( victim ) ), drawlife( victim->carry_number,
@@ -223,7 +223,6 @@ void do_score( CHAR_DATA * ch, const char *argument )
    send_to_char( "&z|----------------------------------------------------------|&W\r\n", ch );
    send_to_char( "&z|  &cFor more Information see lang, aff, group               &z|\r\n", ch );
    send_to_char( "&z+----------------------------------------------------------+&W\r\n", ch );
-
 }
 
 /*
@@ -638,11 +637,10 @@ void do_level( CHAR_DATA * ch, const char *argument )
 
    for( ability = 0; ability < MAX_ABILITY; ability++ )
       if( ability != FORCE_ABILITY )
-         ch_printf( ch, "&G%-15s Level&W: %-3d    &GMax&W: %-3d    &GExp&W: %-10ld     &GNext&W: %-10ld&W\r\n",
+         ch_printf( ch, "&G%-15s Level&W: %-3d    &GMax&W: %-3d    &GExp&W: %-10ld     &GNext&W: %-10d&W\r\n",
                     ability_name[ability], ch->skill_level[ability], max_level( ch, ability ), ch->experience[ability],
                     exp_level( ch->skill_level[ability] + 1 ) );
 }
-
 
 void do_affected( CHAR_DATA * ch, const char *argument )
 {

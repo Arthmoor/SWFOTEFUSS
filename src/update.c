@@ -2723,7 +2723,7 @@ void update_handler( void )
       set_char_color( AT_PLAIN, timechar );
       send_to_char( "Update timing complete.\r\n", timechar );
       subtract_times( &etime, &sttime );
-      ch_printf( timechar, "Timing took %d.%06d seconds.\r\n", etime.tv_sec, etime.tv_usec );
+      ch_printf( timechar, "Timing took %ld.%06ld seconds.\r\n", etime.tv_sec, etime.tv_usec );
       timechar = NULL;
    }
    tail_chain(  );

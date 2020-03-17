@@ -1914,7 +1914,7 @@ void do_steal( CHAR_DATA * ch, const char *argument )
                     exp_level( ch->skill_level[SMUGGLING_ABILITY] ) ) / 35 );
          xp = UMIN( xp, xp_compute( ch, victim ) );
          gain_exp( ch, xp, SMUGGLING_ABILITY );
-         ch_printf( ch, "&WYou gain %ld smuggling experience!\r\n", xp );
+         ch_printf( ch, "&WYou gain %d smuggling experience!\r\n", xp );
       }
       return;
    }
@@ -1974,7 +1974,7 @@ void do_steal( CHAR_DATA * ch, const char *argument )
                  exp_level( ch->skill_level[SMUGGLING_ABILITY] ) ) / 10 );
       xp = UMIN( xp, xp_compute( ch, victim ) );
       gain_exp( ch, xp, SMUGGLING_ABILITY );
-      ch_printf( ch, "&WYou gain %ld smuggling experience!\r\n", xp );
+      ch_printf( ch, "&WYou gain %d smuggling experience!\r\n", xp );
    }
    separate_obj( obj );
    obj_from_char( obj );

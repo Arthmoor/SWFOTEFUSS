@@ -2576,7 +2576,7 @@ void do_auction( CHAR_DATA * ch, const char *argument )
             set_char_color( AT_LBLUE, ch );
             show_list_to_char( obj->first_content, ch, TRUE, FALSE );
             set_char_color( AT_WHITE, ch );
-            ch_printf( ch, "\r\n&z||&w\r\n&W++\r\n", ch );
+            send_to_char( "\r\n&z||&w\r\n&W++\r\n", ch );
          }
 
          if( IS_IMMORTAL( ch ) )

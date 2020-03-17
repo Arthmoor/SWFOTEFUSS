@@ -589,9 +589,9 @@ void do_contract( CHAR_DATA * ch, const char *argument )
       {
          ch->gold -= amount;
          ccontract->amount += amount;
-         ch_printf( ch, "&GYou have contracted %s to kill %s for an amount of %d credits.\r\n", PERS( victim, ch ),
+         ch_printf( ch, "&GYou have contracted %s to kill %s for an amount of %ld credits.\r\n", PERS( victim, ch ),
                     target->name, amount );
-         ch_printf( victim, "&G%s has contracted you to kill %s, raising your contract reward by %d credits.\r\n",
+         ch_printf( victim, "&G%s has contracted you to kill %s, raising your contract reward by %ld credits.\r\n",
                     PERS( ch, victim ), target->name, amount );
          return;
       }
@@ -603,11 +603,10 @@ void do_contract( CHAR_DATA * ch, const char *argument )
    LINK( contract, victim->first_contract, victim->last_contract, next_in_contract, prev_in_contract );
 
    ch->gold -= amount;
-   ch_printf( ch, "&GYou have contracted %s to kill %s for an amount of %d credits.\r\n", PERS( victim, ch ), target->name,
+   ch_printf( ch, "&GYou have contracted %s to kill %s for an amount of %ld credits.\r\n", PERS( victim, ch ), target->name,
               amount );
-   ch_printf( victim, "&G%s has contracted you to kill %s for an amount of %d credits.\r\n", PERS( ch, victim ),
+   ch_printf( victim, "&G%s has contracted you to kill %s for an amount of %ld credits.\r\n", PERS( ch, victim ),
               target->name, amount );
-
 }
 
 void do_showcontracts( CHAR_DATA * ch, const char *argument )
@@ -621,7 +620,6 @@ void do_showcontracts( CHAR_DATA * ch, const char *argument )
    {
       ch_printf( ch, "&R%-12s&W|&R %d&W\r\n", contract->target, contract->amount );
    }
-
 }
 
 void do_remcontract( CHAR_DATA * ch, const char *argument )

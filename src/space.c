@@ -116,9 +116,6 @@ bool autofly( SHIP_DATA * ship );
 bool is_facing( SHIP_DATA * ship, SHIP_DATA * target );
 void sound_to_ship( SHIP_DATA * ship, const char *argument );
 
-/* from comm.c */
-bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
-
 ROOM_INDEX_DATA *generate_exit( ROOM_INDEX_DATA * in_room, EXIT_DATA ** pexit );
 
 /*free up ship data by Keberus */
@@ -6368,7 +6365,7 @@ void do_land( CHAR_DATA * ch, const char *argument )
          int xp = ( exp_level( ch->skill_level[PILOTING_ABILITY] + 1 ) - exp_level( ch->skill_level[PILOTING_ABILITY] ) );
          xp = UMIN( get_ship_value( ship ), xp );
          gain_exp( ch, xp, PILOTING_ABILITY );
-         ch_printf( ch, "&WYou gain %ld points of flight experience!\r\n", UMIN( get_ship_value( ship ), xp ) );
+         ch_printf( ch, "&WYou gain %d points of flight experience!\r\n", xp );
       }
 
       return;
@@ -11279,7 +11276,7 @@ void do_makeshipbomb( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makeshipbomb );
 }

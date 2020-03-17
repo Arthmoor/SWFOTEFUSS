@@ -2631,9 +2631,11 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
 
    {
       long xpgain;
+
       xpgain = ( ( ch->skill_level[TECHNICIAN_ABILITY] + 1 ) * 300 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, " You gain %d experience for being a Technician.\r\n", xpgain );
+
+      ch_printf( ch, "You gain %ld experience for being a Technician.\r\n", xpgain );
       learn_from_success( ch, gsn_installmodule );
    }
    return;

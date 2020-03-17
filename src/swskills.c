@@ -262,7 +262,7 @@ void do_makeblade( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
 
    learn_from_success( ch, gsn_makeblade );
@@ -529,7 +529,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makeblaster );
 }
@@ -846,7 +846,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
 // Changed. -Tawnos
 //         xpgain = UMIN( obj->cost*50 ,( exp_level(ch->skill_level[FORCE_ABILITY]+1) - exp_level(ch->skill_level[ENGINEERING_ABILITY]) ) );
       gain_exp( ch, xpgain, FORCE_ABILITY );
-      ch_printf( ch, "You gain %d force experience.", xpgain );
+      ch_printf( ch, "You gain %ld force experience.", xpgain );
    }
    learn_from_success( ch, gsn_makelightsaber );
 }
@@ -958,7 +958,7 @@ void do_makespice( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
 
    learn_from_success( ch, gsn_spice_refining );
@@ -1171,7 +1171,7 @@ void do_makegrenade( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makegrenade );
 }
@@ -1383,7 +1383,7 @@ void do_makelandmine( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makelandmine );
 }
@@ -1591,7 +1591,7 @@ void do_makelight( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makelight );
 }
@@ -1858,10 +1858,9 @@ void do_makejewelry( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makejewelry );
-
 }
 
 void do_makearmor( CHAR_DATA * ch, const char *argument )
@@ -2043,7 +2042,7 @@ void do_makearmor( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makearmor );
 }
@@ -2248,7 +2247,7 @@ void do_makecomlink( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makecomlink );
 }
@@ -2461,7 +2460,7 @@ void do_makeshield( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makeshield );
 }
@@ -2649,7 +2648,7 @@ void do_makecontainer( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.\r\n", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.\r\n", xpgain );
    }
    learn_from_success( ch, gsn_makecontainer );
 }
@@ -2764,7 +2763,7 @@ void do_postguard( CHAR_DATA * ch, const char *argument )
 
          if( ch->gold < ch->skill_level[POLITICIAN_ABILITY] * 30 )
          {
-            ch_printf( ch, "&RYou dont have enough credits.\r\n", ch );
+            send_to_char( "&RYou dont have enough credits.\r\n", ch );
             return;
          }
 
@@ -3950,7 +3949,7 @@ void do_beg( CHAR_DATA * ch, const char *argument )
             ( exp_level( ch->skill_level[SMUGGLING_ABILITY] + 1 ) - exp_level( ch->skill_level[SMUGGLING_ABILITY] ) ) );
    xp = UMIN( xp, xp_compute( ch, victim ) );
    gain_exp( ch, xp, SMUGGLING_ABILITY );
-   ch_printf( ch, "&WYou gain %ld smuggling experience points!\r\n", xp );
+   ch_printf( ch, "&WYou gain %d smuggling experience points!\r\n", xp );
    act( AT_ACTION, "$N gives $n some money.\r\n", ch, NULL, victim, TO_NOTVICT );
    act( AT_ACTION, "You give $n some money.\r\n", ch, NULL, victim, TO_VICT );
 
@@ -4184,7 +4183,7 @@ void do_elite_guard( CHAR_DATA * ch, const char *argument )
 
          if( ch->gold < ch->skill_level[POLITICIAN_ABILITY] * 200 )
          {
-            ch_printf( ch, "&RYou dont have enough credits.\r\n", ch );
+            send_to_char( "&RYou dont have enough credits.\r\n", ch );
             return;
          }
 
@@ -4233,7 +4232,6 @@ void do_elite_guard( CHAR_DATA * ch, const char *argument )
       ch->backup_mob = MOB_VNUM_MERC_ELITE;
 
    ch->backup_wait = 1;
-
 }
 
 void do_add_patrol( CHAR_DATA * ch, const char *argument )
@@ -4263,7 +4261,7 @@ void do_add_patrol( CHAR_DATA * ch, const char *argument )
 
          if( ch->gold < ch->skill_level[POLITICIAN_ABILITY] * 30 )
          {
-            ch_printf( ch, "&RYou dont have enough credits.\r\n", ch );
+            send_to_char( "&RYou dont have enough credits.\r\n", ch );
             return;
          }
 
@@ -4312,7 +4310,6 @@ void do_add_patrol( CHAR_DATA * ch, const char *argument )
       ch->backup_mob = MOB_VNUM_MERC_PATROL;
 
    ch->backup_wait = 1;
-
 }
 
 void do_jail( CHAR_DATA * ch, const char *argument )
@@ -5133,9 +5130,8 @@ void do_repair( CHAR_DATA * ch, const char *argument )
 
       xpgain = ( number_percent(  ) * 6 ) * ch->skill_level[ENGINEERING_ABILITY];
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.\r\n", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.\r\n", xpgain );
    }
-
    learn_from_success( ch, gsn_repair );
 }
 
@@ -5451,7 +5447,7 @@ void do_makeduallightsaber( CHAR_DATA * ch, const char *argument )
          UMIN( obj->cost * 50,
                ( exp_level( ch->skill_level[FORCE_ABILITY] + 1 ) - exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, FORCE_ABILITY );
-      ch_printf( ch, "You gain %d force experience.", xpgain );
+      ch_printf( ch, "You gain %ld force experience.", xpgain );
    }
    learn_from_success( ch, gsn_makeduallightsaber );
 }
@@ -5655,9 +5651,8 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
-
    learn_from_success( ch, gsn_makepike );
 }
 
@@ -5810,7 +5805,7 @@ void do_makebug( CHAR_DATA * ch, const char *argument )
 
       xpgain = number_range( 1550, 2100 );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makebug );
 }
@@ -5964,7 +5959,7 @@ void do_makebeacon( CHAR_DATA * ch, const char *argument )
 
       xpgain = number_range( 2500, 3750 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, "You gain %d technician experience.", xpgain );
+      ch_printf( ch, "You gain %ld technician experience.", xpgain );
    }
    learn_from_success( ch, gsn_makebeacon );
 }
@@ -6192,9 +6187,8 @@ void do_checkbeacons( CHAR_DATA * ch, const char *argument )
 
       xpgain = ( ch->experience[TECHNICIAN_ABILITY] / 30 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, "You gain %d technician experience.", xpgain );
+      ch_printf( ch, "You gain %ld technician experience.", xpgain );
    }
-
    return;
 }
 
@@ -6271,9 +6265,8 @@ void do_nullifybeacons( CHAR_DATA * ch, const char *argument )
 
       xpgain = ( ch->experience[TECHNICIAN_ABILITY] / 25 );
       gain_exp( ch, xpgain, TECHNICIAN_ABILITY );
-      ch_printf( ch, "You gain %d technician experience.", xpgain );
+      ch_printf( ch, "You gain %ld technician experience.", xpgain );
    }
-
    return;
 }
 
@@ -6419,11 +6412,10 @@ void do_makebinders( CHAR_DATA * ch, const char *argument )
 
       xpgain = number_range( 2500, 3750 );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makebinders );
 }
-
 
 void do_setinfrared( CHAR_DATA * ch, const char *argument )
 {
@@ -6457,7 +6449,6 @@ void do_setinfrared( CHAR_DATA * ch, const char *argument )
       return;
    }
 }
-
 
 void do_battle_command( CHAR_DATA * ch, const char *argument )
 {

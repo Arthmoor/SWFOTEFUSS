@@ -601,7 +601,7 @@ void do_fstat( CHAR_DATA * ch, const char *argument )
    ch_printf( ch, "&G&WControl: &G&w%-7s &G&WAlter: &G&w%-9s &G&WSense: &G&w%-9s &G&WWaitState: &G&w%-5d\r\n",
               fskill->control ? "Yes" : "No", fskill->alter ? "Yes" : "No", fskill->sense ? "Yes" : "No",
               fskill->wait_state );
-   ch_printf( ch, "&G&WDisabled: &G&w%-6s &G&WNotskill: &G&w%-6s &G&WMastertrain: &G&w%-6s\r\r\n\n",
+   ch_printf( ch, "&G&WDisabled: &G&w%-6s &G&WNotskill: &G&w%-6s &G&WMastertrain: &G&w%-6s &G&WWaitState: &G&w%-5d\r\r\n\n",
               fskill->disabled ? "Yes" : "No", fskill->notskill ? "Yes" : "No", fskill->mastertrain ? "Yes" : "No",
               fskill->wait_state );
    if( !argument || argument[0] == '\0' )

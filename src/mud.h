@@ -5048,6 +5048,7 @@ void create_ship_rooms( SHIP_DATA * ship );
 const char *PERS( CHAR_DATA * ch, CHAR_DATA * looker );
 FELLOW_DATA *knowsof( CHAR_DATA * ch, CHAR_DATA * victim );
 void close_socket( DESCRIPTOR_DATA * dclose, bool force );
+bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
 void write_to_buffer( DESCRIPTOR_DATA * d, const char *txt, size_t length );
 void write_to_pager( DESCRIPTOR_DATA * d, const char *txt, size_t length );
 void send_to_char( const char *txt, CHAR_DATA * ch );
@@ -5055,15 +5056,16 @@ void send_to_char_color( const char *txt, CHAR_DATA * ch );
 void send_to_char_noand( const char *txt, CHAR_DATA * ch );
 void send_to_pager( const char *txt, CHAR_DATA * ch );
 void send_to_pager_color( const char *txt, CHAR_DATA * ch );
-void ch_printf( CHAR_DATA * ch, const char *fmt, ... );
+void ch_printf( CHAR_DATA * ch, const char *fmt, ... ) __attribute__ ( ( format( printf, 2, 3 ) ) );
 char *chrmax( char *src, int length );
 int strlen_color( char *argument );
 char *format_str( char *str, int len );
-void pager_printf( CHAR_DATA * ch, const char *fmt, ... );
+void pager_printf( CHAR_DATA * ch, const char *fmt, ... ) __attribute__ ( ( format( printf, 2, 3 ) ) );
 void log_string_plus( const char *str, short log_type, short level );
 void log_printf_plus( short log_type, short level, const char *fmt, ... ) __attribute__ ( ( format( printf, 3, 4 ) ) );
 void log_printf( const char *fmt, ... ) __attribute__ ( ( format( printf, 1, 2 ) ) );
-
+void descriptor_printf( DESCRIPTOR_DATA * d, const char *fmt, ... ) __attribute__ ( ( format( printf, 2, 3 ) ) );
+void buffer_printf( DESCRIPTOR_DATA * d, const char *fmt, ... ) __attribute__ ( ( format( printf, 2, 3 ) ) );
 void act( short AType, const char *format, CHAR_DATA * ch, const void *arg1, const void *arg2, int type );
 
 /* reset.c */

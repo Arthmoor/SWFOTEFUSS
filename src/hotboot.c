@@ -69,7 +69,6 @@
 #define MAX_NEST	100
 static OBJ_DATA *rgObjNest[MAX_NEST];
 
-bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
 bool write_to_descriptor_old( int desc, const char *txt, int length );
 void update_room_reset( CHAR_DATA * ch, bool setting );
 
@@ -1027,6 +1026,7 @@ void do_hotboot( CHAR_DATA * ch, const char *argument )
    if( ch && ch->desc )
       write_to_descriptor( ch->desc, "\033[0m", 0 );
 
+   mudstrlcpy( buf, "\r\nYou feel a great disturbance in the Force.", 100 );
    /*
     * For each playing descriptor, save its state 
     */

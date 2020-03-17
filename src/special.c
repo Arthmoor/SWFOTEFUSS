@@ -473,7 +473,7 @@ bool spec_customs_weapons( CHAR_DATA * ch )
                   UMIN( obj->cost * 10,
                         ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                           exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-               ch_printf( victim, "You receive %ld experience for smuggling %d.\r\n ", ch_exp, obj->short_descr );
+               ch_printf( victim, "You receive %ld experience for smuggling %s.\r\n ", ch_exp, obj->short_descr );
                gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
 
                act( AT_ACTION, "$n looks at $N suspiciously.", ch, NULL, victim, TO_NOTVICT );
@@ -575,7 +575,7 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
                      UMIN( obj->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %d. \r\n", ch_exp, obj->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %s. \r\n", ch_exp, obj->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
 
                   act( AT_ACTION, "$n looks at $N suspiciously.", ch, NULL, victim, TO_NOTVICT );
@@ -590,7 +590,7 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
                      UMIN( obj->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %d. \r\n", ch_exp, obj->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %s. \r\n", ch_exp, obj->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
                   separate_obj( obj );
                   SET_BIT( obj->extra_flags, ITEM_CONTRABAND );
@@ -613,7 +613,7 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
                      UMIN( content->cost * 10,
                            ( exp_level( victim->skill_level[SMUGGLING_ABILITY] + 1 ) -
                              exp_level( victim->skill_level[SMUGGLING_ABILITY] ) ) );
-                  ch_printf( victim, "You receive %ld experience for smuggling %d.\r\n ", ch_exp, content->short_descr );
+                  ch_printf( victim, "You receive %ld experience for smuggling %s.\r\n ", ch_exp, content->short_descr );
                   gain_exp( victim, ch_exp, SMUGGLING_ABILITY );
                   separate_obj( content );
                   SET_BIT( content->extra_flags, ITEM_CONTRABAND );
@@ -622,9 +622,7 @@ bool spec_customs_alcohol( CHAR_DATA * ch )
             }
          }
       }
-
    }
-
    return FALSE;
 }
 

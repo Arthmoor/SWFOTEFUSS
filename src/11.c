@@ -382,7 +382,7 @@ void do_makegoggles( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.\r\n", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.\r\n", xpgain );
    }
    learn_from_success( ch, gsn_makegoggles );
 }
@@ -623,7 +623,7 @@ void do_makemissile( CHAR_DATA * ch, const char *argument )
                ( exp_level( ch->skill_level[ENGINEERING_ABILITY] + 1 ) -
                  exp_level( ch->skill_level[ENGINEERING_ABILITY] ) ) );
       gain_exp( ch, xpgain, ENGINEERING_ABILITY );
-      ch_printf( ch, "You gain %d engineering experience.", xpgain );
+      ch_printf( ch, "You gain %ld engineering experience.", xpgain );
    }
    learn_from_success( ch, gsn_makemissile );
 }

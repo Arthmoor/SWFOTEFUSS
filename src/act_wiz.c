@@ -65,9 +65,6 @@ int get_cmdflag( const char *flag )
     return -1;
 }
 
-/* from comm.c */
-bool write_to_descriptor( DESCRIPTOR_DATA * d, const char *txt, int length );
-
 /* from space.c */
 void remship( SHIP_DATA * ship );
 
@@ -1310,7 +1307,7 @@ void do_mstat( CHAR_DATA * ch, const char *argument )
    }
    ch_printf( ch, "&W&z|       &GGold&W: %-10d          &GRace&W: %-17s  &GHit&W: %5d/%-5d    &z|\r\n", victim->gold,
               npc_race[victim->race], victim->hit, victim->max_hit );
-   ch_printf( ch, "&W&z|       &GBank&W: %-10d            &GAC&W: %-5d             &GMana&W: %5d/%-5d    &z|\r\n",
+   ch_printf( ch, "&W&z|       &GBank&W: %-10ld            &GAC&W: %-5d             &GMana&W: %5d/%-5d    &z|\r\n",
               ( IS_NPC( victim )
                 || !victim->pcdata->bank ) ? 0 : victim->pcdata->bank, GET_AC( victim ), victim->mana, victim->max_mana );
    ch_printf( ch, "&W&z|   &GTopLevel&W: %-2d                 &GAlign&W: %-5d             &GMove&W: %5d/%-5d    &z|\r\n",
@@ -1322,7 +1319,7 @@ void do_mstat( CHAR_DATA * ch, const char *argument )
    if( !IS_NPC( victim ) )
    {
       for( ability = 0; ability < MAX_ABILITY; ability++ )
-         ch_printf( ch, "&W&z|   &G%-15s Level&W: %-3d    &GMax&W: %-3d    &GExp&W: %-8d     &GNext&W: %-8d &z|\r\n",
+         ch_printf( ch, "&W&z|   &G%-15s Level&W: %-3d    &GMax&W: %-3d    &GExp&W: %-8ld     &GNext&W: %-8d &z|\r\n",
                     ability_name[ability], victim->skill_level[ability], max_level( victim, ability ),
                     victim->experience[ability], exp_level( victim->skill_level[ability] + 1 ) );
       ch_printf( ch, "&W&z+------------------------------------------------------------------------------+\r\n" );
@@ -1484,7 +1481,7 @@ void do_oldmstat( CHAR_DATA * ch, const char *argument )
       int ability;
 
       for( ability = 0; ability < MAX_ABILITY; ability++ )
-         ch_printf( ch, "%-15s   Level: %-3d   Max: %-3d   Exp: %-10ld   Next: %-10ld\r\n",
+         ch_printf( ch, "%-15s   Level: %-3d   Max: %-3d   Exp: %-10ld   Next: %-10d\r\n",
                     ability_name[ability], victim->skill_level[ability], max_level( victim, ability ),
                     victim->experience[ability], exp_level( victim->skill_level[ability] + 1 ) );
    }
@@ -1960,14 +1957,12 @@ void do_snoop( CHAR_DATA * ch, const char *argument )
 
 /*  Snoop notification for higher imms, if desired, uncomment this
     if ( get_trust(victim) > LEVEL_GOD && get_trust(ch) < LEVEL_SUPREME )
-      write_to_descriptor( victim->desc->descriptor, "\r\nYou feel like someone is watching your every move...\r\n", 0 );
+      write_to_descriptor( victim->desc, "\r\nYou feel like someone is watching your every move...\r\n", 0 );
 */
    victim->desc->snoop_by = ch->desc;
    send_to_char( "Ok.\r\n", ch );
    return;
 }
-
-
 
 void do_switch( CHAR_DATA * ch, const char *argument )
 {

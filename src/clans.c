@@ -1692,14 +1692,12 @@ void do_clanbuytroops( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   ch_printf( ch, "You buy %d troops for your clan, totalling %d credits.\r\n", amount, amount * 25000 );
+   ch_printf( ch, "You buy %ld troops for your clan, totalling %ld credits.\r\n", amount, amount * 25000 );
 
    clan->funds -= amount * 25000;
    clan->troops += amount;
    save_clan( clan );
-
 }
-
 
 void do_clan_donate( CHAR_DATA * ch, const char *argument )
 {
@@ -2448,11 +2446,11 @@ void do_clanstat( CHAR_DATA * ch, const char *argument )
    ch_printf( ch, "\r\n&R&W+---------------------------------------------------------+\r\n" );
    ch_printf( ch, "&O&W|   &BClan Name&W: %-20.20s      &BPlanets&W: %-2.2d      |\r\n", clan->name, pCount );
    if( support >= 0 )
-      ch_printf( ch, "&O&W| &BPop Support&W: %-3.3d                       &BRevenue&W: %-6.6d  |\r\n", support, revenue );
+      ch_printf( ch, "&O&W| &BPop Support&W: %-3.3d                       &BRevenue&W: %-6.6ld  |\r\n", support, revenue );
    else
-      ch_printf( ch, "&O&W| &BPop Support&W: %-3.3d                      &BRevenue&W: %-9.9d |\r\n", support, revenue );
+      ch_printf( ch, "&O&W| &BPop Support&W: %-3.3d                      &BRevenue&W: %-9.9ld |\r\n", support, revenue );
    ch_printf( ch, "&R&W+---------------------------------------------------------+\r\n" );
-   ch_printf( ch, "&O&W|         &BMain&W:                         &YFunds&W: %-9.9d  |\r\n", clan->funds );
+   ch_printf( ch, "&O&W|         &BMain&W:                         &YFunds&W: %-9.9ld  |\r\n", clan->funds );
    if( clan->leader[0] != 0 )
       ch_printf( ch, "&O&W|       &BLeader&W: %-12.12s           &BTroops&W: %-4.4d       |\r\n", clan->leader,
                  clan->troops );
@@ -2470,22 +2468,22 @@ void do_clanstat( CHAR_DATA * ch, const char *argument )
       for( subclan = clan->first_subclan; subclan; subclan = subclan->next_subclan )
       {
          ch_printf( ch, "&R&W+---------------------------------------------------------+\r\n" );
-         ch_printf( ch, "&O&W| &B%-12.12s&W:                         &YFunds&W: %-9.9d  |\r\n", subclan->name,
+         ch_printf( ch, "&O&W| &B%-12.12s&W:                         &YFunds&W: %-9.9ld  |\r\n", subclan->name,
                     subclan->funds );
          if( clan->leader[0] != 0 )
-            ch_printf( ch, "&O&W|       &BLeader&W: %-12.12s       &BSpacecraft&W: %-2.2s         |\r\n", subclan->leader,
+            ch_printf( ch, "&O&W|       &BLeader&W: %-12.12s       &BSpacecraft&W: %-2.2d         |\r\n", subclan->leader,
                        subclan->spacecraft );
          else
-            ch_printf( ch, "&O&W|       &BLeader&W: None.              &BTroops&W: %-2.2s             |\r\n",
-                       subclan->leader, subclan->troops );
-         ch_printf( ch, "&O&W|        &BFirst&W: %-12.12s         &BSpacecraft&W: %-2.2s       |\r\n", subclan->number1,
+            ch_printf( ch, "&O&W|       &BLeader&W: None.              &BTroops&W: %-2.2d             |\r\n",
+                       subclan->troops );
+         ch_printf( ch, "&O&W|        &BFirst&W: %-12.12s         &BSpacecraft&W: %-2.2d       |\r\n", subclan->number1,
                     subclan->spacecraft );
-         ch_printf( ch, "&O&W|       &BSecond&W: %-12.12s          &BMembers&W: %-2.2s         |\r\n", subclan->number2,
+         ch_printf( ch, "&O&W|       &BSecond&W: %-12.12s          &BMembers&W: %-2.2d         |\r\n", subclan->number2,
                     subclan->members );
       }
    }
 
-   ch_printf( ch, "&R&W+---------------------------------------------------------+\r\n" );
+   send_to_char( "&R&W+---------------------------------------------------------+\r\n", ch );
 
    return;
 }

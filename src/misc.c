@@ -3599,7 +3599,7 @@ void do_rpconvert( CHAR_DATA * ch, const char *argument )
       ch->pcdata->learned[sn] = UMIN( ch->pcdata->learned[sn] + 5, 100 );
       ch->rppoints -= 1;
 
-      ch_printf( ch, "&GYou have spent 1 RPP to increase %s by 5%!\r\n", skill_table[sn]->name );
+      ch_printf( ch, "&GYou have spent 1 RPP to increase %s by 5%%!\r\n", skill_table[sn]->name );
       log_printf( "%s increased %s by 5%% with rpconvert.\r\n", ch->name, skill_table[sn]->name );
 
       return;
