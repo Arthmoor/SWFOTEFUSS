@@ -1,2 +1,0 @@
-find */* | grep -v "\." |xargs grep -e Site > sites
-a.out
