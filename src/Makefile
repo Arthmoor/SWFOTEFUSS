@@ -88,10 +88,6 @@ dns: resolver.o
 	chmod a+x resolver
 	chmod g+w resolver.o
 
-
-.c.o: mud.h
-	$(CC) -c $(C_FLAGS) $<
-
 indent:
 	indent -ts3 -nut -nsaf -nsai -nsaw -npcs -npsl -ncs -nbc -bls -prs -bap -cbi0 -cli3 -bli0 -l125 -lp -i3 -cdb -c1 -cd1 -sc -pmt $(C_FILES)
 	indent -ts3 -nut -nsaf -nsai -nsaw -npcs -npsl -ncs -nbc -bls -prs -bap -cbi0 -cli3 -bli0 -l125 -lp -i3 -cdb -c1 -cd1 -sc -pmt $(H_FILES)

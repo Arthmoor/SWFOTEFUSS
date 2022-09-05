@@ -113,6 +113,7 @@ void do_buymobship( CHAR_DATA * ch, const char *argument )
    char arg[MAX_STRING_LENGTH];
    char shipname[MAX_STRING_LENGTH];
    char buf[MAX_STRING_LENGTH];
+   char ship_buf[MAX_INPUT_LENGTH];
    bool found_proto = FALSE;
    AREA_DATA *tarea;
    CLAN_DATA *clan;
@@ -248,43 +249,43 @@ void do_buymobship( CHAR_DATA * ch, const char *argument )
    switch ( ship_type )
    {
       default:
-         mudstrlcpy( shipname, "Mobile Ship MS", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "Mobile Ship MS", MAX_INPUT_LENGTH );
          break;
          // NR
       case 0:
-         mudstrlcpy( shipname, "X-Wing Snubfighter MXW", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "X-Wing Snubfighter MXW", MAX_INPUT_LENGTH );
          break;
       case 1:
-         mudstrlcpy( shipname, "A-Wing Scout MAW", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "A-Wing Scout MAW", MAX_INPUT_LENGTH );
          break;
       case 2:
-         mudstrlcpy( shipname, "B-Wing Heavy Fighter MBW", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "B-Wing Heavy Fighter MBW", MAX_INPUT_LENGTH );
          break;
       case 3:
-         mudstrlcpy( shipname, "Y-Wing Bomber MYB", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "Y-Wing Bomber MYB", MAX_INPUT_LENGTH );
          break;
       case 4:
-         mudstrlcpy( shipname, "K-Wing Heavy Bomber MKW", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "K-Wing Heavy Bomber MKW", MAX_INPUT_LENGTH );
          break;
          // Imp
       case 6:
-         mudstrlcpy( shipname, "TIE Fighter MTF", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "TIE Fighter MTF", MAX_INPUT_LENGTH );
          break;
       case 7:
-         mudstrlcpy( shipname, "TIE Bomber MTB", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "TIE Bomber MTB", MAX_INPUT_LENGTH );
          break;
       case 8:
-         mudstrlcpy( shipname, "TIE Defender MTD", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "TIE Defender MTD", MAX_INPUT_LENGTH );
          break;
       case 9:
-         mudstrlcpy( shipname, "XM-1 Missileboat MXM", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "XM-1 Missileboat MXM", MAX_INPUT_LENGTH );
          break;
       case 10:
-         mudstrlcpy( shipname, "XG-1 Assault Gunboat MXG", MAX_STRING_LENGTH );
+         mudstrlcpy( ship_buf, "XG-1 Assault Gunboat MXG", MAX_INPUT_LENGTH );
          break;
    }
 
-   snprintf( shipname + strlen( shipname ), ( MAX_STRING_LENGTH - strlen( shipname ) ), "%s%d (%s)", shipname, number_range( 1111, 9999 ), ship_prototypes[ship_type].sname );
+   snprintf( shipname, MAX_STRING_LENGTH, "%s%d (%s)", ship_buf, number_range( 1111, 9999 ), ship_prototypes[ship_type].sname );
 
    if( ch->pcdata->clan->funds < ship_prototypes[ship_type].cost )
    {
@@ -359,8 +360,7 @@ void do_buymobship( CHAR_DATA * ch, const char *argument )
 
    ch->pcdata->clan->funds -= ( long )ship_prototypes[ship_type].cost * 1.3;
 
-   ch_printf( ch, "It costs %d to build the ship and %d to train a pilot.\r\n",
-              ship_prototypes[ship_type].cost, ship_prototypes[ship_type].cost / 3 );
+   ch_printf( ch, "It costs %d to build the ship and %d to train a pilot.\r\n", ship_prototypes[ship_type].cost, ship_prototypes[ship_type].cost / 3 );
    ch_printf( ch, "%s is quickly dispatched to the %s system.\r\n", shipname, ssystem->name );
 
    ship = make_prototype_ship( ship_type, vnum, ch, shipname );
@@ -391,7 +391,7 @@ void do_orderclanship( CHAR_DATA * ch, const char *argument )
 {
    int x, size, ship_type, vnum;
    SHIP_DATA *ship;
-   char arg[MAX_STRING_LENGTH];
+   char arg[MAX_INPUT_LENGTH];
    bool found_proto = FALSE;
    AREA_DATA *tarea;
    CLAN_DATA *clan;
@@ -532,9 +532,8 @@ void do_orderclanship( CHAR_DATA * ch, const char *argument )
       bug( "%s: Ship area is low on vnums.", __func__ );
       return;
    }
-   snprintf( argbuf, MSL, "%s", argument );  
-   argbuf[0] = UPPER( argbuf[0] );
-   snprintf( argbuf + strlen( argbuf ), ( MAX_STRING_LENGTH - strlen( argbuf ) ), "%s (%s)", argbuf, ship_prototypes[ship_type].sname );
+   snprintf( arg, MIL, "%s", capitalize( argument ) );
+   snprintf( argbuf, MAX_STRING_LENGTH, "%s (%s)", arg, ship_prototypes[ship_type].sname );
 
    for( ship = first_ship; ship; ship = ship->next )
    {
@@ -574,7 +573,7 @@ void do_ordership( CHAR_DATA * ch, const char *argument )
 {
    int x, size, ship_type, vnum, count;
    SHIP_DATA *ship;
-   char arg[MAX_STRING_LENGTH];
+   char arg[MAX_INPUT_LENGTH];
    bool found_proto = FALSE;
    AREA_DATA *tarea;
    BMARKET_DATA *marketship;
@@ -792,9 +791,8 @@ void do_ordership( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   snprintf( argbuf, MSL, "%s", argument );
-   argbuf[0] = UPPER( argbuf[0] );
-   snprintf( argbuf + strlen( argbuf ), ( MAX_STRING_LENGTH - strlen( argbuf ) ), "%s (%s)",argbuf, ship_prototypes[ship_type].sname );
+   snprintf( arg, MIL, "%s", capitalize( argument ) );
+   snprintf( argbuf, MAX_STRING_LENGTH, "%s (%s)", arg, ship_prototypes[ship_type].sname );
 
    for( ship = first_ship; ship; ship = ship->next )
    {
