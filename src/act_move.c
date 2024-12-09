@@ -2205,7 +2205,7 @@ void do_climb( CHAR_DATA * ch, const char *argument )
    if( argument[0] == '\0' )
    {
       for( pexit = ch->in_room->first_exit; pexit; pexit = pexit->next )
-         if( IS_SET( pexit->exit_info, EX_xCLIMB ) )
+         if( IS_SET( pexit->exit_info, EX_xCLIMB ) || IS_SET( pexit->exit_info, EX_CLIMB ) )
          {
             move_char( ch, pexit, 0 );
             return;
@@ -2214,7 +2214,8 @@ void do_climb( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   if( ( pexit = find_door( ch, argument, TRUE ) ) != NULL && IS_SET( pexit->exit_info, EX_xCLIMB ) )
+   if( ( pexit = find_door( ch, argument, TRUE ) ) != NULL
+    && ( IS_SET( pexit->exit_info, EX_xCLIMB ) || IS_SET( pexit->exit_info, EX_CLIMB ) ) )
    {
       move_char( ch, pexit, 0 );
       return;
