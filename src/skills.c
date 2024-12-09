@@ -2532,12 +2532,11 @@ void disarm( CHAR_DATA * ch, CHAR_DATA * victim )
    if( obj == get_eq_char( victim, WEAR_WIELD ) && ( tmpobj = get_eq_char( victim, WEAR_DUAL_WIELD ) ) != NULL )
       tmpobj->wear_loc = WEAR_WIELD;
 
+   oprog_remove_trigger( victim, obj );
+
    obj_from_char( obj );
    obj_to_room( obj, victim->in_room );
-
-   return;
 }
-
 
 void do_disarm( CHAR_DATA * ch, const char *argument )
 {
