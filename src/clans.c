@@ -1424,8 +1424,9 @@ void do_drag( CHAR_DATA * ch, const char *argument )
       nogo = TRUE;
    else
       if( IS_SET( pexit->exit_info, EX_CLOSED )
-          && ( !IS_AFFECTED( victim, AFF_PASS_DOOR ) || IS_SET( pexit->exit_info, EX_NOPASSDOOR ) ) )
-      nogo = TRUE;
+       && ( !( IS_AFFECTED( ch, AFF_PASS_DOOR ) && IS_AFFECTED( victim, AFF_PASS_DOOR ) )
+       || IS_SET( pexit->exit_info, EX_NOPASSDOOR ) ) )
+         nogo = TRUE;
    if( nogo )
    {
       send_to_char( "There's no exit in that direction.\r\n", ch );
