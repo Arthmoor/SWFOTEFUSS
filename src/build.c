@@ -868,7 +868,7 @@ void do_makefree( CHAR_DATA * ch, const char *argument )
 
    Start = atoi( arg1 );
    End = atoi( arg2 );
-   if( arg1 == 0 || arg2 == 0 )
+   if( arg1[0] == 0 || arg2[0] == 0 )
    {
       send_to_char( "Syntax: makefree <starting vnum> <ending vnum>\r\n", ch );
       return;

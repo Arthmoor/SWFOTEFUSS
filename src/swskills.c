@@ -2207,7 +2207,7 @@ void do_makecomlink( CHAR_DATA * ch, const char *argument )
    obj = create_object( pObjIndex, ch->top_level );
 
    obj->item_type = ITEM_COMLINK;
-   if( arg == NULL || !str_cmp( arg, "hold" ) )
+   if( arg[0] == '\0' || !str_cmp( arg, "hold" ) )
       SET_BIT( obj->wear_flags, ITEM_HOLD );
    if( !str_cmp( arg, "ears" ) )
    {
