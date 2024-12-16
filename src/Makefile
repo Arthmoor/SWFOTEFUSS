@@ -18,11 +18,11 @@ EXPORT_SYMBOLS = -export-dynamic
 #IMC2 - Comment out to disable IMC2 support
 IMC = 1
 
-W_FLAGS = -std=c++1z -Wall -Wshadow -Wformat-security -Winline -Wpointer-arith -Wcast-align -Wredundant-decls 
+W_FLAGS = -std=c++1z -Wall -Wshadow -Wformat-security -Winline -Wpointer-arith -Wcast-align -Wredundant-decls -fsanitize=address -fsanitize=leak -fno-omit-frame-pointer
 C_FLAGS = -g2 $(W_FLAGS) $(SOLARIS_FLAG) $(PROF) $(EXPORT_SYMBOLS)
-L_FLAGS = $(PROF) $(SOLARIS_LINK) -lm -lz $(NEED_DL)
+L_FLAGS = $(PROF) $(SOLARIS_LINK) -fsanitize=address -fsanitize=leak -fno-omit-frame-pointer -lm -lz $(NEED_DL)
 #D_FLAGS : For the DNS Slave process. No need in linking all the extra libs for this.
-D_FLAGS = -g2 -O $(PROF) $(SOLARIS_LINK)
+D_FLAGS = -g2 -O -fsanitize=address -fsanitize=leak -fno-omit-frame-pointer $(PROF) $(SOLARIS_LINK)
 
 C_FILES = 11.c act_comm.c act_info.c act_move.c act_obj.c act_wiz.c boards.c bounty.c \
 	  build.c clans.c color.c comm.c comments.c const.c db.c dns.c editor.c fight.c finfo.c \
@@ -101,5 +101,5 @@ new:
 	$(MAKE) all
 
 o/%.o: %.c
-	echo "  Compiling $@....";
+	echo "  Compiling $@...";
 	$(CC) -c $(C_FLAGS) $< -o $@
