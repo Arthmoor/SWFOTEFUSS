@@ -118,6 +118,38 @@ void set_pager_input( DESCRIPTOR_DATA * d, char *argument );
 bool pager_output( DESCRIPTOR_DATA * d );
 void mail_count( CHAR_DATA * ch );
 
+void open_mud_log( void )
+{
+   struct stat fst;
+   FILE *error_log;
+   char buf[256];
+   int logindex;
+
+   // Stop trying after 100K log files. If you have this many it's not good anyway.
+   for( logindex = 1000; logindex < 100000; ++logindex )
+   {
+      snprintf( buf, 256, "../log/%d.log", logindex );
+      if( stat( buf, &fst ) != -1 )
+         continue;
+      else if( logindex < 100000 )
+         break;
+      else
+      {
+         fprintf( stderr, "%s", "You have too damn many log files! Clean them up!" );
+         exit( 1 );
+      }
+   }
+
+   if( !( error_log = fopen( buf, "a" ) ) )
+   {
+      fprintf( stderr, "Unable to append to %s.", buf );
+      exit( 1 );
+   }
+
+   dup2( fileno( error_log ), STDERR_FILENO );
+   FCLOSE( error_log );
+}
+
 int main( int argc, char **argv )
 {
    struct timeval now_time;
@@ -217,6 +249,15 @@ int main( int argc, char **argv )
    }
 
    /*
+    * If this all goes well, we should be able to open a new log file during hotboot 
+    */
+   if( fCopyOver )
+   {
+      open_mud_log(  );
+      log_string( "Hotboot: Spawning new log file." );
+   }
+
+   /*
     * Run the game.
     */
    log_string( "Booting Database" );
@@ -248,12 +289,12 @@ int main( int argc, char **argv )
 #ifdef IMC
    imc_shutdown( FALSE );
 #endif
+
    /*
     * That's all, folks.
     */
    log_string( "Normal termination of game." );
    exit( 0 );
-   return 0;
 }
 
 void init_descriptor( DESCRIPTOR_DATA * dnew, int desc )

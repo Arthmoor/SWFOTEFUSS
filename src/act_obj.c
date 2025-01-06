@@ -2354,8 +2354,6 @@ void do_brandish( CHAR_DATA * ch, const char *argument )
          global_objcode = rOBJ_USED;
       extract_obj( staff );
    }
-
-   return;
 }
 
 void do_zap( CHAR_DATA * ch, const char *argument )
@@ -2444,8 +2442,6 @@ void do_zap( CHAR_DATA * ch, const char *argument )
          global_objcode = rOBJ_USED;
       extract_obj( wand );
    }
-
-   return;
 }
 
 /*
@@ -2488,7 +2484,6 @@ void save_clan_storeroom( CHAR_DATA * ch, CLAN_DATA * clan )
       FCLOSE( fp );
       return;
    }
-   return;
 }
 
 /* put an item on auction, or see the stats on the current item or bet */
