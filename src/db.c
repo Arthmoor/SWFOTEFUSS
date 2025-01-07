@@ -2900,9 +2900,6 @@ void free_char( CHAR_DATA * ch )
       DISPOSE( ch->pcdata->shipname );
       STRFREE( ch->pcdata->helled_by );
 
-#ifdef IMC
-      imc_freechardata( ch );
-#endif
       DISPOSE( ch->pcdata );
    }
 
@@ -2931,7 +2928,6 @@ void free_char( CHAR_DATA * ch )
       DISPOSE( comments );
    }
    DISPOSE( ch );
-   return;
 }
 
 /*

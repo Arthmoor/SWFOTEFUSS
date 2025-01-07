@@ -4374,20 +4374,6 @@ two opponents will gain an advantage over time...
  
 ~
 
-0 INTERMUD3~
-Intermud-3 is a protocol which allows you to chat with people on
-other muds who are also connected to Intermud-3. It is primarily
-populated by LP based muds at this time, but the hope is to get
-more Diku based muds to join over time. While some may say that
-Diku based muds would be better served on the IMC2 Network, it
-is far easier for a mud to obtain a connection to the Intermud-3
-network, and the commands to use it are generally simpler.
-In either case, should a mud desire it, Intermud-3 will coexist
-peacefully with an IMC2 enabled mud.
-
-See also: I3
-~
-
 1 INTRODUCE~
 At FotE we have an introduction system that is more RP focused than most.
 

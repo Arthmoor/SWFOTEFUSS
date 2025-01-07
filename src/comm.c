@@ -154,9 +154,6 @@ int main( int argc, char **argv )
 {
    struct timeval now_time;
    bool fCopyOver = FALSE;
-#ifdef IMC
-   int imcsocket = -1;
-#endif
 
    /*
     * Memory debugging if needed.
@@ -240,9 +237,6 @@ int main( int argc, char **argv )
       {
          fCopyOver = TRUE;
          control = atoi( argv[3] );
-#ifdef IMC
-         imcsocket = atoi( argv[4] );
-#endif
       }
       else
          fCopyOver = FALSE;
@@ -269,13 +263,6 @@ int main( int argc, char **argv )
       control = init_socket( port );
    }
 
-#ifdef IMC
-   /*
-    * Initialize and connect to IMC2 
-    */
-   imc_startup( FALSE, imcsocket, fCopyOver );
-#endif
-
    if( fCopyOver )
    {
       log_string( "Initiating hotboot recovery." );
@@ -286,9 +273,6 @@ int main( int argc, char **argv )
 
    game_loop(  );
    close( control );
-#ifdef IMC
-   imc_shutdown( FALSE );
-#endif
 
    /*
     * That's all, folks.
@@ -600,10 +584,6 @@ void game_loop( void )
          if( d == last_descriptor )
             break;
       }
-
-#ifdef IMC
-      imc_loop(  );
-#endif
 
       /*
        * Autonomous game motion.

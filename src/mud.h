@@ -33,6 +33,9 @@ Michael Seifert, and Sebastian Hammer.
 #include <typeinfo>
 #endif
 
+#define CODENAME "SWFotEFUSS"
+#define CODEVERSION "1.5.2"
+
 typedef int ch_ret;
 typedef int obj_ret;
 
@@ -267,9 +270,6 @@ typedef ch_ret SPELL_FUN( int sn, int level, CHAR_DATA * ch, void *vo );
 #include "pfiles.h"
 #include "color.h"
 #include "hotboot.h"
-#ifdef IMC
-#include "imc.h"
-#endif
 
 #define LEVEL_LOG		    LEVEL_LESSER
 #define LEVEL_HIGOD		    LEVEL_GOD
@@ -2806,9 +2806,6 @@ struct pc_data
    int wanted_flags;
    long bank;
    int salary;
-#ifdef IMC
-   IMC_CHARDATA *imcchardata;
-#endif
    bool hotboot;  /* hotboot tracker */
 };
 

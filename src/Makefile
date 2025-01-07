@@ -15,9 +15,6 @@ EXPORT_SYMBOLS = -export-dynamic
 #SOLARIS_FLAG = -Dsun -DSYSV
 #SOLARIS_LINK = -lnsl -lsocket
 
-#IMC2 - Comment out to disable IMC2 support
-IMC = 1
-
 #Memory debugging flags. Cygwin lacks libasan support required for this to work.
 ifndef CYGWIN
 M_FLAGS = -fsanitize=address -fsanitize=leak -fno-omit-frame-pointer
@@ -36,11 +33,6 @@ C_FILES = 11.c act_comm.c act_info.c act_move.c act_obj.c act_wiz.c boards.c bou
 	  magic.c makeobjs.c marriage.c mccp.c misc.c mssp.c mud_comm.c mud_prog.c newarena.c \
 	  pfiles.c planets.c player.c reset.c save.c sha256.c ships.c shops.c skills.c slicers.c \
 	  space.c special.c swskills.c tables.c track.c tech.c update.c
-
-ifdef IMC
-   C_FILES := imc.c $(C_FILES)
-   C_FLAGS := $(C_FLAGS) -DIMC -DIMCSMAUG
-endif
 
 O_FILES := $(patsubst %.c,o/%.o,$(C_FILES))
 
