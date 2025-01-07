@@ -488,7 +488,7 @@ End
 
 #COMMAND
 Name        bug~
-Code        do_idea
+Code        do_bug
 Position    0
 Level       1
 Log         1
