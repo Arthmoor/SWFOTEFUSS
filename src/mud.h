@@ -34,7 +34,7 @@ Michael Seifert, and Sebastian Hammer.
 #endif
 
 #define CODENAME "SWFotEFUSS"
-#define CODEVERSION "1.5.2"
+#define CODEVERSION "1.5.3"
 
 typedef int ch_ret;
 typedef int obj_ret;
