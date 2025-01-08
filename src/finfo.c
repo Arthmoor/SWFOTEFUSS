@@ -356,7 +356,10 @@ bool load_forceskill( const char *forceskillfile )
    }
 
    if( !( found ) )
+   {
       DISPOSE( fskill );
+      return found;
+   }
    fun = get_force_skill_function( fskill->code );
    fskill->do_fun = fun;
    return found;

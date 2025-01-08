@@ -795,7 +795,6 @@ void new_descriptor( int new_desc )
       save_sysdata( sysdata );
    }
    set_alarm( 0 );
-   return;
 }
 
 void log_printf_plus( short log_type, short level, const char *fmt, ... )
@@ -835,7 +834,6 @@ void free_desc( DESCRIPTOR_DATA * d )
    DISPOSE( d->mccp );
    DISPOSE( d );
    --num_descriptors;
-   return;
 }
 
 void close_socket( DESCRIPTOR_DATA * dclose, bool force )

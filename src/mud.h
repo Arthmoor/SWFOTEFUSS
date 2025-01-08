@@ -62,19 +62,11 @@ void load_hall_of_fame( void );
 
 /*
  * Short scalar types.
- * Diavolo reports AIX compiler has bugs with short types.
+ * Diavolo reports AIX compiler has bugs with short types. [2025 here - this hasn't been an issue for 20 years now]
  */
-#if !defined(FALSE)
-#define FALSE 0
-#endif
-
-#if !defined(TRUE)
-#define TRUE 1
-#endif
-
-#if !defined(BERR)
-#define BERR 255
-#endif
+const bool TRUE = true;
+const bool FALSE = false;
+const short BERR = 255;
 
 #ifndef __cplusplus
 typedef unsigned char bool;
@@ -2819,7 +2811,7 @@ struct liq_type
 {
    const char *liq_name;
    const char *liq_color;
-   short liq_affect[3];
+   short liq_affect[4]; // CPPCheck detected an out of bounds usage when this was set to 3.
 };
 
 /*
@@ -5206,10 +5198,6 @@ void sith_penalty( CHAR_DATA * ch );
 const char *mprog_type_to_name( int type );
 
 /* mud_prog.c */
-#ifdef DUNNO_STRSTR
-char *strstr( const char *s1, const char *s2 );
-#endif
-
 void mprog_wordlist_check( const char *arg, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * object, void *vo, int type );
 void mprog_percent_check( CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA * object, void *vo, int type );
 void mprog_act_trigger( char *buf, CHAR_DATA * mob, CHAR_DATA * ch, OBJ_DATA * obj, void *vo );

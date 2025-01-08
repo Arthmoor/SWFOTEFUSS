@@ -2863,10 +2863,15 @@ void obj_fall( OBJ_DATA * obj, bool through )
             for( rch = obj->in_room->first_person; rch; rch = rch->next_in_room, chcnt++ )
                if( number_range( 0, chcnt ) == 0 )
                   vch = rch;
-            act( AT_WHITE, "$p falls on $n!", vch, obj, NULL, TO_ROOM );
-            act( AT_WHITE, "$p falls on you!", vch, obj, NULL, TO_CHAR );
-            damage( vch, vch, dam * vch->top_level, TYPE_UNDEFINED );
+
+            if( vch )
+            {
+               act( AT_WHITE, "$p falls on $n!", vch, obj, NULL, TO_ROOM );
+               act( AT_WHITE, "$p falls on you!", vch, obj, NULL, TO_CHAR );
+               damage( vch, vch, dam * vch->top_level, TYPE_UNDEFINED );
+            }
          }
+
          /*
           * Damage objects 
           */

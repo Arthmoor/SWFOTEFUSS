@@ -159,7 +159,7 @@ void do_clone( CHAR_DATA * ch, const char *argument )
    char bestowments[MAX_STRING_LENGTH];
    int flags;
    ROOM_INDEX_DATA *home;
-   bool secondroom;
+   bool secondroom = FALSE;
 
    if( IS_NPC( ch ) )
    {
@@ -292,7 +292,7 @@ void do_backup( CHAR_DATA * ch, const char *argument )
    char bestowments[MAX_STRING_LENGTH];
    int flags;
    ROOM_INDEX_DATA *home;
-   bool secondroom;
+   bool secondroom = FALSE;
 
    if( IS_NPC( ch ) )
    {
@@ -2782,7 +2782,7 @@ void actiondesc( CHAR_DATA * ch, OBJ_DATA * obj, void *vo )
 void do_hail( CHAR_DATA * ch, const char *argument )
 {
    int vnum;
-   ROOM_INDEX_DATA *room;
+   ROOM_INDEX_DATA *room = NULL;
 
    if( !ch->in_room )
       return;

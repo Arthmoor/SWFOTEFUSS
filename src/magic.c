@@ -4390,7 +4390,7 @@ ch_ret spell_area_attack( int sn, int level, CHAR_DATA * ch, void *vo )
    bool saved;
    bool affects;
    int dam;
-   ch_ret retcode;
+   ch_ret retcode = rNONE;
 
    send_to_char( "You feel the hatred grow within you!\r\n", ch );
    ch->alignment = ch->alignment - 100;

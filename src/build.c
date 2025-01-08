@@ -184,7 +184,7 @@ const char *const trap_flags[] = {
    "room", "obj", "enter", "leave", "open", "close", "get", "put", "pick",
    "unlock", "north", "south", "east", "west", "up", "down", "examine",
    "northeast", "northwest", "southeast", "southwest", "r6", "r7", "r8",
-   "r9", "r10", "r11", "r12", "r13", "r14", "r15"
+   "r9", "r10", "r11", "r12", "r13", "r14", "r15", "r16"
 };
 
 const char *const wear_locs[] = {

@@ -3605,10 +3605,7 @@ void do_memory( CHAR_DATA * ch, const char *argument )
       send_to_char( "Hash strings not enabled.\r\n", ch );
 #endif
    }
-   return;
 }
-
-
 
 /*
  * Stick a little fuzz on a number.
@@ -3627,8 +3624,6 @@ int number_fuzzy( int number )
 
    return UMAX( 1, number );
 }
-
-
 
 /*
  * Generate a random number.
@@ -4080,7 +4075,6 @@ void prepend_to_file( const char *file, const char *str )
    snprintf( temp, MAX_STRING_LENGTH, "cat %s >> %s", tempname, file );
    system( temp );
    remove( tempname );
-   return;
 }
 
 /*
@@ -4091,6 +4085,16 @@ void bug( const char *str, ... )
    char buf[MAX_STRING_LENGTH];
    FILE *fp;
    struct stat fst;
+
+   mudstrlcpy( buf, "[*****] BUG: ", MAX_STRING_LENGTH );
+   {
+      va_list param;
+
+      va_start( param, str );
+      vsnprintf( buf + strlen( buf ), ( MAX_STRING_LENGTH - strlen( buf ) ), str, param );
+      va_end( param );
+   }
+   log_string( buf );
 
    if( fpArea != NULL )
    {
@@ -4115,28 +4119,18 @@ void bug( const char *str, ... )
          fseek( fpArea, iChar, 0 );
       }
 
-      log_printf( "[*****] FILE: %s LINE: %d", strArea, iLine );
+      log_printf_plus( LOG_COMM, sysdata.log_level, "[*****] FILE: %s LINE: %d", strArea, iLine );
 
       if( stat( SHUTDOWN_FILE, &fst ) != -1 )   /* file exists */
       {
          if( ( fp = fopen( SHUTDOWN_FILE, "a" ) ) != NULL )
          {
-            fprintf( fp, "[*****] %s\n", buf );
+            fprintf( fp, "%s\n", buf );
+            fprintf( fp, "[*****] FILE: %s LINE: %d\n", strArea, iLine );
             FCLOSE( fp );
          }
       }
    }
-
-   mudstrlcpy( buf, "[*****] BUG: ", MAX_STRING_LENGTH );
-   {
-      va_list param;
-
-      va_start( param, str );
-      vsprintf( buf + strlen( buf ), str, param );
-      va_end( param );
-   }
-   log_string( buf );
-   return;
 }
 
 /*
@@ -4230,7 +4224,6 @@ void log_string_plus( const char *str, short log_type, short level )
       case LOG_ALL:
          break;
    }
-   return;
 }
 
 /*
@@ -8487,8 +8480,7 @@ void do_check_vnums( CHAR_DATA * ch, const char *argument )
 /* little proggy to center text with whitespace in between. */
 const char *centertext( const char *text, size_t size )
 {
-   char buf[MAX_STRING_LENGTH];
-   char *sent;
+   static char buf[MAX_STRING_LENGTH];
    int i;
    int filler = ( size - strlen( remand( text ) ) ) / 2 - 1;
 
@@ -8508,9 +8500,7 @@ const char *centertext( const char *text, size_t size )
    for( i = 0; i < filler; i++ )
       mudstrlcat( buf, " ", MAX_STRING_LENGTH );
 
-   sent = buf;
-
-   return sent;
+   return buf;
 }
 
 /*
@@ -8537,79 +8527,79 @@ void tail_chain( void )
  */
 char *fread_flagstring( FILE * fp )
 {
-    static char buf[MSL];
-    char *plast;
-    char c;
-    int ln;
+   static char buf[MSL];
+   char *plast;
+   char c;
+   int ln;
 
-    plast = buf;
-    buf[0] = '\0';
-    ln = 0;
+   plast = buf;
+   buf[0] = '\0';
+   ln = 0;
 
-    /*
-     * Skip blanks.
-     * Read first char.
-     */
-    do
-    {
-        if( feof( fp ) )
-        {
-            bug( "%s: EOF encountered on read.", __func__ );
+   /*
+    * Skip blanks.
+    * Read first char.
+    */
+   do
+   {
+      if( feof( fp ) )
+      {
+         bug( "%s: EOF encountered on read.", __func__ );
+         if( fBootDb )
+         {
+            shutdown_mud( "Corrupt file somewhere." );
+            exit( 1 );
+         }
+         snprintf( buf, MSL, "%s", "" );
+         return buf;
+      }
+      c = getc( fp );
+   }
+   while( isspace( c ) );
+
+   if( ( *plast++ = c ) == '~' )
+   {
+      snprintf( buf, MSL, "%s", "" );
+      return buf;
+   }
+
+   for( ;; )
+   {
+      if( ln >= ( MSL - 1 ) )
+      {
+         bug( "%s: string too long", __func__ );
+         *plast = '\0';
+         return ( buf );
+      }
+      switch ( *plast = getc( fp ) )
+      {
+         default:
+            plast++;
+            ln++;
+            break;
+
+         case EOF:
+            bug( "%s: EOF", __func__ );
             if( fBootDb )
-            {
-                shutdown_mud( "Corrupt file somewhere." );
-                exit( 1 );
-            }
-            snprintf( buf, MSL, "%s", "" );
-            return buf;
-        }
-        c = getc( fp );
-    }
-    while( isspace( c ) );
-
-    if( ( *plast++ = c ) == '~' )
-    {
-        snprintf( buf, MSL, "%s", "" );
-        return buf;
-    }
-
-    for( ;; )
-    {
-        if( ln >= ( MSL - 1 ) )
-        {
-            bug( "%s: string too long", __func__ );
+               exit( 1 );
             *plast = '\0';
             return ( buf );
-        }
-        switch ( *plast = getc( fp ) )
-        {
-           default:
-               plast++;
-               ln++;
-               break;
 
-           case EOF:
-               bug( "%s: EOF", __func__ );
-               if( fBootDb )
-                   exit( 1 );
-               *plast = '\0';
-               return ( buf );
+         case '\n':
+            ++plast;
+            ++ln;
+            *plast++ = '\r';
+            ++ln;
+            break;
 
-           case '\n':
-               ++plast;
-               ++ln;
-               *plast++ = '\r';
-               ++ln;
-               break;
+         case '\r':
+            break;
 
-           case '\r':
-               break;
-
-           case '~':
-               *plast = '\0';
-               return ( buf );
-        }
-    }
+         case '~':
+            *plast = '\0';
+            return ( buf );
+      }
+   }
 }
 
 // The following 2 functions are taken from FreeBSD under the following license terms:

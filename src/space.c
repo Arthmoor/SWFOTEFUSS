@@ -9040,7 +9040,7 @@ void do_calculate( CHAR_DATA * ch, const char *argument )
    char arg1[MAX_INPUT_LENGTH];
    char arg2[MAX_INPUT_LENGTH];
    char arg3[MAX_INPUT_LENGTH];
-   int schance, count;
+   int schance, count = 0;
    SHIP_DATA *ship;
    SPACE_DATA *starsystem;
 

@@ -2801,6 +2801,7 @@ void remove_member( char *name, char *shortname )
 
    if( ( fpNew = fopen( temp, "w" ) ) == NULL )
    {
+      FCLOSE( fpList );
       bug( "%s: Unable to write temp list", __func__ );
       return;
    }

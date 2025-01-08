@@ -28,17 +28,9 @@ Michael Seifert, and Sebastian Hammer.
 #include <stdlib.h>
 #include <string.h>
 
-#if !defined(FALSE)
-#define FALSE 0
-#endif
+const bool TRUE = true;
+const bool FALSE = false;
 
-#if !defined(TRUE)
-#define TRUE 1
-#endif
-
-#ifndef __cplusplus
-typedef unsigned char bool;
-#endif
 extern bool mud_down;
 
 #define STR_HASH_SIZE	1024
@@ -270,4 +262,3 @@ bool in_hash_table( const char *str )
          return TRUE;
    return FALSE;
 }
-

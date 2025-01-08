@@ -1529,7 +1529,6 @@ void do_disableship( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_disable );
    gain_exp( ch, xpgain, SLICER_ABILITY );
    ch_printf( ch, "You gain %ld experience as for being a Slicer.\r\n", xpgain );
-   return;
 }
 
 void do_assignpilot( CHAR_DATA * ch, const char *argument )
@@ -1544,6 +1543,7 @@ void do_assignpilot( CHAR_DATA * ch, const char *argument )
    OBJ_DATA *obj;
    checkdata = FALSE;
    argument = one_argument( argument, arg1 );
+
    switch ( ch->substate )
    {
       default:
@@ -1558,7 +1558,6 @@ void do_assignpilot( CHAR_DATA * ch, const char *argument )
             send_to_char( "You need to be in a ships cockpit to use this skill.\r\n", ch );
             return;
          }
-
 
          for( obj = ch->last_carrying; obj; obj = obj->prev_content )
          {
@@ -1671,7 +1670,6 @@ void do_assignpilot( CHAR_DATA * ch, const char *argument )
    learn_from_success( ch, gsn_assignpilot );
    gain_exp( ch, xpgain, SLICER_ABILITY );
    ch_printf( ch, "You gain %ld experience as for being a Slicer.\r\n", xpgain );
-   return;
 }
 
 void do_slicebank( CHAR_DATA * ch, const char *argument )
@@ -2056,5 +2054,4 @@ void do_checkprints( CHAR_DATA * ch, const char *argument )
    gain_exp( ch, xpgain, SLICER_ABILITY );
    ch_printf( ch, "You gain %ld experience points for being a Slicer.\r\n", xpgain );
    learn_from_success( ch, gsn_checkprints );
-   return;
 }

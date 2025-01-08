@@ -127,7 +127,7 @@ struct race_type race_table[MAX_RACE] = {
    {
     "Astromech Droid", AFF_AQUA_BREATH, 0, -5, -6, +5, -6, 0, 0, 0, 0, 0, 0, 0, LANG_BINARY},   //(+)pil
    {
-    "Intera Droid", AFF_AQUA_BREATH + AFF_FLYING + AFF_FLOATING, 0, +4, -9, +5, +1, -5, 0, 0, 0, 0, 0, 0, LANG_BINARY}  //(+)lead
+    "Intera Droid", AFF_AQUA_BREATH | AFF_FLYING | AFF_FLOATING, 0, +4, -9, +5, +1, -5, 0, 0, 0, 0, 0, 0, LANG_BINARY}  //(+)lead
 };
 
 const char *const npc_race[MAX_NPC_RACE] = {

@@ -1339,7 +1339,7 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA 
 
       for( count = 0; count < MAX_IFS; count++ )
       {
-         for( count2 = 0; count2 <= DO_ELSE; count2++ )
+         for( count2 = 0; count2 <= DO_ELSE; ++count2 )
             ifstate[count][count2] = current_mpsleep->ifstate[count][count2];
       }
       current_mpsleep = NULL;
@@ -1401,7 +1401,7 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor, OBJ_DATA 
          mpsleep->iflevel = iflevel;
          for( count = 0; count < MAX_IFS; count++ )
          {
-            for( count2 = 0; count2 <= DO_ELSE; count2++ )
+            for( count2 = 0; count2 <= DO_ELSE; ++count2 )
                mpsleep->ifstate[count][count2] = ifstate[count][count2];
          }
 

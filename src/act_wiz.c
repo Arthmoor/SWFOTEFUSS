@@ -4926,7 +4926,7 @@ void do_destroy( CHAR_DATA* ch, const char* argument )
                fold_area( pArea, buildfile, FALSE );
             close_area( pArea );
 
-            snprintf( buildbackup, MAX_STRING_LENGTH, "%s.bak", buildfile );
+            snprintf( buildbackup, 256, "%s.bak", buildfile );
             set_char_color( AT_RED, ch ); /* Log message changes colors */
             if( !rename( buildfile, buildfile ) )
                send_to_char( "Player's area data destroyed.  Area saved as backup.\r\n", ch );

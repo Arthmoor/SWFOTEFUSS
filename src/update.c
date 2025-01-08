@@ -982,7 +982,7 @@ void gain_addiction( CHAR_DATA * ch )
 void gain_condition( CHAR_DATA * ch, int iCond, int value )
 {
    int condition;
-   ch_ret retcode;
+   ch_ret retcode = rNONE;
 
    if( value == 0 || IS_NPC( ch ) || get_trust( ch ) >= LEVEL_IMMORTAL || NOT_AUTHED( ch ) || IS_DROID( ch ) )
       return;
@@ -1071,7 +1071,6 @@ void gain_condition( CHAR_DATA * ch, int iCond, int value )
       }
    }
 
-
    if( ch->pcdata->condition[iCond] == 2 )
    {
       switch ( iCond )
@@ -1117,7 +1116,6 @@ void gain_condition( CHAR_DATA * ch, int iCond, int value )
 
       }
    }
-   return;
 }
 
 /*
@@ -2277,11 +2275,9 @@ void char_check( void )
                }
             }
          }
-
       }
    }
 }
-
 
 /*
  * Aggress.
@@ -2310,7 +2306,7 @@ void aggr_update( void )
     *  GRUNT!  To do
     *
     */
-   if( IS_NPC( wch ) && wch->mpactnum > 0 && wch->in_room->area && &&wch->in_room->area->nplayer > 0 )
+   if( IS_NPC( wch ) && wch->mpactnum > 0 && wch->in_room->area && wch->in_room->area->nplayer > 0 )
    {
       MPROG_ACT_LIST *tmp_act, *tmp2_act;
       for( tmp_act = wch->mpact; tmp_act; tmp_act = tmp_act->next )
