@@ -68,10 +68,6 @@ const bool TRUE = true;
 const bool FALSE = false;
 const short BERR = 255;
 
-#ifndef __cplusplus
-typedef unsigned char bool;
-#endif
-
 #define KEY( literal, field, value )   \
 if ( !str_cmp( word, (literal) ) )     \
 {                                      \
@@ -635,9 +631,10 @@ struct frc_app_type
 #define HUNTING_ABILITY		3
 #define SMUGGLING_ABILITY	4
 /*#define DIPLOMACY_ABILITY	5
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 #define LEADERSHIP_ABILITY	6*//*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         * Gonna replace the diplomacy and leadership abilities and make them POLITICIANs 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         */
+#define LEADERSHIP_ABILITY	6*/
+/*
+ * Gonna replace the diplomacy and leadership abilities and make them POLITICIANs 
+*/
 #define POLITICIAN_ABILITY	5
 #define FORCE_ABILITY		6
 #define SLICER_ABILITY		7

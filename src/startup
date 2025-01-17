@@ -6,7 +6,7 @@ if ( "$1" != "" ) set port="$1"
 cd ../area
 
 limit coredumpsize unlimited
-limit stacksize unlimited
+
 if ( -e shutdown.txt ) rm -f shutdown.txt
 
 while ( 1 )
@@ -20,12 +20,12 @@ while ( 1 )
     date > $logfile
     date > ../area/boot.txt
 
-    # Check if already running  
+    # Check if already running
     set matches = `netstat -an | grep ":$port " | grep -c LISTEN`
-    if ( $matches >= 1 ) then 
-	# Already running 
-	echo MUD Already running. 
-	exit 0 
+    if ( $matches >= 1 ) then
+	# Already running
+	echo MUD Already running.
+	exit 0
     endif
     ../src/swr $port >&! $logfile
 
@@ -34,6 +34,4 @@ while ( 1 )
 	exit 0
     endif
     sleep 10
-
 end
-
