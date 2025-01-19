@@ -1143,7 +1143,7 @@ void do_ostat( CHAR_DATA * ch, const char *argument )
       return;
    }
    if( arg[0] != '\'' && arg[0] != '"' && strlen( argument ) > strlen( arg ) )
-      mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+      strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    if( ( obj = get_obj_world( ch, arg ) ) == NULL )
    {
@@ -1261,7 +1261,7 @@ void do_mstat( CHAR_DATA * ch, const char *argument )
       return;
    }
    if( arg[0] != '\'' && arg[0] != '"' && strlen( argument ) > strlen( arg ) )
-      mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+      strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    if( ( victim = get_char_world( ch, arg ) ) == NULL )
    {
@@ -1371,13 +1371,13 @@ void do_mstat( CHAR_DATA * ch, const char *argument )
    {
       ch_printf( ch, "&W&z|     &GSpeaks&W: %-10d  &GSpeaking&W: %-10d                                 &z|\r\n",
                  victim->speaks, victim->speaking );
-      mudstrlcpy( langbuf, " ", MAX_STRING_LENGTH );
+      strlcpy( langbuf, " ", MAX_STRING_LENGTH );
       for( x = 0; lang_array[x] != LANG_UNKNOWN; x++ )
       {
          if( knows_language( victim, lang_array[x], victim ) || ( IS_NPC( victim ) && victim->speaks == 0 ) )
          {
-            mudstrlcat( langbuf, lang_names[x], MAX_STRING_LENGTH );
-            mudstrlcat( langbuf, " ", MAX_STRING_LENGTH );
+            strlcat( langbuf, lang_names[x], MAX_STRING_LENGTH );
+            strlcat( langbuf, " ", MAX_STRING_LENGTH );
          }
       }
       ch_printf( ch, "&W&z|  &GLanguages&W: %-64s &z|\r\n", langbuf );
@@ -1439,7 +1439,7 @@ void do_oldmstat( CHAR_DATA * ch, const char *argument )
       return;
    }
    if( arg[0] != '\'' && arg[0] != '"' && strlen( argument ) > strlen( arg ) )
-      mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+      strlcpy( arg, argument, MAX_INPUT_LENGTH );
    if( ( victim = get_char_world( ch, arg ) ) == NULL )
    {
       send_to_char( "They aren't here.\r\n", ch );
@@ -1773,12 +1773,12 @@ void do_owhere( CHAR_DATA * ch, const char *argument )
       else if( obj->in_obj )
       {
          bug( "%s: obj->in_obj after NULL!", __func__ );
-         mudstrlcat( buf, "object??\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, "object??\r\n", MAX_STRING_LENGTH );
       }
       else
       {
          bug( "%s: object doesnt have location!", __func__, 0 );
-         mudstrlcat( buf, "nowhere??\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, "nowhere??\r\n", MAX_STRING_LENGTH );
       }
       send_to_pager( buf, ch );
       ++icnt;
@@ -1804,7 +1804,7 @@ void do_owhere( CHAR_DATA * ch, const char *argument )
       else
       {
          bug( "%s: object doesnt have location!", __func__ );
-         mudstrlcat( buf, "nowhere??\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, "nowhere??\r\n", MAX_STRING_LENGTH );
       }
       send_to_pager( buf, ch );
    }
@@ -1880,7 +1880,7 @@ void do_shutdown( CHAR_DATA * ch, const char *argument )
 
    snprintf( buf, MAX_STRING_LENGTH, "Shutdown by %s.", ch->name );
    append_file( ch, SHUTDOWN_FILE, buf );
-   mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+   strlcat( buf, "\r\n", MAX_STRING_LENGTH );
    do_echo( ch, buf );
 
    /*
@@ -4129,8 +4129,8 @@ void extract_area_names( char *inp, char *out )
       if( ( len = strlen( buf ) ) >= 5 && !strcmp( ".are", pbuf + len - 4 ) )
       {
          if( *out )
-            mudstrlcat( out, " ", MAX_STRING_LENGTH );
-         mudstrlcat( out, buf, MAX_STRING_LENGTH );
+            strlcat( out, " ", MAX_STRING_LENGTH );
+         strlcat( out, buf, MAX_STRING_LENGTH );
       }
    }
 }
@@ -4152,8 +4152,8 @@ void remove_area_names( char *inp, char *out )
       if( ( len = strlen( buf ) ) < 5 || strcmp( ".are", pbuf + len - 4 ) )
       {
          if( *out )
-            mudstrlcat( out, " ", MAX_STRING_LENGTH );
-         mudstrlcat( out, buf, MAX_STRING_LENGTH );
+            strlcat( out, " ", MAX_STRING_LENGTH );
+         strlcat( out, buf, MAX_STRING_LENGTH );
       }
    }
 }
@@ -4333,7 +4333,7 @@ void do_bestow( CHAR_DATA * ch, const char *argument )
       }
 
       snprintf( tmparg, MAX_STRING_LENGTH, "%s ", arg );
-      mudstrlcat( arg_buf, tmparg, MAX_STRING_LENGTH-30 );
+      strlcat( arg_buf, tmparg, MAX_STRING_LENGTH-30 );
       argument = one_argument( argument, arg );
       fComm = TRUE;
    }
@@ -5008,7 +5008,7 @@ const char *name_expand( CHAR_DATA * ch )
 
    if( !name[0] ) /* weird mob .. no keywords */
    {
-      mudstrlcpy( outbuf, "", MAX_STRING_LENGTH );   /* Do not return NULL, just an empty buffer */
+      strlcpy( outbuf, "", MAX_STRING_LENGTH );   /* Do not return NULL, just an empty buffer */
       return outbuf;
    }
 
@@ -6700,28 +6700,28 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
 	   	 * Could possibly make a function returning the string....
 	   	 *****/
          if( dam >= 10 )
-            mudstrlcpy( buf, "Superb condition", MAX_STRING_LENGTH );
+            strlcpy( buf, "Superb condition", MAX_STRING_LENGTH );
          else if( dam == 9 )
-            mudstrlcpy( buf, "Very good condition", MAX_STRING_LENGTH );
+            strlcpy( buf, "Very good condition", MAX_STRING_LENGTH );
          else if( dam == 8 )
-            mudstrlcpy( buf, "Good shape", MAX_STRING_LENGTH );
+            strlcpy( buf, "Good shape", MAX_STRING_LENGTH );
          else if( dam == 7 )
-            mudstrlcpy( buf, "Showing a bit of wear", MAX_STRING_LENGTH );
+            strlcpy( buf, "Showing a bit of wear", MAX_STRING_LENGTH );
          else if( dam == 6 )
-            mudstrlcpy( buf, "A little run down", MAX_STRING_LENGTH );
+            strlcpy( buf, "A little run down", MAX_STRING_LENGTH );
          else if( dam == 5 )
-            mudstrlcpy( buf, "In need of repair", MAX_STRING_LENGTH );
+            strlcpy( buf, "In need of repair", MAX_STRING_LENGTH );
          else if( dam == 4 )
-            mudstrlcpy( buf, "In great need of repair", MAX_STRING_LENGTH );
+            strlcpy( buf, "In great need of repair", MAX_STRING_LENGTH );
          else if( dam == 3 )
-            mudstrlcpy( buf, "In dire need of repair", MAX_STRING_LENGTH );
+            strlcpy( buf, "In dire need of repair", MAX_STRING_LENGTH );
          else if( dam == 2 )
-            mudstrlcpy( buf, "Very badly worn", MAX_STRING_LENGTH );
+            strlcpy( buf, "Very badly worn", MAX_STRING_LENGTH );
          else if( dam == 1 )
-            mudstrlcpy( buf, "Practically worthless", MAX_STRING_LENGTH );
+            strlcpy( buf, "Practically worthless", MAX_STRING_LENGTH );
          else if( dam <= 0 )
-            mudstrlcpy( buf, "Broken", MAX_STRING_LENGTH );
-         mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+            strlcpy( buf, "Broken", MAX_STRING_LENGTH );
+         strlcat( buf, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
          break;
          /*
@@ -6735,28 +6735,28 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
          else
             dam = 10;
          if( dam >= 10 )
-            mudstrlcpy( buf, "It is fresh.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It is fresh.", MAX_STRING_LENGTH );
          else if( dam == 9 )
-            mudstrlcpy( buf, "It is nearly fresh.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It is nearly fresh.", MAX_STRING_LENGTH );
          else if( dam == 8 )
-            mudstrlcpy( buf, "It is perfectly fine.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It is perfectly fine.", MAX_STRING_LENGTH );
          else if( dam == 7 )
-            mudstrlcpy( buf, "It looks good.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It looks good.", MAX_STRING_LENGTH );
          else if( dam == 6 )
-            mudstrlcpy( buf, "It looks ok.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It looks ok.", MAX_STRING_LENGTH );
          else if( dam == 5 )
-            mudstrlcpy( buf, "It is a little stale.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It is a little stale.", MAX_STRING_LENGTH );
          else if( dam == 4 )
-            mudstrlcpy( buf, "It is a bit stale.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It is a bit stale.", MAX_STRING_LENGTH );
          else if( dam == 3 )
-            mudstrlcpy( buf, "It smells slightly off.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It smells slightly off.", MAX_STRING_LENGTH );
          else if( dam == 2 )
-            mudstrlcpy( buf, "It smells quite rank.", MAX_STRING_LENGTH );
+            strlcpy( buf, "It smells quite rank.", MAX_STRING_LENGTH );
          else if( dam == 1 )
-            mudstrlcpy( buf, "It smells revolting!", MAX_STRING_LENGTH );
+            strlcpy( buf, "It smells revolting!", MAX_STRING_LENGTH );
          else if( dam <= 0 )
-            mudstrlcpy( buf, "It is crawling with maggots!", MAX_STRING_LENGTH );
-         mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+            strlcpy( buf, "It is crawling with maggots!", MAX_STRING_LENGTH );
+         strlcat( buf, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
          if( obj->value[4] )
             ch_printf( ch, "&GValue[&W4&G] Timer: &W%d\r\n", obj->value[4] );
@@ -6894,71 +6894,71 @@ void ostat_plus( CHAR_DATA * ch, OBJ_DATA * obj )
          switch ( obj->value[1] )
          {
             default:
-               mudstrlcpy( buf, "Hit by a trap", MAX_STRING_LENGTH );
+               strlcpy( buf, "Hit by a trap", MAX_STRING_LENGTH );
                send_to_char( "Default Generic Trap\r\n", ch );
                ch_printf( ch, "&cDoes Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_POISON_GAS:
-               mudstrlcpy( buf, "Surrounded by a green cloud of gas", MAX_STRING_LENGTH );
+               strlcpy( buf, "Surrounded by a green cloud of gas", MAX_STRING_LENGTH );
                send_to_char( "Poisoned Gas\r\n", ch );
                ch_printf( ch, "&cCasts spell: &WPoison\r\n" );
                break;
             case TRAP_TYPE_POISON_DART:
-               mudstrlcpy( buf, "Hit by a dart", MAX_STRING_LENGTH );
+               strlcpy( buf, "Hit by a dart", MAX_STRING_LENGTH );
                send_to_char( "Poisoned Dart\r\n", ch );
                send_to_char( "&cCasts spell: &WPoison\r\n", ch );
                ch_printf( ch, "&cOR Does Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_POISON_NEEDLE:
-               mudstrlcpy( buf, "Pricked by a needle", MAX_STRING_LENGTH );
+               strlcpy( buf, "Pricked by a needle", MAX_STRING_LENGTH );
                send_to_char( "Poisoned Needle\r\n", ch );
                send_to_char( "&cCasts spell: &WPoison\r\n", ch );
                ch_printf( ch, "&cOR Does Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_POISON_DAGGER:
-               mudstrlcpy( buf, "Stabbed by a dagger", MAX_STRING_LENGTH );
+               strlcpy( buf, "Stabbed by a dagger", MAX_STRING_LENGTH );
                send_to_char( "Poisoned Dagger\r\n", ch );
                send_to_char( "&cCasts spell: &WPoison\r\n", ch );
                ch_printf( ch, "&cOR Does Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_POISON_ARROW:
-               mudstrlcpy( buf, "Struck with an arrow", MAX_STRING_LENGTH );
+               strlcpy( buf, "Struck with an arrow", MAX_STRING_LENGTH );
                send_to_char( "Poisoned Arrow\r\n", ch );
                send_to_char( "&cCasts spell: &WPoison\r\n", ch );
                ch_printf( ch, "&cOR Does Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_BLINDNESS_GAS:
-               mudstrlcpy( buf, "Surrounded by a red cloud of gas", MAX_STRING_LENGTH );
+               strlcpy( buf, "Surrounded by a red cloud of gas", MAX_STRING_LENGTH );
                send_to_char( "Blinding Gas\r\n", ch );
                send_to_char( "&cCasts spell: &WBlind\r\n", ch );
                break;
             case TRAP_TYPE_SLEEPING_GAS:
-               mudstrlcpy( buf, "Surrounded by a yellow cloud of gas", MAX_STRING_LENGTH );
+               strlcpy( buf, "Surrounded by a yellow cloud of gas", MAX_STRING_LENGTH );
                send_to_char( "Sleeping Gas\r\n", ch );
                send_to_char( "&cCasts spell: &WSleep\r\n", ch );
                break;
             case TRAP_TYPE_FLAME:
-               mudstrlcpy( buf, "Struck by a burst of flame", MAX_STRING_LENGTH );
+               strlcpy( buf, "Struck by a burst of flame", MAX_STRING_LENGTH );
                send_to_char( "Flame\r\n", ch );
                send_to_char( "&cCasts spell: &WFireball\r\n", ch );
                break;
             case TRAP_TYPE_EXPLOSION:
-               mudstrlcpy( buf, "Hit by an explosion", MAX_STRING_LENGTH );
+               strlcpy( buf, "Hit by an explosion", MAX_STRING_LENGTH );
                send_to_char( "Explosion\r\n", ch );
                send_to_char( "&cCasts spell: &WFireball\r\n", ch );
                break;
             case TRAP_TYPE_ACID_SPRAY:
-               mudstrlcpy( buf, "Covered by a spray of acid", MAX_STRING_LENGTH );
+               strlcpy( buf, "Covered by a spray of acid", MAX_STRING_LENGTH );
                send_to_char( "Acid Spray\r\n", ch );
                send_to_char( "&cCasts spell: &WAcid Blast\r\n", ch );
                break;
             case TRAP_TYPE_ELECTRIC_SHOCK:
-               mudstrlcpy( buf, "Suddenly shocked", MAX_STRING_LENGTH );
+               strlcpy( buf, "Suddenly shocked", MAX_STRING_LENGTH );
                send_to_char( "Electric Shock\r\n", ch );
                ch_printf( ch, "&cDoes Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;
             case TRAP_TYPE_BLADE:
-               mudstrlcpy( buf, "Sliced by a razor sharp blade", MAX_STRING_LENGTH );
+               strlcpy( buf, "Sliced by a razor sharp blade", MAX_STRING_LENGTH );
                send_to_char( "Sharp Blade\r\n", ch );
                ch_printf( ch, "&cDoes Damage from (&W%d&c) to (&W%d&c)\r\n", obj->value[2], ( obj->value[2] * 2 ) );
                break;

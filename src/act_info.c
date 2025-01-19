@@ -88,31 +88,31 @@ char *format_obj_to_char( OBJ_DATA * obj, CHAR_DATA * ch, bool fShort )
 
    buf[0] = '\0';
    if( IS_OBJ_STAT( obj, ITEM_INVIS ) )
-      mudstrlcat( buf, "(Invis) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(Invis) ", MAX_STRING_LENGTH );
    if( ( IS_AFFECTED( ch, AFF_DETECT_MAGIC ) || IS_IMMORTAL( ch ) ) && IS_OBJ_STAT( obj, ITEM_MAGIC ) )
-      mudstrlcat( buf, "&B(Blue Aura)&w ", MAX_STRING_LENGTH );
+      strlcat( buf, "&B(Blue Aura)&w ", MAX_STRING_LENGTH );
    if( IS_OBJ_STAT( obj, ITEM_GLOW ) )
-      mudstrlcat( buf, "&G&W(&OG&Yl&wo&Ww&wi&Yn&Og&G&W) ", MAX_STRING_LENGTH );
+      strlcat( buf, "&G&W(&OG&Yl&wo&Ww&wi&Yn&Og&G&W) ", MAX_STRING_LENGTH );
    if( IS_OBJ_STAT( obj, ITEM_HUM ) )
-      mudstrlcat( buf, "&G&W(&gH&Gu&wm&Wm&wi&Gn&gg&G&W) ", MAX_STRING_LENGTH );
+      strlcat( buf, "&G&W(&gH&Gu&wm&Wm&wi&Gn&gg&G&W) ", MAX_STRING_LENGTH );
    if( IS_OBJ_STAT( obj, ITEM_HIDDEN ) )
-      mudstrlcat( buf, "(Hidden) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(Hidden) ", MAX_STRING_LENGTH );
    if( IS_OBJ_STAT( obj, ITEM_BURRIED ) )
-      mudstrlcat( buf, "(Burried) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(Burried) ", MAX_STRING_LENGTH );
    if( IS_IMMORTAL( ch ) && IS_OBJ_STAT( obj, ITEM_PROTOTYPE ) )
-      mudstrlcat( buf, "(PROTO) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(PROTO) ", MAX_STRING_LENGTH );
    if( ( IS_AFFECTED( ch, AFF_DETECTTRAPS ) || IS_SET( ch->act, PLR_HOLYLIGHT ) ) && is_trapped( obj ) )
-      mudstrlcat( buf, "(Trap) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(Trap) ", MAX_STRING_LENGTH );
 
    if( fShort )
    {
       if( obj->short_descr )
-         mudstrlcat( buf, obj->short_descr, MAX_STRING_LENGTH );
+         strlcat( buf, obj->short_descr, MAX_STRING_LENGTH );
    }
    else
    {
       if( obj->description )
-         mudstrlcat( buf, obj->description, MAX_STRING_LENGTH );
+         strlcat( buf, obj->description, MAX_STRING_LENGTH );
    }
 
    return buf;
@@ -448,8 +448,8 @@ void show_visible_affects_to_char( CHAR_DATA * victim, CHAR_DATA * ch )
    if( !IS_NPC( victim ) && !victim->desc && victim->switched && IS_AFFECTED( victim->switched, AFF_POSSESS ) )
    {
       set_char_color( AT_MAGIC, ch );
-      mudstrlcpy( buf, PERS( victim, ch ), MAX_STRING_LENGTH );
-      mudstrlcat( buf, " appears to be in a deep trance...\r\n", MAX_STRING_LENGTH );
+      strlcpy( buf, PERS( victim, ch ), MAX_STRING_LENGTH );
+      strlcat( buf, " appears to be in a deep trance...\r\n", MAX_STRING_LENGTH );
    }
 }
 
@@ -462,17 +462,17 @@ void show_char_to_char_0( CHAR_DATA * victim, CHAR_DATA * ch )
    buf[0] = '\0';
 
    if( IS_NPC( victim ) )
-      mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+      strlcat( buf, " ", MAX_STRING_LENGTH );
 
    if( !IS_NPC( victim ) && !victim->desc )
    {
       if( !victim->switched )
-         mudstrlcat( buf, "(Link Dead) ", MAX_STRING_LENGTH );
+         strlcat( buf, "(Link Dead) ", MAX_STRING_LENGTH );
       else if( !IS_AFFECTED( victim->switched, AFF_POSSESS ) )
-         mudstrlcat( buf, "(Switched) ", MAX_STRING_LENGTH );
+         strlcat( buf, "(Switched) ", MAX_STRING_LENGTH );
    }
    if( !IS_NPC( victim ) && IS_SET( victim->act, PLR_AFK ) )
-      mudstrlcat( buf, "[AFK] ", MAX_STRING_LENGTH );
+      strlcat( buf, "[AFK] ", MAX_STRING_LENGTH );
    if( ( !IS_NPC( victim ) && IS_SET( victim->act, PLR_WIZINVIS ) )
        || ( IS_NPC( victim ) && IS_SET( victim->act, ACT_MOBINVIS ) ) )
    {
@@ -480,30 +480,30 @@ void show_char_to_char_0( CHAR_DATA * victim, CHAR_DATA * ch )
          snprintf( buf1, MAX_STRING_LENGTH, "(Invis %d) ", victim->pcdata->wizinvis );
       else
          snprintf( buf1, MAX_STRING_LENGTH, "(Mobinvis %d) ", victim->mobinvis );
-      mudstrlcat( buf, buf1, MAX_STRING_LENGTH );
+      strlcat( buf, buf1, MAX_STRING_LENGTH );
    }
    if( IS_AFFECTED( victim, AFF_INVISIBLE ) )
-      mudstrlcat( buf, "(Invis) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(Invis) ", MAX_STRING_LENGTH );
    if( IS_AFFECTED( victim, AFF_HIDE ) )
-      mudstrlcat( buf, "(Hide) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(Hide) ", MAX_STRING_LENGTH );
    if( IS_AFFECTED( victim, AFF_PASS_DOOR ) )
-      mudstrlcat( buf, "(Translucent) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(Translucent) ", MAX_STRING_LENGTH );
    if( IS_AFFECTED( victim, AFF_FAERIE_FIRE ) )
-      mudstrlcat( buf, "&P(Pink Aura)&w ", MAX_STRING_LENGTH );
+      strlcat( buf, "&P(Pink Aura)&w ", MAX_STRING_LENGTH );
    if( !IS_NPC( victim ) && IS_SET( victim->pcdata->act2, ACT_GAGGED ) )
-      mudstrlcat( buf, "&w&W(&rG&Ra&rg&Rg&re&Rd&w&W)&w ", MAX_STRING_LENGTH );
+      strlcat( buf, "&w&W(&rG&Ra&rg&Rg&re&Rd&w&W)&w ", MAX_STRING_LENGTH );
    if( !IS_NPC( victim ) && IS_SET( victim->pcdata->act2, ACT_BOUND ) )
-      mudstrlcat( buf, "&G&W(&gB&Go&wu&Gn&gd&G&W)&w ", MAX_STRING_LENGTH );
+      strlcat( buf, "&G&W(&gB&Go&wu&Gn&gd&G&W)&w ", MAX_STRING_LENGTH );
    if( IS_EVIL( victim ) && IS_AFFECTED( ch, AFF_DETECT_EVIL ) )
-      mudstrlcat( buf, "&R(Red Aura)&w ", MAX_STRING_LENGTH );
+      strlcat( buf, "&R(Red Aura)&w ", MAX_STRING_LENGTH );
    if( ( victim->mana > 10 ) && ( IS_AFFECTED( ch, AFF_DETECT_MAGIC ) || IS_IMMORTAL( ch ) ) )
-      mudstrlcat( buf, "&B(Blue Aura)&w ", MAX_STRING_LENGTH );
+      strlcat( buf, "&B(Blue Aura)&w ", MAX_STRING_LENGTH );
    if( !IS_NPC( victim ) && IS_SET( victim->act, PLR_LITTERBUG ) )
-      mudstrlcat( buf, "(LITTERBUG) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(LITTERBUG) ", MAX_STRING_LENGTH );
    if( IS_NPC( victim ) && IS_IMMORTAL( ch ) && IS_SET( victim->act, ACT_PROTOTYPE ) )
-      mudstrlcat( buf, "(PROTO) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(PROTO) ", MAX_STRING_LENGTH );
    if( victim->desc && victim->desc->connected == CON_EDITING )
-      mudstrlcat( buf, "(Writing) ", MAX_STRING_LENGTH );
+      strlcat( buf, "(Writing) ", MAX_STRING_LENGTH );
 
    set_char_color( AT_PERSON, ch );
    if( victim && victim->position == victim->defposition && victim->long_descr[0] != '\0' )
@@ -511,9 +511,9 @@ void show_char_to_char_0( CHAR_DATA * victim, CHAR_DATA * ch )
       if( IS_AFFECTED( ch, AFF_INFRARED ) )
       {  // \033[1;31m
 
-         mudstrlcpy( buf2, "\033[1;31m", MAX_STRING_LENGTH );
-         mudstrlcat( buf, victim->long_descr, MAX_STRING_LENGTH );
-         mudstrlcat( buf2, buf, MAX_STRING_LENGTH );
+         strlcpy( buf2, "\033[1;31m", MAX_STRING_LENGTH );
+         strlcat( buf, victim->long_descr, MAX_STRING_LENGTH );
+         strlcat( buf2, buf, MAX_STRING_LENGTH );
          send_to_char_noand( buf2, ch );
          show_visible_affects_to_char( victim, ch );
       }
@@ -525,106 +525,106 @@ void show_char_to_char_0( CHAR_DATA * victim, CHAR_DATA * ch )
       return;
    }
 
-   mudstrlcat( buf, PERS( victim, ch ), MAX_STRING_LENGTH );
+   strlcat( buf, PERS( victim, ch ), MAX_STRING_LENGTH );
 
    switch ( victim->position )
    {
       case POS_DEAD:
-         mudstrlcat( buf, " is DEAD!!", MAX_STRING_LENGTH );
+         strlcat( buf, " is DEAD!!", MAX_STRING_LENGTH );
          break;
       case POS_MORTAL:
-         mudstrlcat( buf, " is mortally wounded.", MAX_STRING_LENGTH );
+         strlcat( buf, " is mortally wounded.", MAX_STRING_LENGTH );
          break;
       case POS_INCAP:
-         mudstrlcat( buf, " is incapacitated.", MAX_STRING_LENGTH );
+         strlcat( buf, " is incapacitated.", MAX_STRING_LENGTH );
          break;
       case POS_STUNNED:
-         mudstrlcat( buf, " is lying here stunned.", MAX_STRING_LENGTH );
+         strlcat( buf, " is lying here stunned.", MAX_STRING_LENGTH );
          break;
       case POS_SLEEPING:
          if( ch->position == POS_SITTING || ch->position == POS_RESTING )
-            mudstrlcat( buf, " is sleeping nearby.", MAX_STRING_LENGTH );
+            strlcat( buf, " is sleeping nearby.", MAX_STRING_LENGTH );
          else
-            mudstrlcat( buf, " is deep in slumber here.", MAX_STRING_LENGTH );
+            strlcat( buf, " is deep in slumber here.", MAX_STRING_LENGTH );
          break;
       case POS_RESTING:
          if( ch->position == POS_RESTING )
-            mudstrlcat( buf, " is sprawled out alongside you.", MAX_STRING_LENGTH );
+            strlcat( buf, " is sprawled out alongside you.", MAX_STRING_LENGTH );
          else if( ch->position == POS_MOUNTED )
-            mudstrlcat( buf, " is sprawled out at the foot of your mount.", MAX_STRING_LENGTH );
+            strlcat( buf, " is sprawled out at the foot of your mount.", MAX_STRING_LENGTH );
          else
-            mudstrlcat( buf, " is sprawled out here.", MAX_STRING_LENGTH );
+            strlcat( buf, " is sprawled out here.", MAX_STRING_LENGTH );
          break;
       case POS_SITTING:
          if( ch->position == POS_SITTING )
-            mudstrlcat( buf, " sits here with you.", MAX_STRING_LENGTH );
+            strlcat( buf, " sits here with you.", MAX_STRING_LENGTH );
          else if( ch->position == POS_RESTING )
-            mudstrlcat( buf, " sits nearby as you lie around.", MAX_STRING_LENGTH );
+            strlcat( buf, " sits nearby as you lie around.", MAX_STRING_LENGTH );
          else
-            mudstrlcat( buf, " sits upright here.", MAX_STRING_LENGTH );
+            strlcat( buf, " sits upright here.", MAX_STRING_LENGTH );
          break;
       case POS_STANDING:
          if( IS_IMMORTAL( victim ) )
-            mudstrlcat( buf, " is here before you.", MAX_STRING_LENGTH );
+            strlcat( buf, " is here before you.", MAX_STRING_LENGTH );
          else
             if( ( victim->in_room->sector_type == SECT_UNDERWATER )
                 && !IS_AFFECTED( victim, AFF_AQUA_BREATH ) && !IS_NPC( victim ) )
-            mudstrlcat( buf, " is drowning here.", MAX_STRING_LENGTH );
+            strlcat( buf, " is drowning here.", MAX_STRING_LENGTH );
          else if( victim->in_room->sector_type == SECT_UNDERWATER )
-            mudstrlcat( buf, " is here in the water.", MAX_STRING_LENGTH );
+            strlcat( buf, " is here in the water.", MAX_STRING_LENGTH );
          else
             if( ( victim->in_room->sector_type == SECT_OCEANFLOOR )
                 && !IS_AFFECTED( victim, AFF_AQUA_BREATH ) && !IS_NPC( victim ) )
-            mudstrlcat( buf, " is drowning here.", MAX_STRING_LENGTH );
+            strlcat( buf, " is drowning here.", MAX_STRING_LENGTH );
          else if( victim->in_room->sector_type == SECT_OCEANFLOOR )
-            mudstrlcat( buf, " is standing here in the water.", MAX_STRING_LENGTH );
+            strlcat( buf, " is standing here in the water.", MAX_STRING_LENGTH );
          else if( IS_AFFECTED( victim, AFF_FLOATING ) || IS_AFFECTED( victim, AFF_FLYING ) )
-            mudstrlcat( buf, " is hovering here.", MAX_STRING_LENGTH );
+            strlcat( buf, " is hovering here.", MAX_STRING_LENGTH );
          else
-            mudstrlcat( buf, " is standing here.", MAX_STRING_LENGTH );
+            strlcat( buf, " is standing here.", MAX_STRING_LENGTH );
          break;
       case POS_SHOVE:
-         mudstrlcat( buf, " is being shoved around.", MAX_STRING_LENGTH );
+         strlcat( buf, " is being shoved around.", MAX_STRING_LENGTH );
          break;
       case POS_DRAG:
-         mudstrlcat( buf, " is being dragged around.", MAX_STRING_LENGTH );
+         strlcat( buf, " is being dragged around.", MAX_STRING_LENGTH );
          break;
       case POS_MOUNTED:
-         mudstrlcat( buf, " is here, upon ", MAX_STRING_LENGTH );
+         strlcat( buf, " is here, upon ", MAX_STRING_LENGTH );
          if( !victim->mount )
-            mudstrlcat( buf, "thin air???", MAX_STRING_LENGTH );
+            strlcat( buf, "thin air???", MAX_STRING_LENGTH );
          else if( victim->mount == ch )
-            mudstrlcat( buf, "your back.", MAX_STRING_LENGTH );
+            strlcat( buf, "your back.", MAX_STRING_LENGTH );
          else if( victim->in_room == victim->mount->in_room )
          {
-            mudstrlcat( buf, PERS( victim->mount, ch ), MAX_STRING_LENGTH );
-            mudstrlcat( buf, ".", MAX_STRING_LENGTH );
+            strlcat( buf, PERS( victim->mount, ch ), MAX_STRING_LENGTH );
+            strlcat( buf, ".", MAX_STRING_LENGTH );
          }
          else
-            mudstrlcat( buf, "someone who left??", MAX_STRING_LENGTH );
+            strlcat( buf, "someone who left??", MAX_STRING_LENGTH );
          break;
       case POS_FIGHTING:
-         mudstrlcat( buf, " is here, fighting ", MAX_STRING_LENGTH );
+         strlcat( buf, " is here, fighting ", MAX_STRING_LENGTH );
          if( !victim->fighting )
-            mudstrlcat( buf, "thin air???", MAX_STRING_LENGTH );
+            strlcat( buf, "thin air???", MAX_STRING_LENGTH );
          else if( who_fighting( victim ) == ch )
-            mudstrlcat( buf, "YOU!", MAX_STRING_LENGTH );
+            strlcat( buf, "YOU!", MAX_STRING_LENGTH );
          else if( victim->in_room == victim->fighting->who->in_room )
          {
-            mudstrlcat( buf, PERS( victim->fighting->who, ch ), MAX_STRING_LENGTH );
-            mudstrlcat( buf, ".", MAX_STRING_LENGTH );
+            strlcat( buf, PERS( victim->fighting->who, ch ), MAX_STRING_LENGTH );
+            strlcat( buf, ".", MAX_STRING_LENGTH );
          }
          else
-            mudstrlcat( buf, "someone who left??", MAX_STRING_LENGTH );
+            strlcat( buf, "someone who left??", MAX_STRING_LENGTH );
          break;
    }
 
-   mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+   strlcat( buf, "\r\n", MAX_STRING_LENGTH );
    buf[0] = UPPER( buf[0] );
    if( IS_AFFECTED( ch, AFF_INFRARED ) )
    {  // \033[1;31m
-      mudstrlcpy( buf2, "\033[1;31m", MAX_STRING_LENGTH );
-      mudstrlcat( buf2, buf, MAX_STRING_LENGTH );
+      strlcpy( buf2, "\033[1;31m", MAX_STRING_LENGTH );
+      strlcat( buf2, buf, MAX_STRING_LENGTH );
       send_to_char_noand( buf2, ch );
       show_visible_affects_to_char( victim, ch );
    }
@@ -872,10 +872,10 @@ void do_look( CHAR_DATA * ch, const char *argument )
             if( IS_SET( ch->act, PLR_ROOMVNUM ) )
             {
                set_char_color( AT_BLUE, ch );   /* Added 10/17 by Kuran of */
-               send_to_char( "{", ch );   /* SWReality */
+               send_to_char( "[", ch );   /* SWReality */
                ch_printf( ch, "&G&W%d", ch->in_room->vnum );
                set_char_color( AT_BLUE, ch );   /* Added 10/17 by Kuran of */
-               send_to_char( "}", ch );
+               send_to_char( "]", ch );
             }
             if( IS_SET( ch->pcdata->flags, PCFLAG_ROOM ) )
             {
@@ -1300,58 +1300,58 @@ void show_condition( CHAR_DATA * ch, CHAR_DATA * victim )
    else
       percent = -1;
 
-   mudstrlcpy( buf, PERS( victim, ch ), MAX_STRING_LENGTH );
+   strlcpy( buf, PERS( victim, ch ), MAX_STRING_LENGTH );
 
    if( ( IS_NPC( victim ) && IS_SET( victim->act, ACT_DROID ) ) || IS_DROID( victim ) )
    {
       if( percent >= 100 )
-         mudstrlcat( buf, " is in perfect condition.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is in perfect condition.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 90 )
-         mudstrlcat( buf, " is slightly scratched.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is slightly scratched.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 80 )
-         mudstrlcat( buf, " has a few scrapes.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has a few scrapes.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 70 )
-         mudstrlcat( buf, " has some dents.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has some dents.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 60 )
-         mudstrlcat( buf, " has a couple holes in its plating.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has a couple holes in its plating.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 50 )
-         mudstrlcat( buf, " has a many broken pieces.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has a many broken pieces.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 40 )
-         mudstrlcat( buf, " has many exposed circuits.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has many exposed circuits.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 30 )
-         mudstrlcat( buf, " is leaking oil.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is leaking oil.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 20 )
-         mudstrlcat( buf, " has smoke coming out of it.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has smoke coming out of it.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 10 )
-         mudstrlcat( buf, " is almost completely broken.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is almost completely broken.\r\n", MAX_STRING_LENGTH );
       else
-         mudstrlcat( buf, " is about to EXPLODE.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is about to EXPLODE.\r\n", MAX_STRING_LENGTH );
 
    }
    else
    {
       if( percent >= 100 )
-         mudstrlcat( buf, " is in perfect health.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is in perfect health.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 90 )
-         mudstrlcat( buf, " is slightly scratched.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is slightly scratched.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 80 )
-         mudstrlcat( buf, " has a few bruises.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has a few bruises.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 70 )
-         mudstrlcat( buf, " has some cuts.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has some cuts.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 60 )
-         mudstrlcat( buf, " has several wounds.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has several wounds.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 50 )
-         mudstrlcat( buf, " has many nasty wounds.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " has many nasty wounds.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 40 )
-         mudstrlcat( buf, " is bleeding freely.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is bleeding freely.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 30 )
-         mudstrlcat( buf, " is covered in blood.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is covered in blood.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 20 )
-         mudstrlcat( buf, " is leaking guts.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is leaking guts.\r\n", MAX_STRING_LENGTH );
       else if( percent >= 10 )
-         mudstrlcat( buf, " is almost dead.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is almost dead.\r\n", MAX_STRING_LENGTH );
       else
-         mudstrlcat( buf, " is DYING.\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, " is DYING.\r\n", MAX_STRING_LENGTH );
 
    }
    buf[0] = UPPER( buf[0] );
@@ -1483,63 +1483,63 @@ void do_examine( CHAR_DATA * ch, const char *argument )
             if( obj->value[1] == 0 )
                obj->value[1] = 1;
             dam = ( short )( ( obj->value[0] * 10 ) / obj->value[1] );
-            mudstrlcpy( buf, "As you look more closely, you notice that it is ", MAX_STRING_LENGTH );
+            strlcpy( buf, "As you look more closely, you notice that it is ", MAX_STRING_LENGTH );
             if( dam >= 10 )
-               mudstrlcat( buf, "in superb condition.", MAX_STRING_LENGTH );
+               strlcat( buf, "in superb condition.", MAX_STRING_LENGTH );
             else if( dam == 9 )
-               mudstrlcat( buf, "in very good condition.", MAX_STRING_LENGTH );
+               strlcat( buf, "in very good condition.", MAX_STRING_LENGTH );
             else if( dam == 8 )
-               mudstrlcat( buf, "in good shape.", MAX_STRING_LENGTH );
+               strlcat( buf, "in good shape.", MAX_STRING_LENGTH );
             else if( dam == 7 )
-               mudstrlcat( buf, "showing a bit of wear.", MAX_STRING_LENGTH );
+               strlcat( buf, "showing a bit of wear.", MAX_STRING_LENGTH );
             else if( dam == 6 )
-               mudstrlcat( buf, "a little run down.", MAX_STRING_LENGTH );
+               strlcat( buf, "a little run down.", MAX_STRING_LENGTH );
             else if( dam == 5 )
-               mudstrlcat( buf, "in need of repair.", MAX_STRING_LENGTH );
+               strlcat( buf, "in need of repair.", MAX_STRING_LENGTH );
             else if( dam == 4 )
-               mudstrlcat( buf, "in great need of repair.", MAX_STRING_LENGTH );
+               strlcat( buf, "in great need of repair.", MAX_STRING_LENGTH );
             else if( dam == 3 )
-               mudstrlcat( buf, "in dire need of repair.", MAX_STRING_LENGTH );
+               strlcat( buf, "in dire need of repair.", MAX_STRING_LENGTH );
             else if( dam == 2 )
-               mudstrlcat( buf, "very badly worn.", MAX_STRING_LENGTH );
+               strlcat( buf, "very badly worn.", MAX_STRING_LENGTH );
             else if( dam == 1 )
-               mudstrlcat( buf, "practically worthless.", MAX_STRING_LENGTH );
+               strlcat( buf, "practically worthless.", MAX_STRING_LENGTH );
             else if( dam <= 0 )
-               mudstrlcat( buf, "broken.", MAX_STRING_LENGTH );
-            mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+               strlcat( buf, "broken.", MAX_STRING_LENGTH );
+            strlcat( buf, "\r\n", MAX_STRING_LENGTH );
             send_to_char( buf, ch );
             break;
 
          case ITEM_WEAPON:
             dam = INIT_WEAPON_CONDITION - obj->value[0];
-            mudstrlcpy( buf, "As you look more closely, you notice that it is ", MAX_STRING_LENGTH );
+            strlcpy( buf, "As you look more closely, you notice that it is ", MAX_STRING_LENGTH );
             if( dam == 0 )
-               mudstrlcat( buf, "in superb condition.", MAX_STRING_LENGTH );
+               strlcat( buf, "in superb condition.", MAX_STRING_LENGTH );
             else if( dam == 1 )
-               mudstrlcat( buf, "in excellent condition.", MAX_STRING_LENGTH );
+               strlcat( buf, "in excellent condition.", MAX_STRING_LENGTH );
             else if( dam == 2 )
-               mudstrlcat( buf, "in very good condition.", MAX_STRING_LENGTH );
+               strlcat( buf, "in very good condition.", MAX_STRING_LENGTH );
             else if( dam == 3 )
-               mudstrlcat( buf, "in good shape.", MAX_STRING_LENGTH );
+               strlcat( buf, "in good shape.", MAX_STRING_LENGTH );
             else if( dam == 4 )
-               mudstrlcat( buf, "showing a bit of wear.", MAX_STRING_LENGTH );
+               strlcat( buf, "showing a bit of wear.", MAX_STRING_LENGTH );
             else if( dam == 5 )
-               mudstrlcat( buf, "a little run down.", MAX_STRING_LENGTH );
+               strlcat( buf, "a little run down.", MAX_STRING_LENGTH );
             else if( dam == 6 )
-               mudstrlcat( buf, "in need of repair.", MAX_STRING_LENGTH );
+               strlcat( buf, "in need of repair.", MAX_STRING_LENGTH );
             else if( dam == 7 )
-               mudstrlcat( buf, "in great need of repair.", MAX_STRING_LENGTH );
+               strlcat( buf, "in great need of repair.", MAX_STRING_LENGTH );
             else if( dam == 8 )
-               mudstrlcat( buf, "in dire need of repair.", MAX_STRING_LENGTH );
+               strlcat( buf, "in dire need of repair.", MAX_STRING_LENGTH );
             else if( dam == 9 )
-               mudstrlcat( buf, "very badly worn.", MAX_STRING_LENGTH );
+               strlcat( buf, "very badly worn.", MAX_STRING_LENGTH );
             else if( dam == 10 )
-               mudstrlcat( buf, "practically worthless.", MAX_STRING_LENGTH );
+               strlcat( buf, "practically worthless.", MAX_STRING_LENGTH );
             else if( dam == 11 )
-               mudstrlcat( buf, "almost broken.", MAX_STRING_LENGTH );
+               strlcat( buf, "almost broken.", MAX_STRING_LENGTH );
             else if( dam == 12 )
-               mudstrlcat( buf, "broken.", MAX_STRING_LENGTH );
-            mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+               strlcat( buf, "broken.", MAX_STRING_LENGTH );
+            strlcat( buf, "\r\n", MAX_STRING_LENGTH );
             send_to_char( buf, ch );
             if( obj->value[3] == WEAPON_BLASTER )
             {
@@ -1569,30 +1569,30 @@ void do_examine( CHAR_DATA * ch, const char *argument )
                dam = ( obj->timer * 10 ) / obj->value[1];
             else
                dam = 10;
-            mudstrlcpy( buf, "As you examine it carefully you notice that it ", MAX_STRING_LENGTH );
+            strlcpy( buf, "As you examine it carefully you notice that it ", MAX_STRING_LENGTH );
             if( dam >= 10 )
-               mudstrlcat( buf, "is fresh.", MAX_STRING_LENGTH );
+               strlcat( buf, "is fresh.", MAX_STRING_LENGTH );
             else if( dam == 9 )
-               mudstrlcat( buf, "is nearly fresh.", MAX_STRING_LENGTH );
+               strlcat( buf, "is nearly fresh.", MAX_STRING_LENGTH );
             else if( dam == 8 )
-               mudstrlcat( buf, "is perfectly fine.", MAX_STRING_LENGTH );
+               strlcat( buf, "is perfectly fine.", MAX_STRING_LENGTH );
             else if( dam == 7 )
-               mudstrlcat( buf, "looks good.", MAX_STRING_LENGTH );
+               strlcat( buf, "looks good.", MAX_STRING_LENGTH );
             else if( dam == 6 )
-               mudstrlcat( buf, "looks ok.", MAX_STRING_LENGTH );
+               strlcat( buf, "looks ok.", MAX_STRING_LENGTH );
             else if( dam == 5 )
-               mudstrlcat( buf, "is a little stale.", MAX_STRING_LENGTH );
+               strlcat( buf, "is a little stale.", MAX_STRING_LENGTH );
             else if( dam == 4 )
-               mudstrlcat( buf, "is a bit stale.", MAX_STRING_LENGTH );
+               strlcat( buf, "is a bit stale.", MAX_STRING_LENGTH );
             else if( dam == 3 )
-               mudstrlcat( buf, "smells slightly off.", MAX_STRING_LENGTH );
+               strlcat( buf, "smells slightly off.", MAX_STRING_LENGTH );
             else if( dam == 2 )
-               mudstrlcat( buf, "smells quite rank.", MAX_STRING_LENGTH );
+               strlcat( buf, "smells quite rank.", MAX_STRING_LENGTH );
             else if( dam == 1 )
-               mudstrlcat( buf, "smells revolting.", MAX_STRING_LENGTH );
+               strlcat( buf, "smells revolting.", MAX_STRING_LENGTH );
             else if( dam <= 0 )
-               mudstrlcat( buf, "is crawling with maggots.", MAX_STRING_LENGTH );
-            mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+               strlcat( buf, "is crawling with maggots.", MAX_STRING_LENGTH );
+            strlcat( buf, "\r\n", MAX_STRING_LENGTH );
             send_to_char( buf, ch );
             break;
 
@@ -1720,7 +1720,7 @@ void do_exits( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   mudstrlcpy( buf, fAuto ? "Exits:" : "\r\nObvious exits:\r\n&R--------------&W\r\n", MAX_STRING_LENGTH );
+   strlcpy( buf, fAuto ? "Exits:" : "\r\nObvious exits:\r\n&R--------------&W\r\n", MAX_STRING_LENGTH );
 
    found = FALSE;
    for( pexit = ch->in_room->first_exit; pexit; pexit = pexit->next )
@@ -1757,9 +1757,9 @@ void do_exits( CHAR_DATA * ch, const char *argument )
    }
 
    if( !found )
-      mudstrlcat( buf, fAuto ? " none.\r\n" : "None.\r\n", MAX_STRING_LENGTH );
+      strlcat( buf, fAuto ? " none.\r\n" : "None.\r\n", MAX_STRING_LENGTH );
    else if( fAuto )
-      mudstrlcat( buf, ".\r\n", MAX_STRING_LENGTH );
+      strlcat( buf, ".\r\n", MAX_STRING_LENGTH );
    send_to_char( buf, ch );
    return;
 }
@@ -1868,8 +1868,8 @@ HELP_DATA *get_help( CHAR_DATA * ch, const char *argument )
    {
       argument = one_argument( argument, argone );
       if( argall[0] != '\0' )
-         mudstrlcat( argall, " ", MAX_INPUT_LENGTH );
-      mudstrlcat( argall, argone, MAX_INPUT_LENGTH );
+         strlcat( argall, " ", MAX_INPUT_LENGTH );
+      strlcat( argall, argone, MAX_INPUT_LENGTH );
    }
 
    for( pHelp = first_help; pHelp; pHelp = pHelp->next )
@@ -2438,7 +2438,7 @@ void do_who( CHAR_DATA * ch, const char *argument )
 
       sMatch++;
 
-      mudstrlcpy( char_name, "", MAX_INPUT_LENGTH );
+      strlcpy( char_name, "", MAX_INPUT_LENGTH );
       if( wch->rank == NULL || !str_cmp( wch->rank, "(null)" ) )
          wch->rank = str_dup( "   " );
       snprintf( race_text, MAX_INPUT_LENGTH, "&G&w%s&G&c &G&w", wch->rank );
@@ -2474,24 +2474,24 @@ void do_who( CHAR_DATA * ch, const char *argument )
       if( ch && !nifty_is_name( wch->name, remand( wch->pcdata->title ) ) && ch->top_level > wch->top_level )
          snprintf( extra_title, MAX_INPUT_LENGTH, " [%s]", wch->name );
       else
-         mudstrlcpy( extra_title, "", MAX_INPUT_LENGTH );
+         strlcpy( extra_title, "", MAX_INPUT_LENGTH );
 
       if( ch && ch->pcdata && ch->pcdata->clan && wch->pcdata->clan
           && ( ch->pcdata->clan == wch->pcdata->clan || ch->top_level >= LEVEL_IMMORTAL ) )
       {
          CLAN_DATA *pclan = wch->pcdata->clan;
 
-         mudstrlcpy( clan_name, " (", MAX_INPUT_LENGTH );
+         strlcpy( clan_name, " (", MAX_INPUT_LENGTH );
 
          if( !str_cmp( wch->name, pclan->leader ) )
-            mudstrlcat( clan_name, "Leader, ", MAX_INPUT_LENGTH );
+            strlcat( clan_name, "Leader, ", MAX_INPUT_LENGTH );
          if( !str_cmp( wch->name, pclan->number1 ) )
-            mudstrlcat( clan_name, "First, ", MAX_INPUT_LENGTH );
+            strlcat( clan_name, "First, ", MAX_INPUT_LENGTH );
          if( !str_cmp( wch->name, pclan->number2 ) )
-            mudstrlcat( clan_name, "Second, ", MAX_INPUT_LENGTH );
+            strlcat( clan_name, "Second, ", MAX_INPUT_LENGTH );
 
-         mudstrlcat( clan_name, pclan->name, MAX_INPUT_LENGTH );
-         mudstrlcat( clan_name, ")", MAX_INPUT_LENGTH );
+         strlcat( clan_name, pclan->name, MAX_INPUT_LENGTH );
+         strlcat( clan_name, ")", MAX_INPUT_LENGTH );
       }
       else
          clan_name[0] = '\0';
@@ -4149,7 +4149,7 @@ void do_slist( CHAR_DATA * ch, const char *argument )
       if( ability >= 0 )
          snprintf( skn, MAX_INPUT_LENGTH, "\r\n&G&W%s\r\n", ability_name[ability] );
       else
-         mudstrlcpy( skn, "\r\n&G&WGeneral Skills\r\n", MAX_INPUT_LENGTH );
+         strlcpy( skn, "\r\n&G&WGeneral Skills\r\n", MAX_INPUT_LENGTH );
 
       send_to_pager( skn, ch );
       for( i = lowlev; i <= hilev; i++ )
@@ -4203,8 +4203,8 @@ void do_whois( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   mudstrlcpy( buf, "0.", MAX_STRING_LENGTH-30 );
-   mudstrlcat( buf, argument, MAX_STRING_LENGTH-30 );
+   strlcpy( buf, "0.", MAX_STRING_LENGTH-30 );
+   strlcat( buf, argument, MAX_STRING_LENGTH-30 );
    if( ( ( victim = get_char_world_ooc( ch, buf ) ) == NULL ) )
    {
       send_to_char( "No such player online. Remember, you must input the whole name of the player.\r\n", ch );
@@ -4277,14 +4277,14 @@ void do_whois( CHAR_DATA * ch, const char *argument )
 
       if( IS_SET( victim->act, PLR_SILENCE ) || IS_SET( victim->act, PLR_NO_EMOTE ) || IS_SET( victim->act, PLR_NO_TELL ) )
       {
-         mudstrlcpy( buf2, "This player has the following flags set:", MAX_STRING_LENGTH );
+         strlcpy( buf2, "This player has the following flags set:", MAX_STRING_LENGTH );
          if( IS_SET( victim->act, PLR_SILENCE ) )
-            mudstrlcat( buf2, " silence", MAX_STRING_LENGTH );
+            strlcat( buf2, " silence", MAX_STRING_LENGTH );
          if( IS_SET( victim->act, PLR_NO_EMOTE ) )
-            mudstrlcat( buf2, " noemote", MAX_STRING_LENGTH );
+            strlcat( buf2, " noemote", MAX_STRING_LENGTH );
          if( IS_SET( victim->act, PLR_NO_TELL ) )
-            mudstrlcat( buf2, " notell", MAX_STRING_LENGTH );
-         mudstrlcat( buf2, ".\r\n", MAX_STRING_LENGTH );
+            strlcat( buf2, " notell", MAX_STRING_LENGTH );
+         strlcat( buf2, ".\r\n", MAX_STRING_LENGTH );
          send_to_char( buf2, ch );
       }
       if( victim->desc && victim->desc->host[0] != '\0' )   /* added by Gorog */
@@ -4292,9 +4292,9 @@ void do_whois( CHAR_DATA * ch, const char *argument )
          snprintf( buf2, MAX_STRING_LENGTH, "%s's IP info: %s ", victim->name, victim->desc->hostip );
          if( get_trust( ch ) >= LEVEL_GOD )
          {
-            mudstrlcat( buf2, victim->desc->host, MAX_STRING_LENGTH );
+            strlcat( buf2, victim->desc->host, MAX_STRING_LENGTH );
          }
-         mudstrlcat( buf2, "\r\n", MAX_STRING_LENGTH );
+         strlcat( buf2, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf2, ch );
       }
       if( get_trust( ch ) >= LEVEL_GOD && get_trust( ch ) >= get_trust( victim ) && victim->pcdata )
@@ -4446,7 +4446,7 @@ void do_introduce( CHAR_DATA * ch, const char *argument )
          if( can_see( ch, rch ) )
          {
             snprintf( buf, MAX_STRING_LENGTH, "__%s ", rch->name );
-            mudstrlcat( buf, argument, MAX_STRING_LENGTH );
+            strlcat( buf, argument, MAX_STRING_LENGTH );
             do_introduce( ch, buf );
             count++;
          }

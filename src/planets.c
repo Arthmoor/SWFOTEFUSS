@@ -619,8 +619,8 @@ void do_showplanet( CHAR_DATA * ch, const char *argument )
    area[0] = '\0';
    for( pArea = planet->first_area; pArea; pArea = pArea->next_on_planet )
    {
-      mudstrlcat( area, pArea->filename, MAX_STRING_LENGTH );
-      mudstrlcat( area, ", ", MAX_STRING_LENGTH );
+      strlcat( area, pArea->filename, MAX_STRING_LENGTH );
+      strlcat( area, ", ", MAX_STRING_LENGTH );
    }
    ch_printf( ch, "&WAreas: &G%s\r\n", area );
    if( IS_IMMORTAL( ch ) && !planet->area )

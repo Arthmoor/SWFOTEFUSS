@@ -270,8 +270,8 @@ const char *flag_string( int bitvector, const char *const flagarray[] )
    for( x = 0; x < 32; x++ )
       if( IS_SET( bitvector, 1 << x ) )
       {
-         mudstrlcat( buf, flagarray[x], MAX_STRING_LENGTH );
-         mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+         strlcat( buf, flagarray[x], MAX_STRING_LENGTH );
+         strlcat( buf, " ", MAX_STRING_LENGTH );
       }
    if( ( x = strlen( buf ) ) > 0 )
       buf[--x] = '\0';
@@ -995,16 +995,16 @@ void do_mset( CHAR_DATA * ch, const char *argument )
    if( victim )
    {
       lockvictim = TRUE;
-      mudstrlcpy( arg1, victim->name, MAX_INPUT_LENGTH );
+      strlcpy( arg1, victim->name, MAX_INPUT_LENGTH );
       argument = one_argument( argument, arg2 );
-      mudstrlcpy( arg3, argument, MAX_INPUT_LENGTH );
+      strlcpy( arg3, argument, MAX_INPUT_LENGTH );
    }
    else
    {
       lockvictim = FALSE;
       argument = one_argument( argument, arg1 );
       argument = one_argument( argument, arg2 );
-      mudstrlcpy( arg3, argument, MAX_INPUT_LENGTH );
+      strlcpy( arg3, argument, MAX_INPUT_LENGTH );
    }
 /*
     if ( !str_cmp( arg1, "on" ) )
@@ -1810,8 +1810,8 @@ void do_mset( CHAR_DATA * ch, const char *argument )
    if( !str_cmp( arg2, "long" ) )
    {
       STRFREE( victim->long_descr );
-      mudstrlcpy( buf, arg3, MAX_STRING_LENGTH );
-      mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+      strlcpy( buf, arg3, MAX_STRING_LENGTH );
+      strlcat( buf, "\r\n", MAX_STRING_LENGTH );
       victim->long_descr = STRALLOC( buf );
       if( IS_NPC( victim ) && IS_SET( victim->act, ACT_PROTOTYPE ) )
       {
@@ -2847,16 +2847,16 @@ void do_oset( CHAR_DATA * ch, const char *argument )
    if( obj )
    {
       lockobj = TRUE;
-      mudstrlcpy( arg1, obj->name, MAX_INPUT_LENGTH );
+      strlcpy( arg1, obj->name, MAX_INPUT_LENGTH );
       argument = one_argument( argument, arg2 );
-      mudstrlcpy( arg3, argument, MAX_INPUT_LENGTH );
+      strlcpy( arg3, argument, MAX_INPUT_LENGTH );
    }
    else
    {
       lockobj = FALSE;
       argument = one_argument( argument, arg1 );
       argument = one_argument( argument, arg2 );
-      mudstrlcpy( arg3, argument, MAX_INPUT_LENGTH );
+      strlcpy( arg3, argument, MAX_INPUT_LENGTH );
    }
 
    if( arg1[0] == '\0' || arg2[0] == '\0' || !str_cmp( arg1, "?" ) )
@@ -3749,7 +3749,7 @@ void do_rset( CHAR_DATA * ch, const char *argument )
    smash_tilde( argument );
    argument = one_argument( argument, arg1 );
    argument = one_argument( argument, arg2 );
-   mudstrlcpy( arg3, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg3, argument, MAX_INPUT_LENGTH );
 
    if( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0' )
    {
@@ -4297,11 +4297,11 @@ void do_redit( CHAR_DATA * ch, const char *argument )
          {
             if( IS_SET( xit->exit_info, 1 << value ) )
             {
-               mudstrlcat( buf, ex_flags[value], MAX_STRING_LENGTH );
-               mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+               strlcat( buf, ex_flags[value], MAX_STRING_LENGTH );
+               strlcat( buf, " ", MAX_STRING_LENGTH );
             }
          }
-         mudstrlcat( buf, "]\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, "]\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
          return;
       }

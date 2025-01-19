@@ -1355,7 +1355,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, const char *argument )
    if( fskill == NULL )
       return;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH);
+   strlcpy( arg, argument, MAX_INPUT_LENGTH);
 
    switch ( ch->substate )
    {
@@ -1475,7 +1475,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1615,15 +1615,15 @@ void fskill_makelightsaber( CHAR_DATA * ch, const char *argument )
    obj->weight = 5;
    STRFREE( obj->name );
    obj->name = STRALLOC( "lightsaber saber" );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
+   strlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    STRFREE( obj->action_desc );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
-   mudstrlcat( buf, " ignites with a hum and a soft glow.", MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcat( buf, " ignites with a hum and a soft glow.", MAX_STRING_LENGTH );
    obj->action_desc = STRALLOC( buf );
 
    CREATE( paf, AFFECT_DATA, 1 );
@@ -1684,7 +1684,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, const char *argument )
    if( fskill == NULL )
       return;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -1804,7 +1804,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1944,15 +1944,15 @@ void fskill_makedualsaber( CHAR_DATA * ch, const char *argument )
    obj->weight = 5;
    STRFREE( obj->name );
    obj->name = STRALLOC( "lightsaber saber dual" );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
+   strlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    STRFREE( obj->action_desc );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
-   mudstrlcat( buf, " ignites with a hum and a soft glow.", MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcat( buf, " ignites with a hum and a soft glow.", MAX_STRING_LENGTH );
    obj->action_desc = STRALLOC( buf );
 
    CREATE( paf, AFFECT_DATA, 1 );

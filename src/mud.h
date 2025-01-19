@@ -5125,8 +5125,6 @@ void delete_obj( OBJ_INDEX_DATA * obj );
 void delete_mob( MOB_INDEX_DATA * mob );
 void sort_area( AREA_DATA * pArea, bool proto );
 void sort_area_by_name( AREA_DATA * pArea ); /* Fireblade */
-size_t mudstrlcat( char * __restrict dst, const char * __restrict src, size_t dsize );
-size_t mudstrlcpy( char * __restrict dst, const char * __restrict src, size_t dsize );
 
 /* build.c */
 bool can_rmodify( CHAR_DATA * ch, ROOM_INDEX_DATA * room );

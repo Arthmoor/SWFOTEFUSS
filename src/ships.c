@@ -249,39 +249,39 @@ void do_buymobship( CHAR_DATA * ch, const char *argument )
    switch ( ship_type )
    {
       default:
-         mudstrlcpy( ship_buf, "Mobile Ship MS", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "Mobile Ship MS", MAX_INPUT_LENGTH );
          break;
          // NR
       case 0:
-         mudstrlcpy( ship_buf, "X-Wing Snubfighter MXW", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "X-Wing Snubfighter MXW", MAX_INPUT_LENGTH );
          break;
       case 1:
-         mudstrlcpy( ship_buf, "A-Wing Scout MAW", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "A-Wing Scout MAW", MAX_INPUT_LENGTH );
          break;
       case 2:
-         mudstrlcpy( ship_buf, "B-Wing Heavy Fighter MBW", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "B-Wing Heavy Fighter MBW", MAX_INPUT_LENGTH );
          break;
       case 3:
-         mudstrlcpy( ship_buf, "Y-Wing Bomber MYB", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "Y-Wing Bomber MYB", MAX_INPUT_LENGTH );
          break;
       case 4:
-         mudstrlcpy( ship_buf, "K-Wing Heavy Bomber MKW", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "K-Wing Heavy Bomber MKW", MAX_INPUT_LENGTH );
          break;
          // Imp
       case 6:
-         mudstrlcpy( ship_buf, "TIE Fighter MTF", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "TIE Fighter MTF", MAX_INPUT_LENGTH );
          break;
       case 7:
-         mudstrlcpy( ship_buf, "TIE Bomber MTB", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "TIE Bomber MTB", MAX_INPUT_LENGTH );
          break;
       case 8:
-         mudstrlcpy( ship_buf, "TIE Defender MTD", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "TIE Defender MTD", MAX_INPUT_LENGTH );
          break;
       case 9:
-         mudstrlcpy( ship_buf, "XM-1 Missileboat MXM", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "XM-1 Missileboat MXM", MAX_INPUT_LENGTH );
          break;
       case 10:
-         mudstrlcpy( ship_buf, "XG-1 Assault Gunboat MXG", MAX_INPUT_LENGTH );
+         strlcpy( ship_buf, "XG-1 Assault Gunboat MXG", MAX_INPUT_LENGTH );
          break;
    }
 
@@ -1087,7 +1087,7 @@ int make_prototype_rooms( int ship_type, int vnum, AREA_DATA * tarea, char *Snam
             newroom->description = STRALLOC( "" ); 
             continue;
          }
-         mudstrlcpy( newdesc, strlinwrp( proom->desc, 60 ), MAX_STRING_LENGTH );
+         strlcpy( newdesc, strlinwrp( proom->desc, 60 ), MAX_STRING_LENGTH );
          if( newroom->name )
             STRFREE( newroom->name );
          newroom->name = STRALLOC( strrep( proom->name, "$SN$", Sname ) );
@@ -1265,7 +1265,7 @@ char *parse_prog_string( char *inp, int ship_type, int vnum )
    char newinp[MAX_STRING_LENGTH];
    int x, size;
 
-   mudstrlcpy( newinp, inp, MAX_STRING_LENGTH );
+   strlcpy( newinp, inp, MAX_STRING_LENGTH );
    size = ship_prototypes[ship_type].num_rooms;
    for( x = 0; x < size; x++ )
    {
@@ -1678,7 +1678,7 @@ void do_makeprototypeship( CHAR_DATA * ch, const char *argument )
    argument = one_argument( argument, ship_name );
    argument = one_argument( argument, scost );
    argument = one_argument( argument, sname );
-   mudstrlcpy( name, argument, MAX_INPUT_LENGTH );
+   strlcpy( name, argument, MAX_INPUT_LENGTH );
    if( ship_name[0] == '\0' )
    {
       send_to_char( "You must specify a valid ship name.\r\n", ch );
@@ -2016,43 +2016,43 @@ void do_shipstat( CHAR_DATA * ch, const char *argument )
    if( ship_prototypes[shiptype].primaryType > 0 )
       snprintf( buf1, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].primaryType );
    else
-      mudstrlcpy( buf1, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf1, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].secondaryType > 0 )
       snprintf( buf2, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].secondaryType );
    else
-      mudstrlcpy( buf2, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf2, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].range_weapons[0] > 0 )
       snprintf( buf3, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].range_weapons[0] );
    else
-      mudstrlcpy( buf3, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf3, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].shields > 0 )
       snprintf( buf4, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].shields );
    else
-      mudstrlcpy( buf4, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf4, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].range_weapons[1] > 0 )
       snprintf( buf5, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].range_weapons[1] );
    else
-      mudstrlcpy( buf5, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf5, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].hyperspeed > 0 )
       snprintf( buf6, MAX_STRING_LENGTH, "Class %d", ship_prototypes[shiptype].hyperspeed );
    else
-      mudstrlcpy( buf6, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf6, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].range_weapons[2] > 0 )
       snprintf( buf7, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].range_weapons[2] );
    else
-      mudstrlcpy( buf7, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf7, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].maxbombs > 0 )
       snprintf( buf8, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].maxbombs );
    else
-      mudstrlcpy( buf8, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf8, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].turrets > 0 )
       snprintf( buf9, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].turrets );
    else
-      mudstrlcpy( buf9, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf9, "&RNone.", MAX_STRING_LENGTH );
    if( ship_prototypes[shiptype].chaff > 0 )
       snprintf( buf10, MAX_STRING_LENGTH, "%d", ship_prototypes[shiptype].chaff );
    else
-      mudstrlcpy( buf10, "&RNone.", MAX_STRING_LENGTH );
+      strlcpy( buf10, "&RNone.", MAX_STRING_LENGTH );
 
    ch_printf( ch, "&R&z+&W---------------------------------------------------------------&z+\r\n" );
    ch_printf( ch, "&W| Name: &w%-35.35s      &WCost: &w%8d &W|\r\n",
@@ -2403,7 +2403,7 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
    int salarm = 0;
    int chaff = 0;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
    checktool = FALSE;
    checkmod = FALSE;
    switch ( ch->substate )
@@ -2412,7 +2412,7 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
          if( ( ship = ship_from_engine( ch->in_room->vnum ) ) != NULL )
          {
             ship = ship_from_engine( ch->in_room->vnum );
-            mudstrlcpy( arg, ship->name, MAX_INPUT_LENGTH );
+            strlcpy( arg, ship->name, MAX_INPUT_LENGTH );
          }
 
          if( !ship )
@@ -2542,7 +2542,7 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 

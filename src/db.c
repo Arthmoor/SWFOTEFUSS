@@ -800,7 +800,7 @@ void boot_db( bool fCopyOver )
             bug( "%s: EOF encountered reading area list - no $ found at end of file.", __func__ );
             break;
          }
-         mudstrlcpy( strArea, fread_word( fpList ), MAX_INPUT_LENGTH );
+         strlcpy( strArea, fread_word( fpList ), MAX_INPUT_LENGTH );
          if( strArea[0] == '$' )
             break;
 
@@ -2389,7 +2389,7 @@ void area_update( void )
          if( pArea->resetmsg )
             snprintf( buf, MAX_STRING_LENGTH, "%s\r\n", pArea->resetmsg );
          else
-            mudstrlcpy( buf, "You hear some squeaking sounds...\r\n", MAX_STRING_LENGTH );
+            strlcpy( buf, "You hear some squeaking sounds...\r\n", MAX_STRING_LENGTH );
          for( pch = first_char; pch; pch = pch->next )
          {
             if( !IS_NPC( pch ) && IS_AWAKE( pch ) && pch->in_room && pch->in_room->area == pArea )
@@ -3208,7 +3208,7 @@ char *str_dup( char const *str )
    len = strlen( str ) + 1;
 
    CREATE( ret, char, len );
-   mudstrlcpy( ret, str, MAX_STRING_LENGTH );
+   strlcpy( ret, str, MAX_STRING_LENGTH );
    return ret;
 }
 
@@ -3457,7 +3457,7 @@ char *fread_line( FILE * fp )
          bug( "%s: EOF encountered on read.\r\n", __func__ );
          if( fBootDb )
             exit( 1 );
-         mudstrlcpy( line, "", MAX_STRING_LENGTH );
+         strlcpy( line, "", MAX_STRING_LENGTH );
          return line;
       }
       c = getc( fp );
@@ -4013,10 +4013,10 @@ const char *aoran( const char *str )
    }
 
    if( isavowel( str[0] ) || ( strlen( str ) > 1 && tolower( str[0] ) == 'y' && !isavowel( str[1] ) ) )
-      mudstrlcpy( temp, "an ", MAX_STRING_LENGTH );
+      strlcpy( temp, "an ", MAX_STRING_LENGTH );
    else
-      mudstrlcpy( temp, "a ", MAX_STRING_LENGTH );
-   mudstrlcat( temp, str, MAX_STRING_LENGTH );
+      strlcpy( temp, "a ", MAX_STRING_LENGTH );
+   strlcat( temp, str, MAX_STRING_LENGTH );
    return temp;
 }
 
@@ -4086,7 +4086,7 @@ void bug( const char *str, ... )
    FILE *fp;
    struct stat fst;
 
-   mudstrlcpy( buf, "[*****] BUG: ", MAX_STRING_LENGTH );
+   strlcpy( buf, "[*****] BUG: ", MAX_STRING_LENGTH );
    {
       va_list param;
 
@@ -4142,7 +4142,7 @@ void boot_log( const char *str, ... )
    FILE *fp;
    va_list param;
 
-   mudstrlcpy( buf, "[*****] BOOT: ", MAX_STRING_LENGTH );
+   strlcpy( buf, "[*****] BOOT: ", MAX_STRING_LENGTH );
    va_start( param, str );
    vsprintf( buf + strlen( buf ), str, param );
    va_end( param );
@@ -4254,8 +4254,8 @@ void towizfile( const char *line, bool Border )
       if( Border )
          filler -= 10;
       for( xx = 0; xx < filler; xx++ )
-         mudstrlcat( outline, " ", MAX_STRING_LENGTH-30 );
-      mudstrlcat( outline, line, MAX_STRING_LENGTH-30 );
+         strlcat( outline, " ", MAX_STRING_LENGTH-30 );
+      strlcat( outline, line, MAX_STRING_LENGTH-30 );
    }
    if( Border )
    {
@@ -4265,12 +4265,12 @@ void towizfile( const char *line, bool Border )
          filler++;
       snprintf( outline2, MAX_STRING_LENGTH, "         &C| |&R%s&C", outline );
       for( xx = 0; xx < filler; xx++ )
-         mudstrlcat( outline2, " ", MAX_STRING_LENGTH );
-      mudstrlcat( outline2, "&C| |", MAX_STRING_LENGTH );
+         strlcat( outline2, " ", MAX_STRING_LENGTH );
+      strlcat( outline2, "&C| |", MAX_STRING_LENGTH );
    }
    else
-      mudstrlcpy( outline2, outline, MAX_STRING_LENGTH );
-   mudstrlcat( outline2, "\r\n", MAX_STRING_LENGTH );
+      strlcpy( outline2, outline, MAX_STRING_LENGTH );
+   strlcat( outline2, "\r\n", MAX_STRING_LENGTH );
    wfp = fopen( WIZLIST_FILE, "a" );
    if( wfp )
    {
@@ -4433,8 +4433,8 @@ void make_wizlist(  )
             towizfile( buf, 1 );
             buf[0] = '\0';
          }
-         mudstrlcat( buf, " ", MAX_STRING_LENGTH );
-         mudstrlcat( buf, wiz->name, MAX_STRING_LENGTH );
+         strlcat( buf, " ", MAX_STRING_LENGTH );
+         strlcat( buf, wiz->name, MAX_STRING_LENGTH );
          if( strlen( buf ) > 70 )
          {
             towizfile( buf, 1 );
@@ -7682,7 +7682,7 @@ void load_buildlist( void )
             }
 #if !defined(READ_AREA) /* Dont always want to read stuff.. dunno.. shrug */
 
-            mudstrlcpy( word, fread_word( fp ), 81 );
+            strlcpy( word, fread_word( fp ), 81 );
             if( word[0] != '#' || strcmp( &word[1], "AREA" ) )
             {
                bug( "%s: %s.are: no #AREA found.", __func__, dentry->d_name );
@@ -8484,7 +8484,7 @@ const char *centertext( const char *text, size_t size )
    int i;
    int filler = ( size - strlen( remand( text ) ) ) / 2 - 1;
 
-   mudstrlcpy( buf, " ", MAX_STRING_LENGTH );
+   strlcpy( buf, " ", MAX_STRING_LENGTH );
 
    if( size == 0 || size < strlen( remand( text ) ) )
       return "(null)";
@@ -8493,12 +8493,12 @@ const char *centertext( const char *text, size_t size )
       return text;
 
    for( i = 0; i < filler; i++ )
-      mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+      strlcat( buf, " ", MAX_STRING_LENGTH );
 
-   mudstrlcat( buf, text, MAX_STRING_LENGTH );
+   strlcat( buf, text, MAX_STRING_LENGTH );
 
    for( i = 0; i < filler; i++ )
-      mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+      strlcat( buf, " ", MAX_STRING_LENGTH );
 
    return buf;
 }
@@ -8628,7 +8628,7 @@ char *fread_flagstring( FILE * fp )
  * Renamed so it can play itself system independent.
  * Samson 10-12-03
  */
-size_t mudstrlcpy( char * __restrict dst, const char * __restrict src, size_t dsize )
+size_t strlcpy( char * __restrict dst, const char * __restrict src, size_t dsize )
 {
    const char *osrc = src;
    size_t nleft = dsize;
@@ -8665,7 +8665,7 @@ size_t mudstrlcpy( char * __restrict dst, const char * __restrict src, size_t ds
  * Renamed so it can play itself system independent.
  * Samson 10-12-03
  */
-size_t mudstrlcat( char * __restrict dst, const char * __restrict src, size_t dsize )
+size_t strlcat( char * __restrict dst, const char * __restrict src, size_t dsize )
 {
    const char *odst = dst;
    const char *osrc = src;

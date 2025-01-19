@@ -1232,7 +1232,7 @@ void do_fhstat( CHAR_DATA * ch, const char *argument )
       return;
    }
    argument = one_argument( argument, fname );
-   mudstrlcpy( type, argument, MAX_STRING_LENGTH );
+   strlcpy( type, argument, MAX_STRING_LENGTH );
    for( fhelp = first_force_help; fhelp; fhelp = fhelp->next )
    {
       if( nifty_is_name_prefix( fname, fhelp->name ) )
@@ -1292,7 +1292,7 @@ void do_fhstat( CHAR_DATA * ch, const char *argument )
               fhelp->type == FORCE_GENERAL ? "General" : fhelp->type == FORCE_JEDI ? "Jedi" : "Sith", fhelp->skill );
    draw_force_line( ch, 79 );
    send_to_char( "\r\n", ch );
-   mudstrlcpy( temp, fhelp->desc, MAX_STRING_LENGTH );
+   strlcpy( temp, fhelp->desc, MAX_STRING_LENGTH );
    strrep( temp, "$RN$", "\r\n" );
    strrep( temp, "$RN$", "\r\n" );
    send_to_char( temp, ch );

@@ -280,7 +280,7 @@ void violence_update( void )
             snprintf( buf, MAX_STRING_LENGTH, "lst_ch: %ld  lst_ch->prev: %ld  lst_ch->next: %ld",
                      ( long )lst_ch, ( long )lst_ch->prev, ( long )lst_ch->next );
          else
-            mudstrlcpy( buf, "lst_ch: NULL", MAX_STRING_LENGTH );
+            strlcpy( buf, "lst_ch: NULL", MAX_STRING_LENGTH );
          log_string( buf );
          gch_prev = NULL;
          continue;
@@ -2137,7 +2137,7 @@ OBJ_DATA *raw_kill( CHAR_DATA * ch, CHAR_DATA * victim )
       return NULL;
    }
 
-   mudstrlcpy( arg, victim->name, MAX_STRING_LENGTH );
+   strlcpy( arg, victim->name, MAX_STRING_LENGTH );
 
    stop_fighting( victim, TRUE );
 

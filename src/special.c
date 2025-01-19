@@ -226,7 +226,7 @@ bool spec_newbie_pilot( CHAR_DATA * ch )
       {
          case RACE_HUMAN:
             home = 201;
-            mudstrlcpy( buf, "After a brief journey you arrive at Coruscant's Menari Spaceport.\r\n\r\n", MAX_STRING_LENGTH );
+            strlcpy( buf, "After a brief journey you arrive at Coruscant's Menari Spaceport.\r\n\r\n", MAX_STRING_LENGTH );
             echo_to_room( AT_ACTION, ch->in_room, buf );
             break;
 

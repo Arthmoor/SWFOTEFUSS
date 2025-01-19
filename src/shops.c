@@ -862,7 +862,7 @@ void appraise_all( CHAR_DATA * ch, CHAR_DATA * keeper, const char *fixstr )
       send_to_char( "\r\n", ch );
       snprintf( buf, MAX_STRING_LENGTH, "$N tells you, 'It will cost %d credit%s in total.'", total, cost == 1 ? "" : "s" );
       act( AT_TELL, buf, ch, NULL, keeper, TO_CHAR );
-      mudstrlcpy( buf, "$N tells you, 'Remember there is a 10% surcharge for repair all.'", MAX_STRING_LENGTH );
+      strlcpy( buf, "$N tells you, 'Remember there is a 10% surcharge for repair all.'", MAX_STRING_LENGTH );
       act( AT_TELL, buf, ch, NULL, keeper, TO_CHAR );
    }
 }

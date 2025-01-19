@@ -215,7 +215,7 @@ const char *htmlcolor( const char *src )
    newarg = strrep( newarg, "&W", "</font><font color='#CCCCCC'>" );
    newarg = strrep( newarg, "\r", "" );
 
-   mudstrlcpy( arg, newarg, MAX_STRING_LENGTH );
+   strlcpy( arg, newarg, MAX_STRING_LENGTH );
    return arg;
 }
 
@@ -279,7 +279,7 @@ char *format_str( char *src, int len )
    if( sp1 < len )
    {
       for( sx = 14; sx >= sp1; sx-- )
-         mudstrlcat( add_len, " ", MAX_STRING_LENGTH );
+         strlcat( add_len, " ", MAX_STRING_LENGTH );
       strcat( src, add_len );
       return src;
    }

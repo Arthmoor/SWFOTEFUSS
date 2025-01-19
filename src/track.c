@@ -289,7 +289,7 @@ void found_prey( CHAR_DATA * ch, CHAR_DATA * victim )
       return;
    }
 
-   mudstrlcpy( victname, IS_NPC( victim ) ? victim->short_descr : race_table[victim->race].race_name, MAX_INPUT_LENGTH );
+   strlcpy( victname, IS_NPC( victim ) ? victim->short_descr : race_table[victim->race].race_name, MAX_INPUT_LENGTH );
 
    if( !can_see( ch, victim ) )
    {
@@ -305,7 +305,7 @@ void found_prey( CHAR_DATA * ch, CHAR_DATA * victim )
             act( AT_ACTION, "$n sniffs around the room for $N.", ch, NULL, victim, TO_NOTVICT );
             act( AT_ACTION, "You sniff around the room for $N.", ch, NULL, victim, TO_CHAR );
             act( AT_ACTION, "$n sniffs around the room for you.", ch, NULL, victim, TO_VICT );
-            mudstrlcpy( buf, "I can smell your blood!", MAX_STRING_LENGTH );
+            strlcpy( buf, "I can smell your blood!", MAX_STRING_LENGTH );
             do_say( ch, buf );
             break;
          case 2:

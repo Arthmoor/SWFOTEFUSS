@@ -437,14 +437,14 @@ void do_slookup( CHAR_DATA * ch, const char *argument )
                     spell_damage[SPELL_DAMAGE( skill )],
                     spell_action[SPELL_ACTION( skill )],
                     spell_class[SPELL_CLASS( skill )], spell_power[SPELL_POWER( skill )] );
-         mudstrlcpy( buf, "Flags:", MAX_STRING_LENGTH );
+         strlcpy( buf, "Flags:", MAX_STRING_LENGTH );
          for( x = 11; x < 32; x++ )
             if( SPELL_FLAG( skill, 1 << x ) )
             {
-               mudstrlcat( buf, " ", MAX_STRING_LENGTH );
-               mudstrlcat( buf, spell_flag[x - 11], MAX_STRING_LENGTH );
+               strlcat( buf, " ", MAX_STRING_LENGTH );
+               strlcat( buf, spell_flag[x - 11], MAX_STRING_LENGTH );
             }
-         mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+         strlcat( buf, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
       }
       ch_printf( ch, "Saves: %s\r\n", spell_saves[( int )skill->saves] );
@@ -477,36 +477,36 @@ void do_slookup( CHAR_DATA * ch, const char *argument )
          snprintf( buf, MAX_STRING_LENGTH, "Affect %d", ++cnt );
          if( aff->location )
          {
-            mudstrlcat( buf, " modifies ", MAX_STRING_LENGTH );
-            mudstrlcat( buf, a_types[aff->location % REVERSE_APPLY], MAX_STRING_LENGTH );
-            mudstrlcat( buf, " by '", MAX_STRING_LENGTH );
-            mudstrlcat( buf, aff->modifier, MAX_STRING_LENGTH );
+            strlcat( buf, " modifies ", MAX_STRING_LENGTH );
+            strlcat( buf, a_types[aff->location % REVERSE_APPLY], MAX_STRING_LENGTH );
+            strlcat( buf, " by '", MAX_STRING_LENGTH );
+            strlcat( buf, aff->modifier, MAX_STRING_LENGTH );
             if( aff->bitvector )
-               mudstrlcat( buf, "' and", MAX_STRING_LENGTH );
+               strlcat( buf, "' and", MAX_STRING_LENGTH );
             else
-               mudstrlcat( buf, "'", MAX_STRING_LENGTH );
+               strlcat( buf, "'", MAX_STRING_LENGTH );
          }
          if( aff->bitvector )
          {
             int x;
 
-            mudstrlcat( buf, " applies", MAX_STRING_LENGTH );
+            strlcat( buf, " applies", MAX_STRING_LENGTH );
             for( x = 0; x < 32; x++ )
                if( IS_SET( aff->bitvector, 1 << x ) )
                {
-                  mudstrlcat( buf, " ", MAX_STRING_LENGTH );
-                  mudstrlcat( buf, a_flags[x], MAX_STRING_LENGTH );
+                  strlcat( buf, " ", MAX_STRING_LENGTH );
+                  strlcat( buf, a_flags[x], MAX_STRING_LENGTH );
                }
          }
          if( aff->duration[0] != '\0' && aff->duration[0] != '0' )
          {
-            mudstrlcat( buf, " for '", MAX_STRING_LENGTH );
-            mudstrlcat( buf, aff->duration, MAX_STRING_LENGTH );
-            mudstrlcat( buf, "' rounds", MAX_STRING_LENGTH );
+            strlcat( buf, " for '", MAX_STRING_LENGTH );
+            strlcat( buf, aff->duration, MAX_STRING_LENGTH );
+            strlcat( buf, "' rounds", MAX_STRING_LENGTH );
          }
          if( aff->location >= REVERSE_APPLY )
-            mudstrlcat( buf, " (affects caster only)", MAX_STRING_LENGTH );
-         mudstrlcat( buf, "\r\n", MAX_STRING_LENGTH );
+            strlcat( buf, " (affects caster only)", MAX_STRING_LENGTH );
+         strlcat( buf, "\r\n", MAX_STRING_LENGTH );
          send_to_char( buf, ch );
          if( !aff->next )
             send_to_char( "\r\n", ch );
@@ -1436,7 +1436,7 @@ void do_detrap( CHAR_DATA * ch, const char *argument )
             bug( "%s: ch->dest_buf NULL!", __func__ );
             return;
          }
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          ch->substate = SUB_NONE;
@@ -1560,7 +1560,7 @@ void do_dig( CHAR_DATA * ch, const char *argument )
             bug( "%s: dest_buf NULL", __func__ );
             return;
          }
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -1700,7 +1700,7 @@ void do_search( CHAR_DATA * ch, const char *argument )
             bug( "%s: dest_buf NULL", __func__ );
             return;
          }
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
       case SUB_TIMER_DO_ABORT:

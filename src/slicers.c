@@ -623,7 +623,7 @@ void do_inquire( CHAR_DATA * ch, const char *argument )
          {
 
             send_to_char( "&GYou begin the long process of trying to slice into the banking computer system.\r\n", ch );
-            mudstrlcpy( buf, "$n takes $s datapad and hooks into a data port.", MAX_INPUT_LENGTH );
+            strlcpy( buf, "$n takes $s datapad and hooks into a data port.", MAX_INPUT_LENGTH );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 10, do_inquire, 1 );
             return;
@@ -873,14 +873,14 @@ void do_makecommsystem( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 2 + level / 10;
    STRFREE( obj->name );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
-   mudstrlcat( buf, " CommSystem", MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcat( buf, " CommSystem", MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   mudstrlcat( buf, " was dropped on the floor.", MAX_STRING_LENGTH );
+   strlcat( buf, " was dropped on the floor.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );;
    obj->cost = 45000;
    obj = obj_to_char( obj, ch );
@@ -1095,14 +1095,14 @@ void do_makedatapad( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 2 + level / 10;
    STRFREE( obj->name );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
-   mudstrlcat( buf, " CommSystem", MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcat( buf, " CommSystem", MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   mudstrlcat( buf, " was dropped on the floor.", MAX_STRING_LENGTH );
+   strlcat( buf, " was dropped on the floor.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );;
    obj->cost = 45000;
    obj = obj_to_char( obj, ch );
@@ -1735,7 +1735,7 @@ void do_slicebank( CHAR_DATA * ch, const char *argument )
          ch->dest_buf = str_dup( arg );
          ch->dest_buf_2 = str_dup( arg2 );
          send_to_char( "&GYou begin the long process of trying to slice into the banking computer system.\r\n", ch );
-         mudstrlcpy( buf, "$n takes $s datapad and hooks it into a data port.", MAX_INPUT_LENGTH );
+         strlcpy( buf, "$n takes $s datapad and hooks it into a data port.", MAX_INPUT_LENGTH );
          act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
          add_timer( ch, TIMER_DO_FUN, 10, do_slicebank, 1 );
          return;
@@ -1966,7 +1966,7 @@ void do_checkprints( CHAR_DATA * ch, const char *argument )
          {
             ch->dest_buf = str_dup( arg );
             send_to_char( "&GYou begin the long process of cross checking fingerprints.\r\n", ch );
-            mudstrlcpy( buf, "$n takes $s datapad and hooks into a commsystem.\r\n", MAX_INPUT_LENGTH );
+            strlcpy( buf, "$n takes $s datapad and hooks into a commsystem.\r\n", MAX_INPUT_LENGTH );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 5, do_checkprints, 1 );
             return;

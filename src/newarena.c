@@ -500,7 +500,7 @@ void silent_end(  )
    time_left_in_game = 0;
    arena_pot = 0;
    bet_pot = 0;
-   mudstrlcpy( buf, "It looks like no one was brave enough to enter the Arena.\r\n", MAX_INPUT_LENGTH );
+   strlcpy( buf, "It looks like no one was brave enough to enter the Arena.\r\n", MAX_INPUT_LENGTH );
    sportschan( buf );
 }
 
@@ -591,7 +591,7 @@ void do_awho( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   mudstrlcpy( buf, "&W  Players in the &BChaos&W Arena\r\n", MAX_INPUT_LENGTH );
+   strlcpy( buf, "&W  Players in the &BChaos&W Arena\r\n", MAX_INPUT_LENGTH );
    snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-", buf );
    snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-\r\n", buf );
    snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%sGame Length = &R%-3d   &WTime To Start &R%-3d\r\n", buf, game_length, time_to_start );
@@ -629,29 +629,29 @@ void do_ahall( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   mudstrlcpy( buf2, "&B|---------------------------------------|\r\n", MAX_INPUT_LENGTH );
-   mudstrlcat( buf2, "|    &WPast Winners of The FotE Arena&B     |\r\n", MAX_INPUT_LENGTH );
-   mudstrlcat( buf2, "|---------------------------------------|\r\r\n\n", MAX_INPUT_LENGTH );
+   strlcpy( buf2, "&B|---------------------------------------|\r\n", MAX_INPUT_LENGTH );
+   strlcat( buf2, "|    &WPast Winners of The FotE Arena&B     |\r\n", MAX_INPUT_LENGTH );
+   strlcat( buf2, "|---------------------------------------|\r\r\n\n", MAX_INPUT_LENGTH );
    send_to_char( buf2, ch );
 
-   mudstrlcpy( format, "%-25.25s  %-10.10s  %-16.16s\r\n", MAX_INPUT_LENGTH );
+   strlcpy( format, "%-25.25s  %-10.10s  %-16.16s\r\n", MAX_INPUT_LENGTH );
    ch_printf( ch, format, "&RName", "&RDate", "&RAward Amt" );
 
    ch_printf( ch, format,
             "&B---------------------------------",
             "&B---------------------------------", "&B---------------------------------" );
 
-   mudstrlcpy( format2, "&W%-25.25s  &R%-10.10s  &Y%-16d\r\n", MAX_INPUT_LENGTH );
+   strlcpy( format2, "&W%-25.25s  &R%-10.10s  &Y%-16d\r\n", MAX_INPUT_LENGTH );
    for( fame_node = fame_list; fame_node; fame_node = fame_node->next )
    {
       if( fame_node->date )
       {
          timestr = asctime( localtime( &( fame_node->date ) ) );
          *( timestr + 10 ) = 0;
-         mudstrlcpy( site, timestr, MAX_INPUT_LENGTH );
+         strlcpy( site, timestr, MAX_INPUT_LENGTH );
       }
       else
-         mudstrlcpy( site, "Unknown", MAX_INPUT_LENGTH );
+         strlcpy( site, "Unknown", MAX_INPUT_LENGTH );
       ch_printf( ch, format2, fame_node->name, site, fame_node->award );
    }
    return;

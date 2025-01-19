@@ -1040,7 +1040,7 @@ void do_hotboot( CHAR_DATA * ch, const char *argument )
    if( ch && ch->desc )
       write_to_descriptor( ch->desc, "\033[0m", 0 );
 
-   mudstrlcpy( buf, "\r\nYou feel a great disturbance in the Force.", 100 );
+   strlcpy( buf, "\r\nYou feel a great disturbance in the Force.", 100 );
    /*
     * For each playing descriptor, save its state 
     */
@@ -1091,7 +1091,7 @@ void do_hotboot( CHAR_DATA * ch, const char *argument )
     */
    snprintf( buf, 100, "%d", port );
    snprintf( buf2, 100, "%d", control );
-   mudstrlcpy( buf3, "-1", 100 );
+   strlcpy( buf3, "-1", 100 );
 
    dlclose( sysdata.dlHandle );
    execl( EXE_FILE, "swreality", buf, "hotboot", buf2, buf3, ( char * )NULL );

@@ -135,7 +135,7 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -210,85 +210,85 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
    {
       affecttype = AFFECT_PRIMARY;
       affectammount = 1;
-      mudstrlcpy( name, "A Primary Weapons Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Primary Weapons Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "secondary" ) )
    {
       affecttype = AFFECT_SECONDARY;
       affectammount = 1;
-      mudstrlcpy( name, "A Secondary Weapons Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Secondary Weapons Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "missile" ) )
    {
       affecttype = AFFECT_MISSILE;
       affectammount = ( level / 20 );
-      mudstrlcpy( name, "A Missile Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Missile Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "rocket" ) )
    {
       affecttype = AFFECT_ROCKET;
       affectammount = ( level / 20 );
-      mudstrlcpy( name, "A Rocket Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Rocket Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "torpedo" ) )
    {
       affecttype = AFFECT_TORPEDO;
       affectammount = ( level / 20 );
-      mudstrlcpy( name, "A Torpedo Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Torpedo Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "hull" ) )
    {
       affecttype = AFFECT_HULL;
       affectammount = ( level / 2 );
-      mudstrlcpy( name, "A Hull Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Hull Module", MAX_STRING_LENGTH );
    }
 
    if( !str_cmp( arg, "shield" ) )
    {
       affecttype = AFFECT_SHIELD;
       affectammount = ( level / 5 );
-      mudstrlcpy( name, "A Shield Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Shield Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "speed" ) )
    {
       affecttype = AFFECT_SPEED;
       affectammount = ( level / 10 );
-      mudstrlcpy( name, "A Speed Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Speed Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "hyperspeed" ) )
    {
       affecttype = AFFECT_HYPER;
       affectammount = 1;
-      mudstrlcpy( name, "A Hyperspeed Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Hyperspeed Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "energy" ) )
    {
       affecttype = AFFECT_ENERGY;
       affectammount = ( level * 5 );
-      mudstrlcpy( name, "An Energy Module", MAX_STRING_LENGTH );
+      strlcpy( name, "An Energy Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "manuever" ) )
    {
       affecttype = AFFECT_MANUEVER;
       affectammount = ( level / 10 );
-      mudstrlcpy( name, "A Manuever Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Manuever Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "alarm" ) )
    {
       affecttype = AFFECT_ALARM;
       affectammount = 1;
-      mudstrlcpy( name, "An Alarm Module", MAX_STRING_LENGTH );
+      strlcpy( name, "An Alarm Module", MAX_STRING_LENGTH );
    }
    if( !str_cmp( arg, "chaff" ) )
    {
       affecttype = AFFECT_CHAFF;
       affectammount = URANGE( 1, ( level / 33 ), 3 );
-      mudstrlcpy( name, "A Chaff Module", MAX_STRING_LENGTH );
+      strlcpy( name, "A Chaff Module", MAX_STRING_LENGTH );
    }
 
    obj = create_object( pObjIndex, level );
@@ -300,7 +300,7 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( name );
    STRFREE( obj->description );
-   mudstrlcat( name, " was dropped here.", MAX_STRING_LENGTH );
+   strlcat( name, " was dropped here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( name );
 
    obj->value[0] = affecttype;
@@ -354,31 +354,31 @@ void do_showmodules( CHAR_DATA * ch, const char *argument )
    {
       i++;
       if( mod->affect == AFFECT_PRIMARY )
-         mudstrlcpy( str, "Primary Weapon", MAX_STRING_LENGTH );
+         strlcpy( str, "Primary Weapon", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_SECONDARY )
-         mudstrlcpy( str, "Secondary Weapon", MAX_STRING_LENGTH );
+         strlcpy( str, "Secondary Weapon", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_MISSILE )
-         mudstrlcpy( str, "Missile", MAX_STRING_LENGTH );
+         strlcpy( str, "Missile", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_ROCKET )
-         mudstrlcpy( str, "Rocket", MAX_STRING_LENGTH );
+         strlcpy( str, "Rocket", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_TORPEDO )
-         mudstrlcpy( str, "Torpedo", MAX_STRING_LENGTH );
+         strlcpy( str, "Torpedo", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_HULL )
-         mudstrlcpy( str, "Hull", MAX_STRING_LENGTH );
+         strlcpy( str, "Hull", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_SHIELD )
-         mudstrlcpy( str, "Shields", MAX_STRING_LENGTH );
+         strlcpy( str, "Shields", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_SPEED )
-         mudstrlcpy( str, "Speed", MAX_STRING_LENGTH );
+         strlcpy( str, "Speed", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_HYPER )
-         mudstrlcpy( str, "Hyperspeed", MAX_STRING_LENGTH );
+         strlcpy( str, "Hyperspeed", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_ENERGY )
-         mudstrlcpy( str, "Energy", MAX_STRING_LENGTH );
+         strlcpy( str, "Energy", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_MANUEVER )
-         mudstrlcpy( str, "Manuever", MAX_STRING_LENGTH );
+         strlcpy( str, "Manuever", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_ALARM )
-         mudstrlcpy( str, "Alarm", MAX_STRING_LENGTH );
+         strlcpy( str, "Alarm", MAX_STRING_LENGTH );
       if( mod->affect == AFFECT_CHAFF )
-         mudstrlcpy( str, "Chaff", MAX_STRING_LENGTH );
+         strlcpy( str, "Chaff", MAX_STRING_LENGTH );
 
       ch_printf( ch, "&z| &P%2d&p)  &G&W%-22.22s %-8.8d &z|\r\n", i, str, mod->ammount );
    }
@@ -400,7 +400,7 @@ void do_removemodule( CHAR_DATA * ch, const char *argument )
    int schance;
    int num, i;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
    checktool = FALSE;
    switch ( ch->substate )
    {
@@ -447,10 +447,10 @@ void do_removemodule( CHAR_DATA * ch, const char *argument )
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_removemodule] );
          if( number_percent(  ) < schance )
          {
-            mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+            strlcpy( arg, argument, MAX_INPUT_LENGTH );
             ch->dest_buf = str_dup( arg );
             send_to_char( "&GYou begin the long process of removing a module.\r\n", ch );
-            mudstrlcpy( buf, "$n takes out $s toolkit and begins to work.\r\n", MAX_INPUT_LENGTH );
+            strlcpy( buf, "$n takes out $s toolkit and begins to work.\r\n", MAX_INPUT_LENGTH );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
 
             add_timer( ch, TIMER_DO_FUN, 5, do_removemodule, 1 );
@@ -464,7 +464,7 @@ void do_removemodule( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -568,7 +568,7 @@ void do_shipmaintenance( CHAR_DATA * ch, const char *argument )
    OBJ_DATA *obj;
    int oldbombs;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    if( ( ch->pcdata->learned[gsn_shipmaintenance] ) <= 0 )
    {
@@ -601,7 +601,7 @@ void do_shipmaintenance( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -736,7 +736,7 @@ void do_scanbugs( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;
@@ -842,7 +842,7 @@ void do_removebug( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, (const char*)ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          ch->dest_buf = NULL;
          break;

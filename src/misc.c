@@ -235,12 +235,12 @@ void do_clone( CHAR_DATA * ch, const char *argument )
 
    if( ch->pcdata->clan_name && ch->pcdata->clan_name[0] != '\0' )
    {
-      mudstrlcpy( clanname, ch->pcdata->clan_name, MAX_STRING_LENGTH );
+      strlcpy( clanname, ch->pcdata->clan_name, MAX_STRING_LENGTH );
       STRFREE( ch->pcdata->clan_name );
       ch->pcdata->clan_name = STRALLOC( "" );
       if( ch->pcdata->bestowments )
       {
-         mudstrlcpy( bestowments, ch->pcdata->bestowments, MAX_STRING_LENGTH );
+         strlcpy( bestowments, ch->pcdata->bestowments, MAX_STRING_LENGTH );
          DISPOSE( ch->pcdata->bestowments );
          ch->pcdata->bestowments = str_dup( "" );
       }
@@ -365,10 +365,10 @@ void do_backup( CHAR_DATA * ch, const char *argument )
 
    if( ch->pcdata->clan_name && ch->pcdata->clan_name[0] != '\0' )
    {
-      mudstrlcpy( clanname, ch->pcdata->clan_name, MAX_STRING_LENGTH );
+      strlcpy( clanname, ch->pcdata->clan_name, MAX_STRING_LENGTH );
       STRFREE( ch->pcdata->clan_name );
       ch->pcdata->clan_name = STRALLOC( "" );
-      mudstrlcpy( bestowments, ch->pcdata->bestowments, MAX_STRING_LENGTH );
+      strlcpy( bestowments, ch->pcdata->bestowments, MAX_STRING_LENGTH );
       DISPOSE( ch->pcdata->bestowments );
       ch->pcdata->bestowments = str_dup( "" );
       save_clone( ch );
@@ -2869,7 +2869,7 @@ void do_train( CHAR_DATA * ch, const char *argument )
    if( IS_NPC( ch ) )
       return;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    /*
     * switch( ch->substate )
@@ -3327,7 +3327,7 @@ void do_whisper( CHAR_DATA * ch, const char *argument )
    char arg2[MAX_INPUT_LENGTH];
 
    argument = one_argument( argument, arg1 );
-   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg2, argument, MAX_INPUT_LENGTH );
    if( ( victim = get_char_room( ch, arg1 ) ) == NULL )
    {
       send_to_char( "They are not in here.\r\n", ch );
@@ -3446,7 +3446,7 @@ void do_hale( CHAR_DATA * ch, const char *argument )
    char arg2[MAX_INPUT_LENGTH];
 
    argument = one_argument( argument, arg1 );
-   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg2, argument, MAX_INPUT_LENGTH );
    if( arg1[0] == '\0' || arg2[0] == '\0' )
    {
       send_to_char( "Syntax: Hail <ship> <message>\r\n", ch );

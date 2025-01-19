@@ -270,7 +270,7 @@ const char *drunk_speech( const char *argument, CHAR_DATA * ch )
 
    if( IS_NPC( ch ) || !ch->pcdata )
    {
-      mudstrlcpy( buf, argument, MAX_INPUT_LENGTH * 2 );
+      strlcpy( buf, argument, MAX_INPUT_LENGTH * 2 );
       return buf;
    }
 
@@ -278,7 +278,7 @@ const char *drunk_speech( const char *argument, CHAR_DATA * ch )
 
    if( drunk <= 0 )
    {
-      mudstrlcpy( buf, argument, MAX_INPUT_LENGTH * 2 );
+      strlcpy( buf, argument, MAX_INPUT_LENGTH * 2 );
       return buf;
    }
 
@@ -511,15 +511,15 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
          break;
       case CHANNEL_HOLONET:
          ch_printf( ch, "&R<&B|&YHolonet&B|&R> &WYou&Y: &W%s\r\n", argument );
-         mudstrlcpy( buf, "&R<&B|&YHolonet&B|&R> &W$n&Y: &W$t\r\n", MAX_STRING_LENGTH );
+         strlcpy( buf, "&R<&B|&YHolonet&B|&R> &W$n&Y: &W$t\r\n", MAX_STRING_LENGTH );
          break;
       case CHANNEL_CLANTALK:
          ch_printf( ch, "&G&z(&pClan Network&z) You send:&P %s\r\n", argument );
-         mudstrlcpy( buf, "&G&z(&pClan Network&z) $n&z sends:&P $t", MAX_STRING_LENGTH );
+         strlcpy( buf, "&G&z(&pClan Network&z) $n&z sends:&P $t", MAX_STRING_LENGTH );
          break;
       case CHANNEL_SHIP:
          ch_printf( ch, "You tell the ship, '%s'\r\n", argument );
-         mudstrlcpy( buf, "$n says over the ships com system, '$t'", MAX_STRING_LENGTH );
+         strlcpy( buf, "$n says over the ships com system, '$t'", MAX_STRING_LENGTH );
          break;
       case CHANNEL_SYSTEM:
          ch_printf( ch, "&b(&G&WSystem: %s&b)(&G&W%d&b) &G&w'&G&W%s&w'\r\n", ship->name, ship->channel, argument );
@@ -538,13 +538,13 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
       case CHANNEL_NEWBIE:
          set_char_color( AT_OOC, ch );
          ch_printf( ch, "(NEWBIE) %s: %s\r\n", ch->name, argument );
-         mudstrlcpy( buf, "(NEWBIE) $n: $t", MAX_STRING_LENGTH );
+         strlcpy( buf, "(NEWBIE) $n: $t", MAX_STRING_LENGTH );
          break;
       case CHANNEL_OOC:
          if( ch->top_level < LEVEL_IMMORTAL )
             snprintf( buf, MAX_STRING_LENGTH, "&Y(&OOOC&Y) &G&W%s: $t", ch->name );
          else
-            mudstrlcpy( buf, "&Y(&OIMM&Y)&Y(&OOOC&Y) &G&W$n: $t", MAX_STRING_LENGTH );
+            strlcpy( buf, "&Y(&OIMM&Y)&Y(&OOOC&Y) &G&W$n: $t", MAX_STRING_LENGTH );
          position = ch->position;
          ch->position = POS_STANDING;
          act( AT_OOC, buf, ch, argument, NULL, TO_CHAR );
@@ -561,15 +561,15 @@ void talk_channel( CHAR_DATA * ch, const char *argument, int channel, const char
       case CHANNEL_104:
       case CHANNEL_105:
          if( channel == CHANNEL_AVTALK )
-            mudstrlcpy( buf, "$n: $t", MAX_STRING_LENGTH );
+            strlcpy( buf, "$n: $t", MAX_STRING_LENGTH );
          else if( channel == CHANNEL_IMMTALK )
-            mudstrlcpy( buf, "&R[&WIMM: $n&R] &W$t", MAX_STRING_LENGTH );
+            strlcpy( buf, "&R[&WIMM: $n&R] &W$t", MAX_STRING_LENGTH );
          else if( channel == CHANNEL_103 )
-            mudstrlcpy( buf, "(i103) $n> $t", MAX_STRING_LENGTH );
+            strlcpy( buf, "(i103) $n> $t", MAX_STRING_LENGTH );
          else if( channel == CHANNEL_104 )
-            mudstrlcpy( buf, "(i104) $n> $t", MAX_STRING_LENGTH );
+            strlcpy( buf, "(i104) $n> $t", MAX_STRING_LENGTH );
          else if( channel == CHANNEL_105 )
-            mudstrlcpy( buf, "&G&w&g[&w&WAdmin&g] &w&W$n&w&g: &w&W$t&w&g", MAX_STRING_LENGTH );
+            strlcpy( buf, "&G&w&g[&w&WAdmin&g] &w&W$n&w&g: &w&W$t&w&g", MAX_STRING_LENGTH );
          position = ch->position;
          ch->position = POS_STANDING;
          act( channel == CHANNEL_AVTALK ? AT_AVATAR : AT_IMMORT, buf, ch, argument, NULL, TO_CHAR );
@@ -2013,9 +2013,9 @@ void do_emote( CHAR_DATA * ch, const char *argument )
    for( plast = argument; *plast != '\0'; plast++ )
       ;
 
-   mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
+   strlcpy( buf, argument, MAX_STRING_LENGTH );
    if( isalpha( plast[-1] ) )
-      mudstrlcat( buf, ".", MAX_STRING_LENGTH );
+      strlcat( buf, ".", MAX_STRING_LENGTH );
 
    MOBtrigger = FALSE;
    act( AT_ACTION, "$n $T", ch, NULL, buf, TO_ROOM );
@@ -2510,7 +2510,7 @@ void do_order( CHAR_DATA * ch, const char *argument )
    bool found;
    bool fAll;
 
-   mudstrlcpy( argbuf, argument, MAX_INPUT_LENGTH );
+   strlcpy( argbuf, argument, MAX_INPUT_LENGTH );
    argument = one_argument( argument, arg );
 
    if( arg[0] == '\0' || argument[0] == '\0' )

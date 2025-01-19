@@ -619,7 +619,7 @@ int dice_parse( CHAR_DATA * ch, int level, char *texp )
 {
    char buf[MAX_INPUT_LENGTH];
 
-   mudstrlcpy( buf, texp, MAX_INPUT_LENGTH );
+   strlcpy( buf, texp, MAX_INPUT_LENGTH );
    return rd_parse( ch, level, buf );
 }
 
@@ -1236,7 +1236,7 @@ void do_cast( CHAR_DATA * ch, const char *argument )
             return;
          }
          mana = IS_NPC( ch ) ? 0 : skill->min_mana;
-         mudstrlcpy( staticbuf, (const char*)ch->dest_buf, MAX_STRING_LENGTH );
+         strlcpy( staticbuf, (const char*)ch->dest_buf, MAX_STRING_LENGTH );
          target_name = one_argument( staticbuf, arg2 );
          DISPOSE( ch->dest_buf );
          ch->substate = SUB_NONE;

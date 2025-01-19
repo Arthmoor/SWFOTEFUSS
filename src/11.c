@@ -169,7 +169,7 @@ void do_makegoggles( CHAR_DATA * ch, const char *argument )
    AFFECT_DATA *aff;
 
    argument = one_argument( argument, arg );
-   mudstrlcpy( arg2, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg2, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -255,9 +255,9 @@ void do_makegoggles( CHAR_DATA * ch, const char *argument )
             return;
          if( !ch->dest_buf_2 )
             return;
-         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
-         mudstrlcpy( arg2, ( const char * )ch->dest_buf_2, MAX_INPUT_LENGTH );
+         strlcpy( arg2, ( const char * )ch->dest_buf_2, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf_2 );
          break;
 
@@ -325,15 +325,15 @@ void do_makegoggles( CHAR_DATA * ch, const char *argument )
 
    obj->level = ch->top_level;
    STRFREE( obj->name );
-   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
-   mudstrlcat( buf, " ", MAX_STRING_LENGTH );
-   mudstrlcat( buf, remand( buf ), MAX_STRING_LENGTH );
+   strlcpy( buf, arg2, MAX_STRING_LENGTH );
+   strlcat( buf, " ", MAX_STRING_LENGTH );
+   strlcat( buf, remand( buf ), MAX_STRING_LENGTH );
    obj->name = STRALLOC( buf );
-   mudstrlcpy( buf, arg2, MAX_STRING_LENGTH );
+   strlcpy( buf, arg2, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   mudstrlcat( buf, " was dropped here.", MAX_STRING_LENGTH );
+   strlcat( buf, " was dropped here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[0] = ch->top_level;
    obj->value[1] = 0;
@@ -397,7 +397,7 @@ void do_makemissile( CHAR_DATA * ch, const char *argument )
    OBJ_INDEX_DATA *pObjIndex;
    int vnum, chemNum;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -480,7 +480,7 @@ void do_makemissile( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -590,18 +590,18 @@ void do_makemissile( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = 2;
    STRFREE( obj->name );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
-   mudstrlcat( buf, " missile ", MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcat( buf, " missile ", MAX_STRING_LENGTH );
    snprintf( buf, MAX_STRING_LENGTH, "%s", remand( buf ) );
    obj->name = STRALLOC( buf );
-   mudstrlcpy( buf, arg, MAX_STRING_LENGTH );
+   strlcpy( buf, arg, MAX_STRING_LENGTH );
    STRFREE( obj->short_descr );
    if( !str_cmp( arg, "incendiary" ) )
       obj->short_descr = STRALLOC( "an incendiary missile" );
    else
       obj->short_descr = STRALLOC( "an explosive missile" );
    STRFREE( obj->description );
-   mudstrlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
+   strlcat( buf, " was carelessly misplaced here.", MAX_STRING_LENGTH );
    obj->description = STRALLOC( buf );
    if( !IS_NPC( ch ) )
    {
@@ -1020,7 +1020,7 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
             if( msgsent == FALSE )
                snprintf( buf, MAX_STRING_LENGTH, "A missile flies in from %s, loses speed, and drops, exploding!\r\n", ftxt );
             else
-               mudstrlcpy( buf, "The missile loses speed and drops, exploding!\r\n", MAX_STRING_LENGTH );
+               strlcpy( buf, "The missile loses speed and drops, exploding!\r\n", MAX_STRING_LENGTH );
             for( zch = proom->first_person; zch; zch = zch->next_in_room )
                send_to_char( buf, zch );
 
@@ -1062,7 +1062,7 @@ void do_launch2( CHAR_DATA * ch, const char *argument )
          if( msgsent == FALSE )
             snprintf( buf, MAX_STRING_LENGTH, "A missile flies in from %s, and explodes, hitting a wall!\r\n", ftxt );
          else
-            mudstrlcpy( buf, "The missile flies into a wall, and explodes!\r\n", MAX_STRING_LENGTH );
+            strlcpy( buf, "The missile flies into a wall, and explodes!\r\n", MAX_STRING_LENGTH );
          for( zch = proom->first_person; zch; zch = zch->next_in_room )
             send_to_char( buf, zch );
          ch_printf( ch, "The missile flies %d room%s away, and hits a wall, exploding!\r\n", dist, dist > 1 ? "s" : "" );

@@ -823,7 +823,7 @@ bool load_char_obj( DESCRIPTOR_DATA * d, char *name, bool preload, bool hotboot 
        * Cheat so that bug will show line #'s -- Altrag 
        */
       fpArea = fp;
-      mudstrlcpy( strArea, strsave, MAX_INPUT_LENGTH );
+      strlcpy( strArea, strsave, MAX_INPUT_LENGTH );
       for( ;; )
       {
          char letter;
@@ -863,7 +863,7 @@ bool load_char_obj( DESCRIPTOR_DATA * d, char *name, bool preload, bool hotboot 
       }
       FCLOSE( fp );
       fpArea = NULL;
-      mudstrlcpy( strArea, "$", MAX_INPUT_LENGTH);
+      strlcpy( strArea, "$", MAX_INPUT_LENGTH);
    }
 
    if( !found )
@@ -2204,7 +2204,7 @@ void load_corpses( void )
       }
    }
    fpArea = NULL;
-   mudstrlcpy( strArea, "$", MAX_INPUT_LENGTH );
+   strlcpy( strArea, "$", MAX_INPUT_LENGTH );
    closedir( dp );
    falling = 0;
    return;
@@ -2247,20 +2247,20 @@ void save_profile( CHAR_DATA * ch )
       if( ch->pcdata->image && ch->pcdata->image[0] != '\0' )
          snprintf( image, MAX_INPUT_LENGTH, "%s", show_tilde( ch->pcdata->image ) );
       else
-         mudstrlcpy( image, "../grx/noimage.gif", MAX_INPUT_LENGTH );
+         strlcpy( image, "../grx/noimage.gif", MAX_INPUT_LENGTH );
 
       if( ch->sex == 1 )
-         mudstrlcpy( sex, "Male", MAX_INPUT_LENGTH );
+         strlcpy( sex, "Male", MAX_INPUT_LENGTH );
       else if( ch->sex == 2 )
-         mudstrlcpy( sex, "Female", MAX_INPUT_LENGTH );
+         strlcpy( sex, "Female", MAX_INPUT_LENGTH );
       else
-         mudstrlcpy( sex, "Neutral", MAX_INPUT_LENGTH );
+         strlcpy( sex, "Neutral", MAX_INPUT_LENGTH );
 
       if( ch->pcdata->email && ch->pcdata->email[0] != '\0' )
          snprintf( email, MAX_INPUT_LENGTH, "%s", ch->pcdata->email );
       else
       {
-         mudstrlcpy( email, "Not Specified.", MAX_INPUT_LENGTH );
+         strlcpy( email, "Not Specified.", MAX_INPUT_LENGTH );
          emailurl = FALSE;
       }
       if( ch->pcdata->homepage && ch->pcdata->homepage[0] != '\0' )
@@ -2269,7 +2269,7 @@ void save_profile( CHAR_DATA * ch )
       }
       else
       {
-         mudstrlcpy( homepage, "Not Specified.", MAX_INPUT_LENGTH );
+         strlcpy( homepage, "Not Specified.", MAX_INPUT_LENGTH );
          pageurl = FALSE;
       }
 
@@ -2277,19 +2277,19 @@ void save_profile( CHAR_DATA * ch )
          snprintf( aimname, MAX_INPUT_LENGTH, "%s", ch->pcdata->screenname );
       else
       {
-         mudstrlcpy( aimname, "Not Specified.", MAX_INPUT_LENGTH );
+         strlcpy( aimname, "Not Specified.", MAX_INPUT_LENGTH );
          aimurl = FALSE;
       }
 
       if( ch->description && ch->description[0] != '\0' )
          snprintf( desc, MAX_STRING_LENGTH, "%s", ch->description );
       else
-         mudstrlcpy( desc, "Not Specified.", MAX_STRING_LENGTH );
+         strlcpy( desc, "Not Specified.", MAX_STRING_LENGTH );
 
       if( ch->pcdata->bio && ch->pcdata->bio[0] != '\0' )
          snprintf( bio, MAX_STRING_LENGTH, "%s", ch->pcdata->bio );
       else
-         mudstrlcpy( bio, "None.", MAX_STRING_LENGTH );
+         strlcpy( bio, "None.", MAX_STRING_LENGTH );
 
       fprintf( fp, "<HTML>\n" );
       fprintf( fp, "<HEAD>\n" );

@@ -2518,7 +2518,7 @@ void do_auction( CHAR_DATA * ch, const char *argument )
          if( auction->bet > 0 )
             snprintf( buf, MAX_STRING_LENGTH, "%d", auction->bet );
          else
-            mudstrlcpy( buf, "zero", MAX_STRING_LENGTH );
+            strlcpy( buf, "zero", MAX_STRING_LENGTH );
          ch_printf( ch, "\r\n&W++\r\n&z||&w Item:&G %s  &wType:&G %s\r\n", obj->short_descr,
                     aoran( item_type_name( obj ) ) );
          ch_printf( ch, "&z|| &wCurrent bid on this item is &Y%s&w credits.\r\n", buf );
@@ -2720,7 +2720,7 @@ void do_auction( CHAR_DATA * ch, const char *argument )
    if( arg2[0] == '\0' )
    {
       auction->starting = 0;
-      mudstrlcpy( arg2, "0", MAX_INPUT_LENGTH );
+      strlcpy( arg2, "0", MAX_INPUT_LENGTH );
    }
 
    if( !is_number( arg2 ) )

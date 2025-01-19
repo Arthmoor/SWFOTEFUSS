@@ -264,7 +264,7 @@ void update_traffic(  )
    turbocar = ship_from_cockpit( ROOM_CORUSCANT_TURBOCAR );
    if( turbocar != NULL )
    {
-      mudstrlcpy( buf, "The turbocar doors close and it speeds out of the station.", MAX_STRING_LENGTH );
+      strlcpy( buf, "The turbocar doors close and it speeds out of the station.", MAX_STRING_LENGTH );
       echo_to_room( AT_YELLOW, get_room_index( turbocar->location ), buf );
       extract_ship( turbocar );
       turbocar->location = 0;
@@ -275,7 +275,7 @@ void update_traffic(  )
       turbocar->shipstate = SHIP_DOCKED;
       if( turbocar->starsystem )
          ship_from_starsystem( turbocar, turbocar->starsystem );
-      mudstrlcpy( buf, "A turbocar pulls into the platform and the doors slide open.", MAX_STRING_LENGTH );
+      strlcpy( buf, "A turbocar pulls into the platform and the doors slide open.", MAX_STRING_LENGTH );
       echo_to_room( AT_YELLOW, get_room_index( turbocar->location ), buf );
       snprintf( buf, MAX_STRING_LENGTH, "Welcome to %s.", station_name[turbocar_stop] );
       echo_to_ship( AT_CYAN, turbocar, buf );
@@ -1091,7 +1091,7 @@ void update_space(  )
          if( ship->starsystem )
             snprintf( buf, MAX_STRING_LENGTH, "&C%s&B system: ", ship->starsystem->name );
          else
-            mudstrlcpy( buf, "system: ", MAX_STRING_LENGTH );
+            strlcpy( buf, "system: ", MAX_STRING_LENGTH );
          echo_to_room_dnr( AT_BLUE, get_room_index( ship->pilotseat ), buf );
          snprintf( buf, MAX_STRING_LENGTH, "%.0f %.0f %.0f", ship->vx, ship->vy, ship->vz );
          echo_to_room( AT_LBLUE, get_room_index( ship->pilotseat ), buf );
@@ -1124,7 +1124,7 @@ void update_space(  )
             if( ship->starsystem )
                snprintf( buf, MAX_STRING_LENGTH, "&C%s&B system: ", ship->starsystem->name );
             else
-               mudstrlcpy( buf, "system: ", MAX_STRING_LENGTH );
+               strlcpy( buf, "system: ", MAX_STRING_LENGTH );
             echo_to_room_dnr( AT_BLUE, get_room_index( ship->coseat ), buf );
             snprintf( buf, MAX_STRING_LENGTH, "%.0f %.0f %.0f", ship->vx, ship->vy, ship->vz );
             echo_to_room( AT_LBLUE, get_room_index( ship->coseat ), buf );
@@ -6097,7 +6097,7 @@ void do_land( CHAR_DATA * ch, const char *argument )
    bool rfound = FALSE;
    int vnum;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
    argument = one_argument( argument, arg1 );
 
    if( ( ship = ship_from_pilotseat( ch->in_room->vnum ) ) == NULL )
@@ -6391,7 +6391,7 @@ void landship( SHIP_DATA * ship, char *argument )
    AREA_DATA *pArea;
    int vnum;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
    argument = one_argument( argument, arg1 );
 
    for( planet = ship->starsystem->first_planet; planet; planet = planet->next_in_system )
@@ -7672,7 +7672,7 @@ void do_target( CHAR_DATA * ch, const char *argument )
    SHIP_DATA *target;
    char buf[MAX_STRING_LENGTH];
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -7782,7 +7782,7 @@ void do_target( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -9697,7 +9697,7 @@ void do_tractorbeam( CHAR_DATA * ch, const char *argument )
    SHIP_DATA *target;
    char buf[MAX_STRING_LENGTH];
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    if( ( ship = ship_from_cockpit( ch->in_room->vnum ) ) == NULL )
    {
@@ -10917,7 +10917,7 @@ void do_sabotage( CHAR_DATA * ch, const char *argument )
    int schance;
    SHIP_DATA *ship;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -10959,7 +10959,7 @@ void do_sabotage( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -11015,7 +11015,7 @@ void do_makeshipbomb( CHAR_DATA * ch, const char *argument )
    int vnum;
    int circNum = 0, chemNum = 0;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    switch ( ch->substate )
    {
@@ -11117,7 +11117,7 @@ void do_makeshipbomb( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -11250,14 +11250,14 @@ void do_makeshipbomb( CHAR_DATA * ch, const char *argument )
    obj->level = level;
    obj->weight = weight;
    STRFREE( obj->name );
-   mudstrlcpy( buf, arg, MAX_INPUT_LENGTH );
-   mudstrlcat( buf, " bomb", MAX_INPUT_LENGTH );
+   strlcpy( buf, arg, MAX_INPUT_LENGTH );
+   strlcat( buf, " bomb", MAX_INPUT_LENGTH );
    obj->name = STRALLOC( buf );
-   mudstrlcpy( buf, arg, MAX_INPUT_LENGTH );
+   strlcpy( buf, arg, MAX_INPUT_LENGTH );
    STRFREE( obj->short_descr );
    obj->short_descr = STRALLOC( buf );
    STRFREE( obj->description );
-   mudstrlcat( buf, " was set here.", MAX_INPUT_LENGTH );
+   strlcat( buf, " was set here.", MAX_INPUT_LENGTH );
    obj->description = STRALLOC( buf );
    obj->value[0] = strength / 2;
    obj->value[1] = strength;
@@ -11287,7 +11287,7 @@ void do_shiprepair( CHAR_DATA * ch, const char *argument )
    int schance, change;
    SHIP_DATA *ship;
 
-   mudstrlcpy( arg, argument, MAX_INPUT_LENGTH );
+   strlcpy( arg, argument, MAX_INPUT_LENGTH );
 
    if( ( ch->pcdata->learned[gsn_shiprepair] ) <= 0 )
    {
@@ -11437,7 +11437,7 @@ void do_shiprepair( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         mudstrlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
+         strlcpy( arg, ( const char * )ch->dest_buf, MAX_INPUT_LENGTH );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -11690,61 +11690,61 @@ const char *ship_bit_name( int vector )
    buf[0] = '\0';
 
    if( vector & SHIP_NOHIJACK )
-      mudstrlcat( buf, " nohijack", 512 );
+      strlcat( buf, " nohijack", 512 );
    if( vector & SHIP_SHIELD_BOOST )
-      mudstrlcat( buf, " shield_boost", 512 );
+      strlcat( buf, " shield_boost", 512 );
    if( vector & SHIP_TORP_BOOST )
-      mudstrlcat( buf, " torp_boost", 512 );
+      strlcat( buf, " torp_boost", 512 );
    if( vector & SHIP_CHAFF_BOOST )
-      mudstrlcat( buf, " chaff_boost", 512 );
+      strlcat( buf, " chaff_boost", 512 );
    if( vector & SHIP_HULL_BOOST )
-      mudstrlcat( buf, " hull_boost", 512 );
+      strlcat( buf, " hull_boost", 512 );
    if( vector & SHIP_LASER_BOOST )
-      mudstrlcat( buf, " laser_boost", 512 );
+      strlcat( buf, " laser_boost", 512 );
    if( vector & SHIP_MISSILE_BOOST )
-      mudstrlcat( buf, " missile_boost", 512 );
+      strlcat( buf, " missile_boost", 512 );
    if( vector & SHIP_ROCKET_BOOST )
-      mudstrlcat( buf, " rocket_boost", 512 );
+      strlcat( buf, " rocket_boost", 512 );
    if( vector & SHIP_SIMULATOR )
-      mudstrlcat( buf, " simulator", 512 );
+      strlcat( buf, " simulator", 512 );
    if( vector & SHIP_NODESTROY )
-      mudstrlcat( buf, " nodestroy", 512 );
+      strlcat( buf, " nodestroy", 512 );
    if( vector & SHIP_NOSLICER )
-      mudstrlcat( buf, " noslicer", 512 );
+      strlcat( buf, " noslicer", 512 );
    if( vector & XSHIP_ION_LASERS )
-      mudstrlcat( buf, " ion_lasers", 512 );
+      strlcat( buf, " ion_lasers", 512 );
    if( vector & XSHIP_ION_DRIVE )
-      mudstrlcat( buf, " ion_drive", 512 );
+      strlcat( buf, " ion_drive", 512 );
    if( vector & XSHIP_ION_ION )
-      mudstrlcat( buf, " ion_ion", 512 );
+      strlcat( buf, " ion_ion", 512 );
    if( vector & XSHIP_ION_TURRET1 )
-      mudstrlcat( buf, " ion_turret1", 512 );
+      strlcat( buf, " ion_turret1", 512 );
    if( vector & XSHIP_ION_TURRET2 )
-      mudstrlcat( buf, " ion_turret2", 512 );
+      strlcat( buf, " ion_turret2", 512 );
    if( vector & XSHIP_ION_TURRET3 )
-      mudstrlcat( buf, " ion_turret3", 512 );
+      strlcat( buf, " ion_turret3", 512 );
    if( vector & XSHIP_ION_TURRET4 )
-      mudstrlcat( buf, " ion_turret4", 512 );
+      strlcat( buf, " ion_turret4", 512 );
    if( vector & XSHIP_ION_TURRET5 )
-      mudstrlcat( buf, " ion_turret5", 512 );
+      strlcat( buf, " ion_turret5", 512 );
    if( vector & XSHIP_ION_TURRET6 )
-      mudstrlcat( buf, " ion_turret6", 512 );
+      strlcat( buf, " ion_turret6", 512 );
    if( vector & XSHIP_ION_TURRET7 )
-      mudstrlcat( buf, " ion_turret7", 512 );
+      strlcat( buf, " ion_turret7", 512 );
    if( vector & XSHIP_ION_TURRET8 )
-      mudstrlcat( buf, " ion_turret8", 512 );
+      strlcat( buf, " ion_turret8", 512 );
    if( vector & XSHIP_ION_TURRET9 )
-      mudstrlcat( buf, " ion_turret9", 512 );
+      strlcat( buf, " ion_turret9", 512 );
    if( vector & XSHIP_ION_TURRET10 )
-      mudstrlcat( buf, " ion_turret10", 512 );
+      strlcat( buf, " ion_turret10", 512 );
    if( vector & SHIP_RESPAWN )
-      mudstrlcat( buf, " respawn", 512 );
+      strlcat( buf, " respawn", 512 );
    if( vector & XSHIP_ION_MISSILES )
-      mudstrlcat( buf, " ion_missiles", 512 );
+      strlcat( buf, " ion_missiles", 512 );
    if( vector & XSHIP_ION_HYPER )
-      mudstrlcat( buf, " ion_hyper", 512 );
+      strlcat( buf, " ion_hyper", 512 );
    if( vector & SHIP_CLOAK )
-      mudstrlcat( buf, " cloak", 512 );
+      strlcat( buf, " cloak", 512 );
 
    return ( buf[0] != '\0' ) ? buf + 1 : "none";
 }

@@ -57,31 +57,31 @@ char *drawlife( int min, int max )
    if( per > 100 )
       per = 100;
    if( per == 100 )
-      mudstrlcpy( buf, "&G&W[&R|||||&Y||||&G||||&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||||&Y||||&G||||&W]", MAX_STRING_LENGTH );
    else if( per >= 90 && per < 100 )
-      mudstrlcpy( buf, "&G&W[&R|||||&Y||||&G|||&G-&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||||&Y||||&G|||&G-&W]", MAX_STRING_LENGTH );
    else if( per >= 80 && per < 90 )
-      mudstrlcpy( buf, "&G&W[&R|||||&Y||||&G||&G--&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||||&Y||||&G||&G--&W]", MAX_STRING_LENGTH );
    else if( per >= 70 && per < 80 )
-      mudstrlcpy( buf, "&G&W[&R|||||&Y||||&G|&G---&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||||&Y||||&G|&G---&W]", MAX_STRING_LENGTH );
    else if( per >= 60 && per < 70 )
-      mudstrlcpy( buf, "&G&W[&R|||||&Y|||&G&G-----&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||||&Y|||&G&G-----&W]", MAX_STRING_LENGTH );
    else if( per >= 50 && per < 60 )
-      mudstrlcpy( buf, "&G&W[&R|||||&Y||&G&G------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||||&Y||&G&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 40 && per < 50 )
-      mudstrlcpy( buf, "&G&W[&R|||||&Y|&G&G-------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||||&Y|&G&G-------&W]", MAX_STRING_LENGTH );
    else if( per >= 30 && per < 40 )
-      mudstrlcpy( buf, "&G&W[&R|||||&Y&G&G--------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||||&Y&G&G--------&W]", MAX_STRING_LENGTH );
    else if( per >= 30 && per < 40 )
-      mudstrlcpy( buf, "&G&W[&R||||&Y&G&G---------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R||||&Y&G&G---------&W]", MAX_STRING_LENGTH );
    else if( per >= 20 && per < 40 )
-      mudstrlcpy( buf, "&G&W[&R|||&Y&G&G----------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||&Y&G&G----------&W]", MAX_STRING_LENGTH );
    else if( per >= 10 && per < 40 )
-      mudstrlcpy( buf, "&G&W[&R||&Y&G&G-----------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R||&Y&G&G-----------&W]", MAX_STRING_LENGTH );
    else if( per >= 0 && per < 10 )
-      mudstrlcpy( buf, "&G&W[&R&Y&G&G-------------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R&Y&G&G-------------&W]", MAX_STRING_LENGTH );
    else
-      mudstrlcpy( buf, "&G&W[&R&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R&W]", MAX_STRING_LENGTH );
    return buf;
 }
 
@@ -94,29 +94,29 @@ char *drawmove( int min, int max )
 
    per = ( ( min * 100 ) / max );
    if( per == 100 )
-      mudstrlcpy( buf, "&G&W[&R|||&Y||&G||&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||&Y||&G||&W]", MAX_STRING_LENGTH );
    else if( per >= 90 && per < 100 )
-      mudstrlcpy( buf, "&G&W[&R|||&Y||&G|&G-&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||&Y||&G|&G-&W]", MAX_STRING_LENGTH );
    else if( per >= 80 && per < 90 )
-      mudstrlcpy( buf, "&G&W[&R|||&Y||&G&G--&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||&Y||&G&G--&W]", MAX_STRING_LENGTH );
    else if( per >= 70 && per < 80 )
-      mudstrlcpy( buf, "&G&W[&R|||&Y|&G&G---&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||&Y|&G&G---&W]", MAX_STRING_LENGTH );
    else if( per >= 60 && per < 70 )
-      mudstrlcpy( buf, "&G&W[&R|||&Y&G&G----&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|||&Y&G&G----&W]", MAX_STRING_LENGTH );
    else if( per >= 50 && per < 60 )
-      mudstrlcpy( buf, "&G&W[&R||&Y&G&G-----&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R||&Y&G&G-----&W]", MAX_STRING_LENGTH );
    else if( per >= 40 && per < 50 )
-      mudstrlcpy( buf, "&G&W[&R|&Y&G&G------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|&Y&G&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 30 && per < 40 )
-      mudstrlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 20 && per < 40 )
-      mudstrlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 10 && per < 40 )
-      mudstrlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R|&G&Y&G------&W]", MAX_STRING_LENGTH );
    else if( per >= 0 && per < 10 )
-      mudstrlcpy( buf, "&G&W[&R&G&Y&G-------&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R&G&Y&G-------&W]", MAX_STRING_LENGTH );
    else
-      mudstrlcpy( buf, "&G&W[&R&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&G&W[&R&W]", MAX_STRING_LENGTH );
    return buf;
 }
 
@@ -127,29 +127,29 @@ char *drawalign( int align )
    buf[0] = '\0';
 
    if( align >= 100 )
-      mudstrlcpy( buf, "&W[&C============&W|&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C============&W|&W]", MAX_STRING_LENGTH );
    else if( align >= 90 && align < 100 )
-      mudstrlcpy( buf, "&W[&C===========&W|&C=&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C===========&W|&C=&W]", MAX_STRING_LENGTH );
    else if( align >= 60 && align < 90 )
-      mudstrlcpy( buf, "&W[&C==========&W|&C==&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C==========&W|&C==&W]", MAX_STRING_LENGTH );
    else if( align >= 40 && align < 60 )
-      mudstrlcpy( buf, "&W[&C=========&W|&C===&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C=========&W|&C===&W]", MAX_STRING_LENGTH );
    else if( align >= 20 && align < 40 )
-      mudstrlcpy( buf, "&W[&C========&W|&C====&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C========&W|&C====&W]", MAX_STRING_LENGTH );
    else if( align >= 10 && align < 20 )
-      mudstrlcpy( buf, "&W[&C=======&W|&C=====&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C=======&W|&C=====&W]", MAX_STRING_LENGTH );
    else if( align >= 0 && align < 10 )
-      mudstrlcpy( buf, "&W[&C======&W|&C======&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C======&W|&C======&W]", MAX_STRING_LENGTH );
    else if( align <= -1 && align > -20 )
-      mudstrlcpy( buf, "&W[&C=====&W|&C=======&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C=====&W|&C=======&W]", MAX_STRING_LENGTH );
    else if( align <= -20 && align > -40 )
-      mudstrlcpy( buf, "&W[&C====&W|&C========&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C====&W|&C========&W]", MAX_STRING_LENGTH );
    else if( align <= -60 && align > -80 )
-      mudstrlcpy( buf, "&W[&C===&W|&C=========&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C===&W|&C=========&W]", MAX_STRING_LENGTH );
    else if( align <= -80 && align > -100 )
-      mudstrlcpy( buf, "&W[&C==&W|&C==========&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&C==&W|&C==========&W]", MAX_STRING_LENGTH );
    else if( align <= -100 )
-      mudstrlcpy( buf, "&W[&W|&C============&W]", MAX_STRING_LENGTH );
+      strlcpy( buf, "&W[&W|&C============&W]", MAX_STRING_LENGTH );
 
    return buf;
 }
@@ -749,7 +749,7 @@ void do_equipment( CHAR_DATA * ch, const char *argument )
             if( can_see_obj( ch, obj ) )
             {
                send_to_char( format_obj_to_char( obj, ch, TRUE ), ch );
-               mudstrlcpy( buf, "", MAX_STRING_LENGTH );
+               strlcpy( buf, "", MAX_STRING_LENGTH );
                switch ( obj->item_type )
                {
                   default:
@@ -762,34 +762,34 @@ void do_equipment( CHAR_DATA * ch, const char *argument )
                         obj->value[1] = 1;
                      dam = ( short )( ( obj->value[0] * 10 ) / obj->value[1] );
                      if( dam >= 10 )
-                        mudstrlcat( buf, " (superb) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (superb) ", MAX_STRING_LENGTH );
                      else if( dam >= 7 )
-                        mudstrlcat( buf, " (good) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (good) ", MAX_STRING_LENGTH );
                      else if( dam >= 5 )
-                        mudstrlcat( buf, " (worn) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (worn) ", MAX_STRING_LENGTH );
                      else if( dam >= 3 )
-                        mudstrlcat( buf, " (poor) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (poor) ", MAX_STRING_LENGTH );
                      else if( dam >= 1 )
-                        mudstrlcat( buf, " (awful) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (awful) ", MAX_STRING_LENGTH );
                      else if( dam == 0 )
-                        mudstrlcat( buf, " (broken) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (broken) ", MAX_STRING_LENGTH );
                      send_to_char( buf, ch );
                      break;
 
                   case ITEM_WEAPON:
                      dam = INIT_WEAPON_CONDITION - obj->value[0];
                      if( dam < 2 )
-                        mudstrlcat( buf, " (superb) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (superb) ", MAX_STRING_LENGTH );
                      else if( dam < 4 )
-                        mudstrlcat( buf, " (good) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (good) ", MAX_STRING_LENGTH );
                      else if( dam < 7 )
-                        mudstrlcat( buf, " (worn) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (worn) ", MAX_STRING_LENGTH );
                      else if( dam < 10 )
-                        mudstrlcat( buf, " (poor) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (poor) ", MAX_STRING_LENGTH );
                      else if( dam < 12 )
-                        mudstrlcat( buf, " (awful) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (awful) ", MAX_STRING_LENGTH );
                      else if( dam == 12 )
-                        mudstrlcat( buf, " (broken) ", MAX_STRING_LENGTH );
+                        strlcat( buf, " (broken) ", MAX_STRING_LENGTH );
                      send_to_char( buf, ch );
                      
                      break;
@@ -821,10 +821,10 @@ void set_title( CHAR_DATA * ch, const char *title )
    if( isalpha( title[0] ) || isdigit( title[0] ) )
    {
       buf[0] = ' ';
-      mudstrlcpy( buf + 1, title, MAX_STRING_LENGTH );
+      strlcpy( buf + 1, title, MAX_STRING_LENGTH - 1 );
    }
    else
-      mudstrlcpy( buf, title, MAX_STRING_LENGTH );
+      strlcpy( buf, title, MAX_STRING_LENGTH );
 
    STRFREE( ch->pcdata->title );
    ch->pcdata->title = STRALLOC( buf );
@@ -885,7 +885,7 @@ void do_email( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
+   strlcpy( buf, argument, MAX_STRING_LENGTH );
 
    if( strlen( buf ) > 70 )
       buf[70] = '\0';
@@ -922,7 +922,7 @@ void do_screenname( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
+   strlcpy( buf, argument, MAX_STRING_LENGTH );
 
    if( strlen( buf ) > 70 )
       buf[70] = '\0';
@@ -959,7 +959,7 @@ void do_homepage( CHAR_DATA * ch, const char *argument )
    }
 
    if( strstr( argument, "://" ) )
-      mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
+      strlcpy( buf, argument, MAX_STRING_LENGTH );
    else
       snprintf( buf, MAX_STRING_LENGTH, "http://%s", argument );
    if( strlen( buf ) > 70 )
@@ -997,7 +997,7 @@ void do_wwwimage( CHAR_DATA * ch, const char *argument )
    }
 
    if( strstr( argument, "://" ) )
-      mudstrlcpy( buf, argument, MAX_STRING_LENGTH );
+      strlcpy( buf, argument, MAX_STRING_LENGTH );
    else
       snprintf( buf, MAX_STRING_LENGTH, "http://%s", argument );
    if( strlen( buf ) > 70 )

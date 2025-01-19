@@ -1901,13 +1901,13 @@ void do_war( CHAR_DATA * ch, const char *argument )
    {
       CLAN_DATA *tclan;
 
-      mudstrlcpy( buf, "", MAX_STRING_LENGTH );
+      strlcpy( buf, "", MAX_STRING_LENGTH );
       for( tclan = first_clan; tclan; tclan = tclan->next )
          if( nifty_is_name( tclan->name, clan->atwar ) && tclan != wclan )
          {
-            mudstrlcat( buf, "\r\n ", MAX_STRING_LENGTH );
-            mudstrlcat( buf, tclan->name, MAX_STRING_LENGTH );
-            mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+            strlcat( buf, "\r\n ", MAX_STRING_LENGTH );
+            strlcat( buf, tclan->name, MAX_STRING_LENGTH );
+            strlcat( buf, " ", MAX_STRING_LENGTH );
          }
 
       STRFREE( clan->atwar );
@@ -1933,10 +1933,10 @@ void do_war( CHAR_DATA * ch, const char *argument )
       return;
    }
 
-   mudstrlcpy( buf, clan->atwar, MAX_STRING_LENGTH );
-   mudstrlcat( buf, "\r\n ", MAX_STRING_LENGTH );
-   mudstrlcat( buf, wclan->name, MAX_STRING_LENGTH );
-   mudstrlcat( buf, " ", MAX_STRING_LENGTH );
+   strlcpy( buf, clan->atwar, MAX_STRING_LENGTH );
+   strlcat( buf, "\r\n ", MAX_STRING_LENGTH );
+   strlcat( buf, wclan->name, MAX_STRING_LENGTH );
+   strlcat( buf, " ", MAX_STRING_LENGTH );
 
    STRFREE( clan->atwar );
    clan->atwar = STRALLOC( buf );
@@ -1958,7 +1958,7 @@ void do_checkwar( CHAR_DATA * ch, const char *argument )
    char buf4[MAX_STRING_LENGTH*2];
 
    snprintf( buf, MAX_STRING_LENGTH, "| %-3.3s |", "" );
-   mudstrlcpy( buf2, "+-----+", MAX_STRING_LENGTH );
+   strlcpy( buf2, "+-----+", MAX_STRING_LENGTH );
 
    clancnt = 0;
    for( clan = first_clan; clan; clan = clan->next )
@@ -2000,7 +2000,7 @@ void do_checkwar( CHAR_DATA * ch, const char *argument )
 
    buf3[0] = '\0';
    for( i = 0; i <= ( ( clancnt * 6 ) - 24 ); i++ )
-      mudstrlcat( buf3, " ", MAX_STRING_LENGTH );
+      strlcat( buf3, " ", MAX_STRING_LENGTH );
 
    for( clan = first_clan; clan; clan = clan->next )
    {
@@ -2735,7 +2735,7 @@ void do_members( CHAR_DATA * ch, const char *argument )
       else if( !str_cmp( buf, clan->number2 ) )
          snprintf( prefix, MAX_STRING_LENGTH, "%s[&W3%s]&W", color, color );
       else
-         mudstrlcpy( prefix, "   &W", MAX_STRING_LENGTH );
+         strlcpy( prefix, "   &W", MAX_STRING_LENGTH );
 
       ch_printf( ch, "%s%-20s", prefix, buf );
       ++i;

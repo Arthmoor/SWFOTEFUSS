@@ -152,7 +152,7 @@ void do_showbugs( CHAR_DATA * ch, const char *argument )
                else if( ( ship = ship_from_room( victim->in_room->vnum ) ) != NULL )
                   snprintf( buf2, MAX_STRING_LENGTH, "%s", ship->name );
                else
-                  mudstrlcpy( buf2, "Unknown", MAX_STRING_LENGTH );
+                  strlcpy( buf2, "Unknown", MAX_STRING_LENGTH );
                ch_printf( ch, "%-21.21s %-18.18s %s\r\n", PERS( victim, ch ), buf2, victim->in_room->name );
                break;
             }
