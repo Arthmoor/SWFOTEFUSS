@@ -422,7 +422,7 @@ void fskill_identify( CHAR_DATA * ch, const char *argument )
    CHAR_DATA *victim;
    int force_calc;
    if( argument[0] == '\0' )
-      argument = str_dup( (const char*)ch->dest_buf );
+      argument = strdup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "sense", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -443,7 +443,7 @@ void fskill_identify( CHAR_DATA * ch, const char *argument )
    {
       default:
          send_to_char( force_parse_string( ch, victim, fskill->ch_effect[0] ), ch );
-         ch->dest_buf = str_dup( argument );
+         ch->dest_buf = strdup( argument );
          add_timer( ch, TIMER_DO_FUN, 5, fskill_identify, 1 );
          return;
       case 1:
@@ -719,7 +719,7 @@ void fskill_protect( CHAR_DATA * ch, const char *argument )
    CHAR_DATA *victim;
    AFFECT_DATA af;
    if( argument[0] == '\0' )
-      argument = str_dup( (const char*)ch->dest_buf );
+      argument = strdup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "protect", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -747,7 +747,7 @@ void fskill_protect( CHAR_DATA * ch, const char *argument )
          send_to_char( force_parse_string( ch, victim, fskill->ch_effect[0] ), ch );
          send_to_char( force_parse_string( ch, victim, fskill->victim_effect[0] ), victim );
          force_send_to_room( ch, victim, force_parse_string( ch, victim, fskill->room_effect[0] ) );
-         ch->dest_buf = str_dup( argument );
+         ch->dest_buf = strdup( argument );
          add_timer( ch, TIMER_DO_FUN, 5, fskill_protect, 1 );
          return;
       case 1:
@@ -794,7 +794,7 @@ void fskill_fshield( CHAR_DATA * ch, const char *argument )
    CHAR_DATA *victim;
    AFFECT_DATA af;
    if( argument[0] == '\0' )
-      argument = str_dup( (const char*)ch->dest_buf );
+      argument = strdup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "fshield", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -809,7 +809,7 @@ void fskill_fshield( CHAR_DATA * ch, const char *argument )
          }
          send_to_char( force_parse_string( ch, NULL, fskill->ch_effect[0] ), ch );
          force_send_to_room( ch, NULL, force_parse_string( ch, NULL, fskill->room_effect[0] ) );
-         ch->dest_buf = str_dup( argument );
+         ch->dest_buf = strdup( argument );
          add_timer( ch, TIMER_DO_FUN, 5, fskill_fshield, 1 );
          return;
       case 1:
@@ -1080,7 +1080,7 @@ void fskill_squeeze( CHAR_DATA * ch, const char *argument )
    CHAR_DATA *victim;
    AFFECT_DATA af;
    if( argument[0] == '\0' )
-      argument = str_dup( (const char*)ch->dest_buf );
+      argument = strdup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "choke", ch, FORCE_NONCOMBAT );
    if( fskill == NULL )
       return;
@@ -1107,7 +1107,7 @@ void fskill_squeeze( CHAR_DATA * ch, const char *argument )
          send_to_char( force_parse_string( ch, victim, fskill->ch_effect[0] ), ch );
          send_to_char( force_parse_string( ch, victim, fskill->victim_effect[0] ), victim );
          force_send_to_room( ch, victim, force_parse_string( ch, victim, fskill->room_effect[0] ) );
-         ch->dest_buf = str_dup( argument );
+         ch->dest_buf = strdup( argument );
          add_timer( ch, TIMER_DO_FUN, 2, fskill_squeeze, 1 );
          return;
       case 1:
@@ -1156,7 +1156,7 @@ void fskill_force_lightning( CHAR_DATA * ch, const char *argument )
    OBJ_DATA *wield;
    CHAR_DATA *victim;
    if( argument[0] == '\0' )
-      argument = str_dup( (const char*)ch->dest_buf );
+      argument = strdup( (const char*)ch->dest_buf );
    fskill = force_test_skill_use( "lightning", ch, FORCE_COMBAT );
    if( fskill == NULL )
       return;
@@ -1183,7 +1183,7 @@ void fskill_force_lightning( CHAR_DATA * ch, const char *argument )
          send_to_char( force_parse_string( ch, victim, fskill->ch_effect[0] ), ch );
          send_to_char( force_parse_string( ch, victim, fskill->victim_effect[0] ), victim );
          force_send_to_room( ch, victim, force_parse_string( ch, victim, fskill->room_effect[0] ) );
-         ch->dest_buf = str_dup( argument );
+         ch->dest_buf = strdup( argument );
          add_timer( ch, TIMER_DO_FUN, 2, fskill_force_lightning, 1 );
          return;
       case 1:
@@ -1238,7 +1238,7 @@ void fskill_fdisguise( CHAR_DATA * ch, const char *argument )
    }
 
    if( argument[0] == '\0' )
-      argument = str_dup( (const char*)ch->dest_buf );
+      argument = strdup( (const char*)ch->dest_buf );
 
    if( !strcmp( argument, "clear" ) )
    {
@@ -1465,7 +1465,7 @@ void fskill_makelightsaber( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, fskill_makelightsaber, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -1794,7 +1794,7 @@ void fskill_makedualsaber( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, fskill_makedualsaber, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );

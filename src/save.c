@@ -874,18 +874,18 @@ bool load_char_obj( DESCRIPTOR_DATA * d, char *name, bool preload, bool hotboot 
       ch->editor = NULL;
       ch->pcdata->clan_name = STRALLOC( "" );
       ch->pcdata->clan = NULL;
-      ch->pcdata->pwd = str_dup( "" );
-      ch->pcdata->email = str_dup( "" );
-      ch->pcdata->bamfin = str_dup( "" );
-      ch->pcdata->bamfout = str_dup( "" );
-      ch->rank = str_dup( "" );
-      ch->pcdata->shipname = str_dup( "" );
-      ch->pcdata->bestowments = str_dup( "" );
+      ch->pcdata->pwd = strdup( "" );
+      ch->pcdata->email = strdup( "" );
+      ch->pcdata->bamfin = strdup( "" );
+      ch->pcdata->bamfout = strdup( "" );
+      ch->rank = strdup( "" );
+      ch->pcdata->shipname = strdup( "" );
+      ch->pcdata->bestowments = strdup( "" );
       ch->pcdata->title = STRALLOC( "" );
       ch->pcdata->disguise = STRALLOC( "" );
-      ch->pcdata->homepage = str_dup( "" );
-      ch->pcdata->screenname = str_dup( "" );
-      ch->pcdata->image = str_dup( "" );
+      ch->pcdata->homepage = strdup( "" );
+      ch->pcdata->screenname = strdup( "" );
+      ch->pcdata->image = strdup( "" );
       ch->pcdata->bio = STRALLOC( "" );
       ch->pcdata->authed_by = STRALLOC( "" );
       ch->pcdata->prompt = STRALLOC( "" );
@@ -1162,7 +1162,7 @@ void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot )
                s1 = fread_word( fp );
                s2 = fread_number( fp );
                CREATE( contract, CONTRACT_DATA, 1 );
-               contract->target = str_dup( s1 );
+               contract->target = strdup( s1 );
                contract->amount = s2;
                LINK( contract, ch->first_contract, ch->last_contract, next_in_contract, prev_in_contract );
                fMatch = TRUE;
@@ -1568,31 +1568,31 @@ void fread_char( CHAR_DATA * ch, FILE * fp, bool preload, bool hotboot )
                if( !ch->description )
                   ch->description = STRALLOC( "" );
                if( !ch->pcdata->pwd )
-                  ch->pcdata->pwd = str_dup( "" );
+                  ch->pcdata->pwd = strdup( "" );
                if( !ch->pcdata->shipname )
-                  ch->pcdata->shipname = str_dup( "" );
+                  ch->pcdata->shipname = strdup( "" );
                if( !ch->pcdata->email )
-                  ch->pcdata->email = str_dup( "" );
+                  ch->pcdata->email = strdup( "" );
                if( !ch->pcdata->bamfin )
-                  ch->pcdata->bamfin = str_dup( "" );
+                  ch->pcdata->bamfin = strdup( "" );
                if( !ch->pcdata->bamfout )
-                  ch->pcdata->bamfout = str_dup( "" );
+                  ch->pcdata->bamfout = strdup( "" );
                if( !ch->pcdata->bio )
                   ch->pcdata->bio = STRALLOC( "" );
                if( !ch->rank )
-                  ch->rank = str_dup( "" );
+                  ch->rank = strdup( "" );
                if( !ch->pcdata->bestowments )
-                  ch->pcdata->bestowments = str_dup( "" );
+                  ch->pcdata->bestowments = strdup( "" );
                if( !ch->pcdata->title )
                   ch->pcdata->title = STRALLOC( "" );
                if( !ch->pcdata->disguise )
                   ch->pcdata->disguise = STRALLOC( "" );
                if( !ch->pcdata->homepage )
-                  ch->pcdata->homepage = str_dup( "" );
+                  ch->pcdata->homepage = strdup( "" );
                if( !ch->pcdata->screenname )
-                  ch->pcdata->screenname = str_dup( "" );
+                  ch->pcdata->screenname = strdup( "" );
                if( !ch->pcdata->image )
-                  ch->pcdata->image = str_dup( "" );
+                  ch->pcdata->image = strdup( "" );
                if( !ch->pcdata->authed_by )
                   ch->pcdata->authed_by = STRALLOC( "" );
                if( !ch->pcdata->prompt )

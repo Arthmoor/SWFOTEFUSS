@@ -2346,7 +2346,7 @@ void do_makestarsystem( CHAR_DATA * ch, const char *argument )
 
    argument = one_argument( argument, arg );
    snprintf( filename, 256, "%s.system", strlower( arg ) );
-   starsystem->filename = str_dup( filename );
+   starsystem->filename = strdup( filename );
    save_starsystem( starsystem );
    write_starsystem_list(  );
 }
@@ -4148,7 +4148,7 @@ void do_setship( CHAR_DATA * ch, const char *argument )
          send_to_char( "Old ship file deleted.\r\n", ch );
 
       DISPOSE( ship->filename );
-      ship->filename = str_dup( argument );
+      ship->filename = strdup( argument );
       send_to_char( "Done.\r\n", ch );
       save_ship( ship );
       write_ship_list(  );
@@ -4483,7 +4483,7 @@ void do_makeship( CHAR_DATA * ch, const char *argument )
    ship->target10 = NULL;
 
 
-   ship->filename = str_dup( arg );
+   ship->filename = strdup( arg );
    save_ship( ship );
    write_ship_list(  );
 
@@ -4544,7 +4544,7 @@ void do_copyship( CHAR_DATA * ch, const char *argument )
    ship->target1 = NULL;
    ship->target2 = NULL;
 
-   ship->filename = str_dup( arg2 );
+   ship->filename = strdup( arg2 );
    save_ship( ship );
    write_ship_list(  );
 }
@@ -7772,7 +7772,7 @@ void do_target( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GTracking target.\r\n", ch );
             act( AT_PLAIN, "$n makes some adjustments on the targeting computer.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 1, do_target, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou fail to work the controls properly.\r\n", ch );
@@ -10949,7 +10949,7 @@ void do_sabotage( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin yanking at wires.\r\n", ch );
             act( AT_PLAIN, "$n starts ripping into the ships wires.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 5, do_sabotage, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou fail to locate the proper cords to sever!\r\n", ch );
@@ -11107,7 +11107,7 @@ void do_makeshipbomb( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a drink container and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, do_makeshipbomb, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -11428,7 +11428,7 @@ void do_shiprepair( CHAR_DATA * ch, const char *argument )
                add_timer( ch, TIMER_DO_FUN, 15, do_shiprepair, 1 );
             else
                add_timer( ch, TIMER_DO_FUN, 5, do_shiprepair, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou fail to locate the source of the problem.\r\n", ch );

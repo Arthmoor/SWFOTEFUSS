@@ -208,7 +208,7 @@ OBJ_DATA *make_corpse( CHAR_DATA *ch, char *killer )
    corpse->description = STRALLOC( buf );
 
    DISPOSE( corpse->killer );
-   corpse->killer = str_dup( killer );
+   corpse->killer = strdup( killer );
 
    for( obj = ch->first_carrying; obj; obj = obj_next )
    {

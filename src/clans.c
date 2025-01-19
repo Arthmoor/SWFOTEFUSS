@@ -693,7 +693,7 @@ void do_outcast( CHAR_DATA * ch, const char *argument )
    victim->pcdata->clan_name = STRALLOC( "" );
 
    DISPOSE( victim->pcdata->bestowments );
-   victim->pcdata->bestowments = str_dup( "" );
+   victim->pcdata->bestowments = strdup( "" );
 
    save_char_obj( victim );   /* clan gets saved when pfile is saved */
    return;
@@ -961,7 +961,7 @@ void do_setclan( CHAR_DATA * ch, const char *argument )
          send_to_char( "Old clan file deleted.\r\n", ch );
 
       DISPOSE( clan->filename );
-      clan->filename = str_dup( argument );
+      clan->filename = strdup( argument );
       send_to_char( "Done.\r\n", ch );
       save_clan( clan );
       write_clan_list(  );
@@ -971,7 +971,7 @@ void do_setclan( CHAR_DATA * ch, const char *argument )
    if( !strcmp( arg2, "shortname" ) )
    {
       STRFREE( clan->shortname );
-      clan->shortname = str_dup( argument );
+      clan->shortname = strdup( argument );
       send_to_char( "Done.\r\n", ch );
       save_clan( clan );
       write_clan_list(  );
@@ -1584,7 +1584,7 @@ void do_resign( CHAR_DATA * ch, const char *argument )
    ch->experience[POLITICIAN_ABILITY] -= lose_exp;
 
    DISPOSE( ch->pcdata->bestowments );
-   ch->pcdata->bestowments = str_dup( "" );
+   ch->pcdata->bestowments = strdup( "" );
 
    if( ch->pcdata->salary )
       ch->pcdata->salary = 0;
@@ -2071,7 +2071,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    }
 
    if( !victim->pcdata->bestowments )
-      victim->pcdata->bestowments = str_dup( "" );
+      victim->pcdata->bestowments = strdup( "" );
 
    if( arg2[0] == '\0' || !str_cmp( arg2, "list" ) )
    {
@@ -2091,7 +2091,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    if( !str_cmp( arg2, "none" ) )
    {
       DISPOSE( victim->pcdata->bestowments );
-      victim->pcdata->bestowments = str_dup( "" );
+      victim->pcdata->bestowments = strdup( "" );
       ch_printf( ch, "Bestowments removed from %s.\r\n", victim->name );
       ch_printf( victim, "%s has removed your bestowed clan abilities.\r\n", ch->name );
       return;
@@ -2100,7 +2100,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    {
       snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg2 );
       DISPOSE( victim->pcdata->bestowments );
-      victim->pcdata->bestowments = str_dup( buf );
+      victim->pcdata->bestowments = strdup( buf );
       ch_printf( victim, "%s has given you permission to fly clan ships.\r\n", ch->name );
       send_to_char( "Ok, they now have the ability to fly clan ships.\r\n", ch );
    }
@@ -2108,7 +2108,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    {
       snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg2 );
       DISPOSE( victim->pcdata->bestowments );
-      victim->pcdata->bestowments = str_dup( buf );
+      victim->pcdata->bestowments = strdup( buf );
       ch_printf( victim, "%s has given you permission to withdraw clan funds.\r\n", ch->name );
       send_to_char( "Ok, they now have the ablitity to withdraw clan funds.\r\n", ch );
    }
@@ -2116,7 +2116,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    {
       snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg2 );
       DISPOSE( victim->pcdata->bestowments );
-      victim->pcdata->bestowments = str_dup( buf );
+      victim->pcdata->bestowments = strdup( buf );
       ch_printf( victim, "%s has given you permission to buy clan ships.\r\n", ch->name );
       send_to_char( "Ok, they now have the ablitity to use clanbuyship.\r\n", ch );
    }
@@ -2124,7 +2124,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    {
       snprintf( buf, MAX_STRING_LENGTH, "%s %s", victim->pcdata->bestowments, arg2 );
       DISPOSE( victim->pcdata->bestowments );
-      victim->pcdata->bestowments = str_dup( buf );
+      victim->pcdata->bestowments = strdup( buf );
       ch_printf( victim, "%s has given you permission to induct new members.\r\n", ch->name );
       send_to_char( "Ok, they now have the ablitity to induct new members.\r\n", ch );
    }
@@ -2132,7 +2132,7 @@ void do_empower( CHAR_DATA * ch, const char *argument )
    {
       snprintf( buf, MAX_STRING_LENGTH, "%s outlaw unoutlaw", victim->pcdata->bestowments );
       DISPOSE( victim->pcdata->bestowments );
-      victim->pcdata->bestowments = str_dup( buf );
+      victim->pcdata->bestowments = strdup( buf );
       ch_printf( victim, "%s has given you permission to outlaw and unoutlaw players.\r\n", ch->name );
       send_to_char( "Ok, they now have the ability to outlaw and unoutlaw players.\r\n", ch );
    }

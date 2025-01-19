@@ -870,7 +870,7 @@ void do_email( CHAR_DATA * ch, const char *argument )
    if( argument[0] == '\0' )
    {
       if( !ch->pcdata->email )
-         ch->pcdata->email = str_dup( "" );
+         ch->pcdata->email = strdup( "" );
       ch_printf( ch, "Your email address is: %s\r\n", show_tilde( ch->pcdata->email ) );
       return;
    }
@@ -879,7 +879,7 @@ void do_email( CHAR_DATA * ch, const char *argument )
    {
       if( ch->pcdata->email )
          DISPOSE( ch->pcdata->email );
-      ch->pcdata->email = str_dup( "" );
+      ch->pcdata->email = strdup( "" );
 
       send_to_char( "Email address cleared.\r\n", ch );
       return;
@@ -893,7 +893,7 @@ void do_email( CHAR_DATA * ch, const char *argument )
    hide_tilde( buf );
    if( ch->pcdata->email )
       DISPOSE( ch->pcdata->email );
-   ch->pcdata->email = str_dup( buf );
+   ch->pcdata->email = strdup( buf );
    send_to_char( "Email address set.\r\n", ch );
 }
 
@@ -907,7 +907,7 @@ void do_screenname( CHAR_DATA * ch, const char *argument )
    if( argument[0] == '\0' )
    {
       if( !ch->pcdata->screenname )
-         ch->pcdata->screenname = str_dup( "" );
+         ch->pcdata->screenname = strdup( "" );
       ch_printf( ch, "Your AIM screenname is: %s\r\n", show_tilde( ch->pcdata->screenname ) );
       return;
    }
@@ -916,7 +916,7 @@ void do_screenname( CHAR_DATA * ch, const char *argument )
    {
       if( ch->pcdata->screenname )
          DISPOSE( ch->pcdata->screenname );
-      ch->pcdata->screenname = str_dup( "" );
+      ch->pcdata->screenname = strdup( "" );
 
       send_to_char( "AIM Screnname cleared.\r\n", ch );
       return;
@@ -930,7 +930,7 @@ void do_screenname( CHAR_DATA * ch, const char *argument )
    hide_tilde( buf );
    if( ch->pcdata->screenname )
       DISPOSE( ch->pcdata->screenname );
-   ch->pcdata->screenname = str_dup( buf );
+   ch->pcdata->screenname = strdup( buf );
    send_to_char( "AIM Screnname set.\r\n", ch );
 }
 
@@ -944,7 +944,7 @@ void do_homepage( CHAR_DATA * ch, const char *argument )
    if( argument[0] == '\0' )
    {
       if( !ch->pcdata->homepage )
-         ch->pcdata->homepage = str_dup( "" );
+         ch->pcdata->homepage = strdup( "" );
       ch_printf( ch, "Your homepage is: %s\r\n", show_tilde( ch->pcdata->homepage ) );
       return;
    }
@@ -953,7 +953,7 @@ void do_homepage( CHAR_DATA * ch, const char *argument )
    {
       if( ch->pcdata->homepage )
          DISPOSE( ch->pcdata->homepage );
-      ch->pcdata->homepage = str_dup( "" );
+      ch->pcdata->homepage = strdup( "" );
       send_to_char( "Homepage cleared.\r\n", ch );
       return;
    }
@@ -968,7 +968,7 @@ void do_homepage( CHAR_DATA * ch, const char *argument )
    hide_tilde( buf );
    if( ch->pcdata->homepage )
       DISPOSE( ch->pcdata->homepage );
-   ch->pcdata->homepage = str_dup( buf );
+   ch->pcdata->homepage = strdup( buf );
    send_to_char( "Homepage set.\r\n", ch );
 }
 
@@ -982,7 +982,7 @@ void do_wwwimage( CHAR_DATA * ch, const char *argument )
    if( argument[0] == '\0' )
    {
       if( !ch->pcdata->image )
-         ch->pcdata->image = str_dup( "" );
+         ch->pcdata->image = strdup( "" );
       ch_printf( ch, "Your www image is: %s\r\n", show_tilde( ch->pcdata->image ) );
       return;
    }
@@ -991,7 +991,7 @@ void do_wwwimage( CHAR_DATA * ch, const char *argument )
    {
       if( ch->pcdata->image )
          DISPOSE( ch->pcdata->image );
-      ch->pcdata->image = str_dup( "" );
+      ch->pcdata->image = strdup( "" );
       send_to_char( "WWW Image cleared.\r\n", ch );
       return;
    }
@@ -1006,7 +1006,7 @@ void do_wwwimage( CHAR_DATA * ch, const char *argument )
    hide_tilde( buf );
    if( ch->pcdata->image )
       DISPOSE( ch->pcdata->image );
-   ch->pcdata->image = str_dup( buf );
+   ch->pcdata->image = strdup( buf );
    send_to_char( "WWW Image set.\r\n", ch );
 }
 

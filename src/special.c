@@ -103,7 +103,7 @@ void load_specfuns( void )
             break;
 
          CREATE( specfun, SPEC_LIST, 1 );
-         specfun->name = str_dup( word );
+         specfun->name = strdup( word );
          LINK( specfun, first_specfun, last_specfun, next, prev );
       }
       FCLOSE( fp );

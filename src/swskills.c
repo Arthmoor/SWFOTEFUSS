@@ -132,7 +132,7 @@ void do_makeblade( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, do_makeblade, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -363,7 +363,7 @@ void do_makeblaster( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, do_makeblaster, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -656,7 +656,7 @@ void do_makelightsaber( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, do_makelightsaber, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -896,7 +896,7 @@ void do_makespice( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the long process of refining spice into a drug.\r\n", ch );
             act( AT_PLAIN, "$n begins working on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 10, do_makespice, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out what to do with the stuff.\r\n", ch );
@@ -1048,7 +1048,7 @@ void do_makegrenade( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a drink container and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, do_makegrenade, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -1260,7 +1260,7 @@ void do_makelandmine( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a drink container and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, do_makelandmine, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -1471,7 +1471,7 @@ void do_makelight( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the long process of making a light.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 10, do_makelight, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -1696,8 +1696,8 @@ void do_makejewelry( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the long process of creating some jewelry.\r\n", ch );
             act( AT_PLAIN, "$n takes $s toolkit and some metal and begins to work.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 15, do_makejewelry, 1 );
-            ch->dest_buf = str_dup( arg );
-            ch->dest_buf_2 = str_dup( arg2 );
+            ch->dest_buf = strdup( arg );
+            ch->dest_buf_2 = strdup( arg2 );
             return;
          }
          send_to_char( "&RYou can't figure out what to do.\r\n", ch );
@@ -1948,8 +1948,8 @@ void do_makearmor( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the long process of creating some armor.\r\n", ch );
             act( AT_PLAIN, "$n takes $s sewing kit and some material and begins to work.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 15, do_makearmor, 1 );
-            ch->dest_buf = str_dup( arg );
-            ch->dest_buf_2 = str_dup( arg2 );
+            ch->dest_buf = strdup( arg );
+            ch->dest_buf_2 = strdup( arg2 );
             return;
          }
          send_to_char( "&RYou can't figure out what to do.\r\n", ch );
@@ -2125,8 +2125,8 @@ void do_makecomlink( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the long process of making a comlink.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 10, do_makecomlink, 1 );
-            ch->dest_buf = str_dup( arg );
-            ch->dest_buf_2 = str_dup( arg2 );
+            ch->dest_buf = strdup( arg );
+            ch->dest_buf_2 = strdup( arg2 );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -2335,7 +2335,7 @@ void do_makeshield( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the long process of crafting an energy shield.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 20, do_makeshield, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -2550,8 +2550,8 @@ void do_makecontainer( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the long process of creating a bag.\r\n", ch );
             act( AT_PLAIN, "$n takes $s sewing kit and some material and begins to work.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 10, do_makecontainer, 1 );
-            ch->dest_buf = str_dup( arg );
-            ch->dest_buf_2 = str_dup( arg2 );
+            ch->dest_buf = strdup( arg );
+            ch->dest_buf_2 = strdup( arg2 );
             return;
          }
          send_to_char( "&RYou can't figure out what to do.\r\n", ch );
@@ -2695,7 +2695,7 @@ void do_reinforcements( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin making the call for reinforcements.\r\n", ch );
             act( AT_PLAIN, "$n begins issuing orders int $s comlink.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 1, do_reinforcements, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou call for reinforcements but nobody answers.\r\n", ch );
@@ -2773,7 +2773,7 @@ void do_postguard( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin making the call for reinforcements.\r\n", ch );
             act( AT_PLAIN, "$n begins issuing orders int $s comlink.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 1, do_postguard, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou call for a guard but nobody answers.\r\n", ch );
@@ -4115,7 +4115,7 @@ void do_special_forces( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin making the call for reinforcements.\r\n", ch );
             act( AT_PLAIN, "$n begins issuing orders int $s comlink.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 1, do_special_forces, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou call for reinforcements but nobody answers.\r\n", ch );
@@ -4193,7 +4193,7 @@ void do_elite_guard( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin making the call for reinforcements.\r\n", ch );
             act( AT_PLAIN, "$n begins issuing orders into $s comlink.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 1, do_elite_guard, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou call for a guard but nobody answers.\r\n", ch );
@@ -4271,7 +4271,7 @@ void do_add_patrol( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin making the call for reinforcements.\r\n", ch );
             act( AT_PLAIN, "$n begins issuing orders int $s comlink.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 1, do_add_patrol, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou call for a guard but nobody answers.\r\n", ch );
@@ -5072,7 +5072,7 @@ void do_repair( CHAR_DATA * ch, const char *argument )
          send_to_char( "&W&GYou begin to repair your equipment...&W\r\n", ch );
          act( AT_PLAIN, "$n takes $s tools and begins to repair something.", ch, NULL, argument, TO_ROOM );
          add_timer( ch, TIMER_DO_FUN, 5, do_repair, 1 );
-         ch->dest_buf = str_dup( arg );
+         ch->dest_buf = strdup( arg );
          return;
 
       case 1:
@@ -5257,7 +5257,7 @@ void do_makeduallightsaber( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 25, do_makeduallightsaber, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -5530,7 +5530,7 @@ void do_makepike( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a small oven and begins to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 30, do_makepike, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );
@@ -5712,7 +5712,7 @@ void do_makebug( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the process of making a bug.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 15, do_makebug, 1 );
-            ch->dest_buf = str_dup( "blah" );
+            ch->dest_buf = strdup( "blah" );
             return;
          }
          send_to_char( "&RYou're not quite sure how to do it...\r\n", ch );
@@ -5722,7 +5722,7 @@ void do_makebug( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         ch->dest_buf = str_dup( "blah" );
+         ch->dest_buf = strdup( "blah" );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -5866,7 +5866,7 @@ void do_makebeacon( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the process of making a beacon.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 15, do_makebeacon, 1 );
-            ch->dest_buf = str_dup( "blah" );
+            ch->dest_buf = strdup( "blah" );
             return;
          }
          send_to_char( "&RYou're not quite sure how to do it...\r\n", ch );
@@ -5876,7 +5876,7 @@ void do_makebeacon( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         ch->dest_buf = str_dup( "blah" );
+         ch->dest_buf = strdup( "blah" );
          DISPOSE( ch->dest_buf );
          break;
 
@@ -6145,7 +6145,7 @@ void do_checkbeacons( CHAR_DATA * ch, const char *argument )
             send_to_char( "&w&GYou take a scanner and begin to check over the ship.\r\n", ch );
             act( AT_PLAIN, "$n punches a few instructions into a scanner.", ch, NULL, NULL, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 6, do_checkbeacons, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "You punch random buttons on the scanner, unsure of what you are doing.\r\n", ch );
@@ -6225,7 +6225,7 @@ void do_nullifybeacons( CHAR_DATA * ch, const char *argument )
             send_to_char( "&w&GYou place a small device on the ship, and input a few commands.\r\n", ch );
             act( AT_PLAIN, "$n places a device on a ship, and inputs a few commands.", ch, NULL, NULL, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 1, do_nullifybeacons, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "You look over the ship, trying to find the correct spot to place the nullifier.\r\n", ch );
@@ -6326,7 +6326,7 @@ void do_makebinders( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the process of making a pair of binders.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work on something.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 15, do_makebinders, 1 );
-            ch->dest_buf = str_dup( "blah" );
+            ch->dest_buf = strdup( "blah" );
             return;
          }
          send_to_char( "&RYou're not quite sure how to do it...\r\n", ch );
@@ -6336,7 +6336,7 @@ void do_makebinders( CHAR_DATA * ch, const char *argument )
       case 1:
          if( !ch->dest_buf )
             return;
-         ch->dest_buf = str_dup( "blah" );
+         ch->dest_buf = strdup( "blah" );
          DISPOSE( ch->dest_buf );
          break;
 

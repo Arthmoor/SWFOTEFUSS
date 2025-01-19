@@ -125,7 +125,7 @@ void do_makemodule( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou begin the long process of creating a module.\r\n", ch );
             act( AT_PLAIN, "$n takes $s tools and begins to work.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 10, do_makemodule, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out what to do.\r\n", ch );
@@ -448,7 +448,7 @@ void do_removemodule( CHAR_DATA * ch, const char *argument )
          if( number_percent(  ) < schance )
          {
             strlcpy( arg, argument, MAX_INPUT_LENGTH );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             send_to_char( "&GYou begin the long process of removing a module.\r\n", ch );
             strlcpy( buf, "$n takes out $s toolkit and begins to work.\r\n", MAX_INPUT_LENGTH );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
@@ -591,7 +591,7 @@ void do_shipmaintenance( CHAR_DATA * ch, const char *argument )
             send_to_char( "&GYou start performing basic maintenance on your ship...\r\n", ch );
             act( AT_PLAIN, "$n begins some basic ship maintenance.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 15, do_shipmaintenance, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou fail to perform even the most basic of ship maintenance skills.\r\n", ch );
@@ -726,7 +726,7 @@ void do_scanbugs( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes a scanner and begins to scan $N.", ch, NULL, victim, TO_NOTVICT );
             act( AT_PLAIN, "$n takes a scanner and begins to scan you for bugs.", ch, NULL, victim, TO_VICT );
             add_timer( ch, TIMER_DO_FUN, 10, do_scanbugs, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "You punch random buttons on the scanner, unsure of what you are doing.\r\n", ch );
@@ -832,7 +832,7 @@ void do_removebug( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s toolkit and begins removing a bug from $N.", ch, NULL, victim, TO_NOTVICT );
             act( AT_PLAIN, "$n takes $s toolkit and begins removing a bug from you.", ch, NULL, victim, TO_VICT );
             add_timer( ch, TIMER_DO_FUN, 1, do_removebug, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "You look curiously at the bug, unsure of how to remove it.\r\n", ch );

@@ -1197,7 +1197,7 @@ void do_cast( CHAR_DATA * ch, const char *argument )
          act( AT_MAGIC, "You begin to feel the force in yourself and those around you...", ch, NULL, NULL, TO_CHAR );
          act( AT_MAGIC, "$n reaches out with the force to those around...", ch, NULL, NULL, TO_ROOM );
          snprintf( staticbuf, MAX_STRING_LENGTH, "%s %s", arg2, target_name );
-         ch->dest_buf = str_dup( staticbuf );
+         ch->dest_buf = strdup( staticbuf );
          ch->tempnum = sn;
          return;
       case SUB_TIMER_DO_ABORT:

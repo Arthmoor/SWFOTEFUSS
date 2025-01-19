@@ -242,7 +242,7 @@ void do_clone( CHAR_DATA * ch, const char *argument )
       {
          strlcpy( bestowments, ch->pcdata->bestowments, MAX_STRING_LENGTH );
          DISPOSE( ch->pcdata->bestowments );
-         ch->pcdata->bestowments = str_dup( "" );
+         ch->pcdata->bestowments = strdup( "" );
       }
       save_clone( ch );
       STRFREE( ch->pcdata->clan_name );
@@ -250,7 +250,7 @@ void do_clone( CHAR_DATA * ch, const char *argument )
       if( bestowments[0] != '\0' )
       {
          DISPOSE( ch->pcdata->bestowments );
-         ch->pcdata->bestowments = str_dup( bestowments );
+         ch->pcdata->bestowments = strdup( bestowments );
       }
    }
    else
@@ -370,12 +370,12 @@ void do_backup( CHAR_DATA * ch, const char *argument )
       ch->pcdata->clan_name = STRALLOC( "" );
       strlcpy( bestowments, ch->pcdata->bestowments, MAX_STRING_LENGTH );
       DISPOSE( ch->pcdata->bestowments );
-      ch->pcdata->bestowments = str_dup( "" );
+      ch->pcdata->bestowments = strdup( "" );
       save_clone( ch );
       STRFREE( ch->pcdata->clan_name );
       ch->pcdata->clan_name = STRALLOC( clanname );
       DISPOSE( ch->pcdata->bestowments );
-      ch->pcdata->bestowments = str_dup( clanname );
+      ch->pcdata->bestowments = strdup( clanname );
    }
    else
       save_clone( ch );

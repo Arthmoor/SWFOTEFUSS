@@ -36,6 +36,11 @@ Michael Seifert, and Sebastian Hammer.
 #define CODENAME "SWFotEFUSS"
 #define CODEVERSION "1.5.3"
 
+// Backward compatibility for snippets and such.
+#define mudstrlcpy strlcpy
+#define mudstrlcat strlcat
+#define str_dup strdup
+
 typedef int ch_ret;
 typedef int obj_ret;
 
@@ -3509,7 +3514,7 @@ do                                               \
    {                                             \
       if( !in_hash_table( (point) ) )            \
       {                                          \
-         log_printf( "&RSTRFREE called on str_dup pointer: %s, line %d\n", __FILE__, __LINE__ ); \
+         log_printf( "&RSTRFREE called on strdup pointer: %s, line %d\n", __FILE__, __LINE__ ); \
          log_string( "Attempting to correct." ); \
          free( (void*) (point) );                \
       }                                          \
@@ -5063,7 +5068,6 @@ void reset_area( AREA_DATA * pArea );
 char *fread_flagstring( FILE * fp );
 void show_file( CHAR_DATA * ch, const char *filename );
 bool is_valid_filename( CHAR_DATA * ch, const char *direct, const char *filename );
-char *str_dup( char const *str );
 const char *centertext( const char *text, size_t size );
 void boot_db( bool fCopyOver );
 void area_update( void );

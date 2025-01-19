@@ -884,7 +884,7 @@ AREA_DATA *load_area( FILE * fp, int aversion )
    pArea->first_room = pArea->last_room = NULL;
    pArea->name = fread_string_nohash( fp );
    pArea->author = STRALLOC( "unknown" );
-   pArea->filename = str_dup( strArea );
+   pArea->filename = strdup( strArea );
    pArea->age = 15;
    pArea->nplayer = 0;
    pArea->low_r_vnum = 0;
@@ -3194,24 +3194,6 @@ int fread_number( FILE * fp )
    return number;
 }
 
-/*
- * custom str_dup using create					-Thoric
- */
-char *str_dup( char const *str )
-{
-   static char *ret;
-   int len;
-
-   if( !str )
-      return NULL;
-
-   len = strlen( str ) + 1;
-
-   CREATE( ret, char, len );
-   strlcpy( ret, str, MAX_STRING_LENGTH );
-   return ret;
-}
-
 bool is_valid_filename( CHAR_DATA * ch, const char *direct, const char *filename )
 {
    char newfilename[256];
@@ -3329,7 +3311,7 @@ char *fread_string( FILE * fp )
 }
 
 /*
- * Read a string from file fp using str_dup (ie: no string hashing)
+ * Read a string from file fp using strdup (ie: no string hashing)
  */
 char *fread_string_nohash( FILE * fp )
 {
@@ -3353,14 +3335,14 @@ char *fread_string_nohash( FILE * fp )
          bug( "%s: EOF encountered on read.\r\n", __func__ );
          if( fBootDb )
             exit( 1 );
-         return str_dup( "" );
+         return strdup( "" );
       }
       c = getc( fp );
    }
    while( isspace( c ) );
 
    if( ( *plast++ = c ) == '~' )
-      return str_dup( "" );
+      return strdup( "" );
 
    for( ;; )
    {
@@ -3368,7 +3350,7 @@ char *fread_string_nohash( FILE * fp )
       {
          bug( "%s: string too long", __func__ );
          *plast = '\0';
-         return str_dup( buf );
+         return strdup( buf );
       }
       switch ( *plast = getc( fp ) )
       {
@@ -3382,7 +3364,7 @@ char *fread_string_nohash( FILE * fp )
             if( fBootDb )
                exit( 1 );
             *plast = '\0';
-            return str_dup( buf );
+            return strdup( buf );
             break;
 
          case '\n':
@@ -3397,7 +3379,7 @@ char *fread_string_nohash( FILE * fp )
 
          case '~':
             *plast = '\0';
-            return str_dup( buf );
+            return strdup( buf );
       }
    }
 }
@@ -4294,7 +4276,7 @@ void add_to_wizlist( char *name, int level )
 #endif
 
    CREATE( wiz, WIZENT, 1 );
-   wiz->name = str_dup( name );
+   wiz->name = strdup( name );
    wiz->level = level;
 
    if( !first_wiz )
@@ -7409,7 +7391,7 @@ AREA_DATA *create_area( void )
    pArea->first_room = pArea->last_room = NULL;
    pArea->name = NULL;
    pArea->author = NULL;
-   pArea->filename = str_dup( strArea );
+   pArea->filename = strdup( strArea );
    pArea->age = 15;
    pArea->reset_frequency = 15;
    pArea->nplayer = 0;
@@ -7694,12 +7676,12 @@ void load_buildlist( void )
             CREATE( pArea, AREA_DATA, 1 );
             snprintf( buf, MAX_STRING_LENGTH, "%s.are", dentry->d_name );
             pArea->author = STRALLOC( dentry->d_name );
-            pArea->filename = str_dup( buf );
+            pArea->filename = strdup( buf );
 #if !defined(READ_AREA)
             pArea->name = fread_string_nohash( fp );
 #else
             snprintf( buf, MAX_STRING_LENGTH, "{PROTO} %s's area in progress", dentry->d_name );
-            pArea->name = str_dup( buf );
+            pArea->name = strdup( buf );
 #endif
             FCLOSE( fp );
             pArea->low_r_vnum = rlow;
@@ -8030,7 +8012,7 @@ void fread_sysdata( SYSTEM_DATA * sys, FILE * fp )
             if( !str_cmp( word, "End" ) )
             {
                if( !sys->time_of_max )
-                  sys->time_of_max = str_dup( "(not recorded)" );
+                  sys->time_of_max = strdup( "(not recorded)" );
                return;
             }
             break;
@@ -8156,9 +8138,9 @@ bool load_systemdata( SYSTEM_DATA * sys )
    }
 
    if( !sysdata.guild_overseer )
-      sysdata.guild_overseer = str_dup( "" );
+      sysdata.guild_overseer = strdup( "" );
    if( !sysdata.guild_advisor )
-      sysdata.guild_advisor = str_dup( "" );
+      sysdata.guild_advisor = strdup( "" );
    return found;
 }
 
@@ -8194,7 +8176,7 @@ void load_banlist( void )
       else
       {
          ungetc( letter, fp );
-         pban->ban_time = str_dup( "(unrecorded)" );
+         pban->ban_time = strdup( "(unrecorded)" );
       }
       LINK( pban, first_ban, last_ban, next, prev );
    }

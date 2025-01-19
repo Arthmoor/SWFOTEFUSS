@@ -371,9 +371,9 @@ SKILLTYPE *fread_skill( FILE * fp )
                SMAUG_AFF *aff;
 
                CREATE( aff, SMAUG_AFF, 1 );
-               aff->duration = str_dup( fread_word( fp ) );
+               aff->duration = strdup( fread_word( fp ) );
                aff->location = fread_number( fp );
-               aff->modifier = str_dup( fread_word( fp ) );
+               aff->modifier = strdup( fread_word( fp ) );
                aff->bitvector = fread_number( fp );
                LINK( aff, skill->first_affect, skill->last_affect, next, prev );
                fMatch = TRUE;
@@ -393,13 +393,13 @@ SKILLTYPE *fread_skill( FILE * fp )
                {
                   skill->skill_fun = dofun;
                   skill->spell_fun = NULL;
-                  skill->skill_fun_name = str_dup( w );
+                  skill->skill_fun_name = strdup( w );
                }
                else if( str_prefix( "do_", w ) && ( spellfun = spell_function( w ) ) != spell_notfound )
                {
                   skill->spell_fun = spellfun;
                   skill->skill_fun = NULL;
-                  skill->spell_fun_name = str_dup( w );
+                  skill->spell_fun_name = strdup( w );
                }
                else
                {
@@ -739,7 +739,7 @@ void fread_command( FILE * fp )
             break;
 
          case 'C':
-            KEY( "Code", command->fun_name, str_dup( fread_word( fp ) ) );
+            KEY( "Code", command->fun_name, strdup( fread_word( fp ) ) );
             break;
 
          case 'E':

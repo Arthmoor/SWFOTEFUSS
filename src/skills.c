@@ -640,9 +640,9 @@ void do_sset( CHAR_DATA * ch, const char *argument )
       }
       else
          skill_table[top_sn++] = skill;
-      skill->name = str_dup( argument );
-      skill->noun_damage = str_dup( "" );
-      skill->msg_off = str_dup( "" );
+      skill->name = strdup( argument );
+      skill->noun_damage = strdup( "" );
+      skill->msg_off = strdup( "" );
       skill->spell_fun = spell_smaug;
       skill->type = type;
       send_to_char( "Done.\r\n", ch );
@@ -785,14 +785,14 @@ void do_sset( CHAR_DATA * ch, const char *argument )
 		skill->skill_fun = dofun;
 		skill->spell_fun = NULL;
 		DISPOSE( skill->skill_fun_name );
-		skill->skill_fun_name = str_dup( argument );
+		skill->skill_fun_name = strdup( argument );
 	   }		
 	   else if( ( spellfun = spell_function( argument ) ) != spell_notfound )
 	   {
 		skill->spell_fun = spellfun;
 		skill->skill_fun = NULL;
 		DISPOSE( skill->skill_fun_name );
-		skill->spell_fun_name = str_dup( argument );
+		skill->spell_fun_name = strdup( argument );
 	   }
 	   else if( validate_spec_fun( argument ) )
 	   {
@@ -937,7 +937,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
             duration[0] = '\0';
          if( !str_cmp( modifier, "0" ) )
             modifier[0] = '\0';
-         aff->duration = str_dup( duration );
+         aff->duration = strdup( duration );
          aff->location = loc;
          if( loc == APPLY_AFFECT || loc == APPLY_RESISTANT || loc == APPLY_IMMUNE || loc == APPLY_SUSCEPTIBLE )
          {
@@ -948,7 +948,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
                modval = 0;
             snprintf( modifier, MAX_INPUT_LENGTH, "%d", modval );
          }
-         aff->modifier = str_dup( modifier );
+         aff->modifier = strdup( modifier );
          aff->bitvector = bit;
          LINK( aff, skill->first_affect, skill->last_affect, next, prev );
          send_to_char( "Ok.\r\n", ch );
@@ -967,7 +967,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
       if( !str_cmp( arg2, "name" ) )
       {
          DISPOSE( skill->name );
-         skill->name = str_dup( argument );
+         skill->name = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -975,9 +975,9 @@ void do_sset( CHAR_DATA * ch, const char *argument )
       {
          DISPOSE( skill->noun_damage );
          if( !str_cmp( argument, "clear" ) )
-            skill->noun_damage = str_dup( "" );
+            skill->noun_damage = strdup( "" );
          else
-            skill->noun_damage = str_dup( argument );
+            skill->noun_damage = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -985,7 +985,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
       {
          DISPOSE( skill->msg_off );
          if( str_cmp( argument, "clear" ) )
-            skill->msg_off = str_dup( argument );
+            skill->msg_off = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -994,7 +994,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->hit_char )
             DISPOSE( skill->hit_char );
          if( str_cmp( argument, "clear" ) )
-            skill->hit_char = str_dup( argument );
+            skill->hit_char = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1003,7 +1003,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->hit_vict )
             DISPOSE( skill->hit_vict );
          if( str_cmp( argument, "clear" ) )
-            skill->hit_vict = str_dup( argument );
+            skill->hit_vict = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1012,7 +1012,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->hit_room )
             DISPOSE( skill->hit_room );
          if( str_cmp( argument, "clear" ) )
-            skill->hit_room = str_dup( argument );
+            skill->hit_room = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1021,7 +1021,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->miss_char )
             DISPOSE( skill->miss_char );
          if( str_cmp( argument, "clear" ) )
-            skill->miss_char = str_dup( argument );
+            skill->miss_char = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1030,7 +1030,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->miss_vict )
             DISPOSE( skill->miss_vict );
          if( str_cmp( argument, "clear" ) )
-            skill->miss_vict = str_dup( argument );
+            skill->miss_vict = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1039,7 +1039,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->miss_room )
             DISPOSE( skill->miss_room );
          if( str_cmp( argument, "clear" ) )
-            skill->miss_room = str_dup( argument );
+            skill->miss_room = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1048,7 +1048,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->die_char )
             DISPOSE( skill->die_char );
          if( str_cmp( argument, "clear" ) )
-            skill->die_char = str_dup( argument );
+            skill->die_char = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1057,7 +1057,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->die_vict )
             DISPOSE( skill->die_vict );
          if( str_cmp( argument, "clear" ) )
-            skill->die_vict = str_dup( argument );
+            skill->die_vict = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1066,7 +1066,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->die_room )
             DISPOSE( skill->die_room );
          if( str_cmp( argument, "clear" ) )
-            skill->die_room = str_dup( argument );
+            skill->die_room = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1075,7 +1075,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->imm_char )
             DISPOSE( skill->imm_char );
          if( str_cmp( argument, "clear" ) )
-            skill->imm_char = str_dup( argument );
+            skill->imm_char = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1084,7 +1084,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->imm_vict )
             DISPOSE( skill->imm_vict );
          if( str_cmp( argument, "clear" ) )
-            skill->imm_vict = str_dup( argument );
+            skill->imm_vict = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1093,7 +1093,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->imm_room )
             DISPOSE( skill->imm_room );
          if( str_cmp( argument, "clear" ) )
-            skill->imm_room = str_dup( argument );
+            skill->imm_room = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1102,7 +1102,7 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->dice )
             DISPOSE( skill->dice );
          if( str_cmp( argument, "clear" ) )
-            skill->dice = str_dup( argument );
+            skill->dice = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
@@ -1111,23 +1111,23 @@ void do_sset( CHAR_DATA * ch, const char *argument )
          if( skill->components )
             DISPOSE( skill->components );
          if( str_cmp( argument, "clear" ) )
-            skill->components = str_dup( argument );
+            skill->components = strdup( argument );
          send_to_char( "Ok.\r\n", ch );
          return;
       }
       if( !str_cmp( arg2, "teachers" ) )
       {
          if( !str_cmp( argument, "clear" ) )
-            skill->teachers = str_dup( "" );
+            skill->teachers = strdup( "" );
          else
          {
             if( skill->teachers )
             {
                snprintf( buf, MAX_STRING_LENGTH, "%s %s", skill->teachers, argument );
-               skill->teachers = str_dup( buf );
+               skill->teachers = strdup( buf );
             }
             else
-               skill->teachers = str_dup( argument );
+               skill->teachers = strdup( argument );
          }
          send_to_char( "Ok.\r\n", ch );
          return;
@@ -1425,7 +1425,7 @@ void do_detrap( CHAR_DATA * ch, const char *argument )
          }
          act( AT_ACTION, "You carefully begin your attempt to remove a trap from $p...", ch, obj, NULL, TO_CHAR );
          act( AT_ACTION, "$n carefully attempts to remove a trap from $p...", ch, obj, NULL, TO_ROOM );
-         ch->dest_buf = str_dup( obj->name );
+         ch->dest_buf = strdup( obj->name );
          add_timer( ch, TIMER_DO_FUN, 3, do_detrap, 1 );
 /*	    WAIT_STATE( ch, skill_table[gsn_detrap]->beats ); */
          return;
@@ -1547,7 +1547,7 @@ void do_dig( CHAR_DATA * ch, const char *argument )
             }
          }
          add_timer( ch, TIMER_DO_FUN, UMIN( skill_table[gsn_dig]->beats / 10, 3 ), do_dig, 1 );
-         ch->dest_buf = str_dup( arg );
+         ch->dest_buf = strdup( arg );
          send_to_char( "You begin digging...\r\n", ch );
          act( AT_PLAIN, "$n begins digging...", ch, NULL, NULL, TO_ROOM );
          return;
@@ -1690,7 +1690,7 @@ void do_search( CHAR_DATA * ch, const char *argument )
          }
          add_timer( ch, TIMER_DO_FUN, UMIN( skill_table[gsn_search]->beats / 10, 3 ), do_search, 1 );
          send_to_char( "You begin your search...\r\n", ch );
-         ch->dest_buf = str_dup( arg );
+         ch->dest_buf = strdup( arg );
          return;
 
       case 1:

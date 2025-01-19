@@ -541,7 +541,7 @@ void do_setplanet( CHAR_DATA * ch, const char *argument )
       }
 
       DISPOSE( planet->filename );
-      planet->filename = str_dup( argument );
+      planet->filename = strdup( argument );
       send_to_char( "Done.\r\n", ch );
       save_planet( planet );
       write_planet_list(  );

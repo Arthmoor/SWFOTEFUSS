@@ -242,8 +242,8 @@ void do_makegoggles( CHAR_DATA * ch, const char *argument )
                send_to_char( "&GYou begin the long process of creating a pair of magnifying goggles.\r\n", ch );
             act( AT_PLAIN, "$n takes $s toolkit and begins putting something together.", ch, NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 12, do_makegoggles, 1 );
-            ch->dest_buf = str_dup( arg );
-            ch->dest_buf_2 = str_dup( arg2 );
+            ch->dest_buf = strdup( arg );
+            ch->dest_buf_2 = strdup( arg2 );
             return;
          }
          send_to_char( "&RYou can't figure out what to do.\r\n", ch );
@@ -470,7 +470,7 @@ void do_makemissile( CHAR_DATA * ch, const char *argument )
             act( AT_PLAIN, "$n takes $s tools and a few parts, beginning to work on something.", ch,
                  NULL, argument, TO_ROOM );
             add_timer( ch, TIMER_DO_FUN, 22, do_makemissile, 1 );
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             return;
          }
          send_to_char( "&RYou can't figure out how to fit the parts together.\r\n", ch );

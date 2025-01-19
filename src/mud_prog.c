@@ -2104,7 +2104,7 @@ void mprog_act_trigger( char *buf, CHAR_DATA * mob, CHAR_DATA * ch, OBJ_DATA * o
          mob->mpact = tmp_act;
 
       tmp_act->next = NULL;
-      tmp_act->buf = str_dup( buf );
+      tmp_act->buf = strdup( buf );
       tmp_act->ch = ch;
       tmp_act->obj = obj;
       tmp_act->vo = vo;
@@ -2442,7 +2442,7 @@ int oprog_custom_trigger( const char *command, const char *argument, CHAR_DATA *
          {
             if( mprg->type & CUSTOM_PROG )
             {
-               temp = str_dup( mprg->arglist );
+               temp = strdup( mprg->arglist );
                temp = one_argument( temp, pcom );
                temp = one_argument( temp, parg );
                if( !strcmp( pcom, command ) )
@@ -2474,7 +2474,7 @@ int oprog_custom_trigger( const char *command, const char *argument, CHAR_DATA *
             {
                if( mprg->type & CUSTOM_PROG )
                {
-                  temp = str_dup( mprg->arglist );
+                  temp = strdup( mprg->arglist );
                   temp = one_argument( temp, pcom );
                   temp = one_argument( temp, parg );
                   if( !strcmp( pcom, command ) )
@@ -2523,7 +2523,7 @@ int mprog_custom_trigger( const char *command, const char *argument, CHAR_DATA *
          {
             if( mprg->type & CUSTOM_PROG )
             {
-               temp = str_dup( mprg->arglist );
+               temp = strdup( mprg->arglist );
                temp = one_argument( temp, pcom );
                temp = one_argument( temp, parg );
                if( !strcmp( pcom, command ) )
@@ -2564,7 +2564,7 @@ int rprog_custom_trigger( const char *command, const char *argument, CHAR_DATA *
    {
       if( mprg->type & CUSTOM_PROG )
       {
-         temp = str_dup( mprg->arglist );
+         temp = strdup( mprg->arglist );
          temp = one_argument( temp, pcom );
          temp = one_argument( temp, parg );
          if( !strcmp( pcom, command ) )
@@ -2873,7 +2873,7 @@ void oprog_act_trigger( char *buf, OBJ_DATA * mobj, CHAR_DATA * ch, OBJ_DATA * o
          mobj->mpact = tmp_act;
 
       tmp_act->next = NULL;
-      tmp_act->buf = str_dup( buf );
+      tmp_act->buf = strdup( buf );
       tmp_act->ch = ch;
       tmp_act->obj = obj;
       tmp_act->vo = vo;
@@ -3028,7 +3028,7 @@ void rprog_act_trigger( char *buf, ROOM_INDEX_DATA * room, CHAR_DATA * ch, OBJ_D
          room->mpact = tmp_act;
 
       tmp_act->next = NULL;
-      tmp_act->buf = str_dup( buf );
+      tmp_act->buf = strdup( buf );
       tmp_act->ch = ch;
       tmp_act->obj = obj;
       tmp_act->vo = vo;

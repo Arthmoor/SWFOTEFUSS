@@ -444,7 +444,7 @@ void do_setmssp( CHAR_DATA *ch, const char* argument )
    if( strptr != NULL )
    {
       DISPOSE( *strptr );
-      *strptr = str_dup( argument );
+      *strptr = strdup( argument );
       ch_printf( ch, "MSSP value, %s has been changed to: %s\r\n", arg1, argument );
       save_mssp_info(  );
       return;
@@ -549,12 +549,12 @@ void do_setmssp( CHAR_DATA *ch, const char* argument )
       if( !str_cmp( arg1, "multiplaying" ) )
       {
          DISPOSE( mssp_info->multiplaying );
-         mssp_info->multiplaying = str_dup( argument );
+         mssp_info->multiplaying = strdup( argument );
       }
       else
       {
          DISPOSE( mssp_info->playerKilling );
-         mssp_info->playerKilling = str_dup( argument );
+         mssp_info->playerKilling = strdup( argument );
       }
       ch_printf( ch, "MSSP value, %s has been changed to: %s\r\n", arg1, argument );
       save_mssp_info(  );
@@ -570,12 +570,12 @@ void do_setmssp( CHAR_DATA *ch, const char* argument )
       if( !str_cmp( arg1, "training_system" ) )
       {
          DISPOSE( mssp_info->trainingSystem );
-         mssp_info->trainingSystem = str_dup( argument );
+         mssp_info->trainingSystem = strdup( argument );
       }
       else
       {
          DISPOSE( mssp_info->equipmentSystem );
-         mssp_info->equipmentSystem = str_dup( argument );
+         mssp_info->equipmentSystem = strdup( argument );
       }
       ch_printf( ch, "MSSP value, %s has been changed to: %s\r\n", arg1, argument );
       save_mssp_info(  );
@@ -589,7 +589,7 @@ void do_setmssp( CHAR_DATA *ch, const char* argument )
          return;
       }
       DISPOSE( mssp_info->questSystem );
-      mssp_info->questSystem = str_dup( argument );
+      mssp_info->questSystem = strdup( argument );
       ch_printf( ch, "MSSP value, %s has been changed to: %s\r\n", arg1, argument );
       save_mssp_info(  );
       return;
@@ -602,7 +602,7 @@ void do_setmssp( CHAR_DATA *ch, const char* argument )
          return;
       }
       DISPOSE( mssp_info->roleplaying );
-      mssp_info->roleplaying = str_dup( argument );
+      mssp_info->roleplaying = strdup( argument );
       ch_printf( ch, "MSSP value, %s has been changed to: %s\r\n", arg1, argument );
       save_mssp_info(  );
       return;
@@ -615,7 +615,7 @@ void do_setmssp( CHAR_DATA *ch, const char* argument )
          return;
       }
       DISPOSE( mssp_info->worldOriginality );
-      mssp_info->worldOriginality = str_dup( argument );
+      mssp_info->worldOriginality = strdup( argument );
       ch_printf( ch, "MSSP value, %s has been changed to: %s\r\n", arg1, argument );
       save_mssp_info(  );
       return;

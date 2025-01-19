@@ -298,7 +298,7 @@ void show_list_to_char( OBJ_DATA * list, CHAR_DATA * ch, bool fShort, bool fShow
          break;
       if( tmp > 0 && number_bits( 1 ) == 0 )
       {
-         prgpstrShow[nShow] = str_dup( halucinated_object( ms, fShort ) );
+         prgpstrShow[nShow] = strdup( halucinated_object( ms, fShort ) );
          prgnShow[nShow] = 1;
          pitShow[nShow] = number_range( ITEM_LIGHT, ITEM_BOOK );
          nShow++;
@@ -333,7 +333,7 @@ void show_list_to_char( OBJ_DATA * list, CHAR_DATA * ch, bool fShort, bool fShow
           */
          if( !fCombine )
          {
-            prgpstrShow[nShow] = str_dup( pstrShow );
+            prgpstrShow[nShow] = strdup( pstrShow );
             prgnShow[nShow] = obj->count;
             nShow++;
          }
@@ -344,7 +344,7 @@ void show_list_to_char( OBJ_DATA * list, CHAR_DATA * ch, bool fShort, bool fShow
       int x;
       for( x = 0; x < tmp; x++ )
       {
-         prgpstrShow[nShow] = str_dup( halucinated_object( ms, fShort ) );
+         prgpstrShow[nShow] = strdup( halucinated_object( ms, fShort ) );
          prgnShow[nShow] = 1;
          pitShow[nShow] = number_range( ITEM_LIGHT, ITEM_BOOK );
          nShow++;
@@ -2440,7 +2440,7 @@ void do_who( CHAR_DATA * ch, const char *argument )
 
       strlcpy( char_name, "", MAX_INPUT_LENGTH );
       if( wch->rank == NULL || !str_cmp( wch->rank, "(null)" ) )
-         wch->rank = str_dup( "   " );
+         wch->rank = strdup( "   " );
       snprintf( race_text, MAX_INPUT_LENGTH, "&G&w%s&G&c &G&w", wch->rank );
       race = race_text;
 
@@ -2515,7 +2515,7 @@ void do_who( CHAR_DATA * ch, const char *argument )
        * First make the structure. 
        */
       CREATE( cur_who, WHO_DATA, 1 );
-      cur_who->text = str_dup( buf );
+      cur_who->text = strdup( buf );
       if( IS_IMMORTAL( wch ) )
          cur_who->type = WT_IMM;
       else
@@ -2714,7 +2714,7 @@ void do_setrank( CHAR_DATA * ch, const char *argument )
    {
       if( vict->rank )
          DISPOSE( vict->rank );
-      vict->rank = str_dup( "                  " );
+      vict->rank = strdup( "                  " );
       ch_printf( ch, "You have removed %s's rank.\r\n", PERS( vict, ch ) );
       ch_printf( vict, "%s has removed your rank.\r\n", PERS( ch, vict ) );
       return;
@@ -2732,7 +2732,7 @@ void do_setrank( CHAR_DATA * ch, const char *argument )
 
    if( vict->rank )
       DISPOSE( vict->rank );
-   vict->rank = str_dup( buf );
+   vict->rank = strdup( buf );
 
    ch_printf( ch, "&wYou have set %s's rank to &w%s&w.\r\n", PERS( vict, ch ), argument );
    ch_printf( vict, "&w%s has assigned the rank of '%s&w' to you.\r\n", PERS( ch, vict ), argument );
@@ -3570,7 +3570,7 @@ void do_password( CHAR_DATA * ch, const char *argument )
    pwdnew = sha256_crypt( arg2 );
 
    DISPOSE( ch->pcdata->pwd );
-   ch->pcdata->pwd = str_dup( pwdnew );
+   ch->pcdata->pwd = strdup( pwdnew );
    if( IS_SET( sysdata.save_flags, SV_PASSCHG ) )
       save_char_obj( ch );
    send_to_char( "Ok.\r\n", ch );

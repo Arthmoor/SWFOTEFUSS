@@ -913,7 +913,7 @@ SHIP_DATA *make_prototype_ship( int ship_type, int vnum, CHAR_DATA * ch, char *s
    ship->password = number_range( 1111, 9999 );;
    ship->maxmods = ship_prototypes[ship_type].mods;
    snprintf( sp_filename, 256, "ship_%d.sss", vnum );
-   ship->filename = str_dup( sp_filename );
+   ship->filename = strdup( sp_filename );
    ship->pilotseat = vnum;
    ship->coseat = vnum;
    ship->navseat = vnum;
@@ -1226,7 +1226,7 @@ void make_rprogs( int ship_type, int vnum )
          size = 10;
          for( x = 0; x < size; x++ )
          {
-            argument = str_dup( proom->rprog[x] );
+            argument = strdup( proom->rprog[x] );
             if( argument[0] == '\0' )
                continue;
             argument = one_argument( argument, arg1 );
@@ -1273,7 +1273,7 @@ char *parse_prog_string( char *inp, int ship_type, int vnum )
       snprintf( rep, MAX_STRING_LENGTH, "%d", x + vnum );
       snprintf( newinp, MAX_STRING_LENGTH, "%s", strrep( newinp, sch, rep ) );
    }
-   return str_dup( newinp );
+   return strdup( newinp );
 }
 
 void save_prototype( int prototype )
@@ -2527,7 +2527,7 @@ void do_installmodule( CHAR_DATA * ch, const char *argument )
          schance = IS_NPC( ch ) ? ch->top_level : ( int )( ch->pcdata->learned[gsn_installmodule] );
          if( number_percent(  ) < schance )
          {
-            ch->dest_buf = str_dup( arg );
+            ch->dest_buf = strdup( arg );
             send_to_char( "&GYou begin the long process of installing a new module.\r\n", ch );
             snprintf( buf, MAX_INPUT_LENGTH, "$n takes out $s toolkit and a module and begins to work.\r\n" );
             act( AT_PLAIN, buf, ch, NULL, argument, TO_ROOM );
