@@ -5,7 +5,7 @@
  *                /-----\  |      | \  |  v  | |     | |  /                 *
  *               /       \ |      |  \ |     | +-----+ +-/                  *
  ****************************************************************************
- * AFKMud Copyright 1997-2019 by Roger Libiez (Samson),                     *
+ * AFKMud Copyright 1997-2025 by Roger Libiez (Samson),                     *
  * Levi Beckerson (Whir), Michael Ward (Tarl), Erik Wolfe (Dwip),           *
  * Cameron Carroll (Cam), Cyberfox, Karangi, Rathian, Raine,                *
  * Xorith, and Adjani.                                                      *
@@ -43,8 +43,8 @@ struct dns_data
 };
 
 DECLARE_DO_FUN( do_cache );
-void resolve_dns( DESCRIPTOR_DATA * d, long ip );
+void resolve_dns( DESCRIPTOR_DATA * d, const char *ip );
 void process_dns( DESCRIPTOR_DATA * d );
-char *in_dns_cache( char *ip );
+char *in_dns_cache( const char *ip );
 void load_dns( void );
 void check_dns( void );

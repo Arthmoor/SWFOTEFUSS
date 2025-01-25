@@ -33,6 +33,8 @@ Michael Seifert, and Sebastian Hammer.
 #include <typeinfo>
 #endif
 
+using namespace std;
+
 #define CODENAME "SWFotEFUSS"
 #define CODEVERSION "1.5.3"
 
