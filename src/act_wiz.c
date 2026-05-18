@@ -4738,7 +4738,7 @@ void close_area( AREA_DATA * pArea )
                if( tmid->next == mid )
                   break;
             if( !tmid )
-               bug( "%s: mid not in hash list %s", __func__, mid->vnum );
+               bug( "%s: mid not in hash list %d", __func__, mid->vnum );
             else
                tmid->next = mid->next;
          }
