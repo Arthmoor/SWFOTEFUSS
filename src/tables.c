@@ -859,7 +859,7 @@ void load_commands(  )
    }
    else
    {
-      bug( "%s: Cannot open commands.dat", 1 );
+      bug( "%s: Cannot open commands.dat", __func__ );
       exit( 1 );
    }
 }
