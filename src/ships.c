@@ -1553,7 +1553,7 @@ bool load_prototype_rooms( FILE * fp, int prototype )
       }
       else
       {
-         bug( "%s: unknown prefix: %s", __func__, letter );
+         bug( "%s: unknown prefix: %c", __func__, letter );
          return FALSE;
       }
    }
