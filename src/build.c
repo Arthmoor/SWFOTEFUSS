@@ -3234,7 +3234,7 @@ void do_oset( CHAR_DATA * ch, const char *argument )
       ch->substate = SUB_OBJ_LONG;
       ch->dest_buf = obj;
       start_editing( ch, obj->description );
-      editor_desc_printf( ch, "Object long desc, vnum %ld (%s).", obj->pIndexData->vnum, obj->short_descr );
+      editor_desc_printf( ch, "Object long desc, vnum %d (%s).", obj->pIndexData->vnum, obj->short_descr );
       return;
    }
 
