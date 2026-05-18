@@ -400,7 +400,7 @@ bool load_clan_file( const char *clanfile )
                break;
             else
             {
-               bug( "%s: bad section. %s", clan->name );
+               bug( "%s: bad section. %s", __func__, clan->name );
                break;
             }
          }
