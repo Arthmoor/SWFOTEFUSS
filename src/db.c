@@ -398,7 +398,8 @@ void shutdown_mud( const char *reason )
  */
 void boot_db( bool fCopyOver )
 {
-   short wear, x;
+   short wear;
+   int x;
 
    show_hash( 32 );
    unlink( BOOTLOG_FILE );
