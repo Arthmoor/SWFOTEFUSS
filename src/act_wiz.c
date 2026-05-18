@@ -4786,7 +4786,7 @@ void close_area( AREA_DATA * pArea )
                if( toid->next == oid )
                   break;
             if( !toid )
-               bug( "%s: oid not in hash list %s", __func__, oid->vnum );
+               bug( "%s: oid not in hash list %d", __func__, oid->vnum );
             else
                toid->next = oid->next;
          }
