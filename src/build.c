@@ -1843,7 +1843,7 @@ void do_mset( CHAR_DATA * ch, const char *argument )
       ch->dest_buf = victim;
       start_editing( ch, victim->description );
       if( IS_NPC( victim ) )
-         editor_desc_printf( ch, "Description of mob, vnum %ld (%s).", victim->pIndexData->vnum, victim->name );
+         editor_desc_printf( ch, "Description of mob, vnum %d (%s).", victim->pIndexData->vnum, victim->name );
       else
          editor_desc_printf( ch, "Description of player %s.", capitalize( victim->name ) );
       return;
