@@ -60,6 +60,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <dlfcn.h>
+#include <cassert>
 #include "mud.h"
 #include "mccp.h"
 #ifdef CHANGES
@@ -769,6 +770,9 @@ void read_obj_file( char *dirname, char *filename )
    {
       short iNest;
       OBJ_DATA *tobj, *tobj_next;
+
+      // If the supermob still has objects in its possession, this means that a previous room dump failed.
+      assert( supermob->first_carrying == NULL );
 
       rset_supermob( room );
       for( iNest = 0; iNest < MAX_NEST; iNest++ )
