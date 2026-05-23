@@ -648,35 +648,34 @@ char *one_argument( char *argument, char *arg_first )
  */
 const char *one_argument( const char *argument, char *arg_first )
 {
-   char cEnd;
-   int count;
+    char cEnd;
+    int count;
 
-   count = 0;
+    count = 0;
 
-   while( isspace( *argument ) )
-      argument++;
+    while( isspace( *argument ) )
+        ++argument;
 
-   cEnd = ' ';
-   if( *argument == '\'' || *argument == '"' )
-      cEnd = *argument++;
+    cEnd = ' ';
+    if( *argument == '\'' || *argument == '"' )
+        cEnd = *argument++;
 
-   while( *argument != '\0' || ++count >= 255 )
-   {
-      if( *argument == cEnd )
-      {
-         argument++;
-         break;
-      }
-      *arg_first = ( *argument );
-      arg_first++;
-      argument++;
-   }
-   *arg_first = '\0';
+    while( *argument != '\0' && count < 255 )
+    {
+        if( *argument == cEnd )
+        {
+            ++argument;
+            break;
+        }
+        *arg_first++ = *argument++;
+        count++;
+    }
+    *arg_first = '\0';
 
-   while( isspace( *argument ) )
-      argument++;
+    while( isspace( *argument ) )
+        ++argument;
 
-   return argument;
+    return argument;
 }
 
 /*
@@ -686,41 +685,40 @@ const char *one_argument( const char *argument, char *arg_first )
  */
 const char *one_argument2( const char *argument, char *arg_first )
 {
-   char cEnd;
-   short count;
+    char cEnd;
+    short count;
 
-   count = 0;
+    count = 0;
 
-   if( !argument || argument[0] == '\0' )
-   {
-      arg_first[0] = '\0';
-      return argument;
-   }
+    if( !argument || argument[0] == '\0' )
+    {
+        arg_first[0] = '\0';
+        return argument;
+    }
 
-   while( isspace( *argument ) )
-      argument++;
+    while( isspace( *argument ) )
+        argument++;
 
-   cEnd = ' ';
-   if( *argument == '\'' || *argument == '"' )
-      cEnd = *argument++;
+    cEnd = ' ';
+    if( *argument == '\'' || *argument == '"' )
+        cEnd = *argument++;
 
-   while( *argument != '\0' || ++count >= 255 )
-   {
-      if( *argument == cEnd || *argument == '-' )
-      {
-         argument++;
-         break;
-      }
-      *arg_first = ( *argument );
-      arg_first++;
-      argument++;
-   }
-   *arg_first = '\0';
+    while( *argument != '\0' && count < 255 )
+    {
+        if( *argument == cEnd || *argument == '-' )
+        {
+            argument++;
+            break;
+        }
+        *arg_first++ = *argument++;
+        count++;
+    }
+    *arg_first = '\0';
 
-   while( isspace( *argument ) )
-      argument++;
+    while( isspace( *argument ) )
+        argument++;
 
-   return argument;
+    return argument;
 }
 
 void do_timecmd( CHAR_DATA* ch, const char* argument )
