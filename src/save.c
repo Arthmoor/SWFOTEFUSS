@@ -739,6 +739,19 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest, short os_typ
    return;
 }
 
+void clear_save_equipment( void )
+{
+   int x, i;
+
+   for( x = 0; x < MAX_WEAR; x++ )
+   {
+      for( i = 0; i < MAX_LAYERS; i++ )
+      {
+         save_equipment[x][i] = NULL;
+      }
+   }
+}
+
 /*
  * Load a char and inventory into a new ch structure.
  */
@@ -751,10 +764,10 @@ bool load_char_obj( DESCRIPTOR_DATA * d, char *name, bool preload, bool hotboot 
    struct stat fst;
    int i, x;
 
+   clear_save_equipment();
+
    CREATE( ch, CHAR_DATA, 1 );
-   for( x = 0; x < MAX_WEAR; x++ )
-      for( i = 0; i < MAX_LAYERS; i++ )
-         save_equipment[x][i] = NULL;
+
    clear_char( ch );
    loading_char = ch;
 
@@ -917,20 +930,22 @@ bool load_char_obj( DESCRIPTOR_DATA * d, char *name, bool preload, bool hotboot 
             ch->pcdata->wizinvis = ch->top_level;
          assign_area( ch );
       }
-      if( file_ver > 1 )
+
+      for( i = 0; i < MAX_WEAR; i++ )
       {
-         for( i = 0; i < MAX_WEAR; i++ )
-            for( x = 0; x < MAX_LAYERS; x++ )
-               if( save_equipment[i][x] )
-               {
+          for( x = 0; x < MAX_LAYERS; x++ )
+          {
+              if( save_equipment[i][x] )
+              {
                   equip_char( ch, save_equipment[i][x], i );
                   save_equipment[i][x] = NULL;
-               }
-               else
-                  break;
+              }
+          }
       }
 
    }
+
+   clear_save_equipment();
 
    loading_char = NULL;
    if( found )
