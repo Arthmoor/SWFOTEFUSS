@@ -828,8 +828,6 @@ void boot_db( bool fCopyOver )
       log_string( "Fixing exits" );
       fix_exits(  );
       fBootDb = FALSE;
-      log_string( "Initializing economy" );
-      initialize_economy(  );
       log_string( "Loading buildlist" );
       load_buildlist(  );
       log_string( "Loading boards" );
@@ -861,6 +859,9 @@ void boot_db( bool fCopyOver )
       }
       log_string( "Resetting areas" );
       area_update(  );
+
+      log_string( "Initializing economy" );
+      initialize_economy(  );
 
       //log_string( "Loading black market ships");
       //load_market_list();
