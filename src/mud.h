@@ -36,7 +36,7 @@ Michael Seifert, and Sebastian Hammer.
 using namespace std;
 
 #define CODENAME "SWFotEFUSS"
-#define CODEVERSION "1.5.3"
+#define CODEVERSION "1.5.4"
 
 // Backward compatibility for snippets and such.
 #define mudstrlcpy strlcpy
