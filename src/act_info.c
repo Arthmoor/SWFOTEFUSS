@@ -2315,7 +2315,7 @@ void do_hlist( CHAR_DATA *ch, char *argument )
 void do_who( CHAR_DATA * ch, const char *argument )
 {
    char buf[MAX_STRING_LENGTH+2];
-   char clan_name[MAX_INPUT_LENGTH];
+   char clan_name[256];
    char invis_str[MAX_INPUT_LENGTH];
    char char_name[MAX_INPUT_LENGTH];
    char extra_title[MAX_INPUT_LENGTH];
@@ -2481,17 +2481,17 @@ void do_who( CHAR_DATA * ch, const char *argument )
       {
          CLAN_DATA *pclan = wch->pcdata->clan;
 
-         strlcpy( clan_name, " (", MAX_INPUT_LENGTH );
+         strlcpy( clan_name, " (", 256 );
 
          if( !str_cmp( wch->name, pclan->leader ) )
-            strlcat( clan_name, "Leader, ", MAX_INPUT_LENGTH );
+            strlcat( clan_name, "Leader, ", 256 );
          if( !str_cmp( wch->name, pclan->number1 ) )
-            strlcat( clan_name, "First, ", MAX_INPUT_LENGTH );
+            strlcat( clan_name, "First, ", 256 );
          if( !str_cmp( wch->name, pclan->number2 ) )
-            strlcat( clan_name, "Second, ", MAX_INPUT_LENGTH );
+            strlcat( clan_name, "Second, ", 256 );
 
-         strlcat( clan_name, pclan->name, MAX_INPUT_LENGTH );
-         strlcat( clan_name, ")", MAX_INPUT_LENGTH );
+         strlcat( clan_name, pclan->name, 256 );
+         strlcat( clan_name, ")", 256 );
       }
       else
          clan_name[0] = '\0';
@@ -2500,11 +2500,16 @@ void do_who( CHAR_DATA * ch, const char *argument )
          snprintf( invis_str, MAX_INPUT_LENGTH, "(%d)", wch->pcdata->wizinvis );
       else
          invis_str[0] = '\0';
-      snprintf( buf, MAX_STRING_LENGTH+2, "%s   %s%s%s%s %s%s\n%s",
+      int written = snprintf( buf, MAX_STRING_LENGTH+2, "%s   %s%s%s%s %s%s\n%s",
                race,
                invis_str,
                IS_SET( wch->act, PLR_AFK ) ? "[AFK]" : "",
                char_name, wch->pcdata->title, extra_title, clan_name, ch ? "\r" : "" );
+
+      if( written >= MAX_STRING_LENGTH )
+      {
+         buf[MAX_STRING_LENGTH] = '\0';
+      }
 
       /*
        * This is where the old code would display the found player to the ch.

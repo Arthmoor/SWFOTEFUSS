@@ -307,20 +307,18 @@ void start_arena(  )
          if( time_to_start > 1 )
          {
             snprintf( buf1, MAX_INPUT_LENGTH, "&WThe Killing Fields are open to top_levels &R%d &Wthru &R%d\r\n", lo_lim, hi_lim );
-            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s%d &Whours to start\r\n", buf1, time_to_start );
-            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s\r\nType &Rarena &Wto enter.\r\n", buf1 );
-            snprintf( buf, MAX_INPUT_LENGTH, "With just %d hours to go till the start of the arena %d people have accepted the challenge!\r\n",
-                     time_to_start, num_in_arena(  ) );
+            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%d &Whours to start\r\n", time_to_start );
+            strlcat( buf1, "\r\nType &Rarena &Wto enter.\r\n", MAX_INPUT_LENGTH );
+            snprintf( buf, MAX_INPUT_LENGTH, "With just %d hours to go till the start of the arena %d people have accepted the challenge!\r\n", time_to_start, num_in_arena(  ) );
             sportschan( buf );
             sportschan( buf1 );
          }
          else
          {
             snprintf( buf1, MAX_INPUT_LENGTH, "&WThe Killing Fields are open to top_levels &R%d &Wthru &R%d\r\n", lo_lim, hi_lim );
-            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s1 &Whour to start\r\n", buf1 );
-            snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s\r\nType &Rarena &Wto enter.\r\n", buf1 );
-            snprintf( buf, MAX_INPUT_LENGTH, "With just 1 hour to go till the start of the arena %d people have accepted the challenge!\r\n",
-                     num_in_arena(  ) );
+            strlcat( buf1, "1 &Whour to start\r\n", MAX_INPUT_LENGTH );
+            strlcat( buf1, "\r\nType &Rarena &Wto enter.\r\n", MAX_INPUT_LENGTH );
+            snprintf( buf, MAX_INPUT_LENGTH, "With just 1 hour to go till the start of the arena %d people have accepted the challenge!\r\n", num_in_arena(  ) );
             sportschan( buf );
             sportschan( buf1 );
          }
@@ -477,13 +475,18 @@ void find_game_winner(  )
    }
 }
 
-void show_jack_pot(  )
+void show_jack_pot( )
 {
    char buf1[MAX_INPUT_LENGTH];
+   int written = 0;
 
-   snprintf( buf1, MAX_INPUT_LENGTH, "&G&W\r\n\007\007Lets get ready to RUMBLE!!!!!!!!\r\n" );
-   snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%sThe jack pot for this arena is %d credits\r\n", buf1, arena_pot );
-   snprintf( buf1 + strlen( buf1 ), ( MAX_INPUT_LENGTH - strlen( buf1 ) ), "%s%d credits have been bet on this arena.\r\r\n\n", buf1, bet_pot );
+   written = snprintf( buf1, MAX_INPUT_LENGTH, "&G&W\r\n\007\007Lets get ready to RUMBLE!!!!!!!!\r\n" );
+   if( written < MAX_INPUT_LENGTH )
+      written += snprintf( buf1 + written, ( MAX_INPUT_LENGTH - written ), "The jack pot for this arena is %d credits\r\n", arena_pot );
+
+   if( written < MAX_INPUT_LENGTH )
+      written += snprintf( buf1 + written, ( MAX_INPUT_LENGTH - written ), "%d credits have been bet on this arena.\r\r\n\n", bet_pot );
+
    sportschan( buf1 );
 }
 
@@ -592,13 +595,13 @@ void do_awho( CHAR_DATA * ch, const char *argument )
    }
 
    strlcpy( buf, "&W  Players in the &BChaos&W Arena\r\n", MAX_INPUT_LENGTH );
-   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-", buf );
-   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-\r\n", buf );
-   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%sGame Length = &R%-3d   &WTime To Start &R%-3d\r\n", buf, game_length, time_to_start );
-   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s&Wtop_level Limits &R%d &Wto &R%d\r\n", buf, lo_lim, hi_lim );
-   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s         &WJackpot = &R%d\r\n", buf, arena_pot );
-   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B", buf );
-   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "%s-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B\r\n", buf );
+   strlcat( buf, "-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-", MAX_INPUT_LENGTH );
+   strlcat( buf, "&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-\r\n", MAX_INPUT_LENGTH );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "Game Length = &R%-3d   &WTime To Start &R%-3d\r\n", game_length, time_to_start );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "&Wtop_level Limits &R%d &Wto &R%d\r\n", lo_lim, hi_lim );
+   snprintf( buf + strlen( buf ), ( MAX_INPUT_LENGTH - strlen( buf ) ), "          &WJackpot = &R%d\r\n", arena_pot );
+   strlcat( buf, "&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B", MAX_INPUT_LENGTH );
+   strlcat( buf, "-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B-&W-&B\r\n", MAX_INPUT_LENGTH );
    send_to_char( buf, ch );
 
    for( d = first_descriptor; d; d = d->next )

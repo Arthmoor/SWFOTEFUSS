@@ -13,7 +13,7 @@ ifeq ($(findstring CYGWIN, $(shell uname -s)), CYGWIN)
 endif
 
 # Check if libdl is available on the system
-HAS_DL := $(shell ld -ldl --verbose >/dev/null 2>&1 && echo yes)
+HAS_DL := $(shell echo 'int main(){}' | $(CC) -x c - -ldl -o /dev/null 2>/dev/null && echo yes)
 
 ifeq ($(HAS_DL),yes)
     NEED_DL = -ldl
@@ -39,7 +39,7 @@ endif
 # We add -D_FORTIFY_SOURCE=2 to perform runtime checks on string/memory functions.
 HARDENING_FLAGS = -fstack-protector-strong -D_FORTIFY_SOURCE=2
 
-W_FLAGS = -std=c++20 -Wall -Wshadow -Wformat-security -Winline -Wpointer-arith -Wcast-align -Wredundant-decls
+W_FLAGS = -std=c++20 -Wall -Wshadow -Wformat-security -Wpointer-arith -Wcast-align -Wredundant-decls
 
 C_FLAGS = -g2 $(W_FLAGS) $(M_FLAGS) $(HARDENING_FLAGS) $(EXPORT_SYMBOLS)
 L_FLAGS = $(M_FLAGS) $(HARDENING_FLAGS) -lz $(NEED_DL)
@@ -68,53 +68,51 @@ all:
 
 ifdef IS_CYGWIN
 swr: $(O_FILES)
-	rm -f swr.exe
-	dlltool --export-all --output-def swr.def $(O_FILES)
-	dlltool --dllname swr.exe --output-exp swr.exp --def swr.def
+	@rm -f swr.exe
+	@dlltool --export-all --output-def swr.def $(O_FILES)
+	@dlltool --dllname swr.exe --output-exp swr.exp --def swr.def
 	$(CC) -o swr.exe $(O_FILES) swr.exp $(L_FLAGS)
-	@echo -e "Generating dependency file ...";
+	@echo "Generating dependency file ...";
 	@$(CC) -MM $(C_FLAGS) $(C_FILES) > dependencies.d
 	@perl -pi -e 's.^([a-z]).o/$$1.g' dependencies.d
-	@echo -e "Done compiling mud.";
-	chmod g+w swr.exe
-	chmod a+x swr.exe
-	chmod g+w $(O_FILES)
+	@echo "Done compiling mud.";
+	@chmod g+w swr.exe
+	@chmod a+x swr.exe
+	@chmod g+w $(O_FILES)
 
 clean:
 	@rm -f o/*.o swr.exe dependencies.d resolver.exe resolver.o *~
 
 else
 swr: $(O_FILES)
-	rm -f swr
+	@rm -f swr
 	$(CC) -export-dynamic -o swr $(O_FILES) $(L_FLAGS)
-	@echo -e "Generating dependency file ...";
+	@echo "Generating dependency file ...";
 	@$(CC) -MM $(C_FLAGS) $(C_FILES) > dependencies.d
 	@perl -pi -e 's.^([a-z]).o/$$1.g' dependencies.d
-	@echo -e "Done compiling mud.";
-	rm -f a.out
-	chmod g+w swr
-	chmod a+x swr
-	chmod g+w $(O_FILES)
+	@echo "Done compiling mud.";
+	@chmod g+w swr
+	@chmod a+x swr
+	@chmod g+w $(O_FILES)
 
 clean:
 	@rm -f o/*.o swr dependencies.d resolver resolver.o *~
 endif
 
 dns: resolver.o
-	rm -f resolver
+	@rm -f resolver
 	$(CC) $(D_FLAGS) -o resolver resolver.o
-	@echo -e "Done compiling DNS resolver.";
-	rm -f a.out
-	chmod g+w resolver
-	chmod a+x resolver
-	chmod g+w resolver.o
+	@echo "Done compiling DNS resolver.";
+	@chmod g+w resolver
+	@chmod a+x resolver
+	@chmod g+w resolver.o
 
 indent:
-	indent -ts3 -nut -nsaf -nsai -nsaw -npcs -npsl -ncs -nbc -bls -prs -bap -cbi0 -cli3 -bli0 -l125 -lp -i3 -cdb -c1 -cd1 -sc -pmt $(C_FILES)
-	indent -ts3 -nut -nsaf -nsai -nsaw -npcs -npsl -ncs -nbc -bls -prs -bap -cbi0 -cli3 -bli0 -l125 -lp -i3 -cdb -c1 -cd1 -sc -pmt $(H_FILES)
+	@indent -ts3 -nut -nsaf -nsai -nsaw -npcs -npsl -ncs -nbc -bls -prs -bap -cbi0 -cli3 -bli0 -l125 -lp -i3 -cdb -c1 -cd1 -sc -pmt $(C_FILES)
+	@indent -ts3 -nut -nsaf -nsai -nsaw -npcs -npsl -ncs -nbc -bls -prs -bap -cbi0 -cli3 -bli0 -l125 -lp -i3 -cdb -c1 -cd1 -sc -pmt $(H_FILES)
 
 indentclean:
-	rm *.c~ *.h~
+	@rm *.c~ *.h~
 
 new:
 	$(MAKE) indentclean
@@ -122,5 +120,5 @@ new:
 	$(MAKE) all
 
 o/%.o: %.c
-	echo "  Compiling $@...";
+	@echo "  Compiling $@...";
 	$(CC) -c $(C_FLAGS) $< -o $@
